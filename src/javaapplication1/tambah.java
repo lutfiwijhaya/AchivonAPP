@@ -796,8 +796,52 @@ public class tambah extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String currentdirectory = "C:\\Users\\USER\\Pictures";
+        JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
+        int imagechooser = imageFileChooser.showOpenDialog(null);
+        imageFileChooser.showOpenDialog(null);
+        imageFileChooser.setDialogTitle("Pilih gambar...");
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png","jpg","jpeg");
+        imageFileChooser.setFileFilter(fnef);
+
+        if (imagechooser == JFileChooser.APPROVE_OPTION){
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void curentCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curentCountryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_curentCountryActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        cprov.setSelectedItem(homeState.getSelectedItem());
+        ccity.setSelectedItem(homeCity.getSelectedItem());
+        t_calamat.setText(t_halamat.getText());
+        t_cdesa.setText(t_ddesa.getText());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void t_cdesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_cdesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_cdesaActionPerformed
+
+    private void t_ddesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ddesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ddesaActionPerformed
+
+    private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_gajiKeyTyped
+
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-     // simpan data diri
+        // simpan data diri
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
         t_pria.setActionCommand("Laki - laki");
         t_wanita.setActionCommand("Perempuan");
@@ -831,17 +875,17 @@ public class tambah extends javax.swing.JFrame {
         try {
             stm = koneksi.createStatement();
             String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,Applying_A,D_Salary) values('" + g_nama + "'"
-                    + ",'" + g_ktp + "'"
-                    + ",'" + g_email + "'"
-                    + ",'" + g_npwp + "'"
-                    + ",'" + g_gender + "'"
-                    + ",'" + g_tlahir + "'"
-                    + ",'" + g_tgl + "'"
-                    + ",'" + g_status + "'"
-                    + ",'" + g_hp + "'"
-                    + ",'" + g_bpjs + "'"
-                    + ",'" + g_lamaran + "'"
-                    + ",'" + g_gaji + "')";
+            + ",'" + g_ktp + "'"
+            + ",'" + g_email + "'"
+            + ",'" + g_npwp + "'"
+            + ",'" + g_gender + "'"
+            + ",'" + g_tlahir + "'"
+            + ",'" + g_tgl + "'"
+            + ",'" + g_status + "'"
+            + ",'" + g_hp + "'"
+            + ",'" + g_bpjs + "'"
+            + ",'" + g_lamaran + "'"
+            + ",'" + g_gaji + "')";
 
             stm.executeUpdate(sql);
 
@@ -858,102 +902,68 @@ public class tambah extends javax.swing.JFrame {
             }
 
             String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_desa,h_alamat,c_negara,c_prov,c_kab,c_desa,c_alamat) values('" + da + "'"
-                    + ",'" + g_hnegara + "'"
-                    + ",'" + g_hprov + "'"
-                    + ",'" + g_hkota + "'"
-                    + ",'" + g_hdesa + "'"
-                    + ",'" + g_halamat + "'"
-                    + ",'" + g_cnegara + "'"
-                    + ",'" + g_cprov + "'"
-                    + ",'" + g_ckota + "'"
-                    + ",'" + g_cdesa + "'"
-                    + ",'" + g_calamat + "')";
+            + ",'" + g_hnegara + "'"
+            + ",'" + g_hprov + "'"
+            + ",'" + g_hkota + "'"
+            + ",'" + g_hdesa + "'"
+            + ",'" + g_halamat + "'"
+            + ",'" + g_cnegara + "'"
+            + ",'" + g_cprov + "'"
+            + ",'" + g_ckota + "'"
+            + ",'" + g_cdesa + "'"
+            + ",'" + g_calamat + "')";
 
             stm.executeUpdate(sql0);
-
-           
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
         }
 
-      //simpan academic
-      jTable2.editCellAt(0, 0);
-      DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
+        //simpan academic
+        jTable2.editCellAt(0, 0);
+        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
         int jtabelrows = jTable2.getRowCount();
 
         for (int i = 0; i <= jtabelrows - 1; i++) {
- if(jTable2.getValueAt(i,0) == null ){ 
-              
-} else {
-            String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
-            String dtabel_univ = jTable2.getValueAt(i, 1).toString();
-            String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
-            String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
+            if(jTable2.getValueAt(i,0) == null ){
 
-            try {
-                stm = koneksi.createStatement();
-                String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
-                        + ",'" + dtabel_tgl + "'"
-                        + ",'" + dtabel_univ + "'"
-                        + ",'" + dtabel_lokasi + "'"
-                        + ",'" + dtabel_jurusan + "')";
+            } else {
+                String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
+                String dtabel_univ = jTable2.getValueAt(i, 1).toString();
+                String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
+                String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
 
-                stm.executeUpdate(sql);
-            
+                try {
+                    stm = koneksi.createStatement();
+                    String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
+                    + ",'" + dtabel_tgl + "'"
+                    + ",'" + dtabel_univ + "'"
+                    + ",'" + dtabel_lokasi + "'"
+                    + ",'" + dtabel_jurusan + "')";
 
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-            }}
+                    stm.executeUpdate(sql);
 
-        } 
-        
-        simpan_family();
-        simpan_serifikat();
-        simpan_career();
-        simpan_motivation();
-        JOptionPane.showMessageDialog(null, "Data Tersimpan");
-        this.dispose();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }}
+
+            }
+
+            simpan_family();
+            simpan_serifikat();
+            simpan_career();
+            simpan_motivation();
+            JOptionPane.showMessageDialog(null, "Data Tersimpan");
+            this.dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
-        Connection myConn;
-        try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                homeState.addItem(myRess.getString("name"));
-            }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        jToggleButton1.setEnabled(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-        } catch (SQLException ex) {
-        }
-
-
-    }//GEN-LAST:event_homeCountryActionPerformed
-
-    private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
-        Connection myConn;
-        try {
-            homeCity.removeAllItems();
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                homeCity.addItem(myRess.getString("name"));
-            }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
-
-        } catch (SQLException ex) {
-        }
-    }//GEN-LAST:event_homeStateActionPerformed
-
-    private void homeCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCityActionPerformed
+    private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_homeCityActionPerformed
+    }//GEN-LAST:event_jTable2InputMethodTextChanged
 
     private void cprovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cprovActionPerformed
         Connection myConn;
@@ -964,113 +974,96 @@ public class tambah extends javax.swing.JFrame {
             while (myRess.next()) {
                 ccity.addItem(myRess.getString("name"));
             }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
+            //            myRess.last();
+            //            int jumlahdata = myRess.getRow();
+            //            myRess.first();
 
         } catch (SQLException ex) {
         }     // TODO add your handling code here:
     }//GEN-LAST:event_cprovActionPerformed
 
-    private void t_cdesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_cdesaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_cdesaActionPerformed
-
-    private void curentCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curentCountryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_curentCountryActionPerformed
-
-    private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable2InputMethodTextChanged
-
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-cprov.setSelectedItem(homeState.getSelectedItem());
- ccity.setSelectedItem(homeCity.getSelectedItem());
- t_calamat.setText(t_halamat.getText());
- t_cdesa.setText(t_ddesa.getText());
-// TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-jToggleButton1.setEnabled(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void t_ktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyTyped
-char c = evt.getKeyChar();
-if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
-evt.consume();
-}
-if (t_ktp.getText().length()>16){
-evt.consume();
-}
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_t_ktpKeyTyped
-
-    private void t_namaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_namaKeyTyped
-if (t_nama.getText().length()>25){
-evt.consume();
-}
-// TODO add your handling code here:
-    }//GEN-LAST:event_t_namaKeyTyped
-
-    private void t_tlhirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_tlhirKeyTyped
-if (t_tlhir.getText().length()>20){
-evt.consume();
-}        // TODO add your handling code here:
-    }//GEN-LAST:event_t_tlhirKeyTyped
-
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
-char c = evt.getKeyChar();
-if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
-evt.consume();
-}
-if (t_hp.getText().length()>13){
-evt.consume();
-}
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }
+        if (t_hp.getText().length()>13){
+            evt.consume();
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_t_hpKeyTyped
 
     private void t_bpjsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKeyTyped
-      char c = evt.getKeyChar();
-if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
-evt.consume();
-}
-// TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_t_bpjsKeyTyped
 
-    private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
-char c = evt.getKeyChar();
-if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
-evt.consume();
-}
+    private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
+        Connection myConn;
+        try {
+            homeCity.removeAllItems();
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                homeCity.addItem(myRess.getString("name"));
+            }
+            //            myRess.last();
+            //            int jumlahdata = myRess.getRow();
+            //            myRess.first();
+
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_homeStateActionPerformed
+
+    private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
+        Connection myConn;
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                homeState.addItem(myRess.getString("name"));
+            }
+            //            myRess.last();
+            //            int jumlahdata = myRess.getRow();
+            //            myRess.first();
+
+        } catch (SQLException ex) {
+        }
+
+    }//GEN-LAST:event_homeCountryActionPerformed
+
+    private void homeCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_t_gajiKeyTyped
+    }//GEN-LAST:event_homeCityActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void t_tlhirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_tlhirKeyTyped
+        if (t_tlhir.getText().length()>20){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_tlhirKeyTyped
 
-        String currentdirectory = "C:\\Users\\USER\\Pictures";
-        JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
-        int imagechooser = imageFileChooser.showOpenDialog(null);
-imageFileChooser.showOpenDialog(null);
-imageFileChooser.setDialogTitle("Pilih gambar...");
-FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png","jpg","jpeg");
-imageFileChooser.setFileFilter(fnef);
+    private void t_ktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }
+        if (t_ktp.getText().length()>16){
+            evt.consume();
+        }
 
-if (imagechooser == JFileChooser.APPROVE_OPTION){
-
-
-
-
-}
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_t_ktpKeyTyped
 
-    private void t_ddesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ddesaActionPerformed
+    private void t_namaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_namaKeyTyped
+        if (t_nama.getText().length()>25){
+            evt.consume();
+        }
         // TODO add your handling code here:
-    }//GEN-LAST:event_t_ddesaActionPerformed
+    }//GEN-LAST:event_t_namaKeyTyped
 
     /**
      * @param args the command line arguments

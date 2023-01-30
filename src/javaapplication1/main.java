@@ -132,16 +132,16 @@ tambah tambah = new tambah();
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Please Login first");
-        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 540, 40));
+        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 540, 40));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Achivon");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 160, 40));
+        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 160, 40));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel4.setText("Welcome to");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 220, 40));
+        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 220, 40));
 
         buttonLogin.setBackground(new java.awt.Color(255, 0, 0));
         buttonLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -152,10 +152,10 @@ tambah tambah = new tambah();
                 buttonLoginActionPerformed(evt);
             }
         });
-        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 240, 30));
+        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 240, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 200, 130));
+        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 200, 130));
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
         homeBar.setText("|");
@@ -319,23 +319,25 @@ tambah tambah = new tambah();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 453, Short.MAX_VALUE)
                     .addComponent(BoxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 454, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 291, Short.MAX_VALUE)
                     .addComponent(BoxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 291, Short.MAX_VALUE)))
         );
 
         pack();

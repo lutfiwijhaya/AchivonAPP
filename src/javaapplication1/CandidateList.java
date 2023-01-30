@@ -82,7 +82,7 @@ public class CandidateList extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(MyTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 860, 240));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 860, 130));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Daftar kandidat / Candidate List");

@@ -9,6 +9,7 @@ package javaapplication1;
  * @author hi
  */
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -265,7 +266,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel75 = new javax.swing.JLabel();
         homeCountry = new javax.swing.JComboBox<>();
         homeState = new javax.swing.JComboBox<>();
-        jLabel76 = new javax.swing.JLabel();
         jLabel77 = new javax.swing.JLabel();
         jLabel78 = new javax.swing.JLabel();
         t_bpjs = new javax.swing.JTextField();
@@ -333,63 +333,20 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel99 = new javax.swing.JLabel();
         jLabel100 = new javax.swing.JLabel();
         t_npwp = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
         t_tgl = new com.toedter.calendar.JDateChooser();
         jLabel101 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();
         jLabel103 = new javax.swing.JLabel();
         jLabel104 = new javax.swing.JLabel();
         jLabel105 = new javax.swing.JLabel();
-        jLabel106 = new javax.swing.JLabel();
-        jLabel107 = new javax.swing.JLabel();
-        jLabel108 = new javax.swing.JLabel();
-        jLabel109 = new javax.swing.JLabel();
-        jSeparator36 = new javax.swing.JSeparator();
-        jLabel110 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jSeparator37 = new javax.swing.JSeparator();
-        jLabel116 = new javax.swing.JLabel();
-        jSeparator38 = new javax.swing.JSeparator();
-        jLabel117 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jSeparator39 = new javax.swing.JSeparator();
-        jSeparator40 = new javax.swing.JSeparator();
-        jLabel120 = new javax.swing.JLabel();
         jLabel121 = new javax.swing.JLabel();
         jSeparator41 = new javax.swing.JSeparator();
-        jLabel122 = new javax.swing.JLabel();
-        jSeparator42 = new javax.swing.JSeparator();
-        jLabel123 = new javax.swing.JLabel();
-        jSeparator43 = new javax.swing.JSeparator();
-        jSeparator44 = new javax.swing.JSeparator();
-        jLabel124 = new javax.swing.JLabel();
-        jLabel125 = new javax.swing.JLabel();
-        jSeparator45 = new javax.swing.JSeparator();
-        jLabel126 = new javax.swing.JLabel();
-        jLabel127 = new javax.swing.JLabel();
-        jSeparator46 = new javax.swing.JSeparator();
-        jLabel128 = new javax.swing.JLabel();
         jLabel129 = new javax.swing.JLabel();
         jLabel130 = new javax.swing.JLabel();
-        jLabel131 = new javax.swing.JLabel();
-        jLabel132 = new javax.swing.JLabel();
-        jLabel133 = new javax.swing.JLabel();
-        jLabel134 = new javax.swing.JLabel();
         jLabel135 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jLabel136 = new javax.swing.JLabel();
-        jLabel137 = new javax.swing.JLabel();
-        jLabel138 = new javax.swing.JLabel();
-        jLabel139 = new javax.swing.JLabel();
-        jLabel140 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelfoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -400,13 +357,13 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jLabel71.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel71.setText("2. Riwayat Pendidikan");
-        jPanel1.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 740, -1, 30));
+        jPanel1.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 830, -1, 30));
 
         jLabel72.setText("Nama / Name");
-        jPanel1.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
+        jPanel1.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, 30));
 
         jLabel73.setText("No KTP");
-        jPanel1.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 30));
+        jPanel1.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 30));
 
         t_nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,25 +375,31 @@ public class CandidateApplication extends javax.swing.JPanel {
                 t_namaKeyTyped(evt);
             }
         });
-        jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 190, -1));
-        jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 190, -1));
+        jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 190, -1));
+
+        t_ktp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_ktpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 190, -1));
 
         jLabel74.setText("Tempat Lahir / Birth Place");
-        jPanel1.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 30));
-        jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 190, -1));
+        jPanel1.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, 30));
+        jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 190, -1));
 
         homeCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeCityActionPerformed(evt);
             }
         });
-        jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 190, -1));
+        jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 680, 190, -1));
 
         jSeparator25.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 760, 650, 20));
+        jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 850, 650, 20));
 
         jLabel75.setText("Tanggal Lahir / Birth Date");
-        jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, 30));
+        jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, 30));
 
         homeCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indonesia" }));
         homeCountry.addActionListener(new java.awt.event.ActionListener() {
@@ -444,39 +407,36 @@ public class CandidateApplication extends javax.swing.JPanel {
                 homeCountryActionPerformed(evt);
             }
         });
-        jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 190, -1));
+        jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 190, -1));
 
         homeState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeStateActionPerformed(evt);
             }
         });
-        jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 190, -1));
-
-        jLabel76.setText("No Handphone");
-        jPanel1.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, 30));
+        jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 190, -1));
 
         jLabel77.setText("Status Pernikahan / \nMarital Status");
-        jPanel1.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 20));
+        jPanel1.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, 20));
 
         jLabel78.setText("No BPJS");
-        jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, -1, 30));
-        jPanel1.add(t_bpjs, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 190, -1));
-        jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 190, -1));
+        jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, -1, 30));
+        jPanel1.add(t_bpjs, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 190, -1));
+        jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 280, 190, -1));
 
         t_hp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t_hpKeyTyped(evt);
             }
         });
-        jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 190, -1));
+        jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 190, -1));
 
         radioGrupGender.add(t_wanita);
         t_wanita.setText("Wanita");
-        jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
+        jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 140, -1, -1));
 
         jLabel79.setText("Email");
-        jPanel1.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, 30));
+        jPanel1.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, -1, 30));
 
         radioGrupGender.add(t_pria);
         t_pria.setSelected(true);
@@ -486,47 +446,47 @@ public class CandidateApplication extends javax.swing.JPanel {
                 t_priaActionPerformed(evt);
             }
         });
-        jPanel1.add(t_pria, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+        jPanel1.add(t_pria, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, -1, -1));
 
         radioGrupStatus.add(t_menikah);
         t_menikah.setText("Sudah Menikah");
-        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 190, -1, -1));
 
         jLabel80.setText("Jenis Kelamin / Gender");
-        jPanel1.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, 20));
+        jPanel1.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, 20));
 
         radioGrupStatus.add(t_lajang);
         t_lajang.setSelected(true);
         t_lajang.setText("Lajang");
-        jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
-        jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 40, 20));
+        jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, -1, -1));
+        jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 40, 20));
 
         jLabel81.setText("Tempat Tinggal saat ini / Current Address");
-        jPanel1.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, 20));
-        jPanel1.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 320, 50, 20));
+        jPanel1.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, -1, 20));
+        jPanel1.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 470, 50, 20));
 
         jLabel82.setText("Negara / Country");
-        jPanel1.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, -1, 20));
+        jPanel1.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 500, -1, 20));
 
         jLabel83.setText("Provinsi / Province");
-        jPanel1.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, -1, 30));
+        jPanel1.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 640, -1, 30));
 
         cprov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cprovActionPerformed(evt);
             }
         });
-        jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 490, 190, -1));
+        jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 640, 190, -1));
 
         jLabel84.setText("Kota / City");
-        jPanel1.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, -1, 30));
+        jPanel1.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 680, -1, 30));
 
-        jPanel1.add(ccity, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 530, 190, -1));
-        jPanel1.add(jSeparator28, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 80, 20));
-        jPanel1.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 50, 20));
+        jPanel1.add(ccity, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 680, 190, -1));
+        jPanel1.add(jSeparator28, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 80, 20));
+        jPanel1.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 50, 20));
 
         jLabel85.setText("Alamat Rumah / Home Address");
-        jPanel1.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, 20));
+        jPanel1.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, -1, 20));
 
         jLabel86.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel86.setText("1. Data Diri / Personal Information");
@@ -554,7 +514,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         jTable1.setShowVerticalLines(true);
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1260, 850, 170));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1330, 850, 170));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -585,21 +545,21 @@ public class CandidateApplication extends javax.swing.JPanel {
         });
         jScrollPane20.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 780, 850, 170));
+        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 870, 850, 170));
 
         jLabel87.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel87.setText("3. Status Keluarga");
-        jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 990, 160, 30));
+        jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1070, 160, 30));
 
         jSeparator31.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1010, 680, 20));
+        jPanel1.add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 1090, 680, 20));
 
         jLabel88.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel88.setText("4. Sertifikat Resmi Keahlian");
-        jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1220, 250, 30));
+        jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1290, 250, 30));
 
         jSeparator32.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1240, 600, 20));
+        jPanel1.add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1310, 600, 20));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -620,14 +580,14 @@ public class CandidateApplication extends javax.swing.JPanel {
         jTable3.setShowVerticalLines(true);
         jScrollPane21.setViewportView(jTable3);
 
-        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1040, 850, 150));
+        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1120, 850, 150));
 
         jSeparator33.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1480, 630, 20));
+        jPanel1.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1540, 630, 20));
 
         jLabel89.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel89.setText("5. Ringkasan Status Karir");
-        jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1460, 230, 30));
+        jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1520, 230, 30));
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -648,35 +608,35 @@ public class CandidateApplication extends javax.swing.JPanel {
         jTable4.setShowVerticalLines(true);
         jScrollPane22.setViewportView(jTable4);
 
-        jPanel1.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1510, 850, 170));
+        jPanel1.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1570, 850, 170));
 
         jLabel90.setText("1. Motivasi untuk Melamar");
-        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1750, 350, 30));
+        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 1810, 350, 30));
 
         jSeparator34.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 1730, 430, 20));
+        jPanel1.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1790, 430, 20));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane23.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 1790, 800, 130));
+        jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 1850, 800, 130));
 
         jLabel91.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel91.setText("6. Pengenalan diri untuk bergabung degan kami");
-        jPanel1.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1710, 440, 30));
+        jPanel1.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1770, 440, 30));
 
         jLabel92.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
-        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1930, 350, 30));
+        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 1990, 350, 30));
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane24.setViewportView(jTextArea2);
 
-        jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 1970, 800, 130));
+        jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 2030, 800, 130));
 
         jSeparator35.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 2140, 720, 20));
+        jPanel1.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 2200, 720, 20));
 
         jCheckBox5.setText("Saya menjamin bahwa seluruh uraian di atas adalah benar");
         jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
@@ -684,11 +644,11 @@ public class CandidateApplication extends javax.swing.JPanel {
                 jCheckBox5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 2190, -1, -1));
+        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 2250, -1, -1));
 
         jLabel93.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel93.setText("7. SKCK Asli");
-        jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 2120, 120, 30));
+        jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 2180, 120, 30));
         jPanel1.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 2290, 280, 30));
 
         jToggleButton1.setText("SIMPAN");
@@ -697,37 +657,37 @@ public class CandidateApplication extends javax.swing.JPanel {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 2260, 90, 40));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 2290, 90, 40));
 
         jLabel96.setText("No NPWP");
-        jPanel1.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, 30));
-        jPanel1.add(t_gaji, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 270, 190, -1));
+        jPanel1.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, -1, 30));
+        jPanel1.add(t_gaji, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 190, -1));
 
         t_halamat.setColumns(20);
         t_halamat.setRows(5);
         jScrollPane25.setViewportView(t_halamat);
 
-        jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, -1, -1));
+        jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, -1, -1));
 
         jLabel97.setText("Alamat / Address");
-        jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, 30));
+        jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 540, -1, 30));
 
         t_calamat.setColumns(20);
         t_calamat.setRows(5);
         jScrollPane26.setViewportView(t_calamat);
 
-        jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, -1));
-        jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, 190, -1));
+        jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 540, -1, -1));
+        jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 720, 190, -1));
 
         t_cdesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_cdesaActionPerformed(evt);
             }
         });
-        jPanel1.add(t_cdesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 570, 190, -1));
+        jPanel1.add(t_cdesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 720, 190, -1));
 
         jLabel98.setText("Desa / Vilage");
-        jPanel1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 570, 80, 30));
+        jPanel1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 720, 80, 30));
 
         jCheckBox.setText("Sama dengan alamat Rumah / Same as Home Address");
         jCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -735,7 +695,7 @@ public class CandidateApplication extends javax.swing.JPanel {
                 jCheckBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 630, -1, -1));
+        jPanel1.add(jCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 780, -1, -1));
 
         curentCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indonesia" }));
         curentCountry.addActionListener(new java.awt.event.ActionListener() {
@@ -743,89 +703,33 @@ public class CandidateApplication extends javax.swing.JPanel {
                 curentCountryActionPerformed(evt);
             }
         });
-        jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 190, -1));
+        jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 500, 190, -1));
 
         t_lamaran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 190, -1));
+        jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 190, -1));
 
         jLabel99.setText("Posisi Yang Dilamar /Job Applying");
-        jPanel1.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, 20));
+        jPanel1.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, 20));
 
         jLabel100.setText("Estimasi Gaji / Sallary");
-        jPanel1.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, -1, -1));
-        jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, 190, -1));
-
-        jButton6.setText("test b academi");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 980, -1, -1));
-        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 190, -1));
+        jPanel1.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, -1, -1));
+        jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 190, -1));
+        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, -1));
 
         jLabel101.setText("Negara / Country");
-        jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, 20));
+        jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, 20));
 
         jLabel102.setText("Alamat / Address");
-        jPanel1.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, 30));
+        jPanel1.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, 30));
 
         jLabel103.setText("Provinsi / Province");
-        jPanel1.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, 30));
+        jPanel1.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, -1, 30));
 
         jLabel104.setText("Kota / City");
-        jPanel1.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, 30));
+        jPanel1.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 680, -1, 30));
 
         jLabel105.setText("Desa / Vilage");
-        jPanel1.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 80, 30));
-
-        jLabel106.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel106.setText("2. Riwayat Pendidikan");
-        jPanel1.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 740, -1, 30));
-
-        jLabel107.setText("Nama / Name");
-        jPanel1.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
-
-        jLabel108.setText("No KTP");
-        jPanel1.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 30));
-
-        jLabel109.setText("Tempat Lahir / Birth Place");
-        jPanel1.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 30));
-
-        jSeparator36.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator36, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 760, 650, 20));
-
-        jLabel110.setText("Tanggal Lahir / Birth Date");
-        jPanel1.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, 30));
-
-        jLabel111.setText("No Handphone");
-        jPanel1.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, 30));
-
-        jLabel112.setText("Status Pernikahan / \nMarital Status");
-        jPanel1.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 20));
-
-        jLabel113.setText("No BPJS");
-        jPanel1.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, -1, 30));
-
-        jLabel114.setText("Email");
-        jPanel1.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, 30));
-
-        jLabel115.setText("Jenis Kelamin / Gender");
-        jPanel1.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, 20));
-        jPanel1.add(jSeparator37, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 40, 20));
-
-        jLabel116.setText("Tempat Tinggal saat ini / Current Address");
-        jPanel1.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, 20));
-        jPanel1.add(jSeparator38, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 320, 50, 20));
-
-        jLabel117.setText("Negara / Country");
-        jPanel1.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, -1, 20));
-
-        jLabel118.setText("Provinsi / Province");
-        jPanel1.add(jLabel118, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, -1, 30));
-
-        jLabel119.setText("Kota / City");
-        jPanel1.add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, -1, 30));
-        jPanel1.add(jSeparator39, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 80, 20));
-        jPanel1.add(jSeparator40, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 50, 20));
-
-        jLabel120.setText("Alamat Rumah / Home Address");
-        jPanel1.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, 20));
+        jPanel1.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 720, 80, 30));
 
         jLabel121.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel121.setText("1. Data Diri / Personal Information");
@@ -833,82 +737,11 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jSeparator41.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator41, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 540, 20));
-
-        jLabel122.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel122.setText("3. Status Keluarga");
-        jPanel1.add(jLabel122, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 990, 160, 30));
-
-        jSeparator42.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator42, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1010, 680, 20));
-
-        jLabel123.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel123.setText("4. Sertifikat Resmi Keahlian");
-        jPanel1.add(jLabel123, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1220, 250, 30));
-
-        jSeparator43.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator43, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1240, 600, 20));
-
-        jSeparator44.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator44, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1480, 630, 20));
-
-        jLabel124.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel124.setText("5. Ringkasan Status Karir");
-        jPanel1.add(jLabel124, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1460, 230, 30));
-
-        jLabel125.setText("1. Motivasi untuk Melamar");
-        jPanel1.add(jLabel125, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1750, 350, 30));
-
-        jSeparator45.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator45, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 1730, 430, 20));
-
-        jLabel126.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel126.setText("6. Pengenalan diri untuk bergabung degan kami");
-        jPanel1.add(jLabel126, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1710, 440, 30));
-
-        jLabel127.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
-        jPanel1.add(jLabel127, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1930, 350, 30));
-
-        jSeparator46.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator46, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 2140, 720, 20));
-
-        jLabel128.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel128.setText("7. SKCK Asli");
-        jPanel1.add(jLabel128, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 2120, 120, 30));
         jPanel1.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 2310, 280, 40));
         jPanel1.add(jLabel130, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 2290, 280, 30));
 
-        jLabel131.setText("No NPWP");
-        jPanel1.add(jLabel131, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, 30));
-
-        jLabel132.setText("Alamat / Address");
-        jPanel1.add(jLabel132, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, 30));
-
-        jLabel133.setText("Desa / Vilage");
-        jPanel1.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 570, 80, 30));
-
-        jLabel134.setText("Posisi Yang Dilamar /Job Applying");
-        jPanel1.add(jLabel134, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, 20));
-
-        jLabel135.setText("Estimasi Gaji / Sallary");
-        jPanel1.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, -1, -1));
-
-        jButton8.setText("test b academi");
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 980, -1, -1));
-
-        jLabel136.setText("Negara / Country");
-        jPanel1.add(jLabel136, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, 20));
-
-        jLabel137.setText("Alamat / Address");
-        jPanel1.add(jLabel137, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, 30));
-
-        jLabel138.setText("Provinsi / Province");
-        jPanel1.add(jLabel138, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, 30));
-
-        jLabel139.setText("Kota / City");
-        jPanel1.add(jLabel139, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, 30));
-
-        jLabel140.setText("Desa / Vilage");
-        jPanel1.add(jLabel140, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 80, 30));
+        jLabel135.setText("No HP");
+        jPanel1.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
 
         jButton1.setText("Ambil Foto");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -916,14 +749,14 @@ public class CandidateApplication extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 670, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
         jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 710, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel2.setOpaque(true);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 600, 100, 90));
+        labelfoto.setBackground(new java.awt.Color(255, 255, 204));
+        labelfoto.setOpaque(true);
+        jPanel1.add(labelfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 100, 90));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -939,91 +772,43 @@ public class CandidateApplication extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void t_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_namaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_namaActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    private void t_namaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_namaKeyTyped
-        if (t_nama.getText().length()>25){
-            evt.consume();
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_t_namaKeyTyped
+        String currentdirectory = "C:\\Users\\USER\\Pictures";
+        JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
+        imageFileChooser.setDialogTitle("Pilih gambar...");
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png","jpg","jpeg");
+        imageFileChooser.setFileFilter(fnef);
+        imageFileChooser.setFileFilter(fnef);
+        int imagechooser = imageFileChooser.showOpenDialog(null);
+        if (imagechooser == JFileChooser.APPROVE_OPTION){
 
-    private void homeCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_homeCityActionPerformed
-
-    private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
-         Connection myConn;
-        try {
+            File imagefile = imageFileChooser.getSelectedFile();
+            crudimage =  imagefile.getAbsolutePath();
+            jLabel1.setText(crudimage);
             
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                homeState.addItem(myRess.getString("name"));
-            }
-     
+            ImageIcon imageicon = new ImageIcon(crudimage);
+            Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
+            labelfoto.setIcon(new ImageIcon(imageResize));
 
-        } catch (SQLException ex) {
         }
-    }//GEN-LAST:event_homeCountryActionPerformed
-
-    private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
-      Connection myConn;
-        try {
-            homeCity.removeAllItems();
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                homeCity.addItem(myRess.getString("name"));
-            }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
-
-        } catch (SQLException ex) {
-        }
-
-    }//GEN-LAST:event_homeStateActionPerformed
-
-    private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
-        char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
-            evt.consume();
-        }
-        if (t_hp.getText().length()>13){
-            evt.consume();
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_t_hpKeyTyped
-
-    private void t_priaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_priaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_t_priaActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cprovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cprovActionPerformed
- Connection myConn;
-        try {
-            ccity.removeAllItems();
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                ccity.addItem(myRess.getString("name"));
-            }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
-
-        } catch (SQLException ex) {
-        }            // TODO add your handling code here:
-    }//GEN-LAST:event_cprovActionPerformed
-
-    private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
+    private void curentCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curentCountryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable2InputMethodTextChanged
+    }//GEN-LAST:event_curentCountryActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        jToggleButton1.setEnabled(true);             // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    private void jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActionPerformed
+        cprov.setSelectedItem(homeState.getSelectedItem());
+        ccity.setSelectedItem(homeCity.getSelectedItem());
+        t_calamat.setText(t_halamat.getText());
+        t_cdesa.setText(t_ddesa.getText());        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxActionPerformed
+
+    private void t_cdesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_cdesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_cdesaActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
@@ -1142,42 +927,93 @@ public class CandidateApplication extends javax.swing.JPanel {
             // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void t_cdesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_cdesaActionPerformed
+    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+        jToggleButton1.setEnabled(true);             // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox5ActionPerformed
+
+    private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_t_cdesaActionPerformed
+    }//GEN-LAST:event_jTable2InputMethodTextChanged
 
-    private void jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActionPerformed
-        cprov.setSelectedItem(homeState.getSelectedItem());
-        ccity.setSelectedItem(homeCity.getSelectedItem());
-        t_calamat.setText(t_halamat.getText());
-        t_cdesa.setText(t_ddesa.getText());        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxActionPerformed
+    private void cprovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cprovActionPerformed
+        Connection myConn;
+        try {
+            ccity.removeAllItems();
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                ccity.addItem(myRess.getString("name"));
+            }
+            //            myRess.last();
+            //            int jumlahdata = myRess.getRow();
+            //            myRess.first();
 
-    private void curentCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curentCountryActionPerformed
+        } catch (SQLException ex) {
+        }            // TODO add your handling code here:
+    }//GEN-LAST:event_cprovActionPerformed
+
+    private void t_priaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_priaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_curentCountryActionPerformed
+    }//GEN-LAST:event_t_priaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String currentdirectory = "C:\\Users\\USER\\Pictures";
-        JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
-         imageFileChooser.setDialogTitle("Pilih gambar...");
-         FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png","jpg","jpeg");
-         imageFileChooser.setFileFilter(fnef);
-        imageFileChooser.setFileFilter(fnef);
-        int imagechooser = imageFileChooser.showOpenDialog(null);
-        if (imagechooser == JFileChooser.APPROVE_OPTION){
-            
-            
-           File imagefile = imageFileChooser.getSelectedFile();
-           crudimage =  imagefile.getAbsolutePath();
-            jLabel1.setText(crudimage);
-            
-        
-
+    private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
         }
+        if (t_hp.getText().length()>13){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_hpKeyTyped
+
+    private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
+        Connection myConn;
+        try {
+            homeCity.removeAllItems();
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                homeCity.addItem(myRess.getString("name"));
+            }
+            //            myRess.last();
+            //            int jumlahdata = myRess.getRow();
+            //            myRess.first();
+
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_homeStateActionPerformed
+
+    private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
+        Connection myConn;
+        try {
+
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                homeState.addItem(myRess.getString("name"));
+            }
+
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_homeCountryActionPerformed
+
+    private void homeCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_homeCityActionPerformed
+
+    private void t_namaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_namaKeyTyped
+        if (t_nama.getText().length()>25){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_namaKeyTyped
+
+    private void t_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_namaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_namaActionPerformed
+
+    private void t_ktpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ktpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ktpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1188,8 +1024,6 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> homeCountry;
     private javax.swing.JComboBox<String> homeState;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
@@ -1199,48 +1033,15 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
-    private javax.swing.JLabel jLabel106;
-    private javax.swing.JLabel jLabel107;
-    private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
-    private javax.swing.JLabel jLabel110;
-    private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel120;
     private javax.swing.JLabel jLabel121;
-    private javax.swing.JLabel jLabel122;
-    private javax.swing.JLabel jLabel123;
-    private javax.swing.JLabel jLabel124;
-    private javax.swing.JLabel jLabel125;
-    private javax.swing.JLabel jLabel126;
-    private javax.swing.JLabel jLabel127;
-    private javax.swing.JLabel jLabel128;
     private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel130;
-    private javax.swing.JLabel jLabel131;
-    private javax.swing.JLabel jLabel132;
-    private javax.swing.JLabel jLabel133;
-    private javax.swing.JLabel jLabel134;
     private javax.swing.JLabel jLabel135;
-    private javax.swing.JLabel jLabel136;
-    private javax.swing.JLabel jLabel137;
-    private javax.swing.JLabel jLabel138;
-    private javax.swing.JLabel jLabel139;
-    private javax.swing.JLabel jLabel140;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
@@ -1284,17 +1085,7 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator33;
     private javax.swing.JSeparator jSeparator34;
     private javax.swing.JSeparator jSeparator35;
-    private javax.swing.JSeparator jSeparator36;
-    private javax.swing.JSeparator jSeparator37;
-    private javax.swing.JSeparator jSeparator38;
-    private javax.swing.JSeparator jSeparator39;
-    private javax.swing.JSeparator jSeparator40;
     private javax.swing.JSeparator jSeparator41;
-    private javax.swing.JSeparator jSeparator42;
-    private javax.swing.JSeparator jSeparator43;
-    private javax.swing.JSeparator jSeparator44;
-    private javax.swing.JSeparator jSeparator45;
-    private javax.swing.JSeparator jSeparator46;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
@@ -1302,6 +1093,7 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel labelfoto;
     private javax.swing.ButtonGroup radioGrupGender;
     private javax.swing.ButtonGroup radioGrupStatus;
     private javax.swing.JTextField t_bpjs;
