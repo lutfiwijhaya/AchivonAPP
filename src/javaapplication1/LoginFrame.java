@@ -129,7 +129,7 @@ public class LoginFrame extends javax.swing.JFrame {
             if(myRess.next()){
                 if (textPassword.getText().equals(myRess.getString("password"))){
                     JOptionPane.showMessageDialog(null, "Login Berhasil");
-                    MySession.set_nama(myRess.getString("nama"));
+                    MySession.set_nama(myRess.getString("name"));
                     MySession.set_ktp(myRess.getString("ktp"));
                     new main().setVisible(true);
                     this.dispose();
