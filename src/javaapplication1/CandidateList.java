@@ -156,6 +156,7 @@ public class CandidateList extends javax.swing.JPanel {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("javaapplication1.CandidateList.myShow()");
             }
         }
         
