@@ -55,6 +55,16 @@ public class ChangePassword extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 170, 30));
 
         textNewPass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        textNewPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNewPassActionPerformed(evt);
+            }
+        });
+        textNewPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textNewPassKeyTyped(evt);
+            }
+        });
         add(textNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 250, 30));
 
         jLabel4.setText("Konfirmasi Password Baru / Confirmation New Password");
@@ -83,9 +93,12 @@ public class ChangePassword extends javax.swing.JPanel {
             if(myRess.next()){
                 if (textOldPass.getText().equals(myRess.getString("password"))){
                     if (textNewPass.getText().equals(textConfirmPass.getText())) {
-                        try{
+                        if (textNewPass.getText().length()<8) {
+                            JOptionPane.showMessageDialog(null, "Pastikan Minimal Password 8 Character");
+                        }else{
+                            try{
                             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                            myConn.createStatement().executeUpdate("UPDATE employee SET password = '"+textNewPass.getText()+"'");
+                            myConn.createStatement().executeUpdate("UPDATE employee SET password = '"+textNewPass.getText()+"' WHERE karyawan_id = '"+MySession.get_karyawanID()+"'");
                             
                             JOptionPane.showMessageDialog(null,"Password Berhasil di Perbarui");
 //                            MainPanel().setVisible(true);
@@ -93,6 +106,8 @@ public class ChangePassword extends javax.swing.JPanel {
                         }catch(SQLException e){
                             JOptionPane.showMessageDialog(null,"Tidak dapat terhubung ke Jaringan Silahkan coba beberapa saat lagi");
                         }
+                        }
+                        
                     }else{
                         JOptionPane.showMessageDialog(null,"Password Baru Anda Tidak Sesuai dengan Konfirmasi Password");
                         textNewPass.requestFocus();
@@ -109,6 +124,17 @@ public class ChangePassword extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void textNewPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNewPassActionPerformed
+        
+    }//GEN-LAST:event_textNewPassActionPerformed
+
+    private void textNewPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNewPassKeyTyped
+        if (textNewPass.getText().length()>7) {
+            JOptionPane.showMessageDialog(null, "Pastikan Password Maximal 8 Character");
+            evt.consume();
+        }
+    }//GEN-LAST:event_textNewPassKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

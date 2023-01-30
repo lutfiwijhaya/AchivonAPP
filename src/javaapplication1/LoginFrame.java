@@ -87,12 +87,18 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 240, 40));
+
+        textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textPasswordKeyTyped(evt);
+            }
+        });
         jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 240, 30));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel5.setText("ID Karyawan");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 90, 20));
+        jLabel5.setText("ID Karyawan / Email");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 130, 20));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
@@ -127,26 +133,30 @@ public class LoginFrame extends javax.swing.JFrame {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textUsername.getText()+"' OR email = '"+textUsername.getText()+"'");
             if(myRess.next()){
-                if (textPassword.getText().equals(myRess.getString("password"))){
-                    JOptionPane.showMessageDialog(null, "Login Berhasil");
-                    MySession.set_karyawanID(myRess.getString("karyawan_id"));
-                    MySession.set_nama(myRess.getString("name"));
-                    MySession.set_ktp(myRess.getString("ktp"));
-                    MySession.set_birthPlace(myRess.getString("birth_place"));
-                    MySession.set_Birthday(myRess.getString("birthday"));
-                    MySession.set_sex(myRess.getString("sex"));
-                    MySession.set_marital(myRess.getString("marital"));
-                    MySession.set_email(myRess.getString("email"));
-                    MySession.set_mobileNumber(myRess.getString("no_hp"));
-                    MySession.set_BPJS(myRess.getString("bpjs"));
-                    MySession.set_NPWP(myRess.getString("npwp"));
-                    MySession.set_JobPosition(myRess.getString("job_position"));
-                    new main().setVisible(true);
-                    this.dispose();
+                if (textPassword.getText().length()<8) {
+                    JOptionPane.showMessageDialog(null, "Pastikan Password Manimal 8 Character");
                 }else{
-                    JOptionPane.showMessageDialog(rootPane,"Password Salah");
-                    textUsername.requestFocus();
-                    textPassword.setText("");
+                    if (textPassword.getText().equals(myRess.getString("password"))){
+                        JOptionPane.showMessageDialog(null, "Login Berhasil");
+                        MySession.set_karyawanID(myRess.getString("karyawan_id"));
+                        MySession.set_nama(myRess.getString("name"));
+                        MySession.set_ktp(myRess.getString("ktp"));
+                        MySession.set_birthPlace(myRess.getString("birth_place"));
+                        MySession.set_Birthday(myRess.getString("birthday"));
+                        MySession.set_sex(myRess.getString("sex"));
+                        MySession.set_marital(myRess.getString("marital"));
+                        MySession.set_email(myRess.getString("email"));
+                        MySession.set_mobileNumber(myRess.getString("no_hp"));
+                        MySession.set_BPJS(myRess.getString("bpjs"));
+                        MySession.set_NPWP(myRess.getString("npwp"));
+                        MySession.set_JobPosition(myRess.getString("job_position"));
+                        new main().setVisible(true);
+                        this.dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(rootPane,"Password Salah");
+                        textUsername.requestFocus();
+                        textPassword.setText("");
+                    }
                 }
             }else {
                 JOptionPane.showMessageDialog(rootPane, "User Tidak Ditemukan");
@@ -158,6 +168,13 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void textPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPasswordKeyTyped
+        if (textPassword.getText().length()>7) {
+            JOptionPane.showMessageDialog(null, "Password Maximal 8 Character");
+            evt.consume();
+        }
+    }//GEN-LAST:event_textPasswordKeyTyped
 
     /**
      * @param args the command line arguments
