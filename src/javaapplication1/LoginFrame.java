@@ -134,7 +134,6 @@ public class LoginFrame extends javax.swing.JFrame {
                     new main().setVisible(true);
                     this.dispose();
                 }else{
-                    
                     JOptionPane.showMessageDialog(rootPane,"Password Salah");
                     textUsername.requestFocus();
                     textPassword.setText("");

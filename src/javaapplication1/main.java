@@ -51,9 +51,9 @@ public class main extends javax.swing.JFrame {
             ToolBar.add(Box.createHorizontalGlue());
             ToolBar.add(myProfile);
             buttonLogin.setVisible(false);
-            jLabel3.setVisible(false);
+            jLabel3.setText("WELCOME "+nama_log);
             jLabel2.setVisible(false);
-            jLabel4.setText("Welcome "+nama_log);
+            jLabel4.setVisible(false);
         }
     
        
@@ -117,8 +117,11 @@ tambah tambah = new tambah();
         AcountingSystem = new javax.swing.JMenu();
         myProfile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jSeparator17 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator18 = new javax.swing.JPopupMenu.Separator();
         SMLogout = new javax.swing.JMenuItem();
+        jSeparator19 = new javax.swing.JPopupMenu.Separator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,7 +137,7 @@ tambah tambah = new tambah();
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Please Login first");
-        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 540, 40));
+        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 630, 40));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
@@ -299,9 +302,11 @@ tambah tambah = new tambah();
 
         jMenuItem1.setText("Profile");
         myProfile.add(jMenuItem1);
+        myProfile.add(jSeparator17);
 
         jMenuItem2.setText("Change Password");
         myProfile.add(jMenuItem2);
+        myProfile.add(jSeparator18);
 
         SMLogout.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         SMLogout.setForeground(new java.awt.Color(255, 0, 0));
@@ -312,6 +317,7 @@ tambah tambah = new tambah();
             }
         });
         myProfile.add(SMLogout);
+        myProfile.add(jSeparator19);
 
         ToolBar.add(myProfile);
 
@@ -470,6 +476,9 @@ tambah tambah = new tambah();
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
+    private javax.swing.JPopupMenu.Separator jSeparator17;
+    private javax.swing.JPopupMenu.Separator jSeparator18;
+    private javax.swing.JPopupMenu.Separator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
