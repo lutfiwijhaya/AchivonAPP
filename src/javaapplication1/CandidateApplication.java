@@ -34,6 +34,12 @@ public class CandidateApplication extends javax.swing.JPanel {
      */
     public CandidateApplication() {
         initComponents();
+      openDB();
+        tampil();
+        currentBox();
+        id_employee();
+        jToggleButton1.setEnabled(false);
+        
     }
 
      String da = null;
@@ -928,29 +934,28 @@ public class CandidateApplication extends javax.swing.JPanel {
     }//GEN-LAST:event_homeCityActionPerformed
 
     private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
-      Connection myConn;
+         Connection myConn;
         try {
+            
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 homeState.addItem(myRess.getString("name"));
             }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
+     
 
         } catch (SQLException ex) {
         }
-
     }//GEN-LAST:event_homeCountryActionPerformed
 
     private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
-       Connection myConn;
+      Connection myConn;
         try {
+            homeCity.removeAllItems();
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
             while (myRess.next()) {
-                homeState.addItem(myRess.getString("name"));
+                homeCity.addItem(myRess.getString("name"));
             }
 //            myRess.last();
 //            int jumlahdata = myRess.getRow();
@@ -958,7 +963,6 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         } catch (SQLException ex) {
         }
-
 
     }//GEN-LAST:event_homeStateActionPerformed
 
@@ -977,7 +981,20 @@ public class CandidateApplication extends javax.swing.JPanel {
     }//GEN-LAST:event_t_priaActionPerformed
 
     private void cprovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cprovActionPerformed
-        // TODO add your handling code here:
+ Connection myConn;
+        try {
+            ccity.removeAllItems();
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                ccity.addItem(myRess.getString("name"));
+            }
+//            myRess.last();
+//            int jumlahdata = myRess.getRow();
+//            myRess.first();
+
+        } catch (SQLException ex) {
+        }            // TODO add your handling code here:
     }//GEN-LAST:event_cprovActionPerformed
 
     private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
