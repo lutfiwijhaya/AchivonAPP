@@ -11,6 +11,7 @@ package javaapplication1;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -39,10 +40,10 @@ public class CandidateApplication extends javax.swing.JPanel {
         currentBox();
         id_employee();
         jToggleButton1.setEnabled(false);
-        System.out.println("test");
+    
         
     }
-
+    String crudimage = "";
      String da = null;
     int id_employee;
 
@@ -386,6 +387,9 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel138 = new javax.swing.JLabel();
         jLabel139 = new javax.swing.JLabel();
         jLabel140 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -906,6 +910,21 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel140.setText("Desa / Vilage");
         jPanel1.add(jLabel140, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 80, 30));
 
+        jButton1.setText("Ambil Foto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 670, -1, -1));
+
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 710, -1, -1));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel2.setOpaque(true);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 600, 100, 90));
+
         jScrollPane18.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1138,6 +1157,28 @@ public class CandidateApplication extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_curentCountryActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String currentdirectory = "C:\\Users\\USER\\Pictures";
+        JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
+         imageFileChooser.setDialogTitle("Pilih gambar...");
+         FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png","jpg","jpeg");
+         imageFileChooser.setFileFilter(fnef);
+        imageFileChooser.setFileFilter(fnef);
+        int imagechooser = imageFileChooser.showOpenDialog(null);
+        if (imagechooser == JFileChooser.APPROVE_OPTION){
+            
+            
+           File imagefile = imageFileChooser.getSelectedFile();
+           crudimage =  imagefile.getAbsolutePath();
+            jLabel1.setText(crudimage);
+            
+        
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ccity;
@@ -1146,10 +1187,12 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> homeCity;
     private javax.swing.JComboBox<String> homeCountry;
     private javax.swing.JComboBox<String> homeState;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox;
     private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
@@ -1191,6 +1234,7 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel138;
     private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel140;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
