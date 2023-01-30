@@ -39,6 +39,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         currentBox();
         id_employee();
         jToggleButton1.setEnabled(false);
+        System.out.println("test");
         
     }
 
