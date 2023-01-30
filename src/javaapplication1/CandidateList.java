@@ -24,7 +24,7 @@ public class CandidateList extends javax.swing.JPanel {
     DefaultTableModel myModel;
     public CandidateList() {
         initComponents();
-        String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Marital Status", "Email", "No. Hp", "Job Applying", "Sallary", "BPJS"};
+        String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Marital Status", "Email", "No. Hp", "Job Applying", "Sallary"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
         myShow();
@@ -45,14 +45,9 @@ public class CandidateList extends javax.swing.JPanel {
         textSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         MyTable = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(900, 585));
 
@@ -82,67 +77,18 @@ public class CandidateList extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(MyTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 840, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 860, 240));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel1.setText("Daftar kandidat / Candidate List");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 240, 40));
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1280, 840, 190));
+        jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 630, 20));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable2);
-
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 840, 140));
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable3);
-
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 820, 840, 170));
-
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable4);
-
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1050, 840, 160));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -154,14 +100,12 @@ public class CandidateList extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1664, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 682, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
-        
+
     }//GEN-LAST:event_textSearchKeyTyped
 
     private void textSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyPressed
@@ -171,17 +115,12 @@ public class CandidateList extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField textSearch;
     // End of variables declaration//GEN-END:variables
 
@@ -199,8 +138,7 @@ public class CandidateList extends javax.swing.JPanel {
             while (myRess.next()) {
                 String myData [] = {myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
                                     myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
-                                    myRess.getString(10), myRess.getString(12), myRess.getString(13), 
-                                    myRess.getString(11)};
+                                    myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                 myModel.addRow(myData);
             }
             } catch (SQLException ex) {
@@ -213,8 +151,7 @@ public class CandidateList extends javax.swing.JPanel {
                 while (myRess.next()) {
                     String myData [] = {myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
                                         myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
-                                        myRess.getString(10), myRess.getString(12), myRess.getString(13), 
-                                        myRess.getString(11)};
+                                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                     myModel.addRow(myData);
                 }
             } catch (SQLException ex) {
