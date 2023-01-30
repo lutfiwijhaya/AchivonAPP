@@ -24,13 +24,21 @@ public class CandidateList extends javax.swing.JPanel {
     DefaultTableModel myModel;
     public CandidateList() {
         initComponents();
-        String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Marital Status", "Email", "No. Hp", "Job Applying", "Sallary"};
-        myModel = new DefaultTableModel(header,0);
-        MyTable.setModel(myModel);
+        settable();
+       
         myShow();
      
     }
-
+void  settable (){
+String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Marital Status", "Email", "No. Hp", "Job Applying", "Sallary","Action"};
+         myModel = new DefaultTableModel(header,0);
+        MyTable.setModel(myModel);
+        MyTable.getColumnModel().getColumn(9).setCellRenderer(new callrender());
+        MyTable.getColumnModel().getColumn(9).setPreferredWidth(120);
+        MyTable.getColumnModel().getColumn(0).setPreferredWidth(130);
+        MyTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(9).setCellEditor(new celleditor());
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +88,10 @@ public class CandidateList extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        MyTable.setAutoResizeMode(0);
+        MyTable.setRowHeight(40);
+        MyTable.setShowHorizontalLines(true);
+        MyTable.setShowVerticalLines(true);
         jScrollPane1.setViewportView(MyTable);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 860, 130));
