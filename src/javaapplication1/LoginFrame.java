@@ -125,12 +125,12 @@ public class LoginFrame extends javax.swing.JFrame {
         Connection myConn;
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE KTP = '"+textUsername.getText()+"'");
+            ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textUsername.getText()+"'");
             if(myRess.next()){
-                if (textPassword.getText().equals(myRess.getString("Nama"))){
+                if (textPassword.getText().equals(myRess.getString("password"))){
                     JOptionPane.showMessageDialog(null, "Login Berhasil");
-                    MySession.set_nama(myRess.getString("Nama"));
-                    MySession.set_ktp(myRess.getString("KTP"));
+                    MySession.set_nama(myRess.getString("nama"));
+                    MySession.set_ktp(myRess.getString("ktp"));
                     new main().setVisible(true);
                     this.dispose();
                 }else{
