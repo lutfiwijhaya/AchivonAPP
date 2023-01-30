@@ -14,8 +14,9 @@ import javax.swing.ImageIcon;
  * @author lutfi
  */
 public class main extends javax.swing.JFrame {
- CandidateApplication ca;
+    CandidateApplication ca;
     CandidateList candidateListPanel;
+    ChangePassword changePasswordPanel;
     /**
      * Creates new form jframe
      */
@@ -26,12 +27,15 @@ public class main extends javax.swing.JFrame {
         
         ca = new CandidateApplication();
         candidateListPanel = new CandidateList();
+        changePasswordPanel = new ChangePassword();
         
         BoxPanel.add(ca);
         BoxPanel.add(candidateListPanel);
+        BoxPanel.add(changePasswordPanel);
         
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
         
         MyWindow();
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
@@ -305,6 +309,11 @@ tambah tambah = new tambah();
         myProfile.add(jSeparator17);
 
         jMenuItem2.setText("Change Password");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         myProfile.add(jMenuItem2);
         myProfile.add(jSeparator18);
 
@@ -365,12 +374,14 @@ tambah tambah = new tambah();
         MainPanel.setVisible(false);
         ca.setVisible(false);
         candidateListPanel.setVisible(true);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_candidateListActionPerformed
 
     private void applicationFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationFormActionPerformed
         MainPanel.setVisible(false);
         ca.setVisible(true);
         candidateListPanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_applicationFormActionPerformed
 
     private void employingConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employingConfirmationActionPerformed
@@ -395,6 +406,13 @@ tambah tambah = new tambah();
         new LoginFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        MainPanel.setVisible(false);
+        ca.setVisible(false);
+        candidateListPanel.setVisible(false);
+        changePasswordPanel.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

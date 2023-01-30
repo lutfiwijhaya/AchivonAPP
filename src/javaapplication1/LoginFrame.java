@@ -129,8 +129,18 @@ public class LoginFrame extends javax.swing.JFrame {
             if(myRess.next()){
                 if (textPassword.getText().equals(myRess.getString("password"))){
                     JOptionPane.showMessageDialog(null, "Login Berhasil");
+                    MySession.set_karyawanID(myRess.getString("karyawan_id"));
                     MySession.set_nama(myRess.getString("name"));
                     MySession.set_ktp(myRess.getString("ktp"));
+                    MySession.set_birthPlace(myRess.getString("birth_place"));
+                    MySession.set_Birthday(myRess.getString("birthday"));
+                    MySession.set_sex(myRess.getString("sex"));
+                    MySession.set_marital(myRess.getString("marital"));
+                    MySession.set_email(myRess.getString("email"));
+                    MySession.set_mobileNumber(myRess.getString("no_hp"));
+                    MySession.set_BPJS(myRess.getString("bpjs"));
+                    MySession.set_NPWP(myRess.getString("npwp"));
+                    MySession.set_JobPosition(myRess.getString("job_position"));
                     new main().setVisible(true);
                     this.dispose();
                 }else{
