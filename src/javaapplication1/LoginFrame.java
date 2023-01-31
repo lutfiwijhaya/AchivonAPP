@@ -150,6 +150,7 @@ public class LoginFrame extends javax.swing.JFrame {
                         MySession.set_BPJS(myRess.getString("bpjs"));
                         MySession.set_NPWP(myRess.getString("npwp"));
                         MySession.set_JobPosition(myRess.getString("job_position"));
+                        MySession.set_Sallary(myRess.getString("sallary"));
                         new main().setVisible(true);
                         this.dispose();
                     }else{
