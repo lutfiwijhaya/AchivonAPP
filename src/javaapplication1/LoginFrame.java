@@ -56,11 +56,11 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        textPassword1 = new javax.swing.JPasswordField();
+        textEmail = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         closeeye1 = new javax.swing.JLabel();
         openeye1 = new javax.swing.JLabel();
-        textPassword2 = new javax.swing.JPasswordField();
+        textRepeatPassword = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -140,12 +140,12 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel9.setText("Surat Elektronik / Email");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 140, 20));
 
-        textPassword1.addKeyListener(new java.awt.event.KeyAdapter() {
+        textEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                textPassword1KeyTyped(evt);
+                textEmailKeyTyped(evt);
             }
         });
-        jPanel1.add(textPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 240, 30));
+        jPanel1.add(textEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 240, 30));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 0, 0));
@@ -168,12 +168,12 @@ public class LoginFrame extends javax.swing.JFrame {
         });
         jPanel1.add(openeye1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 30, 30));
 
-        textPassword2.addKeyListener(new java.awt.event.KeyAdapter() {
+        textRepeatPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                textPassword2KeyTyped(evt);
+                textRepeatPasswordKeyTyped(evt);
             }
         });
-        jPanel1.add(textPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 240, 30));
+        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 240, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
@@ -203,11 +203,16 @@ public class LoginFrame extends javax.swing.JFrame {
         Connection myConn;
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textUsername.getText()+"' OR email = '"+textUsername.getText()+"'");
+            ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textUsername.getText()+"'");
             if(myRess.next()){
                 if (textPassword.getText().length()<8) {
                     JOptionPane.showMessageDialog(null, "Pastikan Password Manimal 8 Character");
                 }else{
+                    if (textPassword.getText().equals(textRepeatPassword.getText())) {
+                    
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Password dan Konfirmasi Password anda Tidak Sesuai");
+                    }
                     if (textPassword.getText().equals(myRess.getString("password"))){
                         JOptionPane.showMessageDialog(null, "Login Berhasil");
                         MySession.set_karyawanID(myRess.getString("karyawan_id"));
@@ -249,16 +254,16 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textPasswordKeyTyped
 
-    private void textPassword1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPassword1KeyTyped
+    private void textEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textEmailKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_textPassword1KeyTyped
+    }//GEN-LAST:event_textEmailKeyTyped
 
-    private void textPassword2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPassword2KeyTyped
-        if (textPassword2.getText().length()>7) {
+    private void textRepeatPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textRepeatPasswordKeyTyped
+        if (textRepeatPassword.getText().length()>7) {
             JOptionPane.showMessageDialog(null, "Password Maximal 8 Character");
             evt.consume();
         }
-    }//GEN-LAST:event_textPassword2KeyTyped
+    }//GEN-LAST:event_textRepeatPasswordKeyTyped
 
     private void openeyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openeyeMouseClicked
         textPassword.setEchoChar('*');
@@ -273,13 +278,13 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_closeeyeMouseClicked
 
     private void closeeye1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeeye1MouseClicked
-        textPassword2.setEchoChar((char)0);
+        textRepeatPassword.setEchoChar((char)0);
         openeye1.setVisible(true);
         closeeye1.setVisible(false);
     }//GEN-LAST:event_closeeye1MouseClicked
 
     private void openeye1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openeye1MouseClicked
-        textPassword2.setEchoChar('*');
+        textRepeatPassword.setEchoChar('*');
         openeye1.setVisible(false);
         closeeye1.setVisible(true);
     }//GEN-LAST:event_openeye1MouseClicked
@@ -337,9 +342,9 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel openeye;
     private javax.swing.JLabel openeye1;
+    private javax.swing.JPasswordField textEmail;
     private javax.swing.JPasswordField textPassword;
-    private javax.swing.JPasswordField textPassword1;
-    private javax.swing.JPasswordField textPassword2;
+    private javax.swing.JPasswordField textRepeatPassword;
     private javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){

@@ -18,8 +18,9 @@ public class EmployeeProfile extends javax.swing.JPanel {
         
         labelJob.setText(MySession.get_JobPosition());
         labelSallary.setText(MySession.get_Sallary());
+        labelKaryawan_id.setText(MySession.get_karyawanID());
         labelKTP.setText(MySession.get_ktp());
-        labelName.setText(MySession.get_nama());
+        labelName2.setText(MySession.get_nama());
         labelBirth.setText(MySession.get_birthPlace()+", "+MySession.get_Birthday());
         labelGender.setText(MySession.get_sex());
         labelMarital.setText(MySession.get_marital());
@@ -43,7 +44,7 @@ public class EmployeeProfile extends javax.swing.JPanel {
         labelFoto = new javax.swing.JLabel();
         labelJob = new javax.swing.JLabel();
         labelKTP = new javax.swing.JLabel();
-        labelName = new javax.swing.JLabel();
+        labelKaryawan_id = new javax.swing.JLabel();
         labelBirth = new javax.swing.JLabel();
         labelGender = new javax.swing.JLabel();
         labelMarital = new javax.swing.JLabel();
@@ -71,7 +72,6 @@ public class EmployeeProfile extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        labelKTP2 = new javax.swing.JLabel();
         labelEmail1 = new javax.swing.JLabel();
         labelNumber1 = new javax.swing.JLabel();
         labelNPWP1 = new javax.swing.JLabel();
@@ -92,6 +92,10 @@ public class EmployeeProfile extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane5 = new javax.swing.JScrollPane();
         textHome = new javax.swing.JTextArea();
+        labelKTP3 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        labelName2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,14 +105,14 @@ public class EmployeeProfile extends javax.swing.JPanel {
         labelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFoto.setText("FOTO");
         jPanel1.add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 130, 140));
-        jPanel1.add(labelJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 220, 30));
+        jPanel1.add(labelJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 220, 30));
 
         labelKTP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 560, 190, 20));
+        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 190, 20));
 
-        labelName.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        labelName.setText("NAMA");
-        jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 190, 20));
+        labelKaryawan_id.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelKaryawan_id.setText("Karyawan_id");
+        jPanel1.add(labelKaryawan_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 190, 20));
 
         labelBirth.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelBirth.setText("TEMPAT, TANGGAL LAHIR");
@@ -136,29 +140,29 @@ public class EmployeeProfile extends javax.swing.JPanel {
 
         labelBPJS.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelBPJS.setText("BPJS");
-        jPanel1.add(labelBPJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, 190, 20));
+        jPanel1.add(labelBPJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 190, 20));
 
         labelNPWP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelNPWP.setText("NPWP");
-        jPanel1.add(labelNPWP, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 190, 20));
+        jPanel1.add(labelNPWP, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 280, 190, 20));
 
         labelNumber.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelNumber.setText("No. Hp");
-        jPanel1.add(labelNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 280, 190, 20));
+        jPanel1.add(labelNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 190, 20));
 
         labelEmail.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelEmail.setText("Email");
-        jPanel1.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 190, 20));
+        jPanel1.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 190, 20));
 
         labelSallary.setText("SALARRY");
-        jPanel1.add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, 200, 30));
+        jPanel1.add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 150, 30));
 
         labelJob1.setText("JOB :");
-        jPanel1.add(labelJob1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 30, 30));
+        jPanel1.add(labelJob1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 30, 30));
 
         labelKTP1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        labelKTP1.setText("No. KTP");
-        jPanel1.add(labelKTP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 50, 20));
+        labelKTP1.setText("Karyawan id");
+        jPanel1.add(labelKTP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 80, 20));
 
         labelName1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelName1.setText("Nama ");
@@ -177,10 +181,10 @@ public class EmployeeProfile extends javax.swing.JPanel {
         jPanel1.add(labelMarital1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 110, 20));
 
         jLabel1.setText(":");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 340, 20, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, 20, -1));
 
         jLabel2.setText(":");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 20, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, -1));
 
         jLabel3.setText(":");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 20, -1));
@@ -195,36 +199,32 @@ public class EmployeeProfile extends javax.swing.JPanel {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 20, -1));
 
         jLabel7.setText(":");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, 20, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 20, -1));
 
         jLabel9.setText(":");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 20, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, 20, -1));
 
         jLabel10.setText(":");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, 20, -1));
-
-        labelKTP2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        labelKTP2.setText("NO KTP");
-        jPanel1.add(labelKTP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 190, 20));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 20, -1));
 
         labelEmail1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelEmail1.setText("Email");
-        jPanel1.add(labelEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 40, 20));
+        jPanel1.add(labelEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 40, 20));
 
         labelNumber1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelNumber1.setText("No. Hp");
-        jPanel1.add(labelNumber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 40, 20));
+        jPanel1.add(labelNumber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 40, 20));
 
         labelNPWP1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelNPWP1.setText("NPWP");
-        jPanel1.add(labelNPWP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 40, 20));
+        jPanel1.add(labelNPWP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 40, 20));
 
         labelBPJS1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelBPJS1.setText("BPJS");
-        jPanel1.add(labelBPJS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 40, 20));
+        jPanel1.add(labelBPJS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 40, 20));
 
         labelSallary1.setText("SALARRY :");
-        jPanel1.add(labelSallary1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 60, 30));
+        jPanel1.add(labelSallary1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 70, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
@@ -332,6 +332,20 @@ public class EmployeeProfile extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 230, -1));
 
+        labelKTP3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelKTP3.setText("No. KTP");
+        jPanel1.add(labelKTP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 50, 20));
+
+        jLabel11.setText(":");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 20, -1));
+
+        jLabel12.setText(":");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, -1));
+
+        labelName2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelName2.setText("NAMA");
+        jPanel1.add(labelName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 190, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -366,6 +380,8 @@ public class EmployeeProfile extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
@@ -405,13 +421,14 @@ public class EmployeeProfile extends javax.swing.JPanel {
     private javax.swing.JLabel labelJob1;
     private javax.swing.JLabel labelKTP;
     private javax.swing.JLabel labelKTP1;
-    private javax.swing.JLabel labelKTP2;
+    private javax.swing.JLabel labelKTP3;
+    private javax.swing.JLabel labelKaryawan_id;
     private javax.swing.JLabel labelMarital;
     private javax.swing.JLabel labelMarital1;
     private javax.swing.JLabel labelNPWP;
     private javax.swing.JLabel labelNPWP1;
-    private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelName1;
+    private javax.swing.JLabel labelName2;
     private javax.swing.JLabel labelNumber;
     private javax.swing.JLabel labelNumber1;
     private javax.swing.JLabel labelSallary;
