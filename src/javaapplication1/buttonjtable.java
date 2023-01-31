@@ -36,7 +36,7 @@ public class buttonjtable extends JButton {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+                mousePress = false;
             }
         
         

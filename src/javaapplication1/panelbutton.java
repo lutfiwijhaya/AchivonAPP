@@ -4,6 +4,9 @@
  */
 package javaapplication1;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author USER
@@ -17,6 +20,33 @@ public class panelbutton extends javax.swing.JPanel {
         initComponents();
     }
 
+    
+    public void initevent (actiontable event, int row){
+    b_mata.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            event.lihat(row);
+        }
+    });
+    b_ceklis.addActionListener (new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           event.tambah(row);
+        }
+    });
+    
+   b_silang.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+      event.hapus(row);
+        }
+   });
+    
+    
+    
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

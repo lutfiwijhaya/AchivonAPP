@@ -25,19 +25,50 @@ public class CandidateList extends javax.swing.JPanel {
     public CandidateList() {
         initComponents();
         settable();
-       
         myShow();
+        actiontable event = new actiontable() {
+            @Override
+            public void lihat(int row) {
+                System.out.println("lihat");
+            }
+
+            @Override
+            public void tambah(int row) {
+                System.out.println("tambah");
+            }
+
+            @Override
+            public void hapus(int row) {
+                System.out.println("hapus");
+            }
+        };
      
     }
 void  settable (){
 String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Marital Status", "Email", "No. Hp", "Job Applying", "Sallary","Action"};
          myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
+         actiontable event = new actiontable() {
+            @Override
+            public void lihat(int row) {
+                System.out.println("lihat");
+            }
+
+            @Override
+            public void tambah(int row) {
+                System.out.println("tambah");
+            }
+
+            @Override
+            public void hapus(int row) {
+                System.out.println("hapus");
+            }
+        };
         MyTable.getColumnModel().getColumn(9).setCellRenderer(new callrender());
         MyTable.getColumnModel().getColumn(9).setPreferredWidth(120);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(130);
         MyTable.getColumnModel().getColumn(5).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(9).setCellEditor(new celleditor());
+        MyTable.getColumnModel().getColumn(9).setCellEditor(new celleditor(event));
 }
     /**
      * This method is called from within the constructor to initialize the form.

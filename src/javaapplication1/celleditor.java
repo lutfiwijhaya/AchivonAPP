@@ -14,9 +14,13 @@ import javax.swing.JTable;
  * @author USER
  */
 public class celleditor extends DefaultCellEditor {
+    
+    private actiontable event;
 
-    public celleditor() {
+    public celleditor(actiontable event) {
         super(new JCheckBox());
+        this.event=event;
+        
     }
 
     
@@ -24,6 +28,7 @@ public class celleditor extends DefaultCellEditor {
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
        panelbutton action = new panelbutton();
+       action.initevent(event, row);
        action.setBackground(table.getSelectionBackground());
        return action;
     }
