@@ -304,10 +304,12 @@ tambah tambah = new tambah();
         myProfile.setText("Profile");
         myProfile.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuItem1.setText("Profile");
         myProfile.add(jMenuItem1);
         myProfile.add(jSeparator17);
 
+        jMenuItem2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuItem2.setText("Change Password");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,6 +322,7 @@ tambah tambah = new tambah();
         SMLogout.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         SMLogout.setForeground(new java.awt.Color(255, 0, 0));
         SMLogout.setText("Logout");
+        SMLogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SMLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SMLogoutActionPerformed(evt);
