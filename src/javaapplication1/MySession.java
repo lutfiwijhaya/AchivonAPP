@@ -75,7 +75,7 @@ public class MySession {
     public static void set_marital(String marital){
         MySession.marital = marital;
     }
-    public static String email(){
+    public static String get_email(){
         return email;
     }
     
