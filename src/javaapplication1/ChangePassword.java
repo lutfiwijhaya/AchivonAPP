@@ -103,9 +103,9 @@ public class ChangePassword extends javax.swing.JPanel {
                             JOptionPane.showMessageDialog(null,"Password Berhasil di Perbarui");
 //                            MainPanel().setVisible(true);
                             
-                        }catch(SQLException e){
-                            JOptionPane.showMessageDialog(null,"Tidak dapat terhubung ke Jaringan Silahkan coba beberapa saat lagi");
-                        }
+                            }catch(SQLException e){
+                                JOptionPane.showMessageDialog(null,"Tidak dapat terhubung ke Jaringan Silahkan coba beberapa saat lagi");
+                            }
                         }
                         
                     }else{
