@@ -254,7 +254,10 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_textPassword1KeyTyped
 
     private void textPassword2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPassword2KeyTyped
-        // TODO add your handling code here:
+        if (textPassword2.getText().length()>7) {
+            JOptionPane.showMessageDialog(null, "Password Maximal 8 Character");
+            evt.consume();
+        }
     }//GEN-LAST:event_textPassword2KeyTyped
 
     private void openeyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openeyeMouseClicked

@@ -32,6 +32,7 @@ public class ChangePassword extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         textOldPass = new javax.swing.JPasswordField();
@@ -41,18 +42,20 @@ public class ChangePassword extends javax.swing.JPanel {
         textConfirmPass = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 550, 310, 30));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 550, 310, 30));
 
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setText("Password Lama / Old Password");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 170, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 180, 30));
 
         textOldPass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        add(textOldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 250, 30));
+        jPanel1.add(textOldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 250, 30));
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Password Baru / New Password");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 170, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 180, 30));
 
         textNewPass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         textNewPass.addActionListener(new java.awt.event.ActionListener() {
@@ -65,13 +68,14 @@ public class ChangePassword extends javax.swing.JPanel {
                 textNewPassKeyTyped(evt);
             }
         });
-        add(textNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 250, 30));
+        jPanel1.add(textNewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 250, 30));
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel4.setText("Konfirmasi Password Baru / Confirmation New Password");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 310, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 330, 30));
 
         textConfirmPass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        add(textConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 250, 30));
+        jPanel1.add(textConfirmPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 250, 30));
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -82,7 +86,18 @@ public class ChangePassword extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 250, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 250, 30));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -143,6 +158,7 @@ public class ChangePassword extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField textConfirmPass;
     private javax.swing.JPasswordField textNewPass;
     private javax.swing.JPasswordField textOldPass;
