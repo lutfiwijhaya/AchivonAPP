@@ -16,6 +16,8 @@ import javax.swing.ImageIcon;
 public class main extends javax.swing.JFrame {
     CandidateApplication ca;
     CandidateList candidateListPanel;
+    CandidateProfile candidateProfile;
+    EmployeeProfile employeeProfile;
     ChangePassword changePasswordPanel;
     /**
      * Creates new form jframe
@@ -27,14 +29,20 @@ public class main extends javax.swing.JFrame {
         
         ca = new CandidateApplication();
         candidateListPanel = new CandidateList();
+        candidateProfile = new CandidateProfile();
+        employeeProfile = new EmployeeProfile();
         changePasswordPanel = new ChangePassword();
         
         BoxPanel.add(ca);
         BoxPanel.add(candidateListPanel);
+        BoxPanel.add(candidateProfile);
+        BoxPanel.add(employeeProfile);
         BoxPanel.add(changePasswordPanel);
         
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(false);
         
         MyWindow();
@@ -306,6 +314,11 @@ tambah tambah = new tambah();
 
         jMenuItem1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuItem1.setText("Profile");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         myProfile.add(jMenuItem1);
         myProfile.add(jSeparator17);
 
@@ -367,6 +380,9 @@ tambah tambah = new tambah();
         MainPanel.setVisible(true);
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeProfile.setVisible(false);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_homeBarMouseClicked
 
     private void homeBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBarActionPerformed
@@ -377,6 +393,8 @@ tambah tambah = new tambah();
         MainPanel.setVisible(false);
         ca.setVisible(false);
         candidateListPanel.setVisible(true);
+        candidateProfile.setVisible(false);
+        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_candidateListActionPerformed
 
@@ -384,6 +402,8 @@ tambah tambah = new tambah();
         MainPanel.setVisible(false);
         ca.setVisible(true);
         candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_applicationFormActionPerformed
 
@@ -414,8 +434,19 @@ tambah tambah = new tambah();
         MainPanel.setVisible(false);
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        MainPanel.setVisible(false);
+        ca.setVisible(false);
+        candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeProfile.setVisible(true);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
