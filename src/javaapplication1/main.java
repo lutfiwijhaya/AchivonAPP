@@ -70,8 +70,8 @@ public class main extends javax.swing.JFrame {
     
        
     }
-inputexel inputxl = new inputexel();
-tambah tambah = new tambah();
+    inputexel inputxl = new inputexel();
+    tambah tambah = new tambah();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

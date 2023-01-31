@@ -15,6 +15,7 @@ public class EmployeeProfile extends javax.swing.JPanel {
      */
     public EmployeeProfile() {
         initComponents();
+        
         labelJob.setText(MySession.get_JobPosition());
         labelSallary.setText(MySession.get_Sallary());
         labelKTP.setText(MySession.get_ktp());
@@ -55,91 +56,174 @@ public class EmployeeProfile extends javax.swing.JPanel {
         labelSallary = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textCurrent = new javax.swing.JTextArea();
+        labelJob1 = new javax.swing.JLabel();
+        labelKTP1 = new javax.swing.JLabel();
+        labelName1 = new javax.swing.JLabel();
+        labelBirth1 = new javax.swing.JLabel();
+        labelGender1 = new javax.swing.JLabel();
+        labelMarital1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFoto.setText("FOTO");
-        add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 130, 140));
-
-        labelJob.setText("JOB APPLYING");
+        add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 130, 140));
         add(labelJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 220, 30));
 
         labelKTP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelKTP.setText("NO KTP");
-        add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 270, 20));
+        add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 190, 20));
 
         labelName.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelName.setText("NAMA");
-        add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 270, 20));
+        add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 190, 20));
 
         labelBirth.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelBirth.setText("TEMPAT, TANGGAL LAHIR");
-        add(labelBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 270, 20));
+        add(labelBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 190, 20));
 
         labelGender.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelGender.setText("JENIS KELAMIN");
-        add(labelGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 220, 20));
+        add(labelGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 190, 20));
 
         labelMarital.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        labelMarital.setText("STATUS PERNIKAHAN");
-        add(labelMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 220, 20));
+        labelMarital.setText("Status Pernikahan");
+        add(labelMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 170, 20));
 
         jLabel13.setText("Alamat Rumah / Home Address");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
 
         textHome.setColumns(20);
         textHome.setRows(5);
         jScrollPane1.setViewportView(textHome);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 230, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 230, -1));
 
         jLabel14.setText("Tempat Tinggal saat ini / Current Address");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, -1, -1));
 
         labelBPJS.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelBPJS.setText("BPJS");
-        add(labelBPJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, 220, 20));
+        add(labelBPJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, 40, 20));
 
         labelNPWP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelNPWP.setText("NPWP");
-        add(labelNPWP, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, 220, 20));
+        add(labelNPWP, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, 40, 20));
 
         labelNumber.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        labelNumber.setText("NO HP");
-        add(labelNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 220, 20));
+        labelNumber.setText("No. Hp");
+        add(labelNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 40, 20));
 
         labelEmail.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        labelEmail.setText("EMAIL");
-        add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 220, 20));
+        labelEmail.setText("Email");
+        add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 40, 20));
 
         labelSallary.setText("SALARRY");
-        add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 220, 30));
+        add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 60, 30));
 
         textCurrent.setColumns(20);
         textCurrent.setRows(5);
         jScrollPane2.setViewportView(textCurrent);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, -1, -1));
+
+        labelJob1.setText("JOB :");
+        add(labelJob1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 30, 30));
+
+        labelKTP1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelKTP1.setText("No. KTP");
+        add(labelKTP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 50, 20));
+
+        labelName1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelName1.setText("Nama ");
+        add(labelName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 40, 20));
+
+        labelBirth1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelBirth1.setText("Tempat, Tanggal Lahir ");
+        add(labelBirth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 140, 20));
+
+        labelGender1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelGender1.setText("Jenis kelamin");
+        add(labelGender1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 80, 20));
+
+        labelMarital1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelMarital1.setText("Status Pernikahan");
+        add(labelMarital1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 110, 20));
+
+        jLabel1.setText(":");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, 20, -1));
+
+        jLabel2.setText(":");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 20, -1));
+
+        jLabel3.setText(":");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 20, -1));
+
+        jLabel4.setText(":");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 20, -1));
+
+        jLabel5.setText(":");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 20, -1));
+
+        jLabel6.setText(":");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 20, -1));
+
+        jLabel7.setText(":");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 20, -1));
+
+        jLabel8.setText(":");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 20, -1));
+
+        jLabel9.setText(":");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 20, -1));
+
+        jLabel10.setText(":");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 20, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelBPJS;
     private javax.swing.JLabel labelBirth;
+    private javax.swing.JLabel labelBirth1;
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelFoto;
     private javax.swing.JLabel labelGender;
+    private javax.swing.JLabel labelGender1;
     private javax.swing.JLabel labelJob;
+    private javax.swing.JLabel labelJob1;
     private javax.swing.JLabel labelKTP;
+    private javax.swing.JLabel labelKTP1;
     private javax.swing.JLabel labelMarital;
+    private javax.swing.JLabel labelMarital1;
     private javax.swing.JLabel labelNPWP;
     private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelName1;
     private javax.swing.JLabel labelNumber;
     private javax.swing.JLabel labelSallary;
     private javax.swing.JTextArea textCurrent;
