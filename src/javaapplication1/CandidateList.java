@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -23,6 +24,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -32,12 +34,21 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author hi
  */
 public class CandidateList extends javax.swing.JPanel {
-
+    Statement stm;
+    ResultSet rs;
+    Connection koneksi;
+ JasperReport jasperreport;
+    JasperDesign jasperdesign;
+    JasperPrint jasperprint;
+    Map<String, Object> param = new HashMap<String, Object>();
     /**
      * Creates new form CandidateList
      */
     DefaultTableModel myModel;
     public CandidateList() {
+        Statement stm;
+    ResultSet rs;
+    Connection koneksi;
         initComponents();
         settable();
         myShow();
@@ -51,22 +62,7 @@ String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Ma
          actiontable event = new actiontable() {
             @Override
             public void lihat(int row) {
-               try {
-                    String nama = "test";
-                    JasperDesign jdesign = JRXmlLoader.load("D:\\AchivonAPP\\src\\report\\newReport.jrxml");
-                    
-                    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-                    
-               Map<String,Object> params = new HashMap<String, Object>();
-               params.put("test",nama);
-                       
-                    JasperPrint jprint = JasperFillManager.fillReport(jreport, params, new JREmptyDataSource());
-                    
-                    JasperViewer.viewReport(jprint, false);
-                    
-                } catch (JRException ex) {
-                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            
             }
 
             @Override
@@ -189,7 +185,16 @@ String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Ma
     }//GEN-LAST:event_textSearchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+   try {
+            File O = new File("src/report/report1.jrxml");
+            jasperdesign = JRXmlLoader.load(O);
+            param.clear();
+            jasperreport = JasperCompileManager.compileReport(jasperdesign);
+            jasperprint = JasperFillManager.fillReport(jasperreport, param, koneksi);
+            JasperViewer.viewReport(jasperprint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }            // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
