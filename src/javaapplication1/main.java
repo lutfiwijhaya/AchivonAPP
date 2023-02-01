@@ -63,7 +63,7 @@ public class main extends javax.swing.JFrame {
             ToolBar.add(Box.createHorizontalGlue());
             ToolBar.add(myProfile);
             buttonLogin.setVisible(false);
-            jLabel3.setText("WELCOME "+nama_log);
+            jLabel3.setVisible(false);
             jLabel2.setVisible(false);
             jLabel4.setVisible(false);
         }
