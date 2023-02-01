@@ -31,6 +31,9 @@ public class CandidateApplication extends javax.swing.JPanel {
     ResultSet rs;
     Connection koneksi;
     DefaultTableModel ImportDataExel;
+    String crudimage = "";
+     String da = null;
+    int id_employee;
     /**
      * Creates new form CandidateApplication
      */
@@ -44,9 +47,7 @@ public class CandidateApplication extends javax.swing.JPanel {
     
         
     }
-    String crudimage = "";
-     String da = null;
-    int id_employee;
+    
 
     private void openDB() {
         try {
