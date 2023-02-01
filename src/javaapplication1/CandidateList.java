@@ -4,6 +4,7 @@
  */
 package javaapplication1;
 
+import com.lowagie.text.Table;
 import com.lowagie.text.xml.simpleparser.EntitiesToSymbol;
 import static java.awt.PageAttributes.MediaType.D;
 import java.io.File;
@@ -42,10 +43,12 @@ public class CandidateList extends javax.swing.JPanel {
     JasperDesign jasperdesign;
     JasperPrint jasperprint;
     Map<String, Object> param = new HashMap<String, Object>();
-    /**
-     * Creates new form CandidateList
-     */
     DefaultTableModel myModel;
+     String id = null;
+ 
+  
+    
+    
     public CandidateList() {
         Statement stm;
     ResultSet rs;
@@ -53,11 +56,15 @@ public class CandidateList extends javax.swing.JPanel {
         initComponents();
         settable();
         myShow();
+        remove();
+         
+        
+       
         
      
     }
 void  settable (){
-String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Marital Status", "Email", "No. Hp", "Job Applying", "Sallary","Action"};
+String [] header = {"id","KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Marital Status", "Email", "No. Hp", "Job Applying", "Sallary","Action"};
          myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
          actiontable event = new actiontable() {
@@ -66,6 +73,8 @@ String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Ma
                 try {
                     String tnama = (String) MyTable.getValueAt(row, 1);
                     String email = (String) MyTable.getValueAt(row, 5);
+                   id = (String) MyTable.getValueAt(row, 0);
+                   
                     
                     Class.forName("com.mysql.jdbc.Driver");
 Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivonapp","root","");
@@ -74,8 +83,8 @@ Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivon
             param.clear();
             jasperreport = JasperCompileManager.compileReport(jasperdesign);
           
-               param.put("test",tnama);
-               param.put("nama",email);
+               param.put("id",id);
+             
             jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
             
             JasperViewer.viewReport(jasperprint, false);
@@ -95,12 +104,20 @@ Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivon
                 System.out.println("hapus");
             }
         };
-        MyTable.getColumnModel().getColumn(9).setCellRenderer(new callrender());
-        MyTable.getColumnModel().getColumn(9).setPreferredWidth(120);
-        MyTable.getColumnModel().getColumn(0).setPreferredWidth(130);
-        MyTable.getColumnModel().getColumn(5).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(9).setCellEditor(new celleditor(event));
+        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
+        MyTable.getColumnModel().getColumn(10).setPreferredWidth(120);
+        MyTable.getColumnModel().getColumn(1).setPreferredWidth(130);
+        MyTable.getColumnModel().getColumn(10).setPreferredWidth(150);
+         MyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));
+        
 }
+
+
+void remove (){ 
+    
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,7 +173,7 @@ Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivon
         MyTable.setShowVerticalLines(true);
         jScrollPane1.setViewportView(MyTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 860, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 860, 170));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Daftar kandidat / Candidate List");
@@ -219,10 +236,13 @@ Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivon
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE nama LIKE '%"+mySearch+"%'");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
+                
+                String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
                                     myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
                                     myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                
                 myModel.addRow(myData);
+           
             }
             } catch (SQLException ex) {
                 Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
@@ -232,11 +252,14 @@ Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivon
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
                 ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee");
                 while (myRess.next()) {
-                    String myData [] = {myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
+                    
+                    String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
                                         myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
                                         myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                     myModel.addRow(myData);
+                
                 }
+               
             } catch (SQLException ex) {
                 Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("javaapplication1.CandidateList.myShow()");

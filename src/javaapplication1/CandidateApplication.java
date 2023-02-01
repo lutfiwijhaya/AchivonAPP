@@ -31,6 +31,9 @@ public class CandidateApplication extends javax.swing.JPanel {
     ResultSet rs;
     Connection koneksi;
     DefaultTableModel ImportDataExel;
+    String crudimage = "";
+     String da = null;
+    int id_employee;
     /**
      * Creates new form CandidateApplication
      */
@@ -44,9 +47,7 @@ public class CandidateApplication extends javax.swing.JPanel {
     
         
     }
-    String crudimage = "";
-     String da = null;
-    int id_employee;
+    
 
     private void openDB() {
         try {
@@ -347,6 +348,11 @@ public class CandidateApplication extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         labelfoto = new javax.swing.JLabel();
+        t_hkec = new javax.swing.JTextField();
+        jLabel106 = new javax.swing.JLabel();
+        jLabel107 = new javax.swing.JLabel();
+        t_ckec = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -393,7 +399,7 @@ public class CandidateApplication extends javax.swing.JPanel {
                 homeCityActionPerformed(evt);
             }
         });
-        jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 680, 190, -1));
+        jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, 190, -1));
 
         jSeparator25.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 850, 650, 20));
@@ -407,14 +413,14 @@ public class CandidateApplication extends javax.swing.JPanel {
                 homeCountryActionPerformed(evt);
             }
         });
-        jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 190, -1));
+        jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 190, -1));
 
         homeState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeStateActionPerformed(evt);
             }
         });
-        jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 190, -1));
+        jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 610, 190, -1));
 
         jLabel77.setText("Status Pernikahan / \nMarital Status");
         jPanel1.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, 20));
@@ -459,34 +465,34 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_lajang.setSelected(true);
         t_lajang.setText("Lajang");
         jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, -1, -1));
-        jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 40, 20));
+        jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, 40, 20));
 
         jLabel81.setText("Tempat Tinggal saat ini / Current Address");
-        jPanel1.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, -1, 20));
-        jPanel1.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 470, 50, 20));
+        jPanel1.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, -1, 20));
+        jPanel1.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 440, 50, 20));
 
         jLabel82.setText("Negara / Country");
-        jPanel1.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 500, -1, 20));
+        jPanel1.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, -1, 20));
 
         jLabel83.setText("Provinsi / Province");
-        jPanel1.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 640, -1, 30));
+        jPanel1.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 610, -1, 30));
 
         cprov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cprovActionPerformed(evt);
             }
         });
-        jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 640, 190, -1));
+        jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 610, 190, -1));
 
         jLabel84.setText("Kota / City");
-        jPanel1.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 680, -1, 30));
+        jPanel1.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 650, -1, 30));
 
-        jPanel1.add(ccity, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 680, 190, -1));
-        jPanel1.add(jSeparator28, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 80, 20));
-        jPanel1.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 50, 20));
+        jPanel1.add(ccity, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 650, 190, -1));
+        jPanel1.add(jSeparator28, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 80, 20));
+        jPanel1.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 50, 20));
 
         jLabel85.setText("Alamat Rumah / Home Address");
-        jPanel1.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, -1, 20));
+        jPanel1.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, -1, 20));
 
         jLabel86.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel86.setText("1. Data Diri / Personal Information");
@@ -667,27 +673,27 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_halamat.setRows(5);
         jScrollPane25.setViewportView(t_halamat);
 
-        jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, -1, -1));
+        jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, -1, -1));
 
         jLabel97.setText("Alamat / Address");
-        jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 540, -1, 30));
+        jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, -1, 30));
 
         t_calamat.setColumns(20);
         t_calamat.setRows(5);
         jScrollPane26.setViewportView(t_calamat);
 
-        jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 540, -1, -1));
-        jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 720, 190, -1));
+        jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, -1, -1));
+        jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 730, 190, -1));
 
         t_cdesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_cdesaActionPerformed(evt);
             }
         });
-        jPanel1.add(t_cdesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 720, 190, -1));
+        jPanel1.add(t_cdesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 730, 190, -1));
 
         jLabel98.setText("Desa / Vilage");
-        jPanel1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 720, 80, 30));
+        jPanel1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 730, 80, 30));
 
         jCheckBox.setText("Sama dengan alamat Rumah / Same as Home Address");
         jCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -703,7 +709,7 @@ public class CandidateApplication extends javax.swing.JPanel {
                 curentCountryActionPerformed(evt);
             }
         });
-        jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 500, 190, -1));
+        jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 470, 190, -1));
 
         t_lamaran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 190, -1));
@@ -717,19 +723,19 @@ public class CandidateApplication extends javax.swing.JPanel {
         jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, -1));
 
         jLabel101.setText("Negara / Country");
-        jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, 20));
+        jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, 20));
 
         jLabel102.setText("Alamat / Address");
-        jPanel1.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, 30));
+        jPanel1.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, 30));
 
         jLabel103.setText("Provinsi / Province");
-        jPanel1.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, -1, 30));
+        jPanel1.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, -1, 30));
 
         jLabel104.setText("Kota / City");
-        jPanel1.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 680, -1, 30));
+        jPanel1.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 650, -1, 30));
 
         jLabel105.setText("Desa / Vilage");
-        jPanel1.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 720, 80, 30));
+        jPanel1.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 730, 80, 30));
 
         jLabel121.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel121.setText("1. Data Diri / Personal Information");
@@ -757,6 +763,28 @@ public class CandidateApplication extends javax.swing.JPanel {
         labelfoto.setBackground(new java.awt.Color(255, 255, 204));
         labelfoto.setOpaque(true);
         jPanel1.add(labelfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 100, 90));
+        jPanel1.add(t_hkec, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 690, 190, -1));
+
+        jLabel106.setText("Kecamatan / Districts");
+        jPanel1.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 690, 120, 30));
+
+        jLabel107.setText("Kecamatan / Districts");
+        jPanel1.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 690, 120, 30));
+
+        t_ckec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_ckecActionPerformed(evt);
+            }
+        });
+        jPanel1.add(t_ckec, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 690, 190, -1));
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -802,6 +830,7 @@ public class CandidateApplication extends javax.swing.JPanel {
     private void jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActionPerformed
         cprov.setSelectedItem(homeState.getSelectedItem());
         ccity.setSelectedItem(homeCity.getSelectedItem());
+        t_ckec.setText(t_hkec.getText());
         t_calamat.setText(t_halamat.getText());
         t_cdesa.setText(t_ddesa.getText());        // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxActionPerformed
@@ -836,10 +865,15 @@ public class CandidateApplication extends javax.swing.JPanel {
         String g_cnegara = (String) curentCountry.getSelectedItem();
         String g_cprov = (String) cprov.getSelectedItem();
         String g_ckota = (String) ccity.getSelectedItem();
+        String g_hkec = t_hkec.getText();
+        String g_ckec = t_ckec.getText();
         String g_hdesa = t_ddesa.getText();
         String g_cdesa = t_cdesa.getText();
         String g_halamat = t_halamat.getText();
         String g_calamat = t_calamat.getText();
+        String sp = ", ";
+        String full_curent = g_calamat + sp + g_cdesa + sp + g_ckec + sp+ g_ckota + sp + g_cprov + sp + g_cnegara;
+        String full_home = g_halamat + sp + g_hdesa + sp + g_hkec + sp+ g_hkota + sp + g_hprov + sp + g_hnegara;
 
         try {
             stm = koneksi.createStatement();
@@ -870,19 +904,28 @@ public class CandidateApplication extends javax.swing.JPanel {
                 e.printStackTrace();
             }
 
-            String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_desa,h_alamat,c_negara,c_prov,c_kab,c_desa,c_alamat) values('" + da + "'"
+            String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
             + ",'" + g_hnegara + "'"
             + ",'" + g_hprov + "'"
             + ",'" + g_hkota + "'"
+            + ",'" + g_hkec + "'"
             + ",'" + g_hdesa + "'"
             + ",'" + g_halamat + "'"
             + ",'" + g_cnegara + "'"
             + ",'" + g_cprov + "'"
             + ",'" + g_ckota + "'"
+            + ",'" + g_ckec + "'"
             + ",'" + g_cdesa + "'"
-            + ",'" + g_calamat + "')";
+                    + ",'" + g_calamat + "'"
+                    + ",'" + full_home + "'"
+            + ",'" + full_curent + "')";
+            
+           
+            
 
             stm.executeUpdate(sql0);
+           
+            
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
@@ -1015,6 +1058,44 @@ public class CandidateApplication extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_t_ktpActionPerformed
 
+    private void t_ckecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ckecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ckecActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+     
+        String g_nama = t_nama.getText();
+        String g_ktp = t_ktp.getText();
+        String g_gender = radioGrupGender.getSelection().getActionCommand();
+        String g_status = radioGrupStatus.getSelection().getActionCommand();
+        String g_tlahir = t_tlhir.getText();
+        
+        String g_hp = t_hp.getText();
+        String g_email = t_email.getText();
+        String g_bpjs = t_bpjs.getText();
+        String g_npwp = t_npwp.getText();
+        String g_lamaran = (String) t_lamaran.getSelectedItem();
+        String g_gaji = t_gaji.getText();
+
+        String g_hnegara = (String) homeCountry.getSelectedItem();
+        String g_hprov = (String) homeState.getSelectedItem();
+        String g_hkota = (String) homeCity.getSelectedItem();
+        String g_cnegara = (String) curentCountry.getSelectedItem();
+        String g_cprov = (String) cprov.getSelectedItem();
+        String g_ckota = (String) ccity.getSelectedItem();
+        String g_hkec = t_hkec.getText();
+        String g_ckec = t_ckec.getText();
+        String g_hdesa = t_ddesa.getText();
+        String g_cdesa = t_cdesa.getText();
+        String g_halamat = t_halamat.getText();
+        String g_calamat = t_calamat.getText();
+        
+               
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ccity;
@@ -1024,6 +1105,7 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> homeCountry;
     private javax.swing.JComboBox<String> homeState;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
@@ -1033,6 +1115,8 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel130;
@@ -1099,10 +1183,12 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JTextField t_bpjs;
     private javax.swing.JTextArea t_calamat;
     private javax.swing.JTextField t_cdesa;
+    private javax.swing.JTextField t_ckec;
     private javax.swing.JTextField t_ddesa;
     private javax.swing.JTextField t_email;
     private javax.swing.JTextField t_gaji;
     private javax.swing.JTextArea t_halamat;
+    private javax.swing.JTextField t_hkec;
     private javax.swing.JTextField t_hp;
     private javax.swing.JTextField t_ktp;
     private javax.swing.JRadioButton t_lajang;
