@@ -23,6 +23,7 @@ public class main extends javax.swing.JFrame {
     
     public main() {
         super("Operation System");
+//        asd
         initComponents();
         
         ca = new CandidateApplication();
