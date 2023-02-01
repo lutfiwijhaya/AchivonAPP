@@ -44,7 +44,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        textUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -56,21 +55,19 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        textEmail = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         closeeye1 = new javax.swing.JLabel();
         openeye1 = new javax.swing.JLabel();
         textRepeatPassword = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        textMail = new javax.swing.JTextField();
+        textKaryawanid = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        textUsername.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel1.add(textUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 240, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
@@ -140,13 +137,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel9.setText("Surat Elektronik / Email");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 140, 20));
 
-        textEmail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textEmailKeyTyped(evt);
-            }
-        });
-        jPanel1.add(textEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 240, 30));
-
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 0, 0));
         jLabel10.setText("Ulang Kata Sandi / Repeat Password");
@@ -182,6 +172,15 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/closedeye.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 30, 30));
+        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 240, 30));
+
+        try {
+            textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("U-#-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        textKaryawanid.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 240, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,64 +202,73 @@ public class LoginFrame extends javax.swing.JFrame {
         Connection myConn;
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textUsername.getText()+"'");
+            ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
             if(myRess.next()){
-                if (textPassword.getText().length()<8) {
-                    JOptionPane.showMessageDialog(null, "Pastikan Password Manimal 8 Character");
+                jLabel3.setText(textKaryawanid.getValue().toString());
+                if (textPassword.getText().length()<4) {
+                    JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 4 karakter \n Make sure the password is at least 4 characters");
                 }else{
                     if (textPassword.getText().equals(textRepeatPassword.getText())) {
-                    
+                        if (textMail.getText().equals(myRess.getString("email"))){
+                            if (textPassword.getText().equals(myRess.getString("password"))) {
+                                JOptionPane.showMessageDialog(null, "Berhasil Login \n successfully logged in");
+                                MySession.set_karyawanID(myRess.getString("karyawan_id"));
+                                MySession.set_nama(myRess.getString("name"));
+                                MySession.set_ktp(myRess.getString("ktp"));
+                                MySession.set_birthPlace(myRess.getString("birth_place"));
+                                MySession.set_Birthday(myRess.getString("birthday"));
+                                MySession.set_sex(myRess.getString("sex"));
+                                MySession.set_marital(myRess.getString("marital"));
+                                MySession.set_email(myRess.getString("email"));
+                                MySession.set_mobileNumber(myRess.getString("no_hp"));
+                                MySession.set_BPJS(myRess.getString("bpjs"));
+                                MySession.set_NPWP(myRess.getString("npwp"));
+                                MySession.set_JobPosition(myRess.getString("job_position"));
+                                MySession.set_Sallary(myRess.getString("sallary"));
+                                new main().setVisible(true);
+                                this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(rootPane,"Kata Sandi Anda Salah \n your password is wrong");
+                                textPassword.setText("");
+                                textRepeatPassword.setText("");
+                                textPassword.requestFocus();
+                            }        
+                        }else{
+                            JOptionPane.showMessageDialog(rootPane,"Surel Anda Tidak Sesuai \n Your Email does not Match");
+                            textMail.setText("");
+                            textMail.requestFocus();
+                        }
                     }else{
-                        JOptionPane.showMessageDialog(null, "Password dan Konfirmasi Password anda Tidak Sesuai");
-                    }
-                    if (textPassword.getText().equals(myRess.getString("password"))){
-                        JOptionPane.showMessageDialog(null, "Login Berhasil");
-                        MySession.set_karyawanID(myRess.getString("karyawan_id"));
-                        MySession.set_nama(myRess.getString("name"));
-                        MySession.set_ktp(myRess.getString("ktp"));
-                        MySession.set_birthPlace(myRess.getString("birth_place"));
-                        MySession.set_Birthday(myRess.getString("birthday"));
-                        MySession.set_sex(myRess.getString("sex"));
-                        MySession.set_marital(myRess.getString("marital"));
-                        MySession.set_email(myRess.getString("email"));
-                        MySession.set_mobileNumber(myRess.getString("no_hp"));
-                        MySession.set_BPJS(myRess.getString("bpjs"));
-                        MySession.set_NPWP(myRess.getString("npwp"));
-                        MySession.set_JobPosition(myRess.getString("job_position"));
-                        MySession.set_Sallary(myRess.getString("sallary"));
-                        new main().setVisible(true);
-                        this.dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(rootPane,"Password Salah");
-                        textUsername.requestFocus();
+                        JOptionPane.showMessageDialog(null, "Kata Sandi dan Konfirmasi kata Sandi anda Tidak Sesuai \n Your Password and Confirm Password Doesn't Match");
                         textPassword.setText("");
+                        textRepeatPassword.setText("");
+                        textPassword.requestFocus();
                     }
                 }
             }else {
-                JOptionPane.showMessageDialog(rootPane, "User Tidak Ditemukan");
-                textUsername.setText("");
+                JOptionPane.showMessageDialog(rootPane, "pengguna Tidak Ditemukan \n User not Found");
+                textKaryawanid.setText("");
                 textPassword.setText("");
-                textUsername.requestFocus();
+                textRepeatPassword.setText("");
+                textMail.setText("");
+                textKaryawanid.requestFocus();
+                
             }
         }catch(SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi");
+            JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi \n Failed to Retrieve Information");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPasswordKeyTyped
         if (textPassword.getText().length()>7) {
-            JOptionPane.showMessageDialog(null, "Password Maximal 8 Character");
+            JOptionPane.showMessageDialog(null, "kata Sandi maximal 8 karakter \n Password Maximal 8 Character");
             evt.consume();
         }
     }//GEN-LAST:event_textPasswordKeyTyped
 
-    private void textEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textEmailKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textEmailKeyTyped
-
     private void textRepeatPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textRepeatPasswordKeyTyped
         if (textRepeatPassword.getText().length()>7) {
-            JOptionPane.showMessageDialog(null, "Password Maximal 8 Character");
+            JOptionPane.showMessageDialog(null, "Kata Sandi Konfirmasi Maximal 8 karakter \n Password confirmation Maximal 8 Character");
             evt.consume();
         }
     }//GEN-LAST:event_textRepeatPasswordKeyTyped
@@ -342,10 +350,10 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel openeye;
     private javax.swing.JLabel openeye1;
-    private javax.swing.JPasswordField textEmail;
+    private javax.swing.JFormattedTextField textKaryawanid;
+    private javax.swing.JTextField textMail;
     private javax.swing.JPasswordField textPassword;
     private javax.swing.JPasswordField textRepeatPassword;
-    private javax.swing.JTextField textUsername;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
