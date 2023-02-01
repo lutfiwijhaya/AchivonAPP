@@ -173,7 +173,7 @@ void remove (){
         MyTable.setShowVerticalLines(true);
         jScrollPane1.setViewportView(MyTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 860, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 860, 170));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Daftar kandidat / Candidate List");
