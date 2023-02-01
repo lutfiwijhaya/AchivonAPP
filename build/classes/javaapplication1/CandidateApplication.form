@@ -148,8 +148,11 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator25">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -478,7 +481,7 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="8">
+                      <Table columnCount="5" rowCount="3">
                         <Column editable="true" title="Diraih pada Tanggal" type="java.lang.Object"/>
                         <Column editable="true" title="Nama Sertifikat" type="java.lang.Object"/>
                         <Column editable="true" title="Nama Badan Penyelenggara" type="java.lang.Object"/>
@@ -513,7 +516,7 @@
                       <Font name="Arial" size="16" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="8">
+                      <Table columnCount="4" rowCount="3">
                         <Column editable="true" title="Tanggal Lulus" type="java.lang.Object"/>
                         <Column editable="true" title="Nama Sekolah/Universitas" type="java.lang.Object"/>
                         <Column editable="true" title="Lokasi" type="java.lang.Object"/>
@@ -552,7 +555,7 @@
             <Component class="javax.swing.JSeparator" name="jSeparator31">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -576,8 +579,11 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator32">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -601,7 +607,7 @@
                 <Component class="javax.swing.JTable" name="jTable3">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="8">
+                      <Table columnCount="5" rowCount="3">
                         <Column editable="true" title="Nama Anggota" type="java.lang.Object"/>
                         <Column editable="true" title="Hubungan" type="java.lang.Object"/>
                         <Column editable="true" title="Tanggal Lahir" type="java.lang.Object"/>
@@ -620,8 +626,11 @@
             </Container>
             <Component class="javax.swing.JSeparator" name="jSeparator33">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -658,7 +667,7 @@
                 <Component class="javax.swing.JTable" name="jTable4">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="8">
+                      <Table columnCount="4" rowCount="3">
                         <Column editable="true" title="Nama Perusahaan" type="java.lang.Object"/>
                         <Column editable="true" title="Posisi Pekerjaan" type="java.lang.Object"/>
                         <Column editable="true" title="Periode (mm-yyyy - mmm-yyyy)" type="java.lang.Object"/>
@@ -686,8 +695,11 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator34">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -1112,11 +1124,11 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel1"/>
+                <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="70" y="230" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="70" y="230" width="100" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1167,19 +1179,6 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="640" y="690" width="190" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton2"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="310" y="110" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

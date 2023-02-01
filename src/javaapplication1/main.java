@@ -18,7 +18,7 @@ public class main extends javax.swing.JFrame {
     CandidateApplication ca;
     CandidateList candidateListPanel;
     CandidateProfile candidateProfile;
-    EmployeeProfile employeeProfile;
+//    EmployeeProfile employeeProfile;
     ChangePassword changePasswordPanel;
     
     public main() {
@@ -28,19 +28,19 @@ public class main extends javax.swing.JFrame {
         ca = new CandidateApplication();
         candidateListPanel = new CandidateList();
         candidateProfile = new CandidateProfile();
-        employeeProfile = new EmployeeProfile();
+//        employeeProfile = new EmployeeProfile();
         changePasswordPanel = new ChangePassword();
         
         BoxPanel.add(ca);
         BoxPanel.add(candidateListPanel);
         BoxPanel.add(candidateProfile);
-        BoxPanel.add(employeeProfile);
+//        BoxPanel.add(employeeProfile);
         BoxPanel.add(changePasswordPanel);
         
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-        employeeProfile.setVisible(false);
+//        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(false);
         
         MyWindow();
@@ -383,7 +383,7 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-        employeeProfile.setVisible(false);
+//        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_homeBarMouseClicked
 
@@ -396,7 +396,7 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(false);
         candidateListPanel.setVisible(true);
         candidateProfile.setVisible(false);
-        employeeProfile.setVisible(false);
+//        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_candidateListActionPerformed
 
@@ -405,7 +405,7 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(true);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-        employeeProfile.setVisible(false);
+//        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_applicationFormActionPerformed
 
@@ -437,7 +437,7 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-        employeeProfile.setVisible(false);
+//        employeeProfile.setVisible(false);
         changePasswordPanel.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -446,7 +446,7 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-        employeeProfile.setVisible(true);
+//        employeeProfile.setVisible(true);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

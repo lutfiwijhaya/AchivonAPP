@@ -352,7 +352,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         t_ckec = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -401,7 +400,8 @@ public class CandidateApplication extends javax.swing.JPanel {
         });
         jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, 190, -1));
 
-        jSeparator25.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator25.setBackground(new java.awt.Color(255, 0, 0));
+        jSeparator25.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 850, 650, 20));
 
         jLabel75.setText("Tanggal Lahir / Birth Date");
@@ -505,11 +505,6 @@ public class CandidateApplication extends javax.swing.JPanel {
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -525,11 +520,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         jTable2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
@@ -557,23 +547,19 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel87.setText("3. Status Keluarga");
         jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1070, 160, 30));
 
-        jSeparator31.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator31.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 1090, 680, 20));
 
         jLabel88.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel88.setText("4. Sertifikat Resmi Keahlian");
         jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1290, 250, 30));
 
-        jSeparator32.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator32.setBackground(new java.awt.Color(255, 0, 0));
+        jSeparator32.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1310, 600, 20));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null}
@@ -588,7 +574,8 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1120, 850, 150));
 
-        jSeparator33.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator33.setBackground(new java.awt.Color(255, 0, 0));
+        jSeparator33.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1540, 630, 20));
 
         jLabel89.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -597,11 +584,6 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
@@ -619,7 +601,8 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel90.setText("1. Motivasi untuk Melamar");
         jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 1810, 350, 30));
 
-        jSeparator34.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator34.setBackground(new java.awt.Color(255, 0, 0));
+        jSeparator34.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1790, 430, 20));
 
         jTextArea1.setColumns(20);
@@ -757,8 +740,8 @@ public class CandidateApplication extends javax.swing.JPanel {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
+        jLabel1.setText("...");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 100, -1));
 
         labelfoto.setBackground(new java.awt.Color(255, 255, 204));
         labelfoto.setOpaque(true);
@@ -777,14 +760,6 @@ public class CandidateApplication extends javax.swing.JPanel {
             }
         });
         jPanel1.add(t_ckec, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 690, 190, -1));
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -1062,40 +1037,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_t_ckecActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-     
-        String g_nama = t_nama.getText();
-        String g_ktp = t_ktp.getText();
-        String g_gender = radioGrupGender.getSelection().getActionCommand();
-        String g_status = radioGrupStatus.getSelection().getActionCommand();
-        String g_tlahir = t_tlhir.getText();
-        
-        String g_hp = t_hp.getText();
-        String g_email = t_email.getText();
-        String g_bpjs = t_bpjs.getText();
-        String g_npwp = t_npwp.getText();
-        String g_lamaran = (String) t_lamaran.getSelectedItem();
-        String g_gaji = t_gaji.getText();
-
-        String g_hnegara = (String) homeCountry.getSelectedItem();
-        String g_hprov = (String) homeState.getSelectedItem();
-        String g_hkota = (String) homeCity.getSelectedItem();
-        String g_cnegara = (String) curentCountry.getSelectedItem();
-        String g_cprov = (String) cprov.getSelectedItem();
-        String g_ckota = (String) ccity.getSelectedItem();
-        String g_hkec = t_hkec.getText();
-        String g_ckec = t_ckec.getText();
-        String g_hdesa = t_ddesa.getText();
-        String g_cdesa = t_cdesa.getText();
-        String g_halamat = t_halamat.getText();
-        String g_calamat = t_calamat.getText();
-        
-               
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ccity;
@@ -1105,7 +1046,6 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> homeCountry;
     private javax.swing.JComboBox<String> homeState;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
