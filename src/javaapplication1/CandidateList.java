@@ -11,10 +11,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -23,6 +25,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -32,12 +35,21 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author hi
  */
 public class CandidateList extends javax.swing.JPanel {
-
+    Statement stm;
+    ResultSet rs;
+    Connection koneksi;
+ JasperReport jasperreport;
+    JasperDesign jasperdesign;
+    JasperPrint jasperprint;
+    Map<String, Object> param = new HashMap<String, Object>();
     /**
      * Creates new form CandidateList
      */
     DefaultTableModel myModel;
     public CandidateList() {
+        Statement stm;
+    ResultSet rs;
+    Connection koneksi;
         initComponents();
         settable();
         myShow();
@@ -51,22 +63,26 @@ String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Ma
          actiontable event = new actiontable() {
             @Override
             public void lihat(int row) {
-               try {
-                    String nama = "test";
-                    JasperDesign jdesign = JRXmlLoader.load("D:\\AchivonAPP\\src\\report\\newReport.jrxml");
+                try {
+                    String tnama = (String) MyTable.getValueAt(row, 1);
+                    String email = (String) MyTable.getValueAt(row, 5);
                     
-                    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-                    
-               Map<String,Object> params = new HashMap<String, Object>();
-               params.put("test",nama);
-                       
-                    JasperPrint jprint = JasperFillManager.fillReport(jreport, params, new JREmptyDataSource());
-                    
-                    JasperViewer.viewReport(jprint, false);
-                    
-                } catch (JRException ex) {
-                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    Class.forName("com.mysql.jdbc.Driver");
+Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivonapp","root","");
+            File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
+            jasperdesign = JRXmlLoader.load(O);
+            param.clear();
+            jasperreport = JasperCompileManager.compileReport(jasperdesign);
+          
+               param.put("test",tnama);
+               param.put("nama",email);
+            jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
+            
+            JasperViewer.viewReport(jasperprint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }   
+            
             }
 
             @Override
@@ -102,7 +118,6 @@ String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Ma
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 585));
 
@@ -154,14 +169,6 @@ String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Ma
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, -1));
-
         jScrollPane2.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -188,14 +195,9 @@ String [] header = {"KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Ma
         // TODO add your handling code here:
     }//GEN-LAST:event_textSearchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
