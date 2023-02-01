@@ -14,17 +14,15 @@ import javax.swing.ImageIcon;
  * @author lutfi
  */
 public class main extends javax.swing.JFrame {
+    
     CandidateApplication ca;
     CandidateList candidateListPanel;
     CandidateProfile candidateProfile;
     EmployeeProfile employeeProfile;
     ChangePassword changePasswordPanel;
-    /**
-     * Creates new form jframe
-     */
+    
     public main() {
-       
-       super("Operation System");
+        super("Operation System");
         initComponents();
         
         ca = new CandidateApplication();
@@ -58,7 +56,7 @@ public class main extends javax.swing.JFrame {
             AcountingSystem.setEnabled(false);
             myProfile.setVisible(false);
             SMLogout.setVisible(false);
-//            ToolBar.setVisible(false);
+            ToolBar.setVisible(false);
         } else {
             myProfile.setText(nama_log);
             ToolBar.add(Box.createHorizontalGlue());
@@ -68,8 +66,6 @@ public class main extends javax.swing.JFrame {
             jLabel2.setVisible(false);
             jLabel4.setVisible(false);
         }
-    
-       
     }
     inputexel inputxl = new inputexel();
     tambah tambah = new tambah();
@@ -92,6 +88,8 @@ public class main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         ToolBar = new javax.swing.JMenuBar();
         homeBar = new javax.swing.JMenu();
+        undoBar = new javax.swing.JMenu();
+        redoBar = new javax.swing.JMenu();
         HumanResourceSystem = new javax.swing.JMenu();
         candidateApplication = new javax.swing.JMenu();
         candidateList = new javax.swing.JMenuItem();
@@ -176,7 +174,6 @@ public class main extends javax.swing.JFrame {
         MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 200, 130));
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
-        homeBar.setText("|");
         homeBar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 homeBarMouseClicked(evt);
@@ -188,6 +185,12 @@ public class main extends javax.swing.JFrame {
             }
         });
         ToolBar.add(homeBar);
+
+        undoBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/undo.png"))); // NOI18N
+        ToolBar.add(undoBar);
+
+        redoBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/redo.png"))); // NOI18N
+        ToolBar.add(redoBar);
 
         HumanResourceSystem.setText("Human Resource System  |");
         HumanResourceSystem.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -539,6 +542,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JMenu myProfile;
+    private javax.swing.JMenu redoBar;
+    private javax.swing.JMenu undoBar;
     // End of variables declaration//GEN-END:variables
  private void myLogout() {
        javaapplication1.MySession.set_ktp("");
@@ -553,10 +558,6 @@ public class main extends javax.swing.JFrame {
         int y = (screen.height/2) - (this.getSize().height/2);
         this.setLocation(x,y);
     }
-
-
-
-
 }
 
 

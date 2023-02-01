@@ -9,12 +9,25 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Pictures/IconHome.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="|"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="homeBarMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeBarActionPerformed"/>
           </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="undoBar">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Pictures/undo.png"/>
+            </Property>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="redoBar">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Pictures/redo.png"/>
+            </Property>
+          </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="HumanResourceSystem">
           <Properties>

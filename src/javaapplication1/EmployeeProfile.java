@@ -8,7 +8,8 @@ package javaapplication1;
  *
  * @author hi
  */
-public class EmployeeProfile extends javax.swing.JPanel {
+
+public class EmployeeProfile extends javax.swing.JFrame {
 
     /**
      * Creates new form EmployeeProfile
@@ -436,4 +437,5 @@ public class EmployeeProfile extends javax.swing.JPanel {
     private javax.swing.JTextArea textCurrent;
     private javax.swing.JTextArea textHome;
     // End of variables declaration//GEN-END:variables
+
 }
