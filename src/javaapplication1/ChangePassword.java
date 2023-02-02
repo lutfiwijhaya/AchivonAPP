@@ -108,7 +108,7 @@ public class ChangePassword extends javax.swing.JPanel {
             if(myRess.next()){
                 if (textOldPass.getText().equals(myRess.getString("password"))){
                     if (textNewPass.getText().equals(textConfirmPass.getText())) {
-                        if (textNewPass.getText().length()<8) {
+                        if (textNewPass.getText().length()<4) {
                             JOptionPane.showMessageDialog(null, "Pastikan Minimal Password 8 Character");
                         }else{
                             try{

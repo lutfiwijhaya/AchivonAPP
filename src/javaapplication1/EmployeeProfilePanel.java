@@ -8,13 +8,12 @@ package javaapplication1;
  *
  * @author hi
  */
-
-public class EmployeeProfile extends javax.swing.JFrame {
+public class EmployeeProfilePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form EmployeeProfile
+     * Creates new form EmployeeProfilePanel
      */
-    public EmployeeProfile() {
+    public EmployeeProfilePanel() {
         initComponents();
         
         labelJob.setText(MySession.get_JobPosition());
@@ -50,7 +49,7 @@ public class EmployeeProfile extends javax.swing.JFrame {
         labelGender = new javax.swing.JLabel();
         labelMarital = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         textCurrent = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
         labelBPJS = new javax.swing.JLabel();
@@ -97,8 +96,9 @@ public class EmployeeProfile extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         labelName2 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -132,9 +132,9 @@ public class EmployeeProfile extends javax.swing.JFrame {
 
         textCurrent.setColumns(20);
         textCurrent.setRows(5);
-        jScrollPane1.setViewportView(textCurrent);
+        jScrollPane2.setViewportView(textCurrent);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 230, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 230, -1));
 
         jLabel14.setText("Tempat Tinggal saat ini / Current Address");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, -1, -1));
@@ -156,7 +156,7 @@ public class EmployeeProfile extends javax.swing.JFrame {
         jPanel1.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 190, 20));
 
         labelSallary.setText("SALARRY");
-        jPanel1.add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 150, 30));
+        jPanel1.add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 150, 30));
 
         labelJob1.setText("JOB :");
         jPanel1.add(labelJob1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 30, 30));
@@ -225,7 +225,7 @@ public class EmployeeProfile extends javax.swing.JFrame {
         jPanel1.add(labelBPJS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 40, 20));
 
         labelSallary1.setText("SALARRY :");
-        jPanel1.add(labelSallary1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 70, 30));
+        jPanel1.add(labelSallary1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 70, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
@@ -320,8 +320,7 @@ public class EmployeeProfile extends javax.swing.JFrame {
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 980, 820, 170));
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel18.setText("Sertifikat Keahlian / Certificate Skill");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 940, -1, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 1260, 230, 30));
 
         jSeparator3.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(255, 0, 0));
@@ -347,23 +346,23 @@ public class EmployeeProfile extends javax.swing.JFrame {
         labelName2.setText("NAMA");
         jPanel1.add(labelName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 190, 20));
 
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel19.setText("Sertifikat Keahlian / Certificate Skill");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 940, -1, 30));
+
         jScrollPane3.setViewportView(jPanel1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 4, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1053, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -382,6 +381,7 @@ public class EmployeeProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -391,7 +391,7 @@ public class EmployeeProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane3;
@@ -431,5 +431,4 @@ public class EmployeeProfile extends javax.swing.JFrame {
     private javax.swing.JTextArea textCurrent;
     private javax.swing.JTextArea textHome;
     // End of variables declaration//GEN-END:variables
-
 }

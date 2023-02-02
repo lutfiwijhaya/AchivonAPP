@@ -18,7 +18,9 @@ public class main extends javax.swing.JFrame {
     CandidateApplication ca;
     CandidateList candidateListPanel;
     CandidateProfile candidateProfile;
-//    EmployeeProfile employeeProfile;
+    EmployeeConfirmation employeeConfirmation;
+    
+    EmployeeProfilePanel employeeProfilePanel;
     ChangePassword changePasswordPanel;
     
     public main() {
@@ -29,19 +31,25 @@ public class main extends javax.swing.JFrame {
         ca = new CandidateApplication();
         candidateListPanel = new CandidateList();
         candidateProfile = new CandidateProfile();
-//        employeeProfile = new EmployeeProfile();
+        employeeConfirmation = new EmployeeConfirmation();
+        
+        employeeProfilePanel = new EmployeeProfilePanel();
         changePasswordPanel = new ChangePassword();
         
         BoxPanel.add(ca);
         BoxPanel.add(candidateListPanel);
         BoxPanel.add(candidateProfile);
-//        BoxPanel.add(employeeProfile);
+        BoxPanel.add(employeeConfirmation);
+        
+        BoxPanel.add(employeeProfilePanel);
         BoxPanel.add(changePasswordPanel);
         
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-//        employeeProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
         
         MyWindow();
@@ -357,9 +365,7 @@ public class main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 453, Short.MAX_VALUE)
@@ -368,12 +374,12 @@ public class main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 291, Short.MAX_VALUE)
+                    .addGap(0, 277, Short.MAX_VALUE)
                     .addComponent(BoxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 291, Short.MAX_VALUE)))
+                    .addGap(0, 277, Short.MAX_VALUE)))
         );
 
         pack();
@@ -384,7 +390,9 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-//        employeeProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_homeBarMouseClicked
 
@@ -397,7 +405,9 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(false);
         candidateListPanel.setVisible(true);
         candidateProfile.setVisible(false);
-//        employeeProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_candidateListActionPerformed
 
@@ -406,14 +416,21 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(true);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-//        employeeProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_applicationFormActionPerformed
 
     private void employingConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employingConfirmationActionPerformed
-        //        MainPanel.setVisible(true);
-        //        ca.setVisible(false);
-        //        ca.setVisible(false);
+        MainPanel.setVisible(false);
+        ca.setVisible(false);
+        candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(true);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_employingConfirmationActionPerformed
 
     private void EmployeeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeStatusActionPerformed
@@ -438,7 +455,9 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-//        employeeProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -447,7 +466,9 @@ public class main extends javax.swing.JFrame {
         ca.setVisible(false);
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
-//        employeeProfile.setVisible(true);
+        employeeConfirmation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(true);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
