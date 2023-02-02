@@ -125,6 +125,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Allocation Anouncement"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AllocationAnouncementActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator6">
             </MenuItem>
@@ -313,12 +316,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="MainPanel" min="-2" pref="907" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="MainPanel" min="-2" pref="1279" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="453" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="639" max="32767" attributes="0"/>
                   <Component id="BoxPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="454" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="640" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -379,7 +385,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="470" y="250" width="160" height="40"/>
+              <AbsoluteConstraints x="700" y="260" width="160" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -393,7 +399,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="310" width="630" height="40"/>
+              <AbsoluteConstraints x="340" y="320" width="630" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -406,7 +412,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="250" y="250" width="220" height="40"/>
+              <AbsoluteConstraints x="480" y="260" width="220" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -428,7 +434,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="310" y="360" width="240" height="30"/>
+              <AbsoluteConstraints x="540" y="370" width="240" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -440,7 +446,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="340" y="120" width="200" height="130"/>
+              <AbsoluteConstraints x="570" y="130" width="200" height="130"/>
             </Constraint>
           </Constraints>
         </Component>

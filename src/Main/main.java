@@ -9,6 +9,7 @@ import TestResource.tambah;
 import Employee.EmployeeProfilePanel;
 import HumanResource.EmployeeConfirmation;
 import Employee.ChangePassword;
+import HumanResource.AllocationAnnouncement;
 import HumanResource.CandidateProfile;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
@@ -16,6 +17,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -23,24 +25,28 @@ import javax.swing.ImageIcon;
  */
 public class main extends javax.swing.JFrame {
     
+    
+    
     CandidateApplication ca;
     CandidateList candidateListPanel;
     CandidateProfile candidateProfile;
     EmployeeConfirmation employeeConfirmation;
+    AllocationAnnouncement allocationAnnouncement;
     
     EmployeeProfilePanel employeeProfilePanel;
     ChangePassword changePasswordPanel;
     
     public main() {
         super("Operation System");
-//        asd
         initComponents();
+//        JFrame MainFrame = new JFrame();
         
         ca = new CandidateApplication();
         candidateListPanel = new CandidateList();
         candidateProfile = new CandidateProfile();
         employeeConfirmation = new EmployeeConfirmation();
-        
+        allocationAnnouncement = new AllocationAnnouncement();
+                
         employeeProfilePanel = new EmployeeProfilePanel();
         changePasswordPanel = new ChangePassword();
         
@@ -48,6 +54,7 @@ public class main extends javax.swing.JFrame {
         BoxPanel.add(candidateListPanel);
         BoxPanel.add(candidateProfile);
         BoxPanel.add(employeeConfirmation);
+        BoxPanel.add(allocationAnnouncement);
         
         BoxPanel.add(employeeProfilePanel);
         BoxPanel.add(changePasswordPanel);
@@ -56,6 +63,7 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        allocationAnnouncement.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -165,16 +173,16 @@ public class main extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Achivon");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 160, 40));
+        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, 160, 40));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Please Login first");
-        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 630, 40));
+        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 630, 40));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel4.setText("Welcome to");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 220, 40));
+        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 220, 40));
 
         buttonLogin.setBackground(new java.awt.Color(255, 0, 0));
         buttonLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -185,10 +193,10 @@ public class main extends javax.swing.JFrame {
                 buttonLoginActionPerformed(evt);
             }
         });
-        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 240, 30));
+        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 240, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 200, 130));
+        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 200, 130));
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
         homeBar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -273,6 +281,11 @@ public class main extends javax.swing.JFrame {
 
         AllocationAnouncement.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         AllocationAnouncement.setText("Allocation Anouncement");
+        AllocationAnouncement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllocationAnouncementActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(AllocationAnouncement);
         HumanResourceSystem.add(jSeparator6);
 
@@ -373,12 +386,14 @@ public class main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 453, Short.MAX_VALUE)
+                    .addGap(0, 639, Short.MAX_VALUE)
                     .addComponent(BoxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 454, Short.MAX_VALUE)))
+                    .addGap(0, 640, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,6 +414,7 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        allocationAnnouncement.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -414,6 +430,7 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(true);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        allocationAnnouncement.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -425,6 +442,7 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        allocationAnnouncement.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -436,6 +454,7 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(true);
+        allocationAnnouncement.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -464,6 +483,7 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        allocationAnnouncement.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(true);
@@ -475,10 +495,23 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        allocationAnnouncement.setVisible(false);
         
         employeeProfilePanel.setVisible(true);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void AllocationAnouncementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllocationAnouncementActionPerformed
+        MainPanel.setVisible(false);
+        ca.setVisible(false);
+        candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        allocationAnnouncement.setVisible(true);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_AllocationAnouncementActionPerformed
 
     /**
      * @param args the command line arguments
@@ -584,9 +617,13 @@ public class main extends javax.swing.JFrame {
     
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screen.width/2) - (this.getSize().width/2);
-        int y = (screen.height/2) - (this.getSize().height/2);
-        this.setLocation(x,y);
+        this.setSize(screen.width, screen.height - 45);
+        MainPanel.setPreferredSize(screen);
+//        MainPanel.setPreferredSize(screen);
+//        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setLocation(x,y);
     }
 }
 
