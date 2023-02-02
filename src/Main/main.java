@@ -81,7 +81,7 @@ public class main extends javax.swing.JFrame {
             AcountingSystem.setEnabled(false);
             myProfile.setVisible(false);
             SMLogout.setVisible(false);
-            ToolBar.setVisible(false);
+            ToolBar.setVisible(true);
         } else {
             myProfile.setText(nama_log);
             ToolBar.add(Box.createHorizontalGlue());

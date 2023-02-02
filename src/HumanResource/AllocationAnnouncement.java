@@ -4,6 +4,10 @@
  */
 package HumanResource;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+
 /**
  *
  * @author hi
@@ -15,6 +19,8 @@ public class AllocationAnnouncement extends javax.swing.JPanel {
      */
     public AllocationAnnouncement() {
         initComponents();
+        
+        MyWindow();
     }
 
     /**
@@ -28,10 +34,9 @@ public class AllocationAnnouncement extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,34 +56,39 @@ public class AllocationAnnouncement extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 147, 804, 221));
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Curent Status");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 270, 24));
-
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Allocation Announcement");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 31, 262, 40));
-
-        jButton1.setText("Send / Kirim");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 190, 40));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 804, 221));
 
         jButton2.setText("Back / Kembali");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 190, 40));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 190, 40));
+
+        jButton3.setText("Send / Kirim");
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 190, 40));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Allocation Announcement");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 262, 40));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
+//        MainPanel.setPreferredSize(screen);
+//        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setLocation(x,y);
+    }
+
 }
