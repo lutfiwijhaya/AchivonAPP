@@ -742,7 +742,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
         jLabel1.setText("...");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 100, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 100, -1));
 
         labelfoto.setBackground(new java.awt.Color(255, 255, 204));
         labelfoto.setOpaque(true);
