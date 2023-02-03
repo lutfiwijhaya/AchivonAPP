@@ -213,9 +213,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(460, 460, 460))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -267,7 +265,11 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screen.width, screen.height - 45);
-        this.setPreferredSize(screen);
+        this.setSize(screen.width, screen.height-45);
+        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
+        
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setPreferredSize(x,y);
     }
 }

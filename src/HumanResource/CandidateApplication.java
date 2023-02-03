@@ -1150,8 +1150,8 @@ public class CandidateApplication extends javax.swing.JPanel {
     
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screen.width, screen.height - 45);
-        this.setPreferredSize(screen);
+        this.setSize(screen.width, screen.height-45);
+        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
         
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);

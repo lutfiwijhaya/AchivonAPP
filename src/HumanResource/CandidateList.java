@@ -202,7 +202,9 @@ void remove (){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -276,7 +278,11 @@ void remove (){
     
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screen.width, screen.height - 45);
-        this.setPreferredSize(screen);
+        this.setSize(screen.width, screen.height);
+        this.setPreferredSize(new Dimension(screen.width, screen.height));
+        
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setPreferredSize(x,y);
     }
 }

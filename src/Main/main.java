@@ -828,7 +828,7 @@ public class main extends javax.swing.JFrame {
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(true);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
