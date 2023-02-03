@@ -92,6 +92,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Notification to New Employee"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NotificationtoNewEmployeeActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
             </MenuItem>
@@ -115,6 +118,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Checklist"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChecklistActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator5">
             </MenuItem>
@@ -138,6 +144,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Request - Employee Allocation "/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RequestEmployeeAllocationActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator7">
             </MenuItem>
@@ -148,6 +157,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Application - Leave of Absence"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApplicationLeaveofAbsenceActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator8">
             </MenuItem>
@@ -158,6 +170,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Application - Rehabilitation"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApplicationRehabilitationActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator9">
             </MenuItem>
@@ -168,6 +183,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Application - Resignation"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApplicationResignationActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator10">
             </MenuItem>
@@ -178,6 +196,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Employee Clearance Status"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmployeeClearanceStatusActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator11">
             </MenuItem>
@@ -188,6 +209,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Confirmation - Handover &amp; Takeover"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConfirmationHandoverTakeoverActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator12">
             </MenuItem>
@@ -198,6 +222,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Diciplinary Revolution"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DiciplinaryRevolutionActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator13">
             </MenuItem>
@@ -208,6 +235,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Employee Evaluation"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmployeeEvaluationActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator14">
             </MenuItem>

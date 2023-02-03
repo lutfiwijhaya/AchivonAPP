@@ -10,9 +10,15 @@ import Employee.EmployeeProfilePanel;
 import HumanResource.EmployeeConfirmation;
 import Employee.ChangePassword;
 import HumanResource.AllocationAnnouncement;
+import HumanResource.AplicationRehabilitation;
+import HumanResource.ApplicationResignation;
 import HumanResource.CandidateProfile;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
+import HumanResource.LeaveOfAbsense;
+import HumanResource.NotificationToNewEmployee;
+import HumanResource.RequestEmployeeAllocation;
+import HumanResource.SummaryStatusCandidatEmployee;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Box;
@@ -28,10 +34,17 @@ public class main extends javax.swing.JFrame {
     
     
     CandidateApplication ca;
-    CandidateList candidateListPanel;
-    CandidateProfile candidateProfile;
+        CandidateList candidateListPanel;
+        CandidateProfile candidateProfile;
     EmployeeConfirmation employeeConfirmation;
+    NotificationToNewEmployee notificationToNewEmployee;
     AllocationAnnouncement allocationAnnouncement;
+    SummaryStatusCandidatEmployee summaryStatusCandidatEmployee;
+    RequestEmployeeAllocation requestEmployeeAllocation;
+    LeaveOfAbsense leaveOfAbsense;
+    AplicationRehabilitation aplicationRehabilitation;
+    ApplicationResignation applicationResignation;
+    
     
     EmployeeProfilePanel employeeProfilePanel;
     ChangePassword changePasswordPanel;
@@ -39,31 +52,48 @@ public class main extends javax.swing.JFrame {
     public main() {
         super("Operation System");
         initComponents();
-//        JFrame MainFrame = new JFrame();
         
         ca = new CandidateApplication();
-        candidateListPanel = new CandidateList();
-        candidateProfile = new CandidateProfile();
+            candidateListPanel = new CandidateList();
+            candidateProfile = new CandidateProfile();
         employeeConfirmation = new EmployeeConfirmation();
+        notificationToNewEmployee = new NotificationToNewEmployee();
         allocationAnnouncement = new AllocationAnnouncement();
-                
+        summaryStatusCandidatEmployee = new SummaryStatusCandidatEmployee();
+        requestEmployeeAllocation = new RequestEmployeeAllocation();
+        leaveOfAbsense = new LeaveOfAbsense();
+        aplicationRehabilitation = new AplicationRehabilitation();
+        applicationResignation = new ApplicationResignation();
+        
         employeeProfilePanel = new EmployeeProfilePanel();
         changePasswordPanel = new ChangePassword();
         
         BoxPanel.add(ca);
-        BoxPanel.add(candidateListPanel);
-        BoxPanel.add(candidateProfile);
+            BoxPanel.add(candidateListPanel);
+            BoxPanel.add(candidateProfile);
         BoxPanel.add(employeeConfirmation);
+        BoxPanel.add(notificationToNewEmployee);
         BoxPanel.add(allocationAnnouncement);
+        BoxPanel.add(summaryStatusCandidatEmployee);
+        BoxPanel.add(requestEmployeeAllocation);
+        BoxPanel.add(leaveOfAbsense);
+        BoxPanel.add(aplicationRehabilitation);
+        BoxPanel.add(applicationResignation);
         
         BoxPanel.add(employeeProfilePanel);
         BoxPanel.add(changePasswordPanel);
         
         ca.setVisible(false);
-        candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateListPanel.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
         allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -261,6 +291,11 @@ public class main extends javax.swing.JFrame {
 
         NotificationtoNewEmployee.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         NotificationtoNewEmployee.setText("Notification to New Employee");
+        NotificationtoNewEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NotificationtoNewEmployeeActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(NotificationtoNewEmployee);
         HumanResourceSystem.add(jSeparator3);
 
@@ -276,6 +311,11 @@ public class main extends javax.swing.JFrame {
 
         Checklist.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         Checklist.setText("Checklist");
+        Checklist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChecklistActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(Checklist);
         HumanResourceSystem.add(jSeparator5);
 
@@ -291,41 +331,81 @@ public class main extends javax.swing.JFrame {
 
         RequestEmployeeAllocation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         RequestEmployeeAllocation.setText("Request - Employee Allocation ");
+        RequestEmployeeAllocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RequestEmployeeAllocationActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(RequestEmployeeAllocation);
         HumanResourceSystem.add(jSeparator7);
 
         ApplicationLeaveofAbsence.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         ApplicationLeaveofAbsence.setText("Application - Leave of Absence");
+        ApplicationLeaveofAbsence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApplicationLeaveofAbsenceActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(ApplicationLeaveofAbsence);
         HumanResourceSystem.add(jSeparator8);
 
         ApplicationRehabilitation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         ApplicationRehabilitation.setText("Application - Rehabilitation");
+        ApplicationRehabilitation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApplicationRehabilitationActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(ApplicationRehabilitation);
         HumanResourceSystem.add(jSeparator9);
 
         ApplicationResignation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         ApplicationResignation.setText("Application - Resignation");
+        ApplicationResignation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApplicationResignationActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(ApplicationResignation);
         HumanResourceSystem.add(jSeparator10);
 
         EmployeeClearanceStatus.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         EmployeeClearanceStatus.setText("Employee Clearance Status");
+        EmployeeClearanceStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmployeeClearanceStatusActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(EmployeeClearanceStatus);
         HumanResourceSystem.add(jSeparator11);
 
         ConfirmationHandoverTakeover.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         ConfirmationHandoverTakeover.setText("Confirmation - Handover & Takeover");
+        ConfirmationHandoverTakeover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmationHandoverTakeoverActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(ConfirmationHandoverTakeover);
         HumanResourceSystem.add(jSeparator12);
 
         DiciplinaryRevolution.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         DiciplinaryRevolution.setText("Diciplinary Revolution");
+        DiciplinaryRevolution.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DiciplinaryRevolutionActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(DiciplinaryRevolution);
         HumanResourceSystem.add(jSeparator13);
 
         EmployeeEvaluation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         EmployeeEvaluation.setText("Employee Evaluation");
+        EmployeeEvaluation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmployeeEvaluationActionPerformed(evt);
+            }
+        });
         HumanResourceSystem.add(EmployeeEvaluation);
         HumanResourceSystem.add(jSeparator14);
 
@@ -411,10 +491,16 @@ public class main extends javax.swing.JFrame {
     private void homeBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeBarMouseClicked
         MainPanel.setVisible(true);
         ca.setVisible(false);
-        candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateListPanel.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
         allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -426,11 +512,17 @@ public class main extends javax.swing.JFrame {
 
     private void candidateListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateListActionPerformed
         MainPanel.setVisible(false);
-        ca.setVisible(false);
-        candidateListPanel.setVisible(true);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(true);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
         allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -438,11 +530,17 @@ public class main extends javax.swing.JFrame {
 
     private void applicationFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationFormActionPerformed
         MainPanel.setVisible(false);
-        ca.setVisible(true);
-        candidateListPanel.setVisible(false);
+            ca.setVisible(true);
+            candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
         allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -451,17 +549,37 @@ public class main extends javax.swing.JFrame {
     private void employingConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employingConfirmationActionPerformed
         MainPanel.setVisible(false);
         ca.setVisible(false);
-        candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateListPanel.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(true);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
         allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_employingConfirmationActionPerformed
 
     private void EmployeeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeStatusActionPerformed
-        // TODO add your handling code here:
+        MainPanel.setVisible(false);
+        ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+            candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(true);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_EmployeeStatusActionPerformed
 
     private void HumanResourceSystemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HumanResourceSystemMouseClicked
@@ -483,7 +601,13 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
         allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(true);
@@ -495,7 +619,13 @@ public class main extends javax.swing.JFrame {
         candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
         allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
         
         employeeProfilePanel.setVisible(true);
         changePasswordPanel.setVisible(false);
@@ -503,15 +633,201 @@ public class main extends javax.swing.JFrame {
 
     private void AllocationAnouncementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllocationAnouncementActionPerformed
         MainPanel.setVisible(false);
-        ca.setVisible(false);
-        candidateListPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
         allocationAnnouncement.setVisible(true);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_AllocationAnouncementActionPerformed
+
+    private void NotificationtoNewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationtoNewEmployeeActionPerformed
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(true);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_NotificationtoNewEmployeeActionPerformed
+
+    private void ChecklistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChecklistActionPerformed
+//        MainPanel.setVisible(false);
+//            ca.setVisible(false);
+//            candidateListPanel.setVisible(false);
+//        candidateProfile.setVisible(false);
+//        employeeConfirmation.setVisible(false);
+//        notificationToNewEmployee.setVisible(false);
+//        summaryStatusCandidatEmployee.setVisible(false);
+//        allocationAnnouncement.setVisible(false);
+//        requestEmployeeAllocation.setVisible(false);
+//        leaveOfAbsense.setVisible(false);
+//        aplicationRehabilitation.setVisible(false);
+//        applicationResignation.setVisible(false);
+//        
+//        employeeProfilePanel.setVisible(false);
+//        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_ChecklistActionPerformed
+
+    private void RequestEmployeeAllocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestEmployeeAllocationActionPerformed
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(true);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_RequestEmployeeAllocationActionPerformed
+
+    private void ApplicationLeaveofAbsenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationLeaveofAbsenceActionPerformed
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(true);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_ApplicationLeaveofAbsenceActionPerformed
+
+    private void ApplicationRehabilitationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationRehabilitationActionPerformed
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(true);
+        applicationResignation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_ApplicationRehabilitationActionPerformed
+
+    private void ApplicationResignationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationResignationActionPerformed
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(true);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_ApplicationResignationActionPerformed
+
+    private void EmployeeClearanceStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeClearanceStatusActionPerformed
+//        MainPanel.setVisible(false);
+//            ca.setVisible(false);
+//            candidateListPanel.setVisible(false);
+//        candidateProfile.setVisible(false);
+//        employeeConfirmation.setVisible(false);
+//        notificationToNewEmployee.setVisible(false);
+//        summaryStatusCandidatEmployee.setVisible(false);
+//        allocationAnnouncement.setVisible(false);
+//        requestEmployeeAllocation.setVisible(false);
+//        leaveOfAbsense.setVisible(false);
+//        aplicationRehabilitation.setVisible(false);
+//        applicationResignation.setVisible(false);
+//        
+//        employeeProfilePanel.setVisible(false);
+//        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_EmployeeClearanceStatusActionPerformed
+
+    private void ConfirmationHandoverTakeoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmationHandoverTakeoverActionPerformed
+//        MainPanel.setVisible(false);
+//            ca.setVisible(false);
+//            candidateListPanel.setVisible(false);
+//        candidateProfile.setVisible(false);
+//        employeeConfirmation.setVisible(false);
+//        notificationToNewEmployee.setVisible(false);
+//        summaryStatusCandidatEmployee.setVisible(false);
+//        allocationAnnouncement.setVisible(false);
+//        requestEmployeeAllocation.setVisible(false);
+//        leaveOfAbsense.setVisible(false);
+//        aplicationRehabilitation.setVisible(false);
+//        applicationResignation.setVisible(false);
+//        
+//        employeeProfilePanel.setVisible(false);
+//        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_ConfirmationHandoverTakeoverActionPerformed
+
+    private void DiciplinaryRevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiciplinaryRevolutionActionPerformed
+//        MainPanel.setVisible(false);
+//            ca.setVisible(false);
+//            candidateListPanel.setVisible(false);
+//        candidateProfile.setVisible(false);
+//        employeeConfirmation.setVisible(false);
+//        notificationToNewEmployee.setVisible(false);
+//        summaryStatusCandidatEmployee.setVisible(false);
+//        allocationAnnouncement.setVisible(false);
+//        requestEmployeeAllocation.setVisible(false);
+//        leaveOfAbsense.setVisible(false);
+//        aplicationRehabilitation.setVisible(false);
+//        applicationResignation.setVisible(false);
+//        
+//        employeeProfilePanel.setVisible(false);
+//        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_DiciplinaryRevolutionActionPerformed
+
+    private void EmployeeEvaluationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeEvaluationActionPerformed
+//        MainPanel.setVisible(false);
+//            ca.setVisible(false);
+//            candidateListPanel.setVisible(false);
+//        candidateProfile.setVisible(false);
+//        employeeConfirmation.setVisible(false);
+//        notificationToNewEmployee.setVisible(false);
+//        summaryStatusCandidatEmployee.setVisible(false);
+//        allocationAnnouncement.setVisible(false);
+//        requestEmployeeAllocation.setVisible(false);
+//        leaveOfAbsense.setVisible(false);
+//        aplicationRehabilitation.setVisible(false);
+//        applicationResignation.setVisible(false);
+//        
+//        employeeProfilePanel.setVisible(false);
+//        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_EmployeeEvaluationActionPerformed
 
     /**
      * @param args the command line arguments
