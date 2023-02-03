@@ -835,7 +835,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmationHandoverTakeoverActionPerformed
 
     private void DiciplinaryRevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiciplinaryRevolutionActionPerformed
-//        MainPanel.setVisible(false);
+        MainPanel.setVisible(false);
 //            ca.setVisible(false);
 //            candidateListPanel.setVisible(false);
 //        candidateProfile.setVisible(false);
