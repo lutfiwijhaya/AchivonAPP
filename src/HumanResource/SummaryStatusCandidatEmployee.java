@@ -4,6 +4,9 @@
  */
 package HumanResource;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author USER
@@ -15,6 +18,7 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
      */
     public SummaryStatusCandidatEmployee() {
         initComponents();
+        MyWindow();
     }
 
     /**
@@ -406,10 +410,11 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
                             .addComponent(jLabel14)
                             .addComponent(jLabel15)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel28))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel28)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18)
@@ -509,4 +514,9 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     // End of variables declaration//GEN-END:variables
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
+    }
 }

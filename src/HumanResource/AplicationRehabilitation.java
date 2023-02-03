@@ -4,6 +4,9 @@
  */
 package HumanResource;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author USER
@@ -15,6 +18,7 @@ public class AplicationRehabilitation extends javax.swing.JPanel {
      */
     public AplicationRehabilitation() {
         initComponents();
+        MyWindow();
     }
 
     /**
@@ -370,4 +374,9 @@ public class AplicationRehabilitation extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
+    }
 }
