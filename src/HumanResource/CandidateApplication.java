@@ -364,13 +364,13 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jLabel71.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel71.setText("2. Riwayat Pendidikan");
-        jPanel1.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 830, -1, 30));
+        jPanel1.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 850, -1, 30));
 
         jLabel72.setText("Nama / Name");
-        jPanel1.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, 30));
+        jPanel1.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, 30));
 
         jLabel73.setText("No KTP");
-        jPanel1.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 30));
+        jPanel1.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, 30));
 
         t_nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,32 +382,32 @@ public class CandidateApplication extends javax.swing.JPanel {
                 t_namaKeyTyped(evt);
             }
         });
-        jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 190, -1));
+        jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 190, -1));
 
         t_ktp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_ktpActionPerformed(evt);
             }
         });
-        jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 190, -1));
+        jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 190, -1));
 
         jLabel74.setText("Tempat Lahir / Birth Place");
-        jPanel1.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, 30));
-        jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 190, -1));
+        jPanel1.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, 30));
+        jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 190, -1));
 
         homeCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeCityActionPerformed(evt);
             }
         });
-        jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, 190, -1));
+        jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 670, 190, -1));
 
         jSeparator25.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator25.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 850, 650, 20));
+        jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 870, 650, 20));
 
         jLabel75.setText("Tanggal Lahir / Birth Date");
-        jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, 30));
+        jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, -1, 30));
 
         homeCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indonesia" }));
         homeCountry.addActionListener(new java.awt.event.ActionListener() {
@@ -415,36 +415,36 @@ public class CandidateApplication extends javax.swing.JPanel {
                 homeCountryActionPerformed(evt);
             }
         });
-        jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 190, -1));
+        jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 490, 190, -1));
 
         homeState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeStateActionPerformed(evt);
             }
         });
-        jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 610, 190, -1));
+        jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 630, 190, -1));
 
         jLabel77.setText("Status Pernikahan / \nMarital Status");
-        jPanel1.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, 20));
+        jPanel1.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, -1, 20));
 
         jLabel78.setText("No BPJS");
-        jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, -1, 30));
-        jPanel1.add(t_bpjs, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 190, -1));
-        jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 280, 190, -1));
+        jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, -1, 30));
+        jPanel1.add(t_bpjs, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 340, 190, -1));
+        jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 300, 190, -1));
 
         t_hp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t_hpKeyTyped(evt);
             }
         });
-        jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 190, -1));
+        jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 260, 190, -1));
 
         radioGrupGender.add(t_wanita);
         t_wanita.setText("Wanita");
-        jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 140, -1, -1));
+        jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 160, -1, -1));
 
         jLabel79.setText("Email");
-        jPanel1.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, -1, 30));
+        jPanel1.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, -1, 30));
 
         radioGrupGender.add(t_pria);
         t_pria.setSelected(true);
@@ -454,54 +454,54 @@ public class CandidateApplication extends javax.swing.JPanel {
                 t_priaActionPerformed(evt);
             }
         });
-        jPanel1.add(t_pria, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, -1, -1));
+        jPanel1.add(t_pria, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, -1, -1));
 
         radioGrupStatus.add(t_menikah);
         t_menikah.setText("Sudah Menikah");
-        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 190, -1, -1));
+        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 210, -1, -1));
 
         jLabel80.setText("Jenis Kelamin / Gender");
-        jPanel1.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, 20));
+        jPanel1.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, -1, 20));
 
         radioGrupStatus.add(t_lajang);
         t_lajang.setSelected(true);
         t_lajang.setText("Lajang");
-        jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, -1, -1));
-        jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, 40, 20));
+        jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 210, -1, -1));
+        jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 460, 40, 20));
 
         jLabel81.setText("Tempat Tinggal saat ini / Current Address");
-        jPanel1.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, -1, 20));
-        jPanel1.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 440, 50, 20));
+        jPanel1.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 450, -1, 20));
+        jPanel1.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 460, 50, 20));
 
         jLabel82.setText("Negara / Country");
-        jPanel1.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 470, -1, 20));
+        jPanel1.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 490, -1, 20));
 
         jLabel83.setText("Provinsi / Province");
-        jPanel1.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 610, -1, 30));
+        jPanel1.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 630, -1, 30));
 
         cprov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cprovActionPerformed(evt);
             }
         });
-        jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 610, 190, -1));
+        jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 630, 190, -1));
 
         jLabel84.setText("Kota / City");
-        jPanel1.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 650, -1, 30));
+        jPanel1.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 670, -1, 30));
 
-        jPanel1.add(ccity, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 650, 190, -1));
-        jPanel1.add(jSeparator28, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 80, 20));
-        jPanel1.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 50, 20));
+        jPanel1.add(ccity, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 670, 190, -1));
+        jPanel1.add(jSeparator28, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 470, 80, 20));
+        jPanel1.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, 50, 20));
 
         jLabel85.setText("Alamat Rumah / Home Address");
-        jPanel1.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, -1, 20));
+        jPanel1.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, -1, 20));
 
         jLabel86.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel86.setText("1. Data Diri / Personal Information");
-        jPanel1.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 300, 30));
+        jPanel1.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 300, 30));
 
         jSeparator30.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator30, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 540, 20));
+        jPanel1.add(jSeparator30, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 540, 20));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -517,7 +517,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         jTable1.setShowVerticalLines(true);
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1330, 850, 170));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1350, 850, 170));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -543,22 +543,22 @@ public class CandidateApplication extends javax.swing.JPanel {
         });
         jScrollPane20.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 870, 850, 170));
+        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 890, 850, 170));
 
         jLabel87.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel87.setText("3. Status Keluarga");
-        jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1070, 160, 30));
+        jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1090, 160, 30));
 
         jSeparator31.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 1090, 680, 20));
+        jPanel1.add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 1110, 680, 20));
 
         jLabel88.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel88.setText("4. Sertifikat Resmi Keahlian");
-        jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1290, 250, 30));
+        jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1310, 250, 30));
 
         jSeparator32.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator32.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1310, 600, 20));
+        jPanel1.add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 1330, 600, 20));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -574,15 +574,15 @@ public class CandidateApplication extends javax.swing.JPanel {
         jTable3.setShowVerticalLines(true);
         jScrollPane21.setViewportView(jTable3);
 
-        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1120, 850, 150));
+        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1140, 850, 150));
 
         jSeparator33.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator33.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1540, 630, 20));
+        jPanel1.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 1560, 630, 20));
 
         jLabel89.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel89.setText("5. Ringkasan Status Karir");
-        jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1520, 230, 30));
+        jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1540, 230, 30));
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -598,36 +598,36 @@ public class CandidateApplication extends javax.swing.JPanel {
         jTable4.setShowVerticalLines(true);
         jScrollPane22.setViewportView(jTable4);
 
-        jPanel1.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1570, 850, 170));
+        jPanel1.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1590, 850, 170));
 
         jLabel90.setText("1. Motivasi untuk Melamar");
-        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 1810, 350, 30));
+        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1830, 350, 30));
 
         jSeparator34.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator34.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1790, 430, 20));
+        jPanel1.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 1810, 430, 20));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane23.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 1850, 800, 130));
+        jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 1870, 800, 130));
 
         jLabel91.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel91.setText("6. Pengenalan diri untuk bergabung degan kami");
-        jPanel1.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1770, 440, 30));
+        jPanel1.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1790, 440, 30));
 
         jLabel92.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
-        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 1990, 350, 30));
+        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 2010, 350, 30));
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane24.setViewportView(jTextArea2);
 
-        jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 2030, 800, 130));
+        jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2050, 800, 130));
 
         jSeparator35.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 2200, 720, 20));
+        jPanel1.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 2220, 720, 20));
 
         jCheckBox5.setText("Saya menjamin bahwa seluruh uraian di atas adalah benar");
         jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
@@ -635,12 +635,12 @@ public class CandidateApplication extends javax.swing.JPanel {
                 jCheckBox5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 2250, -1, -1));
+        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 2270, -1, -1));
 
         jLabel93.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel93.setText("7. SKCK Asli");
-        jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 2180, 120, 30));
-        jPanel1.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 2290, 280, 30));
+        jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 2200, 120, 30));
+        jPanel1.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 2310, 280, 30));
 
         jToggleButton1.setText("SIMPAN");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -648,37 +648,37 @@ public class CandidateApplication extends javax.swing.JPanel {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 2290, 90, 40));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 2310, 90, 40));
 
         jLabel96.setText("No NPWP");
-        jPanel1.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, -1, 30));
-        jPanel1.add(t_gaji, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 190, -1));
+        jPanel1.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, -1, 30));
+        jPanel1.add(t_gaji, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 190, -1));
 
         t_halamat.setColumns(20);
         t_halamat.setRows(5);
         jScrollPane25.setViewportView(t_halamat);
 
-        jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, -1, -1));
+        jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 530, -1, -1));
 
         jLabel97.setText("Alamat / Address");
-        jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, -1, 30));
+        jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 530, -1, 30));
 
         t_calamat.setColumns(20);
         t_calamat.setRows(5);
         jScrollPane26.setViewportView(t_calamat);
 
-        jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, -1, -1));
-        jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 730, 190, -1));
+        jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 530, -1, -1));
+        jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 750, 190, -1));
 
         t_cdesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_cdesaActionPerformed(evt);
             }
         });
-        jPanel1.add(t_cdesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 730, 190, -1));
+        jPanel1.add(t_cdesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 750, 190, -1));
 
         jLabel98.setText("Desa / Vilage");
-        jPanel1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 730, 80, 30));
+        jPanel1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 750, 80, 30));
 
         jCheckBox.setText("Sama dengan alamat Rumah / Same as Home Address");
         jCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -686,7 +686,7 @@ public class CandidateApplication extends javax.swing.JPanel {
                 jCheckBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 780, -1, -1));
+        jPanel1.add(jCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 800, -1, -1));
 
         curentCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indonesia" }));
         curentCountry.addActionListener(new java.awt.event.ActionListener() {
@@ -694,45 +694,45 @@ public class CandidateApplication extends javax.swing.JPanel {
                 curentCountryActionPerformed(evt);
             }
         });
-        jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 470, 190, -1));
+        jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 490, 190, -1));
 
         t_lamaran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 190, -1));
+        jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 190, -1));
 
         jLabel99.setText("Posisi Yang Dilamar /Job Applying");
-        jPanel1.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, 20));
+        jPanel1.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, 20));
 
         jLabel100.setText("Estimasi Gaji / Sallary");
-        jPanel1.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, -1, -1));
-        jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 190, -1));
-        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, -1));
+        jPanel1.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, -1, -1));
+        jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 190, -1));
+        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 190, -1));
 
         jLabel101.setText("Negara / Country");
-        jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, 20));
+        jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, -1, 20));
 
         jLabel102.setText("Alamat / Address");
-        jPanel1.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, 30));
+        jPanel1.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, -1, 30));
 
         jLabel103.setText("Provinsi / Province");
-        jPanel1.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, -1, 30));
+        jPanel1.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 630, -1, 30));
 
         jLabel104.setText("Kota / City");
-        jPanel1.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 650, -1, 30));
+        jPanel1.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 670, -1, 30));
 
         jLabel105.setText("Desa / Vilage");
-        jPanel1.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 730, 80, 30));
+        jPanel1.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 750, 80, 30));
 
         jLabel121.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel121.setText("1. Data Diri / Personal Information");
-        jPanel1.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 300, 30));
+        jPanel1.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 300, 30));
 
         jSeparator41.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator41, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 540, 20));
-        jPanel1.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 2310, 280, 40));
-        jPanel1.add(jLabel130, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 2290, 280, 30));
+        jPanel1.add(jSeparator41, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 540, 20));
+        jPanel1.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 2330, 280, 40));
+        jPanel1.add(jLabel130, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 2310, 280, 30));
 
         jLabel135.setText("No HP");
-        jPanel1.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
+        jPanel1.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
 
         jButton1.setText("Ambil Foto");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -740,28 +740,28 @@ public class CandidateApplication extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
 
         jLabel1.setText("...");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 100, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 100, -1));
 
         labelfoto.setBackground(new java.awt.Color(255, 255, 204));
         labelfoto.setOpaque(true);
-        jPanel1.add(labelfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 100, 90));
-        jPanel1.add(t_hkec, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 690, 190, -1));
+        jPanel1.add(labelfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 100, 90));
+        jPanel1.add(t_hkec, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 710, 190, -1));
 
         jLabel106.setText("Kecamatan / Districts");
-        jPanel1.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 690, 120, 30));
+        jPanel1.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 710, 120, 30));
 
         jLabel107.setText("Kecamatan / Districts");
-        jPanel1.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 690, 120, 30));
+        jPanel1.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 710, 120, 30));
 
         t_ckec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_ckecActionPerformed(evt);
             }
         });
-        jPanel1.add(t_ckec, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 690, 190, -1));
+        jPanel1.add(t_ckec, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 710, 190, -1));
 
         jScrollPane18.setViewportView(jPanel1);
 

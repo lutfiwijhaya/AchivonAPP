@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author hi
  */
 public class EmployeeConfirmation extends javax.swing.JPanel {
-   Statement stm;
+    Statement stm;
     ResultSet rs;
     Connection koneksi;
     /**

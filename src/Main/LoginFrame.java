@@ -74,12 +74,12 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Login");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 240, 50));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 240, 50));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PT.");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 50, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 50, 20));
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -90,7 +90,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 240, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, 240, 40));
 
         closeeye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/closedeye.png"))); // NOI18N
         closeeye.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +98,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 closeeyeMouseClicked(evt);
             }
         });
-        jPanel1.add(closeeye, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 30, 30));
+        jPanel1.add(closeeye, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, 30, 30));
 
         openeye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/eye.png"))); // NOI18N
         openeye.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,42 +106,42 @@ public class LoginFrame extends javax.swing.JFrame {
                 openeyeMouseClicked(evt);
             }
         });
-        jPanel1.add(openeye, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 30, 30));
+        jPanel1.add(openeye, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, 30, 30));
 
         textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textPasswordKeyTyped(evt);
             }
         });
-        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 240, 30));
+        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 240, 30));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("id Karyawan / Employee id");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 170, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 170, 20));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Achivon");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 100, 20));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 100, 20));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Prestasi Abadi");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 170, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 170, 20));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 200, 130));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 200, 130));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 0));
         jLabel9.setText("Surat Elektronik / Email");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 140, 20));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, 140, 20));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 0, 0));
         jLabel10.setText("Ulang Kata Sandi / Repeat Password");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, 220, 20));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 220, 20));
 
         closeeye1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/closedeye.png"))); // NOI18N
         closeeye1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -149,7 +149,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 closeeye1MouseClicked(evt);
             }
         });
-        jPanel1.add(closeeye1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 30, 30));
+        jPanel1.add(closeeye1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 410, 30, 30));
 
         openeye1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/eye.png"))); // NOI18N
         openeye1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -157,23 +157,23 @@ public class LoginFrame extends javax.swing.JFrame {
                 openeye1MouseClicked(evt);
             }
         });
-        jPanel1.add(openeye1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 30, 30));
+        jPanel1.add(openeye1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 410, 30, 30));
 
         textRepeatPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textRepeatPasswordKeyTyped(evt);
             }
         });
-        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 240, 30));
+        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 240, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
         jLabel11.setText("Kata Sandi / Password");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 140, 20));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 140, 20));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/closedeye.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 30, 30));
-        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 240, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, 30, 30));
+        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 480, 240, 30));
 
         try {
             textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("U-#-######")));
@@ -181,13 +181,13 @@ public class LoginFrame extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         textKaryawanid.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 240, 30));
+        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 240, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +205,6 @@ public class LoginFrame extends javax.swing.JFrame {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
             if(myRess.next()){
-                jLabel3.setText(textKaryawanid.getValue().toString());
                 if (textPassword.getText().length()<4) {
                     JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 4 karakter \n Make sure the password is at least 4 characters");
                 }else{
@@ -358,8 +357,11 @@ public class LoginFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screen.width/2) - (this.getSize().width/2);
-        int y = (screen.height/2) - (this.getSize().height/2);
-        this.setLocation(x,y);
+        this.setSize(screen.width, screen.height-45);
+        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
+        
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setPreferredSize(x,y);
     }
 }
