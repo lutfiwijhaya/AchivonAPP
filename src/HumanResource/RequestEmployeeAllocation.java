@@ -5,6 +5,8 @@
 package HumanResource;
 
 import CustomResource.MySession;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
@@ -17,6 +19,7 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
      */
     public RequestEmployeeAllocation() {
         initComponents();
+        MyWindow();
         
         textDicipline.setText(MySession.get_JobPosition());
         textName.setText(MySession.get_nama());
@@ -73,6 +76,8 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
         jTable3 = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -176,9 +181,7 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
 
         jLabel19.setText("For the above reasons, we would like to adjust the allocation of the relevant personnel, so please review and approve this adjustment ");
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1080, -1, 30));
-
-        jLabel20.setText("of the allocation.");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1110, -1, -1));
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 1246, 110, 20));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -225,15 +228,22 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 110, 100));
 
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Kirim/Send");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 1186, 160, 30));
+
+        jLabel21.setText("of the allocation.");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 1110, -1, -1));
+
         jScrollPane1.setViewportView(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,6 +257,7 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -260,6 +271,7 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -288,4 +300,15 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
     private javax.swing.JTextField textPosition;
     private javax.swing.JTextField textWork;
     // End of variables declaration//GEN-END:variables
+
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height-45);
+        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
+        
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setPreferredSize(x,y);
+    }
+
 }

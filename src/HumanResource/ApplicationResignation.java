@@ -63,6 +63,8 @@ public class ApplicationResignation extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -119,7 +121,7 @@ public class ApplicationResignation extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText(":");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 20, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 20, -1));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
@@ -128,98 +130,106 @@ public class ApplicationResignation extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setText("Discipline");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Name");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("Position");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel7.setText("KTP No.");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
 
         jTextField1.setText("jTextField1");
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 440, 20));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 440, 30));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("B. JOB DESCRIPTION");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel9.setText(":");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 20, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 20, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel10.setText(":");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 20, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 20, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel11.setText(":");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 20, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 20, -1));
 
         jTextField2.setText("jTextField1");
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 440, 20));
+        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 440, 30));
 
         jTextField3.setText("jTextField1");
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 440, 20));
+        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 440, 30));
 
         jTextField4.setText("jTextField1");
-        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 440, 20));
+        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 440, 30));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 840, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 840, 170));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel12.setText("disadvantage to the company, I faithfully hand over all matters related to the duties performed during the company’s employment of me in detail, and to the date");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 750, 940, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 780, 940, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel13.setText("Date to resign : ");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 690, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 720, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setText("I apply for resignation for the reasons described above, and to ensure that no disruption to the company's work occurs due to my resignation and that there is no ");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 730, 940, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 760, 940, -1));
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel15.setText("of resignation. We pledge to abide by confidentiality so that no disadvantages to the company occur for 3 years.");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 770, -1, -1));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 800, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel16.setText("DD-MMM-YYYY");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 690, -1, -1));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 720, -1, -1));
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 980, 210, 30));
 
         jLabel18.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel18.setText("Submitted on ");
-        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 840, -1, -1));
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 844, -1, 20));
 
         jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel19.setText("DD-MMM-YYYY");
-        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 840, -1, -1));
+        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 844, -1, 20));
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel20.setText("SIGNATURE");
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 860, -1, -1));
+        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 864, -1, 20));
 
         jLabel21.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("APPLICANT :  ");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 960, 210, -1));
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 964, 210, 20));
+        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 1130, 40, 20));
+
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Kirim/Send");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1030, 230, 40));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -234,6 +244,7 @@ public class ApplicationResignation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -256,7 +267,11 @@ public class ApplicationResignation extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screen.width, screen.height - 45);
-        this.setPreferredSize(screen);
+        this.setSize(screen.width, screen.height-45);
+        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
+        
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setPreferredSize(x,y);
     }
 }
