@@ -15,6 +15,8 @@ import HumanResource.ApplicationResignation;
 import HumanResource.CandidateProfile;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
+import HumanResource.ConfirmationHandingOverTakingOver;
+import HumanResource.EmployeeClearanceStatus;
 import HumanResource.LeaveOfAbsense;
 import HumanResource.NotificationToNewEmployee;
 import HumanResource.RequestEmployeeAllocation;
@@ -44,8 +46,8 @@ public class main extends javax.swing.JFrame {
     LeaveOfAbsense leaveOfAbsense;
     AplicationRehabilitation aplicationRehabilitation;
     ApplicationResignation applicationResignation;
-//    EmployeeClea
-    
+    EmployeeClearanceStatus employeeClearanceStatus;
+    ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
     
     EmployeeProfilePanel employeeProfilePanel;
     ChangePassword changePasswordPanel;
@@ -65,6 +67,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense = new LeaveOfAbsense();
         aplicationRehabilitation = new AplicationRehabilitation();
         applicationResignation = new ApplicationResignation();
+        employeeClearanceStatus = new EmployeeClearanceStatus();
+        confirmationHandingOverTakingOver = new ConfirmationHandingOverTakingOver();
         
         employeeProfilePanel = new EmployeeProfilePanel();
         changePasswordPanel = new ChangePassword();
@@ -80,6 +84,8 @@ public class main extends javax.swing.JFrame {
         BoxPanel.add(leaveOfAbsense);
         BoxPanel.add(aplicationRehabilitation);
         BoxPanel.add(applicationResignation);
+        BoxPanel.add(employeeClearanceStatus);
+        BoxPanel.add(confirmationHandingOverTakingOver);
         
         BoxPanel.add(employeeProfilePanel);
         BoxPanel.add(changePasswordPanel);
@@ -95,6 +101,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -502,6 +510,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -524,6 +534,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -542,6 +554,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -560,6 +574,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -578,6 +594,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -609,6 +627,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(true);
@@ -627,6 +647,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(true);
         changePasswordPanel.setVisible(false);
@@ -645,6 +667,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -663,6 +687,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -681,7 +707,9 @@ public class main extends javax.swing.JFrame {
 //        leaveOfAbsense.setVisible(false);
 //        aplicationRehabilitation.setVisible(false);
 //        applicationResignation.setVisible(false);
-//        
+//        employeeClearanceStatus.setVisible(false);
+//        confirmationHandingOverTakingOver.setVisible(false);
+//
 //        employeeProfilePanel.setVisible(false);
 //        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_ChecklistActionPerformed
@@ -699,6 +727,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -717,6 +747,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(true);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -735,6 +767,8 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(true);
         applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -753,45 +787,51 @@ public class main extends javax.swing.JFrame {
         leaveOfAbsense.setVisible(false);
         aplicationRehabilitation.setVisible(false);
         applicationResignation.setVisible(true);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_ApplicationResignationActionPerformed
 
     private void EmployeeClearanceStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeClearanceStatusActionPerformed
-//        MainPanel.setVisible(false);
-//            ca.setVisible(false);
-//            candidateListPanel.setVisible(false);
-//        candidateProfile.setVisible(false);
-//        employeeConfirmation.setVisible(false);
-//        notificationToNewEmployee.setVisible(false);
-//        summaryStatusCandidatEmployee.setVisible(false);
-//        allocationAnnouncement.setVisible(false);
-//        requestEmployeeAllocation.setVisible(false);
-//        leaveOfAbsense.setVisible(false);
-//        aplicationRehabilitation.setVisible(false);
-//        applicationResignation.setVisible(false);
-//        
-//        employeeProfilePanel.setVisible(false);
-//        changePasswordPanel.setVisible(false);
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(true);
+        confirmationHandingOverTakingOver.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_EmployeeClearanceStatusActionPerformed
 
     private void ConfirmationHandoverTakeoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmationHandoverTakeoverActionPerformed
-//        MainPanel.setVisible(false);
-//            ca.setVisible(false);
-//            candidateListPanel.setVisible(false);
-//        candidateProfile.setVisible(false);
-//        employeeConfirmation.setVisible(false);
-//        notificationToNewEmployee.setVisible(false);
-//        summaryStatusCandidatEmployee.setVisible(false);
-//        allocationAnnouncement.setVisible(false);
-//        requestEmployeeAllocation.setVisible(false);
-//        leaveOfAbsense.setVisible(false);
-//        aplicationRehabilitation.setVisible(false);
-//        applicationResignation.setVisible(false);
-//        
-//        employeeProfilePanel.setVisible(false);
-//        changePasswordPanel.setVisible(false);
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_ConfirmationHandoverTakeoverActionPerformed
 
     private void DiciplinaryRevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiciplinaryRevolutionActionPerformed
@@ -807,6 +847,8 @@ public class main extends javax.swing.JFrame {
 //        leaveOfAbsense.setVisible(false);
 //        aplicationRehabilitation.setVisible(false);
 //        applicationResignation.setVisible(false);
+//        employeeClearanceStatus.setVisible(false);
+//        confirmationHandingOverTakingOver.setVisible(false);
 //        
 //        employeeProfilePanel.setVisible(false);
 //        changePasswordPanel.setVisible(false);
@@ -825,6 +867,8 @@ public class main extends javax.swing.JFrame {
 //        leaveOfAbsense.setVisible(false);
 //        aplicationRehabilitation.setVisible(false);
 //        applicationResignation.setVisible(false);
+//        employeeClearanceStatus.setVisible(false);
+//        confirmationHandingOverTakingOver.setVisible(false);
 //        
 //        employeeProfilePanel.setVisible(false);
 //        changePasswordPanel.setVisible(false);
