@@ -44,6 +44,7 @@ public class main extends javax.swing.JFrame {
     LeaveOfAbsense leaveOfAbsense;
     AplicationRehabilitation aplicationRehabilitation;
     ApplicationResignation applicationResignation;
+//    EmployeeClea
     
     
     EmployeeProfilePanel employeeProfilePanel;

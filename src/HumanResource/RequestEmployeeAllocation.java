@@ -4,6 +4,8 @@
  */
 package HumanResource;
 
+import CustomResource.MySession;
+
 /**
  *
  * @author hi
@@ -15,6 +17,11 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
      */
     public RequestEmployeeAllocation() {
         initComponents();
+        
+        textDicipline.setText(MySession.get_JobPosition());
+        textName.setText(MySession.get_nama());
+        textPosition.setText(MySession.get_JobPosition());
+        textWork.setText(MySession.get_birthPlace());
     }
 
     /**
@@ -42,10 +49,10 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        textDicipline = new javax.swing.JTextField();
+        textName = new javax.swing.JTextField();
+        textPosition = new javax.swing.JTextField();
+        textWork = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -111,23 +118,17 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
 
         jLabel13.setText(":");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 10, -1));
-
-        jTextField1.setText("jTextField1");
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 300, -1));
+        jPanel2.add(textDicipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 240, -1));
 
-        jTextField2.setText("jTextField1");
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 240, -1));
-
-        jTextField3.setText("jTextField1");
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 240, -1));
-
-        jTextField4.setText("jTextField1");
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 230, -1));
-
-        jTextField5.setText("jTextField1");
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 230, -1));
-
-        jTextField6.setText("jTextField1");
+        textName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNameActionPerformed(evt);
+            }
+        });
+        jPanel2.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 240, -1));
+        jPanel2.add(textPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 230, -1));
+        jPanel2.add(textWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 230, -1));
         jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 300, -1));
 
         jLabel14.setText("A. EMPLOYEE INFORMATION FOR ALLOCATION");
@@ -240,6 +241,10 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void textNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNameActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -277,10 +282,10 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField textDicipline;
+    private javax.swing.JTextField textName;
+    private javax.swing.JTextField textPosition;
+    private javax.swing.JTextField textWork;
     // End of variables declaration//GEN-END:variables
 }
