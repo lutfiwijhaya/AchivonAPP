@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 import CustomResource.actiontable;
 import CustomResource.callrender;
 import CustomResource.celleditor;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -42,7 +44,7 @@ public class CandidateList extends javax.swing.JPanel {
     Statement stm;
     ResultSet rs;
     Connection koneksi;
- JasperReport jasperreport;
+    JasperReport jasperreport;
     JasperDesign jasperdesign;
     JasperPrint jasperprint;
     Map<String, Object> param = new HashMap<String, Object>();
@@ -54,11 +56,12 @@ public class CandidateList extends javax.swing.JPanel {
     
     public CandidateList() {
         Statement stm;
-    ResultSet rs;
-    Connection koneksi;
+        ResultSet rs;
+        Connection koneksi;
         initComponents();
         settable();
         myShow();
+        MyWindow();
         remove();
          
         
@@ -269,5 +272,11 @@ void remove (){
             }
         }
         
+    }
+    
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
     }
 }

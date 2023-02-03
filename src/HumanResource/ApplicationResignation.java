@@ -4,6 +4,9 @@
  */
 package HumanResource;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author hi
@@ -15,6 +18,7 @@ public class ApplicationResignation extends javax.swing.JPanel {
      */
     public ApplicationResignation() {
         initComponents();
+        MyWindow();
     }
 
     /**
@@ -250,4 +254,9 @@ public class ApplicationResignation extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
+    }
 }

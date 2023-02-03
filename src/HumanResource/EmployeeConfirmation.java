@@ -4,6 +4,9 @@
  */
 package HumanResource;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author hi
@@ -15,6 +18,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
      */
     public EmployeeConfirmation() {
         initComponents();
+        MyWindow();
         
         areaEmployee.setText("I (Employee) has confirmed all matters in accordance with The Compny's (means PT.ACHIVON PRESTASI ABADI'S)\n" +
                          "human resource management standard regulation from the date of signing this agreement, and as a result, I \n" +
@@ -261,4 +265,9 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
+    }
 }

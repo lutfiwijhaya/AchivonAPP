@@ -40,8 +40,9 @@ public class CandidateApplication extends javax.swing.JPanel {
      */
     public CandidateApplication() {
         initComponents();
-      openDB();
+        openDB();
         tampil();
+        MyWindow();
         currentBox();
         id_employee();
         jToggleButton1.setEnabled(false);
@@ -1145,5 +1146,15 @@ public class CandidateApplication extends javax.swing.JPanel {
 
     private void dispose() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
+        
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setPreferredSize(x,y);
     }
 }
