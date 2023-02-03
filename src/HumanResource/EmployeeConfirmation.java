@@ -4,12 +4,15 @@
  */
 package HumanResource;
 
+import CustomResource.MySession;
 import CustomResource.koneksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +23,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
     Statement stm;
     ResultSet rs;
     Connection koneksi;
+    String tanggal;
     /**
      * Creates new form EmployeeConfirmation
      */
@@ -27,7 +31,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         initComponents();
          openDB();
         MyWindow();
-
+get_tanggal();
       setcombo();
        
         
@@ -67,6 +71,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
             rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where KTP = '"+jComboBox1.getSelectedItem()+"'");
             
             while (rs.next()) {
+                l_name1.setText(rs.getString(2).trim());
                   l_name.setText(rs.getString(2).trim());
                 l_date.setText(rs.getString(8).trim());
                  l_ktp.setText(rs.getString(3).trim());
@@ -80,8 +85,20 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
     
     }
      
+     void get_tanggal(){
+         
+Date ys = new Date();
+SimpleDateFormat s=new SimpleDateFormat("dd-MM-yyy");
+tanggal = s.format(ys);
+         l_tgl.setText(tanggal);
+         l_emnama1.setText(MySession.get_nama());
+         l_emnama.setText(MySession.get_nama());
+         jLabel37.setText(MySession.get_JobPosition());
+
+}
     private void openDB() {
       try {
+         
             koneksi kon = new koneksi();
          koneksi = kon.getConnection();
        } catch (Exception e) {
@@ -112,7 +129,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         jLabel36 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
+        l_tgl = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         areaEmployee1 = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
@@ -130,7 +147,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         l_hadd = new javax.swing.JLabel();
         l_name = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
+        l_emnama = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         l_hp = new javax.swing.JLabel();
@@ -144,6 +161,8 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        l_emnama1 = new javax.swing.JLabel();
+        l_name1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -184,8 +203,8 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         jLabel23.setText("B2. Signature Date");
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, -1, -1));
 
-        jLabel35.setText("DD-MMM-YYYY");
-        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 620, -1, -1));
+        l_tgl.setText("DD-MMM-YYYY");
+        jPanel1.add(l_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 620, -1, -1));
 
         areaEmployee1.setColumns(20);
         areaEmployee1.setRows(5);
@@ -199,7 +218,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 880, 20));
 
         jLabel38.setText("Signature");
-        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
+        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, -1, -1));
 
         jLabel4.setText("A2. Signature Date");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
@@ -231,13 +250,13 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         jPanel1.add(l_hadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
         l_name.setText("example Name");
-        jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+        jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, -1, -1));
 
         jLabel13.setText(":");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 20, -1));
 
-        jLabel34.setText("example Name");
-        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 590, -1, -1));
+        l_emnama.setText("example Name");
+        jPanel1.add(l_emnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 860, -1, -1));
 
         jLabel2.setText("A. EMPLOYEE CONFIRMATION");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
@@ -259,7 +278,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, 700, 100));
 
         jLabel40.setText("Signature");
-        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 800, -1, -1));
+        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 800, -1, -1));
 
         jLabel32.setText(":");
         jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 620, 20, -1));
@@ -285,6 +304,12 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, -1, -1));
+
+        l_emnama1.setText("example Name");
+        jPanel1.add(l_emnama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 590, -1, -1));
+
+        l_name1.setText("example Name");
+        jPanel1.add(l_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         jScrollPane3.setViewportView(jPanel1);
 
@@ -332,8 +357,6 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
@@ -355,10 +378,14 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel l_cadd;
     private javax.swing.JLabel l_date;
+    private javax.swing.JLabel l_emnama;
+    private javax.swing.JLabel l_emnama1;
     private javax.swing.JLabel l_hadd;
     private javax.swing.JLabel l_hp;
     private javax.swing.JLabel l_ktp;
     private javax.swing.JLabel l_name;
+    private javax.swing.JLabel l_name1;
+    private javax.swing.JLabel l_tgl;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
