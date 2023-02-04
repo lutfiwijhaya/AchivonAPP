@@ -16,7 +16,9 @@ import HumanResource.CandidateProfile;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
 import HumanResource.ConfirmationHandingOverTakingOver;
+import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
+import HumanResource.EmployeeEvaluation;
 import HumanResource.LeaveOfAbsense;
 import HumanResource.NotificationToNewEmployee;
 import HumanResource.RequestEmployeeAllocation;
@@ -48,7 +50,8 @@ public class main extends javax.swing.JFrame {
     ApplicationResignation applicationResignation;
     EmployeeClearanceStatus employeeClearanceStatus;
     ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
-    
+    DisciplnaryResolution disciplnaryResolution;
+    EmployeeEvaluation employeeEvaluation;
     
     EmployeeProfilePanel employeeProfilePanel;
     ChangePassword changePasswordPanel;
@@ -70,6 +73,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation = new ApplicationResignation();
         employeeClearanceStatus = new EmployeeClearanceStatus();
         confirmationHandingOverTakingOver = new ConfirmationHandingOverTakingOver();
+        disciplnaryResolution = new DisciplnaryResolution();
+        employeeEvaluation = new EmployeeEvaluation();
         
         employeeProfilePanel = new EmployeeProfilePanel();
         changePasswordPanel = new ChangePassword();
@@ -87,6 +92,8 @@ public class main extends javax.swing.JFrame {
         BoxPanel.add(applicationResignation);
         BoxPanel.add(employeeClearanceStatus);
         BoxPanel.add(confirmationHandingOverTakingOver);
+        BoxPanel.add(disciplnaryResolution);
+        BoxPanel.add(employeeEvaluation);
         
         BoxPanel.add(employeeProfilePanel);
         BoxPanel.add(changePasswordPanel);
@@ -104,6 +111,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -513,6 +522,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -537,6 +548,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -557,6 +570,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -577,6 +592,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -597,6 +614,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -630,6 +649,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(true);
@@ -650,6 +671,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(true);
         changePasswordPanel.setVisible(false);
@@ -670,6 +693,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -690,6 +715,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -710,7 +737,9 @@ public class main extends javax.swing.JFrame {
 //        applicationResignation.setVisible(false);
 //        employeeClearanceStatus.setVisible(false);
 //        confirmationHandingOverTakingOver.setVisible(false);
-//
+//        disciplnaryResolution.setVisible(false);
+//        EmployeeEvaluation.setVisible(false);
+//        
 //        employeeProfilePanel.setVisible(false);
 //        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_ChecklistActionPerformed
@@ -730,6 +759,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -750,6 +781,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -770,6 +803,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -790,6 +825,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(true);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -810,6 +847,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(true);
         confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -830,6 +869,8 @@ public class main extends javax.swing.JFrame {
         applicationResignation.setVisible(false);
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(true);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -837,42 +878,46 @@ public class main extends javax.swing.JFrame {
 
     private void DiciplinaryRevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiciplinaryRevolutionActionPerformed
         MainPanel.setVisible(false);
-//            ca.setVisible(false);
-//            candidateListPanel.setVisible(false);
-//        candidateProfile.setVisible(false);
-//        employeeConfirmation.setVisible(false);
-//        notificationToNewEmployee.setVisible(false);
-//        summaryStatusCandidatEmployee.setVisible(false);
-//        allocationAnnouncement.setVisible(false);
-//        requestEmployeeAllocation.setVisible(false);
-//        leaveOfAbsense.setVisible(false);
-//        aplicationRehabilitation.setVisible(false);
-//        applicationResignation.setVisible(false);
-//        employeeClearanceStatus.setVisible(false);
-//        confirmationHandingOverTakingOver.setVisible(false);
-//        
-//        employeeProfilePanel.setVisible(false);
-//        changePasswordPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(true);
+        EmployeeEvaluation.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_DiciplinaryRevolutionActionPerformed
 
     private void EmployeeEvaluationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeEvaluationActionPerformed
-//        MainPanel.setVisible(false);
-//            ca.setVisible(false);
-//            candidateListPanel.setVisible(false);
-//        candidateProfile.setVisible(false);
-//        employeeConfirmation.setVisible(false);
-//        notificationToNewEmployee.setVisible(false);
-//        summaryStatusCandidatEmployee.setVisible(false);
-//        allocationAnnouncement.setVisible(false);
-//        requestEmployeeAllocation.setVisible(false);
-//        leaveOfAbsense.setVisible(false);
-//        aplicationRehabilitation.setVisible(false);
-//        applicationResignation.setVisible(false);
-//        employeeClearanceStatus.setVisible(false);
-//        confirmationHandingOverTakingOver.setVisible(false);
-//        
-//        employeeProfilePanel.setVisible(false);
-//        changePasswordPanel.setVisible(false);
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(true);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_EmployeeEvaluationActionPerformed
 
     /**
