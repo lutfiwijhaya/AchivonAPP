@@ -49,6 +49,7 @@ public class main extends javax.swing.JFrame {
     EmployeeClearanceStatus employeeClearanceStatus;
     ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
     
+    
     EmployeeProfilePanel employeeProfilePanel;
     ChangePassword changePasswordPanel;
     
