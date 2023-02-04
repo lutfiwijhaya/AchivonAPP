@@ -112,7 +112,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -523,7 +523,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -549,7 +549,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -571,7 +571,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -593,7 +593,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -615,7 +615,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -650,7 +650,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(true);
@@ -672,7 +672,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(true);
         changePasswordPanel.setVisible(false);
@@ -694,7 +694,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -716,7 +716,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -738,7 +738,7 @@ public class main extends javax.swing.JFrame {
 //        employeeClearanceStatus.setVisible(false);
 //        confirmationHandingOverTakingOver.setVisible(false);
 //        disciplnaryResolution.setVisible(false);
-//        EmployeeEvaluation.setVisible(false);
+//        employeeEvaluation.setVisible(false);
 //        
 //        employeeProfilePanel.setVisible(false);
 //        changePasswordPanel.setVisible(false);
@@ -1020,6 +1020,7 @@ public class main extends javax.swing.JFrame {
         CustomResource.MySession.set_nama("");
         new Main.LoginFrame().setVisible(true);
         this.dispose();
+        
     }
     
     private void MyWindow(){
