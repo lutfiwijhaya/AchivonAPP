@@ -251,7 +251,7 @@ public class main extends javax.swing.JFrame {
                 buttonLoginActionPerformed(evt);
             }
         });
-        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 240, 30));
+        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 240, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
         MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 200, 130));

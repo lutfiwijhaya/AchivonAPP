@@ -157,139 +157,140 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         jToggleButton1 = new javax.swing.JToggleButton();
         l_emnama1 = new javax.swing.JLabel();
         l_name1 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel24.setText("A3. Position");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 650, -1, -1));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 770, -1, -1));
 
         l_date.setText("DD-MMM-YYYY");
-        jPanel1.add(l_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+        jPanel1.add(l_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, -1, -1));
 
         jLabel33.setText(":");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 590, 20, -1));
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 710, 20, -1));
 
         jLabel7.setText("A5. KTP No.");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, -1));
 
         jLabel20.setText("A1. Name");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, -1, -1));
 
         jLabel22.setText("B1. Name");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 590, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 710, -1, -1));
 
         l_cadd.setText("example Current Address");
-        jPanel1.add(l_cadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+        jPanel1.add(l_cadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
 
         jLabel6.setText("A4. Current Address");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
 
         jLabel1.setText(":");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 20, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 20, -1));
 
         jLabel36.setText("Name :");
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, -1, -1));
+        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 610, -1, -1));
 
         jLabel9.setText(":");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 20, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 20, -1));
 
         jLabel23.setText("B2. Signature Date");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, -1, -1));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 740, -1, -1));
 
         l_tgl.setText("DD-MMM-YYYY");
-        jPanel1.add(l_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 620, -1, -1));
+        jPanel1.add(l_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 740, -1, -1));
 
         areaEmployee1.setColumns(20);
         areaEmployee1.setRows(5);
         areaEmployee1.setText("I (Employee) has confirmed all matters in accordance with The Company’s (means PT. ACHIVON PRESTASI ABADI’s)\nhuman resources management standard regulations from the date of signing this agreement, and as a result, I assure \nthat I will thoroughly perform and strictly comply with the tasks given and duties. In addition, I confirm that I will work\nvery diligently without raising any objection in the overtime including working day and non-working day, special task\nand special work at the request of The Company, and I made signature above on this employee confirmation.");
         jScrollPane2.setViewportView(areaEmployee1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 760, 110));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 700, 110));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 880, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 880, 20));
 
         jLabel38.setText("Signature");
-        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, -1, -1));
+        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, -1, -1));
 
         jLabel4.setText("A2. Signature Date");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, -1, -1));
 
         jLabel10.setText(":");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 20, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 20, -1));
 
         jLabel21.setText("B. EMPLOYMENT APPROVAL");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 670, -1, -1));
 
         jLabel12.setText(":");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 20, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 20, -1));
 
         jLabel37.setText("example Position");
-        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, -1, -1));
+        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 770, -1, -1));
 
         jLabel11.setText(":");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 20, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 20, -1));
 
         jLabel5.setText("A3. Home Address");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
 
         jLabel31.setText(":");
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, 20, -1));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 50, 20));
-        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 1020, -1, -1));
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 770, 20, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 600, 50, 20));
+        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 1140, -1, -1));
 
         l_hadd.setText("example Home Address");
-        jPanel1.add(l_hadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+        jPanel1.add(l_hadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, -1));
 
         l_name.setText("example Name");
-        jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, -1, -1));
+        jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 610, -1, -1));
 
         jLabel13.setText(":");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 20, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 20, -1));
 
         l_emnama.setText("example Name");
-        jPanel1.add(l_emnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 860, -1, -1));
+        jPanel1.add(l_emnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 970, -1, -1));
 
         jLabel2.setText("A. EMPLOYEE CONFIRMATION");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
 
         jLabel8.setText("A6. Mobile (HP) No.");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, -1, -1));
 
         l_hp.setText("example NO HP");
-        jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, -1, -1));
+        jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, -1, -1));
 
         l_ktp.setText("example KTP");
-        jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
 
         areaEmployee.setColumns(20);
         areaEmployee.setRows(5);
         areaEmployee.setText("I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee\n of Section A on behalf of The Company with the approval of The Company's Human Resources Director.");
         jScrollPane1.setViewportView(areaEmployee);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, 700, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 800, 700, 100));
 
         jLabel40.setText("Signature");
-        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 800, -1, -1));
+        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 910, -1, -1));
 
         jLabel32.setText(":");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 620, 20, -1));
+        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 740, 20, -1));
 
         jLabel41.setText("Name :");
-        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 860, -1, -1));
-        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 1020, 80, 20));
+        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 970, -1, -1));
+        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 1140, 80, 20));
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 250, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 250, -1));
 
         jLabel25.setText("Input Candidate Employee");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
 
         jToggleButton1.setText("Add/tambah");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -297,13 +298,18 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, -1, -1));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 140, -1, -1));
 
         l_emnama1.setText("example Name");
-        jPanel1.add(l_emnama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 590, -1, -1));
+        jPanel1.add(l_emnama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 710, -1, -1));
 
         l_name1.setText("example Name");
-        jPanel1.add(l_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+        jPanel1.add(l_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel14.setText("Employee Confirmation");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
 
         jScrollPane3.setViewportView(jPanel1);
 
@@ -311,11 +317,11 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1229, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -338,6 +344,7 @@ public class EmployeeConfirmation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
