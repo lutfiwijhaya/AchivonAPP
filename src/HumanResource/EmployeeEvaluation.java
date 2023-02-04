@@ -4,6 +4,9 @@
  */
 package HumanResource;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author hi
@@ -15,6 +18,7 @@ public class EmployeeEvaluation extends javax.swing.JPanel {
      */
     public EmployeeEvaluation() {
         initComponents();
+        MyWindow();
     }
 
     /**
@@ -291,4 +295,16 @@ public class EmployeeEvaluation extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
+//        MainPanel.setPreferredSize(screen);
+//        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setLocation(x,y);
+    }
+    
 }

@@ -9,6 +9,7 @@ import TestResource.tambah;
 import Employee.EmployeeProfilePanel;
 import HumanResource.EmployeeConfirmation;
 import Employee.ChangePassword;
+import HumanResource.AddJobVacancy;
 import HumanResource.AllocationAnnouncement;
 import HumanResource.AplicationRehabilitation;
 import HumanResource.ApplicationResignation;
@@ -52,6 +53,7 @@ public class main extends javax.swing.JFrame {
     ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
     DisciplnaryResolution disciplnaryResolution;
     EmployeeEvaluation employeeEvaluation;
+    AddJobVacancy addJobVacancy;
     
     EmployeeProfilePanel employeeProfilePanel;
     ChangePassword changePasswordPanel;
@@ -75,6 +77,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver = new ConfirmationHandingOverTakingOver();
         disciplnaryResolution = new DisciplnaryResolution();
         employeeEvaluation = new EmployeeEvaluation();
+        addJobVacancy = new AddJobVacancy();
         
         employeeProfilePanel = new EmployeeProfilePanel();
         changePasswordPanel = new ChangePassword();
@@ -94,6 +97,7 @@ public class main extends javax.swing.JFrame {
         BoxPanel.add(confirmationHandingOverTakingOver);
         BoxPanel.add(disciplnaryResolution);
         BoxPanel.add(employeeEvaluation);
+        BoxPanel.add(addJobVacancy);
         
         BoxPanel.add(employeeProfilePanel);
         BoxPanel.add(changePasswordPanel);
@@ -113,6 +117,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -152,6 +157,7 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem3 = new javax.swing.JMenuItem();
         BoxPanel = new javax.swing.JPanel();
         MainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -197,6 +203,7 @@ public class main extends javax.swing.JFrame {
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         EmployeeEvaluation = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
+        AddJobVacancy = new javax.swing.JMenuItem();
         POSystem = new javax.swing.JMenu();
         WarehouseSystem = new javax.swing.JMenu();
         AcountingSystem = new javax.swing.JMenu();
@@ -207,6 +214,8 @@ public class main extends javax.swing.JFrame {
         jSeparator18 = new javax.swing.JPopupMenu.Separator();
         SMLogout = new javax.swing.JMenuItem();
         jSeparator19 = new javax.swing.JPopupMenu.Separator();
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -428,6 +437,15 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(EmployeeEvaluation);
         HumanResourceSystem.add(jSeparator14);
 
+        AddJobVacancy.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        AddJobVacancy.setText("Add Job Vacancy");
+        AddJobVacancy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddJobVacancyActionPerformed(evt);
+            }
+        });
+        HumanResourceSystem.add(AddJobVacancy);
+
         ToolBar.add(HumanResourceSystem);
 
         POSystem.setText("PO System  |");
@@ -524,6 +542,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -550,6 +569,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -572,6 +592,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -594,6 +615,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -616,6 +638,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -651,6 +674,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(true);
@@ -673,6 +697,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(true);
         changePasswordPanel.setVisible(false);
@@ -695,6 +720,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -717,6 +743,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -739,6 +766,7 @@ public class main extends javax.swing.JFrame {
 //        confirmationHandingOverTakingOver.setVisible(false);
 //        disciplnaryResolution.setVisible(false);
 //        employeeEvaluation.setVisible(false);
+//        addJobVacancy.setVisible(false);
 //        
 //        employeeProfilePanel.setVisible(false);
 //        changePasswordPanel.setVisible(false);
@@ -761,6 +789,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         EmployeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -783,6 +812,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         EmployeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -805,6 +835,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         EmployeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -827,6 +858,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         EmployeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -849,6 +881,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         EmployeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -871,6 +904,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(true);
         disciplnaryResolution.setVisible(false);
         EmployeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -893,6 +927,7 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(true);
         EmployeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
@@ -915,10 +950,34 @@ public class main extends javax.swing.JFrame {
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
         EmployeeEvaluation.setVisible(true);
+        addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_EmployeeEvaluationActionPerformed
+
+    private void AddJobVacancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddJobVacancyActionPerformed
+        MainPanel.setVisible(false);
+            ca.setVisible(false);
+            candidateListPanel.setVisible(false);
+        candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        EmployeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(true);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_AddJobVacancyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -960,6 +1019,7 @@ public class main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AcountingSystem;
+    private javax.swing.JMenuItem AddJobVacancy;
     private javax.swing.JMenuItem AllocationAnouncement;
     private javax.swing.JMenuItem ApplicationLeaveofAbsence;
     private javax.swing.JMenuItem ApplicationRehabilitation;
@@ -992,6 +1052,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;

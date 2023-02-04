@@ -4,6 +4,9 @@
  */
 package HumanResource;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author hi
@@ -15,6 +18,7 @@ public class AddJobVacancy extends javax.swing.JPanel {
      */
     public AddJobVacancy() {
         initComponents();
+        MyWindow();
     }
 
     /**
@@ -116,4 +120,16 @@ public class AddJobVacancy extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+private void MyWindow(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(screen);
+//        MainPanel.setPreferredSize(screen);
+//        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+//        int x = (screen.width/2) - (this.getSize().width/2);
+//        int y = (screen.height/2) - (this.getSize().height/2);
+//        this.setLocation(x,y);
+    }
+
 }
