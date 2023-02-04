@@ -20,91 +20,85 @@ import javax.swing.JOptionPane;
  * @author hi
  */
 public class EmployeeConfirmation extends javax.swing.JPanel {
+
     Statement stm;
     ResultSet rs;
     Connection koneksi;
     String tanggal;
+
     /**
      * Creates new form EmployeeConfirmation
      */
     public EmployeeConfirmation() {
         initComponents();
-         openDB();
+        openDB();
         MyWindow();
-get_tanggal();
-      setcombo();
-       
-        
+        get_tanggal();
+        setcombo();
+
         //areaEmployee.setText("I (Employee) has confirmed all matters in accordance with The Compny's (means PT.ACHIVON PRESTASI ABADI'S)\n" +
-                        // "human resource management standard regulation from the date of signing this agreement, and as a result, I \n" +
-                        // "assure that I willthroughly perform and strictly comply with the tasks given and duties. In addition, \n" +
-                        // "I confirm that i will work very diligently without raising any objection in the overtime including working\n" +
-                        // "day and non-working day, special task and special work at the request of The Company, and I made signature \n" +
-                        // "above on this employee confirmation.");
-        
+        // "human resource management standard regulation from the date of signing this agreement, and as a result, I \n" +
+        // "assure that I willthroughly perform and strictly comply with the tasks given and duties. In addition, \n" +
+        // "I confirm that i will work very diligently without raising any objection in the overtime including working\n" +
+        // "day and non-working day, special task and special work at the request of The Company, and I made signature \n" +
+        // "above on this employee confirmation.");
     }
-    
-     private void setcombo() {
-       try {
-           stm = koneksi.createStatement();
-           rs = stm.executeQuery("select * from cd_employee");
-            while (rs.next()) {
-               jComboBox1.addItem(rs.getString(3).trim());
-               //"select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where KTP = 324234134"
-                //l_name.setText(rs.getString(2).trim());
-                //l_date.setText(rs.getString(8).trim());
-                 // l_ktp.setText(rs.getString(3).trim());
-                  //  l_hp.setText(rs.getString(10).trim());
-                    // l_hadd.setText(rs.getString(28).trim());
-                     // l_cadd.setText(rs.getString(29).trim());
-           }
-       } catch (Exception e) {
-            e.printStackTrace();
-        }
-   }
-     
-    // "select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where KTP = '"+l_ktp.getText()+"'"
-     private void addtext() {
-       
+
+    private void setcombo() {
         try {
             stm = koneksi.createStatement();
-            rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where KTP = '"+jComboBox1.getSelectedItem()+"'");
-            
+            rs = stm.executeQuery("select * from cd_employee");
             while (rs.next()) {
-                l_name1.setText(rs.getString(2).trim());
-                  l_name.setText(rs.getString(2).trim());
-                l_date.setText(rs.getString(8).trim());
-                 l_ktp.setText(rs.getString(3).trim());
-                   l_hp.setText(rs.getString(10).trim());
-                     l_hadd.setText(rs.getString(28).trim());
-                     l_cadd.setText(rs.getString(29).trim());
+                jComboBox1.addItem(rs.getString(3).trim());
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
     }
-     
-     void get_tanggal(){
-         
-Date ys = new Date();
-SimpleDateFormat s=new SimpleDateFormat("dd-MM-yyy");
-tanggal = s.format(ys);
-         l_tgl.setText(tanggal);
-         l_emnama1.setText(MySession.get_nama());
-         l_emnama.setText(MySession.get_nama());
-         jLabel37.setText(MySession.get_JobPosition());
 
-}
+    private void addtext() {
+
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where KTP = '" + jComboBox1.getSelectedItem() + "'");
+
+            while (rs.next()) {
+                l_name1.setText(rs.getString(2).trim());
+                l_name.setText(rs.getString(2).trim());
+                l_date.setText(rs.getString(15).trim());
+                l_ktp.setText(rs.getString(3).trim());
+                l_hp.setText(rs.getString(10).trim());
+                l_hadd.setText(rs.getString(28).trim());
+                l_cadd.setText(rs.getString(29).trim());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    void get_tanggal() {
+
+        Date ys = new Date();
+        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyy");
+        tanggal = s.format(ys);
+        l_tgl.setText(tanggal);
+        l_emnama1.setText(MySession.get_nama());
+        l_emnama.setText(MySession.get_nama());
+        jLabel37.setText(MySession.get_JobPosition());
+
+    }
+
     private void openDB() {
-      try {
-         
+        try {
+
             koneksi kon = new koneksi();
-         koneksi = kon.getConnection();
-       } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
-       }
-   }
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -327,13 +321,11 @@ tanggal = s.format(ys);
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
 
-
-     
-      // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-      addtext();  // TODO add your handling code here:
+        addtext();  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
@@ -387,11 +379,11 @@ tanggal = s.format(ys);
     private javax.swing.JLabel l_name1;
     private javax.swing.JLabel l_tgl;
     // End of variables declaration//GEN-END:variables
-    private void MyWindow(){
+    private void MyWindow() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screen.width, screen.height-45);
-        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(new Dimension(screen.width, screen.height - 100));
+
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
