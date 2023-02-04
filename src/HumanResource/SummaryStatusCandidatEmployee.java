@@ -4,8 +4,13 @@
  */
 package HumanResource;
 
+import CustomResource.koneksi;
+import com.mysql.cj.xdevapi.Statement;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,14 +18,43 @@ import java.awt.Toolkit;
  */
 public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
 
+    java.sql.Statement stm;
+    ResultSet rs;
+    java.sql.Connection koneksi;
+    int id;
+
     /**
      * Creates new form SummaryStatusCandidatEmployee
      */
     public SummaryStatusCandidatEmployee() {
         initComponents();
         MyWindow();
+        openDB();
+        setcombo();
     }
 
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
+
+    private void setcombo() {
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select * from cd_employee");
+            while (rs.next()) {
+                jComboBox1.addItem(rs.getString(3).trim());
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +114,9 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
         jTable5 = new javax.swing.JTable();
         jLabel39 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel40 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -327,6 +364,24 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
         jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 1150, 360, 30));
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 250, -1));
+
+        jLabel40.setText("Input Candidate Employee");
+        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
+
+        jToggleButton1.setText("Add/tambah");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 80, -1, -1));
+
         jScrollPane6.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -341,8 +396,18 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+      // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -376,6 +441,7 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -393,12 +459,13 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
-    private void MyWindow(){
+    private void MyWindow() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screen.width, screen.height-45);
-        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(new Dimension(screen.width, screen.height - 100));
+
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
