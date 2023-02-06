@@ -228,21 +228,21 @@ public class main extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 470, 160, 40));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("Achivon");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, 160, 40));
+        jLabel2.setText("PT. Achivon Prestasi Abadi");
+        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 220, 40));
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Please Login first");
-        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 630, 40));
+        jLabel3.setText("please click Login below");
+        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 310, 40));
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setText("Welcome to");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 220, 40));
+        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 110, 40));
 
-        buttonLogin.setBackground(new java.awt.Color(255, 0, 0));
+        buttonLogin.setBackground(new java.awt.Color(0, 51, 255));
         buttonLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         buttonLogin.setForeground(new java.awt.Color(255, 255, 255));
         buttonLogin.setText("Login");
@@ -251,10 +251,10 @@ public class main extends javax.swing.JFrame {
                 buttonLoginActionPerformed(evt);
             }
         });
-        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 240, 40));
+        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, 150, 40));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 200, 130));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo6.png"))); // NOI18N
+        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 20, 20));
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
         homeBar.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -14,8 +14,12 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import CustomResource.MySession;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -31,10 +35,23 @@ public class LoginFrame extends javax.swing.JFrame {
         MyWindow();
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
         this.setIconImage(logo.getImage());
-        openeye.setVisible(false);
-        openeye1.setVisible(false);
+//        openeye.setVisible(false);
+//        openeye1.setVisible(false);
     }
-
+//    void icon(){
+//        String currentdirectory = "C:\\Users\\USER\\Pictures";
+//        
+//        
+//        
+//        int imagechooser = imageFileChooser.showOpenDialog(null);
+//        File imagefile = imageFileChooser.getSelectedFile;
+//        crudimage = imagefile.getAbsolutePath();
+//        jLabel1.setText(crudimage);
+//
+//            ImageIcon imageicon = new ImageIcon(crudimage);
+//            Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
+//            labelfoto.setIcon(new ImageIcon(imageResize));
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,43 +62,35 @@ public class LoginFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        closeeye = new javax.swing.JLabel();
-        openeye = new javax.swing.JLabel();
-        textPassword = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        textKaryawanid = new CustomResource.CustomFormatField();
+        textMail = new CustomResource.CustomTextfield();
+        textPassword = new CustomResource.PasswordField();
+        textRepeatPassword = new CustomResource.PasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        closeeye1 = new javax.swing.JLabel();
-        openeye1 = new javax.swing.JLabel();
-        textRepeatPassword = new javax.swing.JPasswordField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        textMail = new javax.swing.JTextField();
-        textKaryawanid = new javax.swing.JFormattedTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Login");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 240, 50));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PT.");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 50, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 40, 20));
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setBackground(new java.awt.Color(51, 51, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
@@ -90,110 +99,122 @@ public class LoginFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, 240, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 250, 40));
 
-        closeeye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/closedeye.png"))); // NOI18N
-        closeeye.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeeyeMouseClicked(evt);
-            }
-        });
-        jPanel1.add(closeeye, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, 30, 30));
-
-        openeye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/eye.png"))); // NOI18N
-        openeye.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                openeyeMouseClicked(evt);
-            }
-        });
-        jPanel1.add(openeye, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, 30, 30));
-
-        textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textPasswordKeyTyped(evt);
-            }
-        });
-        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 240, 30));
-
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel5.setText("id Karyawan / Employee id");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 170, 20));
-
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Achivon");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 100, 20));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 70, 20));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Prestasi Abadi");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 170, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 120, 20));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 200, 130));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 200, 130));
 
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel9.setText("Surat Elektronik / Email");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, 140, 20));
+        textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("U-#-######"))));
+        textKaryawanid.setLabelText("id Karyawan / Employee id");
+        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 220, -1));
 
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel10.setText("Ulang Kata Sandi / Repeat Password");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 220, 20));
+        textMail.setLabelText("Email");
+        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 220, -1));
 
-        closeeye1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/closedeye.png"))); // NOI18N
-        closeeye1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeeye1MouseClicked(evt);
+        textPassword.setLabelText("Kata Sandi / Password");
+        textPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(closeeye1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 410, 30, 30));
+        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 220, -1));
 
-        openeye1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/eye.png"))); // NOI18N
-        openeye1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                openeye1MouseClicked(evt);
-            }
-        });
-        jPanel1.add(openeye1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 410, 30, 30));
+        textRepeatPassword.setLabelText("Ulang Kata Sandi / Repeat Password");
+        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 220, -1));
 
-        textRepeatPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textRepeatPasswordKeyTyped(evt);
-            }
-        });
-        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 240, 30));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/envelope.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel11.setText("Kata Sandi / Password");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 140, 20));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/person.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/closedeye.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, 30, 30));
-        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 480, 240, 30));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/password.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
 
-        try {
-            textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("U-#-######")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        textKaryawanid.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 240, 30));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/password.png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Welcome to ACV's Operation System (Login)");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setForeground(new java.awt.Color(51, 51, 51));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("All rights reserved by PT. Achivon Prestasi Abadi®");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 772, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(10, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 28, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 581, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -259,43 +280,9 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void textPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPasswordKeyTyped
-        if (textPassword.getText().length()>7) {
-            JOptionPane.showMessageDialog(null, "kata Sandi maximal 8 karakter \n Password Maximal 8 Character");
-            evt.consume();
-        }
-    }//GEN-LAST:event_textPasswordKeyTyped
-
-    private void textRepeatPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textRepeatPasswordKeyTyped
-        if (textRepeatPassword.getText().length()>7) {
-            JOptionPane.showMessageDialog(null, "Kata Sandi Konfirmasi Maximal 8 karakter \n Password confirmation Maximal 8 Character");
-            evt.consume();
-        }
-    }//GEN-LAST:event_textRepeatPasswordKeyTyped
-
-    private void openeyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openeyeMouseClicked
-        textPassword.setEchoChar('*');
-        openeye.setVisible(false);
-        closeeye.setVisible(true);
-    }//GEN-LAST:event_openeyeMouseClicked
-
-    private void closeeyeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeeyeMouseClicked
-        textPassword.setEchoChar((char)0);
-        openeye.setVisible(true);
-        closeeye.setVisible(false);
-    }//GEN-LAST:event_closeeyeMouseClicked
-
-    private void closeeye1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeeye1MouseClicked
-        textRepeatPassword.setEchoChar((char)0);
-        openeye1.setVisible(true);
-        closeeye1.setVisible(false);
-    }//GEN-LAST:event_closeeye1MouseClicked
-
-    private void openeye1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openeye1MouseClicked
-        textRepeatPassword.setEchoChar('*');
-        openeye1.setVisible(false);
-        closeeye1.setVisible(true);
-    }//GEN-LAST:event_openeye1MouseClicked
+    private void textPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,11 +321,9 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel closeeye;
-    private javax.swing.JLabel closeeye1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -348,20 +333,20 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel openeye;
-    private javax.swing.JLabel openeye1;
-    private javax.swing.JFormattedTextField textKaryawanid;
-    private javax.swing.JTextField textMail;
-    private javax.swing.JPasswordField textPassword;
-    private javax.swing.JPasswordField textRepeatPassword;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private CustomResource.CustomFormatField textKaryawanid;
+    private CustomResource.CustomTextfield textMail;
+    private CustomResource.PasswordField textPassword;
+    private CustomResource.PasswordField textRepeatPassword;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screen.width, screen.height-45);
-        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
+//        this.setSize(screen.width, screen.height-45);
+//        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
         
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
+        int x = (screen.width/2) - (this.getSize().width/2);
+        int y = (screen.height/2) - (this.getSize().height/2);
+        this.setLocation(x,y);
     }
 }
