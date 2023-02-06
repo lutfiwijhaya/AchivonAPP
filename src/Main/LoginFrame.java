@@ -31,6 +31,7 @@ public class LoginFrame extends javax.swing.JFrame {
      * Creates new form LoginFrame
      */
     public LoginFrame() {
+        super("ACV-OS-Login");
         initComponents();
         MyWindow();
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
@@ -38,20 +39,7 @@ public class LoginFrame extends javax.swing.JFrame {
 //        openeye.setVisible(false);
 //        openeye1.setVisible(false);
     }
-//    void icon(){
-//        String currentdirectory = "C:\\Users\\USER\\Pictures";
-//        
-//        
-//        
-//        int imagechooser = imageFileChooser.showOpenDialog(null);
-//        File imagefile = imageFileChooser.getSelectedFile;
-//        crudimage = imagefile.getAbsolutePath();
-//        jLabel1.setText(crudimage);
-//
-//            ImageIcon imageicon = new ImageIcon(crudimage);
-//            Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
-//            labelfoto.setIcon(new ImageIcon(imageResize));
-//    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,18 +57,20 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         textKaryawanid = new CustomResource.CustomFormatField();
         textMail = new CustomResource.CustomTextfield();
-        textPassword = new CustomResource.PasswordField();
-        textRepeatPassword = new CustomResource.PasswordField();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        textRepeatPassword = new CustomResource.PasswordField();
+        textPassword = new CustomResource.PasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,7 +78,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PT.");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 40, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 40, 20));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -99,50 +89,76 @@ public class LoginFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 250, 40));
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, 260, 40));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Achivon");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 70, 20));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 70, 20));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Prestasi Abadi");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 120, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 120, 20));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 200, 130));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 130));
 
-        textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("U-#-######"))));
+        try {
+            textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("U-#-######")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         textKaryawanid.setLabelText("id Karyawan / Employee id");
-        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 220, -1));
-
-        textMail.setLabelText("Email");
-        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 220, -1));
-
-        textPassword.setLabelText("Kata Sandi / Password");
-        textPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textPasswordActionPerformed(evt);
+        textKaryawanid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textKaryawanidKeyPressed(evt);
             }
         });
-        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 220, -1));
+        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 260, -1));
 
-        textRepeatPassword.setLabelText("Ulang Kata Sandi / Repeat Password");
-        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 220, -1));
+        textMail.setLabelText("Email");
+        textMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textMailKeyPressed(evt);
+            }
+        });
+        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 260, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/envelope.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/person.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/password.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/password.png"))); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
+
+        textRepeatPassword.setLabelText("Konfirmasi Password / Confirm Password");
+        textRepeatPassword.setShowAndHide(true);
+        textRepeatPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textRepeatPasswordKeyPressed(evt);
+            }
+        });
+        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 260, -1));
+
+        textPassword.setLabelText("Kata Sandi / Password");
+        textPassword.setShowAndHide(true);
+        textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textPasswordKeyPressed(evt);
+            }
+        });
+        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 260, -1));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -156,16 +172,18 @@ public class LoginFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 30));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setForeground(new java.awt.Color(51, 51, 51));
@@ -178,43 +196,40 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 772, Short.MAX_VALUE)
+            .addGap(0, 784, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(10, Short.MAX_VALUE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(135, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 28, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(7, Short.MAX_VALUE)
                     .addComponent(jLabel1)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(7, Short.MAX_VALUE)))
         );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, -1, 30));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Sign in");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 240, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 581, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -280,9 +295,152 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void textPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textPasswordActionPerformed
+    private void textKaryawanidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textKaryawanidKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            textPassword.requestFocus();
+        }
+    }//GEN-LAST:event_textKaryawanidKeyPressed
+
+    private void textPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPasswordKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            textRepeatPassword.requestFocus();
+        }
+    }//GEN-LAST:event_textPasswordKeyPressed
+
+    private void textRepeatPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textRepeatPasswordKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            textMail.requestFocus();
+        }
+    }//GEN-LAST:event_textRepeatPasswordKeyPressed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            Connection myConn;
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
+                if(myRess.next()){
+                    if (textPassword.getText().length()<4) {
+                        JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 4 karakter \n Make sure the password is at least 4 characters");
+                    }else{
+                        if (textPassword.getText().equals(textRepeatPassword.getText())) {
+                            if (textMail.getText().equals(myRess.getString("email"))){
+                                if (textPassword.getText().equals(myRess.getString("password"))) {
+                                    JOptionPane.showMessageDialog(null, "Berhasil Login \n successfully logged in");
+                                    MySession.set_karyawanID(myRess.getString("karyawan_id"));
+                                    MySession.set_nama(myRess.getString("name"));
+                                    MySession.set_ktp(myRess.getString("ktp"));
+                                    MySession.set_birthPlace(myRess.getString("birth_place"));
+                                    MySession.set_Birthday(myRess.getString("birthday"));
+                                    MySession.set_sex(myRess.getString("sex"));
+                                    MySession.set_marital(myRess.getString("marital"));
+                                    MySession.set_email(myRess.getString("email"));
+                                    MySession.set_mobileNumber(myRess.getString("no_hp"));
+                                    MySession.set_BPJS(myRess.getString("bpjs"));
+                                    MySession.set_NPWP(myRess.getString("npwp"));
+                                    MySession.set_JobPosition(myRess.getString("job_position"));
+                                    MySession.set_Sallary(myRess.getString("sallary"));
+                                    new Welcome().setVisible(true);
+                                    this.dispose();
+                                }else{
+                                    JOptionPane.showMessageDialog(rootPane,"Kata Sandi Anda Salah \n your password is wrong");
+                                    textPassword.setText("");
+                                    textRepeatPassword.setText("");
+                                    textPassword.requestFocus();
+                                }        
+                            }else{
+                                JOptionPane.showMessageDialog(rootPane,"Surel Anda Tidak Sesuai \n Your Email does not Match");
+                                textMail.setText("");
+                                textMail.requestFocus();
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Kata Sandi dan Konfirmasi kata Sandi anda Tidak Sesuai \n Your Password and Confirm Password Doesn't Match");
+                            textPassword.setText("");
+                            textRepeatPassword.setText("");
+                            textPassword.requestFocus();
+                        }
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(rootPane, "pengguna Tidak Ditemukan \n User not Found");
+                    textKaryawanid.setText("");
+                    textPassword.setText("");
+                    textRepeatPassword.setText("");
+                    textMail.setText("");
+                    textKaryawanid.requestFocus();
+
+                }
+            }catch(SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi \n Failed to Retrieve Information");
+            }
+        }
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void textMailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMailKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            Connection myConn;
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
+                if(myRess.next()){
+                    if (textPassword.getText().length()<4) {
+                        JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 4 karakter \n Make sure the password is at least 4 characters");
+                    }else{
+                        if (textPassword.getText().equals(textRepeatPassword.getText())) {
+                            if (textMail.getText().equals(myRess.getString("email"))){
+                                if (textPassword.getText().equals(myRess.getString("password"))) {
+                                    JOptionPane.showMessageDialog(null, "Berhasil Login \n successfully logged in");
+                                    MySession.set_karyawanID(myRess.getString("karyawan_id"));
+                                    MySession.set_nama(myRess.getString("name"));
+                                    MySession.set_ktp(myRess.getString("ktp"));
+                                    MySession.set_birthPlace(myRess.getString("birth_place"));
+                                    MySession.set_Birthday(myRess.getString("birthday"));
+                                    MySession.set_sex(myRess.getString("sex"));
+                                    MySession.set_marital(myRess.getString("marital"));
+                                    MySession.set_email(myRess.getString("email"));
+                                    MySession.set_mobileNumber(myRess.getString("no_hp"));
+                                    MySession.set_BPJS(myRess.getString("bpjs"));
+                                    MySession.set_NPWP(myRess.getString("npwp"));
+                                    MySession.set_JobPosition(myRess.getString("job_position"));
+                                    MySession.set_Sallary(myRess.getString("sallary"));
+                                    new Welcome().setVisible(true);
+                                    this.dispose();
+                                }else{
+                                    JOptionPane.showMessageDialog(rootPane,"Kata Sandi Anda Salah \n your password is wrong");
+                                    textPassword.setText("");
+                                    textRepeatPassword.setText("");
+                                    textPassword.requestFocus();
+                                }        
+                            }else{
+                                JOptionPane.showMessageDialog(rootPane,"Surel Anda Tidak Sesuai \n Your Email does not Match");
+                                textMail.setText("");
+                                textMail.requestFocus();
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Kata Sandi dan Konfirmasi kata Sandi anda Tidak Sesuai \n Your Password and Confirm Password Doesn't Match");
+                            textPassword.setText("");
+                            textRepeatPassword.setText("");
+                            textPassword.requestFocus();
+                        }
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(rootPane, "pengguna Tidak Ditemukan \n User not Found");
+                    textKaryawanid.setText("");
+                    textPassword.setText("");
+                    textRepeatPassword.setText("");
+                    textMail.setText("");
+                    textKaryawanid.requestFocus();
+
+                }
+            }catch(SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi \n Failed to Retrieve Information");
+            }
+        }
+    }//GEN-LAST:event_textMailKeyPressed
 
     /**
      * @param args the command line arguments
@@ -324,6 +482,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -274,11 +274,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         jSeparator25 = new javax.swing.JSeparator();
         jLabel75 = new javax.swing.JLabel();
         jLabel77 = new javax.swing.JLabel();
-        t_wanita = new javax.swing.JRadioButton();
-        t_pria = new javax.swing.JRadioButton();
-        t_menikah = new javax.swing.JRadioButton();
         jLabel80 = new javax.swing.JLabel();
-        t_lajang = new javax.swing.JRadioButton();
         jSeparator26 = new javax.swing.JSeparator();
         jLabel81 = new javax.swing.JLabel();
         jSeparator27 = new javax.swing.JSeparator();
@@ -354,6 +350,10 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_ddesa = new CustomResource.CustomTextfield();
         t_npwp = new CustomResource.CustomFormatField();
         t_lamaran = new CustomResource.ComboBoxSuggestion();
+        t_lajang = new CustomResource.RadioButtonCustom();
+        t_menikah = new CustomResource.RadioButtonCustom();
+        t_pria = new CustomResource.RadioButtonCustom();
+        t_wanita = new CustomResource.RadioButtonCustom();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -377,36 +377,9 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel77.setText("Status Pernikahan / Marital Status");
         jPanel1.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, -1, 20));
 
-        radioGrupGender.add(t_wanita);
-        t_wanita.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        t_wanita.setText("Wanita");
-        jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 160, -1, -1));
-
-        radioGrupGender.add(t_pria);
-        t_pria.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        t_pria.setSelected(true);
-        t_pria.setText("Pria");
-        t_pria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_priaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(t_pria, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, -1, -1));
-
-        radioGrupStatus.add(t_menikah);
-        t_menikah.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        t_menikah.setText("Sudah Menikah");
-        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 190, -1, -1));
-
         jLabel80.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel80.setText("Jenis Kelamin / Gender");
         jPanel1.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 120, 20));
-
-        radioGrupStatus.add(t_lajang);
-        t_lajang.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        t_lajang.setSelected(true);
-        t_lajang.setText("Lajang");
-        jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 190, -1, -1));
         jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, 40, 20));
 
         jLabel81.setText("Tempat Tinggal saat ini / Current Address");
@@ -825,6 +798,22 @@ public class CandidateApplication extends javax.swing.JPanel {
         });
         jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 190, 30));
 
+        radioGrupStatus.add(t_lajang);
+        t_lajang.setText("Single");
+        jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 190, -1, -1));
+
+        radioGrupStatus.add(t_menikah);
+        t_menikah.setText("Married");
+        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 190, -1, -1));
+
+        radioGrupGender.add(t_pria);
+        t_pria.setText("Male");
+        jPanel1.add(t_pria, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, -1, -1));
+
+        radioGrupGender.add(t_wanita);
+        t_wanita.setText("Female");
+        jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 160, -1, -1));
+
         jScrollPane18.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1010,10 +999,6 @@ public class CandidateApplication extends javax.swing.JPanel {
     private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable2InputMethodTextChanged
-
-    private void t_priaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_priaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_priaActionPerformed
 
     private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed
         // TODO add your handling code here:
@@ -1222,15 +1207,15 @@ public class CandidateApplication extends javax.swing.JPanel {
     private CustomResource.CustomTextfield t_hkec;
     private CustomResource.CustomTextfield t_hp;
     private CustomResource.CustomTextfield t_ktp;
-    private javax.swing.JRadioButton t_lajang;
+    private CustomResource.RadioButtonCustom t_lajang;
     private CustomResource.ComboBoxSuggestion t_lamaran;
-    private javax.swing.JRadioButton t_menikah;
+    private CustomResource.RadioButtonCustom t_menikah;
     private CustomResource.CustomTextfield t_nama;
     private CustomResource.CustomFormatField t_npwp;
-    private javax.swing.JRadioButton t_pria;
+    private CustomResource.RadioButtonCustom t_pria;
     private com.toedter.calendar.JDateChooser t_tgl;
     private CustomResource.CustomTextfield t_tlhir;
-    private javax.swing.JRadioButton t_wanita;
+    private CustomResource.RadioButtonCustom t_wanita;
     // End of variables declaration//GEN-END:variables
 
     private void dispose() {
