@@ -16,6 +16,13 @@ import HumanResource.ApplicationResignation;
 import HumanResource.CandidateProfile;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
+import HumanResource.CandidateApplicationAcademic;
+import HumanResource.CandidateApplicationCareer;
+import HumanResource.CandidateApplicationCertificates;
+import HumanResource.CandidateApplicationFamily;
+import HumanResource.CandidateApplicationIntroduction;
+import HumanResource.CandidateApplicationPersonal;
+import HumanResource.CandidateApplicationSKCK;
 import HumanResource.ConfirmationHandingOverTakingOver;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
@@ -39,6 +46,13 @@ public class main extends javax.swing.JFrame {
     
     
     CandidateApplication ca;
+            CandidateApplicationPersonal candidateApplicationPersonal;
+            CandidateApplicationAcademic candidateApplicationAcademic;
+            CandidateApplicationFamily candidateApplicationFamily;
+            CandidateApplicationCertificates candidateApplicationCertificates;
+            CandidateApplicationCareer candidateApplicationCareer;
+            CandidateApplicationIntroduction candidateApplicationIntroduction;
+            CandidateApplicationSKCK candidateApplicationSKCK;
         CandidateList candidateListPanel;
         CandidateProfile candidateProfile;
     EmployeeConfirmation employeeConfirmation;
@@ -63,6 +77,13 @@ public class main extends javax.swing.JFrame {
         initComponents();
         
         ca = new CandidateApplication();
+                candidateApplicationPersonal = new CandidateApplicationPersonal();
+                candidateApplicationAcademic = new CandidateApplicationAcademic();
+                candidateApplicationFamily = new CandidateApplicationFamily();
+                candidateApplicationCertificates = new CandidateApplicationCertificates();
+                candidateApplicationCareer = new CandidateApplicationCareer();
+                candidateApplicationIntroduction = new CandidateApplicationIntroduction();
+                candidateApplicationSKCK = new CandidateApplicationSKCK();
             candidateListPanel = new CandidateList();
             candidateProfile = new CandidateProfile();
         employeeConfirmation = new EmployeeConfirmation();
@@ -83,6 +104,13 @@ public class main extends javax.swing.JFrame {
         changePasswordPanel = new ChangePassword();
         
         BoxPanel.add(ca);
+                BoxPanel.add(candidateApplicationPersonal);
+                BoxPanel.add(candidateApplicationAcademic);
+                BoxPanel.add(candidateApplicationFamily);
+                BoxPanel.add(candidateApplicationCertificates);
+                BoxPanel.add(candidateApplicationCareer);
+                BoxPanel.add(candidateApplicationIntroduction);
+                BoxPanel.add(candidateApplicationSKCK);
             BoxPanel.add(candidateListPanel);
             BoxPanel.add(candidateProfile);
         BoxPanel.add(employeeConfirmation);
@@ -103,6 +131,13 @@ public class main extends javax.swing.JFrame {
         BoxPanel.add(changePasswordPanel);
         
         ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
             candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
@@ -166,6 +201,7 @@ public class main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         buttonLogin = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        buttonLogin1 = new javax.swing.JButton();
         ToolBar = new javax.swing.JMenuBar();
         homeBar = new javax.swing.JMenu();
         undoBar = new javax.swing.JMenu();
@@ -231,16 +267,16 @@ public class main extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("PT. Achivon Prestasi Abadi");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 220, 40));
+        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 220, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("please click Login below");
-        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 310, 40));
+        jLabel3.setText("ingin bekerja dengan kami?");
+        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 310, 40));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setText("Welcome to");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 110, 40));
+        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 110, 40));
 
         buttonLogin.setBackground(new java.awt.Color(0, 51, 255));
         buttonLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -251,10 +287,23 @@ public class main extends javax.swing.JFrame {
                 buttonLoginActionPerformed(evt);
             }
         });
-        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, 150, 40));
+        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 150, 40));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo6.png"))); // NOI18N
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 20, 20));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("please click Login below");
+        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 310, 40));
+
+        buttonLogin1.setBackground(new java.awt.Color(255, 0, 0));
+        buttonLogin1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        buttonLogin1.setForeground(new java.awt.Color(255, 255, 255));
+        buttonLogin1.setText("Register");
+        buttonLogin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLogin1ActionPerformed(evt);
+            }
+        });
+        MainPanel.add(buttonLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 150, 40));
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
         homeBar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -528,6 +577,13 @@ public class main extends javax.swing.JFrame {
     private void homeBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeBarMouseClicked
         MainPanel.setVisible(true);
         ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
             candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
@@ -554,6 +610,13 @@ public class main extends javax.swing.JFrame {
 
     private void candidateListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateListActionPerformed
         MainPanel.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             ca.setVisible(false);
             candidateListPanel.setVisible(true);
         candidateProfile.setVisible(false);
@@ -577,6 +640,13 @@ public class main extends javax.swing.JFrame {
 
     private void applicationFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationFormActionPerformed
         MainPanel.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             ca.setVisible(true);
             candidateListPanel.setVisible(false);
         candidateProfile.setVisible(false);
@@ -601,6 +671,13 @@ public class main extends javax.swing.JFrame {
     private void employingConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employingConfirmationActionPerformed
         MainPanel.setVisible(false);
         ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
             candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(true);
@@ -624,6 +701,13 @@ public class main extends javax.swing.JFrame {
     private void EmployeeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeStatusActionPerformed
         MainPanel.setVisible(false);
         ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
             candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
@@ -653,15 +737,22 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_SMLogoutActionPerformed
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        new LoginFrame().setVisible(true);
+         new LoginFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         MainPanel.setVisible(false);
         ca.setVisible(false);
-        candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
+            candidateListPanel.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -683,8 +774,15 @@ public class main extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         MainPanel.setVisible(false);
         ca.setVisible(false);
-        candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
+            candidateListPanel.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -705,9 +803,16 @@ public class main extends javax.swing.JFrame {
 
     private void AllocationAnouncementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllocationAnouncementActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -728,9 +833,16 @@ public class main extends javax.swing.JFrame {
 
     private void NotificationtoNewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationtoNewEmployeeActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(true);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -751,9 +863,16 @@ public class main extends javax.swing.JFrame {
 
     private void ChecklistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChecklistActionPerformed
 //        MainPanel.setVisible(false);
-//            ca.setVisible(false);
+//        ca.setVisible(false);
+//                candidateApplicationPersonal.setVisible(false);
+//                candidateApplicationAcademic.setVisible(false);
+//                candidateApplicationFamily.setVisible(false);
+//                candidateApplicationCertificates.setVisible(false);
+//                candidateApplicationCareer.setVisible(false);
+//                candidateApplicationIntroduction.setVisible(false);
+//                candidateApplicationSKCK.setVisible(false);
 //            candidateListPanel.setVisible(false);
-//        candidateProfile.setVisible(false);
+//            candidateProfile.setVisible(false);
 //        employeeConfirmation.setVisible(false);
 //        notificationToNewEmployee.setVisible(false);
 //        summaryStatusCandidatEmployee.setVisible(false);
@@ -774,9 +893,16 @@ public class main extends javax.swing.JFrame {
 
     private void RequestEmployeeAllocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestEmployeeAllocationActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -788,7 +914,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
@@ -797,9 +923,16 @@ public class main extends javax.swing.JFrame {
 
     private void ApplicationLeaveofAbsenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationLeaveofAbsenceActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -811,7 +944,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
@@ -820,9 +953,16 @@ public class main extends javax.swing.JFrame {
 
     private void ApplicationRehabilitationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationRehabilitationActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -834,7 +974,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
@@ -857,7 +997,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
@@ -866,9 +1006,16 @@ public class main extends javax.swing.JFrame {
 
     private void EmployeeClearanceStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeClearanceStatusActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -880,7 +1027,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(true);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
@@ -889,9 +1036,16 @@ public class main extends javax.swing.JFrame {
 
     private void ConfirmationHandoverTakeoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmationHandoverTakeoverActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -903,7 +1057,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(true);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
@@ -912,9 +1066,16 @@ public class main extends javax.swing.JFrame {
 
     private void DiciplinaryRevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiciplinaryRevolutionActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -926,7 +1087,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(true);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
@@ -935,9 +1096,16 @@ public class main extends javax.swing.JFrame {
 
     private void EmployeeEvaluationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeEvaluationActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -949,7 +1117,7 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(true);
+        employeeEvaluation.setVisible(true);
         addJobVacancy.setVisible(false);
         
         employeeProfilePanel.setVisible(false);
@@ -958,9 +1126,16 @@ public class main extends javax.swing.JFrame {
 
     private void AddJobVacancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddJobVacancyActionPerformed
         MainPanel.setVisible(false);
-            ca.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
             candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
+            candidateProfile.setVisible(false);
         employeeConfirmation.setVisible(false);
         notificationToNewEmployee.setVisible(false);
         summaryStatusCandidatEmployee.setVisible(false);
@@ -972,12 +1147,42 @@ public class main extends javax.swing.JFrame {
         employeeClearanceStatus.setVisible(false);
         confirmationHandingOverTakingOver.setVisible(false);
         disciplnaryResolution.setVisible(false);
-        EmployeeEvaluation.setVisible(false);
+        employeeEvaluation.setVisible(false);
         addJobVacancy.setVisible(true);
         
         employeeProfilePanel.setVisible(false);
         changePasswordPanel.setVisible(false);
     }//GEN-LAST:event_AddJobVacancyActionPerformed
+
+    private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
+        MainPanel.setVisible(false);
+        ca.setVisible(false);
+                candidateApplicationPersonal.setVisible(true);
+                candidateApplicationAcademic.setVisible(false);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
+            candidateListPanel.setVisible(false);
+            candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_buttonLogin1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1041,6 +1246,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenu WarehouseSystem;
     private javax.swing.JMenuItem applicationForm;
     private javax.swing.JButton buttonLogin;
+    private javax.swing.JButton buttonLogin1;
     private javax.swing.JMenu candidateApplication;
     private javax.swing.JMenuItem candidateList;
     private javax.swing.JMenuItem employingConfirmation;

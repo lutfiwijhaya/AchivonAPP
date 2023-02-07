@@ -127,6 +127,9 @@ public class LoginFrame extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textMailKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textMailKeyTyped(evt);
+            }
         });
         jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 260, -1));
 
@@ -148,6 +151,9 @@ public class LoginFrame extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textRepeatPasswordKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textRepeatPasswordKeyTyped(evt);
+            }
         });
         jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 260, -1));
 
@@ -156,6 +162,9 @@ public class LoginFrame extends javax.swing.JFrame {
         textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textPasswordKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textPasswordKeyTyped(evt);
             }
         });
         jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 260, -1));
@@ -441,6 +450,27 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_textMailKeyPressed
+
+    private void textPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textPasswordKeyTyped
+        if(textPassword.getText().length()>7){
+            JOptionPane.showMessageDialog(null, "Maximal karakter 8 \n Maximal character 8");
+            evt.consume();
+        }
+    }//GEN-LAST:event_textPasswordKeyTyped
+
+    private void textRepeatPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textRepeatPasswordKeyTyped
+        if(textRepeatPassword.getText().length()>7){
+            JOptionPane.showMessageDialog(null, "Maximal karakter 8 \n Maximal character 8");
+            evt.consume();
+        }
+    }//GEN-LAST:event_textRepeatPasswordKeyTyped
+
+    private void textMailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMailKeyTyped
+        if(textRepeatPassword.getText().length()>34){
+            JOptionPane.showMessageDialog(null, "Maximal 35 karakter  \n Maximal character 35");
+            evt.consume();
+        }
+    }//GEN-LAST:event_textMailKeyTyped
 
     /**
      * @param args the command line arguments

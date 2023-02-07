@@ -21,6 +21,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import CustomResource.koneksi;
+import Employee.ChangePassword;
+import Employee.EmployeeProfilePanel;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -30,7 +32,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import javax.swing.table.DefaultTableModel;
 
-public class CandidateApplication extends javax.swing.JPanel {
+public class CandidateApplicationPersonal extends javax.swing.JPanel {
 
     Statement stm;
     ResultSet rs;
@@ -42,17 +44,40 @@ public class CandidateApplication extends javax.swing.JPanel {
     String tanggal;
     
 
-    /**
-     * Creates new form CandidateApplication
-     */
-    public CandidateApplication() {
+    CandidateApplication ca;
+//            CandidateApplicationPersonal candidateApplicationPersonal;
+            CandidateApplicationAcademic candidateApplicationAcademic;
+            CandidateApplicationFamily candidateApplicationFamily;
+            CandidateApplicationCertificates candidateApplicationCertificates;
+            CandidateApplicationCareer candidateApplicationCareer;
+            CandidateApplicationIntroduction candidateApplicationIntroduction;
+            CandidateApplicationSKCK candidateApplicationSKCK;
+        CandidateList candidateListPanel;
+        CandidateProfile candidateProfile;
+    EmployeeConfirmation employeeConfirmation;
+    NotificationToNewEmployee notificationToNewEmployee;
+    AllocationAnnouncement allocationAnnouncement;
+    SummaryStatusCandidatEmployee summaryStatusCandidatEmployee;
+    RequestEmployeeAllocation requestEmployeeAllocation;
+    LeaveOfAbsense leaveOfAbsense;
+    AplicationRehabilitation aplicationRehabilitation;
+    ApplicationResignation applicationResignation;
+    EmployeeClearanceStatus employeeClearanceStatus;
+    ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
+    DisciplnaryResolution disciplnaryResolution;
+    EmployeeEvaluation employeeEvaluation;
+    AddJobVacancy addJobVacancy;
+    
+    EmployeeProfilePanel employeeProfilePanel;
+    ChangePassword changePasswordPanel;
+    public CandidateApplicationPersonal() {
         initComponents();
         openDB();
         tampil();
         MyWindow();
         currentBox();
         id_employee();
-        jToggleButton1.setEnabled(false);
+//        jToggleButton1.setEnabled(false);
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
        
@@ -87,10 +112,7 @@ public class CandidateApplication extends javax.swing.JPanel {
 
     }
 
-    private void setfokus() {
-        jTable2.requestFocus();
-        jTable2.editCellAt(0, 0);
-    }
+    
 
     private void id_employee() {
         String sql = "select max(id_employee) from cd_employee ";
@@ -107,137 +129,10 @@ public class CandidateApplication extends javax.swing.JPanel {
         }
     }
 
-    private void simpan_family() {
-
-        jTable3.editCellAt(0, 0);
-        DefaultTableModel tabelfamily = (DefaultTableModel) jTable3.getModel();
-        int htabelfamily = jTable3.getRowCount();
-
-        for (int i = 0; i <= htabelfamily - 1; i++) {
-            if (jTable3.getValueAt(i, 0) == null) {
-
-            } else {
-                String dtabel_nama = jTable3.getValueAt(i, 0).toString();
-                String dtabel_hub = jTable3.getValueAt(i, 1).toString();
-                String dtabel_tgl = jTable3.getValueAt(i, 2).toString();
-                String dtabel_tinggal = jTable3.getValueAt(i, 3).toString();
-                String dtabel_hp = jTable3.getValueAt(i, 3).toString();
-
-                try {
-                    stm = koneksi.createStatement();
-                    String sql = "insert into cd_family (id_employee,name,hubungan,Birthday,cohabit,No_HP) values('" + da + "'"
-                            + ",'" + dtabel_nama + "'"
-                            + ",'" + dtabel_hub + "'"
-                            + ",'" + dtabel_tgl + "'"
-                            + ",'" + dtabel_tinggal + "','" + dtabel_hp + "')";
-
-                    stm.executeUpdate(sql);
-
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-
-        }
-
-    }
-
-    private void simpan_serifikat() {
-        jTable1.editCellAt(0, 0);
-        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable1.getModel();
-        int jtabelrows = jTable1.getRowCount();
-
-        for (int i = 0; i <= jtabelrows - 1; i++) {
-            if (jTable1.getValueAt(i, 0) == null) {
-
-            } else {
-                String dtabel_tgl = jTable1.getValueAt(i, 0).toString();
-                String dtabel_nama = jTable1.getValueAt(i, 1).toString();
-                String dtabel_autor = jTable1.getValueAt(i, 2).toString();
-                String dtabel_lokasi = jTable1.getValueAt(i, 3).toString();
-                String dtabel_no = jTable1.getValueAt(i, 3).toString();
-
-                try {
-                    stm = koneksi.createStatement();
-                    String sql = "insert into cd_certificates (id_employee,acquisition,name_certificate,location,name_authority,no_certificate) values('" + da + "'"
-                            + ",'" + dtabel_tgl + "'"
-                            + ",'" + dtabel_nama + "'"
-                            + ",'" + dtabel_autor + "'"
-                            + ",'" + dtabel_lokasi + "','" + dtabel_no + "')";
-
-                    stm.executeUpdate(sql);
-                    stm.close();
-
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-                }
-
-            }
-        }
-
-    }
-
-    private void simpan_career() {
-        jTable4.editCellAt(0, 0);
-        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable4.getModel();
-        int jtabelrows = jTable4.getRowCount();
-
-        for (int i = 0; i <= jtabelrows - 1; i++) {
-            if (jTable4.getValueAt(i, 0) == null) {
-
-            } else {
-                String dtabel_nama = jTable4.getValueAt(i, 0).toString();
-                String dtabel_posisi = jTable4.getValueAt(i, 1).toString();
-                String dtabel_period = jTable4.getValueAt(i, 2).toString();
-                String dtabel_career = jTable4.getValueAt(i, 3).toString();
-
-                try {
-                    stm = koneksi.createStatement();
-                    String sql = "insert into cd_summary_career (id_employee,company_name,job_position,period,career) values('" + da + "'"
-                            + ",'" + dtabel_nama + "'"
-                            + ",'" + dtabel_posisi + "'"
-                            + ",'" + dtabel_period + "'"
-                            + ",'" + dtabel_career + "')";
-
-                    stm.executeUpdate(sql);
-                    stm.close();
-
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-                }
-
-            }
-        }
-
-    }
-
-    private void simpan_motivation() {
-        String g_ta = jTextArea1.getText();
-        String g_ta2 = jTextArea2.getText();
-
-        try {
-            stm = koneksi.createStatement();
-            String sql = "insert into cd_motivation (id_employee,motivation1,motivation2) values('" + da + "'"
-                    + ",'" + g_ta + "'"
-                    + ",'" + g_ta2 + "')";
-
-            stm.executeUpdate(sql);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-    
-    
-      void get_tanggal() {
-
+    void get_tanggal() {
         Date ys = new Date();
         SimpleDateFormat s = new SimpleDateFormat("dd-MMM-yyy");
         tanggal = s.format(ys);
-    
-      
-
     }
 
     public void currentBox() {
@@ -270,8 +165,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         radioGrupStatus = new javax.swing.ButtonGroup();
         jScrollPane18 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel71 = new javax.swing.JLabel();
-        jSeparator25 = new javax.swing.JSeparator();
         jLabel75 = new javax.swing.JLabel();
         jLabel77 = new javax.swing.JLabel();
         jLabel80 = new javax.swing.JLabel();
@@ -286,32 +179,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel85 = new javax.swing.JLabel();
         jLabel86 = new javax.swing.JLabel();
         jSeparator30 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane20 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jLabel87 = new javax.swing.JLabel();
-        jSeparator31 = new javax.swing.JSeparator();
-        jLabel88 = new javax.swing.JLabel();
-        jSeparator32 = new javax.swing.JSeparator();
-        jScrollPane21 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jSeparator33 = new javax.swing.JSeparator();
-        jLabel89 = new javax.swing.JLabel();
-        jScrollPane22 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jLabel90 = new javax.swing.JLabel();
-        jSeparator34 = new javax.swing.JSeparator();
-        jScrollPane23 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel91 = new javax.swing.JLabel();
         jLabel92 = new javax.swing.JLabel();
-        jScrollPane24 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jSeparator35 = new javax.swing.JSeparator();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jLabel93 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jScrollPane25 = new javax.swing.JScrollPane();
         t_halamat = new javax.swing.JTextArea();
         jLabel97 = new javax.swing.JLabel();
@@ -337,7 +205,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_bpjsKetenagakerjaan = new CustomResource.CustomTextfield();
         t_dicipline = new CustomResource.CustomTextfield();
         t_bpjsKesehatan = new CustomResource.CustomTextfield();
-        jLabel94 = new javax.swing.JLabel();
         curentCountry = new CustomResource.ComboBoxSuggestion();
         cprov = new CustomResource.ComboBoxSuggestion();
         ccity = new CustomResource.ComboBoxSuggestion();
@@ -354,8 +221,10 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_menikah = new CustomResource.RadioButtonCustom();
         t_pria = new CustomResource.RadioButtonCustom();
         t_wanita = new CustomResource.RadioButtonCustom();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableCustom1 = new CustomResource.TableCustom();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -363,14 +232,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setAutoscrolls(true);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel71.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel71.setText("2. Riwayat Pendidikan / Academic");
-        jPanel1.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 850, -1, 30));
-
-        jSeparator25.setBackground(new java.awt.Color(255, 0, 0));
-        jSeparator25.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 870, 650, 20));
 
         jLabel75.setText("Tanggal Lahir / Birth Date");
         jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, 30));
@@ -411,188 +272,7 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jSeparator30.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator30, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 640, 20));
-
-        jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Diraih pada Tanggal", "Nama Sertifikat", "Nama Badan Penyelenggara", "Lokasi Penyelenggara", "No. Sertifikat"
-            }
-        ));
-        jTable1.setShowHorizontalLines(true);
-        jTable1.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1180, 850, 90));
-
-        jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Tanggal Lulus", "Nama Sekolah/Universitas", "Lokasi", "Jurusan/Bidang Keahlian"
-            }
-        ));
-        jTable2.setCellSelectionEnabled(true);
-        jTable2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable2.setShowHorizontalLines(true);
-        jTable2.setShowVerticalLines(true);
-        jTable2.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTable2InputMethodTextChanged(evt);
-            }
-        });
-        jScrollPane20.setViewportView(jTable2);
-        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 890, 850, 90));
-
-        jLabel87.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel87.setText("3. Status Keluarga / Family Status");
-        jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 990, 200, 30));
-
-        jSeparator31.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 1010, 650, 20));
-
-        jLabel88.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel88.setText("4. Sertifikat Resmi Keahlian / Authorized Certificate Skill");
-        jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1140, 330, 30));
-
-        jSeparator32.setBackground(new java.awt.Color(255, 0, 0));
-        jSeparator32.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 1160, 530, 20));
-
-        jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Nama Anggota", "Hubungan", "Tanggal Lahir", "Tinggal Bersama  (Ya atau Tidak)", "No Handphone"
-            }
-        ));
-        jTable3.setShowHorizontalLines(true);
-        jTable3.setShowVerticalLines(true);
-        jScrollPane21.setViewportView(jTable3);
-
-        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1030, 850, 90));
-
-        jSeparator33.setBackground(new java.awt.Color(255, 0, 0));
-        jSeparator33.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 1300, 550, 20));
-
-        jLabel89.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel89.setText("5. Ringkasan Status Karir / Summary of Carrer Status");
-        jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1280, 310, 30));
-
-        jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nama Perusahaan", "Posisi Pekerjaan", "Periode (mm-yyyy - mmm-yyyy)", "Karir (Tahun atau Bulan)"
-            }
-        ));
-        jTable4.setShowHorizontalLines(true);
-        jTable4.setShowVerticalLines(true);
-        jScrollPane22.setViewportView(jTable4);
-
-        jPanel1.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1320, 850, 90));
-
-        jLabel90.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel90.setText("1. Motivasi untuk Melamar");
-        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1450, 350, 30));
-
-        jSeparator34.setBackground(new java.awt.Color(255, 0, 0));
-        jSeparator34.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 1440, 570, 20));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane23.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1490, 800, 130));
-
-        jLabel91.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel91.setText("6. Pengenalan diri untuk bergabung degan kami");
-        jPanel1.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1420, 440, 30));
-        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 2250, 350, 30));
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane24.setViewportView(jTextArea2);
-
-        jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1670, 800, 130));
-
-        jSeparator35.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 1830, 790, 20));
-
-        jCheckBox5.setText("Saya menjamin bahwa seluruh uraian di atas adalah benar");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1870, -1, -1));
-
-        jLabel93.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel93.setText("7. SKCK");
-        jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1810, 50, 30));
-
-        jToggleButton1.setText("SIMPAN / SAVE");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 1920, 120, 40));
+        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 1230, 350, 30));
 
         t_halamat.setColumns(20);
         t_halamat.setRows(5);
@@ -707,10 +387,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         });
         jPanel1.add(t_bpjsKesehatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 320, 340, -1));
 
-        jLabel94.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel94.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
-        jPanel1.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1630, 350, 30));
-
         curentCountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 curentCountryActionPerformed(evt);
@@ -821,20 +497,27 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_wanita.setText("Female");
         jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 160, -1, -1));
 
-        tableCustom1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jButton2.setText("Kembali / Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(tableCustom1);
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 990, 130, 30));
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1850, -1, 140));
+        jButton3.setText("Lanjut / Next");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 990, 130, 30));
+
+        jButton4.setText("Submit");
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 910, 130, 30));
+
+        jButton5.setText("Simpan / Save");
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 910, 130, 30));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -842,13 +525,16 @@ public class CandidateApplication extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1169, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1140, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -883,144 +569,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_calamat.setText(t_halamat.getText());
         t_cdesa.setText(t_ddesa.getText());        // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-        t_pria.setActionCommand("Laki - laki");
-        t_wanita.setActionCommand("Perempuan");
-        t_lajang.setActionCommand("Lajang");
-        t_menikah.setActionCommand("Menikah");
-
-        String g_nama = t_nama.getText();
-        String g_ktp = t_tlhir.getText();
-        String g_gender = radioGrupGender.getSelection().getActionCommand();
-        String g_status = radioGrupStatus.getSelection().getActionCommand();
-        String g_tlahir = t_tlhir.getText();
-        String g_tgl = String.valueOf(fm.format(t_tgl.getDate()));
-        String g_hp = t_hp.getText();
-        String g_email = t_email.getText();
-        String g_bpjs = t_bpjsKetenagakerjaan.getText();
-        String g_npwp = t_npwp.getText();
-        String g_lamaran = (String) t_lamaran.getSelectedItem();
-        String g_gaji = t_gaji.getText();
-        String g_discipline = t_dicipline.getText();
-
-        String g_hnegara = (String) homeCountry.getSelectedItem();
-        String g_hprov = (String) homeCity.getSelectedItem();
-        String g_hkota = (String) homeCity.getSelectedItem();
-        String g_cnegara = (String) curentCountry.getSelectedItem();
-        String g_cprov = (String) cprov.getSelectedItem();
-        String g_ckota = (String) ccity.getSelectedItem();
-        String g_hkec = t_hkec.getText();
-        String g_ckec = t_ckec.getText();
-        String g_hdesa = t_ddesa.getText();
-        String g_cdesa = t_cdesa.getText();
-        String g_halamat = t_halamat.getText();
-        String g_calamat = t_calamat.getText();
-        String sp = ", ";
-        String full_curent = g_calamat + sp + g_cdesa + sp + g_ckec + sp + g_ckota + sp + g_cprov + sp + g_cnegara;
-        String full_home = g_halamat + sp + g_hdesa + sp + g_hkec + sp + g_hkota + sp + g_hprov + sp + g_hnegara;
-
-        try {
-            stm = koneksi.createStatement();
-            String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,Applying_A,D_Salary,discipline,cd_date_apply) values('" + g_nama + "'"
-                    + ",'" + g_ktp + "'"
-                    + ",'" + g_email + "'"
-                    + ",'" + g_npwp + "'"
-                    + ",'" + g_gender + "'"
-                    + ",'" + g_tlahir + "'"
-                    + ",'" + g_tgl + "'"
-                    + ",'" + g_status + "'"
-                    + ",'" + g_hp + "'"
-                    + ",'" + g_bpjs + "'"
-                    + ",'" + g_lamaran + "'"
-                    + ",'" + g_gaji + "'"
-                    + ",'" + g_discipline + "'"
-                    + ",'" + tanggal + "')";
-
-            stm.executeUpdate(sql);
-
-            try {
-                Statement stm = koneksi.createStatement();
-
-                rs = stm.executeQuery("select*from cd_employee where KTP like '%" + t_tlhir.getText() + "%'");
-                while (rs.next()) {
-                    da = rs.getString("id_employee");
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
-                    + ",'" + g_hnegara + "'"
-                    + ",'" + g_hprov + "'"
-                    + ",'" + g_hkota + "'"
-                    + ",'" + g_hkec + "'"
-                    + ",'" + g_hdesa + "'"
-                    + ",'" + g_halamat + "'"
-                    + ",'" + g_cnegara + "'"
-                    + ",'" + g_cprov + "'"
-                    + ",'" + g_ckota + "'"
-                    + ",'" + g_ckec + "'"
-                    + ",'" + g_cdesa + "'"
-                    + ",'" + g_calamat + "'"
-                    + ",'" + full_home + "'"
-                    + ",'" + full_curent + "')";
-
-            stm.executeUpdate(sql0);
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-        }
-
-        jTable2.editCellAt(0, 0);
-        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
-        int jtabelrows = jTable2.getRowCount();
-
-        for (int i = 0; i <= jtabelrows - 1; i++) {
-            if (jTable2.getValueAt(i, 0) == null) {
-
-            } else {
-                String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
-                String dtabel_univ = jTable2.getValueAt(i, 1).toString();
-                String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
-                String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
-
-                try {
-                    stm = koneksi.createStatement();
-                    String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
-                            + ",'" + dtabel_tgl + "'"
-                            + ",'" + dtabel_univ + "'"
-                            + ",'" + dtabel_lokasi + "'"
-                            + ",'" + dtabel_jurusan + "')";
-
-                    stm.executeUpdate(sql);
-
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-
-        }
-
-        simpan_family();
-        simpan_serifikat();
-        simpan_career();
-        simpan_motivation();
-        JOptionPane.showMessageDialog(null, "Data Tersimpan");
-        this.dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        jToggleButton1.setEnabled(true);
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
-
-    private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable2InputMethodTextChanged
 
     private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed
         // TODO add your handling code here:
@@ -1152,6 +700,39 @@ public class CandidateApplication extends javax.swing.JPanel {
 //        asd
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ca.setVisible(false);
+//                candidateApplicationPersonal.setVisible(false);
+                candidateApplicationAcademic.setVisible(true);
+                candidateApplicationFamily.setVisible(false);
+                candidateApplicationCertificates.setVisible(false);
+                candidateApplicationCareer.setVisible(false);
+                candidateApplicationIntroduction.setVisible(false);
+                candidateApplicationSKCK.setVisible(false);
+            candidateListPanel.setVisible(false);
+            candidateProfile.setVisible(false);
+        employeeConfirmation.setVisible(false);
+        notificationToNewEmployee.setVisible(false);
+        summaryStatusCandidatEmployee.setVisible(false);
+        allocationAnnouncement.setVisible(false);
+        requestEmployeeAllocation.setVisible(false);
+        leaveOfAbsense.setVisible(false);
+        aplicationRehabilitation.setVisible(false);
+        applicationResignation.setVisible(false);
+        employeeClearanceStatus.setVisible(false);
+        confirmationHandingOverTakingOver.setVisible(false);
+        disciplnaryResolution.setVisible(false);
+        employeeEvaluation.setVisible(false);
+        addJobVacancy.setVisible(false);
+        
+        employeeProfilePanel.setVisible(false);
+        changePasswordPanel.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.ComboBoxSuggestion ccity;
@@ -1161,14 +742,16 @@ public class CandidateApplication extends javax.swing.JPanel {
     private CustomResource.ComboBoxSuggestion homeCountry;
     private CustomResource.ComboBoxSuggestion homeState;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
-    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel80;
@@ -1178,46 +761,19 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane18;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane20;
-    private javax.swing.JScrollPane jScrollPane21;
-    private javax.swing.JScrollPane jScrollPane22;
-    private javax.swing.JScrollPane jScrollPane23;
-    private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane26;
-    private javax.swing.JSeparator jSeparator25;
     private javax.swing.JSeparator jSeparator26;
     private javax.swing.JSeparator jSeparator27;
     private javax.swing.JSeparator jSeparator28;
     private javax.swing.JSeparator jSeparator29;
     private javax.swing.JSeparator jSeparator30;
-    private javax.swing.JSeparator jSeparator31;
-    private javax.swing.JSeparator jSeparator32;
-    private javax.swing.JSeparator jSeparator33;
-    private javax.swing.JSeparator jSeparator34;
-    private javax.swing.JSeparator jSeparator35;
     private javax.swing.JSeparator jSeparator41;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel labelfoto;
     private javax.swing.ButtonGroup radioGrupGender;
     private javax.swing.ButtonGroup radioGrupStatus;
@@ -1243,7 +799,6 @@ public class CandidateApplication extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser t_tgl;
     private CustomResource.CustomTextfield t_tlhir;
     private CustomResource.RadioButtonCustom t_wanita;
-    private CustomResource.TableCustom tableCustom1;
     // End of variables declaration//GEN-END:variables
 
     private void dispose() {
