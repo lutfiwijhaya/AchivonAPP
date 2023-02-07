@@ -43,8 +43,6 @@ import javax.swing.JFrame;
  */
 public class main extends javax.swing.JFrame {
     
-    
-    
     CandidateApplication ca;
             CandidateApplicationPersonal candidateApplicationPersonal;
             CandidateApplicationAcademic candidateApplicationAcademic;
@@ -170,7 +168,7 @@ public class main extends javax.swing.JFrame {
             AcountingSystem.setEnabled(false);
             myProfile.setVisible(false);
             SMLogout.setVisible(false);
-            ToolBar.setVisible(true);
+            ToolBar.setVisible(false);
         } else {
             myProfile.setText(nama_log);
             ToolBar.add(Box.createHorizontalGlue());
@@ -1156,8 +1154,8 @@ public class main extends javax.swing.JFrame {
 
     private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
         MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(true);
+        ca.setVisible(true);
+                candidateApplicationPersonal.setVisible(false);
                 candidateApplicationAcademic.setVisible(false);
                 candidateApplicationFamily.setVisible(false);
                 candidateApplicationCertificates.setVisible(false);

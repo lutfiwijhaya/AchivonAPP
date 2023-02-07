@@ -56,32 +56,78 @@ public class CandidateApplication extends javax.swing.JPanel {
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
         
-        DefaultTableModel model = (DefaultTableModel) myTable.getModel();
-        model.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableData(), "Sistem Informasi"});
-        model.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableData(), "Sistem Informasi"});
-        myTable.autoRowHeight(myTable);
+        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
+        model2.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
+        model2.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
+        jTable2.autoRowHeight(jTable2);
+        
+        DefaultTableModel model3 = (DefaultTableModel) jTable3.getModel();
+        model3.addRow(new Object[]{"John", "", "12-may-1976", getSubTableDataFamily(), ""});
+        model3.addRow(new Object[]{"Deep", "", "02-jan-1982", getSubTableDataFamily(), ""});
+        jTable3.autoRowHeight(jTable3);
+        
+        DefaultTableModel model4 = (DefaultTableModel) jTable4.getModel();
+        model4.addRow(new Object[]{"22-Des-2022", "Udemy", "Udemy", getSubTableDataCertificate(), ""});
+        model4.addRow(new Object[]{"02-Nov-2022", "Dicoding", "Dicoding", getSubTableDataCertificate(), ""});
+        jTable4.autoRowHeight(jTable4);
+        
+        DefaultTableModel model5 = (DefaultTableModel) jTable5.getModel();
+        model5.addRow(new Object[]{"Example name", "Example Position", getSubTableDataCareer(), ""});
+        model5.addRow(new Object[]{"Example name", "Example Position", getSubTableDataCareer(), ""});
+        jTable5.autoRowHeight(jTable5);
     }
     
-    private DefaultTableModel getSubTableData() {
+    private DefaultTableModel getSubTableDataAcademic() {
         DefaultTableModel data = new DefaultTableModel();
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province",100), new CustomResource.Header("Kota / City")});
-        data.addRow(new Object[]{new CustomResource.ComboBoxSuggestion(), "Kota Serang"});
+        data.addRow(new Object[]{"Banten", "Kota Serang"});
+//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
+        return data;
+    }
+    private DefaultTableModel getSubTableDataFamily() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(2);
+        data.addRow(new Object[]{new CustomResource.Header("YA / YES",100), new CustomResource.Header("TIDAK / NO")});
+        data.addRow(new Object[]{"YA / YES", ""});
+//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
+        return data;
+    }
+    private DefaultTableModel getSubTableDataCertificate() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(2);
+        data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province",100), new CustomResource.Header("Kota / City")});
+        data.addRow(new Object[]{"Jawa Timur", "Sragen"});
+//        data.addRow(new Object[]{"jawa Timur", "ngawi"});
+//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
+        return data;
+    }
+    private DefaultTableModel getSubTableDataCareer() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(2);
+        data.addRow(new Object[]{new CustomResource.Header("Dari Tanggal / Start Date",100), new CustomResource.Header("Sampai Tanggal / End Date")});
+        data.addRow(new Object[]{"1-jan-1999", "1-jan-2000"});
 //        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
 //        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
 //        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
     
-    private DefaultTableModel getSubTableData1() {
-        DefaultTableModel data = new DefaultTableModel();
-        data.setColumnCount(3);
+//    private DefaultTableModel getSubTableData1() {
+//        DefaultTableModel data = new DefaultTableModel();
+//        data.setColumnCount(3);
 //        data.addRow(new Object[]{new CustomResource.Header("No", 10), new CustomResource.Header("Type"), new CustomResource.Header("Qty")});
 //        data.addRow(new Object[]{1, "Unit", "50"});
 //        data.addRow(new Object[]{1, "Case", "70"});
 //        data.addRow(new Object[]{1, "Box", "3"});
-        return data;
-    }
+//        return data;
+//    }
 
     private void openDB() {
         try {
@@ -106,8 +152,8 @@ public class CandidateApplication extends javax.swing.JPanel {
     }
 
     private void setfokus() {
-        jTable2.requestFocus();
-        jTable2.editCellAt(0, 0);
+        jTable3.requestFocus();
+        jTable3.editCellAt(0, 0);
     }
 
     private void id_employee() {
@@ -154,18 +200,18 @@ public class CandidateApplication extends javax.swing.JPanel {
     }
 
     private void simpan_serifikat() {
-        jTable1.editCellAt(0, 0);
-        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable1.getModel();
-        int jtabelrows = jTable1.getRowCount();
+        jTable4.editCellAt(0, 0);
+        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable4.getModel();
+        int jtabelrows = jTable4.getRowCount();
 
         for (int i = 0; i <= jtabelrows - 1; i++) {
-            if (jTable1.getValueAt(i, 0) == null) {
+            if (jTable4.getValueAt(i, 0) == null) {
             } else {
-                String dtabel_tgl = jTable1.getValueAt(i, 0).toString();
-                String dtabel_nama = jTable1.getValueAt(i, 1).toString();
-                String dtabel_autor = jTable1.getValueAt(i, 2).toString();
-                String dtabel_lokasi = jTable1.getValueAt(i, 3).toString();
-                String dtabel_no = jTable1.getValueAt(i, 3).toString();
+                String dtabel_tgl = jTable4.getValueAt(i, 0).toString();
+                String dtabel_nama = jTable4.getValueAt(i, 1).toString();
+                String dtabel_autor = jTable4.getValueAt(i, 2).toString();
+                String dtabel_lokasi = jTable4.getValueAt(i, 3).toString();
+                String dtabel_no = jTable4.getValueAt(i, 3).toString();
                 try {
                     stm = koneksi.createStatement();
                     String sql = "insert into cd_certificates (id_employee,acquisition,name_certificate,location,name_authority,no_certificate) values('" + da + "'"
@@ -274,20 +320,12 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel85 = new javax.swing.JLabel();
         jLabel86 = new javax.swing.JLabel();
         jSeparator30 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane20 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jLabel87 = new javax.swing.JLabel();
         jSeparator31 = new javax.swing.JSeparator();
         jLabel88 = new javax.swing.JLabel();
         jSeparator32 = new javax.swing.JSeparator();
-        jScrollPane21 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
         jSeparator33 = new javax.swing.JSeparator();
         jLabel89 = new javax.swing.JLabel();
-        jScrollPane22 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
         jLabel90 = new javax.swing.JLabel();
         jSeparator34 = new javax.swing.JSeparator();
         jScrollPane23 = new javax.swing.JScrollPane();
@@ -343,7 +381,13 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_pria = new CustomResource.RadioButtonCustom();
         t_wanita = new CustomResource.RadioButtonCustom();
         jScrollPane1 = new javax.swing.JScrollPane();
-        myTable = new CustomResource.TableCustom();
+        jTable2 = new CustomResource.TableCustom();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new CustomResource.TableCustom();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new CustomResource.TableCustom();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new CustomResource.TableCustom();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -372,26 +416,28 @@ public class CandidateApplication extends javax.swing.JPanel {
         jPanel1.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 120, 20));
         jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, 40, 20));
 
+        jLabel81.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel81.setText("Tempat Tinggal saat ini / Current Address");
         jPanel1.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, -1, 20));
-        jPanel1.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 490, 50, 20));
+        jPanel1.add(jSeparator27, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 490, 50, 20));
 
-        jLabel82.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel82.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel82.setText("Negara / Country");
         jPanel1.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, -1, 30));
 
-        jLabel83.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel83.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel83.setText("Provinsi / Province");
         jPanel1.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 580, -1, 30));
 
-        jLabel84.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel84.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel84.setText("Kota / City");
         jPanel1.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 620, -1, 30));
-        jPanel1.add(jSeparator28, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 490, 80, 20));
-        jPanel1.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, 50, 20));
+        jPanel1.add(jSeparator28, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 490, 80, 20));
+        jPanel1.add(jSeparator29, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, 50, 20));
 
+        jLabel85.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel85.setText("Alamat Rumah / Home Address");
-        jPanel1.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, -1, 20));
+        jPanel1.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 480, -1, 20));
 
         jLabel86.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel86.setText("1. Data Diri / Personal Information");
@@ -399,59 +445,6 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jSeparator30.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator30, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 640, 20));
-
-        jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Diraih pada Tanggal", "Nama Sertifikat", "Nama Badan Penyelenggara", "Lokasi Penyelenggara", "No. Sertifikat"
-            }
-        ));
-        jTable1.setShowHorizontalLines(true);
-        jTable1.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1180, 850, 90));
-
-        jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Tanggal Lulus", "Nama Sekolah/Universitas", "Lokasi", "Jurusan/Bidang Keahlian"
-            }
-        ));
-        jTable2.setCellSelectionEnabled(true);
-        jTable2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable2.setShowHorizontalLines(true);
-        jTable2.setShowVerticalLines(true);
-        jTable2.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTable2InputMethodTextChanged(evt);
-            }
-        });
-        jScrollPane20.setViewportView(jTable2);
-        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 890, 850, 90));
 
         jLabel87.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel87.setText("3. Status Keluarga / Family Status");
@@ -468,35 +461,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         jSeparator32.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 1160, 530, 20));
 
-        jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Nama Anggota", "Hubungan", "Tanggal Lahir", "Tinggal Bersama  (Ya atau Tidak)", "No Handphone"
-            }
-        ));
-        jTable3.setShowHorizontalLines(true);
-        jTable3.setShowVerticalLines(true);
-        jScrollPane21.setViewportView(jTable3);
-
-        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1030, 850, 90));
-
         jSeparator33.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator33.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 1300, 550, 20));
@@ -504,35 +468,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         jLabel89.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel89.setText("5. Ringkasan Status Karir / Summary of Carrer Status");
         jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1280, 310, 30));
-
-        jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nama Perusahaan", "Posisi Pekerjaan", "Periode (mm-yyyy - mmm-yyyy)", "Karir (Tahun atau Bulan)"
-            }
-        ));
-        jTable4.setShowHorizontalLines(true);
-        jTable4.setShowVerticalLines(true);
-        jScrollPane22.setViewportView(jTable4);
-
-        jPanel1.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1320, 850, 90));
 
         jLabel90.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel90.setText("1. Motivasi untuk Melamar");
@@ -588,7 +523,7 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 740, 210, -1));
 
-        jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel97.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel97.setText("Alamat / Address");
         jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 770, 100, 30));
 
@@ -598,6 +533,7 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 770, 190, -1));
 
+        jCheckBox.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jCheckBox.setText("Sama dengan alamat Rumah / Same as Home Address");
         jCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -611,21 +547,21 @@ public class CandidateApplication extends javax.swing.JPanel {
         jPanel1.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, 30));
         jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 190, -1));
 
-        jLabel101.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel101.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel101.setText("Negara / Country");
-        jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, -1, 20));
+        jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 510, -1, 20));
 
-        jLabel102.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel102.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel102.setText("Alamat / Address");
-        jPanel1.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 730, -1, 30));
+        jPanel1.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 730, -1, 30));
 
-        jLabel103.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel103.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel103.setText("Provinsi / Province");
-        jPanel1.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 550, -1, 30));
+        jPanel1.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, -1, 30));
 
-        jLabel104.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel104.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel104.setText("Kota / City");
-        jPanel1.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 590, -1, 30));
+        jPanel1.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, -1, 30));
 
         jSeparator41.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator41, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 540, 20));
@@ -763,7 +699,7 @@ public class CandidateApplication extends javax.swing.JPanel {
                 t_hkecActionPerformed(evt);
             }
         });
-        jPanel1.add(t_hkec, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 630, 320, -1));
+        jPanel1.add(t_hkec, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 630, 310, -1));
 
         t_ddesa.setLabelText("Desa / Vilage");
         t_ddesa.addActionListener(new java.awt.event.ActionListener() {
@@ -771,7 +707,7 @@ public class CandidateApplication extends javax.swing.JPanel {
                 t_ddesaActionPerformed(evt);
             }
         });
-        jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 680, 320, -1));
+        jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 680, 310, -1));
 
         try {
             t_npwp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###.#-###.###")));
@@ -809,7 +745,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_wanita.setText("Female");
         jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 160, -1, -1));
 
-        myTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -817,9 +753,51 @@ public class CandidateApplication extends javax.swing.JPanel {
                 "Tanggal Lulus / Graduation Date", "Nama Sekolah / School Name", "Lokasi / Location", "Jurusan / Major"
             }
         ));
-        jScrollPane1.setViewportView(myTable);
+        jScrollPane1.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2010, 820, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 880, 850, 100));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nama Anggota / Members Name", "Relation / Hubungan", "Tanggal lahir / Birthday", "Tinggal bersama / Cohabit", "No Handphone"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+        if (jTable3.getColumnModel().getColumnCount() > 0) {
+            jTable3.getColumnModel().getColumn(4).setHeaderValue("No Sertifikat / Certificate No.");
+        }
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1020, 850, 100));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Diakuisisi / Acquisition", "Nama Sertifikat / Sertifikat Name", "Nama Penyelenggara / Authority Name", "Lokasi / Location", "No Sertifikat / Certificate No."
+            }
+        ));
+        jScrollPane4.setViewportView(jTable4);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(4).setHeaderValue("No Sertifikat / Certificate No.");
+        }
+
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1170, 850, 100));
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nama Perusahaan / Company name", "Posisi Pekerjaan / Job Position", "Periode / Period", "Karir / Career"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable5);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1310, 850, 100));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -992,10 +970,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         jToggleButton1.setEnabled(true);
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
-    private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable2InputMethodTextChanged
-
     private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t_emailActionPerformed
@@ -1158,14 +1132,13 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane18;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane20;
-    private javax.swing.JScrollPane jScrollPane21;
-    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane26;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator25;
     private javax.swing.JSeparator jSeparator26;
     private javax.swing.JSeparator jSeparator27;
@@ -1178,15 +1151,14 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator34;
     private javax.swing.JSeparator jSeparator35;
     private javax.swing.JSeparator jSeparator41;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private CustomResource.TableCustom jTable2;
+    private CustomResource.TableCustom jTable3;
+    private CustomResource.TableCustom jTable4;
+    private CustomResource.TableCustom jTable5;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel labelfoto;
-    private CustomResource.TableCustom myTable;
     private javax.swing.ButtonGroup radioGrupGender;
     private javax.swing.ButtonGroup radioGrupStatus;
     private CustomResource.CustomTextfield t_bpjsKesehatan;
