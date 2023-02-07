@@ -4,6 +4,7 @@ import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class TableCellEditor extends DefaultCellEditor {
@@ -13,7 +14,7 @@ public class TableCellEditor extends DefaultCellEditor {
     public TableCellEditor() {
         super(new JCheckBox());
     }
-
+    
     @Override
     public Component getTableCellEditorComponent(JTable jtable, Object o, boolean bln, int i, int i1) {
         Component com = super.getTableCellEditorComponent(jtable, o, bln, i, i1);

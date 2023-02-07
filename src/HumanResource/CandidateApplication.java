@@ -55,8 +55,32 @@ public class CandidateApplication extends javax.swing.JPanel {
         jToggleButton1.setEnabled(false);
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
-       
-     
+        
+        DefaultTableModel model = (DefaultTableModel) myTable.getModel();
+        model.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableData(), "Sistem Informasi"});
+        model.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableData(), "Sistem Informasi"});
+        myTable.autoRowHeight(myTable);
+    }
+    
+    private DefaultTableModel getSubTableData() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(2);
+        data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province",100), new CustomResource.Header("Kota / City")});
+        data.addRow(new Object[]{new CustomResource.ComboBoxSuggestion(), "Kota Serang"});
+//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
+        return data;
+    }
+    
+    private DefaultTableModel getSubTableData1() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(3);
+//        data.addRow(new Object[]{new CustomResource.Header("No", 10), new CustomResource.Header("Type"), new CustomResource.Header("Qty")});
+//        data.addRow(new Object[]{1, "Unit", "50"});
+//        data.addRow(new Object[]{1, "Case", "70"});
+//        data.addRow(new Object[]{1, "Box", "3"});
+        return data;
     }
 
     private void openDB() {
@@ -76,15 +100,9 @@ public class CandidateApplication extends javax.swing.JPanel {
             while (myRess.next()) {
                 homeCountry.addItem(myRess.getString("name"));
             }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
-
         } catch (SQLException ex) {
         }
-
         homeCountry.setEnabled(true);
-
     }
 
     private void setfokus() {
@@ -100,7 +118,6 @@ public class CandidateApplication extends javax.swing.JPanel {
             while (rs.next()) {
                 int a = rs.getInt(1);
                 id_employee = a + 1;
-
             }
         } catch (Exception e) {
             System.out.println("" + e.getMessage());
@@ -108,21 +125,18 @@ public class CandidateApplication extends javax.swing.JPanel {
     }
 
     private void simpan_family() {
-
         jTable3.editCellAt(0, 0);
         DefaultTableModel tabelfamily = (DefaultTableModel) jTable3.getModel();
         int htabelfamily = jTable3.getRowCount();
 
         for (int i = 0; i <= htabelfamily - 1; i++) {
             if (jTable3.getValueAt(i, 0) == null) {
-
-            } else {
+            }else{
                 String dtabel_nama = jTable3.getValueAt(i, 0).toString();
                 String dtabel_hub = jTable3.getValueAt(i, 1).toString();
                 String dtabel_tgl = jTable3.getValueAt(i, 2).toString();
                 String dtabel_tinggal = jTable3.getValueAt(i, 3).toString();
                 String dtabel_hp = jTable3.getValueAt(i, 3).toString();
-
                 try {
                     stm = koneksi.createStatement();
                     String sql = "insert into cd_family (id_employee,name,hubungan,Birthday,cohabit,No_HP) values('" + da + "'"
@@ -132,14 +146,11 @@ public class CandidateApplication extends javax.swing.JPanel {
                             + ",'" + dtabel_tinggal + "','" + dtabel_hp + "')";
 
                     stm.executeUpdate(sql);
-
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
                 }
             }
-
         }
-
     }
 
     private void simpan_serifikat() {
@@ -149,14 +160,12 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         for (int i = 0; i <= jtabelrows - 1; i++) {
             if (jTable1.getValueAt(i, 0) == null) {
-
             } else {
                 String dtabel_tgl = jTable1.getValueAt(i, 0).toString();
                 String dtabel_nama = jTable1.getValueAt(i, 1).toString();
                 String dtabel_autor = jTable1.getValueAt(i, 2).toString();
                 String dtabel_lokasi = jTable1.getValueAt(i, 3).toString();
                 String dtabel_no = jTable1.getValueAt(i, 3).toString();
-
                 try {
                     stm = koneksi.createStatement();
                     String sql = "insert into cd_certificates (id_employee,acquisition,name_certificate,location,name_authority,no_certificate) values('" + da + "'"
@@ -167,14 +176,11 @@ public class CandidateApplication extends javax.swing.JPanel {
 
                     stm.executeUpdate(sql);
                     stm.close();
-
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
                 }
-
             }
         }
-
     }
 
     private void simpan_career() {
@@ -184,13 +190,11 @@ public class CandidateApplication extends javax.swing.JPanel {
 
         for (int i = 0; i <= jtabelrows - 1; i++) {
             if (jTable4.getValueAt(i, 0) == null) {
-
             } else {
                 String dtabel_nama = jTable4.getValueAt(i, 0).toString();
                 String dtabel_posisi = jTable4.getValueAt(i, 1).toString();
                 String dtabel_period = jTable4.getValueAt(i, 2).toString();
                 String dtabel_career = jTable4.getValueAt(i, 3).toString();
-
                 try {
                     stm = koneksi.createStatement();
                     String sql = "insert into cd_summary_career (id_employee,company_name,job_position,period,career) values('" + da + "'"
@@ -201,20 +205,16 @@ public class CandidateApplication extends javax.swing.JPanel {
 
                     stm.executeUpdate(sql);
                     stm.close();
-
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
                 }
-
             }
         }
-
     }
-
+    
     private void simpan_motivation() {
         String g_ta = jTextArea1.getText();
         String g_ta2 = jTextArea2.getText();
-
         try {
             stm = koneksi.createStatement();
             String sql = "insert into cd_motivation (id_employee,motivation1,motivation2) values('" + da + "'"
@@ -222,22 +222,15 @@ public class CandidateApplication extends javax.swing.JPanel {
                     + ",'" + g_ta2 + "')";
 
             stm.executeUpdate(sql);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     
-    
-      void get_tanggal() {
-
+    void get_tanggal() {
         Date ys = new Date();
         SimpleDateFormat s = new SimpleDateFormat("dd-MMM-yyy");
         tanggal = s.format(ys);
-    
-      
-
     }
 
     public void currentBox() {
@@ -248,15 +241,10 @@ public class CandidateApplication extends javax.swing.JPanel {
             while (myRess.next()) {
                 curentCountry.addItem(myRess.getString("name"));
             }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
-
         } catch (SQLException ex) {
         }
         curentCountry.setEnabled(true);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -355,7 +343,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_pria = new CustomResource.RadioButtonCustom();
         t_wanita = new CustomResource.RadioButtonCustom();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableCustom1 = new CustomResource.TableCustom();
+        myTable = new CustomResource.TableCustom();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -821,20 +809,17 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_wanita.setText("Female");
         jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 160, -1, -1));
 
-        tableCustom1.setModel(new javax.swing.table.DefaultTableModel(
+        myTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tanggal Lulus / Graduation Date", "Nama Sekolah / School Name", "Lokasi / Location", "Jurusan / Major"
             }
         ));
-        jScrollPane1.setViewportView(tableCustom1);
+        jScrollPane1.setViewportView(myTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1850, -1, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2010, 820, 140));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -846,14 +831,11 @@ public class CandidateApplication extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+            .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         String currentdirectory = "C:\\Users\\USER\\Pictures";
         JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
         imageFileChooser.setDialogTitle("Pilih gambar...");
@@ -862,15 +844,12 @@ public class CandidateApplication extends javax.swing.JPanel {
         imageFileChooser.setFileFilter(fnef);
         int imagechooser = imageFileChooser.showOpenDialog(null);
         if (imagechooser == JFileChooser.APPROVE_OPTION) {
-
             File imagefile = imageFileChooser.getSelectedFile();
             crudimage = imagefile.getAbsolutePath();
             jLabel1.setText(crudimage);
-
             ImageIcon imageicon = new ImageIcon(crudimage);
             Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
             labelfoto.setIcon(new ImageIcon(imageResize));
-
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -890,7 +869,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         t_wanita.setActionCommand("Perempuan");
         t_lajang.setActionCommand("Lajang");
         t_menikah.setActionCommand("Menikah");
-
         String g_nama = t_nama.getText();
         String g_ktp = t_tlhir.getText();
         String g_gender = radioGrupGender.getSelection().getActionCommand();
@@ -904,7 +882,7 @@ public class CandidateApplication extends javax.swing.JPanel {
         String g_lamaran = (String) t_lamaran.getSelectedItem();
         String g_gaji = t_gaji.getText();
         String g_discipline = t_dicipline.getText();
-
+        
         String g_hnegara = (String) homeCountry.getSelectedItem();
         String g_hprov = (String) homeCity.getSelectedItem();
         String g_hkota = (String) homeCity.getSelectedItem();
@@ -946,7 +924,6 @@ public class CandidateApplication extends javax.swing.JPanel {
                 rs = stm.executeQuery("select*from cd_employee where KTP like '%" + t_tlhir.getText() + "%'");
                 while (rs.next()) {
                     da = rs.getString("id_employee");
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1001,7 +978,6 @@ public class CandidateApplication extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
                 }
             }
-
         }
 
         simpan_family();
@@ -1010,8 +986,6 @@ public class CandidateApplication extends javax.swing.JPanel {
         simpan_motivation();
         JOptionPane.showMessageDialog(null, "Data Tersimpan");
         this.dispose();
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
@@ -1062,7 +1036,6 @@ public class CandidateApplication extends javax.swing.JPanel {
             while (myRess.next()) {
                 cprov.addItem(myRess.getString("name"));
             }
-
         } catch (SQLException ex) {
         }
     }//GEN-LAST:event_curentCountryActionPerformed
@@ -1076,10 +1049,6 @@ public class CandidateApplication extends javax.swing.JPanel {
             while (myRess.next()) {
                 ccity.addItem(myRess.getString("name"));
             }
-            //            myRess.last();
-            //            int jumlahdata = myRess.getRow();
-            //            myRess.first();
-
         } catch (SQLException ex) {
         }
     }//GEN-LAST:event_cprovActionPerformed
@@ -1101,7 +1070,6 @@ public class CandidateApplication extends javax.swing.JPanel {
             while (myRess.next()) {
                 homeCity.addItem(myRess.getString("name"));
             }
-
         } catch (SQLException ex) {
         }
     }//GEN-LAST:event_homeStateActionPerformed
@@ -1115,7 +1083,6 @@ public class CandidateApplication extends javax.swing.JPanel {
             while (myRess.next()) {
                 homeState.addItem(myRess.getString("name"));
             }
-
         } catch (SQLException ex) {
         }
     }//GEN-LAST:event_homeCountryActionPerformed
@@ -1219,6 +1186,7 @@ public class CandidateApplication extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel labelfoto;
+    private CustomResource.TableCustom myTable;
     private javax.swing.ButtonGroup radioGrupGender;
     private javax.swing.ButtonGroup radioGrupStatus;
     private CustomResource.CustomTextfield t_bpjsKesehatan;
@@ -1243,9 +1211,9 @@ public class CandidateApplication extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser t_tgl;
     private CustomResource.CustomTextfield t_tlhir;
     private CustomResource.RadioButtonCustom t_wanita;
-    private CustomResource.TableCustom tableCustom1;
     // End of variables declaration//GEN-END:variables
-
+    
+    
     private void dispose() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

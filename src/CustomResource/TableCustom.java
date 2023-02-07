@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -26,11 +27,13 @@ public class TableCustom extends JTable {
     @Override
     public Component prepareRenderer(TableCellRenderer tcr, int i, int i1) {
         Component com = super.prepareRenderer(tcr, i, i1);
+        
         if (getValueAt(i, i1) != null) {
             if (getValueAt(i, i1) instanceof DefaultTableModel) {
                 DefaultTableModel model = (DefaultTableModel) getValueAt(i, i1);
                 JTable tbl = new TableCustom(model);
                 tbl.setBackground(com.getBackground());
+                
                 autoRowHeight(tbl);
                 initHeaderWidth(tbl);
                 return tbl;
@@ -38,6 +41,7 @@ public class TableCustom extends JTable {
                 com.setFont(new Font(com.getFont().getFamily(), 1, com.getFont().getSize()));
                 com.setBackground(new Color(209, 211, 252));
                 com.setForeground(new Color(80, 80, 80));
+                
                 return com;
             }
         }
