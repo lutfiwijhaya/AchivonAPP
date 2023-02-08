@@ -45,13 +45,13 @@ import javax.swing.JFrame;
  */
 public class main extends javax.swing.JFrame {
     
+    
     private static main main;
     private final UndoRedo<MasterForm> forms = new UndoRedo<>();
     
     public static main getMain(){
         return main;
     }
-    
     public void showForm(MasterForm form){
         forms.add(form);
         bodyPanel.removeAll();
@@ -60,7 +60,6 @@ public class main extends javax.swing.JFrame {
         bodyPanel.repaint();
         checkButton();
     }
-    
     public void undo(){
         bodyPanel.removeAll();
         bodyPanel.add(forms.undo());
@@ -68,7 +67,6 @@ public class main extends javax.swing.JFrame {
         bodyPanel.repaint();
         checkButton();
     }
-    
     public void redo(){
         bodyPanel.removeAll();
         bodyPanel.add(forms.redo());
@@ -90,13 +88,12 @@ public class main extends javax.swing.JFrame {
         MyWindow();
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
         this.setIconImage(logo.getImage());
-        
-        
+        showForm(new MainPanel());
         
         String nama_log = CustomResource.MySession.get_nama();
         
         if (nama_log == null) {
-            HumanResourceSystem.setEnabled(true);
+            HumanResourceSystem.setEnabled(false);
             POSystem.setEnabled(false);
             WarehouseSystem.setEnabled(false);
             AcountingSystem.setEnabled(false);
@@ -111,7 +108,12 @@ public class main extends javax.swing.JFrame {
             myProfile.setText(nama_log);
             ToolBar.add(Box.createHorizontalGlue());
             ToolBar.add(myProfile);
-            showForm(new MainPanel());
+            jLabel2.setVisible(false);
+            jLabel3.setVisible(false);
+            jLabel4.setVisible(false);
+            jLabel5.setVisible(false);
+            buttonLogin.setVisible(false);
+            buttonLogin1.setVisible(false);
         }
     }
     private void checkButton(){
@@ -549,23 +551,11 @@ public class main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeBarMouseClicked
-        String nama_log = CustomResource.MySession.get_nama();
-        if(nama_log != null) {
-            
-            main.setVisible(true);
-        }else{
-            showForm(new MainPanel());
-        }   
+        showForm(new MainPanel());
     }//GEN-LAST:event_homeBarMouseClicked
 
     private void homeBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBarActionPerformed
-        String nama_log = CustomResource.MySession.get_nama();
-        if(nama_log == null) {
-            main.setVisible(true);
-            
-        }else{
-            showForm(new MainPanel());
-        }   
+//
     }//GEN-LAST:event_homeBarActionPerformed
 
     private void candidateListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateListActionPerformed
@@ -649,11 +639,11 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_AddJobVacancyActionPerformed
 
     private void redoBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoBarActionPerformed
-        redo();
+//        redo();
     }//GEN-LAST:event_redoBarActionPerformed
 
     private void undoBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBarActionPerformed
-        undo();
+//        undo();
     }//GEN-LAST:event_undoBarActionPerformed
 
     private void undoBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_undoBarMouseClicked
@@ -706,13 +696,9 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                String nama_log = CustomResource.MySession.get_nama();
-//                if (nama_log == null) {
-//                    new main().setVisible(true);
-//                }else{
-                    main = new main();
-                    main.setVisible(true);
-//                }
+//                new main().setVisible(true);
+                main = new main();
+                main.setVisible(true);
             }
         });
     }
@@ -780,8 +766,7 @@ public class main extends javax.swing.JFrame {
        CustomResource.MySession.set_ktp("");
         CustomResource.MySession.set_nama("");
         new Main.LoginFrame().setVisible(true);
-        this.dispose();
-        
+        this.dispose(); 
     }
     
     private void MyWindow(){

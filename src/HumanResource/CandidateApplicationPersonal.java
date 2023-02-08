@@ -85,9 +85,6 @@ public class CandidateApplicationPersonal extends MasterForm{
         homeCountry.setEnabled(true);
 
     }
-
-    
-
     private void id_employee() {
         String sql = "select max(id_employee) from cd_employee ";
         try {

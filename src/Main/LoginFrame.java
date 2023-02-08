@@ -418,6 +418,7 @@ public class LoginFrame extends javax.swing.JFrame {
                                     MySession.set_Sallary(myRess.getString("sallary"));
                                     new Welcome().setVisible(true);
                                     this.dispose();
+                                    
                                 }else{
                                     JOptionPane.showMessageDialog(rootPane,"Kata Sandi Anda Salah \n your password is wrong");
                                     textPassword.setText("");

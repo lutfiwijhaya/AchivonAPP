@@ -58,6 +58,11 @@ public class Welcome extends javax.swing.JFrame {
                 jPanel1MouseClicked(evt);
             }
         });
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel1KeyPressed(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
@@ -121,6 +126,14 @@ public class Welcome extends javax.swing.JFrame {
         new main().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            new main().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jPanel1KeyPressed
 
     /**
      * @param args the command line arguments
