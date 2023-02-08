@@ -4,11 +4,13 @@
  */
 package HumanResource;
 
+import Main.MasterForm;
+
 /**
  *
  * @author hi
  */
-public class CandidateApplicationCertificates extends javax.swing.JPanel {
+public class CandidateApplicationCertificates extends MasterForm {
 
     /**
      * Creates new form CandidateApplicationFamily
@@ -97,6 +99,11 @@ public class CandidateApplicationCertificates extends javax.swing.JPanel {
         add(customTextfield5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 270, -1));
 
         jButton1.setText("Lanjut / Next");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 120, 30));
 
         jButton2.setText("Simpan / Save");
@@ -111,6 +118,10 @@ public class CandidateApplicationCertificates extends javax.swing.JPanel {
         jButton5.setText("Kembali / Back");
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 120, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Main.main.getMain().showForm(new CandidateApplicationCareer());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -131,4 +142,9 @@ public class CandidateApplicationCertificates extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private com.toedter.calendar.JDateChooser t_tgl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void formrefresh() {
+    
+    }
 }

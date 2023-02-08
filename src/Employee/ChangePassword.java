@@ -9,13 +9,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import CustomResource.MySession;
+import Main.MasterForm;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author hi
  */
-public class ChangePassword extends javax.swing.JPanel {
+public class ChangePassword extends MasterForm {
 
     /**
      * Creates new form ChangePassword
@@ -164,4 +165,8 @@ public class ChangePassword extends javax.swing.JPanel {
     private javax.swing.JPasswordField textNewPass;
     private javax.swing.JPasswordField textOldPass;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void formrefresh() {
+    }
 }

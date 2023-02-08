@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import CustomResource.koneksi;
 import Employee.ChangePassword;
 import Employee.EmployeeProfilePanel;
+import Main.MasterForm;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -32,7 +33,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import javax.swing.table.DefaultTableModel;
 
-public class CandidateApplicationPersonal extends javax.swing.JPanel {
+public class CandidateApplicationPersonal extends MasterForm{
 
     Statement stm;
     ResultSet rs;
@@ -42,34 +43,7 @@ public class CandidateApplicationPersonal extends javax.swing.JPanel {
     String da = null;
     int id_employee;
     String tanggal;
-    
-
-    CandidateApplication ca;
-//            CandidateApplicationPersonal candidateApplicationPersonal;
-            CandidateApplicationAcademic candidateApplicationAcademic;
-            CandidateApplicationFamily candidateApplicationFamily;
-            CandidateApplicationCertificates candidateApplicationCertificates;
-            CandidateApplicationCareer candidateApplicationCareer;
-            CandidateApplicationIntroduction candidateApplicationIntroduction;
-            CandidateApplicationSKCK candidateApplicationSKCK;
-        CandidateList candidateListPanel;
-        CandidateProfile candidateProfile;
-    EmployeeConfirmation employeeConfirmation;
-    NotificationToNewEmployee notificationToNewEmployee;
-    AllocationAnnouncement allocationAnnouncement;
-    SummaryStatusCandidatEmployee summaryStatusCandidatEmployee;
-    RequestEmployeeAllocation requestEmployeeAllocation;
-    LeaveOfAbsense leaveOfAbsense;
-    AplicationRehabilitation aplicationRehabilitation;
-    ApplicationResignation applicationResignation;
-    EmployeeClearanceStatus employeeClearanceStatus;
-    ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
-    DisciplnaryResolution disciplnaryResolution;
-    EmployeeEvaluation employeeEvaluation;
-    AddJobVacancy addJobVacancy;
-    
-    EmployeeProfilePanel employeeProfilePanel;
-    ChangePassword changePasswordPanel;
+   
     public CandidateApplicationPersonal() {
         initComponents();
         openDB();
@@ -705,32 +679,7 @@ public class CandidateApplicationPersonal extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ca.setVisible(false);
-//                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(true);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        Main.main.getMain().showForm(new CandidateApplicationAcademic());
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
@@ -813,5 +762,9 @@ public class CandidateApplicationPersonal extends javax.swing.JPanel {
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
+    }
+
+    @Override
+    public void formrefresh() {
     }
 }

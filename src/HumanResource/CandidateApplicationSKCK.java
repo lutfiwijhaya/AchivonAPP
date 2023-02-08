@@ -4,11 +4,14 @@
  */
 package HumanResource;
 
+import Main.MainPanel;
+import Main.MasterForm;
+
 /**
  *
  * @author hi
  */
-public class CandidateApplicationSKCK extends javax.swing.JPanel {
+public class CandidateApplicationSKCK extends MasterForm {
 
     /**
      * Creates new form CandidateApplicationSKCK
@@ -124,7 +127,7 @@ public class CandidateApplicationSKCK extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        // TODO add your handling code here:
+        Main.main.getMain().showForm(new MainPanel());
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
@@ -140,4 +143,9 @@ public class CandidateApplicationSKCK extends javax.swing.JPanel {
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void formrefresh() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

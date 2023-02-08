@@ -5,6 +5,7 @@
 package HumanResource;
 
 import CustomResource.MySession;
+import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -12,7 +13,7 @@ import java.awt.Toolkit;
  *
  * @author hi
  */
-public class RequestEmployeeAllocation extends javax.swing.JPanel {
+public class RequestEmployeeAllocation extends MasterForm {
 
     /**
      * Creates new form RequestEmployeeAllocation
@@ -309,6 +310,10 @@ public class RequestEmployeeAllocation extends javax.swing.JPanel {
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
+    }
+
+    @Override
+    public void formrefresh() {
     }
 
 }

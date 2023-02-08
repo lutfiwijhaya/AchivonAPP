@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -11,7 +12,7 @@ import java.awt.Toolkit;
  *
  * @author USER
  */
-public class AplicationRehabilitation extends javax.swing.JPanel {
+public class AplicationRehabilitation extends MasterForm {
 
     /**
      * Creates new form AplicationRehabilitation
@@ -292,5 +293,10 @@ public class AplicationRehabilitation extends javax.swing.JPanel {
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
+    }
+
+    @Override
+    public void formrefresh() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -11,7 +12,7 @@ import java.awt.Toolkit;
  *
  * @author USER
  */
-public class DisciplnaryResolution extends javax.swing.JPanel {
+public class DisciplnaryResolution extends MasterForm {
 
     /**
      * Creates new form DisciplnaryResolution
@@ -210,5 +211,9 @@ private void MyWindow(){
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
+    }
+
+    @Override
+    public void formrefresh() {
     }
 }

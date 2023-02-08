@@ -5,6 +5,7 @@
 package HumanResource;
 
 import CustomResource.koneksi;
+import Main.MasterForm;
 import com.mysql.cj.xdevapi.Statement;
 import com.sun.jdi.connect.spi.Connection;
 import java.awt.Dimension;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author USER
  */
-public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
+public class SummaryStatusCandidatEmployee extends MasterForm {
 
     java.sql.Statement stm;
     ResultSet rs;
@@ -469,5 +470,9 @@ public class SummaryStatusCandidatEmployee extends javax.swing.JPanel {
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
+    }
+
+    @Override
+    public void formrefresh() {
     }
 }

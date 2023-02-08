@@ -6,6 +6,7 @@ package HumanResource;
 
 import Employee.ChangePassword;
 import Employee.EmployeeProfilePanel;
+import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -13,34 +14,8 @@ import java.awt.Toolkit;
  *
  * @author hi
  */
-public class CandidateApplicationAcademic extends javax.swing.JPanel {
-//    Main main;
-    CandidateApplication ca;
-            CandidateApplicationPersonal candidateApplicationPersonal;
-            CandidateApplicationAcademic candidateApplicationAcademic;
-            CandidateApplicationFamily candidateApplicationFamily;
-            CandidateApplicationCertificates candidateApplicationCertificates;
-            CandidateApplicationCareer candidateApplicationCareer;
-            CandidateApplicationIntroduction candidateApplicationIntroduction;
-            CandidateApplicationSKCK candidateApplicationSKCK;
-        CandidateList candidateListPanel;
-        CandidateProfile candidateProfile;
-    EmployeeConfirmation employeeConfirmation;
-    NotificationToNewEmployee notificationToNewEmployee;
-    AllocationAnnouncement allocationAnnouncement;
-    SummaryStatusCandidatEmployee summaryStatusCandidatEmployee;
-    RequestEmployeeAllocation requestEmployeeAllocation;
-    LeaveOfAbsense leaveOfAbsense;
-    AplicationRehabilitation aplicationRehabilitation;
-    ApplicationResignation applicationResignation;
-    EmployeeClearanceStatus employeeClearanceStatus;
-    ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
-    DisciplnaryResolution disciplnaryResolution;
-    EmployeeEvaluation employeeEvaluation;
-    AddJobVacancy addJobVacancy;
-    
-    EmployeeProfilePanel employeeProfilePanel;
-    ChangePassword changePasswordPanel;
+public class CandidateApplicationAcademic extends MasterForm {
+
     public CandidateApplicationAcademic() {
         initComponents();
         MyWindow();
@@ -155,33 +130,7 @@ public class CandidateApplicationAcademic extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable2InputMethodTextChanged
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-//        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(true);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(true);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        Main.main.getMain().showForm(new CandidateApplicationFamily());
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
@@ -210,5 +159,10 @@ public class CandidateApplicationAcademic extends javax.swing.JPanel {
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
+    }
+
+    @Override
+    public void formrefresh() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

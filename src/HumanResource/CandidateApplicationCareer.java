@@ -1,15 +1,13 @@
 package HumanResource;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+import Main.MasterForm;
+
 
 /**
  *
  * @author hi
  */
-public class CandidateApplicationCareer extends javax.swing.JPanel {
+public class CandidateApplicationCareer extends MasterForm {
 
     /**
      * Creates new form CandidateApplicationCareer
@@ -95,6 +93,11 @@ public class CandidateApplicationCareer extends javax.swing.JPanel {
         jButton3.setText("Hapus / Delete");
 
         jButton4.setText("Lanjut / Next");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Kembali / Back");
 
@@ -175,6 +178,10 @@ public class CandidateApplicationCareer extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Main.main.getMain().showForm(new CandidateApplicationIntroduction());
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.CustomTextfield customTextfield1;
@@ -193,4 +200,9 @@ public class CandidateApplicationCareer extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser t_tgl;
     private com.toedter.calendar.JDateChooser t_tgl1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void formrefresh() {
+        
+    }
 }

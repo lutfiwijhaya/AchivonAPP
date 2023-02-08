@@ -4,6 +4,7 @@
  */
 package Main;
 
+import CustomResource.UndoRedo;
 import TestResource.inputexel;
 import TestResource.tambah;
 import Employee.EmployeeProfilePanel;
@@ -31,6 +32,7 @@ import HumanResource.LeaveOfAbsense;
 import HumanResource.NotificationToNewEmployee;
 import HumanResource.RequestEmployeeAllocation;
 import HumanResource.SummaryStatusCandidatEmployee;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Box;
@@ -43,121 +45,50 @@ import javax.swing.JFrame;
  */
 public class main extends javax.swing.JFrame {
     
-    CandidateApplication ca;
-            CandidateApplicationPersonal candidateApplicationPersonal;
-            CandidateApplicationAcademic candidateApplicationAcademic;
-            CandidateApplicationFamily candidateApplicationFamily;
-            CandidateApplicationCertificates candidateApplicationCertificates;
-            CandidateApplicationCareer candidateApplicationCareer;
-            CandidateApplicationIntroduction candidateApplicationIntroduction;
-            CandidateApplicationSKCK candidateApplicationSKCK;
-        CandidateList candidateListPanel;
-        CandidateProfile candidateProfile;
-    EmployeeConfirmation employeeConfirmation;
-    NotificationToNewEmployee notificationToNewEmployee;
-    AllocationAnnouncement allocationAnnouncement;
-    SummaryStatusCandidatEmployee summaryStatusCandidatEmployee;
-    RequestEmployeeAllocation requestEmployeeAllocation;
-    LeaveOfAbsense leaveOfAbsense;
-    AplicationRehabilitation aplicationRehabilitation;
-    ApplicationResignation applicationResignation;
-    EmployeeClearanceStatus employeeClearanceStatus;
-    ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
-    DisciplnaryResolution disciplnaryResolution;
-    EmployeeEvaluation employeeEvaluation;
-    AddJobVacancy addJobVacancy;
+    private static main main;
+    private final UndoRedo<MasterForm> forms = new UndoRedo<>();
     
-    EmployeeProfilePanel employeeProfilePanel;
-    ChangePassword changePasswordPanel;
+    public static main getMain(){
+        return main;
+    }
+    
+    public void showForm(MasterForm form){
+        forms.add(form);
+        bodyPanel.removeAll();
+        bodyPanel.add(form);
+        bodyPanel.revalidate();
+        bodyPanel.repaint();
+    }
+    
+    public void undo(){
+        bodyPanel.removeAll();
+        bodyPanel.add(forms.undo());
+        bodyPanel.revalidate();
+        bodyPanel.repaint();
+    }
+    
+    public void redo(){
+        bodyPanel.removeAll();
+        bodyPanel.add(forms.redo());
+        bodyPanel.revalidate();
+        bodyPanel.repaint();
+    }
+    public void refresh(){
+        MasterForm form = forms.getCurrent();
+        if (form != null) {
+            form.formrefresh();
+        }
+    }
     
     public main() {
         super("Operation System");
         initComponents();
         
-        ca = new CandidateApplication();
-                candidateApplicationPersonal = new CandidateApplicationPersonal();
-                candidateApplicationAcademic = new CandidateApplicationAcademic();
-                candidateApplicationFamily = new CandidateApplicationFamily();
-                candidateApplicationCertificates = new CandidateApplicationCertificates();
-                candidateApplicationCareer = new CandidateApplicationCareer();
-                candidateApplicationIntroduction = new CandidateApplicationIntroduction();
-                candidateApplicationSKCK = new CandidateApplicationSKCK();
-            candidateListPanel = new CandidateList();
-            candidateProfile = new CandidateProfile();
-        employeeConfirmation = new EmployeeConfirmation();
-        notificationToNewEmployee = new NotificationToNewEmployee();
-        allocationAnnouncement = new AllocationAnnouncement();
-        summaryStatusCandidatEmployee = new SummaryStatusCandidatEmployee();
-        requestEmployeeAllocation = new RequestEmployeeAllocation();
-        leaveOfAbsense = new LeaveOfAbsense();
-        aplicationRehabilitation = new AplicationRehabilitation();
-        applicationResignation = new ApplicationResignation();
-        employeeClearanceStatus = new EmployeeClearanceStatus();
-        confirmationHandingOverTakingOver = new ConfirmationHandingOverTakingOver();
-        disciplnaryResolution = new DisciplnaryResolution();
-        employeeEvaluation = new EmployeeEvaluation();
-        addJobVacancy = new AddJobVacancy();
-        
-        employeeProfilePanel = new EmployeeProfilePanel();
-        changePasswordPanel = new ChangePassword();
-        
-        BoxPanel.add(ca);
-                BoxPanel.add(candidateApplicationPersonal);
-                BoxPanel.add(candidateApplicationAcademic);
-                BoxPanel.add(candidateApplicationFamily);
-                BoxPanel.add(candidateApplicationCertificates);
-                BoxPanel.add(candidateApplicationCareer);
-                BoxPanel.add(candidateApplicationIntroduction);
-                BoxPanel.add(candidateApplicationSKCK);
-            BoxPanel.add(candidateListPanel);
-            BoxPanel.add(candidateProfile);
-        BoxPanel.add(employeeConfirmation);
-        BoxPanel.add(notificationToNewEmployee);
-        BoxPanel.add(allocationAnnouncement);
-        BoxPanel.add(summaryStatusCandidatEmployee);
-        BoxPanel.add(requestEmployeeAllocation);
-        BoxPanel.add(leaveOfAbsense);
-        BoxPanel.add(aplicationRehabilitation);
-        BoxPanel.add(applicationResignation);
-        BoxPanel.add(employeeClearanceStatus);
-        BoxPanel.add(confirmationHandingOverTakingOver);
-        BoxPanel.add(disciplnaryResolution);
-        BoxPanel.add(employeeEvaluation);
-        BoxPanel.add(addJobVacancy);
-        
-        BoxPanel.add(employeeProfilePanel);
-        BoxPanel.add(changePasswordPanel);
-        
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
-        
         MyWindow();
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
         this.setIconImage(logo.getImage());
+        
+        showForm(new MainPanel());
         
         String nama_log = CustomResource.MySession.get_nama();
         
@@ -173,10 +104,6 @@ public class main extends javax.swing.JFrame {
             myProfile.setText(nama_log);
             ToolBar.add(Box.createHorizontalGlue());
             ToolBar.add(myProfile);
-            buttonLogin.setVisible(false);
-            jLabel3.setVisible(false);
-            jLabel2.setVisible(false);
-            jLabel4.setVisible(false);
         }
     }
     inputexel inputxl = new inputexel();
@@ -191,15 +118,7 @@ public class main extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem3 = new javax.swing.JMenuItem();
-        BoxPanel = new javax.swing.JPanel();
-        MainPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        buttonLogin = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        buttonLogin1 = new javax.swing.JButton();
+        bodyPanel = new javax.swing.JPanel();
         ToolBar = new javax.swing.JMenuBar();
         homeBar = new javax.swing.JMenu();
         undoBar = new javax.swing.JMenu();
@@ -253,55 +172,7 @@ public class main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BoxPanel.setLayout(new javax.swing.BoxLayout(BoxPanel, javax.swing.BoxLayout.LINE_AXIS));
-
-        MainPanel.setBackground(new java.awt.Color(255, 255, 255));
-        MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 470, 160, 40));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("PT. Achivon Prestasi Abadi");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 220, 40));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("ingin bekerja dengan kami?");
-        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 310, 40));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel4.setText("Welcome to");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 110, 40));
-
-        buttonLogin.setBackground(new java.awt.Color(0, 51, 255));
-        buttonLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        buttonLogin.setForeground(new java.awt.Color(255, 255, 255));
-        buttonLogin.setText("Login");
-        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLoginActionPerformed(evt);
-            }
-        });
-        MainPanel.add(buttonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 150, 40));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("please click Login below");
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 310, 40));
-
-        buttonLogin1.setBackground(new java.awt.Color(255, 0, 0));
-        buttonLogin1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        buttonLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonLogin1.setText("Register");
-        buttonLogin1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLogin1ActionPerformed(evt);
-            }
-        });
-        MainPanel.add(buttonLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 150, 40));
+        bodyPanel.setLayout(new java.awt.BorderLayout());
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
         homeBar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -317,9 +188,19 @@ public class main extends javax.swing.JFrame {
         ToolBar.add(homeBar);
 
         undoBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/undo.png"))); // NOI18N
+        undoBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoBarActionPerformed(evt);
+            }
+        });
         ToolBar.add(undoBar);
 
         redoBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/redo.png"))); // NOI18N
+        redoBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redoBarActionPerformed(evt);
+            }
+        });
         ToolBar.add(redoBar);
 
         HumanResourceSystem.setText("Human Resource System  |");
@@ -550,56 +431,18 @@ public class main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 639, Short.MAX_VALUE)
-                    .addComponent(BoxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 640, Short.MAX_VALUE)))
+            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1279, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 277, Short.MAX_VALUE)
-                    .addComponent(BoxPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 277, Short.MAX_VALUE)))
+            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeBarMouseClicked
-        MainPanel.setVisible(true);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+//        home
     }//GEN-LAST:event_homeBarMouseClicked
 
     private void homeBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBarActionPerformed
@@ -607,123 +450,19 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_homeBarActionPerformed
 
     private void candidateListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateListActionPerformed
-        MainPanel.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            ca.setVisible(false);
-            candidateListPanel.setVisible(true);
-        candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new CandidateList());
     }//GEN-LAST:event_candidateListActionPerformed
 
     private void applicationFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationFormActionPerformed
-        MainPanel.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            ca.setVisible(true);
-            candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new CandidateApplication());
     }//GEN-LAST:event_applicationFormActionPerformed
 
     private void employingConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employingConfirmationActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(true);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new EmployeeConfirmation());
     }//GEN-LAST:event_employingConfirmationActionPerformed
 
     private void EmployeeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeStatusActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(true);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new SummaryStatusCandidatEmployee());
     }//GEN-LAST:event_EmployeeStatusActionPerformed
 
     private void HumanResourceSystemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HumanResourceSystemMouseClicked
@@ -734,453 +473,69 @@ public class main extends javax.swing.JFrame {
         myLogout();
     }//GEN-LAST:event_SMLogoutActionPerformed
 
-    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-         new LoginFrame().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_buttonLoginActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(true);
+        showForm(new ChangePassword());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(true);
-        changePasswordPanel.setVisible(false);
+        showForm(new EmployeeProfilePanel());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void AllocationAnouncementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllocationAnouncementActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(true);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new AllocationAnnouncement());
     }//GEN-LAST:event_AllocationAnouncementActionPerformed
 
     private void NotificationtoNewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationtoNewEmployeeActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(true);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new NotificationToNewEmployee());
     }//GEN-LAST:event_NotificationtoNewEmployeeActionPerformed
 
     private void ChecklistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChecklistActionPerformed
-//        MainPanel.setVisible(false);
-//        ca.setVisible(false);
-//                candidateApplicationPersonal.setVisible(false);
-//                candidateApplicationAcademic.setVisible(false);
-//                candidateApplicationFamily.setVisible(false);
-//                candidateApplicationCertificates.setVisible(false);
-//                candidateApplicationCareer.setVisible(false);
-//                candidateApplicationIntroduction.setVisible(false);
-//                candidateApplicationSKCK.setVisible(false);
-//            candidateListPanel.setVisible(false);
-//            candidateProfile.setVisible(false);
-//        employeeConfirmation.setVisible(false);
-//        notificationToNewEmployee.setVisible(false);
-//        summaryStatusCandidatEmployee.setVisible(false);
-//        allocationAnnouncement.setVisible(false);
-//        requestEmployeeAllocation.setVisible(false);
-//        leaveOfAbsense.setVisible(false);
-//        aplicationRehabilitation.setVisible(false);
-//        applicationResignation.setVisible(false);
-//        employeeClearanceStatus.setVisible(false);
-//        confirmationHandingOverTakingOver.setVisible(false);
-//        disciplnaryResolution.setVisible(false);
-//        employeeEvaluation.setVisible(false);
-//        addJobVacancy.setVisible(false);
-//        
-//        employeeProfilePanel.setVisible(false);
-//        changePasswordPanel.setVisible(false);
+//        ceklis
     }//GEN-LAST:event_ChecklistActionPerformed
 
     private void RequestEmployeeAllocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestEmployeeAllocationActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(true);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new RequestEmployeeAllocation());
     }//GEN-LAST:event_RequestEmployeeAllocationActionPerformed
 
     private void ApplicationLeaveofAbsenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationLeaveofAbsenceActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(true);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new LeaveOfAbsense());
     }//GEN-LAST:event_ApplicationLeaveofAbsenceActionPerformed
 
     private void ApplicationRehabilitationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationRehabilitationActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(true);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new AplicationRehabilitation());
     }//GEN-LAST:event_ApplicationRehabilitationActionPerformed
 
     private void ApplicationResignationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationResignationActionPerformed
-        MainPanel.setVisible(false);
-            ca.setVisible(false);
-            candidateListPanel.setVisible(false);
-        candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(true);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new ApplicationResignation());
     }//GEN-LAST:event_ApplicationResignationActionPerformed
 
     private void EmployeeClearanceStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeClearanceStatusActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(true);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new EmployeeClearanceStatus());
     }//GEN-LAST:event_EmployeeClearanceStatusActionPerformed
 
     private void ConfirmationHandoverTakeoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmationHandoverTakeoverActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(true);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new ConfirmationHandingOverTakingOver());
     }//GEN-LAST:event_ConfirmationHandoverTakeoverActionPerformed
 
     private void DiciplinaryRevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiciplinaryRevolutionActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(true);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new DisciplnaryResolution());
     }//GEN-LAST:event_DiciplinaryRevolutionActionPerformed
 
     private void EmployeeEvaluationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeEvaluationActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(true);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new EmployeeEvaluation());
     }//GEN-LAST:event_EmployeeEvaluationActionPerformed
 
     private void AddJobVacancyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddJobVacancyActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(true);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        showForm(new AddJobVacancy());
     }//GEN-LAST:event_AddJobVacancyActionPerformed
 
-    private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
-        MainPanel.setVisible(false);
-        ca.setVisible(true);
-                candidateApplicationPersonal.setVisible(false);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(false);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
-    }//GEN-LAST:event_buttonLogin1ActionPerformed
+    private void redoBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoBarActionPerformed
+//        redo
+    }//GEN-LAST:event_redoBarActionPerformed
+
+    private void undoBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBarActionPerformed
+//        undo
+    }//GEN-LAST:event_undoBarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1215,7 +570,9 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new main().setVisible(true);
+                main = new main();
+                main.setVisible(true);
+//                new main().setVisible(true);
             }
         });
     }
@@ -1227,7 +584,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem ApplicationLeaveofAbsence;
     private javax.swing.JMenuItem ApplicationRehabilitation;
     private javax.swing.JMenuItem ApplicationResignation;
-    private javax.swing.JPanel BoxPanel;
     private javax.swing.JMenuItem Checklist;
     private javax.swing.JMenuItem ConfirmationHandoverTakeover;
     private javax.swing.JMenuItem DiciplinaryRevolution;
@@ -1235,7 +591,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem EmployeeEvaluation;
     private javax.swing.JMenuItem EmployeeStatus;
     private javax.swing.JMenu HumanResourceSystem;
-    private javax.swing.JPanel MainPanel;
     private javax.swing.JMenuItem NotificationtoNewEmployee;
     private javax.swing.JMenu POSystem;
     private javax.swing.JMenuItem RequestEmployeeAllocation;
@@ -1243,17 +598,11 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuBar ToolBar;
     private javax.swing.JMenu WarehouseSystem;
     private javax.swing.JMenuItem applicationForm;
-    private javax.swing.JButton buttonLogin;
-    private javax.swing.JButton buttonLogin1;
+    private javax.swing.JPanel bodyPanel;
     private javax.swing.JMenu candidateApplication;
     private javax.swing.JMenuItem candidateList;
     private javax.swing.JMenuItem employingConfirmation;
     private javax.swing.JMenu homeBar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -1291,7 +640,7 @@ public class main extends javax.swing.JFrame {
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
-        MainPanel.setPreferredSize(screen);
+        bodyPanel.setPreferredSize(screen);
 //        MainPanel.setPreferredSize(screen);
 //        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 //        int x = (screen.width/2) - (this.getSize().width/2);

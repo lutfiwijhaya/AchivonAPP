@@ -2,6 +2,7 @@ package HumanResource;
 
 import Employee.ChangePassword;
 import Employee.EmployeeProfilePanel;
+import Main.MasterForm;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,7 +13,7 @@ import Employee.EmployeeProfilePanel;
  *
  * @author hi
  */
-public class CandidateApplicationFamily extends javax.swing.JPanel {
+public class CandidateApplicationFamily extends MasterForm{
 
     CandidateApplication ca;
             CandidateApplicationPersonal candidateApplicationPersonal;
@@ -160,32 +161,7 @@ public class CandidateApplicationFamily extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-ca.setVisible(false);
-                candidateApplicationPersonal.setVisible(true);
-                candidateApplicationAcademic.setVisible(false);
-                candidateApplicationFamily.setVisible(true);
-                candidateApplicationCertificates.setVisible(false);
-                candidateApplicationCareer.setVisible(false);
-                candidateApplicationIntroduction.setVisible(false);
-                candidateApplicationSKCK.setVisible(false);
-            candidateListPanel.setVisible(false);
-            candidateProfile.setVisible(false);
-        employeeConfirmation.setVisible(false);
-        notificationToNewEmployee.setVisible(false);
-        summaryStatusCandidatEmployee.setVisible(false);
-        allocationAnnouncement.setVisible(false);
-        requestEmployeeAllocation.setVisible(false);
-        leaveOfAbsense.setVisible(false);
-        aplicationRehabilitation.setVisible(false);
-        applicationResignation.setVisible(false);
-        employeeClearanceStatus.setVisible(false);
-        confirmationHandingOverTakingOver.setVisible(false);
-        disciplnaryResolution.setVisible(false);
-        employeeEvaluation.setVisible(false);
-        addJobVacancy.setVisible(false);
-        
-        employeeProfilePanel.setVisible(false);
-        changePasswordPanel.setVisible(false);
+        Main.main.getMain().showForm(new CandidateApplicationCertificates());
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
@@ -209,4 +185,9 @@ ca.setVisible(false);
     private CustomResource.RadioButtonCustom radioButtonCustom2;
     private com.toedter.calendar.JDateChooser t_tgl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void formrefresh() {
+    
+    }
 }

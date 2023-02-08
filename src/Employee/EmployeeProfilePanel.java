@@ -5,12 +5,13 @@
 package Employee;
 
 import CustomResource.MySession;
+import Main.MasterForm;
 
 /**
  *
  * @author hi
  */
-public class EmployeeProfilePanel extends javax.swing.JPanel {
+public class EmployeeProfilePanel extends MasterForm {
 
     /**
      * Creates new form EmployeeProfilePanel
@@ -433,4 +434,8 @@ public class EmployeeProfilePanel extends javax.swing.JPanel {
     private javax.swing.JTextArea textCurrent;
     private javax.swing.JTextArea textHome;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void formrefresh() {
+    }
 }

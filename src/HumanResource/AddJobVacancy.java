@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -11,7 +12,7 @@ import java.awt.Toolkit;
  *
  * @author hi
  */
-public class AddJobVacancy extends javax.swing.JPanel {
+public class AddJobVacancy extends MasterForm {
 
     /**
      * Creates new form AddJobVacancy
@@ -130,6 +131,11 @@ private void MyWindow(){
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setLocation(x,y);
+    }
+
+    @Override
+    public void formrefresh() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
