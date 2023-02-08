@@ -58,6 +58,7 @@ public class main extends javax.swing.JFrame {
         bodyPanel.add(form);
         bodyPanel.revalidate();
         bodyPanel.repaint();
+        checkButton();
     }
     
     public void undo(){
@@ -65,6 +66,7 @@ public class main extends javax.swing.JFrame {
         bodyPanel.add(forms.undo());
         bodyPanel.revalidate();
         bodyPanel.repaint();
+        checkButton();
     }
     
     public void redo(){
@@ -72,6 +74,7 @@ public class main extends javax.swing.JFrame {
         bodyPanel.add(forms.redo());
         bodyPanel.revalidate();
         bodyPanel.repaint();
+        checkButton();
     }
     public void refresh(){
         MasterForm form = forms.getCurrent();
@@ -99,7 +102,7 @@ public class main extends javax.swing.JFrame {
             AcountingSystem.setEnabled(false);
             myProfile.setVisible(false);
             SMLogout.setVisible(false);
-            ToolBar.setVisible(false);
+            ToolBar.setVisible(true);
         } else {
             buttonLogin.setVisible(false);
             jLabel3.setVisible(false);
@@ -110,6 +113,10 @@ public class main extends javax.swing.JFrame {
             ToolBar.add(myProfile);
             showForm(new MainPanel());
         }
+    }
+    private void checkButton(){
+        undoBar.setEnabled(forms.isUndoAble());
+        redoBar.setEnabled(forms.isRedoAble());
     }
     inputexel inputxl = new inputexel();
     tambah tambah = new tambah();
@@ -542,11 +549,23 @@ public class main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeBarMouseClicked
-//        home
+        String nama_log = CustomResource.MySession.get_nama();
+        if(nama_log != null) {
+            
+            main.setVisible(true);
+        }else{
+            showForm(new MainPanel());
+        }   
     }//GEN-LAST:event_homeBarMouseClicked
 
     private void homeBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBarActionPerformed
-
+        String nama_log = CustomResource.MySession.get_nama();
+        if(nama_log == null) {
+            main.setVisible(true);
+            
+        }else{
+            showForm(new MainPanel());
+        }   
     }//GEN-LAST:event_homeBarActionPerformed
 
     private void candidateListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateListActionPerformed
@@ -646,7 +665,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_redoBarMouseClicked
 
     private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
-        Main.main.getMain().showForm(new CandidateApplicationPersonal());
+        showForm(new CandidateApplicationPersonal());
     }//GEN-LAST:event_buttonLogin1ActionPerformed
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
@@ -687,13 +706,13 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                String nama_log = CustomResource.MySession.get_nama();
-                if (nama_log == null) {
-                    new main().setVisible(true);
-                }else{
+//                String nama_log = CustomResource.MySession.get_nama();
+//                if (nama_log == null) {
+//                    new main().setVisible(true);
+//                }else{
                     main = new main();
                     main.setVisible(true);
-                }
+//                }
             }
         });
     }

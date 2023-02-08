@@ -153,7 +153,6 @@ public class CandidateApplicationPersonal extends MasterForm{
         jLabel85 = new javax.swing.JLabel();
         jLabel86 = new javax.swing.JLabel();
         jSeparator30 = new javax.swing.JSeparator();
-        jLabel92 = new javax.swing.JLabel();
         jScrollPane25 = new javax.swing.JScrollPane();
         t_halamat = new javax.swing.JTextArea();
         jLabel97 = new javax.swing.JLabel();
@@ -199,6 +198,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel98 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -246,7 +246,6 @@ public class CandidateApplicationPersonal extends MasterForm{
 
         jSeparator30.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator30, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 640, 20));
-        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 1230, 350, 30));
 
         t_halamat.setColumns(20);
         t_halamat.setRows(5);
@@ -255,8 +254,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 740, 210, -1));
 
         jLabel97.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel97.setText("Alamat / Address");
-        jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 770, 100, 30));
+        jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 1070, 100, 30));
 
         t_calamat.setColumns(20);
         t_calamat.setRows(5);
@@ -493,6 +491,10 @@ public class CandidateApplicationPersonal extends MasterForm{
         jButton5.setText("Simpan / Save");
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 910, 130, 30));
 
+        jLabel98.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel98.setText("Alamat / Address");
+        jPanel1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 770, 100, 30));
+
         jScrollPane18.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -508,7 +510,7 @@ public class CandidateApplicationPersonal extends MasterForm{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE))
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1140, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -710,8 +712,8 @@ public class CandidateApplicationPersonal extends MasterForm{
     private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel92;
     private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane18;
