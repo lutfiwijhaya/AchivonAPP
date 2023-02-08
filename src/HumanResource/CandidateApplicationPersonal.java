@@ -4,10 +4,7 @@
  */
 package HumanResource;
 
-/**
- *
- * @author hi
- */
+
 import CustomResource.MySession;
 import java.awt.Dimension;
 import java.awt.Image;
