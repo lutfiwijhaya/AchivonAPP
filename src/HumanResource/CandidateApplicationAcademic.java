@@ -4,7 +4,6 @@
  */
 package HumanResource;
 
-import CustomResource.MySession;
 import Employee.ChangePassword;
 import Employee.EmployeeProfilePanel;
 import Main.MasterForm;
@@ -106,11 +105,6 @@ public class CandidateApplicationAcademic extends MasterForm {
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 110, 30));
 
         jButton4.setText("Simpan / Save");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
         add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 110, 30));
 
         jButton5.setText("Lanjut / Next");
@@ -138,12 +132,6 @@ public class CandidateApplicationAcademic extends MasterForm {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Main.main.getMain().showForm(new CandidateApplicationFamily());
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-String t = CandidateApplicationPersonal.get_nama();
-        System.out.println(t);
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
