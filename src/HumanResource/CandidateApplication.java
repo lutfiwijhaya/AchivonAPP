@@ -52,6 +52,7 @@ public class CandidateApplication extends MasterForm {
         tampil();
         MyWindow();
         currentBox();
+        codeCountryBox();
         id_employee();
         jToggleButton1.setEnabled(false);
         get_tanggal();
@@ -292,6 +293,19 @@ public class CandidateApplication extends MasterForm {
         }
         curentCountry.setEnabled(true);
     }
+    
+    public void codeCountryBox() {
+        Connection myConn;
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
+            while (myRess.next()) {
+                t_kodeNegara.addItem(myRess.getString("name") +" "+ myRess.getString("phone_code"));
+            }
+        } catch (SQLException ex) {
+        }
+        curentCountry.setEnabled(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -389,6 +403,7 @@ public class CandidateApplication extends MasterForm {
         jTable4 = new CustomResource.TableCustom();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new CustomResource.TableCustom();
+        t_kodeNegara = new CustomResource.ComboBoxSuggestion();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -608,7 +623,7 @@ public class CandidateApplication extends MasterForm {
                 t_hpKeyTyped(evt);
             }
         });
-        jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 340, -1));
+        jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 210, 210, -1));
 
         t_email.setLabelText("Email");
         t_email.addActionListener(new java.awt.event.ActionListener() {
@@ -800,6 +815,13 @@ public class CandidateApplication extends MasterForm {
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1310, 850, 100));
 
+        t_kodeNegara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_kodeNegaraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(t_kodeNegara, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 120, 30));
+
         jScrollPane18.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -835,7 +857,7 @@ public class CandidateApplication extends MasterForm {
 
     private void jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActionPerformed
         curentCountry.setSelectedItem(homeCountry.getSelectedItem());
-        cprov.setSelectedItem(homeCity.getSelectedItem());
+        cprov.setSelectedItem(homeState.getSelectedItem());
         ccity.setSelectedItem(homeCity.getSelectedItem());
         t_ckec.setText(t_hkec.getText());
         t_calamat.setText(t_halamat.getText());
@@ -1094,6 +1116,10 @@ public class CandidateApplication extends MasterForm {
 //        asd
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
 
+    private void t_kodeNegaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_kodeNegaraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_kodeNegaraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.ComboBoxSuggestion ccity;
@@ -1174,6 +1200,7 @@ public class CandidateApplication extends MasterForm {
     private javax.swing.JTextArea t_halamat;
     private CustomResource.CustomTextfield t_hkec;
     private CustomResource.CustomTextfield t_hp;
+    private CustomResource.ComboBoxSuggestion t_kodeNegara;
     private CustomResource.CustomTextfield t_ktp;
     private CustomResource.RadioButtonCustom t_lajang;
     private CustomResource.ComboBoxSuggestion t_lamaran;
