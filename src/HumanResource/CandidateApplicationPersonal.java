@@ -43,6 +43,35 @@ public class CandidateApplicationPersonal extends MasterForm{
     String da = null;
     int id_employee;
     String tanggal;
+   private static String g_nama;
+        private static String g_ktp;
+        private static String g_gender;
+        private static String g_status;
+        private static String g_tlahir;
+       private static  String g_tgl;
+       private static  String g_hp;
+        private static String g_email;
+       private static  String g_bpjs;
+       private static  String g_npwp;
+        private static String g_lamaran;
+       private static  String g_gaji;
+        private static String g_discipline;
+        
+        private static String g_hnegara;
+        private static String g_hprov;
+        private static String g_hkota;
+        private static String g_cnegara;
+        private static String g_cprov;
+        private static String g_ckota;
+        private static String g_hkec;
+        private static String g_ckec;
+        private static String g_hdesa;
+        private static String g_cdesa;
+        private static String g_halamat;
+        private static String g_calamat;
+        private static String sp = ", ";
+       private static  String full_curent;
+        private static String full_home;
    
     public CandidateApplicationPersonal() {
         initComponents();
@@ -54,7 +83,7 @@ public class CandidateApplicationPersonal extends MasterForm{
 //        jToggleButton1.setEnabled(false);
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
-       
+       t_hp.setText("(0)");
      
     }
 
@@ -124,6 +153,52 @@ public class CandidateApplicationPersonal extends MasterForm{
         } catch (SQLException ex) {
         }
         curentCountry.setEnabled(true);
+    }
+    public static String get_nama(){
+        return g_nama;
+    }
+    
+    
+    public static void main(String[] args) {
+        
+    }
+    public void value(){
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+        t_pria.setActionCommand("Laki - laki");
+        t_wanita.setActionCommand("Perempuan");
+        t_lajang.setActionCommand("Lajang");
+        t_menikah.setActionCommand("Menikah");
+        g_nama = t_nama.getText();
+        g_ktp = t_tlhir.getText();
+        g_gender = radioGrupGender.getSelection().getActionCommand();
+        g_status = radioGrupStatus.getSelection().getActionCommand();
+        g_tlahir = t_tlhir.getText();
+        g_tgl = String.valueOf(fm.format(t_tgl.getDate()));
+        g_hp = t_hp.getText();
+        g_email = t_email.getText();
+        g_bpjs = t_bpjsKetenagakerjaan.getText();
+        g_npwp = t_npwp.getText();
+        g_lamaran = (String) t_lamaran.getSelectedItem();
+        g_gaji = t_gaji.getText();
+        g_discipline = t_dicipline.getText();
+        
+        g_hnegara = (String) homeCountry.getSelectedItem();
+        g_hprov = (String) homeCity.getSelectedItem();
+        g_hkota = (String) homeCity.getSelectedItem();
+        g_cnegara = (String) curentCountry.getSelectedItem();
+        g_cprov = (String) cprov.getSelectedItem();
+        g_ckota = (String) ccity.getSelectedItem();
+        g_hkec = t_hkec.getText();
+        g_ckec = t_ckec.getText();
+        g_hdesa = t_ddesa.getText();
+        g_cdesa = t_cdesa.getText();
+        g_halamat = t_halamat.getText();
+        g_calamat = t_calamat.getText();
+        sp = ", ";
+        full_curent = g_calamat + sp + g_cdesa + sp + g_ckec + sp + g_ckota + sp + g_cprov + sp + g_cnegara;
+        full_home = g_halamat + sp + g_hdesa + sp + g_hkec + sp + g_hkota + sp + g_hprov + sp + g_hnegara;
+
+    
     }
 
     /**
@@ -199,6 +274,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -315,12 +391,22 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 340, -1));
 
         t_ktp.setLabelText("KTP No.");
+        t_ktp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_ktpKeyTyped(evt);
+            }
+        });
         jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 340, -1));
 
         t_tlhir.setLabelText("Tempat Lahir / Birth Place");
         jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 340, -1));
 
         t_gaji.setLabelText("Estimasi Gaji / Sallary");
+        t_gaji.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_gajiKeyTyped(evt);
+            }
+        });
         jPanel1.add(t_gaji, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 340, -1));
 
         t_hp.setLabelText("No HP");
@@ -348,6 +434,11 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 340, -1));
 
         t_bpjsKetenagakerjaan.setLabelText("No BPJS Ketenagakerjaan");
+        t_bpjsKetenagakerjaan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_bpjsKetenagakerjaanKeyTyped(evt);
+            }
+        });
         jPanel1.add(t_bpjsKetenagakerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 340, -1));
 
         t_dicipline.setLabelText("Discipline");
@@ -448,6 +539,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 340, -1));
 
+        t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "test" }));
         t_lamaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_lamaranActionPerformed(evt);
@@ -495,6 +587,8 @@ public class CandidateApplicationPersonal extends MasterForm{
 
         jScrollPane18.setViewportView(jPanel1);
 
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -503,12 +597,22 @@ public class CandidateApplicationPersonal extends MasterForm{
                 .addContainerGap()
                 .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1140, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(576, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(576, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(593, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(597, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -555,20 +659,20 @@ public class CandidateApplicationPersonal extends MasterForm{
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
         String a ;
         String b = "-";
-        if(t_hp.getText().length()<2){
+        if(t_hp.getText().length()<3){
             t_hp.setText("(0)");
         }else if (t_hp.getText().length() == 6) {
             t_hp.setText(t_hp.getText()+"-");
-//        }else if(t_hp.getText().length() == 7){
-//            a = t_hp.getText();
-//            a = a.replaceAll(b, "");
-//            t_hp.setText(a);
+        }else if(t_hp.getText().length() == 7){
+           StringBuffer sb = new StringBuffer(t_hp.getText());
+       sb.setLength(6); 
+       t_hp.setText(""+sb);
         }else if(t_hp.getText().length() == 11){
             t_hp.setText(t_hp.getText()+"-");
-//        }else if(t_hp.getText().length() == 12){
-//            a = t_hp.getText();
-//            a = a.replaceAll(b, "");
-//            t_hp.setText(a);
+        }else if(t_hp.getText().length() == 12){
+            StringBuffer sb = new StringBuffer(t_hp.getText());
+       sb.setLength(11); 
+       t_hp.setText(""+sb);
         }else if(t_hp.getText().length() == 17){
             t_hp.setText(t_hp.getText());
             evt.consume();
@@ -671,7 +775,10 @@ public class CandidateApplicationPersonal extends MasterForm{
     }//GEN-LAST:event_t_hpKeyReleased
 
     private void t_bpjsKesehatanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyTyped
-//        asd
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }//        asd
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -679,8 +786,35 @@ public class CandidateApplicationPersonal extends MasterForm{
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+g_nama = t_nama.getText();
+
+
         Main.main.getMain().showForm(new CandidateApplicationAcademic());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void t_ktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyTyped
+   char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }
+        if (t_ktp.getText().length()>15){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ktpKeyTyped
+
+    private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_gajiKeyTyped
+
+    private void t_bpjsKetenagakerjaanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKetenagakerjaanKeyTyped
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -714,6 +848,7 @@ public class CandidateApplicationPersonal extends MasterForm{
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane26;
