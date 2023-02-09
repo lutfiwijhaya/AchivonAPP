@@ -21,6 +21,7 @@ public class TableCellEditor extends DefaultCellEditor {
         if (o instanceof DefaultTableModel) {
             model = (DefaultTableModel) o;
             JTable tbl = new TableCustom(model);
+            tbl.editCellAt(i, i1);
             tbl.setBackground(com.getBackground());
             initHeaderWidth(tbl);
             autoRowHeight(tbl);

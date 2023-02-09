@@ -9,6 +9,8 @@ import Employee.EmployeeProfilePanel;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -19,6 +21,8 @@ public class CandidateApplicationAcademic extends MasterForm {
     public CandidateApplicationAcademic() {
         initComponents();
         MyWindow();
+        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
     }
 
     /**

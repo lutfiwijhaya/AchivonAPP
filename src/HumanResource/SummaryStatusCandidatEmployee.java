@@ -11,7 +11,9 @@ import com.sun.jdi.connect.spi.Connection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -33,6 +35,21 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         openDB();
         setcombo();
         jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
+        
+        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
     }
 
     private void openDB() {

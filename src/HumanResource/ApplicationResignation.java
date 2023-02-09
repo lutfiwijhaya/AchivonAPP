@@ -7,6 +7,8 @@ package HumanResource;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -21,6 +23,16 @@ public class ApplicationResignation extends MasterForm {
         initComponents();
         MyWindow();
         jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
+        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        
     }
 
     /**

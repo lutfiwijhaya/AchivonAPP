@@ -23,7 +23,9 @@ import CustomResource.celleditor;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -65,7 +67,8 @@ public class CandidateList extends MasterForm {
         MyWindow();
         remove();
          
-        
+        ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
        
         
      

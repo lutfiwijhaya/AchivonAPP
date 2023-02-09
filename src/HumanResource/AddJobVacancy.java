@@ -7,6 +7,8 @@ package HumanResource;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -20,6 +22,9 @@ public class AddJobVacancy extends MasterForm {
     public AddJobVacancy() {
         initComponents();
         MyWindow();
+        
+        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
     }
 
     /**

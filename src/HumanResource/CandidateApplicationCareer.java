@@ -1,6 +1,8 @@
 package HumanResource;
 
 import Main.MasterForm;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 
 /**
@@ -14,6 +16,8 @@ public class CandidateApplicationCareer extends MasterForm {
      */
     public CandidateApplicationCareer() {
         initComponents();
+        ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
     }
 
     /**

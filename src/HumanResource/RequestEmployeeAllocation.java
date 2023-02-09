@@ -8,6 +8,8 @@ import CustomResource.MySession;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -27,6 +29,18 @@ public class RequestEmployeeAllocation extends MasterForm {
         jLabel24.setText(MySession.get_nama());
         jLabel25.setText(MySession.get_JobPosition());
         jLabel26.setText(MySession.get_birthPlace());
+        
+        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
     }
 
     /**

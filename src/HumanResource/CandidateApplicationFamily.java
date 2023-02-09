@@ -3,6 +3,8 @@ package HumanResource;
 import Employee.ChangePassword;
 import Employee.EmployeeProfilePanel;
 import Main.MasterForm;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,34 +17,11 @@ import Main.MasterForm;
  */
 public class CandidateApplicationFamily extends MasterForm{
 
-    CandidateApplication ca;
-            CandidateApplicationPersonal candidateApplicationPersonal;
-            CandidateApplicationAcademic candidateApplicationAcademic;
-            CandidateApplicationFamily candidateApplicationFamily;
-            CandidateApplicationCertificates candidateApplicationCertificates;
-            CandidateApplicationCareer candidateApplicationCareer;
-            CandidateApplicationIntroduction candidateApplicationIntroduction;
-            CandidateApplicationSKCK candidateApplicationSKCK;
-        CandidateList candidateListPanel;
-        CandidateProfile candidateProfile;
-    EmployeeConfirmation employeeConfirmation;
-    NotificationToNewEmployee notificationToNewEmployee;
-    AllocationAnnouncement allocationAnnouncement;
-    SummaryStatusCandidatEmployee summaryStatusCandidatEmployee;
-    RequestEmployeeAllocation requestEmployeeAllocation;
-    LeaveOfAbsense leaveOfAbsense;
-    AplicationRehabilitation aplicationRehabilitation;
-    ApplicationResignation applicationResignation;
-    EmployeeClearanceStatus employeeClearanceStatus;
-    ConfirmationHandingOverTakingOver confirmationHandingOverTakingOver;
-    DisciplnaryResolution disciplnaryResolution;
-    EmployeeEvaluation employeeEvaluation;
-    AddJobVacancy addJobVacancy;
-    
-    EmployeeProfilePanel employeeProfilePanel;
-    ChangePassword changePasswordPanel;
+   
     public CandidateApplicationFamily() {
         initComponents();
+        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
     }
 
     /**

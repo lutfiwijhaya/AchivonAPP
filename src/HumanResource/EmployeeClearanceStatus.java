@@ -7,6 +7,13 @@ package HumanResource;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+//import javax.swing.JLabel;
+//import javax.swing.table.DefaultTableCellRenderer;
+//import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -21,6 +28,46 @@ public class EmployeeClearanceStatus extends MasterForm{
         initComponents();
         MyWindow();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+        
+        DefaultTableModel model4 = (DefaultTableModel) jTable4.getModel();
+        model4.addRow(new Object[]{"1", getSubTableDataGeneral(), getSubTableDataSafety(), getSubTableDataTools()});
+        jTable4.autoRowHeight(jTable4);
+        
+        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        
+    }
+    private DefaultTableModel getSubTableDataGeneral() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(3);
+        data.addRow(new Object[]{new CustomResource.Header("Item",100), new CustomResource.Header("Q'ty"), new CustomResource.Header("Status")});
+        data.addRow(new Object[]{"Pencil", "40", "New"});
+//        data.addRow(new Object[]{"Banten", "Kota "});
+        return data;
+    }
+    private DefaultTableModel getSubTableDataSafety() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(3);
+        data.addRow(new Object[]{new CustomResource.Header("Item",100), new CustomResource.Header("Q'ty"), new CustomResource.Header("Status")});
+        data.addRow(new Object[]{"Book", "40", "New"});
+        return data;
+    }
+    private DefaultTableModel getSubTableDataTools() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(3);
+        data.addRow(new Object[]{new CustomResource.Header("Item",100), new CustomResource.Header("Q'ty"), new CustomResource.Header("Status")});
+        data.addRow(new Object[]{"Pen", "40", "New"});
+        return data;
     }
 
     /**
@@ -34,7 +81,6 @@ public class EmployeeClearanceStatus extends MasterForm{
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -43,13 +89,7 @@ public class EmployeeClearanceStatus extends MasterForm{
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -65,14 +105,11 @@ public class EmployeeClearanceStatus extends MasterForm{
         customTextfield3 = new CustomResource.CustomTextfield();
         customTextfield4 = new CustomResource.CustomTextfield();
         customTextfield5 = new CustomResource.CustomTextfield();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable4 = new CustomResource.TableCustom();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Safety & Quality");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, 200, 20));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -131,68 +168,21 @@ public class EmployeeClearanceStatus extends MasterForm{
         jLabel11.setText("A. EMPLOYEE INFORMATION");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, 20));
 
-        jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "No", "Item", "Q'ty", "Status", "Item", "Q'ty", "Status", "Item", "Q'ty", "Status"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable4);
-
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 680, 370));
-
         jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel12.setText("B. STATUS OF CLEARANCE");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, 20));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Generla Item");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 200, 20));
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Related Items");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 200, 20));
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Tools & Consumables");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 410, 200, 20));
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("related Tools");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 430, 200, 20));
-
         jLabel17.setText("I, mentioned above, return the following items received from the company in my name to the company (including the status ");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 830, -1, 20));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 800, -1, 20));
 
         jLabel18.setText("of the returned items when returning, it is impossible to transfer the items to another employee before the actual return,");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 850, -1, 20));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 820, -1, 20));
 
         jLabel19.setText(" and it is not possible to hand over to another employee). I pledge that I will take full responsibility for any disadvantages,");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 870, -1, 20));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 840, -1, 20));
 
         jLabel20.setText(" and that I will not raise any objection to the payments made in consideration of any payment such as salary, etc. ");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 890, -1, 20));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 860, -1, 20));
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 1120, 60, 20));
 
         jLabel22.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -254,6 +244,23 @@ public class EmployeeClearanceStatus extends MasterForm{
         });
         jPanel1.add(customTextfield5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 240, -1));
 
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "No", "General Items", "Safety & Quality Related Items", "Tools & Consumables Related Tools"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable4);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jTable4.getColumnModel().getColumn(2).setPreferredWidth(200);
+            jTable4.getColumnModel().getColumn(3).setPreferredWidth(200);
+        }
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 680, 380));
+
         jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -296,13 +303,8 @@ public class EmployeeClearanceStatus extends MasterForm{
     private CustomResource.CustomTextfield customTextfield4;
     private CustomResource.CustomTextfield customTextfield5;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -318,11 +320,11 @@ public class EmployeeClearanceStatus extends MasterForm{
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private CustomResource.TableCustom jTable4;
     // End of variables declaration//GEN-END:variables
 
     private void MyWindow(){

@@ -7,6 +7,10 @@ package HumanResource;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,8 +25,40 @@ public class EmployeeEvaluation extends MasterForm {
         initComponents();
         MyWindow();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+        
+        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
+        model2.addRow(new Object[]{"1. Coordination", getSubTableDataEvaluation(),""});
+        model2.addRow(new Object[]{"2. Communication", getSubTableDataEvaluation(), ""});
+        model2.addRow(new Object[]{"3. Reporting", getSubTableDataEvaluation(), ""});
+        model2.addRow(new Object[]{"4. Leadership", getSubTableDataEvaluation(), ""});
+        model2.addRow(new Object[]{"5. Knowledge", getSubTableDataEvaluation(), ""});
+        model2.addRow(new Object[]{"6. Professional", getSubTableDataEvaluation(), ""});
+        model2.addRow(new Object[]{"7. Planning Capability", getSubTableDataEvaluation(), ""});
+        model2.addRow(new Object[]{"8. Schedule Keeping", getSubTableDataEvaluation(), ""});
+        model2.addRow(new Object[]{"9. Performance", getSubTableDataEvaluation(), ""});
+        model2.addRow(new Object[]{"10. Personality", getSubTableDataEvaluation(), ""});
+        jTable2.autoRowHeight(jTable2);
+        
+        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
     }
-
+    private DefaultTableModel getSubTableDataEvaluation() {
+        DefaultTableModel data = new DefaultTableModel();
+        data.setColumnCount(5);
+        data.addRow(new Object[]{new CustomResource.Header("S",50), new CustomResource.Header("A", 50), new CustomResource.Header("B", 50), new CustomResource.Header("C", 50), new CustomResource.Header("D", 50)});
+        data.addRow(new Object[]{"S", "", "", "", ""});
+//        data.addColumn(new Object[]{"a", "", "", "", ""});
+//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
+//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
+        return data;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,8 +78,6 @@ public class EmployeeEvaluation extends MasterForm {
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -58,6 +92,8 @@ public class EmployeeEvaluation extends MasterForm {
         customTextfield8 = new CustomResource.CustomTextfield();
         customTextfield9 = new CustomResource.CustomTextfield();
         customTextfield10 = new CustomResource.CustomTextfield();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable2 = new CustomResource.TableCustom();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,28 +147,6 @@ public class EmployeeEvaluation extends MasterForm {
         jLabel24.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel24.setText("C. EVALUATION RESULTS BY EACH EVALUATOR");
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 640, -1, -1));
-
-        jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1. Coordination", null, null},
-                {"2. Communication", null, null},
-                {"3. Reporting", null, null},
-                {"4. Leadership", "", null},
-                {"5. Knowledge", null, null},
-                {"6. Professional", null, null},
-                {"7. Planning Capability", null, null},
-                {"8. Schedule Keeping", null, null},
-                {"9. Performance", null, null},
-                {"10. Personality", null, null}
-            },
-            new String [] {
-                "Factor", "Evaluation", "Basis for judgment"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable2);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 670, 680, 240));
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 1190, 230, 20));
 
         jTextArea1.setColumns(20);
@@ -176,6 +190,21 @@ public class EmployeeEvaluation extends MasterForm {
         customTextfield10.setLabelText("Director");
         jPanel1.add(customTextfield10, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 520, 280, -1));
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Factor", "Evaluation", "Basis for Judgement"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(2).setPreferredWidth(300);
+        }
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 660, 660, 260));
+
         jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -213,11 +242,11 @@ public class EmployeeEvaluation extends MasterForm {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private CustomResource.TableCustom jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
