@@ -20,6 +20,7 @@ public class AplicationRehabilitation extends MasterForm {
     public AplicationRehabilitation() {
         initComponents();
         MyWindow();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

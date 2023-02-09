@@ -20,6 +20,7 @@ public class LeaveOfAbsense extends MasterForm {
     public LeaveOfAbsense() {
         initComponents();
         MyWindow();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

@@ -21,7 +21,7 @@ public class TableCustom extends JTable {
     }
 
     private void init() {
-        setSelectionBackground(new Color(167, 230, 255));
+        setSelectionBackground(new Color(0, 0, 0));
     }
 
     @Override
@@ -39,8 +39,8 @@ public class TableCustom extends JTable {
                 return tbl;
             } else if (getValueAt(i, i1) instanceof Header) {
                 com.setFont(new Font(com.getFont().getFamily(), 1, com.getFont().getSize()));
-                com.setBackground(new Color(209, 211, 252));
-                com.setForeground(new Color(80, 80, 80));
+                com.setBackground(new Color(102,102,102));
+                com.setForeground(new Color(255, 255, 255));
                 
                 return com;
             }

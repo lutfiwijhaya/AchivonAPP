@@ -20,6 +20,7 @@ public class ApplicationResignation extends MasterForm {
     public ApplicationResignation() {
         initComponents();
         MyWindow();
+        jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

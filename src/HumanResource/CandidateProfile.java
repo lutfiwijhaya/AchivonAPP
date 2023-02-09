@@ -20,6 +20,7 @@ public class CandidateProfile extends MasterForm {
     public CandidateProfile() {
         initComponents();
         MyWindow();
+        jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

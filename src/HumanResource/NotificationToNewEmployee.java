@@ -20,6 +20,7 @@ public class NotificationToNewEmployee extends MasterForm {
     public NotificationToNewEmployee() {
         initComponents();
         MyWindow();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

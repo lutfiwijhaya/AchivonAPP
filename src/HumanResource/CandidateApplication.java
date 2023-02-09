@@ -25,9 +25,11 @@ import Main.MasterForm;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -77,6 +79,18 @@ public class CandidateApplication extends MasterForm {
         model5.addRow(new Object[]{"Example name", "Example Position", getSubTableDataCareer(), ""});
         model5.addRow(new Object[]{"Example name", "Example Position", getSubTableDataCareer(), ""});
         jTable5.autoRowHeight(jTable5);
+    
+        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
+        
+        ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
+        .setHorizontalAlignment(JLabel.CENTER);
     }
     
     private DefaultTableModel getSubTableDataAcademic() {
@@ -512,7 +526,7 @@ public class CandidateApplication extends MasterForm {
 
         jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1670, 800, 130));
 
-        jSeparator35.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator35.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 1830, 790, 20));
 
         jCheckBox5.setText("Saya menjamin bahwa seluruh uraian di atas adalah benar");
@@ -785,21 +799,26 @@ public class CandidateApplication extends MasterForm {
         ));
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jScrollPane1.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTable2.getColumnModel().getColumn(2).setPreferredWidth(200);
+            jTable2.getColumnModel().getColumn(3).setPreferredWidth(5);
+        }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 880, 850, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 880, 850, 100));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nama Anggota / Members Name", "Relation / Hubungan", "Tanggal lahir / Birthday", "Tinggal bersama / Cohabit", "No Handphone"
+                "Nama Anggota / Members Name", "Relation / Hubungan", "Tanggal lahir / Birthday", "Tinggal bersama / Cohabit", "No HP"
             }
         ));
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jScrollPane3.setViewportView(jTable3);
         if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(4).setHeaderValue("No Sertifikat / Certificate No.");
+            jTable3.getColumnModel().getColumn(3).setPreferredWidth(150);
         }
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1020, 850, 100));
@@ -815,7 +834,7 @@ public class CandidateApplication extends MasterForm {
         jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jScrollPane4.setViewportView(jTable4);
         if (jTable4.getColumnModel().getColumnCount() > 0) {
-            jTable4.getColumnModel().getColumn(4).setHeaderValue("No Sertifikat / Certificate No.");
+            jTable4.getColumnModel().getColumn(3).setPreferredWidth(200);
         }
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1170, 850, 100));
@@ -830,6 +849,9 @@ public class CandidateApplication extends MasterForm {
         ));
         jTable5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jScrollPane5.setViewportView(jTable5);
+        if (jTable5.getColumnModel().getColumnCount() > 0) {
+            jTable5.getColumnModel().getColumn(2).setPreferredWidth(280);
+        }
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1310, 850, 100));
 

@@ -36,6 +36,7 @@ public class EmployeeConfirmation extends MasterForm {
         MyWindow();
         get_tanggal();
         setcombo();
+        jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
 
         //areaEmployee.setText("I (Employee) has confirmed all matters in accordance with The Compny's (means PT.ACHIVON PRESTASI ABADI'S)\n" +
         // "human resource management standard regulation from the date of signing this agreement, and as a result, I \n" +

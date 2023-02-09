@@ -20,6 +20,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
     public ConfirmationHandingOverTakingOver() {
         initComponents();
         MyWindow();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

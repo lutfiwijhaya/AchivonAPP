@@ -21,6 +21,7 @@ public class RequestEmployeeAllocation extends MasterForm {
     public RequestEmployeeAllocation() {
         initComponents();
         MyWindow();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         
         jLabel23.setText(MySession.get_JobPosition());
         jLabel24.setText(MySession.get_nama());

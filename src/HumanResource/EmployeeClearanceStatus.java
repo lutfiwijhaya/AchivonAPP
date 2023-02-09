@@ -20,6 +20,7 @@ public class EmployeeClearanceStatus extends MasterForm{
     public EmployeeClearanceStatus() {
         initComponents();
         MyWindow();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

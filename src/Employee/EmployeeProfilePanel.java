@@ -31,6 +31,7 @@ public class EmployeeProfilePanel extends MasterForm {
         labelNumber.setText(MySession.get_mobileNumber());
         labelBPJS.setText(MySession.get_BPJS());
         labelNPWP.setText(MySession.get_NPWP());
+        jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

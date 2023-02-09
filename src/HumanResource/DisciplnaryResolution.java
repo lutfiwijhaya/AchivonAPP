@@ -20,6 +20,7 @@ public class DisciplnaryResolution extends MasterForm {
     public DisciplnaryResolution() {
         initComponents();
         MyWindow();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

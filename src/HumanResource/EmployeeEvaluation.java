@@ -20,6 +20,7 @@ public class EmployeeEvaluation extends MasterForm {
     public EmployeeEvaluation() {
         initComponents();
         MyWindow();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**

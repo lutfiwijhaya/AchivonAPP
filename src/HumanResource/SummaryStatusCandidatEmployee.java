@@ -32,6 +32,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         MyWindow();
         openDB();
         setcombo();
+        jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     private void openDB() {
