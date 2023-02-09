@@ -22,10 +22,10 @@ public class RequestEmployeeAllocation extends MasterForm {
         initComponents();
         MyWindow();
         
-        textDicipline.setText(MySession.get_JobPosition());
-        textName.setText(MySession.get_nama());
-        textPosition.setText(MySession.get_JobPosition());
-        textWork.setText(MySession.get_birthPlace());
+        jLabel23.setText(MySession.get_JobPosition());
+        jLabel24.setText(MySession.get_nama());
+        jLabel25.setText(MySession.get_JobPosition());
+        jLabel26.setText(MySession.get_birthPlace());
     }
 
     /**
@@ -45,19 +45,11 @@ public class RequestEmployeeAllocation extends MasterForm {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        textDicipline = new javax.swing.JTextField();
-        textName = new javax.swing.JTextField();
-        textPosition = new javax.swing.JTextField();
-        textWork = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -79,16 +71,23 @@ public class RequestEmployeeAllocation extends MasterForm {
         jTable4 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        customTextfield2 = new CustomResource.CustomTextfield();
+        t_tgl = new com.toedter.calendar.JDateChooser();
+        jLabel26 = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Summary for Company Allocation");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, 40));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, 30));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 255));
         jLabel2.setText("REQUEST - EMPLOYEE ALLOCATION");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
 
@@ -104,17 +103,11 @@ public class RequestEmployeeAllocation extends MasterForm {
         jLabel6.setText("Name");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
 
-        jLabel7.setText("Required Allocation Date :");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, -1, -1));
-
         jLabel8.setText("Position");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 280, -1, -1));
 
-        jLabel9.setText("Description Allocation     :");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
-
-        jLabel10.setText("Discipline");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
+        jLabel10.setText("Required Allocation Date :");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 230, -1));
 
         jLabel11.setText(":");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 10, -1));
@@ -124,18 +117,6 @@ public class RequestEmployeeAllocation extends MasterForm {
 
         jLabel13.setText(":");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 280, 10, -1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 400, 300, -1));
-        jPanel2.add(textDicipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 240, -1));
-
-        textName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNameActionPerformed(evt);
-            }
-        });
-        jPanel2.add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 240, -1));
-        jPanel2.add(textPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 230, -1));
-        jPanel2.add(textWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 230, -1));
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, 300, -1));
 
         jLabel14.setText("A. EMPLOYEE INFORMATION FOR ALLOCATION");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, -1, -1));
@@ -159,7 +140,7 @@ public class RequestEmployeeAllocation extends MasterForm {
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 680, 690, -1));
 
         jLabel17.setText("B. REASON STATEMENT");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 510, -1, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, -1, -1));
 
         jLabel18.setText("B2. Statement by Team Manager");
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 660, -1, -1));
@@ -184,6 +165,7 @@ public class RequestEmployeeAllocation extends MasterForm {
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1070, -1, 30));
         jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 1240, 110, 20));
 
+        jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null}
@@ -199,6 +181,7 @@ public class RequestEmployeeAllocation extends MasterForm {
 
         jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 370, 100));
 
+        jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
@@ -214,6 +197,7 @@ public class RequestEmployeeAllocation extends MasterForm {
 
         jPanel2.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 180, 100));
 
+        jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null}
@@ -238,6 +222,27 @@ public class RequestEmployeeAllocation extends MasterForm {
         jLabel21.setText("of the allocation.");
         jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1100, -1, -1));
 
+        jLabel22.setText("Discipline");
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
+
+        jLabel23.setText("Discipline");
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 230, -1));
+
+        jLabel24.setText("Discipline");
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 230, -1));
+
+        jLabel25.setText("Discipline");
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 230, -1));
+
+        customTextfield2.setLabelText("Description Allocation     :");
+        jPanel2.add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 330, 40));
+
+        t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel2.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 190, 30));
+
+        jLabel26.setText("Discipline");
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 230, -1));
+
         jScrollPane1.setViewportView(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -252,12 +257,9 @@ public class RequestEmployeeAllocation extends MasterForm {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textNameActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private CustomResource.CustomTextfield customTextfield2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -273,13 +275,16 @@ public class RequestEmployeeAllocation extends MasterForm {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -294,12 +299,7 @@ public class RequestEmployeeAllocation extends MasterForm {
     private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField textDicipline;
-    private javax.swing.JTextField textName;
-    private javax.swing.JTextField textPosition;
-    private javax.swing.JTextField textWork;
+    private com.toedter.calendar.JDateChooser t_tgl;
     // End of variables declaration//GEN-END:variables
 
     private void MyWindow(){

@@ -103,44 +103,55 @@ public class CandidateApplicationFamily extends MasterForm{
         jTable3.setShowVerticalLines(true);
         jScrollPane21.setViewportView(jTable3);
 
-        add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 820, 90));
+        add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 820, 90));
 
         customTextfield1.setLabelText("No Handphone");
-        add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 260, -1));
+        add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, 260, -1));
 
         customTextfield2.setLabelText("Nama Anggota / Member Name");
-        add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 250, -1));
-        add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 250, 30));
+        add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 250, -1));
+
+        t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 250, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("Tinggal Bersama / Cohabit");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 190, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 190, -1));
 
         radioButtonCustom1.setText("Tidak / No");
-        add(radioButtonCustom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, -1, -1));
+        radioButtonCustom1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        add(radioButtonCustom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, -1, -1));
 
         radioButtonCustom2.setText("Ya / Yes");
-        add(radioButtonCustom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
+        radioButtonCustom2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        add(radioButtonCustom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel3.setText("Hubungan / Relation");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 190, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 190, 20));
 
         jLabel88.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel88.setText("3. Status Keluarga / Family Status");
-        add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 30));
+        add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 200, 30));
 
         jSeparator32.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator32.setForeground(new java.awt.Color(255, 0, 0));
-        add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 660, 20));
-        add(comboBoxSuggestion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 250, -1));
+        add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 660, 20));
+
+        comboBoxSuggestion1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        add(comboBoxSuggestion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 250, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel4.setText("Tanggal Lahir / Birthday");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 190, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 190, 20));
 
         jButton2.setText("Simpan / Save");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, 30));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, -1, 30));
 
         jButton3.setText("Lanjut / Next ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -148,21 +159,25 @@ public class CandidateApplicationFamily extends MasterForm{
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 420, -1, 30));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 430, -1, 30));
 
         jButton4.setText("Ubah / Edit");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, 30));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, -1, 30));
 
         jButton5.setText("Hapus / Delete");
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, -1, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, -1, 30));
 
         jButton6.setText("Kembali / Back");
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, 30));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Main.main.getMain().showForm(new CandidateApplicationCertificates());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

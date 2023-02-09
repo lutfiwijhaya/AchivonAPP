@@ -136,33 +136,17 @@ void remove (){
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        textSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         MyTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        textSearch = new CustomResource.CustomTextfield();
 
         setPreferredSize(new java.awt.Dimension(900, 585));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        textSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textSearchActionPerformed(evt);
-            }
-        });
-        textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                textSearchKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textSearchKeyTyped(evt);
-            }
-        });
-        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 350, 30));
 
         MyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,9 +178,8 @@ void remove (){
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("Cari / Search");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 80, 30));
+        textSearch.setLabelText("Cari / Search");
+        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 460, -1));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -214,29 +197,16 @@ void remove (){
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
-
-    }//GEN-LAST:event_textSearchKeyTyped
-
-    private void textSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyPressed
-        myShow();
-    }//GEN-LAST:event_textSearchKeyPressed
-
-    private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textSearchActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField textSearch;
+    private CustomResource.CustomTextfield textSearch;
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {

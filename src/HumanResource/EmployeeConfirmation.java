@@ -153,56 +153,70 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel32 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         l_emnama1 = new javax.swing.JLabel();
         l_name1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jComboBox1 = new CustomResource.ComboBoxSuggestion();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel24.setText("A3. Position");
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 770, -1, -1));
 
+        l_date.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_date.setText("DD-MMM-YYYY");
         jPanel1.add(l_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, -1, -1));
 
+        jLabel33.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel33.setText(":");
         jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 710, 20, -1));
 
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel7.setText("A5. KTP No.");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, -1));
 
+        jLabel20.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel20.setText("A1. Name");
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, -1, -1));
 
+        jLabel22.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel22.setText("B1. Name");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 710, -1, -1));
 
+        l_cadd.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_cadd.setText("example Current Address");
         jPanel1.add(l_cadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel6.setText("A4. Current Address");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel1.setText(":");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 20, -1));
 
+        jLabel36.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel36.setText("Name :");
         jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 610, -1, -1));
 
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText(":");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 20, -1));
 
+        jLabel23.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel23.setText("B2. Signature Date");
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 740, -1, -1));
 
+        l_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_tgl.setText("DD-MMM-YYYY");
         jPanel1.add(l_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 740, -1, -1));
 
         areaEmployee1.setColumns(20);
+        areaEmployee1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         areaEmployee1.setRows(5);
         areaEmployee1.setText("I (Employee) has confirmed all matters in accordance with The Company’s (means PT. ACHIVON PRESTASI ABADI’s)\nhuman resources management standard regulations from the date of signing this agreement, and as a result, I assure \nthat I will thoroughly perform and strictly comply with the tasks given and duties. In addition, I confirm that I will work\nvery diligently without raising any objection in the overtime including working day and non-working day, special task\nand special work at the request of The Company, and I made signature above on this employee confirmation.");
         jScrollPane2.setViewportView(areaEmployee1);
@@ -213,104 +227,125 @@ public class EmployeeConfirmation extends MasterForm {
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 880, 20));
 
+        jLabel38.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel38.setText("Signature");
         jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel4.setText("A2. Signature Date");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, -1, -1));
 
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel10.setText(":");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 20, -1));
 
+        jLabel21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel21.setText("B. EMPLOYMENT APPROVAL");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 670, -1, -1));
 
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel12.setText(":");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 20, -1));
 
+        jLabel37.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel37.setText("example Position");
         jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 770, -1, -1));
 
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel11.setText(":");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 20, -1));
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel5.setText("A3. Home Address");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
 
+        jLabel31.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel31.setText(":");
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 770, 20, -1));
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 600, 50, 20));
         jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 1140, -1, -1));
 
+        l_hadd.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_hadd.setText("example Home Address");
         jPanel1.add(l_hadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, -1));
 
+        l_name.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_name.setText("example Name");
         jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 610, -1, -1));
 
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel13.setText(":");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 20, -1));
 
+        l_emnama.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_emnama.setText("example Name");
         jPanel1.add(l_emnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 970, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("A. EMPLOYEE CONFIRMATION");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
 
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel8.setText("A6. Mobile (HP) No.");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, -1, -1));
 
+        l_hp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_hp.setText("example NO HP");
         jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, -1, -1));
 
+        l_ktp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_ktp.setText("example KTP");
         jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
 
         areaEmployee.setColumns(20);
+        areaEmployee.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         areaEmployee.setRows(5);
         areaEmployee.setText("I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee\n of Section A on behalf of The Company with the approval of The Company's Human Resources Director.");
         jScrollPane1.setViewportView(areaEmployee);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 800, 700, 100));
 
+        jLabel40.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel40.setText("Signature");
         jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 910, -1, -1));
 
+        jLabel32.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel32.setText(":");
         jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 740, 20, -1));
 
+        jLabel41.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel41.setText("Name :");
         jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 970, -1, -1));
         jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 1140, 80, 20));
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 250, -1));
-
+        jLabel25.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel25.setText("Input Candidate Employee");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 133, -1, 20));
 
+        jToggleButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jToggleButton1.setText("Add/tambah");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 140, -1, -1));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 130, -1, 30));
 
+        l_emnama1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_emnama1.setText("example Name");
         jPanel1.add(l_emnama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 710, -1, -1));
 
+        l_name1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_name1.setText("example Name");
         jPanel1.add(l_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 51, 255));
         jLabel14.setText("Employee Confirmation");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
+
+        jComboBox1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 240, -1));
 
         jScrollPane3.setViewportView(jPanel1);
 
@@ -326,11 +361,6 @@ public class EmployeeConfirmation extends MasterForm {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         addtext();  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
@@ -339,7 +369,7 @@ public class EmployeeConfirmation extends MasterForm {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaEmployee;
     private javax.swing.JTextArea areaEmployee1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private CustomResource.ComboBoxSuggestion jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -203,8 +203,9 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.setAutoscrolls(true);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel75.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel75.setText("Tanggal Lahir / Birth Date");
-        jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, 30));
+        jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, 40));
 
         jLabel77.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel77.setText("Status Pernikahan / Marital Status");
@@ -269,7 +270,9 @@ public class CandidateApplicationPersonal extends MasterForm{
         jLabel99.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel99.setText("Posisi Yang Dilamar /Job Applying");
         jPanel1.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, 30));
-        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 190, -1));
+
+        t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 442, 190, 30));
 
         jLabel101.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel101.setText("Negara / Country");
@@ -355,6 +358,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(t_bpjsKesehatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 320, 340, -1));
 
+        curentCountry.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         curentCountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 curentCountryActionPerformed(evt);
@@ -362,6 +366,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 190, 30));
 
+        cprov.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cprov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cprovActionPerformed(evt);
@@ -369,6 +374,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, 190, -1));
 
+        ccity.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ccity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ccityActionPerformed(evt);
@@ -392,6 +398,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(t_cdesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 710, 310, -1));
 
+        homeCountry.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeCountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeCountryActionPerformed(evt);
@@ -399,6 +406,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, 190, 30));
 
+        homeState.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeStateActionPerformed(evt);
@@ -406,6 +414,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, 190, 30));
 
+        homeCity.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeCityActionPerformed(evt);
@@ -442,6 +451,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 340, -1));
 
+        t_lamaran.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_lamaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_lamaranActionPerformed(evt);
@@ -471,7 +481,7 @@ public class CandidateApplicationPersonal extends MasterForm{
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 990, 130, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 990, 130, 30));
 
         jButton3.setText("Lanjut / Next");
         jButton3.addActionListener(new java.awt.event.ActionListener() {

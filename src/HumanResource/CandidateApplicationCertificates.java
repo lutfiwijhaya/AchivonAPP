@@ -49,11 +49,11 @@ public class CandidateApplicationCertificates extends MasterForm {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator31.setForeground(new java.awt.Color(255, 0, 0));
-        add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 430, 20));
+        add(jSeparator31, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 430, 20));
 
-        jLabel87.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel87.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel87.setText("4. sertifikat keahlian / Sklill Authorized Certificates");
-        add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, 30));
+        add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 300, 30));
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -77,46 +77,61 @@ public class CandidateApplicationCertificates extends MasterForm {
         jTable1.setShowVerticalLines(true);
         jScrollPane2.setViewportView(jTable1);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 700, 90));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 700, 90));
 
         customTextfield3.setLabelText("Nama Sertifikat / Certificate Namel");
-        add(customTextfield3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 270, -1));
+        add(customTextfield3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 270, -1));
 
         customTextfield4.setLabelText("No. Sertifikat");
-        add(customTextfield4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 270, -1));
+        add(customTextfield4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, 270, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel1.setText("diakuisisi Tanggal / acquisition date");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 180, -1));
-        add(comboBoxSuggestion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 270, -1));
-        add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 220, 30));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 180, -1));
+
+        comboBoxSuggestion1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        add(comboBoxSuggestion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, 270, -1));
+
+        t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 220, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("Lokasi / Location");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 90, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 90, -1));
 
         customTextfield5.setLabelText("Nama Badan Penyelenggara / Authority Name");
-        add(customTextfield5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 270, -1));
+        add(customTextfield5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 270, -1));
 
+        jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton1.setText("Lanjut / Next");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 120, 30));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 460, 120, 30));
 
+        jButton2.setBackground(new java.awt.Color(0, 51, 255));
+        jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Simpan / Save");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 120, 30));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 300, 120, 30));
 
+        jButton3.setBackground(new java.awt.Color(255, 204, 51));
+        jButton3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Ubah / Edit");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 90, 30));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 300, 90, 30));
 
+        jButton4.setBackground(new java.awt.Color(255, 0, 0));
+        jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Hapus / Delete");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 120, 30));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, 120, 30));
 
+        jButton5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton5.setText("Kembali / Back");
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 120, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 120, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

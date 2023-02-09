@@ -93,7 +93,7 @@ public class main extends javax.swing.JFrame {
         String nama_log = CustomResource.MySession.get_nama();
         
         if (nama_log == null) {
-            HumanResourceSystem.setEnabled(false);
+            HumanResourceSystem.setEnabled(true);
             POSystem.setEnabled(false);
             WarehouseSystem.setEnabled(false);
             AcountingSystem.setEnabled(false);
