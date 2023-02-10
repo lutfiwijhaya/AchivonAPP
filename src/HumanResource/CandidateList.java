@@ -236,7 +236,7 @@ void remove (){
         if (mySearch != null) {
             try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE nama LIKE '%"+mySearch+"%'");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND nama LIKE '%"+mySearch+"%'");
             while (myRess.next()) {
                 
                 String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
@@ -252,7 +252,7 @@ void remove (){
         }else{
             try {
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee");
+                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
                 while (myRess.next()) {
                     
                     String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 

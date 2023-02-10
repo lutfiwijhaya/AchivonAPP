@@ -770,6 +770,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 340, -1));
 
+        t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "itemasd" }));
         t_lamaran.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_lamaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

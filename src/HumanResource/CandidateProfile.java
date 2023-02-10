@@ -339,6 +339,11 @@ public class CandidateProfile extends MasterForm {
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Terima Lamaran");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 1380, 170, 40));
 
         jButton2.setBackground(new java.awt.Color(255, 0, 0));
@@ -467,6 +472,21 @@ public class CandidateProfile extends MasterForm {
     private void jTable2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable2InputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable2InputMethodTextChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Connection myConn;
+        try{
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+//            while (myRess.next()) {
+//                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
+//            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+//                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
