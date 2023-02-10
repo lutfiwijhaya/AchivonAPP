@@ -23,6 +23,7 @@ public class MySession {
     private static String NPWP;
     private static String JobPosition;
     private static String Sallary;
+    private static String Role;
     
     public static String get_karyawanID(){
         return karyawanID;
@@ -117,5 +118,13 @@ public class MySession {
     
     public static void set_Sallary(String Sallary){
         MySession.Sallary = Sallary;
+    }
+    
+    public static String get_Role(){
+        return Role;
+    }
+    
+    public static void set_Role(String Role){
+        MySession.Role = Role;
     }
 }

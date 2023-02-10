@@ -62,7 +62,7 @@ public class CandidateApplication extends MasterForm {
         
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
         model2.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
-        model2.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
+        model2.addRow(new Object[]{"22-OKT-2022", "Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
         jTable2.autoRowHeight(jTable2);
         
         DefaultTableModel model3 = (DefaultTableModel) jTable3.getModel();
@@ -95,9 +95,14 @@ public class CandidateApplication extends MasterForm {
     
     private DefaultTableModel getSubTableDataAcademic() {
         DefaultTableModel data = new DefaultTableModel();
+//        DefaultTableModel data1 = new DefaultTableModel();
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province",100), new CustomResource.Header("Kota / City")});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
+        data.addRow(new Object[]{"Banten", "Kota Serang"});
+        data.addRow(new Object[]{"Banten", "Kota Serang"});
+        data.addRow(new Object[]{"Banten", "Kota Serang"});
+//        data1.addRow(new Object[]{"Ban", "Kota "});
 //        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
 //        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
 //        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
@@ -566,7 +571,7 @@ public class CandidateApplication extends MasterForm {
         t_calamat.setRows(5);
         jScrollPane26.setViewportView(t_calamat);
 
-        jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 770, 190, -1));
+        jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 770, 200, -1));
 
         jCheckBox.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jCheckBox.setText("Sama dengan alamat Rumah / Same as Home Address");

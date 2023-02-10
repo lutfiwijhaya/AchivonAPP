@@ -198,10 +198,10 @@ public class main extends javax.swing.JFrame {
 
         HomePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        buttonLogin1.setBackground(new java.awt.Color(255, 0, 0));
+        buttonLogin1.setBackground(new java.awt.Color(102, 204, 0));
         buttonLogin1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         buttonLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonLogin1.setText("Register");
+        buttonLogin1.setText("Join");
         buttonLogin1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLogin1ActionPerformed(evt);
@@ -210,7 +210,7 @@ public class main extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("ingin bekerja dengan kami?");
+        jLabel3.setText("want to join us?");
 
         buttonLogin.setBackground(new java.awt.Color(0, 51, 255));
         buttonLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N

@@ -6,6 +6,10 @@ package Employee;
 
 import CustomResource.MySession;
 import Main.MasterForm;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -31,6 +35,7 @@ public class EmployeeProfilePanel extends MasterForm {
         labelNumber.setText(MySession.get_mobileNumber());
         labelBPJS.setText(MySession.get_BPJS());
         labelNPWP.setText(MySession.get_NPWP());
+        labelRole.setText(MySession.get_Role());
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
     }
 
@@ -98,9 +103,11 @@ public class EmployeeProfilePanel extends MasterForm {
         textHome = new javax.swing.JTextArea();
         labelKTP3 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         labelName2 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        labelEmail2 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        labelRole = new javax.swing.JLabel();
 
         jScrollPane3.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -109,140 +116,148 @@ public class EmployeeProfilePanel extends MasterForm {
 
         labelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFoto.setText("FOTO");
-        jPanel1.add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 130, 140));
-        jPanel1.add(labelJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 220, 30));
+        jPanel1.add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 130, 140));
+
+        labelJob.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel1.add(labelJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 220, 30));
 
         labelKTP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 190, 20));
+        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 190, 20));
 
         labelKaryawan_id.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelKaryawan_id.setText("Karyawan_id");
-        jPanel1.add(labelKaryawan_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 190, 20));
+        jPanel1.add(labelKaryawan_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 190, 20));
 
         labelBirth.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelBirth.setText("TEMPAT, TANGGAL LAHIR");
-        jPanel1.add(labelBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 190, 20));
+        jPanel1.add(labelBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 190, 20));
 
         labelGender.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelGender.setText("JENIS KELAMIN");
-        jPanel1.add(labelGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 190, 20));
+        jPanel1.add(labelGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 190, 20));
 
         labelMarital.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelMarital.setText("Status Pernikahan");
-        jPanel1.add(labelMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 170, 20));
+        jPanel1.add(labelMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 170, 20));
 
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel13.setText("Alamat Rumah / Home Address");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 440, -1, -1));
 
         textCurrent.setColumns(20);
+        textCurrent.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         textCurrent.setRows(5);
         jScrollPane2.setViewportView(textCurrent);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 230, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 460, 230, -1));
 
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel14.setText("Tempat Tinggal saat ini / Current Address");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 440, -1, -1));
 
-        labelBPJS.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelBPJS.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelBPJS.setText("BPJS");
-        jPanel1.add(labelBPJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 190, 20));
+        jPanel1.add(labelBPJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 360, 190, 20));
 
-        labelNPWP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelNPWP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelNPWP.setText("NPWP");
-        jPanel1.add(labelNPWP, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 280, 190, 20));
+        jPanel1.add(labelNPWP, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 330, 190, 20));
 
-        labelNumber.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelNumber.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelNumber.setText("No. Hp");
-        jPanel1.add(labelNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 190, 20));
+        jPanel1.add(labelNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, 190, 20));
 
-        labelEmail.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelEmail.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelEmail.setText("Email");
-        jPanel1.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 190, 20));
+        jPanel1.add(labelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 270, 190, 20));
 
+        labelSallary.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelSallary.setText("SALARRY");
-        jPanel1.add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 150, 30));
+        jPanel1.add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 200, 150, 30));
 
+        labelJob1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelJob1.setText("JOB :");
-        jPanel1.add(labelJob1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 30, 30));
+        jPanel1.add(labelJob1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 30, 30));
 
-        labelKTP1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelKTP1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelKTP1.setText("Karyawan id");
-        jPanel1.add(labelKTP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 80, 20));
+        jPanel1.add(labelKTP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 80, 20));
 
-        labelName1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelName1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelName1.setText("Nama ");
-        jPanel1.add(labelName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 40, 20));
+        jPanel1.add(labelName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 40, 20));
 
-        labelBirth1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelBirth1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelBirth1.setText("Tempat, Tanggal Lahir ");
-        jPanel1.add(labelBirth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 140, 20));
+        jPanel1.add(labelBirth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 140, 20));
 
-        labelGender1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelGender1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelGender1.setText("Jenis kelamin");
-        jPanel1.add(labelGender1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 80, 20));
+        jPanel1.add(labelGender1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 80, 20));
 
-        labelMarital1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelMarital1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelMarital1.setText("Status Pernikahan");
-        jPanel1.add(labelMarital1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 110, 20));
+        jPanel1.add(labelMarital1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 110, 20));
 
         jLabel1.setText(":");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, 20, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 360, 20, -1));
 
         jLabel2.setText(":");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 20, -1));
 
         jLabel3.setText(":");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 20, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 20, -1));
 
         jLabel4.setText(":");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 20, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 20, -1));
 
         jLabel5.setText(":");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 20, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, 20, -1));
 
         jLabel6.setText(":");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 20, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, 20, -1));
 
         jLabel7.setText(":");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 20, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 270, 20, -1));
 
         jLabel9.setText(":");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, 20, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 300, 20, -1));
 
         jLabel10.setText(":");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 20, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 330, 20, -1));
 
-        labelEmail1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        labelEmail1.setText("Email");
-        jPanel1.add(labelEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 40, 20));
+        labelEmail1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelEmail1.setText("Position");
+        jPanel1.add(labelEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 240, 40, 20));
 
-        labelNumber1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelNumber1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelNumber1.setText("No. Hp");
-        jPanel1.add(labelNumber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 40, 20));
+        jPanel1.add(labelNumber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 300, 40, 20));
 
-        labelNPWP1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelNPWP1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelNPWP1.setText("NPWP");
-        jPanel1.add(labelNPWP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 40, 20));
+        jPanel1.add(labelNPWP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 330, 40, 20));
 
-        labelBPJS1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelBPJS1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelBPJS1.setText("BPJS");
-        jPanel1.add(labelBPJS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 40, 20));
+        jPanel1.add(labelBPJS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 360, 40, 20));
 
+        labelSallary1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelSallary1.setText("SALARRY :");
-        jPanel1.add(labelSallary1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 70, 30));
+        jPanel1.add(labelSallary1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 200, 70, 30));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel16.setText("Riwayat Pendidikan / Academic");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, -1, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 580, -1, 30));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 580, 590, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 600, 630, 20));
 
-        jTable2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -271,16 +286,17 @@ public class EmployeeProfilePanel extends MasterForm {
         });
         jScrollPane20.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, 820, 110));
+        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 620, 820, 110));
 
-        jLabel17.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel17.setText("Status Keluarga / Family");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 750, -1, 30));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 770, -1, 30));
 
         jSeparator2.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 770, 650, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 790, 670, 20));
 
+        jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -300,8 +316,9 @@ public class EmployeeProfilePanel extends MasterForm {
         jTable3.setShowVerticalLines(true);
         jScrollPane21.setViewportView(jTable3);
 
-        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 790, 820, 110));
+        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 810, 820, 110));
 
+        jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -321,38 +338,47 @@ public class EmployeeProfilePanel extends MasterForm {
         jTable1.setShowVerticalLines(true);
         jScrollPane4.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 980, 820, 170));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 1000, 820, 170));
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 1260, 230, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1280, 230, 30));
 
         jSeparator3.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 960, 580, 20));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 980, 610, 20));
 
         textHome.setColumns(20);
+        textHome.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         textHome.setRows(5);
         jScrollPane5.setViewportView(textHome);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 230, -1));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, 230, -1));
 
-        labelKTP3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelKTP3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelKTP3.setText("No. KTP");
-        jPanel1.add(labelKTP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 50, 20));
+        jPanel1.add(labelKTP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 50, 20));
 
         jLabel11.setText(":");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 20, -1));
-
-        jLabel12.setText(":");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 20, -1));
 
         labelName2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         labelName2.setText("NAMA");
-        jPanel1.add(labelName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 190, 20));
+        jPanel1.add(labelName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 190, 20));
 
-        jLabel19.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel19.setText("Sertifikat Keahlian / Certificate Skill");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 940, -1, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 960, -1, 30));
+
+        labelEmail2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelEmail2.setText("Email");
+        jPanel1.add(labelEmail2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 270, 40, 20));
+
+        jLabel12.setText(":");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 20, -1));
+
+        labelRole.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelRole.setText("Email");
+        jPanel1.add(labelRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 240, 190, 20));
 
         jScrollPane3.setViewportView(jPanel1);
 
@@ -365,8 +391,8 @@ public class EmployeeProfilePanel extends MasterForm {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1053, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 960, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -413,6 +439,7 @@ public class EmployeeProfilePanel extends MasterForm {
     private javax.swing.JLabel labelBirth1;
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelEmail1;
+    private javax.swing.JLabel labelEmail2;
     private javax.swing.JLabel labelFoto;
     private javax.swing.JLabel labelGender;
     private javax.swing.JLabel labelGender1;
@@ -430,6 +457,7 @@ public class EmployeeProfilePanel extends MasterForm {
     private javax.swing.JLabel labelName2;
     private javax.swing.JLabel labelNumber;
     private javax.swing.JLabel labelNumber1;
+    private javax.swing.JLabel labelRole;
     private javax.swing.JLabel labelSallary;
     private javax.swing.JLabel labelSallary1;
     private javax.swing.JTextArea textCurrent;
@@ -438,5 +466,16 @@ public class EmployeeProfilePanel extends MasterForm {
 
     @Override
     public void formrefresh() {
+    }
+    private void getMyRole(){
+        Connection myConn;
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_role");
+            while (myRess.next()) {
+                labelRole.setText(myRess.getString("name"));
+            }
+        } catch (SQLException ex) {
+        }
     }
 }
