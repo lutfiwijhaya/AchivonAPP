@@ -22,6 +22,7 @@ public class EmployeeProfilePanel extends MasterForm {
      */
     public EmployeeProfilePanel() {
         initComponents();
+        getMyRole();
         
         labelJob.setText(MySession.get_JobPosition());
         labelSallary.setText(MySession.get_Sallary());
@@ -35,8 +36,9 @@ public class EmployeeProfilePanel extends MasterForm {
         labelNumber.setText(MySession.get_mobileNumber());
         labelBPJS.setText(MySession.get_BPJS());
         labelNPWP.setText(MySession.get_NPWP());
-        labelRole.setText(MySession.get_Role());
+//        labelRole.setText(MySession.get_Role());
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
+        
     }
 
     /**
@@ -471,9 +473,9 @@ public class EmployeeProfilePanel extends MasterForm {
         Connection myConn;
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_role");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_role WHERE role_id ='"+MySession.get_Role()+"'");
             while (myRess.next()) {
-                labelRole.setText(myRess.getString("name"));
+                labelRole.setText(myRess.getString("role_name"));
             }
         } catch (SQLException ex) {
         }

@@ -59,7 +59,8 @@ public class NotificationToNewEmployee extends MasterForm {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        labelDate = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -169,9 +170,13 @@ public class NotificationToNewEmployee extends MasterForm {
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 1010, 160, 40));
 
-        jLabel27.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel27.setText("Announcement Date :");
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 780, -1, -1));
+        labelDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        labelDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(labelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 800, 180, 20));
+
+        jLabel28.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel28.setText("Announcement Date :");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 780, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -207,7 +212,7 @@ public class NotificationToNewEmployee extends MasterForm {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -217,6 +222,7 @@ public class NotificationToNewEmployee extends MasterForm {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelDate;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

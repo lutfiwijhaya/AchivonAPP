@@ -126,8 +126,6 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel9 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         l_tgl = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        areaEmployee1 = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel38 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -138,7 +136,6 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         l_hadd = new javax.swing.JLabel();
         l_name = new javax.swing.JLabel();
@@ -148,8 +145,6 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel8 = new javax.swing.JLabel();
         l_hp = new javax.swing.JLabel();
         l_ktp = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        areaEmployee = new javax.swing.JTextArea();
         jLabel40 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
@@ -160,6 +155,13 @@ public class EmployeeConfirmation extends MasterForm {
         l_name1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jComboBox1 = new CustomResource.ComboBoxSuggestion();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -216,14 +218,6 @@ public class EmployeeConfirmation extends MasterForm {
         l_tgl.setText("DD-MMM-YYYY");
         jPanel1.add(l_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 740, -1, -1));
 
-        areaEmployee1.setColumns(20);
-        areaEmployee1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        areaEmployee1.setRows(5);
-        areaEmployee1.setText("I (Employee) has confirmed all matters in accordance with The Company’s (means PT. ACHIVON PRESTASI ABADI’s)\nhuman resources management standard regulations from the date of signing this agreement, and as a result, I assure \nthat I will thoroughly perform and strictly comply with the tasks given and duties. In addition, I confirm that I will work\nvery diligently without raising any objection in the overtime including working day and non-working day, special task\nand special work at the request of The Company, and I made signature above on this employee confirmation.");
-        jScrollPane2.setViewportView(areaEmployee1);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 700, 110));
-
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 880, 20));
@@ -263,7 +257,6 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel31.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel31.setText(":");
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 770, 20, -1));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 600, 50, 20));
         jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 1140, -1, -1));
 
         l_hadd.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -297,14 +290,6 @@ public class EmployeeConfirmation extends MasterForm {
         l_ktp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_ktp.setText("example KTP");
         jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
-
-        areaEmployee.setColumns(20);
-        areaEmployee.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        areaEmployee.setRows(5);
-        areaEmployee.setText("I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee\n of Section A on behalf of The Company with the approval of The Company's Human Resources Director.");
-        jScrollPane1.setViewportView(areaEmployee);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 800, 700, 100));
 
         jLabel40.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel40.setText("Signature");
@@ -348,6 +333,34 @@ public class EmployeeConfirmation extends MasterForm {
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 240, -1));
 
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel15.setText("of Section A on behalf of The Company with the approval of The Company's Human Resources Director.");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 820, 610, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel16.setText("I (Employee) has confirmed all matters in accordance with The Company’s (means PT. ACHIVON PRESTASI ABADI’s)");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, 610, -1));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel17.setText("human resources management standard regulations from the date of signing this agreement, and as a result, I assure ");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 610, -1));
+
+        jLabel18.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel18.setText("that I will thoroughly perform and strictly comply with the tasks given and duties. In addition, I confirm that I will work");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 610, -1));
+
+        jLabel19.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel19.setText("very diligently without raising any objection in the overtime including working day and non-working day, special task");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 610, -1));
+
+        jLabel26.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel26.setText("and special work at the request of The Company, and I made signature above on this employee confirmation.");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 610, -1));
+
+        jLabel27.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel27.setText("I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 800, 610, -1));
+
         jScrollPane3.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -368,8 +381,6 @@ public class EmployeeConfirmation extends MasterForm {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea areaEmployee;
-    private javax.swing.JTextArea areaEmployee1;
     private CustomResource.ComboBoxSuggestion jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -377,6 +388,11 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -384,7 +400,8 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -402,8 +419,6 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;

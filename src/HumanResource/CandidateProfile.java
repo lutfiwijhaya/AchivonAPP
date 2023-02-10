@@ -9,20 +9,32 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
-
+import CustomResource.CandidateSession;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author hi
  */
 public class CandidateProfile extends MasterForm {
 
-    /**
-     * Creates new form CandidateProfile
-     */
+    private static final int TA_ROWS = 5;
+    private static final int TA_COLS = 20;
+    
+    
     public CandidateProfile() {
         initComponents();
         MyWindow();
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
+        
+        getDataCandidate();
         
         ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
@@ -47,12 +59,12 @@ public class CandidateProfile extends MasterForm {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelSallary = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        labelBPJSkerja = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        labelJob = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -89,6 +101,29 @@ public class CandidateProfile extends MasterForm {
         jButton2 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel93 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        labelKTP = new javax.swing.JLabel();
+        labelNama = new javax.swing.JLabel();
+        labelTTL = new javax.swing.JLabel();
+        labelGender = new javax.swing.JLabel();
+        labelMarital = new javax.swing.JLabel();
+        labelMail = new javax.swing.JLabel();
+        labelMobile = new javax.swing.JLabel();
+        labelNPWP = new javax.swing.JLabel();
+        labelBPJS = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,83 +131,83 @@ public class CandidateProfile extends MasterForm {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("FOTO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 130, 140));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 130, 140));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel2.setText("BPJS");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, 220, 20));
+        jLabel2.setText("BPJS Ketenaga Kerjaan");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, 120, 20));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel3.setText("SALARRY");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 220, 30));
+        labelSallary.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelSallary.setText("SALARRY");
+        jPanel1.add(labelSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 120, 50, 30));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel4.setText("NAMA");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 270, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 40, 20));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel5.setText("NO HP");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 220, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 210, 40, 20));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel7.setText("NO KTP");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 270, 20));
+        labelBPJSkerja.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelBPJSkerja.setText("NO KTP");
+        jPanel1.add(labelBPJSkerja, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 300, 170, 20));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel8.setText("STATUS PERNIKAHAN");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 220, 20));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 120, 20));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel6.setText("JOB APPLYING");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 220, 30));
+        labelJob.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelJob.setText("JOB APPLYING");
+        jPanel1.add(labelJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 90, 30));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText("TEMPAT, TANGGAL LAHIR");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 270, 20));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 140, 20));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel10.setText("JENIS KELAMIN");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 220, 20));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 90, 20));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel11.setText("EMAIL");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 220, 20));
+        jLabel11.setText(":");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 20, 20));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel12.setText("NPWP");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, 220, 20));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 40, 20));
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 230, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 230, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel13.setText("Alamat Rumah / Home Address");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, -1, -1));
 
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 210, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, 210, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel14.setText("Tempat Tinggal saat ini / Current Address");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 350, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 350, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel16.setText("Riwayat Pendidikan / Academic");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, -1, 30));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 640, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 640, 20));
 
-        jTable2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -201,15 +236,15 @@ public class CandidateProfile extends MasterForm {
         });
         jScrollPane20.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 820, 90));
+        jPanel1.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 820, 80));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel17.setText("Status Keluarga / Family");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, -1, 30));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, -1, 30));
 
         jSeparator2.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 630, 680, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 630, 680, 20));
 
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -231,15 +266,15 @@ public class CandidateProfile extends MasterForm {
         jTable3.setShowVerticalLines(true);
         jScrollPane21.setViewportView(jTable3);
 
-        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, 820, 80));
+        jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 650, 820, 80));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setText("Sertifikat Keahlian / Certificate Skill");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 750, -1, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 750, -1, 30));
 
         jSeparator3.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 770, 620, 20));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 770, 620, 20));
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -261,88 +296,171 @@ public class CandidateProfile extends MasterForm {
         jTable1.setShowVerticalLines(true);
         jScrollPane4.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 790, 820, 90));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 790, 820, 80));
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel19.setText("Pengenalan Diri Untuk Bergabung");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 900, -1, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 900, -1, 30));
 
         jSeparator4.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 920, 620, 20));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 920, 620, 20));
 
         jLabel90.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel90.setText("1. Motivasi untuk Melamar");
-        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 930, 350, 30));
+        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 930, 350, 30));
 
         jTextArea3.setColumns(20);
         jTextArea3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTextArea3.setRows(5);
         jScrollPane23.setViewportView(jTextArea3);
 
-        jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 960, 800, 130));
+        jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 960, 800, 130));
 
         jLabel92.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 1600, 350, 30));
+        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1600, 350, 30));
 
         jTextArea4.setColumns(20);
         jTextArea4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTextArea4.setRows(5);
         jScrollPane24.setViewportView(jTextArea4);
 
-        jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 1130, 800, 130));
+        jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1130, 800, 130));
 
         jLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel20.setText("SKCK");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1270, -1, 30));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1270, -1, 30));
 
         jSeparator5.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator5.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 1290, 760, 20));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 1290, 760, 20));
 
         jButton1.setBackground(new java.awt.Color(51, 153, 0));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Terima Lamaran");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 1380, 170, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 1380, 170, 40));
 
         jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Tolak Lamaran");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 1380, 170, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 1380, 170, 40));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Data Diri Calon Karyawan / Employee Personal Information");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 520, 40));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 520, 40));
 
         jLabel93.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel93.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
-        jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1100, 350, 30));
+        jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1100, 350, 30));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel21.setText("JOB APPLYING :");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 90, 30));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel6.setText("SALARRY :");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 60, 30));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel3.setText("BPJS Kesehatan");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 270, 90, 20));
+
+        jLabel22.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel22.setText("EMAIL");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 180, 40, 20));
+
+        jLabel23.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel23.setText(":");
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 300, 20, 20));
+
+        jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel24.setText(":");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 270, 20, 20));
+
+        jLabel25.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel25.setText(":");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 240, 20, 20));
+
+        jLabel26.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel26.setText(":");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 210, 20, 20));
+
+        jLabel27.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel27.setText(":");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, 20, 20));
+
+        jLabel28.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel28.setText(":");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 20, 20));
+
+        jLabel29.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel29.setText(":");
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 20, 20));
+
+        jLabel30.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel30.setText(":");
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 20, 20));
+
+        jLabel31.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel31.setText(":");
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, 20, 20));
+
+        jLabel32.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel32.setText("NO KTP");
+        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 40, 20));
+
+        labelKTP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelKTP.setText("NO KTP");
+        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, 170, 20));
+
+        labelNama.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelNama.setText("NO KTP");
+        jPanel1.add(labelNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 170, 20));
+
+        labelTTL.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelTTL.setText("NO KTP");
+        jPanel1.add(labelTTL, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 170, 20));
+
+        labelGender.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelGender.setText("NO KTP");
+        jPanel1.add(labelGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 170, 20));
+
+        labelMarital.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelMarital.setText("NO KTP");
+        jPanel1.add(labelMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 170, 20));
+
+        labelMail.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelMail.setText("NO KTP");
+        jPanel1.add(labelMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 180, 170, 20));
+
+        labelMobile.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelMobile.setText("NO KTP");
+        jPanel1.add(labelMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 210, 170, 20));
+
+        labelNPWP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelNPWP.setText("NO KTP");
+        jPanel1.add(labelNPWP, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 240, 170, 20));
+
+        labelBPJS.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        labelBPJS.setText("NO KTP");
+        jPanel1.add(labelBPJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 270, 170, 20));
+
+        jScrollPane3.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 449, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 449, Short.MAX_VALUE)))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1797, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 898, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 897, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -367,11 +485,22 @@ public class CandidateProfile extends MasterForm {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
@@ -398,6 +527,18 @@ public class CandidateProfile extends MasterForm {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JLabel labelBPJS;
+    private javax.swing.JLabel labelBPJSkerja;
+    private javax.swing.JLabel labelGender;
+    private javax.swing.JLabel labelJob;
+    private javax.swing.JLabel labelKTP;
+    private javax.swing.JLabel labelMail;
+    private javax.swing.JLabel labelMarital;
+    private javax.swing.JLabel labelMobile;
+    private javax.swing.JLabel labelNPWP;
+    private javax.swing.JLabel labelNama;
+    private javax.swing.JLabel labelSallary;
+    private javax.swing.JLabel labelTTL;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -407,6 +548,113 @@ public class CandidateProfile extends MasterForm {
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
+    }
+    
+    private void getDataCandidate(){
+        Connection myConn;
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            while (myRess.next()) {
+                labelNama.setText(myRess.getString(2));
+                labelKTP.setText(myRess.getString(3));
+                labelMail.setText(myRess.getString(4));
+                labelNPWP.setText(myRess.getString(5));
+                labelGender.setText(myRess.getString(6));
+                labelTTL.setText(myRess.getString(7)+", " +myRess.getString(8));
+                labelMarital.setText(myRess.getString(9));
+                labelMobile.setText(myRess.getString(10));
+                labelBPJS.setText(myRess.getString(11));
+                labelBPJSkerja.setText(myRess.getString(11));
+                labelJob.setText(myRess.getString(12));
+                labelSallary.setText(myRess.getString(13));
+//                String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
+//                                    myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
+//                                    myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+//                
+//                myModel.addRow(myData);
+           
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Maaf, Data Tidak Dapat kami temukan");
+//            Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        DefaultTableModel MyModel2= (DefaultTableModel)jTable2.getModel();
+        int row2 = jTable2.getRowCount();
+        for(int i = 0; i < row2; i++){
+            MyModel2.removeRow(0);
+        }
+        
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_academic WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            while (myRess.next()) {
+                String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6)};            
+                MyModel2.addRow(myData);
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Maaf, Data Akademik Tidak Dapat kami temukan \n Sorry, we cant find academic data");
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        DefaultTableModel MyModel3= (DefaultTableModel)jTable3.getModel();
+        int row3 = jTable3.getRowCount();
+        for(int i = 0; i < row3; i++){
+            MyModel3.removeRow(0);
+        }
+        
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_family WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            while (myRess.next()) {
+                String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6), myRess.getString(7)};            
+                MyModel3.addRow(myData);
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Maaf, Data Keluarga Tidak Dapat kami temukan \n Sorry, we cant find Family data");
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        DefaultTableModel MyModel1= (DefaultTableModel)jTable1.getModel();
+        int row1 = jTable1.getRowCount();
+        for(int i = 0; i < row1; i++){
+            MyModel1.removeRow(0);
+        }
+        
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_certificates WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            while (myRess.next()) {
+                String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6), myRess.getString(7)};            
+                MyModel1.addRow(myData);
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Maaf, Data Sertifikat Tidak Dapat kami temukan \n Sorry we cant find Certificate data");
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_adress WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            while (myRess.next()) {
+                jTextArea1.setText(myRess.getString(8)+", \n"+myRess.getString(7)+", "+myRess.getString(6)+", \n"+myRess.getString(5)+", "+myRess.getString(4)+", \n"+myRess.getString(3));
+                jTextArea2.setText(myRess.getString(14)+", \n"+myRess.getString(13)+", "+myRess.getString(12)+", \n"+myRess.getString(11)+", "+myRess.getString(10)+", \n"+myRess.getString(9));
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Maaf, Data Alamat Tidak Dapat kami temukan \n Sorry we cant find Address data");
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_motivation WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            while (myRess.next()) {
+                
+                jTextArea3.setText(myRess.getString(3));
+                jTextArea4.setText(myRess.getString(4));
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Maaf, Data Motivasi Tidak Dapat kami temukan \n Sorry we cant find Motivation data");
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     @Override

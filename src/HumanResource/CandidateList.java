@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import CustomResource.actiontable;
 import CustomResource.callrender;
 import CustomResource.celleditor;
+import CustomResource.CandidateSession;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -166,6 +167,11 @@ void remove (){
         MyTable.setRowHeight(40);
         MyTable.setShowHorizontalLines(true);
         MyTable.setShowVerticalLines(true);
+        MyTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MyTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(MyTable);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
@@ -199,6 +205,14 @@ void remove (){
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
+        DefaultTableModel MyModel= (DefaultTableModel)MyTable.getModel();
+        CandidateSession.setCandidateID(MyModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+//        textSearch.setText(CandidateSession.getCandidateID());
+        Main.main.getMain().showForm(new CandidateProfile());
+//        getValueAt(int getSelectedRow(), int getSelectedColumn());
+    }//GEN-LAST:event_MyTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
