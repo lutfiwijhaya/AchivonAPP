@@ -134,10 +134,13 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield1">
+    <Component class="CustomResource.CustomTextfield" name="textSearch">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Search"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textSearchKeyTyped"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="520" y="140" width="270" height="-1"/>

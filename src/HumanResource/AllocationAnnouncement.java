@@ -7,23 +7,33 @@ package HumanResource;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author hi
  */
 public class AllocationAnnouncement extends MasterForm {
-
+    DefaultTableModel myModel3;
     /**
      * Creates new form AllocationAnnouncement
      */
     public AllocationAnnouncement() {
         initComponents();
         
+        
         MyWindow();
+        String [] header = {"Nama", "Discipline", "Position", "Description Alocation", "Initial Join Date", "Alocation Date"};
+        myModel3 = new DefaultTableModel(header,0);
+        jTable1.setModel(myModel3);
+        myShow();
         ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
     }
@@ -42,7 +52,7 @@ public class AllocationAnnouncement extends MasterForm {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        customTextfield1 = new CustomResource.CustomTextfield();
+        textSearch = new CustomResource.CustomTextfield();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,20 +89,69 @@ public class AllocationAnnouncement extends MasterForm {
         jLabel3.setText("Allocation Announcement");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 320, 40));
 
-        customTextfield1.setLabelText("Search");
-        add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 270, -1));
+        textSearch.setLabelText("Search");
+        textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textSearchKeyTyped(evt);
+            }
+        });
+        add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 270, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
+        myShow();
+    }//GEN-LAST:event_textSearchKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CustomResource.CustomTextfield customTextfield1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private CustomResource.CustomTextfield textSearch;
     // End of variables declaration//GEN-END:variables
-
+    
+    private void myShow() {
+        Connection myConn;
+        String mySearch = textSearch.getText();
+        int row = jTable1.getRowCount();
+        for(int i = 0; i < row; i++){
+            myModel3.removeRow(0);
+        }
+        if (mySearch != null) {
+            try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE name LIKE '%"+mySearch+"%'");
+            while (myRess.next()) {
+                
+                String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
+                
+                myModel3.addRow(myData);
+           
+            }
+            } catch (SQLException ex) {
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
+                while (myRess.next()) {
+                    
+                    String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
+                    myModel3.addRow(myData);
+                
+                }
+               
+            } catch (SQLException ex) {
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                System.out.println("javaapplication1.CandidateList.myShow()");
+            }
+        }
+        
+    }
+    
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);

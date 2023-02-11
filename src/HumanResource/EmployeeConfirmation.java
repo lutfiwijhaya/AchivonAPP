@@ -10,6 +10,7 @@ import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 //import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,14 +19,21 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.PasswordAuthentication;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.Transport;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
 
 /**
@@ -82,7 +90,7 @@ public class EmployeeConfirmation extends MasterForm {
             while (rs.next()) {
                 
                 l_name1.setText(rs.getString(2).trim());
-                l_name.setText(MySession.get_nama());
+                l_name.setText(rs.getString(17));
                 l_date.setText(rs.getString(15).trim());
                 l_ktp.setText(rs.getString(3).trim());
                 l_hp.setText(rs.getString(10).trim());
@@ -461,7 +469,6 @@ public class EmployeeConfirmation extends MasterForm {
             myMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             myMessage.setSubject(subject);
             myMessage.setContent(testemail,"text/plain");
-            Transport.send(myMessage);
         } catch (MessagingException e) {
             JOptionPane.showMessageDialog(null, e);
 //            JOptionPane.showMessageDialog(null, "gagal");
@@ -472,7 +479,7 @@ public class EmployeeConfirmation extends MasterForm {
         Connection myConn;
         try{
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_karyawanID()+"' WHERE KTP = '"+l_ktp.getText()+"'");
+            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_nama()+"' WHERE KTP = '"+l_ktp.getText()+"'");
 //            while (myRess.next()) {
                 JOptionPane.showMessageDialog(null, "berhasil tanda tangan \n Succesed signature");
 //            }
@@ -588,13 +595,13 @@ public class EmployeeConfirmation extends MasterForm {
             try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee WHERE approval = '2'");
-            while (rs.next()) {
-                jComboBox1.addItem(rs.getString(2).trim());
-
+                while (rs.next()) {
+                    jComboBox1.addItem(rs.getString(2).trim());
+                    l_name.setText(rs.getString(17));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         }
     }
     @Override
