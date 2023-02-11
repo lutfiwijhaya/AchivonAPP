@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import CustomResource.CandidateSession;
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
@@ -37,6 +38,10 @@ public class EmployeeConfirmation extends MasterForm {
         get_tanggal();
         setcombo();
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
+        
+//        if (MySession.get_Role() == 2) {
+//            jLabel1.setVisible(false);
+//        }
 
         //areaEmployee.setText("I (Employee) has confirmed all matters in accordance with The Compny's (means PT.ACHIVON PRESTASI ABADI'S)\n" +
         // "human resource management standard regulation from the date of signing this agreement, and as a result, I \n" +
