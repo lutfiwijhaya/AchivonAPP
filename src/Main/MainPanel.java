@@ -26,6 +26,7 @@ public class MainPanel extends MasterForm {
         String nama_log = CustomResource.MySession.get_nama();
         if (nama_log == null) {
         } else {
+            
             buttonLogin.setVisible(false);
             buttonLogin1.setVisible(false);
             jLabel2.setVisible(false);
@@ -130,9 +131,10 @@ public class MainPanel extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        
+
         new LoginFrame().setVisible(true);
-        main.getMain().dispose();
+        main.getMain().setVisible(false);
+//        main.getMain().dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed

@@ -127,4 +127,11 @@ public class MySession {
     public static void set_Role(String Role){
         MySession.Role = Role;
     }
+    public static String get_CandidateID(){
+        return Role;
+    }
+    
+    public static void set_CandidateID(String Role){
+        MySession.Role = Role;
+    }
 }

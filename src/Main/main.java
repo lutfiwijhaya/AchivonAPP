@@ -59,6 +59,7 @@ public class main extends javax.swing.JFrame {
         bodyPanel.revalidate();
         bodyPanel.repaint();
         checkButton();
+
     }
     public void undo(){
         bodyPanel.removeAll();
@@ -89,7 +90,6 @@ public class main extends javax.swing.JFrame {
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
         this.setIconImage(logo.getImage());
         showForm(new MainPanel());
-        
         String nama_log = CustomResource.MySession.get_nama();
         
         if (nama_log == null) {
@@ -101,19 +101,20 @@ public class main extends javax.swing.JFrame {
             SMLogout.setVisible(false);
             ToolBar.setVisible(true);
         } else {
-            buttonLogin.setVisible(false);
-            jLabel3.setVisible(false);
-            jLabel2.setVisible(false);
-            jLabel4.setVisible(false);
-            myProfile.setText(nama_log);
+//            buttonLogin.setVisible(false);
+//            jLabel3.setVisible(false);
+//            jLabel2.setVisible(false);
+//            jLabel4.setVisible(false);
+//            myProfile.setText(nama_log);
             ToolBar.add(Box.createHorizontalGlue());
             ToolBar.add(myProfile);
-            jLabel2.setVisible(false);
-            jLabel3.setVisible(false);
-            jLabel4.setVisible(false);
-            jLabel5.setVisible(false);
-            buttonLogin.setVisible(false);
-            buttonLogin1.setVisible(false);
+//            ToolBar.
+//            jLabel2.setVisible(false);
+//            jLabel3.setVisible(false);
+//            jLabel4.setVisible(false);
+//            jLabel5.setVisible(false);
+//            buttonLogin.setVisible(false);
+//            buttonLogin1.setVisible(false);
         }
     }
     private void checkButton(){
@@ -133,13 +134,6 @@ public class main extends javax.swing.JFrame {
 
         jMenuItem3 = new javax.swing.JMenuItem();
         bodyPanel = new javax.swing.JPanel();
-        HomePanel = new javax.swing.JPanel();
-        buttonLogin1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        buttonLogin = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         ToolBar = new javax.swing.JMenuBar();
         homeBar = new javax.swing.JMenu();
         undoBar = new javax.swing.JMenu();
@@ -150,6 +144,7 @@ public class main extends javax.swing.JFrame {
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
         applicationForm = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         employingConfirmation = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -195,83 +190,6 @@ public class main extends javax.swing.JFrame {
 
         bodyPanel.setBackground(new java.awt.Color(204, 0, 204));
         bodyPanel.setLayout(new java.awt.BorderLayout());
-
-        HomePanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        buttonLogin1.setBackground(new java.awt.Color(102, 204, 0));
-        buttonLogin1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        buttonLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonLogin1.setText("Join");
-        buttonLogin1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLogin1ActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("want to join us?");
-
-        buttonLogin.setBackground(new java.awt.Color(0, 51, 255));
-        buttonLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        buttonLogin.setForeground(new java.awt.Color(255, 255, 255));
-        buttonLogin.setText("Login");
-        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLoginActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("please click Login below");
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("PT. Achivon Prestasi Abadi");
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel4.setText("Welcome to");
-
-        javax.swing.GroupLayout HomePanelLayout = new javax.swing.GroupLayout(HomePanel);
-        HomePanel.setLayout(HomePanelLayout);
-        HomePanelLayout.setHorizontalGroup(
-            HomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HomePanelLayout.createSequentialGroup()
-                .addContainerGap(502, Short.MAX_VALUE)
-                .addGroup(HomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HomePanelLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(HomePanelLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(HomePanelLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(457, Short.MAX_VALUE))
-        );
-        HomePanelLayout.setVerticalGroup(
-            HomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomePanelLayout.createSequentialGroup()
-                .addContainerGap(148, Short.MAX_VALUE)
-                .addGroup(HomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
-        );
-
-        bodyPanel.add(HomePanel, java.awt.BorderLayout.CENTER);
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
         homeBar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -340,6 +258,14 @@ public class main extends javax.swing.JFrame {
         });
         candidateApplication.add(applicationForm);
         candidateApplication.add(jSeparator16);
+
+        jMenuItem4.setText("jMenuItem4");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        candidateApplication.add(jMenuItem4);
 
         HumanResourceSystem.add(candidateApplication);
         HumanResourceSystem.add(jSeparator1);
@@ -552,6 +478,7 @@ public class main extends javax.swing.JFrame {
 
     private void homeBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeBarMouseClicked
         showForm(new MainPanel());
+//new main().setVisible(true);
     }//GEN-LAST:event_homeBarMouseClicked
 
     private void homeBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBarActionPerformed
@@ -563,7 +490,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_candidateListActionPerformed
 
     private void applicationFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationFormActionPerformed
-        showForm(new CandidateApplication());
+        showForm(new CandidateProfile());
     }//GEN-LAST:event_applicationFormActionPerformed
 
     private void employingConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employingConfirmationActionPerformed
@@ -654,14 +581,9 @@ public class main extends javax.swing.JFrame {
         redo();
     }//GEN-LAST:event_redoBarMouseClicked
 
-    private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
-        showForm(new CandidateApplicationPersonal());
-    }//GEN-LAST:event_buttonLogin1ActionPerformed
-
-    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        new LoginFrame().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_buttonLoginActionPerformed
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+Main.main.getMain().showForm(new EmployeeProfilePanel());        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -696,9 +618,10 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new main().setVisible(true);
                 main = new main();
                 main.setVisible(true);
+//                new main().setVisible(true);
+             
             }
         });
     }
@@ -716,7 +639,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem EmployeeClearanceStatus;
     private javax.swing.JMenuItem EmployeeEvaluation;
     private javax.swing.JMenuItem EmployeeStatus;
-    private javax.swing.JPanel HomePanel;
     private javax.swing.JMenu HumanResourceSystem;
     private javax.swing.JMenuItem NotificationtoNewEmployee;
     private javax.swing.JMenu POSystem;
@@ -726,19 +648,14 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenu WarehouseSystem;
     private javax.swing.JMenuItem applicationForm;
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JButton buttonLogin;
-    private javax.swing.JButton buttonLogin1;
     private javax.swing.JMenu candidateApplication;
     private javax.swing.JMenuItem candidateList;
     private javax.swing.JMenuItem employingConfirmation;
     private javax.swing.JMenu homeBar;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;

@@ -4,10 +4,12 @@
  */
 package CustomResource;
 
+import HumanResource.CandidateProfile;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import Main.main;
 import javax.swing.ImageIcon;
+import net.sourceforge.barbecue.Main;
 
 /**
  *
@@ -123,7 +125,8 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        new main().setVisible(true);
+        main.getMain().setVisible(true);
+//        new main().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel1MouseClicked
 

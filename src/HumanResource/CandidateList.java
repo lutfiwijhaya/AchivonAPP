@@ -21,6 +21,7 @@ import CustomResource.actiontable;
 import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
+import CustomResource.MySession;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -54,6 +55,7 @@ public class CandidateList extends MasterForm {
     Map<String, Object> param = new HashMap<String, Object>();
     DefaultTableModel myModel;
      String id = null;
+     
  
   
     
@@ -67,7 +69,7 @@ public class CandidateList extends MasterForm {
         myShow();
         MyWindow();
         remove();
-         
+         CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
        
@@ -88,7 +90,7 @@ String [] header = {"id","KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin"
                    
                     
                     Class.forName("com.mysql.jdbc.Driver");
-Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivonapp","root","");
+Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
             File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
             jasperdesign = JRXmlLoader.load(O);
             param.clear();
@@ -119,7 +121,7 @@ Connection kon =DriverManager.getConnection("jdbc:mysql://localhost:3306/achivon
         MyTable.getColumnModel().getColumn(10).setPreferredWidth(120);
         MyTable.getColumnModel().getColumn(1).setPreferredWidth(130);
         MyTable.getColumnModel().getColumn(10).setPreferredWidth(150);
-         MyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        MyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
         MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));
         
 }
@@ -146,6 +148,7 @@ void remove (){
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         textSearch = new CustomResource.CustomTextfield();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 585));
 
@@ -171,6 +174,9 @@ void remove (){
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MyTableMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MyTableMousePressed(evt);
+            }
         });
         jScrollPane1.setViewportView(MyTable);
 
@@ -188,7 +194,20 @@ void remove (){
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
 
         textSearch.setLabelText("Cari / Search");
+        textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textSearchKeyTyped(evt);
+            }
+        });
         jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 460, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -207,16 +226,42 @@ void remove (){
     }// </editor-fold>//GEN-END:initComponents
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
-        DefaultTableModel MyModel= (DefaultTableModel)MyTable.getModel();
-        CandidateSession.setCandidateID(MyModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+//        DefaultTableModel MyModel= (DefaultTableModel)MyTable.getModel();
+        
+        try{
+        CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
 //        textSearch.setText(CandidateSession.getCandidateID());
         Main.main.getMain().showForm(new CandidateProfile());
-//        getValueAt(int getSelectedRow(), int getSelectedColumn());
+//        getValueAt(int getSelectedRow(), int getSelectedColumn());    
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
     }//GEN-LAST:event_MyTableMouseClicked
+
+    private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
+        myShow();
+    }//GEN-LAST:event_textSearchKeyTyped
+
+    private void MyTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MyTableMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+        CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+//        textSearch.setText(CandidateSession.getCandidateID());
+        Main.main.getMain().showForm(new CandidateProfile());
+//        getValueAt(int getSelectedRow(), int getSelectedColumn());    
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -236,7 +281,7 @@ void remove (){
         if (mySearch != null) {
             try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND nama LIKE '%"+mySearch+"%'");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%"+mySearch+"%'");
             while (myRess.next()) {
                 
                 String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
@@ -247,7 +292,7 @@ void remove (){
            
             }
             } catch (SQLException ex) {
-                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             try {
@@ -263,8 +308,8 @@ void remove (){
                 }
                
             } catch (SQLException ex) {
-                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("javaapplication1.CandidateList.myShow()");
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                System.out.println("javaapplication1.CandidateList.myShow()");
             }
         }
         
