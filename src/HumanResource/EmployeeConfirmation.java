@@ -35,7 +35,8 @@ import javax.mail.Transport;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
-
+import javax.activation.*;
+import javax.mail.*;
 /**
  *
  * @author hi
@@ -456,6 +457,8 @@ public class EmployeeConfirmation extends MasterForm {
         proper.put("mail.smtp.port","587");
 //        587
         
+
+        System.out.println("Done");
         Session mailSession = Session.getDefaultInstance(proper, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -469,6 +472,24 @@ public class EmployeeConfirmation extends MasterForm {
             myMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             myMessage.setSubject(subject);
             myMessage.setContent(testemail,"text/plain");
+       MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+        Multipart multipart = new MimeMultipart();
+        
+        String file = "src/Doc/HAII TESTING.docx";
+        String fileName = "Doc.docx";
+        DataSource source = new FileDataSource(file);
+        messageBodyPart.setDataHandler(new DataHandler(source));
+        messageBodyPart.setFileName(fileName);
+        multipart.addBodyPart(messageBodyPart);
+
+        myMessage.setContent(multipart);
+
+        System.out.println("Sending");
+
+        Transport.send(myMessage);
+
+        System.out.println("Done");
         } catch (MessagingException e) {
             JOptionPane.showMessageDialog(null, e);
 //            JOptionPane.showMessageDialog(null, "gagal");
