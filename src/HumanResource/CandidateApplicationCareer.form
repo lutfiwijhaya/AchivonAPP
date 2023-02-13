@@ -37,15 +37,16 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="jTable4">
           <Properties>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
-                <Column editable="true" title="Nama Perusahaan / Company name" type="java.lang.Object"/>
-                <Column editable="true" title="Posisi Pekerjaan / Job Position" type="java.lang.Object"/>
-                <Column editable="true" title="Periode (mmm-yyyy - mmm-yyyy)" type="java.lang.Object"/>
-                <Column editable="true" title="Karir (Tahun atau Bulan) / Career (Years or Month)" type="java.lang.Object"/>
+                <Column editable="false" title="Nama Perusahaan / Company name" type="java.lang.Object"/>
+                <Column editable="false" title="Posisi Pekerjaan / Job Position" type="java.lang.Object"/>
+                <Column editable="false" title="Periode (mmm-yyyy - mmm-yyyy)" type="java.lang.Object"/>
+                <Column editable="false" title="Karir (Tahun atau Bulan) / Career (Years or Month)" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

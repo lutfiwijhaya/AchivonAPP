@@ -90,6 +90,7 @@ public class CandidateApplicationAcademic extends MasterForm {
         t_jurusan.setLabelText("Jurusan / Major");
         add(t_jurusan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 310, -1));
 
+        jTable2.setAutoCreateRowSorter(true);
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,8 +99,15 @@ public class CandidateApplicationAcademic extends MasterForm {
             new String [] {
                 "Tanggal Lulus / Graduation Date", "Nama Sekolah / School Name", "Lokasi / Location", "Jurusan / Major"
             }
-        ));
-        jTable2.setCellSelectionEnabled(true);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable2.setShowHorizontalLines(true);
         jTable2.setShowVerticalLines(true);
@@ -129,6 +137,11 @@ public class CandidateApplicationAcademic extends MasterForm {
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton1.setText("Hapus / Delete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 390, 110, 30));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -220,6 +233,12 @@ public class CandidateApplicationAcademic extends MasterForm {
 // TODO add your handling code here:
                // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+int row = jTable2.getSelectedRow();
+DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+model.removeRow( row );        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

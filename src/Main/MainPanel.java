@@ -134,6 +134,7 @@ public class MainPanel extends MasterForm {
 
         new LoginFrame().setVisible(true);
         main.getMain().setVisible(false);
+        Main.main.getMain().showForm(new NewJPanel());
 //        main.getMain().dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
 

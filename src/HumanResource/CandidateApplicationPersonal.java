@@ -85,7 +85,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         openDB();
         tampil();
         MyWindow();
-        currentBox();
+       
         id_employee();
 //        jToggleButton1.setEnabled(false);
         get_tanggal();
@@ -117,8 +117,24 @@ public class CandidateApplicationPersonal extends MasterForm{
 
         } catch (SQLException ex) {
         }
+       
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
+            while (myRess.next()) {
+                curentCountry.addItem(myRess.getString("name"));
+            }
+//            myRess.last();
+//            int jumlahdata = myRess.getRow();
+//            myRess.first();
 
-        homeCountry.setEnabled(true);
+        } catch (SQLException ex) {
+        }
+        curentCountry.setEnabled(false);
+
+        homeCountry.setEnabled(false);
+        homeCountry.setSelectedItem("Indonesia");
+        curentCountry.setSelectedItem("Indonesia");
 
     }
     private void id_employee() {
@@ -141,22 +157,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         tanggal = s.format(ys);
     }
 
-    public void currentBox() {
-        Connection myConn;
-        try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
-            while (myRess.next()) {
-                curentCountry.addItem(myRess.getString("name"));
-            }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
-
-        } catch (SQLException ex) {
-        }
-        curentCountry.setEnabled(true);
-    }
+   
     
      public class func{
     public ResultSet find (String s){
@@ -361,7 +362,6 @@ public class CandidateApplicationPersonal extends MasterForm{
         t_menikah = new CustomResource.RadioButtonCustom();
         t_pria = new CustomResource.RadioButtonCustom();
         t_wanita = new CustomResource.RadioButtonCustom();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel98 = new javax.swing.JLabel();
 
@@ -492,6 +492,11 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 340, -1));
 
         t_gaji.setLabelText("Estimasi Gaji / Sallary");
+        t_gaji.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_gajiKeyTyped(evt);
+            }
+        });
         jPanel1.add(t_gaji, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 340, -1));
 
         t_hp.setLabelText("No HP");
@@ -655,14 +660,6 @@ public class CandidateApplicationPersonal extends MasterForm{
         t_wanita.setText("Female");
         jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 160, -1, -1));
 
-        jButton2.setText("Kembali / Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 990, 130, 30));
-
         jButton3.setText("Lanjut / Next");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -695,8 +692,7 @@ public class CandidateApplicationPersonal extends MasterForm{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String currentdirectory = "C:\\Users\\USER\\Pictures";
+ String currentdirectory = "C:\\Users\\USER\\Pictures";
         JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
         imageFileChooser.setDialogTitle("Pilih gambar...");
         FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
@@ -704,14 +700,15 @@ public class CandidateApplicationPersonal extends MasterForm{
         imageFileChooser.setFileFilter(fnef);
         int imagechooser = imageFileChooser.showOpenDialog(null);
         if (imagechooser == JFileChooser.APPROVE_OPTION) {
-
             File imagefile = imageFileChooser.getSelectedFile();
-            crudimage = imagefile.getAbsolutePath();
-            jLabel1.setText(crudimage);
+            if (imagefile.length() < 204800) {
+                crudimage = imagefile.getAbsolutePath();
+                jLabel1.setText(crudimage);
 
-            ImageIcon imageicon = new ImageIcon(crudimage);
-            Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
-            labelfoto.setIcon(new ImageIcon(imageResize));
+                ImageIcon imageicon = new ImageIcon(crudimage);
+                Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
+                labelfoto.setIcon(new ImageIcon(imageResize));
+            }else{JOptionPane.showMessageDialog(null,"Maximum Size (200kb)");}
 
         }
         // TODO add your handling code here:
@@ -735,7 +732,10 @@ public class CandidateApplicationPersonal extends MasterForm{
     }//GEN-LAST:event_t_hpActionPerformed
 
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
-        String a ;
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }             String a ;
         String b = "-";
         if(t_hp.getText().length()<3){
             t_hp.setText("(0)");
@@ -799,7 +799,7 @@ StringBuffer sb = new StringBuffer(t_hp.getText());
     private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
         Connection myConn;
         try {
-
+homeCity.removeAllItems();
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
             while (myRess.next()) {
@@ -859,16 +859,12 @@ char c = evt.getKeyChar();
         }//        asd
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
   SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-        t_pria.setActionCommand("Laki - laki");
-        t_wanita.setActionCommand("Perempuan");
-        t_lajang.setActionCommand("Lajang");
-        t_menikah.setActionCommand("Menikah");
+        t_pria.setActionCommand("Male");
+        t_wanita.setActionCommand("Female");
+        t_lajang.setActionCommand("Single");
+        t_menikah.setActionCommand("Married");
         g_nama = t_nama.getText();
         g_ktp = t_ktp.getText();
         g_gender = radioGrupGender.getSelection().getActionCommand();
@@ -885,7 +881,7 @@ char c = evt.getKeyChar();
         g_discipline = t_dicipline.getText();
 
         g_hnegara = (String) homeCountry.getSelectedItem();
-        g_hprov = (String) homeCity.getSelectedItem();
+        g_hprov = (String) homeState.getSelectedItem();
         g_hkota = (String) homeCity.getSelectedItem();
         g_cnegara = (String) curentCountry.getSelectedItem();
         g_cprov = (String) cprov.getSelectedItem();
@@ -900,6 +896,22 @@ char c = evt.getKeyChar();
         full_curent = g_calamat + sp + g_cdesa + sp + g_ckec + sp + g_ckota + sp + g_cprov + sp + g_cnegara;
         full_home = g_halamat + sp + g_hdesa + sp + g_hkec + sp + g_hkota + sp + g_hprov + sp + g_hnegara;
          File foto = new File(crudimage);
+        try {
+            InputStream fhoto = new FileInputStream(foto);
+            String inputfoto = "INSERT INTO cd_foto(foto,ktp)  VALUE (?,?)";
+            PreparedStatement ifoto = this.koneksi.prepareStatement(inputfoto);
+            ifoto.setBlob(1, fhoto);
+            ifoto.setString(2, t_ktp.getText());
+            int ph = ifoto.executeUpdate();
+            if (ph > 0) {
+                JOptionPane.showMessageDialog(null, "foto masuk cuuuuy  ");
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+        } 
       
 
         Main.main.getMain().showForm(new CandidateApplicationAcademic());
@@ -919,6 +931,13 @@ char c = evt.getKeyChar();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyTyped
 
+    private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }             // TODO add your handling code here:
+    }//GEN-LAST:event_t_gajiKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.ComboBoxSuggestion ccity;
@@ -928,7 +947,6 @@ char c = evt.getKeyChar();
     private CustomResource.ComboBoxSuggestion homeCountry;
     private CustomResource.ComboBoxSuggestion homeState;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox;
     private javax.swing.JLabel jLabel1;

@@ -41,16 +41,17 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="jTable3">
           <Properties>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="0">
-                <Column editable="true" title="Nama Anggota / Member Name" type="java.lang.Object"/>
-                <Column editable="true" title="Hubungan / Relation" type="java.lang.Object"/>
-                <Column editable="true" title="Tanggal Lahir / Birthday" type="java.lang.Object"/>
-                <Column editable="true" title="Tinggal Bersama / Cohabit" type="java.lang.Object"/>
-                <Column editable="true" title="No Handphone" type="java.lang.Object"/>
+                <Column editable="false" title="Nama Anggota / Member Name" type="java.lang.Object"/>
+                <Column editable="false" title="Hubungan / Relation" type="java.lang.Object"/>
+                <Column editable="false" title="Tanggal Lahir / Birthday" type="java.lang.Object"/>
+                <Column editable="false" title="Tinggal Bersama / Cohabit" type="java.lang.Object"/>
+                <Column editable="false" title="No Handphone" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -82,6 +83,7 @@
                 </Column>
               </TableColumnModel>
             </Property>
+            <Property name="dragEnabled" type="boolean" value="true"/>
             <Property name="showHorizontalLines" type="boolean" value="true"/>
             <Property name="showVerticalLines" type="boolean" value="true"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">

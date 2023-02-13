@@ -74,6 +74,7 @@ Statement stm;
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable4.setAutoCreateRowSorter(true);
         jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,7 +83,15 @@ Statement stm;
             new String [] {
                 "Nama Perusahaan / Company name", "Posisi Pekerjaan / Job Position", "Periode (mmm-yyyy - mmm-yyyy)", "Karir (Tahun atau Bulan) / Career (Years or Month)"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable4.setShowHorizontalLines(true);
         jTable4.setShowVerticalLines(true);
         jScrollPane22.setViewportView(jTable4);
@@ -185,7 +194,9 @@ String sql0 = "truncate cd_career_sementara";
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+int row = jTable4.getSelectedRow();
+DefaultTableModel model = (DefaultTableModel)jTable4.getModel();
+model.removeRow( row );         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

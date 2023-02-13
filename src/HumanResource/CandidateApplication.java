@@ -22,6 +22,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import CustomResource.koneksi;
 import Main.MasterForm;
+import Main.NewJPanel;
 import java.sql.PreparedStatement;
 import java.util.Date;
 import java.util.logging.Level;
@@ -40,18 +41,17 @@ public class CandidateApplication extends MasterForm {
 
     Statement stm;
     ResultSet rs;
-     ResultSet rsf;
+    ResultSet rsf;
     Connection koneksi;
     DefaultTableModel ImportDataExel;
     String crudimage = "";
     String da = null;
     int id_employee;
     String tanggal;
-       String sp = ", ";
+    String sp = ", ";
     String full_curent;
     String full_home;
-
-    
+    int k = 0;
 
     /**
      * Creates new form CandidateApplication
@@ -68,20 +68,24 @@ public class CandidateApplication extends MasterForm {
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
         tampildata();
-        
-       
-    
-    tampil_academic();
-    
-    
-    
+        t_lamaran.setEnabled(false);
+        homeCountry.setEnabled(false);
+        homeState.setEnabled(false);
+        homeCity.setEnabled(false);
+        curentCountry.setEnabled(false);
+        cprov.setEnabled(false);
+        ccity.setEditable(false);
+
+        tampil_academic();
+        tampil_foto();
+
     }
-    
+
     private DefaultTableModel getSubTableDataAcademic() {
         DefaultTableModel data = new DefaultTableModel();
 //        DefaultTableModel data1 = new DefaultTableModel();
         data.setColumnCount(2);
-        data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province",100), new CustomResource.Header("Kota / City")});
+        data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province", 100), new CustomResource.Header("Kota / City")});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
@@ -92,20 +96,22 @@ public class CandidateApplication extends MasterForm {
 //        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
+
     private DefaultTableModel getSubTableDataFamily() {
         DefaultTableModel data = new DefaultTableModel();
         data.setColumnCount(2);
-        data.addRow(new Object[]{new CustomResource.Header("YA / YES",100), new CustomResource.Header("TIDAK / NO")});
+        data.addRow(new Object[]{new CustomResource.Header("YA / YES", 100), new CustomResource.Header("TIDAK / NO")});
         data.addRow(new Object[]{"YA / YES", ""});
 //        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
 //        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
 //        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
+
     private DefaultTableModel getSubTableDataCertificate() {
         DefaultTableModel data = new DefaultTableModel();
         data.setColumnCount(2);
-        data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province",100), new CustomResource.Header("Kota / City")});
+        data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province", 100), new CustomResource.Header("Kota / City")});
         data.addRow(new Object[]{"Jawa Timur", "Sragen"});
 //        data.addRow(new Object[]{"jawa Timur", "ngawi"});
 //        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
@@ -113,52 +119,53 @@ public class CandidateApplication extends MasterForm {
 //        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
+
     private DefaultTableModel getSubTableDataCareer() {
         DefaultTableModel data = new DefaultTableModel();
         data.setColumnCount(2);
-        data.addRow(new Object[]{new CustomResource.Header("Dari Tanggal / Start Date",100), new CustomResource.Header("Sampai Tanggal / End Date")});
+        data.addRow(new Object[]{new CustomResource.Header("Dari Tanggal / Start Date", 100), new CustomResource.Header("Sampai Tanggal / End Date")});
         data.addRow(new Object[]{"1-jan-1999", "1-jan-2000"});
 //        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
 //        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
 //        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
-    
-    void tablec(){
-     DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
+
+    void tablec() {
+        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
         model2.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
         model2.addRow(new Object[]{"22-OKT-2022", "Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
         jTable2.autoRowHeight(jTable2);
-        
+
         DefaultTableModel model3 = (DefaultTableModel) jTable3.getModel();
         model3.addRow(new Object[]{"John", "", "12-may-1976", getSubTableDataFamily(), ""});
         model3.addRow(new Object[]{"Deep", "", "02-jan-1982", getSubTableDataFamily(), ""});
         jTable3.autoRowHeight(jTable3);
-        
+
         DefaultTableModel model4 = (DefaultTableModel) jTable4.getModel();
         model4.addRow(new Object[]{"22-Des-2022", "Udemy", "Udemy", getSubTableDataCertificate(), ""});
         model4.addRow(new Object[]{"02-Nov-2022", "Dicoding", "Dicoding", getSubTableDataCertificate(), ""});
         jTable4.autoRowHeight(jTable4);
-        
+
         DefaultTableModel model5 = (DefaultTableModel) jTable5.getModel();
         model5.addRow(new Object[]{"Example name", "Example Position", getSubTableDataCareer(), ""});
         model5.addRow(new Object[]{"Example name", "Example Position", getSubTableDataCareer(), ""});
         jTable5.autoRowHeight(jTable5);
-    
-        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
-        
-        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
-        
-        ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
-        
-        ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
-    
+
+        ((DefaultTableCellRenderer) jTable2.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
+
+        ((DefaultTableCellRenderer) jTable3.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
+
+        ((DefaultTableCellRenderer) jTable4.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
+
+        ((DefaultTableCellRenderer) jTable5.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
+
     }
-    
+
 //    private DefaultTableModel getSubTableData1() {
 //        DefaultTableModel data = new DefaultTableModel();
 //        data.setColumnCount(3);
@@ -168,7 +175,6 @@ public class CandidateApplication extends MasterForm {
 //        data.addRow(new Object[]{1, "Box", "3"});
 //        return data;
 //    }
-
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -217,12 +223,12 @@ public class CandidateApplication extends MasterForm {
 
         for (int i = 0; i <= htabelfamily - 1; i++) {
             if (jTable3.getValueAt(i, 0) == null) {
-            }else{
+            } else {
                 String dtabel_nama = jTable3.getValueAt(i, 0).toString();
                 String dtabel_hub = jTable3.getValueAt(i, 1).toString();
                 String dtabel_tgl = jTable3.getValueAt(i, 2).toString();
                 String dtabel_tinggal = jTable3.getValueAt(i, 3).toString();
-                String dtabel_hp = jTable3.getValueAt(i, 3).toString();
+                String dtabel_hp = jTable3.getValueAt(i, 4).toString();
                 try {
                     stm = koneksi.createStatement();
                     String sql = "insert into cd_family (id_employee,name,hubungan,Birthday,cohabit,No_HP) values('" + da + "'"
@@ -249,9 +255,9 @@ public class CandidateApplication extends MasterForm {
             } else {
                 String dtabel_tgl = jTable4.getValueAt(i, 0).toString();
                 String dtabel_nama = jTable4.getValueAt(i, 1).toString();
-                String dtabel_autor = jTable4.getValueAt(i, 2).toString();
-                String dtabel_lokasi = jTable4.getValueAt(i, 3).toString();
-                String dtabel_no = jTable4.getValueAt(i, 3).toString();
+                String dtabel_autor = jTable4.getValueAt(i, 3).toString();
+                String dtabel_lokasi = jTable4.getValueAt(i, 2).toString();
+                String dtabel_no = jTable4.getValueAt(i, 4).toString();
                 try {
                     stm = koneksi.createStatement();
                     String sql = "insert into cd_certificates (id_employee,acquisition,name_certificate,location,name_authority,no_certificate) values('" + da + "'"
@@ -270,17 +276,17 @@ public class CandidateApplication extends MasterForm {
     }
 
     private void simpan_career() {
-        jTable4.editCellAt(0, 0);
-        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable4.getModel();
-        int jtabelrows = jTable4.getRowCount();
+       
+        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable5.getModel();
+        int jtabelrows = jTable5.getRowCount();
 
         for (int i = 0; i <= jtabelrows - 1; i++) {
-            if (jTable4.getValueAt(i, 0) == null) {
+            if (jTable5.getValueAt(i, 0) == null) {
             } else {
-                String dtabel_nama = jTable4.getValueAt(i, 0).toString();
-                String dtabel_posisi = jTable4.getValueAt(i, 1).toString();
-                String dtabel_period = jTable4.getValueAt(i, 2).toString();
-                String dtabel_career = jTable4.getValueAt(i, 3).toString();
+                String dtabel_nama = jTable5.getValueAt(i, 0).toString();
+                String dtabel_posisi = jTable5.getValueAt(i, 1).toString();
+                String dtabel_period = jTable5.getValueAt(i, 2).toString();
+                String dtabel_career = jTable5.getValueAt(i, 3).toString();
                 try {
                     stm = koneksi.createStatement();
                     String sql = "insert into cd_summary_career (id_employee,company_name,job_position,period,career) values('" + da + "'"
@@ -297,7 +303,7 @@ public class CandidateApplication extends MasterForm {
             }
         }
     }
-    
+
     private void simpan_motivation() {
         String g_ta = t_motif.getText();
         String g_ta2 = t_latar.getText();
@@ -312,7 +318,7 @@ public class CandidateApplication extends MasterForm {
             e.printStackTrace();
         }
     }
-    
+
     void get_tanggal() {
         Date ys = new Date();
         SimpleDateFormat s = new SimpleDateFormat("dd-MMM-yyy");
@@ -331,21 +337,21 @@ public class CandidateApplication extends MasterForm {
         }
         curentCountry.setEnabled(true);
     }
-    
+
     public void codeCountryBox() {
         Connection myConn;
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
-               // t_kodeNegara.addItem(myRess.getString("name") +" "+ myRess.getString("phone_code"));
+                // t_kodeNegara.addItem(myRess.getString("name") +" "+ myRess.getString("phone_code"));
             }
         } catch (SQLException ex) {
         }
         curentCountry.setEnabled(true);
     }
-    
-     void tampildata() {
+
+    void tampildata() {
         t_nama.setText(CandidateApplicationPersonal.get_nama());
         t_ktp.setText(CandidateApplicationPersonal.get_ktp());
         t_jk.setText(CandidateApplicationPersonal.get_gender());
@@ -357,33 +363,51 @@ public class CandidateApplication extends MasterForm {
         t_bpjsKetenagakerjaan.setText(CandidateApplicationPersonal.get_bpjsket());
         t_bpjsKesehatan.setText(CandidateApplicationPersonal.get_bpjskes());
         t_npwp.setText(CandidateApplicationPersonal.get_npwp());
+        t_lamaran.addItem(CandidateApplicationPersonal.get_lamaran());
         t_lamaran.setSelectedItem(CandidateApplicationPersonal.get_lamaran());
         t_gaji.setText(CandidateApplicationPersonal.get_gaji());
         t_dicipline.setText(CandidateApplicationPersonal.get_discipline());
+        
         homeCountry.setSelectedItem(CandidateApplicationPersonal.get_hnegara());
-
         homeState.setSelectedItem(CandidateApplicationPersonal.get_hprov());
         homeCity.setSelectedItem(CandidateApplicationPersonal.get_hkota());
+         t_hkec.setText(CandidateApplicationPersonal.get_hkec());
+         t_ddesa.setText(CandidateApplicationPersonal.get_hdesa());
+         t_halamat.setText(CandidateApplicationPersonal.get_halamat());
         curentCountry.setSelectedItem(CandidateApplicationPersonal.get_cnegara());
         cprov.setSelectedItem(CandidateApplicationPersonal.get_cprov());
         ccity.setSelectedItem(CandidateApplicationPersonal.get_ckota());
-        t_hkec.setText(CandidateApplicationPersonal.get_hkec());
+       
         t_ckec.setText(CandidateApplicationPersonal.get_ckec());
-        t_ddesa.setText(CandidateApplicationPersonal.get_hdesa());
+        
         t_cdesa.setText(CandidateApplicationPersonal.get_cdesa());
-        t_halamat.setText(CandidateApplicationPersonal.get_halamat());
+        
         t_calamat.setText(CandidateApplicationPersonal.get_calamat());
         t_motif.setText(CandidateApplicationIntroduction.motivasi());
         t_latar.setText(CandidateApplicationIntroduction.latarbelakang());
 
         full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + homeCountry.getSelectedItem();
         full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
-  
+        try {
+            CandidateApplication.func f = new CandidateApplication.func();
+            rsf = f.find(t_ktp.getText());
+            if (rsf.next()) {
+                byte[] img = rsf.getBytes("foto");
+
+                ImageIcon imageicon = new ImageIcon(img);
+
+                Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
+                labelfoto.setIcon(new ImageIcon(imageResize));
+
+            }
+        } catch (Exception e) {
+        }
+
     }
-    
-     void tampil_academic(){
-    DefaultTableModel dataModel = (DefaultTableModel) jTable2.getModel();
-     try {
+
+    void tampil_academic() {
+        DefaultTableModel dataModel = (DefaultTableModel) jTable2.getModel();
+        try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from cd_academic_sementara");
             while (rs.next()) {
@@ -391,41 +415,41 @@ public class CandidateApplication extends MasterForm {
                     rs.getString("tahun"), rs.getString("nama"), rs.getString("lokasi"), rs.getString("jurusan"),};
                 dataModel.addRow(data);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
-     
-     DefaultTableModel dataModel1 = (DefaultTableModel) jTable3.getModel();
-     try {
+
+        DefaultTableModel dataModel1 = (DefaultTableModel) jTable3.getModel();
+        try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from cd_family_sementara");
             while (rs.next()) {
                 String[] data = {
-                    rs.getString("nama"), rs.getString("hubungan"), rs.getString("tgl"), rs.getString("cohabit"),rs.getString("hp")};
+                    rs.getString("nama"), rs.getString("hubungan"), rs.getString("tgl"), rs.getString("cohabit"), rs.getString("hp")};
                 dataModel1.addRow(data);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
-    
-       DefaultTableModel dataModel2 = (DefaultTableModel) jTable4.getModel();
-     try {
+
+        DefaultTableModel dataModel2 = (DefaultTableModel) jTable4.getModel();
+        try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from cd_certificate_sementara");
             while (rs.next()) {
                 String[] data = {
-                    rs.getString("tangal"), rs.getString("nama"), rs.getString("author"), rs.getString("lokasi"),rs.getString("no_sertificate")};
+                    rs.getString("tangal"), rs.getString("nama"), rs.getString("author"), rs.getString("lokasi"), rs.getString("no_sertificate")};
                 dataModel2.addRow(data);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
-     
-     DefaultTableModel dataModel3 = (DefaultTableModel) jTable5.getModel();
-     try {
+
+        DefaultTableModel dataModel3 = (DefaultTableModel) jTable5.getModel();
+        try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from cd_career_sementara");
             while (rs.next()) {
@@ -433,48 +457,46 @@ public class CandidateApplication extends MasterForm {
                     rs.getString("nama"), rs.getString("posisi"), rs.getString("periode"), rs.getString("lama"),};
                 dataModel3.addRow(data);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
     }
-     
-     void tampil_foto(){
-       try {
+
+    void tampil_foto() {
+        try {
             CandidateApplication.func f = new CandidateApplication.func();
             rsf = f.find(t_ktp.getText());
-            if (rsf.next()){
-            byte[] img = rsf.getBytes("foto");
-            
+            if (rsf.next()) {
+                byte[] img = rsf.getBytes("foto");
+
                 ImageIcon imageicon = new ImageIcon(img);
-                
+
                 Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
                 labelfoto.setIcon(new ImageIcon(imageResize));
-                 
+
             }
         } catch (Exception e) {
         }
     }
-      public class func{
-    public ResultSet find (String s){
-        try {
-            PreparedStatement st = koneksi.prepareStatement("select * from cd_foto where ktp = ?");
-            st.setString(1, s);
-            rsf=st.executeQuery();
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+
+    public class func {
+
+        public ResultSet find(String s) {
+            try {
+                PreparedStatement st = koneksi.prepareStatement("select * from cd_foto where ktp = ?");
+                st.setString(1, s);
+                rsf = st.executeQuery();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return rsf;
+
         }
-    return rsf;
-    
+
     }
-    
-    
-    
-    }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -525,7 +547,6 @@ public class CandidateApplication extends MasterForm {
         jLabel97 = new javax.swing.JLabel();
         jScrollPane26 = new javax.swing.JScrollPane();
         t_calamat = new javax.swing.JTextArea();
-        jCheckBox = new javax.swing.JCheckBox();
         jLabel99 = new javax.swing.JLabel();
         jLabel101 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();
@@ -569,6 +590,9 @@ public class CandidateApplication extends MasterForm {
         t_jk = new javax.swing.JLabel();
         jLabel78 = new javax.swing.JLabel();
         t_stts = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -585,7 +609,7 @@ public class CandidateApplication extends MasterForm {
         jSeparator25.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 870, 650, 20));
 
-        jLabel75.setText("Tanggal Lahir / Birth Date");
+        jLabel75.setText("Tanggal Lahir / Birth Date : ");
         jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, 30));
         jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, 40, 20));
 
@@ -650,6 +674,7 @@ public class CandidateApplication extends MasterForm {
         jSeparator34.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 1440, 570, 20));
 
+        t_motif.setEditable(false);
         t_motif.setColumns(20);
         t_motif.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_motif.setRows(5);
@@ -662,6 +687,7 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1420, 440, 30));
         jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 2250, 350, 30));
 
+        t_latar.setEditable(false);
         t_latar.setColumns(20);
         t_latar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_latar.setRows(5);
@@ -685,14 +711,15 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1810, 50, 30));
 
         jToggleButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jToggleButton1.setText("SIMPAN / SAVE");
+        jToggleButton1.setText("BACK/KEMBALI");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 1920, 120, 40));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 1920, 120, 40));
 
+        t_halamat.setEditable(false);
         t_halamat.setColumns(20);
         t_halamat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_halamat.setRows(5);
@@ -704,21 +731,13 @@ public class CandidateApplication extends MasterForm {
         jLabel97.setText("Alamat / Address");
         jPanel1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 770, 100, 30));
 
+        t_calamat.setEditable(false);
         t_calamat.setColumns(20);
         t_calamat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_calamat.setRows(5);
         jScrollPane26.setViewportView(t_calamat);
 
         jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 770, 200, -1));
-
-        jCheckBox.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jCheckBox.setText("Sama dengan alamat Rumah / Same as Home Address");
-        jCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 510, -1, -1));
 
         jLabel99.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel99.setText("Posisi Yang Dilamar /Job Applying");
@@ -751,18 +770,28 @@ public class CandidateApplication extends MasterForm {
         labelfoto.setOpaque(true);
         jPanel1.add(labelfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 100, 90));
 
+        t_nama.setEditable(false);
         t_nama.setLabelText("Nama / Name");
         jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 340, -1));
 
+        t_ktp.setEditable(false);
         t_ktp.setLabelText("KTP No.");
+        t_ktp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t_ktpKeyReleased(evt);
+            }
+        });
         jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 340, -1));
 
+        t_tlhir.setEditable(false);
         t_tlhir.setLabelText("Tempat Lahir / Birth Place");
         jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 340, -1));
 
+        t_gaji.setEditable(false);
         t_gaji.setLabelText("Estimasi Gaji / Sallary");
         jPanel1.add(t_gaji, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 340, -1));
 
+        t_hp.setEditable(false);
         t_hp.setLabelText("No HP");
         t_hp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -779,6 +808,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 340, -1));
 
+        t_email.setEditable(false);
         t_email.setLabelText("Email");
         t_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -787,12 +817,15 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 340, -1));
 
+        t_bpjsKetenagakerjaan.setEditable(false);
         t_bpjsKetenagakerjaan.setLabelText("No BPJS Ketenagakerjaan");
         jPanel1.add(t_bpjsKetenagakerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 340, -1));
 
+        t_dicipline.setEditable(false);
         t_dicipline.setLabelText("Discipline");
         jPanel1.add(t_dicipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 340, -1));
 
+        t_bpjsKesehatan.setEditable(false);
         t_bpjsKesehatan.setLabelText("No BPJS Kesehatan");
         t_bpjsKesehatan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -805,6 +838,7 @@ public class CandidateApplication extends MasterForm {
         jLabel94.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
         jPanel1.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 1630, 350, 30));
 
+        curentCountry.setEditable(false);
         curentCountry.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         curentCountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -813,6 +847,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 190, 30));
 
+        cprov.setEditable(false);
         cprov.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cprov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -821,6 +856,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, 190, -1));
 
+        ccity.setEditable(false);
         ccity.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ccity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -829,6 +865,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(ccity, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 620, 190, -1));
 
+        t_ckec.setEditable(false);
         t_ckec.setLabelText("Kecamatan / Districts");
         t_ckec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -837,6 +874,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_ckec, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 660, 310, -1));
 
+        t_cdesa.setEditable(false);
         t_cdesa.setLabelText("Desa / Vilage");
         t_cdesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -845,6 +883,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_cdesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 710, 310, -1));
 
+        homeCountry.setEditable(false);
         homeCountry.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeCountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -853,6 +892,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, 190, 30));
 
+        homeState.setEditable(false);
         homeState.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -861,6 +901,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, 190, 30));
 
+        homeCity.setEditable(false);
         homeCity.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -869,6 +910,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 190, 30));
 
+        t_hkec.setEditable(false);
         t_hkec.setLabelText("Kecamatan / Districts");
         t_hkec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -877,6 +919,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_hkec, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 630, 310, -1));
 
+        t_ddesa.setEditable(false);
         t_ddesa.setLabelText("Desa / Vilage");
         t_ddesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -885,6 +928,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 680, 310, -1));
 
+        t_npwp.setEditable(false);
         try {
             t_npwp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###.#-###.###")));
         } catch (java.text.ParseException ex) {
@@ -898,7 +942,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 340, -1));
 
-        t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "itemasd" }));
+        t_lamaran.setEditable(false);
         t_lamaran.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_lamaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -914,7 +958,15 @@ public class CandidateApplication extends MasterForm {
             new String [] {
                 "Tanggal Lulus / Graduation Date", "Nama Sekolah / School Name", "Lokasi / Location", "Jurusan / Major"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jScrollPane1.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
@@ -932,7 +984,15 @@ public class CandidateApplication extends MasterForm {
             new String [] {
                 "Nama Anggota / Members Name", "Relation / Hubungan", "Tanggal lahir / Birthday", "Tinggal bersama / Cohabit", "No HP"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jScrollPane3.setViewportView(jTable3);
         if (jTable3.getColumnModel().getColumnCount() > 0) {
@@ -964,7 +1024,15 @@ public class CandidateApplication extends MasterForm {
             new String [] {
                 "Nama Perusahaan / Company name", "Posisi Pekerjaan / Job Position", "Periode / Period", "Karir / Career"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jScrollPane5.setViewportView(jTable5);
         if (jTable5.getColumnModel().getColumnCount() > 0) {
@@ -973,20 +1041,48 @@ public class CandidateApplication extends MasterForm {
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1310, 850, 100));
 
+        t_tgl.setForeground(new java.awt.Color(51, 51, 255));
         t_tgl.setText("Tanggal Lahir / Birth Date");
-        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, -1, 30));
+        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, -1, 30));
 
         jLabel76.setText("Tanggal Lahir / Birth Date");
         jPanel1.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, -1, 30));
 
+        t_jk.setForeground(new java.awt.Color(51, 51, 255));
         t_jk.setText("Tanggal Lahir / Birth Date");
         jPanel1.add(t_jk, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 160, -1, 30));
 
         jLabel78.setText("Tanggal Lahir / Birth Date");
         jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 200, -1, 30));
 
+        t_stts.setForeground(new java.awt.Color(51, 51, 255));
         t_stts.setText("Tanggal Lahir / Birth Date");
         jPanel1.add(t_stts, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 200, -1, 30));
+
+        jButton1.setText("Lihat Foto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+
+        jToggleButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jToggleButton2.setText("SIMPAN / SAVE");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 1920, 120, 40));
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -1002,140 +1098,8 @@ public class CandidateApplication extends MasterForm {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActionPerformed
-        curentCountry.setSelectedItem(homeCountry.getSelectedItem());
-        cprov.setSelectedItem(homeState.getSelectedItem());
-        ccity.setSelectedItem(homeCity.getSelectedItem());
-        t_ckec.setText(t_hkec.getText());
-        t_calamat.setText(t_halamat.getText());
-        t_cdesa.setText(t_ddesa.getText());        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxActionPerformed
-
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-       // t_pria.setActionCommand("Laki - laki");
-        //t_wanita.setActionCommand("Perempuan");
-        //t_lajang.setActionCommand("Lajang");
-        //t_menikah.setActionCommand("Menikah");
-        String g_nama = t_nama.getText();
-        String g_ktp = t_tlhir.getText();
-        String g_gender = radioGrupGender.getSelection().getActionCommand();
-        String g_status = radioGrupStatus.getSelection().getActionCommand();
-        String g_tlahir = t_tlhir.getText();
-        //String g_tgl = String.valueOf(fm.format(t_tgl.getDate()));
-        String g_hp = t_hp.getText();
-        String g_email = t_email.getText();
-        String g_bpjs = t_bpjsKetenagakerjaan.getText();
-        String g_npwp = t_npwp.getText();
-        String g_lamaran = (String) t_lamaran.getSelectedItem();
-        String g_gaji = t_gaji.getText();
-        String g_discipline = t_dicipline.getText();
-        
-        String g_hnegara = (String) homeCountry.getSelectedItem();
-        String g_hprov = (String) homeCity.getSelectedItem();
-        String g_hkota = (String) homeCity.getSelectedItem();
-        String g_cnegara = (String) curentCountry.getSelectedItem();
-        String g_cprov = (String) cprov.getSelectedItem();
-        String g_ckota = (String) ccity.getSelectedItem();
-        String g_hkec = t_hkec.getText();
-        String g_ckec = t_ckec.getText();
-        String g_hdesa = t_ddesa.getText();
-        String g_cdesa = t_cdesa.getText();
-        String g_halamat = t_halamat.getText();
-        String g_calamat = t_calamat.getText();
-        String sp = ", ";
-        String full_curent = g_calamat + sp + g_cdesa + sp + g_ckec + sp + g_ckota + sp + g_cprov + sp + g_cnegara;
-        String full_home = g_halamat + sp + g_hdesa + sp + g_hkec + sp + g_hkota + sp + g_hprov + sp + g_hnegara;
-
-        try {
-            stm = koneksi.createStatement();
-            String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,Applying_A,D_Salary,discipline,cd_date_apply) values('" + g_nama + "'"
-                    + ",'" + g_ktp + "'"
-                    + ",'" + g_email + "'"
-                    + ",'" + g_npwp + "'"
-                    + ",'" + g_gender + "'"
-                    + ",'" + g_tlahir + "'"
- //                   + ",'" + g_tgl + "'"
-                    + ",'" + g_status + "'"
-                    + ",'" + g_hp + "'"
-                    + ",'" + g_bpjs + "'"
-                    + ",'" + g_lamaran + "'"
-                    + ",'" + g_gaji + "'"
-                    + ",'" + g_discipline + "'"
-                    + ",'" + tanggal + "')";
-
-            stm.executeUpdate(sql);
-
-            try {
-                Statement stm = koneksi.createStatement();
-
-                rs = stm.executeQuery("select*from cd_employee where KTP like '%" + t_tlhir.getText() + "%'");
-                while (rs.next()) {
-                    da = rs.getString("id_employee");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
-                    + ",'" + g_hnegara + "'"
-                    + ",'" + g_hprov + "'"
-                    + ",'" + g_hkota + "'"
-                    + ",'" + g_hkec + "'"
-                    + ",'" + g_hdesa + "'"
-                    + ",'" + g_halamat + "'"
-                    + ",'" + g_cnegara + "'"
-                    + ",'" + g_cprov + "'"
-                    + ",'" + g_ckota + "'"
-                    + ",'" + g_ckec + "'"
-                    + ",'" + g_cdesa + "'"
-                    + ",'" + g_calamat + "'"
-                    + ",'" + full_home + "'"
-                    + ",'" + full_curent + "')";
-
-            stm.executeUpdate(sql0);
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-        }
-
-        jTable2.editCellAt(0, 0);
-        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
-        int jtabelrows = jTable2.getRowCount();
-
-        for (int i = 0; i <= jtabelrows - 1; i++) {
-            if (jTable2.getValueAt(i, 0) == null) {
-
-            } else {
-                String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
-                String dtabel_univ = jTable2.getValueAt(i, 1).toString();
-                String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
-                String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
-
-                try {
-                    stm = koneksi.createStatement();
-                    String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
-                            + ",'" + dtabel_tgl + "'"
-                            + ",'" + dtabel_univ + "'"
-                            + ",'" + dtabel_lokasi + "'"
-                            + ",'" + dtabel_jurusan + "')";
-
-                    stm.executeUpdate(sql);
-
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-        }
-
-        simpan_family();
-        simpan_serifikat();
-        simpan_career();
-        simpan_motivation();
-        JOptionPane.showMessageDialog(null, "Data Tersimpan");
-        this.dispose();
-        
-        
+       
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
@@ -1151,17 +1115,17 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_hpActionPerformed
 
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
-        String a ;
+        String a;
         String b = "-";
-        if(t_hp.getText().length()<2){
+        if (t_hp.getText().length() < 2) {
             t_hp.setText("(0)");
-        }else if (t_hp.getText().length() == 6) {
-            t_hp.setText(t_hp.getText()+"-");
+        } else if (t_hp.getText().length() == 6) {
+            t_hp.setText(t_hp.getText() + "-");
 
-        }else if(t_hp.getText().length() == 11){
-            t_hp.setText(t_hp.getText()+"-");
+        } else if (t_hp.getText().length() == 11) {
+            t_hp.setText(t_hp.getText() + "-");
 
-        }else if(t_hp.getText().length() == 17){
+        } else if (t_hp.getText().length() == 17) {
             t_hp.setText(t_hp.getText());
             evt.consume();
         }
@@ -1252,12 +1216,146 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_lamaranActionPerformed
 
     private void t_hpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyReleased
-     // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_t_hpKeyReleased
 
     private void t_bpjsKesehatanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyTyped
 //        asd
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
+
+    private void t_ktpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ktpKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        tampil_foto();    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+
+        try {
+            stm = koneksi.createStatement();
+            String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,bpjs_ket,Applying_A,D_Salary,discipline,cd_date_apply,approval) values('" + t_nama.getText() + "'"
+                    + ",'" + t_ktp.getText() + "'"
+                    + ",'" + t_email.getText() + "'"
+                    + ",'" + t_npwp.getText() + "'"
+                    + ",'" + t_jk.getText() + "'"
+                    + ",'" + t_tlhir.getText()+ "'"
+                    + ",'" + t_tgl.getText() + "'"
+                    + ",'" + t_stts.getText() + "'"
+                    + ",'" + t_hp.getText() + "'"
+                    + ",'" + t_bpjsKesehatan.getText() + "'"
+                    + ",'" + t_bpjsKetenagakerjaan.getText() + "'"
+                    + ",'" + t_lamaran.getSelectedItem() + "'"
+                    + ",'" + t_gaji.getText() + "'"
+                    + ",'" + t_dicipline.getText() + "'"
+                    + ",'" + tanggal + "'" 
+                    + ",'" + k + "')";
+
+            stm.executeUpdate(sql);
+
+            try {
+                Statement stm = koneksi.createStatement();
+
+                rs = stm.executeQuery("select*from cd_employee where KTP like '%" + t_ktp.getText() + "%'");
+                while (rs.next()) {
+                    da = rs.getString("id_employee");
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
+                    + ",'" + homeCountry.getSelectedItem() + "'"
+                    + ",'" + homeState.getSelectedItem() + "'"
+                    + ",'" + homeCity.getSelectedItem() + "'"
+                    + ",'" + t_hkec.getText() + "'"
+                    + ",'" + t_ddesa.getText() + "'"
+                    + ",'" + t_halamat.getText() + "'"
+                    + ",'" + curentCountry.getSelectedItem() + "'"
+                    + ",'" + cprov.getSelectedItem() + "'"
+                    + ",'" + ccity.getSelectedItem() + "'"
+                    + ",'" + t_ckec.getText() + "'"
+                    + ",'" + t_cdesa.getText() + "'"
+                    + ",'" + t_calamat.getText() + "'"
+                    + ",'" + full_home + "'"
+                    + ",'" + full_curent + "')";
+
+            stm.executeUpdate(sql0);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+        }
+        
+       
+        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
+        int jtabelrows = jTable2.getRowCount();
+
+        for (int i = 0; i <= jtabelrows - 1; i++) {
+            if (jTable2.getValueAt(i, 0) == null) {
+
+            } else {
+                String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
+                String dtabel_univ = jTable2.getValueAt(i, 1).toString();
+                String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
+                String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
+
+                try {
+                    stm = koneksi.createStatement();
+                    String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
+                            + ",'" + dtabel_tgl + "'"
+                            + ",'" + dtabel_univ + "'"
+                            + ",'" + dtabel_lokasi + "'"
+                            + ",'" + dtabel_jurusan + "')";
+
+                    stm.executeUpdate(sql);
+
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }
+         simpan_family();
+        simpan_serifikat();
+        simpan_career();
+        simpan_motivation();
+        try {
+                    stm = koneksi.createStatement();
+                    String sql = "update cd_foto set id_employee='" + da + "'where ktp='" + t_ktp.getText() + "'";
+                    stm.executeUpdate(sql);
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }
+        
+        
+        
+        
+        
+        
+        JOptionPane.showMessageDialog(null, "Data Tersimpan");
+        
+        String sql0 = "truncate cd_career_sementara";
+        String sql1 = "truncate cd_academic_sementara";
+        String sql2 = "truncate cd_family_sementara";
+        String sql3 = "truncate cd_certificate_sementara";
+        try {
+             stm = koneksi.createStatement();
+            stm.executeUpdate(sql0);
+            stm.executeUpdate(sql1);
+            stm.executeUpdate(sql2);
+            stm.executeUpdate(sql3);
+        } catch (SQLException ex) {
+            Logger.getLogger(CandidateApplicationAcademic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        Main.main.getMain().showForm(new NewJPanel());
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.out.println(CandidateApplicationPersonal.get_lamaran());        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1267,7 +1365,8 @@ public class CandidateApplication extends MasterForm {
     private CustomResource.ComboBoxSuggestion homeCity;
     private CustomResource.ComboBoxSuggestion homeCountry;
     private CustomResource.ComboBoxSuggestion homeState;
-    private javax.swing.JCheckBox jCheckBox;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel101;
@@ -1321,6 +1420,7 @@ public class CandidateApplication extends MasterForm {
     private CustomResource.TableCustom jTable4;
     private CustomResource.TableCustom jTable5;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel labelfoto;
     private javax.swing.ButtonGroup radioGrupGender;
     private javax.swing.ButtonGroup radioGrupStatus;
@@ -1347,8 +1447,7 @@ public class CandidateApplication extends MasterForm {
     private javax.swing.JLabel t_tgl;
     private CustomResource.CustomTextfield t_tlhir;
     // End of variables declaration//GEN-END:variables
-    
-    
+
     private void dispose() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

@@ -81,6 +81,7 @@ public class CandidateApplicationCertificates extends MasterForm {
         jLabel87.setText("4. sertifikat keahlian / Sklill Authorized Certificates");
         add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 300, 30));
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,7 +90,15 @@ public class CandidateApplicationCertificates extends MasterForm {
             new String [] {
                 "diakuisisi Tanggal / acquisition date", "Nama Sertifikat / Certificate Name", "Nama Badan Penyelenggara / Authority Name", "Lokasi Penyelenggara / Location", "No. Sertifikat"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.setShowHorizontalLines(true);
         jTable1.setShowVerticalLines(true);
         jScrollPane2.setViewportView(jTable1);

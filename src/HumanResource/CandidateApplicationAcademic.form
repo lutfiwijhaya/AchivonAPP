@@ -57,18 +57,18 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="jTable2">
           <Properties>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
-                <Column editable="true" title="Tanggal Lulus / Graduation Date" type="java.lang.Object"/>
-                <Column editable="true" title="Nama Sekolah / School Name" type="java.lang.Object"/>
-                <Column editable="true" title="Lokasi / Location" type="java.lang.Object"/>
-                <Column editable="true" title="Jurusan / Major" type="java.lang.Object"/>
+                <Column editable="false" title="Tanggal Lulus / Graduation Date" type="java.lang.Object"/>
+                <Column editable="false" title="Nama Sekolah / School Name" type="java.lang.Object"/>
+                <Column editable="false" title="Lokasi / Location" type="java.lang.Object"/>
+                <Column editable="false" title="Jurusan / Major" type="java.lang.Object"/>
               </Table>
             </Property>
-            <Property name="cellSelectionEnabled" type="boolean" value="true"/>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="2">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -160,6 +160,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Hapus / Delete"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="880" y="390" width="110" height="30"/>

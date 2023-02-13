@@ -5,6 +5,7 @@ import Employee.ChangePassword;
 import Employee.EmployeeProfilePanel;
 import Main.MasterForm;
 import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -36,6 +37,8 @@ public class CandidateApplicationFamily extends MasterForm{
         openDB();
         ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
+    t_hp.setText("(0)");
+    
     }
      private void openDB() {
         try {
@@ -77,6 +80,7 @@ public class CandidateApplicationFamily extends MasterForm{
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable3.setAutoCreateRowSorter(true);
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,7 +89,16 @@ public class CandidateApplicationFamily extends MasterForm{
             new String [] {
                 "Nama Anggota / Member Name", "Hubungan / Relation", "Tanggal Lahir / Birthday", "Tinggal Bersama / Cohabit", "No Handphone"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable3.setDragEnabled(true);
         jTable3.setShowHorizontalLines(true);
         jTable3.setShowVerticalLines(true);
         jScrollPane21.setViewportView(jTable3);
@@ -225,7 +238,10 @@ SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
-String a ;
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }     String a ;
         String b = "-";
         if(t_hp.getText().length()<3){
             t_hp.setText("(0)");

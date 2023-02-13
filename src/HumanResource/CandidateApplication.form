@@ -87,7 +87,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel75">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tanggal Lahir / Birth Date"/>
+                <Property name="text" type="java.lang.String" value="Tanggal Lahir / Birth Date : "/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -336,6 +336,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="t_motif">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="11" style="0"/>
@@ -379,6 +380,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="t_latar">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="11" style="0"/>
@@ -431,14 +433,14 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="SIMPAN / SAVE"/>
+                <Property name="text" type="java.lang.String" value="BACK/KEMBALI"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="930" y="1920" width="120" height="40"/>
+                  <AbsoluteConstraints x="230" y="1920" width="120" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -456,6 +458,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="t_halamat">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="11" style="0"/>
@@ -492,6 +495,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="t_calamat">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="11" style="0"/>
@@ -501,22 +505,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="11" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Sama dengan alamat Rumah / Same as Home Address"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxActionPerformed"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="710" y="510" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel99">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -622,6 +610,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_nama">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Nama / Name"/>
               </Properties>
               <Constraints>
@@ -632,8 +621,12 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_ktp">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="KTP No."/>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="t_ktpKeyReleased"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="260" y="320" width="340" height="-1"/>
@@ -642,6 +635,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_tlhir">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Tempat Lahir / Birth Place"/>
               </Properties>
               <Constraints>
@@ -652,6 +646,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_gaji">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Estimasi Gaji / Sallary"/>
               </Properties>
               <Constraints>
@@ -662,6 +657,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_hp">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="No HP"/>
               </Properties>
               <Events>
@@ -677,6 +673,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_email">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Email"/>
               </Properties>
               <Events>
@@ -690,6 +687,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_bpjsKetenagakerjaan">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="No BPJS Ketenagakerjaan"/>
               </Properties>
               <Constraints>
@@ -700,6 +698,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_dicipline">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Discipline"/>
               </Properties>
               <Constraints>
@@ -710,6 +709,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_bpjsKesehatan">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="No BPJS Kesehatan"/>
               </Properties>
               <Events>
@@ -736,6 +736,7 @@
             </Component>
             <Component class="CustomResource.ComboBoxSuggestion" name="curentCountry">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
@@ -751,6 +752,7 @@
             </Component>
             <Component class="CustomResource.ComboBoxSuggestion" name="cprov">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
@@ -766,6 +768,7 @@
             </Component>
             <Component class="CustomResource.ComboBoxSuggestion" name="ccity">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
@@ -781,6 +784,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_ckec">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Kecamatan / Districts"/>
               </Properties>
               <Events>
@@ -794,6 +798,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_cdesa">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Desa / Vilage"/>
               </Properties>
               <Events>
@@ -807,6 +812,7 @@
             </Component>
             <Component class="CustomResource.ComboBoxSuggestion" name="homeCountry">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
@@ -822,6 +828,7 @@
             </Component>
             <Component class="CustomResource.ComboBoxSuggestion" name="homeState">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
@@ -837,6 +844,7 @@
             </Component>
             <Component class="CustomResource.ComboBoxSuggestion" name="homeCity">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
@@ -852,6 +860,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_hkec">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Kecamatan / Districts"/>
               </Properties>
               <Events>
@@ -865,6 +874,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_ddesa">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Desa / Vilage"/>
               </Properties>
               <Events>
@@ -878,6 +888,7 @@
             </Component>
             <Component class="CustomResource.CustomFormatField" name="t_npwp">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="##.###.###.#-###.###" subtype="-1" type="5"/>
                 </Property>
@@ -894,10 +905,9 @@
             </Component>
             <Component class="CustomResource.ComboBoxSuggestion" name="t_lamaran">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="itemasd"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
@@ -928,10 +938,10 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="0">
-                        <Column editable="true" title="Tanggal Lulus / Graduation Date" type="java.lang.Object"/>
-                        <Column editable="true" title="Nama Sekolah / School Name" type="java.lang.Object"/>
-                        <Column editable="true" title="Lokasi / Location" type="java.lang.Object"/>
-                        <Column editable="true" title="Jurusan / Major" type="java.lang.Object"/>
+                        <Column editable="false" title="Tanggal Lulus / Graduation Date" type="java.lang.Object"/>
+                        <Column editable="false" title="Nama Sekolah / School Name" type="java.lang.Object"/>
+                        <Column editable="false" title="Lokasi / Location" type="java.lang.Object"/>
+                        <Column editable="false" title="Jurusan / Major" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -984,11 +994,11 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="0">
-                        <Column editable="true" title="Nama Anggota / Members Name" type="java.lang.Object"/>
-                        <Column editable="true" title="Relation / Hubungan" type="java.lang.Object"/>
-                        <Column editable="true" title="Tanggal lahir / Birthday" type="java.lang.Object"/>
-                        <Column editable="true" title="Tinggal bersama / Cohabit" type="java.lang.Object"/>
-                        <Column editable="true" title="No HP" type="java.lang.Object"/>
+                        <Column editable="false" title="Nama Anggota / Members Name" type="java.lang.Object"/>
+                        <Column editable="false" title="Relation / Hubungan" type="java.lang.Object"/>
+                        <Column editable="false" title="Tanggal lahir / Birthday" type="java.lang.Object"/>
+                        <Column editable="false" title="Tinggal bersama / Cohabit" type="java.lang.Object"/>
+                        <Column editable="false" title="No HP" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1108,10 +1118,10 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="0">
-                        <Column editable="true" title="Nama Perusahaan / Company name" type="java.lang.Object"/>
-                        <Column editable="true" title="Posisi Pekerjaan / Job Position" type="java.lang.Object"/>
-                        <Column editable="true" title="Periode / Period" type="java.lang.Object"/>
-                        <Column editable="true" title="Karir / Career" type="java.lang.Object"/>
+                        <Column editable="false" title="Nama Perusahaan / Company name" type="java.lang.Object"/>
+                        <Column editable="false" title="Posisi Pekerjaan / Job Position" type="java.lang.Object"/>
+                        <Column editable="false" title="Periode / Period" type="java.lang.Object"/>
+                        <Column editable="false" title="Karir / Career" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1150,11 +1160,14 @@
             </Container>
             <Component class="javax.swing.JLabel" name="t_tgl">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="33" red="33" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Tanggal Lahir / Birth Date"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="400" y="430" width="-1" height="30"/>
+                  <AbsoluteConstraints x="420" y="430" width="-1" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1170,6 +1183,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="t_jk">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="33" red="33" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Tanggal Lahir / Birth Date"/>
               </Properties>
               <Constraints>
@@ -1190,11 +1206,56 @@
             </Component>
             <Component class="javax.swing.JLabel" name="t_stts">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="33" red="33" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Tanggal Lahir / Birth Date"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="840" y="200" width="-1" height="30"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lihat Foto"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="390" y="210" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="SIMPAN / SAVE"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="930" y="1920" width="120" height="40"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton2"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="120" y="160" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
