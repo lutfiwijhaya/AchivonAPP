@@ -170,9 +170,19 @@ public class CandidateApplicationFamily extends MasterForm{
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 520, -1, 30));
 
         jButton5.setText("Hapus / Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 420, -1, 30));
 
         jButton6.setText("Kembali / Back");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -262,6 +272,16 @@ StringBuffer sb = new StringBuffer(t_hp.getText());
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_t_hpKeyTyped
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+int row = jTable3.getSelectedRow();
+DefaultTableModel model = (DefaultTableModel)jTable3.getModel();
+model.removeRow( row );          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+Main.main.getMain().showForm(new CandidateApplicationAcademic());      // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

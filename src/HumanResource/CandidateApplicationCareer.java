@@ -141,6 +141,11 @@ Statement stm;
 
         jButton5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton5.setText("Kembali / Back");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, -1, 31));
         add(bulan_awal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
 
@@ -221,6 +226,10 @@ int hari = 01;
         dataModel.addRow(list.toArray());
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+Main.main.getMain().showForm(new CandidateApplicationCertificates());        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

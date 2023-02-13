@@ -47,7 +47,6 @@ private static String latar;
         jSeparator35 = new javax.swing.JSeparator();
         jLabel93 = new javax.swing.JLabel();
         jToggleButton3 = new javax.swing.JToggleButton();
-        jCheckBox5 = new javax.swing.JCheckBox();
         b_done = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -99,14 +98,6 @@ private static String latar;
         });
         add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 620, 120, 40));
 
-        jCheckBox5.setText("Saya menjamin bahwa seluruh uraian di atas adalah benar");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
-            }
-        });
-        add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 494, -1, -1));
-
         b_done.setBackground(new java.awt.Color(0, 102, 255));
         b_done.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         b_done.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,12 +111,8 @@ private static String latar;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        // TODO add your handling code here:
+Main.main.getMain().showForm(new CandidateApplicationCareer());        // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton3ActionPerformed
-
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void b_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_doneActionPerformed
             motivasi = t_motivasi.getText();
@@ -138,7 +125,6 @@ private static String latar;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton b_done;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel93;

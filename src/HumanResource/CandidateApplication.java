@@ -75,7 +75,7 @@ public class CandidateApplication extends MasterForm {
         curentCountry.setEnabled(false);
         cprov.setEnabled(false);
         ccity.setEditable(false);
-
+jToggleButton2.setEnabled(false);
         tampil_academic();
         tampil_foto();
 
@@ -592,7 +592,6 @@ public class CandidateApplication extends MasterForm {
         t_stts = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jToggleButton2 = new javax.swing.JToggleButton();
-        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -1077,14 +1076,6 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 1920, 120, 40));
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
-
         jScrollPane18.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1100,11 +1091,11 @@ public class CandidateApplication extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-       
+Main.main.getMain().showForm(new CandidateApplicationIntroduction());       
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        jToggleButton1.setEnabled(true);
+        jToggleButton2.setEnabled(true);
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed
@@ -1354,10 +1345,6 @@ public class CandidateApplication extends MasterForm {
         Main.main.getMain().showForm(new NewJPanel());
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println(CandidateApplicationPersonal.get_lamaran());        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.ComboBoxSuggestion ccity;
@@ -1367,7 +1354,6 @@ public class CandidateApplication extends MasterForm {
     private CustomResource.ComboBoxSuggestion homeCountry;
     private CustomResource.ComboBoxSuggestion homeState;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel101;

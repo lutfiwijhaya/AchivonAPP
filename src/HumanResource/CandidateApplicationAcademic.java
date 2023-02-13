@@ -146,6 +146,11 @@ public class CandidateApplicationAcademic extends MasterForm {
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton2.setText("Kembali / Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 110, 30));
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -239,6 +244,10 @@ int row = jTable2.getSelectedRow();
 DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
 model.removeRow( row );        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+Main.main.getMain().showForm(new CandidateApplicationPersonal());        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
