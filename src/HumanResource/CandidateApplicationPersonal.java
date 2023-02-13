@@ -415,6 +415,11 @@ public class CandidateApplicationPersonal extends MasterForm{
 
         t_halamat.setColumns(20);
         t_halamat.setRows(5);
+        t_halamat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_halamatKeyPressed(evt);
+            }
+        });
         jScrollPane25.setViewportView(t_halamat);
 
         jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 740, 210, -1));
@@ -441,6 +446,11 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, 30));
 
         t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        t_tgl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_tglKeyPressed(evt);
+            }
+        });
         jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 442, 190, 30));
 
         jLabel101.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -478,10 +488,18 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(labelfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 100, 90));
 
         t_nama.setLabelText("Nama / Name");
+        t_nama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_namaKeyPressed(evt);
+            }
+        });
         jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 340, -1));
 
         t_ktp.setLabelText("KTP No.");
         t_ktp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_ktpKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t_ktpKeyTyped(evt);
             }
@@ -489,10 +507,18 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 340, -1));
 
         t_tlhir.setLabelText("Tempat Lahir / Birth Place");
+        t_tlhir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_tlhirKeyPressed(evt);
+            }
+        });
         jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 340, -1));
 
         t_gaji.setLabelText("Estimasi Gaji / Sallary");
         t_gaji.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_gajiKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t_gajiKeyTyped(evt);
             }
@@ -506,6 +532,9 @@ public class CandidateApplicationPersonal extends MasterForm{
             }
         });
         t_hp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_hpKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 t_hpKeyReleased(evt);
             }
@@ -521,10 +550,18 @@ public class CandidateApplicationPersonal extends MasterForm{
                 t_emailActionPerformed(evt);
             }
         });
+        t_email.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_emailKeyPressed(evt);
+            }
+        });
         jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 340, -1));
 
         t_bpjsKetenagakerjaan.setLabelText("No BPJS Ketenagakerjaan");
         t_bpjsKetenagakerjaan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_bpjsKetenagakerjaanKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t_bpjsKetenagakerjaanKeyTyped(evt);
             }
@@ -532,10 +569,18 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(t_bpjsKetenagakerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 340, -1));
 
         t_dicipline.setLabelText("Discipline");
+        t_dicipline.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_diciplineKeyPressed(evt);
+            }
+        });
         jPanel1.add(t_dicipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 340, -1));
 
         t_bpjsKesehatan.setLabelText("No BPJS Kesehatan");
         t_bpjsKesehatan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_bpjsKesehatanKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t_bpjsKesehatanKeyTyped(evt);
             }
@@ -588,12 +633,22 @@ public class CandidateApplicationPersonal extends MasterForm{
                 homeCountryActionPerformed(evt);
             }
         });
+        homeCountry.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                homeCountryKeyPressed(evt);
+            }
+        });
         jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, 190, 30));
 
         homeState.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeStateActionPerformed(evt);
+            }
+        });
+        homeState.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                homeStateKeyPressed(evt);
             }
         });
         jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, 190, 30));
@@ -604,6 +659,11 @@ public class CandidateApplicationPersonal extends MasterForm{
                 homeCityActionPerformed(evt);
             }
         });
+        homeCity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                homeCityKeyPressed(evt);
+            }
+        });
         jPanel1.add(homeCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 190, 30));
 
         t_hkec.setLabelText("Kecamatan / Districts");
@@ -612,12 +672,22 @@ public class CandidateApplicationPersonal extends MasterForm{
                 t_hkecActionPerformed(evt);
             }
         });
+        t_hkec.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_hkecKeyPressed(evt);
+            }
+        });
         jPanel1.add(t_hkec, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 630, 320, -1));
 
         t_ddesa.setLabelText("Desa / Vilage");
         t_ddesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_ddesaActionPerformed(evt);
+            }
+        });
+        t_ddesa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_ddesaKeyPressed(evt);
             }
         });
         jPanel1.add(t_ddesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 680, 320, -1));
@@ -640,6 +710,11 @@ public class CandidateApplicationPersonal extends MasterForm{
         t_lamaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_lamaranActionPerformed(evt);
+            }
+        });
+        t_lamaran.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t_lamaranKeyPressed(evt);
             }
         });
         jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 190, 30));
@@ -937,6 +1012,125 @@ char c = evt.getKeyChar();
             evt.consume();
         }             // TODO add your handling code here:
     }//GEN-LAST:event_t_gajiKeyTyped
+
+    private void t_lamaranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_lamaranKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            t_gaji.requestFocus();
+        }
+    }//GEN-LAST:event_t_lamaranKeyPressed
+
+    private void t_gajiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            t_nama.requestFocus();
+        }
+    }//GEN-LAST:event_t_gajiKeyPressed
+
+    private void t_namaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_namaKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            t_ktp.requestFocus();
+        }
+    }//GEN-LAST:event_t_namaKeyPressed
+
+    private void t_ktpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyPressed
+       int key = evt.getKeyCode();
+        if (key == 10) {
+            t_tlhir.requestFocus();
+        }
+    }//GEN-LAST:event_t_ktpKeyPressed
+
+    private void t_tlhirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_tlhirKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            t_tgl.requestFocus();
+        }
+    }//GEN-LAST:event_t_tlhirKeyPressed
+
+    private void homeStateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_homeStateKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            homeCity.requestFocus();
+        }
+    }//GEN-LAST:event_homeStateKeyPressed
+
+    private void t_tglKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_tglKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            homeCountry.requestFocus();
+        }
+    }//GEN-LAST:event_t_tglKeyPressed
+
+    private void homeCountryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_homeCountryKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            homeState.requestFocus();
+        }
+    }//GEN-LAST:event_homeCountryKeyPressed
+
+    private void homeCityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_homeCityKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            t_hkec.requestFocus();
+        }
+    }//GEN-LAST:event_homeCityKeyPressed
+
+    private void t_hkecKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hkecKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+           t_ddesa.requestFocus();
+        }
+    }//GEN-LAST:event_t_hkecKeyPressed
+
+    private void t_ddesaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ddesaKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+           t_halamat.requestFocus();
+        }
+    }//GEN-LAST:event_t_ddesaKeyPressed
+
+    private void t_halamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_halamatKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+           t_dicipline.requestFocus();
+        }
+    }//GEN-LAST:event_t_halamatKeyPressed
+
+    private void t_hpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+           t_email.requestFocus();
+        }
+    }//GEN-LAST:event_t_hpKeyPressed
+
+    private void t_diciplineKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_diciplineKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+           t_hp.requestFocus();
+        }
+    }//GEN-LAST:event_t_diciplineKeyPressed
+
+    private void t_emailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_emailKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+           t_bpjsKesehatan.requestFocus();
+        }
+    }//GEN-LAST:event_t_emailKeyPressed
+
+    private void t_bpjsKetenagakerjaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKetenagakerjaanKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+           t_npwp.requestFocus();
+        }
+    }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyPressed
+
+    private void t_bpjsKesehatanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+           t_bpjsKetenagakerjaan.requestFocus();
+        }
+    }//GEN-LAST:event_t_bpjsKesehatanKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -806,7 +806,7 @@ public class CandidateApplication extends MasterForm {
                 t_hpKeyTyped(evt);
             }
         });
-        jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 340, -1));
+        jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 340, -1));
 
         t_email.setEditable(false);
         t_email.setLabelText("Email");
@@ -822,6 +822,7 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(t_bpjsKetenagakerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 340, -1));
 
         t_dicipline.setEditable(false);
+        t_dicipline.setBackground(new java.awt.Color(255, 255, 255));
         t_dicipline.setLabelText("Discipline");
         jPanel1.add(t_dicipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 340, -1));
 
@@ -1053,11 +1054,11 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(t_jk, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 160, -1, 30));
 
         jLabel78.setText("Tanggal Lahir / Birth Date");
-        jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 200, -1, 30));
+        jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, -1, 30));
 
         t_stts.setForeground(new java.awt.Color(51, 51, 255));
         t_stts.setText("Tanggal Lahir / Birth Date");
-        jPanel1.add(t_stts, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 200, -1, 30));
+        jPanel1.add(t_stts, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, -1, 30));
 
         jButton1.setText("Lihat Foto");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
