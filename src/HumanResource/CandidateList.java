@@ -148,7 +148,6 @@ void remove (){
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         textSearch = new CustomResource.CustomTextfield();
-        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 585));
 
@@ -201,14 +200,6 @@ void remove (){
         });
         jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 460, -1));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
-
         jScrollPane2.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -247,21 +238,9 @@ void remove (){
         // TODO add your handling code here:
     }//GEN-LAST:event_MyTableMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-        CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
-//        textSearch.setText(CandidateSession.getCandidateID());
-        Main.main.getMain().showForm(new CandidateProfile());
-//        getValueAt(int getSelectedRow(), int getSelectedColumn());    
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

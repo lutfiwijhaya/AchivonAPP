@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import Main.main;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import net.sourceforge.barbecue.Main;
 
 /**
@@ -53,6 +55,11 @@ public class Welcome extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -126,6 +133,8 @@ public class Welcome extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         main.getMain().setVisible(true);
+        main.getMain().refresh();
+//        main.freshframe();
 //        new main().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel1MouseClicked
@@ -133,10 +142,18 @@ public class Welcome extends javax.swing.JFrame {
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
         int key = evt.getKeyCode();
         if (key == 10) {
-            new main().setVisible(true);
+            main.getMain().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jPanel1KeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        int key = evt.getKeyCode();
+        if (key == 10) {
+            main.getMain().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments

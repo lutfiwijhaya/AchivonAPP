@@ -29,7 +29,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="250" y="210" width="804" height="221"/>
+          <AbsoluteConstraints x="250" y="311" width="804" height="120"/>
         </Constraint>
       </Constraints>
 
@@ -41,7 +41,7 @@
               <Font name="Arial" size="11" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="6">
+              <Table columnCount="6" rowCount="0">
                 <Column editable="true" title="Name" type="java.lang.Object"/>
                 <Column editable="true" title="Dicipline" type="java.lang.Object"/>
                 <Column editable="true" title="Position" type="java.lang.Object"/>
@@ -109,11 +109,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="11" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Send / Kirim"/>
+        <Property name="text" type="java.lang.String" value="Batal / Cancel"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="860" y="450" width="190" height="40"/>
+          <AbsoluteConstraints x="890" y="230" width="130" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -134,16 +134,99 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="textSearch">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="Search"/>
-      </Properties>
+    <Component class="CustomResource.ComboBoxSuggestion" name="textSearch">
       <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textSearchKeyTyped"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textSearchActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="520" y="140" width="270" height="-1"/>
+          <AbsoluteConstraints x="530" y="100" width="270" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="CustomResource.CustomTextfield" name="textAlocationDate">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Alocation Join Date"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="560" y="250" width="280" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="CustomResource.CustomTextfield" name="textName">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Name"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="250" y="150" width="280" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="CustomResource.CustomTextfield" name="textDiscipline">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Discipline"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="250" y="200" width="280" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="CustomResource.CustomTextfield" name="textPosition">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Position"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="250" y="250" width="280" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="CustomResource.CustomTextfield" name="textDescription">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Description Allocation"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="560" y="150" width="280" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="CustomResource.CustomTextfield" name="textJoinDate">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Initial Join Date"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="560" y="200" width="280" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Send / Kirim"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="860" y="450" width="190" height="40"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tambah / Add"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="890" y="170" width="130" height="40"/>
         </Constraint>
       </Constraints>
     </Component>

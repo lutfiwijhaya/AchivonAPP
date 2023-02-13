@@ -6,9 +6,9 @@ package Main;
 
 /**
  *
- * @author USER
+ * @author hi
  */
-public class NewJPanel extends MasterForm {
+public class NewJPanel extends MasterForm{
 
     /**
      * Creates new form NewJPanel
