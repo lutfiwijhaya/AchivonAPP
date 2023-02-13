@@ -582,7 +582,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_redoBarMouseClicked
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-Main.main.getMain().showForm(new EmployeeProfilePanel());        // TODO add your handling code here:
+ showForm(new CandidateApplication());      // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**

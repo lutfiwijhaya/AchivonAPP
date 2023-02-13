@@ -1,8 +1,21 @@
 package HumanResource;
 
+import CustomResource.koneksi;
 import Main.MasterForm;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -10,14 +23,26 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author hi
  */
 public class CandidateApplicationCareer extends MasterForm {
-
+Statement stm;
+    ResultSet rs;
+    Connection koneksi;
     /**
      * Creates new form CandidateApplicationCareer
      */
     public CandidateApplicationCareer() {
         initComponents();
+        openDB();
+    
         ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
+    }
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
     }
 
     /**
@@ -33,17 +58,18 @@ public class CandidateApplicationCareer extends MasterForm {
         jTable4 = new javax.swing.JTable();
         jSeparator33 = new javax.swing.JSeparator();
         jLabel89 = new javax.swing.JLabel();
-        customTextfield1 = new CustomResource.CustomTextfield();
-        customTextfield2 = new CustomResource.CustomTextfield();
-        t_tgl = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
-        t_tgl1 = new com.toedter.calendar.JDateChooser();
-        jLabel5 = new javax.swing.JLabel();
+        t_posisi = new CustomResource.CustomTextfield();
+        t_nama = new CustomResource.CustomTextfield();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        bulan_awal = new com.toedter.calendar.JMonthChooser();
+        jLabel4 = new javax.swing.JLabel();
+        tahun_awal = new com.toedter.calendar.JYearChooser();
+        jLabel5 = new javax.swing.JLabel();
+        bulan_akhir = new com.toedter.calendar.JMonthChooser();
+        tahun_akhir = new com.toedter.calendar.JYearChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,21 +77,7 @@ public class CandidateApplicationCareer extends MasterForm {
         jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nama Perusahaan / Company name", "Posisi Pekerjaan / Job Position", "Periode (mmm-yyyy - mmm-yyyy)", "Karir (Tahun atau Bulan) / Career (Years or Month)"
@@ -75,7 +87,7 @@ public class CandidateApplicationCareer extends MasterForm {
         jTable4.setShowVerticalLines(true);
         jScrollPane22.setViewportView(jTable4);
 
-        add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 872, 90));
+        add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 872, 90));
 
         jSeparator33.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator33.setForeground(new java.awt.Color(255, 0, 0));
@@ -85,33 +97,20 @@ public class CandidateApplicationCareer extends MasterForm {
         jLabel89.setText("5. Ringkasan Status Karir / Summary of Carrer Status");
         add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 310, 30));
 
-        customTextfield1.setLabelText("Posisi Pekerjaan / Job Position");
-        add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 248, -1));
+        t_posisi.setLabelText("Posisi Pekerjaan / Job Position");
+        add(t_posisi, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 248, -1));
 
-        customTextfield2.setLabelText("Nama Perusahaan / Company name");
-        add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 248, -1));
-
-        t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 250, 30));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel4.setText("Periode (dari Tahun)");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 190, -1));
-
-        t_tgl1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        add(t_tgl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 250, 30));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel5.setText("Periode (sampai Tahun)");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 190, -1));
+        t_nama.setLabelText("Nama Perusahaan / Company name");
+        add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 248, -1));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton1.setText("Simpan / Save");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, -1, 31));
-
-        jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jButton2.setText("Ubah / Edit");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, 100, 31));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, 31));
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton3.setText("Hapus / Delete");
@@ -120,7 +119,7 @@ public class CandidateApplicationCareer extends MasterForm {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, 31));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 440, -1, 31));
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton4.setText("Lanjut / Next");
@@ -129,14 +128,59 @@ public class CandidateApplicationCareer extends MasterForm {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 410, -1, 31));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 510, -1, 31));
 
         jButton5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton5.setText("Kembali / Back");
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, -1, 31));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, -1, 31));
+        add(bulan_awal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel4.setText("Periode (dari Tahun)");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 190, -1));
+        add(tahun_awal, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel5.setText("Periode (sampai Tahun)");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 190, -1));
+        add(bulan_akhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, -1));
+        add(tahun_akhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+String sql0 = "truncate cd_career_sementara";
+        try {
+             stm = koneksi.createStatement();
+            stm.executeUpdate(sql0);
+        } catch (SQLException ex) {
+            Logger.getLogger(CandidateApplicationAcademic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        DefaultTableModel tabelfamily = (DefaultTableModel) jTable4.getModel();
+        int htabelfamily = jTable4.getRowCount();
+
+        for (int i = 0; i <= htabelfamily - 1; i++) {
+            if (jTable4.getValueAt(i, 0) == null) {
+            } else {
+                String dtabel_nama = jTable4.getValueAt(i, 0).toString();
+                String dtabel_posisi = jTable4.getValueAt(i, 1).toString();
+                String dtabel_periode = jTable4.getValueAt(i, 2).toString();
+                String dtabel_lama = jTable4.getValueAt(i, 3).toString();
+                
+                try {
+                    stm = koneksi.createStatement();
+                    String sql = "insert into cd_career_sementara (nama,posisi,periode,lama) values('" + dtabel_nama + "'"
+                            + ",'" + dtabel_posisi + "'"
+                            + ",'" + dtabel_periode + "','" + dtabel_lama + "')";
+                    stm.executeUpdate(sql);
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }
+        
+            }}
+
         Main.main.getMain().showForm(new CandidateApplicationIntroduction());
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -144,12 +188,34 @@ public class CandidateApplicationCareer extends MasterForm {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+int hari = 01;
+        int bln_awal = Integer.valueOf(bulan_awal.getMonth() + 1);
+        int bln_akhir = Integer.valueOf(bulan_akhir.getMonth() + 1);
+        int thn_awal = Integer.valueOf(tahun_awal.getYear());
+        int thn_akhir = Integer.valueOf(tahun_akhir.getYear());
+        LocalDate tgl_awal = LocalDate.of(thn_awal, bln_awal, hari);
+        LocalDate tgl_akhir = LocalDate.of(thn_akhir, bln_akhir, hari);
+        int hasil_tahun = Period.between(tgl_awal, tgl_akhir).getYears();
+        int hasil_bulan = Period.between(tgl_awal, tgl_akhir).getMonths();
+        
+
+        DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
+        List list = new ArrayList<>();
+        jTable4.setAutoCreateColumnsFromModel(true);
+        list.add(t_nama.getText());
+        list.add(t_posisi.getText());
+        list.add("("+tgl_awal.getMonth() + "-" + tgl_awal.getYear() +")"+ " - " +"("+ tgl_akhir.getMonth() + "-" + tgl_akhir.getYear()+")");
+        list.add(hasil_tahun + " Tahun " + hasil_bulan + " Bulan");
+        dataModel.addRow(list.toArray());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CustomResource.CustomTextfield customTextfield1;
-    private CustomResource.CustomTextfield customTextfield2;
+    private com.toedter.calendar.JMonthChooser bulan_akhir;
+    private com.toedter.calendar.JMonthChooser bulan_awal;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -159,8 +225,10 @@ public class CandidateApplicationCareer extends MasterForm {
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JSeparator jSeparator33;
     private javax.swing.JTable jTable4;
-    private com.toedter.calendar.JDateChooser t_tgl;
-    private com.toedter.calendar.JDateChooser t_tgl1;
+    private CustomResource.CustomTextfield t_nama;
+    private CustomResource.CustomTextfield t_posisi;
+    private com.toedter.calendar.JYearChooser tahun_akhir;
+    private com.toedter.calendar.JYearChooser tahun_awal;
     // End of variables declaration//GEN-END:variables
 
     @Override

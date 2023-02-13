@@ -24,7 +24,13 @@ import CustomResource.koneksi;
 import Employee.ChangePassword;
 import Employee.EmployeeProfilePanel;
 import Main.MasterForm;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.sql.PreparedStatement;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -34,15 +40,45 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 public class CandidateApplicationPersonal extends MasterForm{
-
-    Statement stm;
+ Statement stm;
     ResultSet rs;
     Connection koneksi;
+    ResultSet rsf;
     DefaultTableModel ImportDataExel;
     String crudimage = "";
     String da = null;
     int id_employee;
     String tanggal;
+    private static String g_nama;
+    private static String g_ktp;
+    private static String g_gender;
+    private static String g_status;
+    private static String g_tlahir;
+    private static String g_tgl;
+    private static String g_hp;
+    private static String g_email;
+    private static String g_bpjsket;
+    private static String g_bpjskes;
+    private static String g_npwp;
+    private static String g_lamaran;
+    private static String g_gaji;
+    private static String g_discipline;
+
+    private static String g_hnegara;
+    private static String g_hprov;
+    private static String g_hkota;
+    private static String g_cnegara;
+    private static String g_cprov;
+    private static String g_ckota;
+    private static String g_hkec;
+    private static String g_ckec;
+    private static String g_hdesa;
+    private static String g_cdesa;
+    private static String g_halamat;
+    private static String g_calamat;
+    private static String sp = ", ";
+    private static String full_curent;
+    private static String full_home;
    
     public CandidateApplicationPersonal() {
         initComponents();
@@ -54,7 +90,7 @@ public class CandidateApplicationPersonal extends MasterForm{
 //        jToggleButton1.setEnabled(false);
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
-       
+       t_hp.setText("(0)");
      
     }
 
@@ -120,6 +156,141 @@ public class CandidateApplicationPersonal extends MasterForm{
         } catch (SQLException ex) {
         }
         curentCountry.setEnabled(true);
+    }
+    
+     public class func{
+    public ResultSet find (String s){
+        try {
+            PreparedStatement st = koneksi.prepareStatement("select * from cd_foto where id = ?");
+            st.setString(1, s);
+            rsf=st.executeQuery();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return rsf;
+    
+    }
+    
+    
+    
+    }
+    
+    
+    
+    
+
+    public static String get_nama() {
+        return g_nama;
+    }
+
+    public static String get_ktp() {
+        return g_ktp;
+    }
+
+    public static String get_gender() {
+        return g_gender;
+    }
+
+    public static String get_status() {
+        return g_status;
+    }
+
+    public static String get_tlahir() {
+        return g_tlahir;
+    }
+
+    public static String get_tgl() {
+        return g_tgl;
+    }
+
+    public static String get_hp() {
+        return g_hp;
+    }
+
+    public static String get_email() {
+        return g_email;
+    }
+
+    public static String get_bpjsket() {
+        return g_bpjsket;
+    }
+
+    public static String get_bpjskes() {
+        return g_bpjskes;
+    }
+
+    public static String get_npwp() {
+        return g_npwp;
+    }
+
+    public static String get_lamaran() {
+        return g_lamaran;
+    }
+
+    public static String get_gaji() {
+        return g_gaji;
+    }
+
+    public static String get_discipline() {
+        return g_discipline;
+    }
+
+    public static String get_hnegara() {
+        return g_hnegara;
+    }
+
+    public static String get_hprov() {
+        return g_hprov;
+    }
+
+    public static String get_hkota() {
+        return g_hkota;
+    }
+
+    public static String get_cnegara() {
+        return g_cnegara;
+    }
+
+    public static String get_cprov() {
+        return g_cprov;
+    }
+
+    public static String get_ckota() {
+        return g_ckota;
+    }
+
+    public static String get_hkec() {
+        return g_hkec;
+    }
+
+    public static String get_ckec() {
+        return g_ckec;
+    }
+
+    public static String get_hdesa() {
+        return g_hdesa;
+    }
+
+    public static String get_cdesa() {
+        return g_cdesa;
+    }
+
+    public static String get_halamat() {
+        return g_halamat;
+    }
+
+    public static String get_calamat() {
+        return g_calamat;
+    }
+
+    public static String get_full_curent() {
+        return full_curent;
+    }
+
+    public static String get_full_home() {
+        return full_home;
     }
 
     /**
@@ -192,8 +363,6 @@ public class CandidateApplicationPersonal extends MasterForm{
         t_wanita = new CustomResource.RadioButtonCustom();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jLabel98 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -312,6 +481,11 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 340, -1));
 
         t_ktp.setLabelText("KTP No.");
+        t_ktp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_ktpKeyTyped(evt);
+            }
+        });
         jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 340, -1));
 
         t_tlhir.setLabelText("Tempat Lahir / Birth Place");
@@ -345,6 +519,11 @@ public class CandidateApplicationPersonal extends MasterForm{
         jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 340, -1));
 
         t_bpjsKetenagakerjaan.setLabelText("No BPJS Ketenagakerjaan");
+        t_bpjsKetenagakerjaan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_bpjsKetenagakerjaanKeyTyped(evt);
+            }
+        });
         jPanel1.add(t_bpjsKetenagakerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 340, -1));
 
         t_dicipline.setLabelText("Discipline");
@@ -451,6 +630,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 340, -1));
 
+        t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "test" }));
         t_lamaran.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_lamaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -490,12 +670,6 @@ public class CandidateApplicationPersonal extends MasterForm{
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 990, 130, 30));
-
-        jButton4.setText("Submit");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 910, 130, 30));
-
-        jButton5.setText("Simpan / Save");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 910, 130, 30));
 
         jLabel98.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel98.setText("Alamat / Address");
@@ -545,11 +719,11 @@ public class CandidateApplicationPersonal extends MasterForm{
 
     private void jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActionPerformed
         curentCountry.setSelectedItem(homeCountry.getSelectedItem());
-        cprov.setSelectedItem(homeCity.getSelectedItem());
+        cprov.setSelectedItem(homeState.getSelectedItem());
         ccity.setSelectedItem(homeCity.getSelectedItem());
         t_ckec.setText(t_hkec.getText());
         t_calamat.setText(t_halamat.getText());
-        t_cdesa.setText(t_ddesa.getText());        // TODO add your handling code here:
+        t_cdesa.setText(t_ddesa.getText());       // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxActionPerformed
 
     private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed
@@ -563,20 +737,20 @@ public class CandidateApplicationPersonal extends MasterForm{
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
         String a ;
         String b = "-";
-        if(t_hp.getText().length()<2){
+        if(t_hp.getText().length()<3){
             t_hp.setText("(0)");
         }else if (t_hp.getText().length() == 6) {
             t_hp.setText(t_hp.getText()+"-");
-//        }else if(t_hp.getText().length() == 7){
-//            a = t_hp.getText();
-//            a = a.replaceAll(b, "");
-//            t_hp.setText(a);
+        }else if(t_hp.getText().length() == 7){
+StringBuffer sb = new StringBuffer(t_hp.getText());
+       sb.setLength(6); 
+       t_hp.setText(""+sb);
         }else if(t_hp.getText().length() == 11){
             t_hp.setText(t_hp.getText()+"-");
-//        }else if(t_hp.getText().length() == 12){
-//            a = t_hp.getText();
-//            a = a.replaceAll(b, "");
-//            t_hp.setText(a);
+        }else if(t_hp.getText().length() == 12){
+           StringBuffer sb = new StringBuffer(t_hp.getText());
+       sb.setLength(11); 
+       t_hp.setText(""+sb);
         }else if(t_hp.getText().length() == 17){
             t_hp.setText(t_hp.getText());
             evt.consume();
@@ -679,7 +853,10 @@ public class CandidateApplicationPersonal extends MasterForm{
     }//GEN-LAST:event_t_hpKeyReleased
 
     private void t_bpjsKesehatanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyTyped
-//        asd
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }//        asd
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -687,8 +864,60 @@ public class CandidateApplicationPersonal extends MasterForm{
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+  SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+        t_pria.setActionCommand("Laki - laki");
+        t_wanita.setActionCommand("Perempuan");
+        t_lajang.setActionCommand("Lajang");
+        t_menikah.setActionCommand("Menikah");
+        g_nama = t_nama.getText();
+        g_ktp = t_ktp.getText();
+        g_gender = radioGrupGender.getSelection().getActionCommand();
+        g_status = radioGrupStatus.getSelection().getActionCommand();
+        g_tlahir = t_tlhir.getText();
+        g_tgl = String.valueOf(fm.format(t_tgl.getDate()));
+        g_hp = t_hp.getText();
+        g_email = t_email.getText();
+        g_bpjsket = t_bpjsKetenagakerjaan.getText();
+        g_bpjskes = t_bpjsKesehatan.getText();
+        g_npwp = t_npwp.getText();
+        g_lamaran = (String) t_lamaran.getSelectedItem();
+        g_gaji = t_gaji.getText();
+        g_discipline = t_dicipline.getText();
+
+        g_hnegara = (String) homeCountry.getSelectedItem();
+        g_hprov = (String) homeCity.getSelectedItem();
+        g_hkota = (String) homeCity.getSelectedItem();
+        g_cnegara = (String) curentCountry.getSelectedItem();
+        g_cprov = (String) cprov.getSelectedItem();
+        g_ckota = (String) ccity.getSelectedItem();
+        g_hkec = t_hkec.getText();
+        g_ckec = t_ckec.getText();
+        g_hdesa = t_ddesa.getText();
+        g_cdesa = t_cdesa.getText();
+        g_halamat = t_halamat.getText();
+        g_calamat = t_calamat.getText();
+
+        full_curent = g_calamat + sp + g_cdesa + sp + g_ckec + sp + g_ckota + sp + g_cprov + sp + g_cnegara;
+        full_home = g_halamat + sp + g_hdesa + sp + g_hkec + sp + g_hkota + sp + g_hprov + sp + g_hnegara;
+         File foto = new File(crudimage);
+      
+
         Main.main.getMain().showForm(new CandidateApplicationAcademic());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void t_ktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyTyped
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ktpKeyTyped
+
+    private void t_bpjsKetenagakerjaanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKetenagakerjaanKeyTyped
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -701,8 +930,6 @@ public class CandidateApplicationPersonal extends MasterForm{
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel101;

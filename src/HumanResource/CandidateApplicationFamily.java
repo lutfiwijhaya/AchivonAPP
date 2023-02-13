@@ -1,10 +1,20 @@
 package HumanResource;
 
+import CustomResource.koneksi;
 import Employee.ChangePassword;
 import Employee.EmployeeProfilePanel;
 import Main.MasterForm;
+import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import jxl.common.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,10 +28,22 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class CandidateApplicationFamily extends MasterForm{
 
    
+  java.sql.Statement stm;
+    ResultSet rs;
+    java.sql.Connection koneksi;
     public CandidateApplicationFamily() {
         initComponents();
+        openDB();
         ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
+    }
+     private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
     }
 
     /**
@@ -33,22 +55,22 @@ public class CandidateApplicationFamily extends MasterForm{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttongrup = new javax.swing.ButtonGroup();
         jScrollPane21 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        customTextfield1 = new CustomResource.CustomTextfield();
-        customTextfield2 = new CustomResource.CustomTextfield();
+        t_hp = new CustomResource.CustomTextfield();
+        t_nama = new CustomResource.CustomTextfield();
         t_tgl = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
-        radioButtonCustom1 = new CustomResource.RadioButtonCustom();
-        radioButtonCustom2 = new CustomResource.RadioButtonCustom();
+        r_n = new CustomResource.RadioButtonCustom();
+        r_y = new CustomResource.RadioButtonCustom();
         jLabel3 = new javax.swing.JLabel();
         jLabel88 = new javax.swing.JLabel();
         jSeparator32 = new javax.swing.JSeparator();
-        comboBoxSuggestion1 = new CustomResource.ComboBoxSuggestion();
+        t_hubungan = new CustomResource.ComboBoxSuggestion();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
@@ -58,21 +80,7 @@ public class CandidateApplicationFamily extends MasterForm{
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Nama Anggota / Member Name", "Hubungan / Relation", "Tanggal Lahir / Birthday", "Tinggal Bersama / Cohabit", "No Handphone"
@@ -84,11 +92,16 @@ public class CandidateApplicationFamily extends MasterForm{
 
         add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 820, 90));
 
-        customTextfield1.setLabelText("No Handphone");
-        add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, 260, -1));
+        t_hp.setLabelText("No Handphone");
+        t_hp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_hpKeyTyped(evt);
+            }
+        });
+        add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, 260, -1));
 
-        customTextfield2.setLabelText("Nama Anggota / Member Name");
-        add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 250, -1));
+        t_nama.setLabelText("Nama Anggota / Member Name");
+        add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 250, -1));
 
         t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 250, 30));
@@ -97,13 +110,15 @@ public class CandidateApplicationFamily extends MasterForm{
         jLabel2.setText("Tinggal Bersama / Cohabit");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 190, -1));
 
-        radioButtonCustom1.setText("Tidak / No");
-        radioButtonCustom1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        add(radioButtonCustom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, -1, -1));
+        buttongrup.add(r_n);
+        r_n.setText("Tidak / No");
+        r_n.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        add(r_n, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, -1, -1));
 
-        radioButtonCustom2.setText("Ya / Yes");
-        radioButtonCustom2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        add(radioButtonCustom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
+        buttongrup.add(r_y);
+        r_y.setText("Ya / Yes");
+        r_y.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        add(r_y, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel3.setText("Hubungan / Relation");
@@ -117,8 +132,9 @@ public class CandidateApplicationFamily extends MasterForm{
         jSeparator32.setForeground(new java.awt.Color(255, 0, 0));
         add(jSeparator32, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 660, 20));
 
-        comboBoxSuggestion1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        add(comboBoxSuggestion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 250, -1));
+        t_hubungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kakek", "Nenek", "Ayah", "Ibu", "Kakak", "Adik", "Suami", "Istri", "Anak laki - laki", "Anak Perempuan" }));
+        t_hubungan.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        add(t_hubungan, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 250, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel4.setText("Tanggal Lahir / Birthday");
@@ -130,7 +146,7 @@ public class CandidateApplicationFamily extends MasterForm{
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, -1, 30));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 280, -1, 30));
 
         jButton3.setText("Lanjut / Next ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -138,34 +154,104 @@ public class CandidateApplicationFamily extends MasterForm{
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 430, -1, 30));
-
-        jButton4.setText("Ubah / Edit");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, -1, 30));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 520, -1, 30));
 
         jButton5.setText("Hapus / Delete");
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, -1, 30));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 420, -1, 30));
 
         jButton6.setText("Kembali / Back");
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, 30));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+  String sql0 = "truncate cd_family_sementara";
+        
+      try {
+          stm = koneksi.createStatement();
+           stm.executeUpdate(sql0);
+      } catch (SQLException ex) {
+          java.util.logging.Logger.getLogger(CandidateApplicationFamily.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      }
+           
+       
+            
+       
+        
+        
+        
+        DefaultTableModel tabelfamily = (DefaultTableModel) jTable3.getModel();
+        int htabelfamily = jTable3.getRowCount();
+
+        for (int i = 0; i <= htabelfamily - 1; i++) {
+            if (jTable3.getValueAt(i, 0) == null) {
+            } else {
+                String dtabel_nama = jTable3.getValueAt(i, 0).toString();
+                String dtabel_hubungan = jTable3.getValueAt(i, 1).toString();
+                String dtabel_tanggal = jTable3.getValueAt(i, 2).toString();
+                String dtabel_cohabit = jTable3.getValueAt(i, 3).toString();
+                String dtabel_hp= jTable3.getValueAt(i, 4).toString();
+                
+                try {
+                    stm = koneksi.createStatement();
+                    String sql = "insert into cd_family_sementara (nama,hubungan,tgl,cohabit,hp) values('" + dtabel_nama + "'"
+                            + ",'" + dtabel_hubungan + "'"
+                            + ",'" + dtabel_tanggal + "'"
+                            + ",'" + dtabel_cohabit + "','" + dtabel_hp + "')";
+                    stm.executeUpdate(sql);
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }
+        
+            }}
+
         Main.main.getMain().showForm(new CandidateApplicationCertificates());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+            String tanggal = String.valueOf(fm.format(t_tgl.getDate()));
+            r_y.setActionCommand("Yes");
+        r_n.setActionCommand("No");
+        DefaultTableModel dataModel = (DefaultTableModel) jTable3.getModel();
+          List list = new ArrayList<>();
+            jTable3.setAutoCreateColumnsFromModel(true);
+            list.add(t_nama.getText());
+            list.add(t_hubungan.getSelectedItem());
+            list.add(tanggal);
+            list.add(buttongrup.getSelection().getActionCommand());
+            list.add(t_hp.getText());
+            dataModel.addRow(list.toArray());
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
+String a ;
+        String b = "-";
+        if(t_hp.getText().length()<3){
+            t_hp.setText("(0)");
+        }else if (t_hp.getText().length() == 6) {
+            t_hp.setText(t_hp.getText()+"-");
+        }else if(t_hp.getText().length() == 7){
+StringBuffer sb = new StringBuffer(t_hp.getText());
+       sb.setLength(6); 
+       t_hp.setText(""+sb);
+        }else if(t_hp.getText().length() == 11){
+            t_hp.setText(t_hp.getText()+"-");
+        }else if(t_hp.getText().length() == 12){
+           StringBuffer sb = new StringBuffer(t_hp.getText());
+       sb.setLength(11); 
+       t_hp.setText(""+sb);
+        }else if(t_hp.getText().length() == 17){
+            t_hp.setText(t_hp.getText());
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_hpKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CustomResource.ComboBoxSuggestion comboBoxSuggestion1;
-    private CustomResource.CustomTextfield customTextfield1;
-    private CustomResource.CustomTextfield customTextfield2;
+    private javax.swing.ButtonGroup buttongrup;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
@@ -175,8 +261,11 @@ public class CandidateApplicationFamily extends MasterForm{
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JSeparator jSeparator32;
     private javax.swing.JTable jTable3;
-    private CustomResource.RadioButtonCustom radioButtonCustom1;
-    private CustomResource.RadioButtonCustom radioButtonCustom2;
+    private CustomResource.RadioButtonCustom r_n;
+    private CustomResource.RadioButtonCustom r_y;
+    private CustomResource.CustomTextfield t_hp;
+    private CustomResource.ComboBoxSuggestion t_hubungan;
+    private CustomResource.CustomTextfield t_nama;
     private com.toedter.calendar.JDateChooser t_tgl;
     // End of variables declaration//GEN-END:variables
 

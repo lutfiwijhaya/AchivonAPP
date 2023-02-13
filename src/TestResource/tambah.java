@@ -370,6 +370,11 @@ public class tambah extends javax.swing.JFrame {
         });
         jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 190, -1));
 
+        t_ktp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_ktpActionPerformed(evt);
+            }
+        });
         t_ktp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t_ktpKeyTyped(evt);
@@ -1065,6 +1070,10 @@ public class tambah extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_t_namaKeyTyped
+
+    private void t_ktpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ktpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ktpActionPerformed
 
     /**
      * @param args the command line arguments

@@ -12,10 +12,19 @@ import Main.MasterForm;
  * @author hi
  */
 public class CandidateApplicationIntroduction extends MasterForm{
-
+private static String motivasi;
+private static String latar;
     
     public CandidateApplicationIntroduction() {
         initComponents();
+    }
+    
+    public static String motivasi() {
+        return motivasi;
+    }
+
+    public static String latarbelakang() {
+        return latar;
     }
 
     /**
@@ -31,16 +40,15 @@ public class CandidateApplicationIntroduction extends MasterForm{
         jSeparator34 = new javax.swing.JSeparator();
         jLabel90 = new javax.swing.JLabel();
         jScrollPane23 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        t_motivasi = new javax.swing.JTextArea();
         jLabel94 = new javax.swing.JLabel();
         jScrollPane24 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        t_latarbelakang = new javax.swing.JTextArea();
         jSeparator35 = new javax.swing.JSeparator();
         jLabel93 = new javax.swing.JLabel();
         jToggleButton3 = new javax.swing.JToggleButton();
         jCheckBox5 = new javax.swing.JCheckBox();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        b_done = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,10 +65,10 @@ public class CandidateApplicationIntroduction extends MasterForm{
         jLabel90.setText("1. Motivasi untuk Melamar");
         add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 74, 350, 30));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane23.setViewportView(jTextArea1);
+        t_motivasi.setColumns(20);
+        t_motivasi.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        t_motivasi.setRows(5);
+        jScrollPane23.setViewportView(t_motivasi);
 
         add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 110, 768, 130));
 
@@ -68,10 +76,10 @@ public class CandidateApplicationIntroduction extends MasterForm{
         jLabel94.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
         add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 258, 350, 30));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTextArea2.setRows(5);
-        jScrollPane24.setViewportView(jTextArea2);
+        t_latarbelakang.setColumns(20);
+        t_latarbelakang.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        t_latarbelakang.setRows(5);
+        jScrollPane24.setViewportView(t_latarbelakang);
 
         add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 294, 771, 130));
 
@@ -99,27 +107,16 @@ public class CandidateApplicationIntroduction extends MasterForm{
         });
         add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 494, -1, -1));
 
-        jToggleButton1.setBackground(new java.awt.Color(51, 204, 0));
-        jToggleButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("SIMPAN / SAVE");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        b_done.setBackground(new java.awt.Color(0, 102, 255));
+        b_done.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        b_done.setForeground(new java.awt.Color(255, 255, 255));
+        b_done.setText("Selesai / Done");
+        b_done.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                b_doneActionPerformed(evt);
             }
         });
-        add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 540, 120, 40));
-
-        jToggleButton2.setBackground(new java.awt.Color(0, 102, 255));
-        jToggleButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jToggleButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton2.setText("Selesai / Done");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
-            }
-        });
-        add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 620, 120, 40));
+        add(b_done, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 620, 120, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
@@ -127,20 +124,20 @@ public class CandidateApplicationIntroduction extends MasterForm{
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        jToggleButton1.setEnabled(true);
+        
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void b_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_doneActionPerformed
+            motivasi = t_motivasi.getText();
+            latar = t_latarbelakang.getText();
 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         Main.main.getMain().showForm(new CandidateApplication());
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+    }//GEN-LAST:event_b_doneActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton b_done;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
@@ -150,11 +147,9 @@ public class CandidateApplicationIntroduction extends MasterForm{
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JSeparator jSeparator34;
     private javax.swing.JSeparator jSeparator35;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JTextArea t_latarbelakang;
+    private javax.swing.JTextArea t_motivasi;
     // End of variables declaration//GEN-END:variables
 
     @Override
