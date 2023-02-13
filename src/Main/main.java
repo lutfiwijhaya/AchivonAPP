@@ -49,7 +49,7 @@ public class main extends javax.swing.JFrame {
     private static main main;
     private final UndoRedo<MasterForm> forms = new UndoRedo<>();
     
-    public static main getMain(){
+    public final static main getMain(){
         return main;
     }
     public void showForm(MasterForm form){
@@ -91,7 +91,8 @@ public class main extends javax.swing.JFrame {
         this.setIconImage(logo.getImage());
         showForm(new MainPanel());
         String nama_log = CustomResource.MySession.get_nama();
-        
+        freshframe();
+        this.refresh();
         if (nama_log == null) {
             HumanResourceSystem.setEnabled(true);
             POSystem.setEnabled(false);
@@ -116,6 +117,10 @@ public class main extends javax.swing.JFrame {
 //            buttonLogin.setVisible(false);
 //            buttonLogin1.setVisible(false);
         }
+    }
+    public void freshframe(){
+        this.revalidate();
+        this.repaint();
     }
     private void checkButton(){
         undoBar.setEnabled(forms.isUndoAble());
@@ -144,7 +149,6 @@ public class main extends javax.swing.JFrame {
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
         applicationForm = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         employingConfirmation = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -258,14 +262,6 @@ public class main extends javax.swing.JFrame {
         });
         candidateApplication.add(applicationForm);
         candidateApplication.add(jSeparator16);
-
-        jMenuItem4.setText("jMenuItem4");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        candidateApplication.add(jMenuItem4);
 
         HumanResourceSystem.add(candidateApplication);
         HumanResourceSystem.add(jSeparator1);
@@ -581,10 +577,6 @@ public class main extends javax.swing.JFrame {
         redo();
     }//GEN-LAST:event_redoBarMouseClicked
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-Main.main.getMain().showForm(new EmployeeProfilePanel());        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -618,8 +610,9 @@ Main.main.getMain().showForm(new EmployeeProfilePanel());        // TODO add you
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                main = new main();
+                 main = new main();
                 main.setVisible(true);
+                
 //                new main().setVisible(true);
              
             }
@@ -655,7 +648,6 @@ Main.main.getMain().showForm(new EmployeeProfilePanel());        // TODO add you
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;

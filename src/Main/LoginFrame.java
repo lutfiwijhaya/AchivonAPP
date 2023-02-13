@@ -13,9 +13,11 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import CustomResource.MySession;
+import HumanResource.CandidateApplicationPersonal;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -68,6 +70,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -81,7 +84,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 40, 20));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +97,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 jButton1KeyPressed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, 260, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 260, 30));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
@@ -229,6 +232,22 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Sign in");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 240, 50));
+
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Exit");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 260, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -397,8 +416,8 @@ public class LoginFrame extends javax.swing.JFrame {
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
                 ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
                 if(myRess.next()){
-                    if (textPassword.getText().length()<4) {
-                        JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 4 karakter \n Make sure the password is at least 4 characters");
+                    if (textPassword.getText().length()<8) {
+                        JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 8 karakter \n Make sure the password is at least 8 characters");
                     }else{
                         if (textPassword.getText().equals(textRepeatPassword.getText())) {
                             if (textMail.getText().equals(myRess.getString("email"))){
@@ -418,16 +437,17 @@ public class LoginFrame extends javax.swing.JFrame {
                                     MySession.set_JobPosition(myRess.getString("job_position"));
                                     MySession.set_Sallary(myRess.getString("sallary"));
                                     new Welcome().setVisible(true);
+                                    main.getMain().setVisible(false);
                                     this.dispose();
                                     
                                 }else{
-                                    JOptionPane.showMessageDialog(rootPane,"Kata Sandi Anda Salah \n your password is wrong");
+                                    JOptionPane.showMessageDialog(rootPane,"Kata Sandi Salah, Masukan kata sandi yang benar \n wrong password, make sure you enter the correct email");
                                     textPassword.setText("");
                                     textRepeatPassword.setText("");
                                     textPassword.requestFocus();
                                 }        
                             }else{
-                                JOptionPane.showMessageDialog(rootPane,"Surel Anda Tidak Sesuai \n Your Email does not Match");
+                                JOptionPane.showMessageDialog(rootPane,"email salah, pastikan anda memasukan email yang benar \n Wrong email, make sure you enter the correct email");
                                 textMail.setText("");
                                 textMail.requestFocus();
                             }
@@ -439,7 +459,7 @@ public class LoginFrame extends javax.swing.JFrame {
                         }
                     }
                 }else {
-                    JOptionPane.showMessageDialog(rootPane, "pengguna Tidak Ditemukan \n User not Found");
+                    JOptionPane.showMessageDialog(rootPane, "ID salah, pastikan anda memasukan id karyawan yang benar \n Wrong ID, make sure you enter the correct employee ID");
                     textKaryawanid.setText("");
                     textPassword.setText("");
                     textRepeatPassword.setText("");
@@ -474,6 +494,17 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textMailKeyTyped
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Main.main.getMain().showForm(new MainPanel());
+        main.getMain().setVisible(true);
+        this.dispose();
+//        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -506,12 +537,14 @@ public class LoginFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginFrame().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -7,6 +7,8 @@ package Main;
 import HumanResource.AddJobVacancy;
 import HumanResource.CandidateApplication;
 import HumanResource.CandidateApplicationPersonal;
+import static Main.main.main;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 
@@ -21,12 +23,9 @@ public class MainPanel extends MasterForm {
     
     public MainPanel() {
         initComponents();
-        
-        
         String nama_log = CustomResource.MySession.get_nama();
         if (nama_log == null) {
         } else {
-            
             buttonLogin.setVisible(false);
             buttonLogin1.setVisible(false);
             jLabel2.setVisible(false);
@@ -134,6 +133,8 @@ public class MainPanel extends MasterForm {
 
         new LoginFrame().setVisible(true);
         main.getMain().setVisible(false);
+//          main.getMain().dispatchEvent(new WindowEvent(main.getMain(), WindowEvent.WINDOW_CLOSING));
+//        Main.main.getMain().showForm(new NewJPanel());
 //        main.getMain().dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
 
