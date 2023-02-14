@@ -4,9 +4,6 @@
  */
 package HumanResource;
 
-import com.lowagie.text.Table;
-import com.lowagie.text.xml.simpleparser.EntitiesToSymbol;
-import static java.awt.PageAttributes.MediaType.D;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,13 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import CustomResource.actiontable;
 import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
-import CustomResource.MySession;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -29,14 +23,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -55,11 +46,7 @@ public class CandidateList extends MasterForm {
     Map<String, Object> param = new HashMap<String, Object>();
     DefaultTableModel myModel;
      String id = null;
-     
- 
-  
-    
-    
+
     public CandidateList() {
         Statement stm;
         ResultSet rs;
@@ -72,59 +59,59 @@ public class CandidateList extends MasterForm {
          CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
-       
-        
-     
     }
-void  settable (){
-String [] header = {"id","KTP", "Nama", "Tempat, Tanggal Lahir", "Jenis Kelamin", "Marital Status", "Email", "No. Hp", "Job Applying", "Sallary","Action"};
-         myModel = new DefaultTableModel(header,0);
+    void  settable (){
+        String [] header = {"id","KTP", "Nama / Name", "Tempat, Tanggal Lahir / Place, Birthday", "Jenis Kelamin / Gender", "Status Pernikahan / Marital Status", "Email", "No. Hp", "Posisi yang dilamar / Job Applying", "gaji / Sallary","Action"};
+        myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
-         actiontable event = new actiontable() {
+        actiontable event = new actiontable() {
             @Override
             public void lihat(int row) {
                 try {
                     String tnama = (String) MyTable.getValueAt(row, 1);
                     String email = (String) MyTable.getValueAt(row, 5);
-                   id = (String) MyTable.getValueAt(row, 0);
-                   
-                    
+                    id = (String) MyTable.getValueAt(row, 0);
                     Class.forName("com.mysql.jdbc.Driver");
-Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-            File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-            jasperdesign = JRXmlLoader.load(O);
-            param.clear();
-            jasperreport = JasperCompileManager.compileReport(jasperdesign);
-          
-               param.put("id",id);
-             
-            jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-            
-            JasperViewer.viewReport(jasperprint, false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }   
-            
-            }
 
+                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
+                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
+                    jasperdesign = JRXmlLoader.load(O);
+                    param.clear();
+                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
+                    param.put("id",id);
+                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
+                    JasperViewer.viewReport(jasperprint, false);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             @Override
             public void tambah(int row) {
                 System.out.println("tambah");
             }
-
             @Override
             public void hapus(int row) {
                 System.out.println("hapus");
             }
         };
-        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
+//        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
+        MyTable.setDefaultEditor(Object.class, null);
+        MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        MyTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(6).setPreferredWidth(170);
+        MyTable.getColumnModel().getColumn(7).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(8).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(9).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(10).setPreferredWidth(120);
-        MyTable.getColumnModel().getColumn(1).setPreferredWidth(130);
-        MyTable.getColumnModel().getColumn(10).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
-        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));
         
-}
+        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
+        
+//        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
+    }
 
 
 void remove (){ 
@@ -217,17 +204,12 @@ void remove (){
     }// </editor-fold>//GEN-END:initComponents
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
-//        DefaultTableModel MyModel= (DefaultTableModel)MyTable.getModel();
-        
         try{
-        CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
-//        textSearch.setText(CandidateSession.getCandidateID());
-        Main.main.getMain().showForm(new CandidateProfile());
-//        getValueAt(int getSelectedRow(), int getSelectedColumn());    
+            CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+            Main.main.getMain().showForm(new CandidateProfile());    
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        
     }//GEN-LAST:event_MyTableMouseClicked
 
     private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
@@ -262,33 +244,26 @@ void remove (){
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%"+mySearch+"%'");
             while (myRess.next()) {
-                
                 String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
                                     myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
                                     myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                 
                 myModel.addRow(myData);
-           
             }
             } catch (SQLException ex) {
-//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             try {
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
                 ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
                 while (myRess.next()) {
-                    
                     String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
                                         myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
                                         myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                     myModel.addRow(myData);
-                
                 }
                
             } catch (SQLException ex) {
-//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-//                System.out.println("javaapplication1.CandidateList.myShow()");
             }
         }
         
@@ -298,14 +273,9 @@ void remove (){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height);
         this.setPreferredSize(new Dimension(screen.width, screen.height));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     @Override
     public void formrefresh() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

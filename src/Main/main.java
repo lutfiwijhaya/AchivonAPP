@@ -4,6 +4,7 @@
  */
 package Main;
 
+import CustomResource.MySession;
 import CustomResource.UndoRedo;
 import TestResource.inputexel;
 import TestResource.tambah;
@@ -14,16 +15,9 @@ import HumanResource.AddJobVacancy;
 import HumanResource.AllocationAnnouncement;
 import HumanResource.AplicationRehabilitation;
 import HumanResource.ApplicationResignation;
-import HumanResource.CandidateProfile;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
-import HumanResource.CandidateApplicationAcademic;
-import HumanResource.CandidateApplicationCareer;
-import HumanResource.CandidateApplicationCertificates;
-import HumanResource.CandidateApplicationFamily;
-import HumanResource.CandidateApplicationIntroduction;
 import HumanResource.CandidateApplicationPersonal;
-import HumanResource.CandidateApplicationSKCK;
 import HumanResource.ConfirmationHandingOverTakingOver;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
@@ -37,14 +31,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+
 
 /**
  *
  * @author lutfi
  */
 public class main extends javax.swing.JFrame {
-    
     
     private static main main;
     private final UndoRedo<MasterForm> forms = new UndoRedo<>();
@@ -53,7 +46,6 @@ public class main extends javax.swing.JFrame {
         return main;
     }
 
-    
     public void showForm(MasterForm form){
         forms.add(form);
         bodyPanel.removeAll();
@@ -61,7 +53,6 @@ public class main extends javax.swing.JFrame {
         bodyPanel.revalidate();
         bodyPanel.repaint();
         checkButton();
-
     }
     public void undo(){
         bodyPanel.removeAll();
@@ -83,7 +74,7 @@ public class main extends javax.swing.JFrame {
             form.formrefresh();
         }
     }
-    
+    public String nama_log = CustomResource.MySession.get_nama();
     public main() {
         super("Operation System");
         initComponents();
@@ -91,52 +82,21 @@ public class main extends javax.swing.JFrame {
         MyWindow();
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
         this.setIconImage(logo.getImage());
-        showForm(new MainPanel());
-        
-        String nama_log = CustomResource.MySession.get_nama();
-        freshframe();
-        this.refresh();
-        if (nama_log == null) {
-            HumanResourceSystem.setEnabled(true);
-            POSystem.setEnabled(false);
-            WarehouseSystem.setEnabled(false);
-            AcountingSystem.setEnabled(false);
-            myProfile.setVisible(false);
-            SMLogout.setVisible(false);
-            HumanResourceSystem.setVisible(false);
-            ToolBar.setVisible(true);
-            homeBar.setVisible(false);
-            undoBar.setVisible(false);
-            redoBar.setVisible(false);
-        } else {
-//            buttonLogin.setVisible(false);
-//            jLabel3.setVisible(false);
-//            jLabel2.setVisible(false);
-//            jLabel4.setVisible(false);
-//            myProfile.setText(nama_log);
-            ToolBar.add(Box.createHorizontalGlue());
-            ToolBar.add(myProfile);
-           
-//            ToolBar.
-//            jLabel2.setVisible(false);
-//            jLabel3.setVisible(false);
-//            jLabel4.setVisible(false);
-//            jLabel5.setVisible(false);
-//            buttonLogin.setVisible(false);
-//            buttonLogin1.setVisible(false);
-        }
-   
-    jPanel1.setVisible(false);
-    bodyPanel.setVisible(false);
     }
-    public void freshframe(){
-        this.revalidate();
-        this.repaint();
+    @Override
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        
+        if (visible) {
+            myFunction();
+        }else{
+        }
     }
     private void checkButton(){
         undoBar.setEnabled(forms.isUndoAble());
         redoBar.setEnabled(forms.isRedoAble());
     }
+ 
     inputexel inputxl = new inputexel();
     tambah tambah = new tambah();
     /**
@@ -332,7 +292,7 @@ public class main extends javax.swing.JFrame {
         jLabel15.setText("(please click Login below)");
 
         buttonLogin.setBackground(new java.awt.Color(0, 51, 255));
-        buttonLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        buttonLogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         buttonLogin.setForeground(new java.awt.Color(255, 255, 255));
         buttonLogin.setText("Login");
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -349,9 +309,8 @@ public class main extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("(Please click if you want to join and register your data)");
 
-        buttonLogin1.setBackground(new java.awt.Color(255, 0, 0));
-        buttonLogin1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        buttonLogin1.setForeground(new java.awt.Color(255, 255, 255));
+        buttonLogin1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        buttonLogin1.setForeground(new java.awt.Color(51, 51, 255));
         buttonLogin1.setText("Register");
         buttonLogin1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -368,16 +327,13 @@ public class main extends javax.swing.JFrame {
             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(buttonLogin1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
@@ -388,23 +344,23 @@ public class main extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addGap(65, 65, 65)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
@@ -659,6 +615,16 @@ public class main extends javax.swing.JFrame {
 
         myProfile.setText("Profile");
         myProfile.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        myProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                myProfileMouseClicked(evt);
+            }
+        });
+        myProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myProfileActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuItem1.setText("Profile");
@@ -836,37 +802,12 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_HumanResourceSystemMenuKeyPressed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        String nama_lg = CustomResource.MySession.get_nama();
-        myProfile.setText(nama_lg);
-//        ToolBar.setVisible(true);
-            ToolBar.add(Box.createHorizontalGlue());
-            ToolBar.add(myProfile);
-            HumanResourceSystem.setEnabled(true);
-            POSystem.setEnabled(true);
-            WarehouseSystem.setEnabled(true);
-            AcountingSystem.setEnabled(true);
-            myProfile.setVisible(true);
-            SMLogout.setVisible(true);
-            HumanResourceSystem.setVisible(true);
-            ToolBar.setVisible(true);
-            homeBar.setVisible(true);
-            undoBar.setVisible(true);
-            redoBar.setVisible(true);
-        myProfile.setVisible(true);
-        jPanel1.setVisible(false);
-        bodyPanel.setVisible(true);
+//
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        jPanel1.setVisible(true);
-        jPanel2.setVisible(false);
         new LoginFrame().setVisible(true);
         main.getMain().setVisible(false);
-        Main.main.getMain().showForm(new NewJPanel());
-        ToolBar.setVisible(false);
-        
-        main.getMain().dispose();
-//        main.getMain().dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
@@ -880,6 +821,14 @@ public class main extends javax.swing.JFrame {
         jPanel1.setVisible(false);
         bodyPanel.setVisible(true);
     }//GEN-LAST:event_jPanel1KeyPressed
+
+    private void myProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileActionPerformed
+//        TODO add your handling code here:
+    }//GEN-LAST:event_myProfileActionPerformed
+
+    private void myProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myProfileMouseClicked
+      String nama_lg = CustomResource.MySession.get_nama();
+    }//GEN-LAST:event_myProfileMouseClicked
 
     /**
      * @param args the command line arguments
@@ -914,17 +863,14 @@ public class main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 main = new main();
+                main = new main();
                 main.setVisible(true);
-                
-//                new main().setVisible(true);
-             
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu AcountingSystem;
+    public static javax.swing.JMenu AcountingSystem;
     private javax.swing.JMenuItem AddJobVacancy;
     private javax.swing.JMenuItem AllocationAnouncement;
     private javax.swing.JMenuItem ApplicationLeaveofAbsence;
@@ -936,21 +882,21 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem EmployeeClearanceStatus;
     private javax.swing.JMenuItem EmployeeEvaluation;
     private javax.swing.JMenuItem EmployeeStatus;
-    private javax.swing.JMenu HumanResourceSystem;
+    public static javax.swing.JMenu HumanResourceSystem;
     private javax.swing.JMenuItem NotificationtoNewEmployee;
-    private javax.swing.JMenu POSystem;
+    public static javax.swing.JMenu POSystem;
     private javax.swing.JMenuItem RequestEmployeeAllocation;
-    private javax.swing.JMenuItem SMLogout;
-    private javax.swing.JMenuBar ToolBar;
-    private javax.swing.JMenu WarehouseSystem;
+    public static javax.swing.JMenuItem SMLogout;
+    public static javax.swing.JMenuBar ToolBar;
+    public static javax.swing.JMenu WarehouseSystem;
     private javax.swing.JMenuItem applicationForm;
-    private javax.swing.JPanel bodyPanel;
+    public static javax.swing.JPanel bodyPanel;
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonLogin1;
     private javax.swing.JMenu candidateApplication;
     private javax.swing.JMenuItem candidateList;
     private javax.swing.JMenuItem employingConfirmation;
-    private javax.swing.JMenu homeBar;
+    public static javax.swing.JMenu homeBar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     public static javax.swing.JLabel jLabel12;
@@ -991,12 +937,12 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
-    private javax.swing.JMenu myProfile;
-    private javax.swing.JMenu redoBar;
-    private javax.swing.JMenu undoBar;
+    public static javax.swing.JMenu myProfile;
+    public static javax.swing.JMenu redoBar;
+    public static javax.swing.JMenu undoBar;
     // End of variables declaration//GEN-END:variables
  private void myLogout() {
-       CustomResource.MySession.set_ktp("");
+        CustomResource.MySession.set_ktp("");
         CustomResource.MySession.set_nama("");
         new Main.LoginFrame().setVisible(true);
         this.dispose(); 
@@ -1006,11 +952,47 @@ public class main extends javax.swing.JFrame {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         bodyPanel.setPreferredSize(screen);
-//        MainPanel.setPreferredSize(screen);
-//        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setLocation(x,y);
+    }
+
+    private void myFunction() {
+        if (MySession.get_nama() == null) {
+            jPanel1.setVisible(false);
+            bodyPanel.setVisible(false);
+            HumanResourceSystem.setEnabled(false);
+            POSystem.setEnabled(false);
+            WarehouseSystem.setEnabled(false);
+            AcountingSystem.setEnabled(false);
+            myProfile.setVisible(false);
+            SMLogout.setVisible(false);
+            HumanResourceSystem.setVisible(false);
+            ToolBar.setVisible(true);
+            homeBar.setVisible(false);
+            undoBar.setVisible(false);
+            redoBar.setVisible(false);
+            jPanel2.setVisible(true);
+        } else {
+            jPanel1.setVisible(true);
+            bodyPanel.setVisible(true);
+            HumanResourceSystem.setEnabled(true);
+            POSystem.setEnabled(true);
+            WarehouseSystem.setEnabled(true);
+            AcountingSystem.setEnabled(true);
+            myProfile.setVisible(true);
+            SMLogout.setVisible(true);
+            HumanResourceSystem.setVisible(true);
+            ToolBar.setVisible(true);
+            homeBar.setVisible(true);
+            undoBar.setVisible(true);
+            redoBar.setVisible(true);
+            jPanel1.setVisible(false);
+            jPanel2.setVisible(false);
+            bodyPanel.setVisible(true);
+            showForm(new MainPanel());
+            
+            ToolBar.add(Box.createHorizontalGlue());
+            ToolBar.add(myProfile);
+            myProfile.setText(MySession.get_nama());
+        }
     }
 }
 

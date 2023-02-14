@@ -318,7 +318,7 @@ public class CandidateProfile extends MasterForm {
         jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 960, 800, 130));
 
         jLabel92.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1600, 350, 30));
+        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1530, 350, 30));
 
         jTextArea4.setColumns(20);
         jTextArea4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -335,7 +335,7 @@ public class CandidateProfile extends MasterForm {
         jSeparator5.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 1290, 760, 20));
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 0));
+        jButton1.setBackground(new java.awt.Color(51, 51, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Terima Lamaran");
@@ -346,10 +346,14 @@ public class CandidateProfile extends MasterForm {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 1380, 170, 40));
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(51, 51, 255));
         jButton2.setText("Tolak Lamaran");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 1380, 170, 40));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
@@ -487,6 +491,21 @@ public class CandidateProfile extends MasterForm {
             
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Connection myConn;
+        try{
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+//            while (myRess.next()) {
+//                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
+//            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+//                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

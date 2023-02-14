@@ -4,34 +4,16 @@
  */
 package Main;
 
-//import com.sun.jdi.connect.spi.Connection;
-import CustomResource.Welcome;
-import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import CustomResource.MySession;
-import HumanResource.CandidateApplicationPersonal;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
-import java.io.File;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.Canvas;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
-/**
- *
- * @author hi
- */
 public class LoginFrame extends javax.swing.JFrame {
 
     /**
@@ -67,7 +49,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         textRepeatPassword = new CustomResource.PasswordField();
         textPassword = new CustomResource.PasswordField();
         jPanel2 = new javax.swing.JPanel();
@@ -86,7 +67,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PT.");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 40, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 40, 20));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 255));
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -102,20 +83,20 @@ public class LoginFrame extends javax.swing.JFrame {
                 jButton1KeyPressed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 260, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 260, 30));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Achivon");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 70, 20));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 70, 20));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Prestasi Abadi");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 120, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 120, 20));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 130));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 200, 130));
 
         try {
             textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("U-#-######")));
@@ -128,9 +109,14 @@ public class LoginFrame extends javax.swing.JFrame {
                 textKaryawanidKeyPressed(evt);
             }
         });
-        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 260, -1));
+        jPanel1.add(textKaryawanid, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 260, -1));
 
-        textMail.setLabelText("Email");
+        textMail.setLabelText("e-mail address");
+        textMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textMailActionPerformed(evt);
+            }
+        });
         textMail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textMailKeyPressed(evt);
@@ -139,19 +125,19 @@ public class LoginFrame extends javax.swing.JFrame {
                 textMailKeyTyped(evt);
             }
         });
-        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 260, -1));
+        jPanel1.add(textMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 260, -1));
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/envelope.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, -1, 40));
 
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/person.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, 40));
 
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/password.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, -1));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/password.png"))); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, 50));
 
         textRepeatPassword.setLabelText("Konfirmasi Password / Confirm Password");
         textRepeatPassword.setShowAndHide(true);
@@ -163,10 +149,15 @@ public class LoginFrame extends javax.swing.JFrame {
                 textRepeatPasswordKeyTyped(evt);
             }
         });
-        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 260, -1));
+        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 260, -1));
 
         textPassword.setLabelText("Kata Sandi / Password");
         textPassword.setShowAndHide(true);
+        textPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPasswordActionPerformed(evt);
+            }
+        });
         textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textPasswordKeyPressed(evt);
@@ -175,7 +166,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 textPasswordKeyTyped(evt);
             }
         });
-        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 260, -1));
+        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 260, -1));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -236,12 +227,12 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(51, 51, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Sign in");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 240, 50));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 240, 50));
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Exit");
+        jButton2.setForeground(new java.awt.Color(51, 51, 255));
+        jButton2.setText(" Exit");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -252,7 +243,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 jButton2KeyPressed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 260, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, 60, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -274,13 +265,12 @@ public class LoginFrame extends javax.swing.JFrame {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
             if(myRess.next()){
-                if (textPassword.getText().length()<4) {
-                    JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 4 karakter \n Make sure the password is at least 4 characters");
+                if (textPassword.getText().length()<8) {
+                    JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 8 karakter \n Make sure the password is at least 8 characters");
                 }else{
                     if (textPassword.getText().equals(textRepeatPassword.getText())) {
                         if (textMail.getText().equals(myRess.getString("email"))){
                             if (textPassword.getText().equals(myRess.getString("password"))) {
-                                JOptionPane.showMessageDialog(null, "Berhasil Login \n successfully logged in");
                                 MySession.set_karyawanID(myRess.getString("karyawan_id"));
                                 MySession.set_nama(myRess.getString("name"));
                                 MySession.set_ktp(myRess.getString("ktp"));
@@ -295,9 +285,8 @@ public class LoginFrame extends javax.swing.JFrame {
                                 MySession.set_JobPosition(myRess.getString("job_position"));
                                 MySession.set_Sallary(myRess.getString("sallary"));
                                 MySession.set_Role(myRess.getString("role_id"));
+                                JOptionPane.showMessageDialog(null, "Berhasil Login \n successfull logged in \n\n Selamat Datang " +MySession.get_nama()+"\n Welcome "+MySession.get_nama());
                                 main.getMain().setVisible(true);
-                                main.jLabel4.setText("Welcome "+ MySession.get_nama());
-                                main.jLabel12.setText("Selamat Datang "+ MySession.get_nama());
                                 this.dispose();
                             }else{
                                 JOptionPane.showMessageDialog(rootPane,"Kata Sandi Anda Salah \n your password is wrong");
@@ -355,127 +344,14 @@ public class LoginFrame extends javax.swing.JFrame {
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
         int key = evt.getKeyCode();
         if (key == 10) {
-            Connection myConn;
-            try {
-                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
-                if(myRess.next()){
-                    if (textPassword.getText().length()<4) {
-                        JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 4 karakter \n Make sure the password is at least 4 characters");
-                    }else{
-                        if (textPassword.getText().equals(textRepeatPassword.getText())) {
-                            if (textMail.getText().equals(myRess.getString("email"))){
-                                if (textPassword.getText().equals(myRess.getString("password"))) {
-                                    JOptionPane.showMessageDialog(null, "Berhasil Login \n successfully logged in");
-                                    MySession.set_karyawanID(myRess.getString("karyawan_id"));
-                                    MySession.set_nama(myRess.getString("name"));
-                                    MySession.set_ktp(myRess.getString("ktp"));
-                                    MySession.set_birthPlace(myRess.getString("birth_place"));
-                                    MySession.set_Birthday(myRess.getString("birthday"));
-                                    MySession.set_sex(myRess.getString("sex"));
-                                    MySession.set_marital(myRess.getString("marital"));
-                                    MySession.set_email(myRess.getString("email"));
-                                    MySession.set_mobileNumber(myRess.getString("no_hp"));
-                                    MySession.set_BPJS(myRess.getString("bpjs"));
-                                    MySession.set_NPWP(myRess.getString("npwp"));
-                                    MySession.set_JobPosition(myRess.getString("job_position"));
-                                    MySession.set_Sallary(myRess.getString("sallary"));
-                                   main.getMain().setVisible(true);
-                                    this.dispose();
-                                }else{
-                                    JOptionPane.showMessageDialog(rootPane,"Kata Sandi Anda Salah \n your password is wrong");
-                                    textPassword.setText("");
-                                    textRepeatPassword.setText("");
-                                    textPassword.requestFocus();
-                                }        
-                            }else{
-                                JOptionPane.showMessageDialog(rootPane,"Surel Anda Tidak Sesuai \n Your Email does not Match");
-                                textMail.setText("");
-                                textMail.requestFocus();
-                            }
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Kata Sandi dan Konfirmasi kata Sandi anda Tidak Sesuai \n Your Password and Confirm Password Doesn't Match");
-                            textPassword.setText("");
-                            textRepeatPassword.setText("");
-                            textPassword.requestFocus();
-                        }
-                    }
-                }else {
-                    JOptionPane.showMessageDialog(rootPane, "pengguna Tidak Ditemukan \n User not Found");
-                    textKaryawanid.setText("");
-                    textPassword.setText("");
-                    textRepeatPassword.setText("");
-                    textMail.setText("");
-                    textKaryawanid.requestFocus();
-
-                }
-            }catch(SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi \n Failed to Retrieve Information");
-            }
+            myLogin();
         }
     }//GEN-LAST:event_jButton1KeyPressed
 
     private void textMailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMailKeyPressed
         int key = evt.getKeyCode();
         if (key == 10) {
-            Connection myConn;
-            try {
-                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
-                if(myRess.next()){
-                    if (textPassword.getText().length()<8) {
-                        JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 8 karakter \n Make sure the password is at least 8 characters");
-                    }else{
-                        if (textPassword.getText().equals(textRepeatPassword.getText())) {
-                            if (textMail.getText().equals(myRess.getString("email"))){
-                                if (textPassword.getText().equals(myRess.getString("password"))) {
-                                    JOptionPane.showMessageDialog(null, "Berhasil Login \n successfully logged in");
-                                    MySession.set_karyawanID(myRess.getString("karyawan_id"));
-                                    MySession.set_nama(myRess.getString("name"));
-                                    MySession.set_ktp(myRess.getString("ktp"));
-                                    MySession.set_birthPlace(myRess.getString("birth_place"));
-                                    MySession.set_Birthday(myRess.getString("birthday"));
-                                    MySession.set_sex(myRess.getString("sex"));
-                                    MySession.set_marital(myRess.getString("marital"));
-                                    MySession.set_email(myRess.getString("email"));
-                                    MySession.set_mobileNumber(myRess.getString("no_hp"));
-                                    MySession.set_BPJS(myRess.getString("bpjs"));
-                                    MySession.set_NPWP(myRess.getString("npwp"));
-                                    MySession.set_JobPosition(myRess.getString("job_position"));
-                                    MySession.set_Sallary(myRess.getString("sallary"));
-                                    main.getMain().setVisible(true);
-                                    this.dispose();
-                                    
-                                }else{
-                                    JOptionPane.showMessageDialog(rootPane,"Kata Sandi Salah, Masukan kata sandi yang benar \n wrong password, make sure you enter the correct email");
-                                    textPassword.setText("");
-                                    textRepeatPassword.setText("");
-                                    textPassword.requestFocus();
-                                }        
-                            }else{
-                                JOptionPane.showMessageDialog(rootPane,"email salah, pastikan anda memasukan email yang benar \n Wrong email, make sure you enter the correct email");
-                                textMail.setText("");
-                                textMail.requestFocus();
-                            }
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Kata Sandi dan Konfirmasi kata Sandi anda Tidak Sesuai \n Your Password and Confirm Password Doesn't Match");
-                            textPassword.setText("");
-                            textRepeatPassword.setText("");
-                            textPassword.requestFocus();
-                        }
-                    }
-                }else {
-                    JOptionPane.showMessageDialog(rootPane, "ID salah, pastikan anda memasukan id karyawan yang benar \n Wrong ID, make sure you enter the correct employee ID");
-                    textKaryawanid.setText("");
-                    textPassword.setText("");
-                    textRepeatPassword.setText("");
-                    textMail.setText("");
-                    textKaryawanid.requestFocus();
-
-                }
-            }catch(SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi \n Failed to Retrieve Information");
-            }
+            myLogin();
         }
     }//GEN-LAST:event_textMailKeyPressed
 
@@ -510,6 +386,14 @@ public class LoginFrame extends javax.swing.JFrame {
     private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2KeyPressed
+
+    private void textMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textMailActionPerformed
+
+    private void textPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,7 +436,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -578,5 +461,64 @@ public class LoginFrame extends javax.swing.JFrame {
         int x = (screen.width/2) - (this.getSize().width/2);
         int y = (screen.height/2) - (this.getSize().height/2);
         this.setLocation(x,y);
+    }
+    
+    private void myLogin(){
+        Connection myConn;
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
+            if(myRess.next()){
+                if (textPassword.getText().length()<8) {
+                    JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 8 karakter \n Make sure the password is at least 8 characters");
+                }else{
+                    if (textPassword.getText().equals(textRepeatPassword.getText())) {
+                        if (textMail.getText().equals(myRess.getString("email"))){
+                            if (textPassword.getText().equals(myRess.getString("password"))) {
+                                MySession.set_karyawanID(myRess.getString("karyawan_id"));
+                                MySession.set_nama(myRess.getString("name"));
+                                MySession.set_ktp(myRess.getString("ktp"));
+                                MySession.set_birthPlace(myRess.getString("birth_place"));
+                                MySession.set_Birthday(myRess.getString("birthday"));
+                                MySession.set_sex(myRess.getString("sex"));
+                                MySession.set_marital(myRess.getString("marital"));
+                                MySession.set_email(myRess.getString("email"));
+                                MySession.set_mobileNumber(myRess.getString("no_hp"));
+                                MySession.set_BPJS(myRess.getString("bpjs"));
+                                MySession.set_NPWP(myRess.getString("npwp"));
+                                MySession.set_JobPosition(myRess.getString("job_position"));
+                                MySession.set_Sallary(myRess.getString("sallary"));
+                                JOptionPane.showMessageDialog(null, "Berhasil Login\nsuccessfull logged in \n\nSelamat Datang " +MySession.get_nama()+"Welcome "+MySession.get_nama());
+                                main.getMain().setVisible(true);
+                                this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(rootPane,"Kata Sandi Salah, Masukan kata sandi yang benar \n wrong password, make sure you enter the correct Password");
+                                textPassword.setText("");
+                                textRepeatPassword.setText("");
+                                textPassword.requestFocus();
+                            }        
+                        }else{
+                            JOptionPane.showMessageDialog(rootPane,"email salah, pastikan anda memasukan email yang benar \n Wrong email, make sure you enter the correct email");
+                            textMail.setText("");
+                            textMail.requestFocus();
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Kata Sandi dan Konfirmasi kata Sandi Tidak Sesuai \n Your Password and Confirm Password Doesn't Match");
+                        textPassword.setText("");
+                        textRepeatPassword.setText("");
+                        textPassword.requestFocus();
+                    }
+                }
+            }else {
+                JOptionPane.showMessageDialog(rootPane, "ID salah, pastikan anda memasukan id karyawan yang benar \n Wrong ID, make sure you enter the correct employee ID");
+                textKaryawanid.setText("");
+                textPassword.setText("");
+                textRepeatPassword.setText("");
+                textMail.setText("");
+                textKaryawanid.requestFocus();
+            }
+        }catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi \n Failed to Retrieve Information");
+        }
     }
 }
