@@ -187,34 +187,31 @@ public class AllocationAnnouncement extends MasterForm {
     }//GEN-LAST:event_textSearchActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-            String tanggal = String.valueOf(fm.format(t_tgl.getDate()));
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
+        String tanggal = String.valueOf(fm.format(t_tgl.getDate()));
            
         DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
-          List list = new ArrayList<>();
-            jTable1.setAutoCreateColumnsFromModel(true);
-            list.add(textName.getText());
-            list.add(textDiscipline.getText());
-            list.add(textPosition.getText());
-            list.add(textDescription.getText());
-            list.add(textJoinDate.getText());
-             list.add(tanggal);
-            dataModel.addRow(list.toArray());        // TODO add your handling code here:
+        List list = new ArrayList<>();
+        jTable1.setAutoCreateColumnsFromModel(true);
+        list.add(textName.getText());
+        list.add(textDiscipline.getText());
+        list.add(textPosition.getText());
+        list.add(textDescription.getText());
+        list.add(textJoinDate.getText());
+        list.add(tanggal);
+        dataModel.addRow(list.toArray());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-int row = jTable1.getSelectedRow();
-DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-model.removeRow( row );           // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.removeRow( row );
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        
-        
-           DefaultTableModel tabelfamily = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel tabelfamily = (DefaultTableModel) jTable1.getModel();
         int htabelfamily = jTable1.getRowCount();
- String to = "ririnwahyuni998@gmail.com";
+        String to = "ririnwahyuni998@gmail.com";
         String from = "erlanggamurti@gmail.com";
         String emailPassword = "ymcnciygeelburto";
         String subject = "AllocationAnnouncement";
@@ -228,56 +225,46 @@ model.removeRow( row );           // TODO add your handling code here:
         proper.put("mail.smtp.port","587");
         for (int i = 0; i <= htabelfamily - 1; i++) {
             if (jTable1.getValueAt(i, 0) == null) {
-            } else {
-                
-//        587
-        
+            }else{
+                String dtabel_desc = jTable1.getValueAt(i, 3).toString();
+                Session mailSession = Session.getDefaultInstance(proper, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(from, emailPassword);
+                }});
+                try {
+                    String testemail = dtabel_desc;
+                    MimeMessage myMessage = new MimeMessage(mailSession);
+                    myMessage.setFrom(new InternetAddress(from));
+                    myMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+                    myMessage.setSubject(subject);
+                    myMessage.setContent(testemail,"text/plain");
+                    MimeBodyPart messageBodyPart = new MimeBodyPart();
 
-        String dtabel_desc = jTable1.getValueAt(i, 3).toString();
-        Session mailSession = Session.getDefaultInstance(proper, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(from, emailPassword);
-            }
-            
-        });
-               try {
-                  String testemail = dtabel_desc;
-            MimeMessage myMessage = new MimeMessage(mailSession);
-            myMessage.setFrom(new InternetAddress(from));
-            myMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            myMessage.setSubject(subject);
-            myMessage.setContent(testemail,"text/plain");
-       MimeBodyPart messageBodyPart = new MimeBodyPart();
+                    Multipart multipart = new MimeMultipart();
 
-        Multipart multipart = new MimeMultipart();
-        
-        String file = "src/Doc/HAII TESTING.docx";
-       String fileName = "Doc.docx";
-        DataSource source = new FileDataSource(file);
-        messageBodyPart.setDataHandler(new DataHandler(source));
-       messageBodyPart.setFileName(fileName);
-        messageBodyPart.setText(dtabel_desc);
+                    String file = "src/Doc/HAII TESTING.docx";
+                    String fileName = "Doc.docx";
+                    DataSource source = new FileDataSource(file);
+                    messageBodyPart.setDataHandler(new DataHandler(source));
+                    messageBodyPart.setFileName(fileName);
+                    messageBodyPart.setText(dtabel_desc);
        
 
-        multipart.addBodyPart(messageBodyPart);
+                    multipart.addBodyPart(messageBodyPart);
 
-        myMessage.setContent(multipart);
+                    myMessage.setContent(multipart);
 
-        System.out.println("Sending");
+                    System.out.println("Sending");
 
-        Transport.send(myMessage);
+                    Transport.send(myMessage);
 
-        System.out.println("Done");
-        } catch (MessagingException e) {
-            JOptionPane.showMessageDialog(null, e);
-//            JOptionPane.showMessageDialog(null, "gagal");
-        }   
-
-
+                    System.out.println("Done");
+                } catch (MessagingException e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
             }
         }
-              // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -309,11 +296,8 @@ model.removeRow( row );           // TODO add your handling code here:
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE name LIKE '%"+mySearch+"%'");
             while (myRess.next()) {
-                
                 String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
-                
                 myModel3.addRow(myData);
-           
             }
             } catch (SQLException ex) {
 //                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
@@ -328,28 +312,20 @@ model.removeRow( row );           // TODO add your handling code here:
                     myModel3.addRow(myData);
                 
                 }
-               
             } catch (SQLException ex) {
 //                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
 //                System.out.println("javaapplication1.CandidateList.myShow()");
             }
         }
-        
     }
     
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
-
     @Override
     public void formrefresh() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }

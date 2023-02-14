@@ -132,25 +132,26 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        
+//        main.getMain().refresh();
         main.getMain().setVisible(true);
-        main.getMain().refresh();
 //        main.freshframe();
 //        new main().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-        int key = evt.getKeyCode();
-        if (key == 10) {
-            main.getMain().setVisible(true);
-            this.dispose();
-        }
+//        int key = evt.getKeyCode();
+//        if (key == 10) {
+//            main.getMain().setVisible(true);
+//            this.dispose();
+//        }
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         int key = evt.getKeyCode();
         if (key == 10) {
-            main.getMain().setVisible(true);
+            new main().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
