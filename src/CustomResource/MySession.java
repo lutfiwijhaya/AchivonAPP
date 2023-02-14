@@ -24,6 +24,7 @@ public class MySession {
     private static String JobPosition;
     private static String Sallary;
     private static String Role;
+    private static String cd_ktp;
     
     public static String get_karyawanID(){
         return karyawanID;
@@ -134,4 +135,11 @@ public class MySession {
     public static void set_CandidateID(String Role){
         MySession.Role = Role;
     }
+    public static String get_cd_ktp(){
+         return cd_ktp;
+    }
+    public static void set_cd_ktp(String cd_ktp){
+        MySession.cd_ktp = cd_ktp;
+    }
+    
 }

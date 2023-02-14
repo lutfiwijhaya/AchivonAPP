@@ -360,7 +360,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
@@ -859,6 +859,10 @@ public class main extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -958,7 +962,7 @@ public class main extends javax.swing.JFrame {
         if (MySession.get_nama() == null) {
             jPanel1.setVisible(false);
             bodyPanel.setVisible(false);
-            HumanResourceSystem.setEnabled(false);
+            HumanResourceSystem.setEnabled(true);
             POSystem.setEnabled(false);
             WarehouseSystem.setEnabled(false);
             AcountingSystem.setEnabled(false);
