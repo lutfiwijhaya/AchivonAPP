@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,8 +44,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import javax.swing.table.DefaultTableModel;
+import jxl.write.DateTime;
 
-public class CandidateApplication extends MasterForm {
+public class CandidateApplicationedit extends MasterForm {
 
     Statement stm;
     ResultSet rs;
@@ -52,18 +54,20 @@ public class CandidateApplication extends MasterForm {
     Connection koneksi;
     DefaultTableModel ImportDataExel;
     String crudimage = "";
-    String da = null;
+    String da = MySession.get_cd_ktp();
     int id_employee;
     String tanggal;
     String sp = ", ";
     String full_curent;
     String full_home;
     int k = 0;
+    String jk;
+    String stt;
 
     /**
      * Creates new form CandidateApplication
      */
-    public CandidateApplication() {
+    public CandidateApplicationedit() {
         initComponents();
         openDB();
         tampil();
@@ -76,7 +80,9 @@ public class CandidateApplication extends MasterForm {
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
         homeCountry.setSelectedItem("Indonesia");
         curentCountry.setSelectedItem("Indonesia");
-     
+        tampil_academic();
+        tampildata();
+        
        
 
     }
@@ -276,7 +282,7 @@ public class CandidateApplication extends MasterForm {
     }
 
     private void simpan_career() {
-       
+
         DefaultTableModel ImportDataExel = (DefaultTableModel) jTable5.getModel();
         int jtabelrows = jTable5.getRowCount();
 
@@ -351,150 +357,179 @@ public class CandidateApplication extends MasterForm {
         curentCountry.setEnabled(true);
     }
 
-//    void tampildata() {
-//        t_nama.setText(CandidateApplicationPersonal.get_nama());
-//        t_ktp.setText(CandidateApplicationPersonal.get_ktp());
-//       
-//        t_tlhir.setText(CandidateApplicationPersonal.get_tlahir());
-//      
-//        t_hp.setText(CandidateApplicationPersonal.get_hp());
-//        t_email.setText(CandidateApplicationPersonal.get_email());
-//        t_bpjsKetenagakerjaan.setText(CandidateApplicationPersonal.get_bpjsket());
-//        t_bpjsKesehatan.setText(CandidateApplicationPersonal.get_bpjskes());
-//        t_npwp.setText(CandidateApplicationPersonal.get_npwp());
-//        t_lamaran.addItem(CandidateApplicationPersonal.get_lamaran());
-//        t_lamaran.setSelectedItem(CandidateApplicationPersonal.get_lamaran());
-//        t_gaji.setText(CandidateApplicationPersonal.get_gaji());
-//        t_dicipline.setText(CandidateApplicationPersonal.get_discipline());
-//        
-//        homeCountry.setSelectedItem(CandidateApplicationPersonal.get_hnegara());
-//        homeState.setSelectedItem(CandidateApplicationPersonal.get_hprov());
-//        homeCity.setSelectedItem(CandidateApplicationPersonal.get_hkota());
-//         t_hkec.setText(CandidateApplicationPersonal.get_hkec());
-//         t_ddesa.setText(CandidateApplicationPersonal.get_hdesa());
-//         t_halamat.setText(CandidateApplicationPersonal.get_halamat());
-//        curentCountry.setSelectedItem(CandidateApplicationPersonal.get_cnegara());
-//        cprov.setSelectedItem(CandidateApplicationPersonal.get_cprov());
-//        ccity.setSelectedItem(CandidateApplicationPersonal.get_ckota());
-//       
-//        t_ckec.setText(CandidateApplicationPersonal.get_ckec());
-//        
-//        t_cdesa.setText(CandidateApplicationPersonal.get_cdesa());
-//        
-//        t_calamat.setText(CandidateApplicationPersonal.get_calamat());
-//        t_motif.setText(CandidateApplicationIntroduction.motivasi());
-//        t_latar.setText(CandidateApplicationIntroduction.latarbelakang());
-//
-//        full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + homeCountry.getSelectedItem();
-//        full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
-//        try {
-//            CandidateApplication.func f = new CandidateApplication.func();
-//            rsf = f.find(t_ktp.getText());
-//            if (rsf.next()) {
-//                byte[] img = rsf.getBytes("foto");
-//
-//                ImageIcon imageicon = new ImageIcon(img);
-//
-//                Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
-//                labelfoto.setIcon(new ImageIcon(imageResize));
-//
-//            }
-//        } catch (Exception e) {
-//        }
-//
-//    }
-//
-//    void tampil_academic() {
-//        DefaultTableModel dataModel = (DefaultTableModel) jTable2.getModel();
-//        try {
-//            stm = koneksi.createStatement();
-//            rs = stm.executeQuery("select*from cd_academic_sementara");
-//            while (rs.next()) {
-//                String[] data = {
-//                    rs.getString("tahun"), rs.getString("nama"), rs.getString("lokasi"), rs.getString("jurusan"),};
-//                dataModel.addRow(data);
-//            }
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-//        }
-//
-//        DefaultTableModel dataModel1 = (DefaultTableModel) jTable3.getModel();
-//        try {
-//            stm = koneksi.createStatement();
-//            rs = stm.executeQuery("select*from cd_family_sementara");
-//            while (rs.next()) {
-//                String[] data = {
-//                    rs.getString("nama"), rs.getString("hubungan"), rs.getString("tgl"), rs.getString("cohabit"), rs.getString("hp")};
-//                dataModel1.addRow(data);
-//            }
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-//        }
-//
-//        DefaultTableModel dataModel2 = (DefaultTableModel) jTable4.getModel();
-//        try {
-//            stm = koneksi.createStatement();
-//            rs = stm.executeQuery("select*from cd_certificate_sementara");
-//            while (rs.next()) {
-//                String[] data = {
-//                    rs.getString("tangal"), rs.getString("nama"), rs.getString("author"), rs.getString("lokasi"), rs.getString("no_sertificate")};
-//                dataModel2.addRow(data);
-//            }
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-//        }
-//
-//        DefaultTableModel dataModel3 = (DefaultTableModel) jTable5.getModel();
-//        try {
-//            stm = koneksi.createStatement();
-//            rs = stm.executeQuery("select*from cd_career_sementara");
-//            while (rs.next()) {
-//                String[] data = {
-//                    rs.getString("nama"), rs.getString("posisi"), rs.getString("periode"), rs.getString("lama"),};
-//                dataModel3.addRow(data);
-//            }
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-//        }
-//    }
+    void tampildata() {
+        try {
+            Statement stm = koneksi.createStatement();
 
-//    void tampil_foto() {
-//        try {
-//            CandidateApplication.func f = new CandidateApplication.func();
-//            rsf = f.find(t_ktp.getText());
-//            if (rsf.next()) {
-//                byte[] img = rsf.getBytes("foto");
-//
-//                ImageIcon imageicon = new ImageIcon(img);
-//
-//                Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
-//                labelfoto.setIcon(new ImageIcon(imageResize));
-//
-//            }
-//        } catch (Exception e) {
-//        }
-//    }
+            rs = stm.executeQuery("select*from cd_employee where id_employee = " + da + "");
+            while (rs.next()) {
+                t_lamaran.addItem(rs.getString("Applying_A"));
+                t_lamaran.setSelectedItem(rs.getString("Applying_A"));
+                t_gaji.setText(rs.getString("D_Salary"));
+                t_dicipline.setText(rs.getString("discipline"));
+                jk = rs.getString("sex");
+                stt = rs.getString("marital");
+                t_pria.setSelected(true);
+                t_nama.setText(rs.getString("Nama"));
+                t_ktp.setText(rs.getString("KTP"));
+                t_tlhir.setText(rs.getString("b_place"));
+                String b_d = (rs.getString("birthday"));
+                SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+                Date det = fm.parse(b_d);
+                t_tgl_personal.setDate(det);
+                t_hp.setText(rs.getString("No_HP"));
+                t_email.setText(rs.getString("email"));
+                t_bpjsKesehatan.setText(rs.getString("BPJS"));
+                t_bpjsKetenagakerjaan.setText(rs.getString("bpjs_ket"));
+                t_npwp.setText(rs.getString("NPWP"));
 
-//    public class func {
-//
-//        public ResultSet find(String s) {
-//            try {
-//                PreparedStatement st = koneksi.prepareStatement("select * from cd_foto where ktp = ?");
-//                st.setString(1, s);
-//                rsf = st.executeQuery();
-//
-//            } catch (SQLException ex) {
-//                Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            return rsf;
-//
-//        }
-//
-//    }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         try {
+            Statement stm = koneksi.createStatement();
+
+            rs = stm.executeQuery("select*from cd_adress where id_employee = " + da + "");
+            while (rs.next()) {
+                
+                homeCountry.setSelectedItem(rs.getString("h_negara"));
+                homeState.setSelectedItem(rs.getString("h_prov"));
+                homeCity.setSelectedItem(rs.getString("h_kab"));
+                curentCountry.setSelectedItem(rs.getString("c_negara"));
+                cprov.setSelectedItem(rs.getString("c_prov"));
+                ccity.setSelectedItem(rs.getString("c_kab"));
+                t_hkec.setText(rs.getString("h_kec"));
+                t_ddesa.setText(rs.getString("h_desa"));
+                t_halamat.setText(rs.getString("h_alamat"));
+                 t_ckec.setText(rs.getString("c_kec"));
+                t_cdesa.setText(rs.getString("c_desa"));
+                t_calamat.setText(rs.getString("c_alamat"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+try {
+            Statement stm = koneksi.createStatement();
+
+            rs = stm.executeQuery("select*from cd_motivation where id_employee = " + da + "");
+            while (rs.next()) {
+                
+                t_motif.setText(rs.getString("motivation1"));
+                t_latar.setText(rs.getString("motivation2"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+
+        if (jk.length() == 4) {
+            t_pria.setSelected(true);
+        } else {
+            t_wanita.setSelected(true);
+        }
+
+        if (stt.length() == 6) {
+            t_lajang.setSelected(true);
+        } else {
+            t_menikah.setSelected(true);
+        }
+
+    }
+
+    void tampil_academic() {
+        DefaultTableModel dataModel = (DefaultTableModel) jTable2.getModel();
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select*from cd_academic where id_employee = " + da + "");
+            while (rs.next()) {
+                String[] data = {
+                    rs.getString("Graduation"), rs.getString("School_name"), rs.getString("location"), rs.getString("major"),};
+                dataModel.addRow(data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
+
+        DefaultTableModel dataModel1 = (DefaultTableModel) jTable3.getModel();
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select*from cd_family where id_employee = " + da + "");
+            while (rs.next()) {
+                String[] data = {
+                    rs.getString("name"), rs.getString("hubungan"), rs.getString("Birthday"), rs.getString("cohabit"), rs.getString("No_HP")};
+                dataModel1.addRow(data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
+
+        DefaultTableModel dataModel2 = (DefaultTableModel) jTable4.getModel();
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select*from cd_certificates where id_employee = " + da + "");
+            while (rs.next()) {
+                String[] data = {
+                    rs.getString("acquisition"), rs.getString("name_certificate"), rs.getString("location"), rs.getString("name_authority"), rs.getString("no_certificate")};
+                dataModel2.addRow(data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
+
+        DefaultTableModel dataModel3 = (DefaultTableModel) jTable5.getModel();
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select*from cd_summary_career where id_employee = " + da + "");
+            while (rs.next()) {
+                String[] data = {
+                    rs.getString("company_name"), rs.getString("job_position"), rs.getString("period"), rs.getString("career"),};
+                dataModel3.addRow(data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
+    }
+
+    void tampil_foto() {
+        try {
+            CandidateApplicationedit.func f = new CandidateApplicationedit.func();
+            rsf = f.find(t_ktp.getText());
+            if (rsf.next()) {
+                byte[] img = rsf.getBytes("foto");
+
+                ImageIcon imageicon = new ImageIcon(img);
+
+                Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
+                labelfoto.setIcon(new ImageIcon(imageResize));
+
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public class func {
+
+        public ResultSet find(String s) {
+            try {
+                PreparedStatement st = koneksi.prepareStatement("select * from cd_foto where id_employee = ?");
+                st.setString(1, s);
+                rsf = st.executeQuery();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return rsf;
+
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -631,14 +666,17 @@ public class CandidateApplication extends MasterForm {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jLabel95 = new javax.swing.JLabel();
-        jLabel92 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setAutoscrolls(true);
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel71.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -707,8 +745,8 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1900, 310, 30));
 
         jLabel90.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel90.setText("    Motivation to Apply");
-        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2325, 350, -1));
+        jLabel90.setText("1. Motivasi untuk Melamar");
+        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2310, 350, 30));
 
         jSeparator34.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator34.setForeground(new java.awt.Color(255, 0, 0));
@@ -748,13 +786,13 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2700, 50, 30));
 
         jToggleButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jToggleButton1.setText("BACK / KEMBALI");
+        jToggleButton1.setText("BACK/KEMBALI");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2820, 130, 40));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2820, 120, 40));
 
         t_halamat.setColumns(20);
         t_halamat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -861,8 +899,8 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(t_bpjsKesehatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 340, -1));
 
         jLabel94.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel94.setText("    Others (Personality/Family Background)");
-        jPanel1.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2515, 350, 20));
+        jLabel94.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
+        jPanel1.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2490, 350, 30));
 
         curentCountry.setEditable(false);
         curentCountry.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -1064,7 +1102,7 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, -1, 20));
 
         jLabel78.setText("Tanggal Lahir / Birth Date");
-        jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, -1, 20));
+        jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, -1, 20));
 
         jButton1.setText("Lihat Foto");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -1084,11 +1122,11 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 2820, 120, 40));
 
         radioGrupGender.add(t_wanita);
-        t_wanita.setText("Perempuan");
+        t_wanita.setText("Female");
         jPanel1.add(t_wanita, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 150, -1, -1));
 
         radioGrupGender.add(t_pria);
-        t_pria.setText("Laki - laki");
+        t_pria.setText("Male");
         jPanel1.add(t_pria, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 150, -1, 20));
 
         radioGrupStatus.add(t_lajang);
@@ -1098,11 +1136,11 @@ public class CandidateApplication extends MasterForm {
                 t_lajangActionPerformed(evt);
             }
         });
-        jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 170, -1, 20));
+        jPanel1.add(t_lajang, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, -1, 20));
 
         radioGrupStatus.add(t_menikah);
         t_menikah.setText("Married");
-        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 170, -1, -1));
+        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 180, -1, -1));
         jPanel1.add(t_tgl_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 150, -1));
 
         jCheckBox1.setText("Sama Dengan Home Address");
@@ -1110,15 +1148,15 @@ public class CandidateApplication extends MasterForm {
 
         t_lokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "test" }));
         t_lokasi.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(t_lokasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 960, 220, -1));
+        jPanel1.add(t_lokasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 960, 210, -1));
 
         t_sekolah.setLabelText("Nama Sekolah / School Name & Graduate Years\n");
-        jPanel1.add(t_sekolah, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 890, 240, -1));
-        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 910, -1, -1));
+        jPanel1.add(t_sekolah, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 890, 280, -1));
+        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 910, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("Lokasi / Location");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 960, -1, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 960, -1, 30));
 
         t_jurusan.setLabelText("Jurusan / Major");
         jPanel1.add(t_jurusan, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1000, 310, -1));
@@ -1130,7 +1168,7 @@ public class CandidateApplication extends MasterForm {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 1010, 110, 30));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 1030, 110, 30));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton2.setText("Hapus / Delete");
@@ -1168,7 +1206,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_hp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 1280, 260, -1));
 
-        jButton3.setText("Add/Tambah");
+        jButton3.setText("Simpan / Save");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -1227,13 +1265,13 @@ public class CandidateApplication extends MasterForm {
         t_sertifikat.setLabelText("No. Sertifikat");
         jPanel1.add(t_sertifikat, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1660, 270, -1));
 
-        jButton6.setText("Add/Tambah");
+        jButton6.setText("Simpan / Save");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 1370, -1, 30));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 1360, -1, 30));
 
         t_nama3.setLabelText("Nama Perusahaan / Company name");
         jPanel1.add(t_nama3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1940, 248, -1));
@@ -1244,23 +1282,23 @@ public class CandidateApplication extends MasterForm {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel8.setText("Periode (dari Tahun)");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 2040, 190, -1));
-        jPanel1.add(bulan_awal, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 2060, 140, -1));
-        jPanel1.add(tahun_awal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 2060, 80, -1));
+        jPanel1.add(bulan_awal, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 2060, -1, -1));
+        jPanel1.add(tahun_awal, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 2060, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText("Periode (sampai Tahun)");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 2095, 190, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 2090, 190, -1));
         jPanel1.add(bulan_akhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 2110, -1, -1));
         jPanel1.add(tahun_akhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 2110, -1, -1));
 
         jButton7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jButton7.setText("Add/Tambah");
+        jButton7.setText("Simpan / Save");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 2110, -1, 31));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 2100, -1, 31));
 
         jButton8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton8.setText("Hapus / Delete");
@@ -1280,14 +1318,6 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 1870, 110, 30));
 
-        jLabel95.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel95.setText("2. Lainnya (Kepribadian/Latar Belakang Keluarga)");
-        jPanel1.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2500, 350, 20));
-
-        jLabel92.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel92.setText("1. Motivasi untuk Melamar");
-        jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2310, 350, -1));
-
         jScrollPane18.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1302,175 +1332,155 @@ public class CandidateApplication extends MasterForm {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        Main.main.getMain().showForm(new CandidateApplicationIntroduction());       
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        int row = jTable4.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
+        model.removeRow(row);  // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        jToggleButton2.setEnabled(true);
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        int row = jTable3.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+        model.removeRow(row);          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        int hari = 01;
+        int bln_awal = Integer.valueOf(bulan_awal.getMonth() + 1);
+        int bln_akhir = Integer.valueOf(bulan_akhir.getMonth() + 1);
+        int thn_awal = Integer.valueOf(tahun_awal.getYear());
+        int thn_akhir = Integer.valueOf(tahun_akhir.getYear());
+        LocalDate tgl_awal = LocalDate.of(thn_awal, bln_awal, hari);
+        LocalDate tgl_akhir = LocalDate.of(thn_akhir, bln_akhir, hari);
+        int hasil_tahun = Period.between(tgl_awal, tgl_akhir).getYears();
+        int hasil_bulan = Period.between(tgl_awal, tgl_akhir).getMonths();
+
+        DefaultTableModel dataModel = (DefaultTableModel) jTable5.getModel();
+        List list = new ArrayList<>();
+        jTable5.setAutoCreateColumnsFromModel(true);
+        list.add(t_nama.getText());
+        list.add(t_posisi.getText());
+        list.add("(" + tgl_awal.getMonth() + "-" + tgl_awal.getYear() + ")" + " - " + "(" + tgl_akhir.getMonth() + "-" + tgl_akhir.getYear() + ")");
+        list.add(hasil_tahun + " Tahun " + hasil_bulan + " Bulan");
+        dataModel.addRow(list.toArray());
         // TODO add your handling code here:
-    }//GEN-LAST:event_t_emailActionPerformed
+    }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void t_hpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hpActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+        String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
+        r_y.setActionCommand("Yes");
+        r_n.setActionCommand("No");
+        DefaultTableModel dataModel = (DefaultTableModel) jTable3.getModel();
+        List list = new ArrayList<>();
+        jTable3.setAutoCreateColumnsFromModel(true);
+        list.add(t_nama1.getText());
+        list.add(t_hubungan.getSelectedItem());
+        list.add(tanggal_family);
+        list.add(buttongrup.getSelection().getActionCommand());
+        list.add(t_hp1.getText());
+        dataModel.addRow(list.toArray());        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int row = jTable2.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.removeRow(row);           // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+        String tanggal_certificate = String.valueOf(fm.format(t_tgl_certificate.getDate()));
+
+        DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
+        List list = new ArrayList<>();
+        jTable4.setAutoCreateColumnsFromModel(true);
+        list.add(tanggal);
+        list.add(t_nama.getText());
+        list.add(t_author.getText());
+        list.add(t_lokasi.getSelectedItem());
+        list.add(t_sertifikat.getText());
+        dataModel.addRow(list.toArray());
         // TODO add your handling code here:
-    }//GEN-LAST:event_t_hpActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
-        String a;
-        String b = "-";
-        if (t_hp.getText().length() < 2) {
-            t_hp.setText("(0)");
-        } else if (t_hp.getText().length() == 6) {
-            t_hp.setText(t_hp.getText() + "-");
-
-        } else if (t_hp.getText().length() == 11) {
-            t_hp.setText(t_hp.getText() + "-");
-
-        } else if (t_hp.getText().length() == 17) {
-            t_hp.setText(t_hp.getText());
+    private void t_hp1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hp1KeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
-    }//GEN-LAST:event_t_hpKeyTyped
+        String a;
+        String b = "-";
+        if (t_hp1.getText().length() < 3) {
+            t_hp1.setText("(0)");
+        } else if (t_hp1.getText().length() == 6) {
+            t_hp1.setText(t_hp1.getText() + "-");
+        } else if (t_hp1.getText().length() == 7) {
+            StringBuffer sb = new StringBuffer(t_hp1.getText());
+            sb.setLength(6);
+            t_hp1.setText("" + sb);
+        } else if (t_hp1.getText().length() == 11) {
+            t_hp1.setText(t_hp1.getText() + "-");
+        } else if (t_hp1.getText().length() == 12) {
+            StringBuffer sb = new StringBuffer(t_hp1.getText());
+            sb.setLength(11);
+            t_hp1.setText("" + sb);
+        } else if (t_hp1.getText().length() == 17) {
+            t_hp1.setText(t_hp1.getText());
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_hp1KeyTyped
 
-    private void curentCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curentCountryActionPerformed
-        Connection myConn;
-        try {
-
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + curentCountry.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                cprov.addItem(myRess.getString("name"));
-            }
-        } catch (SQLException ex) {
-        }
-    }//GEN-LAST:event_curentCountryActionPerformed
-
-    private void cprovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cprovActionPerformed
-        Connection myConn;
-        try {
-            ccity.removeAllItems();
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                ccity.addItem(myRess.getString("name"));
-            }
-        } catch (SQLException ex) {
-        }
-    }//GEN-LAST:event_cprovActionPerformed
-
-    private void t_ckecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ckecActionPerformed
+    private void t_hp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hp1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_t_ckecActionPerformed
+    }//GEN-LAST:event_t_hp1ActionPerformed
 
-    private void t_cdesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_cdesaActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = jTable5.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
+        model.removeRow(row);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy");
+        String tanggal = String.valueOf(fm.format(t_tgl.getYear()));
+        DefaultTableModel dataModel = (DefaultTableModel) jTable2.getModel();
+
+        String name = t_sekolah.getText();
+        int year = t_tgl.getYear();
+        String major = t_jurusan.getText();
+        String loc = t_lokasi.getSelectedItem().toString();
+
+        List list = new ArrayList<>();
+        jTable2.setAutoCreateColumnsFromModel(true);
+        list.add(t_tgl.getYear());
+        list.add(t_sekolah.getText());
+        list.add(t_lokasi.getSelectedItem());
+        list.add(t_jurusan.getText());
+        dataModel.addRow(list.toArray());
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_t_cdesaActionPerformed
-
-    private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
-        Connection myConn;
-        try {
-
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                homeCity.addItem(myRess.getString("name"));
-            }
-        } catch (SQLException ex) {
-        }
-    }//GEN-LAST:event_homeStateActionPerformed
-
-    private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
-        Connection myConn;
-        try {
-
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                homeState.addItem(myRess.getString("name"));
-            }
-        } catch (SQLException ex) {
-        }
-    }//GEN-LAST:event_homeCountryActionPerformed
-
-    private void homeCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_homeCityActionPerformed
-
-    private void t_hkecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hkecActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_hkecActionPerformed
-
-    private void t_ddesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ddesaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_ddesaActionPerformed
-
-    private void ccityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ccityActionPerformed
-
-    private void t_npwpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_npwpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_npwpActionPerformed
-
-    private void t_lamaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lamaranActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_lamaranActionPerformed
-
-    private void t_hpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_hpKeyReleased
-
-    private void t_bpjsKesehatanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyTyped
-//        asd
-    }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
-
-    private void t_ktpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_ktpKeyReleased
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- String currentdirectory = "C:\\Users\\USER\\Pictures";
-        JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
-        imageFileChooser.setDialogTitle("Pilih gambar...");
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
-        imageFileChooser.setFileFilter(fnef);
-        imageFileChooser.setFileFilter(fnef);
-        int imagechooser = imageFileChooser.showOpenDialog(null);
-        if (imagechooser == JFileChooser.APPROVE_OPTION) {
-            File imagefile = imageFileChooser.getSelectedFile();
-            if (imagefile.length() < 204800) {
-                crudimage = imagefile.getAbsolutePath();
-                jLabel1.setText(crudimage);
-
-                ImageIcon imageicon = new ImageIcon(crudimage);
-                Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
-                labelfoto.setIcon(new ImageIcon(imageResize));
-            }else{JOptionPane.showMessageDialog(null,"Maximum Size (200kb)");}
-
-        }       // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
- SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
- String g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+        String g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));
         t_pria.setActionCommand("Male");
         t_wanita.setActionCommand("Female");
         t_lajang.setActionCommand("Single");
         t_menikah.setActionCommand("Married");
-         full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
+        full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
        full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + curentCountry.getSelectedItem();
-         try {
+        try {
             stm = koneksi.createStatement();
             String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,bpjs_ket,Applying_A,D_Salary,discipline,cd_date_apply,approval) values('" + t_nama.getText() + "'"
                     + ",'" + t_ktp.getText() + "'"
                     + ",'" + t_email.getText() + "'"
                     + ",'" + t_npwp.getText() + "'"
                     + ",'" + radioGrupGender.getSelection().getActionCommand() + "'"
-                    + ",'" + t_tlhir.getText()+ "'"
                     + ",'" + g_tgl_personal + "'"
+                    + ",'" + t_tgl_personal.getDate() + "'"
                     + ",'" + radioGrupStatus.getSelection().getActionCommand() + "'"
                     + ",'" + t_hp.getText() + "'"
                     + ",'" + t_bpjsKesehatan.getText() + "'"
@@ -1478,7 +1488,7 @@ public class CandidateApplication extends MasterForm {
                     + ",'" + t_lamaran.getSelectedItem() + "'"
                     + ",'" + t_gaji.getText() + "'"
                     + ",'" + t_dicipline.getText() + "'"
-                    + ",'" + tanggal + "'" 
+                    + ",'" + tanggal + "'"
                     + ",'" + k + "')";
 
             stm.executeUpdate(sql);
@@ -1516,8 +1526,7 @@ public class CandidateApplication extends MasterForm {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
         }
-        
-       
+
         DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
         int jtabelrows = jTable2.getRowCount();
 
@@ -1550,7 +1559,7 @@ public class CandidateApplication extends MasterForm {
         simpan_career();
         simpan_motivation();
         File foto = new File(crudimage);
-         try {
+        try {
             InputStream fhoto = new FileInputStream(foto);
             String inputfoto = "INSERT INTO cd_foto(foto,id_employee)  VALUE (?,?)";
             PreparedStatement ifoto = this.koneksi.prepareStatement(inputfoto);
@@ -1563,155 +1572,188 @@ public class CandidateApplication extends MasterForm {
 
         } catch (SQLException ex) {
             Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) { 
-            Logger.getLogger(CandidateApplication.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CandidateApplicationedit.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
-        
-        
+
         JOptionPane.showMessageDialog(null, "Data Tersimpan");
-        
-       
-        
+
         Main.main.getMain().showForm(new NewJPanel());
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String currentdirectory = "C:\\Users\\USER\\Pictures";
+        JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
+        imageFileChooser.setDialogTitle("Pilih gambar...");
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
+        imageFileChooser.setFileFilter(fnef);
+        imageFileChooser.setFileFilter(fnef);
+        int imagechooser = imageFileChooser.showOpenDialog(null);
+        if (imagechooser == JFileChooser.APPROVE_OPTION) {
+            File imagefile = imageFileChooser.getSelectedFile();
+            if (imagefile.length() < 204800) {
+                crudimage = imagefile.getAbsolutePath();
+                jLabel1.setText(crudimage);
+
+                ImageIcon imageicon = new ImageIcon(crudimage);
+                Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
+                labelfoto.setIcon(new ImageIcon(imageResize));
+            } else {
+                JOptionPane.showMessageDialog(null, "Maximum Size (200kb)");
+            }
+
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void t_lamaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lamaranActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_lamaranActionPerformed
+
+    private void t_npwpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_npwpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_npwpActionPerformed
+
+    private void t_ddesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ddesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ddesaActionPerformed
+
+    private void t_hkecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hkecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_hkecActionPerformed
+
+    private void homeCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeCityActionPerformed
+
+    private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
+        Connection myConn;
+        try {
+
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                homeCity.addItem(myRess.getString("name"));
+            }
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_homeStateActionPerformed
+
+    private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
+        Connection myConn;
+        try {
+
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                homeState.addItem(myRess.getString("name"));
+            }
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_homeCountryActionPerformed
+
+    private void t_cdesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_cdesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_cdesaActionPerformed
+
+    private void t_ckecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ckecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ckecActionPerformed
+
+    private void ccityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ccityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ccityActionPerformed
+
+    private void cprovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cprovActionPerformed
+        Connection myConn;
+        try {
+            ccity.removeAllItems();
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                ccity.addItem(myRess.getString("name"));
+            }
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_cprovActionPerformed
+
+    private void curentCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curentCountryActionPerformed
+        Connection myConn;
+        try {
+
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + curentCountry.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                cprov.addItem(myRess.getString("name"));
+            }
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_curentCountryActionPerformed
+
+    private void t_bpjsKesehatanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyTyped
+        //        asd
+    }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
+
+    private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_emailActionPerformed
+
+    private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
+        String a;
+        String b = "-";
+        if (t_hp.getText().length() < 2) {
+            t_hp.setText("(0)");
+        } else if (t_hp.getText().length() == 6) {
+            t_hp.setText(t_hp.getText() + "-");
+
+        } else if (t_hp.getText().length() == 11) {
+            t_hp.setText(t_hp.getText() + "-");
+
+        } else if (t_hp.getText().length() == 17) {
+            t_hp.setText(t_hp.getText());
+            evt.consume();
+        }
+    }//GEN-LAST:event_t_hpKeyTyped
+
+    private void t_hpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_hpKeyReleased
+
+    private void t_hpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_hpActionPerformed
+
+    private void t_ktpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ktpKeyReleased
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        Main.main.getMain().showForm(new CandidateApplicationIntroduction());
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+        jToggleButton2.setEnabled(true);
+    }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void t_lajangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lajangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t_lajangActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy");
-        String tanggal = String.valueOf(fm.format(t_tgl.getYear()));
-        DefaultTableModel dataModel = (DefaultTableModel) jTable2.getModel();
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+ try {
+            CandidateApplicationedit.func f = new CandidateApplicationedit.func();
+            rsf = f.find(da);
+            if (rsf.next()) {
+                byte[] img = rsf.getBytes("foto");
 
-        String name = t_sekolah.getText();
-        int year = t_tgl.getYear();
-        String major = t_jurusan.getText();
-        String loc = t_lokasi.getSelectedItem().toString();
+                ImageIcon imageicon = new ImageIcon(img);
 
-        List list = new ArrayList<>();
-        jTable2.setAutoCreateColumnsFromModel(true);
-        list.add(t_tgl.getYear());
-        list.add(t_sekolah.getText());
-        list.add(t_lokasi.getSelectedItem());
-        list.add(t_jurusan.getText());
-        dataModel.addRow(list.toArray());
+                Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
+                labelfoto.setIcon(new ImageIcon(imageResize));
 
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int row = jTable5.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)jTable5.getModel();
-        model.removeRow( row );        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void t_hp1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hp1KeyTyped
-        char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
-            evt.consume();
-        }     String a ;
-        String b = "-";
-        if(t_hp1.getText().length()<3){
-            t_hp1.setText("(0)");
-        }else if (t_hp1.getText().length() == 6) {
-            t_hp1.setText(t_hp1.getText()+"-");
-        }else if(t_hp1.getText().length() == 7){
-            StringBuffer sb = new StringBuffer(t_hp1.getText());
-            sb.setLength(6);
-            t_hp1.setText(""+sb);
-        }else if(t_hp1.getText().length() == 11){
-            t_hp1.setText(t_hp1.getText()+"-");
-        }else if(t_hp1.getText().length() == 12){
-            StringBuffer sb = new StringBuffer(t_hp1.getText());
-            sb.setLength(11);
-            t_hp1.setText(""+sb);
-        }else if(t_hp1.getText().length() == 17){
-            t_hp1.setText(t_hp1.getText());
-            evt.consume();
+            }
+        } catch (Exception e) {
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_t_hp1KeyTyped
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-        String tanggal_certificate = String.valueOf(fm.format(t_tgl_certificate.getDate()));
-
-        DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
-        List list = new ArrayList<>();
-        jTable4.setAutoCreateColumnsFromModel(true);
-        list.add(tanggal);
-        list.add(t_nama.getText());
-        list.add(t_author.getText());
-        list.add(t_lokasi.getSelectedItem());
-        list.add(t_sertifikat.getText());
-        dataModel.addRow(list.toArray());
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-int row = jTable2.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
-        model.removeRow( row );
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-            String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
-            r_y.setActionCommand("Yes");
-        r_n.setActionCommand("No");
-        DefaultTableModel dataModel = (DefaultTableModel) jTable3.getModel();
-          List list = new ArrayList<>();
-            jTable3.setAutoCreateColumnsFromModel(true);
-            list.add(t_nama1.getText());
-            list.add(t_hubungan.getSelectedItem());
-            list.add(tanggal_family);
-            list.add(buttongrup.getSelection().getActionCommand());
-            list.add(t_hp1.getText());
-            dataModel.addRow(list.toArray());        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        int hari = 01;
-        int bln_awal = Integer.valueOf(bulan_awal.getMonth() + 1);
-        int bln_akhir = Integer.valueOf(bulan_akhir.getMonth() + 1);
-        int thn_awal = Integer.valueOf(tahun_awal.getYear());
-        int thn_akhir = Integer.valueOf(tahun_akhir.getYear());
-        LocalDate tgl_awal = LocalDate.of(thn_awal, bln_awal, hari);
-        LocalDate tgl_akhir = LocalDate.of(thn_akhir, bln_akhir, hari);
-        int hasil_tahun = Period.between(tgl_awal, tgl_akhir).getYears();
-        int hasil_bulan = Period.between(tgl_awal, tgl_akhir).getMonths();
-
-        DefaultTableModel dataModel = (DefaultTableModel) jTable5.getModel();
-        List list = new ArrayList<>();
-        jTable5.setAutoCreateColumnsFromModel(true);
-        list.add(t_nama.getText());
-        list.add(t_posisi.getText());
-        list.add("("+tgl_awal.getMonth() + "-" + tgl_awal.getYear() +")"+ " - " +"("+ tgl_akhir.getMonth() + "-" + tgl_akhir.getYear()+")");
-        list.add(hasil_tahun + " Tahun " + hasil_bulan + " Bulan");
-        dataModel.addRow(list.toArray());
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-int row = jTable3.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)jTable3.getModel();
-        model.removeRow( row );
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-      int row = jTable4.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)jTable4.getModel();
-        model.removeRow( row );  // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void t_hp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hp1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_hp1ActionPerformed
+    }//GEN-LAST:event_jPanel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1763,10 +1805,8 @@ int row = jTable3.getSelectedRow();
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
     private javax.swing.JLabel jLabel93;
     private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;

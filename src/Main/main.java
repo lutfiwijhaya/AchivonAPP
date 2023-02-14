@@ -4,7 +4,9 @@
  */
 package Main;
 
+import CustomResource.MySession;
 import CustomResource.UndoRedo;
+import CustomResource.koneksi;
 import TestResource.inputexel;
 import TestResource.tambah;
 import Employee.EmployeeProfilePanel;
@@ -24,6 +26,7 @@ import HumanResource.CandidateApplicationFamily;
 import HumanResource.CandidateApplicationIntroduction;
 import HumanResource.CandidateApplicationPersonal;
 import HumanResource.CandidateApplicationSKCK;
+import HumanResource.CandidateApplicationedit;
 import HumanResource.ConfirmationHandingOverTakingOver;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
@@ -35,16 +38,23 @@ import HumanResource.SummaryStatusCandidatEmployee;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author lutfi
  */
 public class main extends javax.swing.JFrame {
-    
+    Statement stm;
+    ResultSet rs;
+    ResultSet rsf;
+    Connection koneksi;
     
     private static main main;
     private final UndoRedo<MasterForm> forms = new UndoRedo<>();
@@ -95,6 +105,7 @@ public class main extends javax.swing.JFrame {
         String nama_log = CustomResource.MySession.get_nama();
         freshframe();
         this.refresh();
+        openDB();
         if (nama_log == null) {
             HumanResourceSystem.setEnabled(true);
             POSystem.setEnabled(false);
@@ -123,6 +134,15 @@ public class main extends javax.swing.JFrame {
    
     jPanel1.setVisible(false);
     bodyPanel.setVisible(false);
+    }
+    
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
     }
     public void freshframe(){
         this.revalidate();
@@ -164,6 +184,8 @@ public class main extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         buttonLogin1 = new javax.swing.JButton();
+        t_ktp_edit = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
         ToolBar = new javax.swing.JMenuBar();
         homeBar = new javax.swing.JMenu();
         undoBar = new javax.swing.JMenu();
@@ -353,6 +375,13 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setText("Edit Data Candidate");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -373,6 +402,12 @@ public class main extends javax.swing.JFrame {
                         .addGap(83, 83, 83)
                         .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(t_ktp_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButton1)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,7 +428,11 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t_ktp_edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
@@ -703,7 +742,7 @@ public class main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -855,8 +894,32 @@ jPanel2.setVisible(false);
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
+        jPanel2.setVisible(false);
+        bodyPanel.setVisible(true);
         Main.main.getMain().showForm(new CandidateApplication());
     }//GEN-LAST:event_buttonLogin1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+   
+ try {
+            Statement stm = koneksi.createStatement();
+          
+            rs = stm.executeQuery("select*from cd_employee where KTP like '%" + t_ktp_edit.getText() + "%'");
+             while (rs.next()) {
+               
+                  
+                 MySession.set_cd_ktp( rs.getString("id_employee"));
+                
+             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(MySession.get_cd_ktp());
+        jPanel2.setVisible(false);
+                 bodyPanel.setVisible(true);;
+         Main.main.getMain().showForm(new CandidateApplicationedit());
+// TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -968,8 +1031,10 @@ jPanel2.setVisible(false);
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JMenu myProfile;
     private javax.swing.JMenu redoBar;
+    private javax.swing.JTextField t_ktp_edit;
     private javax.swing.JMenu undoBar;
     // End of variables declaration//GEN-END:variables
  private void myLogout() {

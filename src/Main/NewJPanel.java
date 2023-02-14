@@ -15,6 +15,7 @@ public class NewJPanel extends MasterForm{
      */
     public NewJPanel() {
         initComponents();
+        
     }
 
     /**
