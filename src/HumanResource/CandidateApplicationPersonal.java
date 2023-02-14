@@ -514,7 +514,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 340, -1));
 
-        t_gaji.setLabelText("Estimasi Gaji / Sallary");
+        t_gaji.setLabelText("Estimasi Gaji / Salary");
         t_gaji.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 t_gajiKeyPressed(evt);
@@ -595,6 +595,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 190, 30));
 
+        cprov.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Province" }));
         cprov.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cprov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -603,6 +604,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, 190, -1));
 
+        ccity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select City" }));
         ccity.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ccity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -640,6 +642,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, 190, 30));
 
+        homeState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Province" }));
         homeState.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -653,6 +656,7 @@ public class CandidateApplicationPersonal extends MasterForm{
         });
         jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, 190, 30));
 
+        homeCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select City" }));
         homeCity.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -875,6 +879,7 @@ StringBuffer sb = new StringBuffer(t_hp.getText());
         Connection myConn;
         try {
 homeCity.removeAllItems();
+
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
             while (myRess.next()) {
