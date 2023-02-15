@@ -528,6 +528,8 @@ try {
         }
 
     }
+    
+    //test
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1108,7 +1110,7 @@ try {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
 
         jToggleButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jToggleButton2.setText("SIMPAN / SAVE");
