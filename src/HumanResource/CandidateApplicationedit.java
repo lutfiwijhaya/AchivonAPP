@@ -21,8 +21,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import CustomResource.koneksi;
+import Main.MainPanel;
 import Main.MasterForm;
 import Main.NewJPanel;
+import Main.main;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -73,7 +77,7 @@ public class CandidateApplicationedit extends MasterForm {
         currentBox();
         codeCountryBox();
         id_employee();
-        jToggleButton1.setEnabled(false);
+//        jToggleButton1.setEnabled(false);
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
         homeCountry.setSelectedItem("Indonesia");
@@ -81,7 +85,24 @@ public class CandidateApplicationedit extends MasterForm {
         tampil_academic();
         tampildata();
       
-       
+       jPanel1.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                try {
+                    CandidateApplicationedit.func f = new CandidateApplicationedit.func();
+                    rsf = f.find(da);
+                    if (rsf.next()) {
+                        byte[] img = rsf.getBytes("foto");
+
+                        ImageIcon imageicon = new ImageIcon(img);
+
+                        Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
+                        labelfoto.setIcon(new ImageIcon(imageResize));
+                    }
+                } catch (Exception er) {
+                }
+            }
+        });
 
     }
 
@@ -408,7 +429,7 @@ public class CandidateApplicationedit extends MasterForm {
         } catch (Exception e) {
             e.printStackTrace();
         }
-try {
+        try {
             Statement stm = koneksi.createStatement();
 
             rs = stm.executeQuery("select*from cd_motivation where id_employee = " + da + "");
@@ -666,6 +687,7 @@ try {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -1317,6 +1339,7 @@ try {
             }
         });
         jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 1870, 110, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1023, 2976, 130, 30));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -1727,7 +1750,9 @@ try {
     }//GEN-LAST:event_t_ktpKeyReleased
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        Main.main.getMain().showForm(new CandidateApplicationIntroduction());
+//        Main.main.getMain().showForm(new CandidateApplicationIntroduction());
+        Main.main.getMain().showForm(new MainPanel());
+        main.getMain().setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
@@ -1739,7 +1764,7 @@ try {
     }//GEN-LAST:event_t_lajangActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
- try {
+        try {
             CandidateApplicationedit.func f = new CandidateApplicationedit.func();
             rsf = f.find(da);
             if (rsf.next()) {
@@ -1749,10 +1774,9 @@ try {
 
                 Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
                 labelfoto.setIcon(new ImageIcon(imageResize));
-
             }
         } catch (Exception e) {
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jPanel1MouseClicked
 
 
@@ -1778,6 +1802,7 @@ try {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
@@ -1837,7 +1862,7 @@ try {
     private CustomResource.TableCustom jTable5;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JLabel labelfoto;
+    public static javax.swing.JLabel labelfoto;
     private CustomResource.RadioButtonCustom r_n;
     private CustomResource.RadioButtonCustom r_y;
     private javax.swing.ButtonGroup radioGrupGender;

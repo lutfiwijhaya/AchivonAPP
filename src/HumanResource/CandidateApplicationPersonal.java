@@ -85,13 +85,10 @@ public class CandidateApplicationPersonal extends MasterForm{
         openDB();
         tampil();
         MyWindow();
-       
         id_employee();
-//        jToggleButton1.setEnabled(false);
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
-       t_hp.setText("(0)");
-     
+        t_hp.setText("(0)");
     }
 
     private void openDB() {
@@ -111,10 +108,6 @@ public class CandidateApplicationPersonal extends MasterForm{
             while (myRess.next()) {
                 homeCountry.addItem(myRess.getString("name"));
             }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
-
         } catch (SQLException ex) {
         }
        
@@ -124,18 +117,12 @@ public class CandidateApplicationPersonal extends MasterForm{
             while (myRess.next()) {
                 curentCountry.addItem(myRess.getString("name"));
             }
-//            myRess.last();
-//            int jumlahdata = myRess.getRow();
-//            myRess.first();
-
         } catch (SQLException ex) {
         }
         curentCountry.setEnabled(false);
-
         homeCountry.setEnabled(false);
         homeCountry.setSelectedItem("Indonesia");
         curentCountry.setSelectedItem("Indonesia");
-
     }
     private void id_employee() {
         String sql = "select max(id_employee) from cd_employee ";
@@ -157,30 +144,20 @@ public class CandidateApplicationPersonal extends MasterForm{
         tanggal = s.format(ys);
     }
 
-   
-    
-     public class func{
-    public ResultSet find (String s){
-        try {
-            PreparedStatement st = koneksi.prepareStatement("select * from cd_foto where id = ?");
-            st.setString(1, s);
-            rsf=st.executeQuery();
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+    public class func{
+        public ResultSet find (String s){
+            try {
+                PreparedStatement st = koneksi.prepareStatement("select * from cd_foto where id = ?");
+                st.setString(1, s);
+                rsf=st.executeQuery();
+
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return rsf;
         }
-    return rsf;
-    
     }
-    
-    
-    
-    }
-    
-    
-    
-    
 
     public static String get_nama() {
         return g_nama;

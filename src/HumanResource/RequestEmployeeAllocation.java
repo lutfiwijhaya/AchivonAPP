@@ -99,7 +99,7 @@ public class RequestEmployeeAllocation extends MasterForm {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Summary for Company Allocation");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 255));
@@ -110,10 +110,10 @@ public class RequestEmployeeAllocation extends MasterForm {
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, -1, -1));
 
         jLabel4.setText(":");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, 10, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 310, 10, -1));
 
         jLabel5.setText("Work Location");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, -1, -1));
 
         jLabel6.setText("Name");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
@@ -122,7 +122,7 @@ public class RequestEmployeeAllocation extends MasterForm {
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 280, -1, -1));
 
         jLabel10.setText("Required Allocation Date :");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 230, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 230, -1));
 
         jLabel11.setText(":");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 10, -1));
@@ -250,13 +250,13 @@ public class RequestEmployeeAllocation extends MasterForm {
         jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 230, -1));
 
         customTextfield2.setLabelText("Description Allocation     :");
-        jPanel2.add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 330, 40));
+        jPanel2.add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 330, 40));
 
         t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel2.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 190, 30));
+        jPanel2.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 190, 30));
 
         jLabel26.setText("Discipline");
-        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 230, -1));
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 310, 230, -1));
 
         jScrollPane1.setViewportView(jPanel2);
 

@@ -56,7 +56,7 @@ public class CandidateList extends MasterForm {
         myShow();
         MyWindow();
         remove();
-         CandidateSession.setCandidateID("");
+//        CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
     }
