@@ -64,9 +64,7 @@ public class CandidateApplicationedit extends MasterForm {
     String jk;
     String stt;
 
-    /**
-     * Creates new form CandidateApplication
-     */
+    
     public CandidateApplicationedit() {
         initComponents();
         openDB();
@@ -82,7 +80,7 @@ public class CandidateApplicationedit extends MasterForm {
         curentCountry.setSelectedItem("Indonesia");
         tampil_academic();
         tampildata();
-        tampil_foto();
+      
        
 
     }
