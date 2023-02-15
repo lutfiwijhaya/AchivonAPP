@@ -82,7 +82,7 @@ public class CandidateApplicationedit extends MasterForm {
         curentCountry.setSelectedItem("Indonesia");
         tampil_academic();
         tampildata();
-        
+        tampil_foto();
        
 
     }

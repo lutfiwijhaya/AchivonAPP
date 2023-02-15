@@ -6,6 +6,7 @@ package Main;
 
 import CustomResource.MySession;
 import CustomResource.UndoRedo;
+import CustomResource.koneksi;
 import TestResource.inputexel;
 import TestResource.tambah;
 import Employee.EmployeeProfilePanel;
@@ -18,6 +19,7 @@ import HumanResource.ApplicationResignation;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
 import HumanResource.CandidateApplicationPersonal;
+import HumanResource.CandidateApplicationedit;
 import HumanResource.ConfirmationHandingOverTakingOver;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
@@ -29,8 +31,12 @@ import HumanResource.SummaryStatusCandidatEmployee;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -75,10 +81,14 @@ public class main extends javax.swing.JFrame {
         }
     }
     public String nama_log = CustomResource.MySession.get_nama();
+     Statement stm;
+    ResultSet rs;
+    ResultSet rsf;
+    Connection koneksi;
     public main() {
         super("Operation System");
         initComponents();
-        
+        openDB();
         MyWindow();
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
         this.setIconImage(logo.getImage());
@@ -95,6 +105,15 @@ public class main extends javax.swing.JFrame {
     private void checkButton(){
         undoBar.setEnabled(forms.isUndoAble());
         redoBar.setEnabled(forms.isRedoAble());
+    }
+    
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
     }
  
     inputexel inputxl = new inputexel();
@@ -759,7 +778,26 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_myProfileMouseClicked
 
     private void buttonLogin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin2ActionPerformed
-        // TODO add your handling code here:
+ try {
+            Statement stm = koneksi.createStatement();
+
+            rs = stm.executeQuery("select*from cd_employee where KTP = " + customTextfield1.getText() + "");
+            while (rs.next()) {
+                
+                MySession.set_cd_ktp(rs.getString("id_employee"));
+               
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }     
+ 
+
+Main.main.getMain().showForm(new CandidateApplicationedit());
+jPanel2.setVisible(false);
+bodyPanel.setVisible(true);
+
+// TODO add your handling code here:
     }//GEN-LAST:event_buttonLogin2ActionPerformed
 
     /**
