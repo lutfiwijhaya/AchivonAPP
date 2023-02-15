@@ -5,11 +5,19 @@
 package Employee;
 
 import CustomResource.MySession;
+import HumanResource.CandidateApplicationedit;
 import Main.MasterForm;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -39,6 +47,22 @@ public class EmployeeProfilePanel extends MasterForm {
 //        labelRole.setText(MySession.get_Role());
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
         
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from foto_employee where karyawan_id = '"+MySession.get_ID()+"'");
+
+            if (rs.next()) {
+                byte[] imageData = rs.getBytes("File");
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                BufferedImage bImage = ImageIO.read(bis);
+                ImageIcon Myicon = new ImageIcon(bImage);
+                Image imageResize = Myicon.getImage().getScaledInstance(130, 140, Image.SCALE_SMOOTH);
+                labelFotoKaryawan.setIcon(new ImageIcon(imageResize));
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -52,7 +76,7 @@ public class EmployeeProfilePanel extends MasterForm {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        labelFoto = new javax.swing.JLabel();
+        labelFotoKaryawan = new javax.swing.JLabel();
         labelJob = new javax.swing.JLabel();
         labelKTP = new javax.swing.JLabel();
         labelKaryawan_id = new javax.swing.JLabel();
@@ -116,29 +140,29 @@ public class EmployeeProfilePanel extends MasterForm {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelFoto.setText("FOTO");
-        jPanel1.add(labelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 130, 140));
+        labelFotoKaryawan.setBackground(new java.awt.Color(204, 0, 153));
+        labelFotoKaryawan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(labelFotoKaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 130, 140));
 
         labelJob.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(labelJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 220, 30));
 
-        labelKTP.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelKTP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 190, 20));
 
-        labelKaryawan_id.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelKaryawan_id.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelKaryawan_id.setText("Karyawan_id");
         jPanel1.add(labelKaryawan_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 190, 20));
 
-        labelBirth.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelBirth.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelBirth.setText("TEMPAT, TANGGAL LAHIR");
         jPanel1.add(labelBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 190, 20));
 
-        labelGender.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelGender.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelGender.setText("JENIS KELAMIN");
         jPanel1.add(labelGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, 190, 20));
 
-        labelMarital.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelMarital.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelMarital.setText("Status Pernikahan");
         jPanel1.add(labelMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 170, 20));
 
@@ -363,7 +387,7 @@ public class EmployeeProfilePanel extends MasterForm {
         jLabel11.setText(":");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 20, -1));
 
-        labelName2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        labelName2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelName2.setText("NAMA");
         jPanel1.add(labelName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 190, 20));
 
@@ -442,7 +466,7 @@ public class EmployeeProfilePanel extends MasterForm {
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelEmail1;
     private javax.swing.JLabel labelEmail2;
-    private javax.swing.JLabel labelFoto;
+    private javax.swing.JLabel labelFotoKaryawan;
     private javax.swing.JLabel labelGender;
     private javax.swing.JLabel labelGender1;
     private javax.swing.JLabel labelJob;

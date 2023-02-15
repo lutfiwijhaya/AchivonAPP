@@ -4,7 +4,6 @@
  */
 package Main;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import CustomResource.MySession;
 import CustomResource.UndoRedo;
@@ -22,7 +21,6 @@ import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
 import HumanResource.CandidateApplicationPersonal;
 import HumanResource.CandidateApplicationedit;
-import static HumanResource.CandidateApplicationedit.labelfoto;
 import HumanResource.ConfirmationHandingOverTakingOver;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
@@ -39,17 +37,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -302,10 +295,13 @@ public class main extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,9 +320,9 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -692,6 +688,22 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+//        try {
+//            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("select * from foto_employee where karyawan_id = '"+MySession.get_ID()+"'");
+//
+//            if (rs.next()) {
+//                byte[] imageData = rs.getBytes("File");
+//                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+//                BufferedImage bImage = ImageIO.read(bis);
+//                ImageIcon Myicon = new ImageIcon(bImage);
+////                Image imageResize = Myicon.getImage().getScaledInstance(130, 140, Image.SCALE_SMOOTH);
+//                EmployeeProfilePanel.labelFotoKaryawan.setIcon(Myicon);
+//            }
+//        } catch (SQLException | IOException e) {
+////            e.printStackTrace();
+//        }
         showForm(new EmployeeProfilePanel());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -928,7 +940,7 @@ public class main extends javax.swing.JFrame {
     public static javax.swing.JMenu redoBar;
     public static javax.swing.JMenu undoBar;
     // End of variables declaration//GEN-END:variables
- private void myLogout() {
+    private void myLogout() {
         CustomResource.MySession.set_ktp("");
         CustomResource.MySession.set_nama("");
         new Main.LoginFrame().setVisible(true);
@@ -979,21 +991,6 @@ public class main extends javax.swing.JFrame {
             ToolBar.add(Box.createHorizontalGlue());
             ToolBar.add(myProfile);
             myProfile.setText(MySession.get_nama());
-        }
-    }
-    public class func {
-
-        public ResultSet find(String s) {
-            try {
-                PreparedStatement st = koneksi.prepareStatement("select * from cd_foto where id_employee = ?");
-                st.setString(1, s);
-                rsf = st.executeQuery();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return rsf;
-
         }
     }
 }

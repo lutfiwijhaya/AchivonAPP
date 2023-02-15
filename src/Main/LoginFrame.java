@@ -260,64 +260,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Connection myConn;
-        try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet  myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE karyawan_id = '"+textKaryawanid.getText()+"'");
-            if(myRess.next()){
-                if (textPassword.getText().length()<8) {
-                    JOptionPane.showMessageDialog(null, "Pastikan kata sandi Manimal 8 karakter \n Make sure the password is at least 8 characters");
-                }else{
-                    if (textPassword.getText().equals(textRepeatPassword.getText())) {
-                        if (textMail.getText().equals(myRess.getString("email"))){
-                            if (textPassword.getText().equals(myRess.getString("password"))) {
-                                MySession.set_karyawanID(myRess.getString("karyawan_id"));
-                                MySession.set_nama(myRess.getString("name"));
-                                MySession.set_ktp(myRess.getString("ktp"));
-                                MySession.set_birthPlace(myRess.getString("birth_place"));
-                                MySession.set_Birthday(myRess.getString("birthday"));
-                                MySession.set_sex(myRess.getString("sex"));
-                                MySession.set_marital(myRess.getString("marital"));
-                                MySession.set_email(myRess.getString("email"));
-                                MySession.set_mobileNumber(myRess.getString("no_hp"));
-                                MySession.set_BPJS(myRess.getString("bpjs"));
-                                MySession.set_NPWP(myRess.getString("npwp"));
-                                MySession.set_JobPosition(myRess.getString("job_position"));
-                                MySession.set_Sallary(myRess.getString("sallary"));
-                                MySession.set_Role(myRess.getString("role_id"));
-                                JOptionPane.showMessageDialog(null, "Berhasil Login \n successfull logged in \n\n Selamat Datang " +MySession.get_nama()+"\n Welcome "+MySession.get_nama());
-                                main.getMain().setVisible(true);
-                                this.dispose();
-                            }else{
-                                JOptionPane.showMessageDialog(rootPane,"Kata Sandi Anda Salah \n your password is wrong");
-                                textPassword.setText("");
-                                textRepeatPassword.setText("");
-                                textPassword.requestFocus();
-                            }        
-                        }else{
-                            JOptionPane.showMessageDialog(rootPane,"Surel Anda Tidak Sesuai \n Your Email does not Match");
-                            textMail.setText("");
-                            textMail.requestFocus();
-                        }
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Kata Sandi dan Konfirmasi kata Sandi anda Tidak Sesuai \n Your Password and Confirm Password Doesn't Match");
-                        textPassword.setText("");
-                        textRepeatPassword.setText("");
-                        textPassword.requestFocus();
-                    }
-                }
-            }else {
-                JOptionPane.showMessageDialog(rootPane, "pengguna Tidak Ditemukan \n User not Found");
-                textKaryawanid.setText("");
-                textPassword.setText("");
-                textRepeatPassword.setText("");
-                textMail.setText("");
-                textKaryawanid.requestFocus();
-                
-            }
-        }catch(SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi \n Failed to Retrieve Information");
-        }
+        myLogin();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textKaryawanidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textKaryawanidKeyPressed
@@ -475,6 +418,7 @@ public class LoginFrame extends javax.swing.JFrame {
                     if (textPassword.getText().equals(textRepeatPassword.getText())) {
                         if (textMail.getText().equals(myRess.getString("email"))){
                             if (textPassword.getText().equals(myRess.getString("password"))) {
+                                MySession.set_ID(myRess.getString("id"));
                                 MySession.set_karyawanID(myRess.getString("karyawan_id"));
                                 MySession.set_nama(myRess.getString("name"));
                                 MySession.set_ktp(myRess.getString("ktp"));
@@ -488,6 +432,7 @@ public class LoginFrame extends javax.swing.JFrame {
                                 MySession.set_NPWP(myRess.getString("npwp"));
                                 MySession.set_JobPosition(myRess.getString("job_position"));
                                 MySession.set_Sallary(myRess.getString("sallary"));
+                                MySession.set_Role(myRess.getString("role_id"));
                                 JOptionPane.showMessageDialog(null, "Berhasil Login\nsuccessfull logged in \n\nSelamat Datang " +MySession.get_nama()+"Welcome "+MySession.get_nama());
                                 main.getMain().setVisible(true);
                                 this.dispose();

@@ -10,6 +10,7 @@ package CustomResource;
 //package javasession;
 
 public class MySession {
+    private static String ID;
     private static String karyawanID;
     private static String ktp;
     private static String nama;
@@ -26,6 +27,13 @@ public class MySession {
     private static String Role;
     private static String cd_ktp;
     
+    public static String get_ID(){
+        return ID;
+    }
+    
+    public static void set_ID(String ID){
+        MySession.ID = ID;
+    }
     public static String get_karyawanID(){
         return karyawanID;
     }

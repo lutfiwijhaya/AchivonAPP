@@ -59,51 +59,8 @@ public class EmployeeConfirmation extends MasterForm {
 //        setcombo();
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
         getMyRole();
-        
-
-        //areaEmployee.setText("I (Employee) has confirmed all matters in accordance with The Compny's (means PT.ACHIVON PRESTASI ABADI'S)\n" +
-        // "human resource management standard regulation from the date of signing this agreement, and as a result, I \n" +
-        // "assure that I willthroughly perform and strictly comply with the tasks given and duties. In addition, \n" +
-        // "I confirm that i will work very diligently without raising any objection in the overtime including working\n" +
-        // "day and non-working day, special task and special work at the request of The Company, and I made signature \n" +
-        // "above on this employee confirmation.");
     }
-
-//    private void setcombo() {
-//        try {
-//            stm = koneksi.createStatement();
-//            rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
-//            while (rs.next()) {
-//                jComboBox1.addItem(rs.getString(2).trim());
-//
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    private void addtext() {
-
-        try {
-            stm = koneksi.createStatement();
-            rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where Nama = '" + jComboBox1.getSelectedItem() + "'");
-
-            while (rs.next()) {
-                
-                l_name1.setText(rs.getString(2).trim());
-                l_name.setText(rs.getString(17));
-                l_date.setText(rs.getString(15).trim());
-                l_ktp.setText(rs.getString(3).trim());
-                l_hp.setText(rs.getString(10).trim());
-                l_hadd.setText(rs.getString(32).trim());
-                l_cadd.setText(rs.getString(33).trim());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
+    
     void get_tanggal() {
 
         Date ys = new Date();
@@ -146,7 +103,6 @@ public class EmployeeConfirmation extends MasterForm {
         l_cadd = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         l_tgl = new javax.swing.JLabel();
@@ -171,7 +127,6 @@ public class EmployeeConfirmation extends MasterForm {
         l_ktp = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
@@ -199,8 +154,7 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 850, -1, -1));
 
         l_date.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_date.setText("DD-MMM-YYYY");
-        jPanel1.add(l_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, -1, -1));
+        jPanel1.add(l_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 180, 13));
 
         jLabel33.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel33.setText(":");
@@ -219,8 +173,7 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 790, -1, -1));
 
         l_cadd.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_cadd.setText("example Current Address");
-        jPanel1.add(l_cadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
+        jPanel1.add(l_cadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 440, 13));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel6.setText("A4. Current Address");
@@ -229,10 +182,6 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel1.setText(":");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 20, -1));
-
-        jLabel36.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel36.setText("Name :");
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 610, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText(":");
@@ -243,8 +192,7 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 820, -1, -1));
 
         l_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_tgl.setText("DD-MMM-YYYY");
-        jPanel1.add(l_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 820, -1, -1));
+        jPanel1.add(l_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 820, 270, 13));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
@@ -271,8 +219,7 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 20, -1));
 
         jLabel37.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel37.setText("example Position");
-        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 850, -1, -1));
+        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 850, 300, 13));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel11.setText(":");
@@ -288,20 +235,21 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 1140, -1, -1));
 
         l_hadd.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_hadd.setText("example Home Address");
-        jPanel1.add(l_hadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, -1));
+        jPanel1.add(l_hadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 440, 13));
 
         l_name.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_name.setText("example Name");
-        jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 610, -1, -1));
+        l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l_name.setText("asd");
+        jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 270, 13));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel13.setText(":");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 20, -1));
 
         l_emnama.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_emnama.setText("example Name");
-        jPanel1.add(l_emnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 1050, -1, -1));
+        l_emnama.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l_emnama.setText("asd");
+        jPanel1.add(l_emnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 1050, 270, 13));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("A. EMPLOYEE CONFIRMATION");
@@ -312,12 +260,10 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, -1, -1));
 
         l_hp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_hp.setText("example NO HP");
-        jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, -1, -1));
+        jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 230, 13));
 
         l_ktp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_ktp.setText("example KTP");
-        jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
+        jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 390, 13));
 
         jLabel40.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel40.setText("Signature");
@@ -326,10 +272,6 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel32.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel32.setText(":");
         jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 820, 20, -1));
-
-        jLabel41.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel41.setText("Name :");
-        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1050, -1, -1));
         jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 1140, 80, 20));
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -346,12 +288,10 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 130, -1, 30));
 
         l_emnama1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_emnama1.setText("example Name");
-        jPanel1.add(l_emnama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 790, -1, -1));
+        jPanel1.add(l_emnama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 790, 270, 13));
 
         l_name1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        l_name1.setText("example Name");
-        jPanel1.add(l_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, -1));
+        jPanel1.add(l_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 250, 13));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 51, 255));
@@ -389,9 +329,14 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel27.setText("I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee");
         jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 880, 610, -1));
 
+        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 51, 255));
         jButton1.setText("Reject");
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 1070, 130, 30));
 
+        jButton2.setBackground(new java.awt.Color(51, 51, 255));
+        jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Sign");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -400,9 +345,14 @@ public class EmployeeConfirmation extends MasterForm {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 1070, 130, 30));
 
+        jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(51, 51, 255));
         jButton3.setText("Reject");
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, 130, 30));
 
+        jButton4.setBackground(new java.awt.Color(51, 51, 255));
+        jButton4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Sign");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -462,7 +412,7 @@ public class EmployeeConfirmation extends MasterForm {
         Session mailSession = Session.getDefaultInstance(proper, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(from, emailPassword);
+                return new PasswordAuthentication(from, emailPassword);
             }
             
         });
@@ -472,27 +422,20 @@ public class EmployeeConfirmation extends MasterForm {
             myMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             myMessage.setSubject(subject);
             myMessage.setContent(testemail,"text/plain");
-       MimeBodyPart messageBodyPart = new MimeBodyPart();
-
-        Multipart multipart = new MimeMultipart();
-        
-        String file = "src/Doc/HAII TESTING.docx";
-        String fileName = "Doc.docx";
-        DataSource source = new FileDataSource(file);
-        messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(fileName);
-        multipart.addBodyPart(messageBodyPart);
-
-        myMessage.setContent(multipart);
-
-        System.out.println("Sending");
-
-        Transport.send(myMessage);
-
-        System.out.println("Done");
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+            Multipart multipart = new MimeMultipart();
+            String file = "src/Doc/HAII TESTING.docx";
+            String fileName = "Doc.docx";
+            DataSource source = new FileDataSource(file);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(fileName);
+            multipart.addBodyPart(messageBodyPart);
+            myMessage.setContent(multipart);
+            System.out.println("Sending");
+            Transport.send(myMessage);
+            System.out.println("Done");
         } catch (MessagingException e) {
             JOptionPane.showMessageDialog(null, e);
-//            JOptionPane.showMessageDialog(null, "gagal");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -541,13 +484,11 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -595,7 +536,7 @@ public class EmployeeConfirmation extends MasterForm {
             jLabel21.setVisible(false);
             jLabel15.setVisible(false);
             jLabel37.setVisible(false);
-            jLabel41.setVisible(false);
+//            labelName.setVisible(false);
             jSeparator1.setVisible(false);
             jButton1.setVisible(false);
             jButton2.setVisible(false);
@@ -604,7 +545,7 @@ public class EmployeeConfirmation extends MasterForm {
             rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
                 while (rs.next()) {
                     jComboBox1.addItem(rs.getString(2).trim());
-
+                    addtext();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -618,13 +559,36 @@ public class EmployeeConfirmation extends MasterForm {
             rs = stm.executeQuery("select * from cd_employee WHERE approval = '2'");
                 while (rs.next()) {
                     jComboBox1.addItem(rs.getString(2).trim());
-                    l_name.setText(rs.getString(17));
+                    addtext();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
+    
+    private void addtext() {
+
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where Nama = '" + jComboBox1.getSelectedItem() + "'");
+
+            while (rs.next()) {
+                
+                l_name1.setText(rs.getString(2).trim());
+                l_name.setText(rs.getString(18));
+                l_date.setText(rs.getString(15).trim());
+                l_ktp.setText(rs.getString(3).trim());
+                l_hp.setText(rs.getString(10).trim());
+                l_hadd.setText(rs.getString(32).trim());
+                l_cadd.setText(rs.getString(33).trim());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
     @Override
     public void formrefresh() {
     }
