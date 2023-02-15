@@ -227,7 +227,7 @@ public class main extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("silahkan klik jika ingin bergabung dan daftarkan data anda");
+        jLabel17.setText("Masukan No KTP anda jika ingin mengubah data anda");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
