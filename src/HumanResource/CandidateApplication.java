@@ -1486,7 +1486,7 @@ public class CandidateApplication extends MasterForm {
             try {
                 Statement stm = koneksi.createStatement();
 
-                rs = stm.executeQuery("select*from cd_employee where KTP like '%" + t_ktp.getText() + "%'");
+                rs = stm.executeQuery("select*from cd_employee where KTP = " + t_ktp.getText() + "");
                 while (rs.next()) {
                     da = rs.getString("id_employee");
 
@@ -1549,6 +1549,7 @@ public class CandidateApplication extends MasterForm {
         simpan_serifikat();
         simpan_career();
         simpan_motivation();
+       
         File foto = new File(crudimage);
          try {
             InputStream fhoto = new FileInputStream(foto);

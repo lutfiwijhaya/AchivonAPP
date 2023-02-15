@@ -25,10 +25,13 @@ import Main.MainPanel;
 import Main.MasterForm;
 import Main.NewJPanel;
 import Main.main;
+import com.mysql.cj.jdbc.Blob;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
@@ -57,7 +60,7 @@ public class CandidateApplicationedit extends MasterForm {
     ResultSet rsf;
     Connection koneksi;
     DefaultTableModel ImportDataExel;
-    String crudimage = "";
+    String crudimage = "p";
     String da = MySession.get_cd_ktp();
     int id_employee;
     String tanggal;
@@ -67,8 +70,8 @@ public class CandidateApplicationedit extends MasterForm {
     int k = 0;
     String jk;
     String stt;
+    byte[] img;
 
-    
     public CandidateApplicationedit() {
         initComponents();
         openDB();
@@ -84,8 +87,8 @@ public class CandidateApplicationedit extends MasterForm {
         curentCountry.setSelectedItem("Indonesia");
         tampil_academic();
         tampildata();
-      
-       jPanel1.addComponentListener(new ComponentAdapter() {
+
+        jPanel1.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 try {
@@ -256,6 +259,7 @@ public class CandidateApplicationedit extends MasterForm {
                 String dtabel_hp = jTable3.getValueAt(i, 4).toString();
                 try {
                     stm = koneksi.createStatement();
+
                     String sql = "insert into cd_family (id_employee,name,hubungan,Birthday,cohabit,No_HP) values('" + da + "'"
                             + ",'" + dtabel_nama + "'"
                             + ",'" + dtabel_hub + "'"
@@ -285,6 +289,7 @@ public class CandidateApplicationedit extends MasterForm {
                 String dtabel_no = jTable4.getValueAt(i, 4).toString();
                 try {
                     stm = koneksi.createStatement();
+
                     String sql = "insert into cd_certificates (id_employee,acquisition,name_certificate,location,name_authority,no_certificate) values('" + da + "'"
                             + ",'" + dtabel_tgl + "'"
                             + ",'" + dtabel_nama + "'"
@@ -314,6 +319,7 @@ public class CandidateApplicationedit extends MasterForm {
                 String dtabel_career = jTable5.getValueAt(i, 3).toString();
                 try {
                     stm = koneksi.createStatement();
+
                     String sql = "insert into cd_summary_career (id_employee,company_name,job_position,period,career) values('" + da + "'"
                             + ",'" + dtabel_nama + "'"
                             + ",'" + dtabel_posisi + "'"
@@ -334,6 +340,7 @@ public class CandidateApplicationedit extends MasterForm {
         String g_ta2 = t_latar.getText();
         try {
             stm = koneksi.createStatement();
+
             String sql = "insert into cd_motivation (id_employee,motivation1,motivation2) values('" + da + "'"
                     + ",'" + g_ta + "'"
                     + ",'" + g_ta2 + "')";
@@ -342,6 +349,27 @@ public class CandidateApplicationedit extends MasterForm {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    void hapusdb() {
+        try {
+            stm = koneksi.createStatement();
+            String sql1 = "DELETE FROM cd_motivation WHERE id_employee = " + da + "";
+            String sql2 = "DELETE FROM cd_summary_career WHERE id_employee = " + da + "";
+            String sql3 = "DELETE FROM cd_certificates WHERE id_employee = " + da + "";
+            String sql4 = "DELETE FROM cd_family WHERE id_employee = " + da + "";
+            String sql5 = "DELETE FROM cd_academic WHERE id_employee = " + da + "";
+
+            stm.executeUpdate(sql1);
+            stm.executeUpdate(sql2);
+            stm.executeUpdate(sql3);
+            stm.executeUpdate(sql4);
+            stm.executeUpdate(sql5);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     void get_tanggal() {
@@ -406,12 +434,12 @@ public class CandidateApplicationedit extends MasterForm {
         } catch (Exception e) {
             e.printStackTrace();
         }
-         try {
+        try {
             Statement stm = koneksi.createStatement();
 
             rs = stm.executeQuery("select*from cd_adress where id_employee = " + da + "");
             while (rs.next()) {
-                
+
                 homeCountry.setSelectedItem(rs.getString("h_negara"));
                 homeState.setSelectedItem(rs.getString("h_prov"));
                 homeCity.setSelectedItem(rs.getString("h_kab"));
@@ -421,7 +449,7 @@ public class CandidateApplicationedit extends MasterForm {
                 t_hkec.setText(rs.getString("h_kec"));
                 t_ddesa.setText(rs.getString("h_desa"));
                 t_halamat.setText(rs.getString("h_alamat"));
-                 t_ckec.setText(rs.getString("c_kec"));
+                t_ckec.setText(rs.getString("c_kec"));
                 t_cdesa.setText(rs.getString("c_desa"));
                 t_calamat.setText(rs.getString("c_alamat"));
 
@@ -434,7 +462,7 @@ public class CandidateApplicationedit extends MasterForm {
 
             rs = stm.executeQuery("select*from cd_motivation where id_employee = " + da + "");
             while (rs.next()) {
-                
+
                 t_motif.setText(rs.getString("motivation1"));
                 t_latar.setText(rs.getString("motivation2"));
 
@@ -442,7 +470,6 @@ public class CandidateApplicationedit extends MasterForm {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       
 
         if (jk.length() == 4) {
             t_pria.setSelected(true);
@@ -521,7 +548,7 @@ public class CandidateApplicationedit extends MasterForm {
             CandidateApplicationedit.func f = new CandidateApplicationedit.func();
             rsf = f.find(t_ktp.getText());
             if (rsf.next()) {
-                byte[] img = rsf.getBytes("foto");
+                img = rsf.getBytes("foto");
 
                 ImageIcon imageicon = new ImageIcon(img);
 
@@ -549,9 +576,8 @@ public class CandidateApplicationedit extends MasterForm {
         }
 
     }
-    
-    //test
 
+    //test
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1487,6 +1513,7 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        hapusdb();
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
         String g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));
         t_pria.setActionCommand("Male");
@@ -1494,40 +1521,36 @@ public class CandidateApplicationedit extends MasterForm {
         t_lajang.setActionCommand("Single");
         t_menikah.setActionCommand("Married");
         full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
-       full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + curentCountry.getSelectedItem();
+        full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + curentCountry.getSelectedItem();
         try {
             stm = koneksi.createStatement();
-            String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,bpjs_ket,Applying_A,D_Salary,discipline,cd_date_apply,approval) values('" + t_nama.getText() + "'"
-                    + ",'" + t_ktp.getText() + "'"
-                    + ",'" + t_email.getText() + "'"
-                    + ",'" + t_npwp.getText() + "'"
-                    + ",'" + radioGrupGender.getSelection().getActionCommand() + "'"
-                    + ",'" + g_tgl_personal + "'"
-                    + ",'" + t_tgl_personal.getDate() + "'"
-                    + ",'" + radioGrupStatus.getSelection().getActionCommand() + "'"
-                    + ",'" + t_hp.getText() + "'"
-                    + ",'" + t_bpjsKesehatan.getText() + "'"
-                    + ",'" + t_bpjsKetenagakerjaan.getText() + "'"
-                    + ",'" + t_lamaran.getSelectedItem() + "'"
-                    + ",'" + t_gaji.getText() + "'"
-                    + ",'" + t_dicipline.getText() + "'"
-                    + ",'" + tanggal + "'"
-                    + ",'" + k + "')";
+            String sql9 = "update cd_employee set nama='" + t_nama.getText() + "',KTP ='" + t_ktp.getText() + "',"
+                    + "email='" + t_email.getText() + "',NPWP='" + t_npwp.getText() + "',"
+                    + "sex='" + radioGrupGender.getSelection().getActionCommand() + "',b_place='" + t_tlhir.getText() + "',"
+                    + "birthday='" + g_tgl_personal + "',marital='" + radioGrupStatus.getSelection().getActionCommand() + "',"
+                    + "No_HP='" + t_hp.getText() + "',BPJS='" + t_bpjsKesehatan.getText() + "',"
+                    + "bpjs_ket='" + t_bpjsKetenagakerjaan.getText() + "',Applying_A='" + t_lamaran.getSelectedItem() + "',"
+                    + "D_Salary='" + t_gaji.getText() + "',discipline='" + t_dicipline.getText() + "',"
+                    + "approval='" + k + "' where id_employee='" + da + "'";
+//            String sql = " into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,bpjs_ket,Applying_A,D_Salary,discipline,cd_date_apply,approval) values('" + t_nama.getText() + "'"
+//                    + ",'" + t_ktp.getText() + "'"
+//                    + ",'" + t_email.getText() + "'"
+//                    + ",'" + t_npwp.getText() + "'"
+//                    + ",'" + radioGrupGender.getSelection().getActionCommand() + "'"
+//                    + ",'" + g_tgl_personal + "'"
+//                    + ",'" + t_tgl_personal.getDate() + "'"
+//                    + ",'" + radioGrupStatus.getSelection().getActionCommand() + "'"
+//                    + ",'" + t_hp.getText() + "'"
+//                    + ",'" + t_bpjsKesehatan.getText() + "'"
+//                    + ",'" + t_bpjsKetenagakerjaan.getText() + "'"
+//                    + ",'" + t_lamaran.getSelectedItem() + "'"
+//                    + ",'" + t_gaji.getText() + "'"
+//                    + ",'" + t_dicipline.getText() + "'"
+//                    + ",'" + tanggal + "'"
+//                    + ",'" + k + "') where id_employee = " + da + " ";
 
-            stm.executeUpdate(sql);
-
-            try {
-                Statement stm = koneksi.createStatement();
-
-                rs = stm.executeQuery("select*from cd_employee where KTP like '%" + t_ktp.getText() + "%'");
-                while (rs.next()) {
-                    da = rs.getString("id_employee");
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            stm.executeUpdate(sql9);
+            String sql2 = "DELETE FROM cd_adress WHERE id_employee = " + da + "";
             String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
                     + ",'" + homeCountry.getSelectedItem() + "'"
                     + ",'" + homeState.getSelectedItem() + "'"
@@ -1544,6 +1567,7 @@ public class CandidateApplicationedit extends MasterForm {
                     + ",'" + full_home + "'"
                     + ",'" + full_curent + "')";
 
+            stm.executeUpdate(sql2);
             stm.executeUpdate(sql0);
 
         } catch (SQLException e) {
@@ -1564,6 +1588,7 @@ public class CandidateApplicationedit extends MasterForm {
 
                 try {
                     stm = koneksi.createStatement();
+
                     String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
                             + ",'" + dtabel_tgl + "'"
                             + ",'" + dtabel_univ + "'"
@@ -1582,21 +1607,31 @@ public class CandidateApplicationedit extends MasterForm {
         simpan_career();
         simpan_motivation();
         File foto = new File(crudimage);
-        try {
-            InputStream fhoto = new FileInputStream(foto);
-            String inputfoto = "INSERT INTO cd_foto(foto,id_employee)  VALUE (?,?)";
-            PreparedStatement ifoto = this.koneksi.prepareStatement(inputfoto);
-            ifoto.setBlob(1, fhoto);
-            ifoto.setString(2, da);
-            int ph = ifoto.executeUpdate();
-            if (ph > 0) {
-                JOptionPane.showMessageDialog(null, "foto masuk");
+        if (crudimage.length() != 1) {
+            try {
+                stm = koneksi.createStatement();
+                String sql = " delete from cd_foto where id_employee = " + da + "";
+                stm.executeUpdate(sql);
+            } catch (SQLException ex) {
+                Logger.getLogger(CandidateApplicationedit.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CandidateApplicationedit.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                InputStream fhoto = new FileInputStream(foto);
+                String inputfoto = "INSERT INTO cd_foto(foto,id_employee)  VALUE (?,?)";
+                PreparedStatement ifoto = this.koneksi.prepareStatement(inputfoto);
+                ifoto.setBlob(1, fhoto);
+                ifoto.setString(2, da);
+                int ph = ifoto.executeUpdate();
+                if (ph > 0) {
+                    JOptionPane.showMessageDialog(null, "foto masuk");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(CandidateApplicationedit.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         JOptionPane.showMessageDialog(null, "Data Tersimpan");
