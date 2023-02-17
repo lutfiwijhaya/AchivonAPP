@@ -8,6 +8,7 @@ package HumanResource;
  *
  * @author hi
  */
+import TestResource.CandidateApplicationPersonal;
 import CustomResource.MySession;
 import java.awt.Dimension;
 import java.awt.Image;

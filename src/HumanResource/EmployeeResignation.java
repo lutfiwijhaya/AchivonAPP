@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import CustomResource.EmployeeSession;
 import CustomResource.MySession;
 import Main.MasterForm;
 import java.awt.Dimension;
@@ -32,18 +33,22 @@ public class EmployeeResignation extends MasterForm {
         MyWindow();
         
         jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
-        
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-        
-        labelDiscipline.setText(MySession.get_JobPosition());
-        labelName.setText(MySession.get_nama());
-        labelPosition.setText(MySession.get_JobPosition());
-        labelKTP.setText(MySession.get_ktp());
-        labelNameSign.setText(MySession.get_nama());
-        labelDateSign.setText(formatter.format(date));
-        
-               
+        myRole();
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTP()+"'");
+            if (rs.next()) {
+                labelDiscipline.setText(rs.getString(23));
+                labelName.setText(rs.getString(14));
+                labelPosition.setText(rs.getString(23));
+                labelKTP.setText(rs.getString(13));
+                labelNameSign.setText(rs.getString(14));
+                labelDateSign.setText(rs.getString(10));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
     }
 
     /**
@@ -81,7 +86,6 @@ public class EmployeeResignation extends MasterForm {
         jLabel20 = new javax.swing.JLabel();
         labelNameSign = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        SendButton = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         labelDiscipline = new javax.swing.JLabel();
@@ -209,15 +213,10 @@ public class EmployeeResignation extends MasterForm {
         jPanel1.add(labelNameSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(905, 880, 210, 20));
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 1130, 40, 20));
 
-        SendButton.setBackground(new java.awt.Color(0, 51, 255));
-        SendButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        SendButton.setForeground(new java.awt.Color(255, 255, 255));
-        SendButton.setText("Kirim / Send");
-        jPanel1.add(SendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 950, 170, 40));
-
         jLabel23.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("SIGNATURE");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 780, -1, 20));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(905, 780, 210, 20));
 
         jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel24.setText("Discipline");
@@ -389,6 +388,11 @@ public class EmployeeResignation extends MasterForm {
         SaveButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         SaveButton.setForeground(new java.awt.Color(255, 255, 255));
         SaveButton.setText("Simpan / Save");
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(SaveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 950, 170, 40));
 
         jScrollPane6.setViewportView(jPanel1);
@@ -571,10 +575,13 @@ public class EmployeeResignation extends MasterForm {
         }
     }//GEN-LAST:event_signTeamPredMouseClicked
 
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+//        asd
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SaveButton;
-    private javax.swing.JButton SendButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -638,6 +645,11 @@ public class EmployeeResignation extends MasterForm {
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
+    }
+    
+    private void index(){
+        
+        
     }
     
     private void myRole(){

@@ -19,7 +19,7 @@ import HumanResource.AplicationRehabilitation;
 import HumanResource.ApplicationResignation;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
-import HumanResource.CandidateApplicationPersonal;
+import TestResource.CandidateApplicationPersonal;
 import HumanResource.CandidateApplicationedit;
 import HumanResource.ConfirmationHandingOverTakingOver;
 import HumanResource.DisciplnaryResolution;

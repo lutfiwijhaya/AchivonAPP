@@ -6,7 +6,7 @@ package Main;
 
 import HumanResource.AddJobVacancy;
 import HumanResource.CandidateApplication;
-import HumanResource.CandidateApplicationPersonal;
+import TestResource.CandidateApplicationPersonal;
 import static Main.main.main;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;

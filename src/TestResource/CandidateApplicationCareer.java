@@ -1,4 +1,4 @@
-package HumanResource;
+package TestResource;
 
 import CustomResource.koneksi;
 import Main.MasterForm;

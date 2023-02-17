@@ -1,4 +1,4 @@
-package HumanResource;
+package TestResource;
 
 import CustomResource.koneksi;
 import Employee.ChangePassword;

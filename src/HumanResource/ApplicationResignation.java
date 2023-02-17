@@ -21,14 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author hi
- */
 public class ApplicationResignation extends MasterForm {
 
     /**
@@ -95,8 +89,7 @@ public class ApplicationResignation extends MasterForm {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            }
-             
+            }  
     }
 
     /**
