@@ -59,6 +59,8 @@ public class CandidateApplication extends MasterForm {
     String full_curent;
     String full_home;
     int k = 0;
+    String g_tgl_personal="";
+   
 
     /**
      * Creates new form CandidateApplication
@@ -71,11 +73,12 @@ public class CandidateApplication extends MasterForm {
         currentBox();
         codeCountryBox();
         id_employee();
-        jToggleButton1.setEnabled(false);
+        jToggleButton2.setEnabled(false);
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
         homeCountry.setSelectedItem("Indonesia");
         curentCountry.setSelectedItem("Indonesia");
+        
      
        
 
@@ -351,6 +354,8 @@ public class CandidateApplication extends MasterForm {
         curentCountry.setEnabled(true);
     }
 
+    
+    
 //    void tampildata() {
 //        t_nama.setText(CandidateApplicationPersonal.get_nama());
 //        t_ktp.setText(CandidateApplicationPersonal.get_ktp());
@@ -633,6 +638,7 @@ public class CandidateApplication extends MasterForm {
         jButton9 = new javax.swing.JButton();
         jLabel95 = new javax.swing.JLabel();
         jLabel92 = new javax.swing.JLabel();
+        Bataslabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -741,7 +747,7 @@ public class CandidateApplication extends MasterForm {
                 jCheckBox5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 2780, -1, -1));
+        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 2760, -1, -1));
 
         jLabel93.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel93.setText("7. SKCK");
@@ -754,7 +760,7 @@ public class CandidateApplication extends MasterForm {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2820, 130, 40));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 2800, 130, 40));
 
         t_halamat.setColumns(20);
         t_halamat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -813,6 +819,9 @@ public class CandidateApplication extends MasterForm {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 t_ktpKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_ktpKeyTyped(evt);
+            }
         });
         jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 340, -1));
 
@@ -820,6 +829,11 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 340, -1));
 
         t_gaji.setLabelText("Estimasi Gaji / Sallary");
+        t_gaji.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_gajiKeyTyped(evt);
+            }
+        });
         jPanel1.add(t_gaji, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 340, -1));
 
         t_hp.setLabelText("No HP");
@@ -847,6 +861,11 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(t_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, 340, -1));
 
         t_bpjsKetenagakerjaan.setLabelText("No BPJS Ketenagakerjaan");
+        t_bpjsKetenagakerjaan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_bpjsKetenagakerjaanKeyTyped(evt);
+            }
+        });
         jPanel1.add(t_bpjsKetenagakerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 340, -1));
 
         t_dicipline.setLabelText("Discipline");
@@ -874,6 +893,7 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(curentCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 510, 190, 30));
 
         cprov.setEditable(false);
+        cprov.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Province" }));
         cprov.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cprov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -883,6 +903,7 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(cprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 550, 190, -1));
 
         ccity.setEditable(false);
+        ccity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select City" }));
         ccity.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ccity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -916,6 +937,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(homeCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, 190, 30));
 
+        homeState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Province" }));
         homeState.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -924,6 +946,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(homeState, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, 190, 30));
 
+        homeCity.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select City" }));
         homeCity.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         homeCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1063,10 +1086,10 @@ public class CandidateApplication extends MasterForm {
         jLabel76.setText("Jenis Kelamin/Gender");
         jPanel1.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, -1, 20));
 
-        jLabel78.setText("Tanggal Lahir / Birth Date");
+        jLabel78.setText("Status/Marital");
         jPanel1.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, -1, 20));
 
-        jButton1.setText("Lihat Foto");
+        jButton1.setText("Chose File");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -1081,7 +1104,7 @@ public class CandidateApplication extends MasterForm {
                 jToggleButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 2820, 120, 40));
+        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 2810, 120, 40));
 
         radioGrupGender.add(t_wanita);
         t_wanita.setText("Perempuan");
@@ -1102,10 +1125,15 @@ public class CandidateApplication extends MasterForm {
 
         radioGrupStatus.add(t_menikah);
         t_menikah.setText("Married");
-        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 170, -1, -1));
+        jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 171, -1, 20));
         jPanel1.add(t_tgl_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 150, -1));
 
         jCheckBox1.setText("Sama Dengan Home Address");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 480, -1, -1));
 
         t_lokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "test" }));
@@ -1287,6 +1315,7 @@ public class CandidateApplication extends MasterForm {
         jLabel92.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel92.setText("1. Motivasi untuk Melamar");
         jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2310, 350, -1));
+        jPanel1.add(Bataslabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 2950, -1, -1));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -1303,7 +1332,9 @@ public class CandidateApplication extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        Main.main.getMain().showForm(new CandidateApplicationIntroduction());       
+         if (MySession.get_ID()==null){
+            Main.main.getMain().setVisible(true);
+            } Main.main.getMain().showForm(new NewJPanel());     
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
@@ -1319,17 +1350,26 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_hpActionPerformed
 
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
-        String a;
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }             String a ;
         String b = "-";
-        if (t_hp.getText().length() < 2) {
+        if(t_hp.getText().length()<3){
             t_hp.setText("(0)");
-        } else if (t_hp.getText().length() == 6) {
-            t_hp.setText(t_hp.getText() + "-");
-
-        } else if (t_hp.getText().length() == 11) {
-            t_hp.setText(t_hp.getText() + "-");
-
-        } else if (t_hp.getText().length() == 17) {
+        }else if (t_hp.getText().length() == 6) {
+            t_hp.setText(t_hp.getText()+"-");
+        }else if(t_hp.getText().length() == 7){
+StringBuffer sb = new StringBuffer(t_hp.getText());
+       sb.setLength(6); 
+       t_hp.setText(""+sb);
+        }else if(t_hp.getText().length() == 11){
+            t_hp.setText(t_hp.getText()+"-");
+        }else if(t_hp.getText().length() == 12){
+           StringBuffer sb = new StringBuffer(t_hp.getText());
+       sb.setLength(11); 
+       t_hp.setText(""+sb);
+        }else if(t_hp.getText().length() == 17){
             t_hp.setText(t_hp.getText());
             evt.consume();
         }
@@ -1370,14 +1410,16 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_cdesaActionPerformed
 
     private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
-        Connection myConn;
+         Connection myConn;
         try {
+homeCity.removeAllItems();
 
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 homeCity.addItem(myRess.getString("name"));
             }
+
         } catch (SQLException ex) {
         }
     }//GEN-LAST:event_homeStateActionPerformed
@@ -1424,7 +1466,10 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_hpKeyReleased
 
     private void t_bpjsKesehatanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyTyped
-//        asd
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }  //        asd
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
 
     private void t_ktpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyReleased
@@ -1454,12 +1499,58 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
- SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
- String g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));
-        t_pria.setActionCommand("Male");
+ if (t_tgl_personal.getDate()!= null){SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+        g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));}
+         t_pria.setActionCommand("Male");
         t_wanita.setActionCommand("Female");
         t_lajang.setActionCommand("Single");
         t_menikah.setActionCommand("Married");
+   
+        
+        if (t_gaji.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Estimasi Gaji Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_dicipline.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Dicipline Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_nama.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_ktp.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "KTP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_tlhir.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ }else if (t_hp.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Nomor HP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_email.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Email Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_hkec.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_ddesa.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Desa  Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_halamat.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Alamat Rumah Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ }else if (t_ckec.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_cdesa.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Desa Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ } else if (t_calamat.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Alamat Sekarang Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ }else if (radioGrupGender.getSelection()==null) {
+      JOptionPane.showMessageDialog(null, "Jenis Kelamin Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ }else if (radioGrupStatus.getSelection()==null) {
+      JOptionPane.showMessageDialog(null, "Status Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ }else if (g_tgl_personal.length()<2) {
+      JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ }else if (labelfoto.getIcon()==null) {
+      JOptionPane.showMessageDialog(null, "Foto Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+ }else {
+       
+     
+      if (t_bpjsKesehatan.getText().equals("")) {
+     t_bpjsKesehatan.setText("0");
+ }
+       if (t_bpjsKetenagakerjaan.getText().equals("")) {
+      t_bpjsKetenagakerjaan.setText("0");
+ } 
+       
          full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
        full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + curentCountry.getSelectedItem();
          try {
@@ -1577,7 +1668,10 @@ public class CandidateApplication extends MasterForm {
         
        
         
-        Main.main.getMain().showForm(new NewJPanel());
+         if (MySession.get_ID()==null){
+            Main.main.getMain().setVisible(true);
+            } Main.main.getMain().showForm(new NewJPanel());
+ }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void t_lajangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lajangActionPerformed
@@ -1714,8 +1808,46 @@ int row = jTable3.getSelectedRow();
         // TODO add your handling code here:
     }//GEN-LAST:event_t_hp1ActionPerformed
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+ curentCountry.setSelectedItem(homeCountry.getSelectedItem());
+        cprov.setSelectedItem(homeState.getSelectedItem());
+        ccity.setSelectedItem(homeCity.getSelectedItem());
+        t_ckec.setText(t_hkec.getText());
+        t_calamat.setText(t_halamat.getText());
+        t_cdesa.setText(t_ddesa.getText());          // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }
+        if (t_gaji.getText().length()>8){
+            evt.consume();
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_t_gajiKeyTyped
+
+    private void t_ktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyTyped
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }
+        if (t_ktp.getText().length()>15){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_ktpKeyTyped
+
+    private void t_bpjsKetenagakerjaanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKetenagakerjaanKeyTyped
+char c = evt.getKeyChar();
+        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+            evt.consume();
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Bataslabel;
     private com.toedter.calendar.JMonthChooser bulan_akhir;
     private com.toedter.calendar.JMonthChooser bulan_awal;
     private javax.swing.ButtonGroup buttongrup;
