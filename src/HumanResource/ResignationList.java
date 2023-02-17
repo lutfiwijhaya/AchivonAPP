@@ -17,7 +17,6 @@ import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
 import Main.MasterForm;
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
@@ -37,7 +36,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author hi
  */
-public class CandidateList extends MasterForm {
+public class ResignationList extends MasterForm {
     Statement stm;
     ResultSet rs;
     Connection koneksi;
@@ -48,7 +47,7 @@ public class CandidateList extends MasterForm {
     DefaultTableModel myModel;
      String id = null;
 
-    public CandidateList() {
+    public ResignationList() {
         Statement stm;
         ResultSet rs;
         Connection koneksi;
@@ -62,54 +61,52 @@ public class CandidateList extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     void  settable (){
-        String [] header = {"id","KTP", "Nama / Name", "Tempat, Tanggal Lahir / Place, Birthday", "Jenis Kelamin / Gender", "Status Pernikahan / Marital Status", "Email", "No. Hp", "Posisi yang dilamar / Job Applying", "gaji / Sallary","Action"};
+        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal pengunduran diri / Resignation Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
-        actiontable event = new actiontable() {
-            @Override
-            public void lihat(int row) {
-                try {
-                    String tnama = (String) MyTable.getValueAt(row, 1);
-                    String email = (String) MyTable.getValueAt(row, 5);
-                    id = (String) MyTable.getValueAt(row, 0);
-                    Class.forName("com.mysql.jdbc.Driver");
-
-                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-                    jasperdesign = JRXmlLoader.load(O);
-                    param.clear();
-                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
-                    param.put("id",id);
-                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-                    JasperViewer.viewReport(jasperprint, false);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void tambah(int row) {
-                System.out.println("tambah");
-            }
-            @Override
-            public void hapus(int row) {
-                System.out.println("hapus");
-            }
-        };
+//        actiontable event = new actiontable() {
+//            @Override
+//            public void lihat(int row) {
+//                try {
+//                    String tnama = (String) MyTable.getValueAt(row, 1);
+//                    String email = (String) MyTable.getValueAt(row, 5);
+//                    id = (String) MyTable.getValueAt(row, 0);
+//                    Class.forName("com.mysql.jdbc.Driver");
+//
+//                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
+//                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
+//                    jasperdesign = JRXmlLoader.load(O);
+//                    param.clear();
+//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
+//                    param.put("id",id);
+//                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
+//                    JasperViewer.viewReport(jasperprint, false);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            @Override
+//            public void tambah(int row) {
+//                System.out.println("tambah");
+//            }
+//            @Override
+//            public void hapus(int row) {
+//                System.out.println("hapus");
+//            }
+//        };
 //        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
         MyTable.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-        MyTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
         MyTable.getColumnModel().getColumn(3).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(5).setPreferredWidth(150);
         MyTable.getColumnModel().getColumn(6).setPreferredWidth(170);
-        MyTable.getColumnModel().getColumn(7).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(8).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(9).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(10).setPreferredWidth(120);
+        MyTable.getColumnModel().getColumn(7).setPreferredWidth(170);
+        MyTable.getColumnModel().getColumn(8).setPreferredWidth(170);
         
-        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
+//        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
         
 //        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
     }
@@ -170,12 +167,12 @@ void remove (){
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Daftar kandidat / Candidate List");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 40));
+        jLabel1.setText("Daftar pengunduran diri karyawan / Employee Resignation List");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 40));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 1000, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 840, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
@@ -240,42 +237,15 @@ void remove (){
         for(int i = 0; i < row; i++){
             myModel.removeRow(0);
         }
-        if (mySearch != null) {
-            try {
+        try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%"+mySearch+"%'");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
-                                    myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
-                                    myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-                
+                String myData [] = {myRess.getString(11),myRess.getString(11), myRess.getString(12), myRess.getString(13)+","+myRess.getString(18), 
+                                    myRess.getString(19),myRess.getString(22) ,myRess.getString(15)};
                 myModel.addRow(myData);
             }
-            } catch (SQLException ex) {
-            }
-        }else{
-            try {
-                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
-//                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
-//                int numColumns = rsmd.getColumnCount();
-//                for (int i = 1; i <= numColumns; i++) {
-//                    myModel.addColumn(rsmd.getColumnName(i));
-//                }
-
-                while (myRess.next()) {
-//                    Object[] mrow = new Object[numColumns];
-//                    for (int i = 1; i <= numColumns; i++) {
-//                        mrow[i - 1] = myRess.getObject(i);
-//                    }
-                    String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
-                                        myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
-                                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-                    myModel.addRow(myData);
-                }
-               
-            } catch (SQLException ex) {
-            }
+        } catch (SQLException ex) {
         }
     }
     

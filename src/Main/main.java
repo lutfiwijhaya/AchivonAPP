@@ -28,6 +28,7 @@ import HumanResource.EmployeeEvaluation;
 import HumanResource.LeaveOfAbsense;
 import HumanResource.NotificationToNewEmployee;
 import HumanResource.RequestEmployeeAllocation;
+import HumanResource.ResignationList;
 import HumanResource.SummaryStatusCandidatEmployee;
 
 import java.awt.Dimension;
@@ -45,11 +46,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
-/**
- *
- * @author lutfi
- */
+ 
 public class main extends javax.swing.JFrame {
     
     private static main main;
@@ -67,6 +64,7 @@ public class main extends javax.swing.JFrame {
         bodyPanel.repaint();
         checkButton();
     }
+    
     public void undo(){
         bodyPanel.removeAll();
         bodyPanel.add(forms.undo());
@@ -74,6 +72,7 @@ public class main extends javax.swing.JFrame {
         bodyPanel.repaint();
         checkButton();
     }
+    
     public void redo(){
         bodyPanel.removeAll();
         bodyPanel.add(forms.redo());
@@ -81,17 +80,20 @@ public class main extends javax.swing.JFrame {
         bodyPanel.repaint();
         checkButton();
     }
+    
     public void refresh(){
         MasterForm form = forms.getCurrent();
         if (form != null) {
             form.formrefresh();
         }
     }
+    
     public String nama_log = CustomResource.MySession.get_nama();
-     Statement stm;
-    ResultSet rs;
-    ResultSet rsf;
-    Connection koneksi;
+        Statement stm;
+        ResultSet rs;
+        ResultSet rsf;
+        Connection koneksi;
+    
     public main() {
         super("Operation System");
         initComponents();
@@ -100,6 +102,7 @@ public class main extends javax.swing.JFrame {
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
         this.setIconImage(logo.getImage());
     }
+    
     @Override
     public void setVisible(boolean visible) {
         super.setVisible(visible);
@@ -107,6 +110,7 @@ public class main extends javax.swing.JFrame {
         if (visible) {
             myFunction();
         }else{
+//            myFunction();
         }
     }
     private void checkButton(){
@@ -177,7 +181,11 @@ public class main extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         ApplicationRehabilitation = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
-        ApplicationResignation = new javax.swing.JMenuItem();
+        ApplicationResignation = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jSeparator20 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jSeparator21 = new javax.swing.JPopupMenu.Separator();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         EmployeeClearanceStatus = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
@@ -296,12 +304,12 @@ public class main extends javax.swing.JFrame {
                                 .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,13 +518,31 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(ApplicationRehabilitation);
         HumanResourceSystem.add(jSeparator9);
 
-        ApplicationResignation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         ApplicationResignation.setText("Application - Resignation");
         ApplicationResignation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ApplicationResignationActionPerformed(evt);
             }
         });
+
+        jMenuItem5.setText("Employee Resignation List");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        ApplicationResignation.add(jMenuItem5);
+        ApplicationResignation.add(jSeparator20);
+
+        jMenuItem6.setText("Request Resignation");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        ApplicationResignation.add(jMenuItem6);
+        ApplicationResignation.add(jSeparator21);
+
         HumanResourceSystem.add(ApplicationResignation);
         HumanResourceSystem.add(jSeparator10);
 
@@ -680,7 +706,22 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_HumanResourceSystemMouseClicked
 
     private void SMLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMLogoutActionPerformed
-        myLogout();
+            bodyPanel.setVisible(false);
+            HumanResourceSystem.setEnabled(true);
+            POSystem.setEnabled(false);
+            WarehouseSystem.setEnabled(false);
+            AcountingSystem.setEnabled(false);
+            myProfile.setVisible(false);
+            SMLogout.setVisible(false);
+            HumanResourceSystem.setVisible(false);
+            ToolBar.setVisible(true);
+            homeBar.setVisible(false);
+            undoBar.setVisible(false);
+            redoBar.setVisible(false);
+            jPanel2.setVisible(true);
+            myLogout();
+            main.getMain().setVisible(false);
+            new LoginFrame().setVisible(true);
     }//GEN-LAST:event_SMLogoutActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -730,10 +771,6 @@ public class main extends javax.swing.JFrame {
     private void ApplicationRehabilitationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationRehabilitationActionPerformed
         showForm(new AplicationRehabilitation());
     }//GEN-LAST:event_ApplicationRehabilitationActionPerformed
-
-    private void ApplicationResignationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationResignationActionPerformed
-        showForm(new ApplicationResignation());
-    }//GEN-LAST:event_ApplicationResignationActionPerformed
 
     private void EmployeeClearanceStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeClearanceStatusActionPerformed
         showForm(new EmployeeClearanceStatus());
@@ -831,6 +868,18 @@ public class main extends javax.swing.JFrame {
         bodyPanel.setVisible(true);
     }//GEN-LAST:event_buttonLogin2ActionPerformed
 
+    private void ApplicationResignationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationResignationActionPerformed
+//        
+    }//GEN-LAST:event_ApplicationResignationActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        showForm(new ResignationList());
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        showForm(new ApplicationResignation());
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -880,7 +929,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem AllocationAnouncement;
     private javax.swing.JMenuItem ApplicationLeaveofAbsence;
     private javax.swing.JMenuItem ApplicationRehabilitation;
-    private javax.swing.JMenuItem ApplicationResignation;
+    private javax.swing.JMenu ApplicationResignation;
     private javax.swing.JMenuItem Checklist;
     private javax.swing.JMenuItem ConfirmationHandoverTakeover;
     private javax.swing.JMenuItem DiciplinaryRevolution;
@@ -916,6 +965,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
@@ -929,6 +980,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator20;
+    private javax.swing.JPopupMenu.Separator jSeparator21;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
@@ -941,10 +994,26 @@ public class main extends javax.swing.JFrame {
     public static javax.swing.JMenu undoBar;
     // End of variables declaration//GEN-END:variables
     private void myLogout() {
-        CustomResource.MySession.set_ktp("");
-        CustomResource.MySession.set_nama("");
-        new Main.LoginFrame().setVisible(true);
-        this.dispose(); 
+        CustomResource.MySession.set_ID(null);
+        CustomResource.MySession.set_karyawanID(null);
+        CustomResource.MySession.set_ktp(null);
+        CustomResource.MySession.set_nama(null);
+        CustomResource.MySession.set_birthPlace(null);
+        CustomResource.MySession.set_Birthday(null);
+        CustomResource.MySession.set_sex(null);
+        CustomResource.MySession.set_marital(null);
+        CustomResource.MySession.set_email(null);
+        CustomResource.MySession.set_mobileNumber(null);
+        CustomResource.MySession.set_BPJS(null);
+        CustomResource.MySession.set_NPWP(null);
+        CustomResource.MySession.set_JobPosition(null);
+        CustomResource.MySession.set_Sallary(null);
+        CustomResource.MySession.set_Role(null);
+        CustomResource.MySession.set_cd_ktp(null);
+        new LoginFrame().setVisible(true);
+        main.jPanel2.setVisible(true);
+        main.getMain().setVisible(false);
+//        this.dispose(); s
     }
     
     private void MyWindow(){
@@ -955,22 +1024,18 @@ public class main extends javax.swing.JFrame {
 
     private void myFunction() {
         if (MySession.get_nama() == null) {
-//            jPanel1.setVisible(false);
             bodyPanel.setVisible(false);
-            HumanResourceSystem.setEnabled(true);
+            HumanResourceSystem.setEnabled(false);
             POSystem.setEnabled(false);
             WarehouseSystem.setEnabled(false);
             AcountingSystem.setEnabled(false);
             myProfile.setVisible(false);
             SMLogout.setVisible(false);
-            HumanResourceSystem.setVisible(false);
             ToolBar.setVisible(true);
             homeBar.setVisible(false);
             undoBar.setVisible(false);
             redoBar.setVisible(false);
-            jPanel2.setVisible(true);
         } else {
-//            jPanel1.setVisible(true);
             bodyPanel.setVisible(true);
             HumanResourceSystem.setEnabled(true);
             POSystem.setEnabled(true);
@@ -978,12 +1043,10 @@ public class main extends javax.swing.JFrame {
             AcountingSystem.setEnabled(true);
             myProfile.setVisible(true);
             SMLogout.setVisible(true);
-            HumanResourceSystem.setVisible(true);
             ToolBar.setVisible(true);
             homeBar.setVisible(true);
             undoBar.setVisible(true);
             redoBar.setVisible(true);
-//            jPanel1.setVisible(false);
             jPanel2.setVisible(false);
             bodyPanel.setVisible(true);
             showForm(new MainPanel());

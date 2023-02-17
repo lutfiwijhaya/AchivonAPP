@@ -25,16 +25,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author hi
- */
-public class ApplicationResignation extends MasterForm {
+public class EmployeeResignation extends MasterForm {
 
-    /**
-     * Creates new form ApplicationResignation
-     */
-    public ApplicationResignation() {
+    public EmployeeResignation() {
         initComponents();
         MyWindow();
         
@@ -50,53 +43,7 @@ public class ApplicationResignation extends MasterForm {
         labelNameSign.setText(MySession.get_nama());
         labelDateSign.setText(formatter.format(date));
         
-            try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("select * from employee_resignation where karyawan_id = '"+MySession.get_karyawanID()+"'");
-                if (rs.next()) {
-                    myRole();
-                }else{
-                    labelNamePresident.setVisible(false);
-                    signPresident.setVisible(false);
-                    jLabel19.setVisible(false);
-
-                    jLabel21.setVisible(false);
-                    signHRRevd.setVisible(false);
-                    labelNameHRRevd.setVisible(false);
-
-                    jLabel27.setVisible(false);
-                    signHRMGR.setVisible(false);
-                    labelNameHRMGR.setVisible(false);
-                    jLabel42.setVisible(false);
-
-                    labelNamePresident.setVisible(false);
-                    signPresident.setVisible(false);
-                    jLabel19.setVisible(false);
-
-                    jLabel43.setVisible(false);
-                    jLabel30.setVisible(false);
-                    signTeamMGR.setVisible(false);
-                    labelNameTeamMGR.setVisible(false);
-
-                    jLabel34.setVisible(false);
-                    signTeamRevd.setVisible(false);
-                    labelNameTeamRevd.setVisible(false);
-
-                    jLabel37.setVisible(false);
-                    signTeamRecd.setVisible(false);
-                    labelNameTeamRecd.setVisible(false);
-
-                    jLabel40.setVisible(false);
-                    signTeamPred.setVisible(false);
-                    labelNameTeamPred.setVisible(false);
-                    
-                    SaveButton.setVisible(false);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-             
+               
     }
 
     /**

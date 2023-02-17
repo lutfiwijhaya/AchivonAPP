@@ -108,17 +108,19 @@ public class AllocationAnnouncement extends MasterForm {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 311, 804, 120));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(51, 51, 255));
         jButton2.setText("Back / Kembali");
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 530, 190, 40));
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(51, 51, 255));
         jButton3.setText("Batal / Cancel");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 430, 130, 40));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 140, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
@@ -148,7 +150,9 @@ public class AllocationAnnouncement extends MasterForm {
         textJoinDate.setLabelText("Initial Join Date");
         add(textJoinDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 280, -1));
 
+        jButton4.setBackground(new java.awt.Color(51, 51, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Send / Kirim");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,14 +161,16 @@ public class AllocationAnnouncement extends MasterForm {
         });
         add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 530, 190, 40));
 
+        jButton5.setBackground(new java.awt.Color(51, 51, 255));
         jButton5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Tambah / Add");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 170, 130, 40));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 240, 130, 40));
 
         t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 190, 30));
