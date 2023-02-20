@@ -232,7 +232,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 51, 255));
-        jButton2.setText(" Exit");
+        jButton2.setText("Exit");
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
