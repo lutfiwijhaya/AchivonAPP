@@ -80,7 +80,7 @@ public class CandidateApplication extends MasterForm {
         homeCountry.setSelectedItem("Indonesia");
         curentCountry.setSelectedItem("Indonesia");
         
-     
+    
        
 
     }
@@ -1334,6 +1334,8 @@ public class CandidateApplication extends MasterForm {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
          if (MySession.get_ID()==null){
+             Main.main.jPanel2.setVisible(true);
+             Main.main.bodyPanel.setVisible(false);
             Main.main.getMain().setVisible(true);
             } Main.main.getMain().showForm(new NewJPanel());     
     }//GEN-LAST:event_jToggleButton1ActionPerformed
@@ -1670,8 +1672,10 @@ char c = evt.getKeyChar();
        
         
          if (MySession.get_ID()==null){
+             Main.main.jPanel2.setVisible(true);
+             Main.main.bodyPanel.setVisible(false);
             Main.main.getMain().setVisible(true);
-            } Main.main.getMain().showForm(new NewJPanel());
+            } Main.main.getMain().showForm(new NewJPanel());  
  }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 

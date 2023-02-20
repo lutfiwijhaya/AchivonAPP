@@ -43,7 +43,7 @@ public class EmployeeClearanceStatus extends MasterForm{
     public EmployeeClearanceStatus() {
         initComponents();
         MyWindow();
-        
+        jScrollPane5.setWheelScrollingEnabled(false);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
@@ -481,6 +481,7 @@ public class EmployeeClearanceStatus extends MasterForm{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable5.setAutoscrolls(false);
         jScrollPane5.setViewportView(jTable5);
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, 670, 360));
