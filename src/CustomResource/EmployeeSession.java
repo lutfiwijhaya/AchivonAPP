@@ -10,6 +10,8 @@ public class EmployeeSession {
     private static String KTPRehab;
     private static String KTPAbsence;
     private static String KTPAllocation;
+    private static String KTPClearance;
+    private static String KTPHandover;
     
     public static String getEmployeeID(){
         return EmployeeID;
@@ -49,5 +51,21 @@ public class EmployeeSession {
     
     public static void setKTPAllocation(String KTPAllocation){
         EmployeeSession.KTPAllocation = KTPAllocation;
+    }
+    
+    public static String getKTPClearance(){
+        return KTPClearance;
+    }
+    
+    public static void setKTPClearance(String KTPClearance){
+        EmployeeSession.KTPClearance = KTPClearance;
+    }
+    
+    public static String getKTPHandover(){
+        return KTPHandover;
+    }
+    
+    public static void setKTPHandover(String KTPHandover){
+        EmployeeSession.KTPHandover = KTPHandover;
     }
 }

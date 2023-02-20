@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import CustomResource.EmployeeSession;
 import CustomResource.MySession;
 import Main.MasterForm;
 import java.awt.Dimension;
@@ -28,12 +29,12 @@ import javax.swing.JOptionPane;
  *
  * @author USER
  */
-public class ConfirmationHandingOverTakingOver extends MasterForm {
+public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
 
     /**
      * Creates new form ConfirmationHandingOverTakingOver
      */
-    public ConfirmationHandingOverTakingOver() {
+    public EmployeeConfirmationHandingOverTakingOver() {
         initComponents();
         MyWindow();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
@@ -41,11 +42,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
     
-        labelDiscipline.setText(MySession.get_JobPosition());
-        labelName.setText(MySession.get_nama());
-        labelPosition.setText(MySession.get_JobPosition());
-        labelKTP.setText(MySession.get_ktp());
-//        labelHP.setText(MySession.get_mobileNumber());
+        
         
         SendButton.setVisible(true);
 //        SaveButton.setVisible(false);
@@ -62,8 +59,13 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         try {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("select * from employee_rehabilitation where karyawan_id = '"+MySession.get_karyawanID()+"'");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM employee_rehabilitation inner join employee on employee_rehabilitation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPHandover()+"'");
                 if (rs.next()) {
+                    labelDiscipline.setText(rs.getString(23));
+                    labelName.setText(rs.getString(14));
+                    labelPosition.setText(rs.getString(23));
+                    labelKTP.setText(rs.getString(13));
+//                    labelHP.setText(MySession.get_mobileNumber());
                     SendButton.setVisible(false);
                     jLabel38.setText(rs.getString(3));
                     jLabel36.setText(rs.getString(4));

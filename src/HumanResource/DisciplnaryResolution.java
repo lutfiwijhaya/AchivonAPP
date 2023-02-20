@@ -4,12 +4,24 @@
  */
 package HumanResource;
 
+import CustomResource.MySession;
 import Main.MasterForm;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 /**
  *
  * @author USER
@@ -24,11 +36,14 @@ public class DisciplnaryResolution extends MasterForm {
         MyWindow();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         
-        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
-        
         ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
+        jLabel7.setVisible(false);
+         if (!"1".equals(MySession.get_Role())) {
+            jLabel19.setVisible(false);
+            signPresident.setVisible(false);
+            labelNamePresident.setVisible(false);
+        }
     }
 
     /**
@@ -43,8 +58,6 @@ public class DisciplnaryResolution extends MasterForm {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -63,6 +76,10 @@ public class DisciplnaryResolution extends MasterForm {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        labelNamePresident = new javax.swing.JLabel();
+        signPresident = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,22 +88,6 @@ public class DisciplnaryResolution extends MasterForm {
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("DISCIPLINARY REVOLUTION");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
-
-        jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null}
-            },
-            new String [] {
-                "President"
-            }
-        ));
-        jTable1.setRowHeight(70);
-        jTable1.setShowHorizontalLines(true);
-        jTable1.setShowVerticalLines(true);
-        jScrollPane2.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 120, 122, 103));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -171,6 +172,29 @@ public class DisciplnaryResolution extends MasterForm {
         jLabel18.setText("THE HUMAN RESOURCES COMMITTEE");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 270, -1));
 
+        labelNamePresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNamePresident.setText("Name");
+        labelNamePresident.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.add(labelNamePresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 220, 120, 20));
+
+        signPresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        signPresident.setText("Signature");
+        signPresident.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        signPresident.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signPresidentMouseClicked(evt);
+            }
+        });
+        jPanel1.add(signPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 130, 120, 90));
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("President");
+        jLabel19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 120, 20));
+
+        jLabel7.setText("jLabel4");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
+
         jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -187,6 +211,28 @@ public class DisciplnaryResolution extends MasterForm {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void signPresidentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signPresidentMouseClicked
+        if ("1".equals(MySession.get_Role())) {
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
+
+                if (rs.next()) {
+                    byte[] imageData = rs.getBytes("scan");
+                    ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                    BufferedImage bImage = ImageIO.read(bis);
+                    ImageIcon Myicon = new ImageIcon(bImage);
+                    Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
+                    signPresident.setIcon(new ImageIcon(imageResize));
+                    labelNamePresident.setText(MySession.get_nama());
+                }
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_signPresidentMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -199,19 +245,21 @@ public class DisciplnaryResolution extends MasterForm {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JLabel labelNamePresident;
+    private javax.swing.JLabel signPresident;
     // End of variables declaration//GEN-END:variables
 private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

@@ -21,7 +21,9 @@ import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
 import TestResource.CandidateApplicationPersonal;
 import HumanResource.CandidateApplicationedit;
+import HumanResource.ClearanceList;
 import HumanResource.ConfirmationHandingOverTakingOver;
+import HumanResource.ConfirmationHandoverandTakeoverList;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
 import HumanResource.EmployeeEvaluation;
@@ -142,7 +144,6 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem3 = new javax.swing.JMenuItem();
         bodyPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -201,9 +202,15 @@ public class main extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jSeparator21 = new javax.swing.JPopupMenu.Separator();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
-        EmployeeClearanceStatus = new javax.swing.JMenuItem();
+        EmployeeClearanceStatus = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jSeparator27 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
-        ConfirmationHandoverTakeover = new javax.swing.JMenuItem();
+        ConfirmationHandoverTakeover = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator28 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jSeparator12 = new javax.swing.JPopupMenu.Separator();
         DiciplinaryRevolution = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
@@ -221,8 +228,6 @@ public class main extends javax.swing.JFrame {
         jSeparator18 = new javax.swing.JPopupMenu.Separator();
         SMLogout = new javax.swing.JMenuItem();
         jSeparator19 = new javax.swing.JPopupMenu.Separator();
-
-        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -319,12 +324,12 @@ public class main extends javax.swing.JFrame {
                                 .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,23 +613,49 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(ApplicationResignation);
         HumanResourceSystem.add(jSeparator10);
 
-        EmployeeClearanceStatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         EmployeeClearanceStatus.setText("Employee Clearance Status");
-        EmployeeClearanceStatus.addActionListener(new java.awt.event.ActionListener() {
+        EmployeeClearanceStatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jMenuItem13.setText("Clearance Employee List");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmployeeClearanceStatusActionPerformed(evt);
+                jMenuItem13ActionPerformed(evt);
             }
         });
+        EmployeeClearanceStatus.add(jMenuItem13);
+        EmployeeClearanceStatus.add(jSeparator27);
+
+        jMenuItem14.setText("Clearance Status");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        EmployeeClearanceStatus.add(jMenuItem14);
+
         HumanResourceSystem.add(EmployeeClearanceStatus);
         HumanResourceSystem.add(jSeparator11);
 
-        ConfirmationHandoverTakeover.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ConfirmationHandoverTakeover.setText("Confirmation - Handover & Takeover");
-        ConfirmationHandoverTakeover.addActionListener(new java.awt.event.ActionListener() {
+        ConfirmationHandoverTakeover.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jMenuItem3.setText("Employee Handover & Takeover List");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfirmationHandoverTakeoverActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
+        ConfirmationHandoverTakeover.add(jMenuItem3);
+        ConfirmationHandoverTakeover.add(jSeparator28);
+
+        jMenuItem15.setText("Request Handover & Takeover");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        ConfirmationHandoverTakeover.add(jMenuItem15);
+
         HumanResourceSystem.add(ConfirmationHandoverTakeover);
         HumanResourceSystem.add(jSeparator12);
 
@@ -807,14 +838,6 @@ public class main extends javax.swing.JFrame {
 //        ceklis
     }//GEN-LAST:event_ChecklistActionPerformed
 
-    private void EmployeeClearanceStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeClearanceStatusActionPerformed
-        showForm(new EmployeeClearanceStatus());
-    }//GEN-LAST:event_EmployeeClearanceStatusActionPerformed
-
-    private void ConfirmationHandoverTakeoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmationHandoverTakeoverActionPerformed
-        showForm(new ConfirmationHandingOverTakingOver());
-    }//GEN-LAST:event_ConfirmationHandoverTakeoverActionPerformed
-
     private void DiciplinaryRevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiciplinaryRevolutionActionPerformed
         showForm(new DisciplnaryResolution());
     }//GEN-LAST:event_DiciplinaryRevolutionActionPerformed
@@ -940,6 +963,22 @@ public class main extends javax.swing.JFrame {
         showForm(new RequestEmployeeAllocation());
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        showForm(new ClearanceList());
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        showForm(new EmployeeClearanceStatus());
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        showForm(new ConfirmationHandoverandTakeoverList());
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        showForm(new ConfirmationHandingOverTakingOver());
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -991,9 +1030,9 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenu ApplicationRehabilitation;
     private javax.swing.JMenu ApplicationResignation;
     private javax.swing.JMenuItem Checklist;
-    private javax.swing.JMenuItem ConfirmationHandoverTakeover;
+    private javax.swing.JMenu ConfirmationHandoverTakeover;
     private javax.swing.JMenuItem DiciplinaryRevolution;
-    private javax.swing.JMenuItem EmployeeClearanceStatus;
+    private javax.swing.JMenu EmployeeClearanceStatus;
     private javax.swing.JMenuItem EmployeeEvaluation;
     private javax.swing.JMenuItem EmployeeStatus;
     public static javax.swing.JMenu HumanResourceSystem;
@@ -1025,6 +1064,9 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -1053,6 +1095,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator24;
     private javax.swing.JPopupMenu.Separator jSeparator25;
     private javax.swing.JPopupMenu.Separator jSeparator26;
+    private javax.swing.JPopupMenu.Separator jSeparator27;
+    private javax.swing.JPopupMenu.Separator jSeparator28;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
