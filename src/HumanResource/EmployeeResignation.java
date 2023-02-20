@@ -310,6 +310,7 @@ public class EmployeeResignation extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        date = new com.raven.datechooser.DateChooser();
         jScrollPane6 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -326,10 +327,8 @@ public class EmployeeResignation extends MasterForm {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        labelDate = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         labelDateSign = new javax.swing.JLabel();
@@ -372,6 +371,9 @@ public class EmployeeResignation extends MasterForm {
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        textDate = new CustomResource.CustomTextfield();
+
+        date.setTextRefernce(textDate);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -434,10 +436,6 @@ public class EmployeeResignation extends MasterForm {
         jLabel12.setText("disadvantage to the company, I faithfully hand over all matters related to the duties performed during the company’s employment of me in detail, and to the date");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 700, 940, -1));
 
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel13.setText("Date to resign : ");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 640, -1, -1));
-
         jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel14.setText("I apply for resignation for the reasons described above, and to ensure that no disruption to the company's work occurs due to my resignation and that there is no ");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 680, 940, -1));
@@ -445,10 +443,6 @@ public class EmployeeResignation extends MasterForm {
         jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel15.setText("of resignation. We pledge to abide by confidentiality so that no disadvantages to the company occur for 3 years.");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 720, -1, -1));
-
-        labelDate.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        labelDate.setText("DD-MMM-YYYY");
-        jPanel1.add(labelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 640, -1, -1));
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 980, 210, 30));
@@ -673,6 +667,10 @@ public class EmployeeResignation extends MasterForm {
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
 
+        textDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textDate.setLabelText("Date to resign : ");
+        jPanel1.add(textDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, 210, -1));
+
         jScrollPane6.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -860,11 +858,11 @@ public class EmployeeResignation extends MasterForm {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SaveButton;
+    private com.raven.datechooser.DateChooser date;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -900,7 +898,6 @@ public class EmployeeResignation extends MasterForm {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel labelDate;
     private javax.swing.JLabel labelDateSign;
     private javax.swing.JLabel labelDiscipline;
     private javax.swing.JLabel labelKTP;
@@ -921,6 +918,7 @@ public class EmployeeResignation extends MasterForm {
     private javax.swing.JLabel signTeamPred;
     private javax.swing.JLabel signTeamRecd;
     private javax.swing.JLabel signTeamRevd;
+    private CustomResource.CustomTextfield textDate;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

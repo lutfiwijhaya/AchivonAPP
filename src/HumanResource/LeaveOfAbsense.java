@@ -12,6 +12,9 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -24,6 +27,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -38,6 +42,12 @@ public class LeaveOfAbsense extends MasterForm {
     public LeaveOfAbsense() {
         initComponents();
         MyWindow();
+        
+
+        for (MouseWheelListener listener : jScrollPane6.getMouseWheelListeners()) {
+            jScrollPane6.removeMouseWheelListener(listener);
+        }
+        
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         
         labelDiscipline.setText(MySession.get_JobPosition());
@@ -511,6 +521,14 @@ public class LeaveOfAbsense extends MasterForm {
         jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null},
                 {null, null},
                 {null, null}
