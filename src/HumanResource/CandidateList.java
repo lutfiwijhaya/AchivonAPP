@@ -16,10 +16,17 @@ import CustomResource.actiontable;
 import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
+import CustomResource.MySession;
 import Main.MasterForm;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -117,7 +124,7 @@ public class CandidateList extends MasterForm {
 
 void remove (){ 
     
-}
+} 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -210,6 +217,23 @@ void remove (){
             Main.main.getMain().showForm(new CandidateProfile());    
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
+        }
+        Main.main.getMain().showForm(new CandidateProfile());
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from cd_foto where id_employee ='"+CandidateSession.getCandidateID()+"'"); // assuming the image is stored in the 'images' table with an ID of 1
+
+            if (rs.next()) {
+                byte[] imageData = rs.getBytes("foto");
+                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                BufferedImage bImage = ImageIO.read(bis);
+                ImageIcon Myicon = new ImageIcon(bImage);
+                Image imageResize = Myicon.getImage().getScaledInstance(130, 140, Image.SCALE_SMOOTH);
+                CandidateProfile.labelfoto.setIcon(new ImageIcon(imageResize));
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_MyTableMouseClicked
 

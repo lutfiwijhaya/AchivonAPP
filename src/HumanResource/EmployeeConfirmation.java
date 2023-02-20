@@ -18,6 +18,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -37,6 +39,14 @@ import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
 import javax.activation.*;
 import javax.mail.*;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author hi
@@ -47,6 +57,11 @@ public class EmployeeConfirmation extends MasterForm {
     ResultSet rs;
     Connection koneksi;
     String tanggal;
+   
+    JasperReport jasperreport;
+    JasperDesign jasperdesign;
+    JasperPrint jasperprint;
+    Map<String, Object> param = new HashMap<String, Object>();
 
     /**
      * Creates new form EmployeeConfirmation
@@ -123,7 +138,7 @@ public class EmployeeConfirmation extends MasterForm {
         l_emnama = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        l_hp = new javax.swing.JLabel();
+        l_email = new javax.swing.JLabel();
         l_ktp = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -145,6 +160,9 @@ public class EmployeeConfirmation extends MasterForm {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        l_hp = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -181,7 +199,7 @@ public class EmployeeConfirmation extends MasterForm {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel1.setText(":");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 20, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 20, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText(":");
@@ -256,11 +274,11 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel8.setText("A6. Mobile (HP) No.");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, -1, -1));
+        jLabel8.setText("A7. E-mail.");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
 
-        l_hp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 230, 13));
+        l_email.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel1.add(l_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 230, 13));
 
         l_ktp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 390, 13));
@@ -307,23 +325,23 @@ public class EmployeeConfirmation extends MasterForm {
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel16.setText("I (Employee) has confirmed all matters in accordance with The Company’s (means PT. ACHIVON PRESTASI ABADI’s)");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, 610, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 610, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel17.setText("human resources management standard regulations from the date of signing this agreement, and as a result, I assure ");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 610, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 610, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel18.setText("that I will thoroughly perform and strictly comply with the tasks given and duties. In addition, I confirm that I will work");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 610, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 610, -1));
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel19.setText("very diligently without raising any objection in the overtime including working day and non-working day, special task");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 610, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 610, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel26.setText("and special work at the request of The Company, and I made signature above on this employee confirmation.");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 610, -1));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 610, -1));
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel27.setText("I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee");
@@ -361,6 +379,17 @@ public class EmployeeConfirmation extends MasterForm {
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 640, 130, 30));
 
+        jLabel28.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel28.setText("A6. Mobile (HP) No.");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel3.setText(":");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 20, -1));
+
+        l_hp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 230, 13));
+
         jScrollPane3.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -393,9 +422,31 @@ public class EmployeeConfirmation extends MasterForm {
 //            
 //        }
         
+// try {
+//                   
+//                    Class.forName("com.mysql.jdbc.Driver");
+//String filePath = "src/Doc/notification_cd.pdf";
+//                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
+//                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\notification_cd.jrxml");
+//                    jasperdesign = JRXmlLoader.load(O);
+////                    param.clear();
+//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
+////                    param.put("nama",l_name1.getText());
+////                    param.put("tgl",tanggal);
+//                    jasperprint = JasperFillManager.fillReport(jasperreport, param);
+//                    JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
+//                    JasperViewer.viewReport(jasperprint, false);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }   
+//
+
+
+
         String to = "lutfiwijhaya@gmail.com";
-        String from = "erlanggamurti@gmail.com";
-        String emailPassword = "ymcnciygeelburto";
+        String from = "lutfiwijhaya@achivon.co.id";
+        String emailPassword = "Achivon123";
+//        String emailPassword = "scqrsacneyuellbe";
         String subject = "EmployeeNotification";
         String testemail = "test doang \n baris baru";
         
@@ -403,12 +454,13 @@ public class EmployeeConfirmation extends MasterForm {
         proper.put("mail.smtp.auth","true");
         proper.put("mail.smtp.starttls.enable","true");
         proper.put("mail.smtp.ssl.protocols","TLSv1.2");
-        proper.put("mail.smtp.host","smtp.gmail.com");
-        proper.put("mail.smtp.port","587");
-//        587
+        proper.put("mail.smtp.host","mail.achivon.co.id");
+        proper.put("mail.smtp.port","465");
+            proper.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
         
 
-        System.out.println("Done");
+        
         Session mailSession = Session.getDefaultInstance(proper, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -424,11 +476,11 @@ public class EmployeeConfirmation extends MasterForm {
             myMessage.setContent(testemail,"text/plain");
             MimeBodyPart messageBodyPart = new MimeBodyPart();
             Multipart multipart = new MimeMultipart();
-            String file = "src/Doc/HAII TESTING.docx";
-            String fileName = "Doc.docx";
+            String file = "src/Doc/test.pdf";
+            String fileName = "resume.pdf";
             DataSource source = new FileDataSource(file);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(fileName);
+            messageBodyPart.setFileName(source.getName());
             multipart.addBodyPart(messageBodyPart);
             myMessage.setContent(multipart);
             System.out.println("Sending");
@@ -481,6 +533,8 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -501,6 +555,7 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel l_cadd;
     private javax.swing.JLabel l_date;
+    private javax.swing.JLabel l_email;
     private javax.swing.JLabel l_emnama;
     private javax.swing.JLabel l_emnama1;
     private javax.swing.JLabel l_hadd;
@@ -582,6 +637,7 @@ public class EmployeeConfirmation extends MasterForm {
                 l_hp.setText(rs.getString(10).trim());
                 l_hadd.setText(rs.getString(32).trim());
                 l_cadd.setText(rs.getString(33).trim());
+                l_email.setText(rs.getString(4).trim());
             }
         } catch (Exception e) {
             e.printStackTrace();
