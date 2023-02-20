@@ -25,8 +25,12 @@ import HumanResource.ConfirmationHandingOverTakingOver;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
 import HumanResource.EmployeeEvaluation;
+import HumanResource.EmployeeRehabilitation;
+import HumanResource.LeaveOfAbsenceList;
 import HumanResource.LeaveOfAbsense;
 import HumanResource.NotificationToNewEmployee;
+import HumanResource.RehabilitationList;
+import HumanResource.RequestAllocationList;
 import HumanResource.RequestEmployeeAllocation;
 import HumanResource.ResignationList;
 import HumanResource.SummaryStatusCandidatEmployee;
@@ -175,11 +179,21 @@ public class main extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         AllocationAnouncement = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
-        RequestEmployeeAllocation = new javax.swing.JMenuItem();
+        RequestEmployeeAllocation = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jSeparator26 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
-        ApplicationLeaveofAbsence = new javax.swing.JMenuItem();
+        AplicationLeaveOfAbsence = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jSeparator25 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
-        ApplicationRehabilitation = new javax.swing.JMenuItem();
+        ApplicationRehabilitation = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator22 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jSeparator23 = new javax.swing.JPopupMenu.Separator();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
         ApplicationResignation = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -196,6 +210,7 @@ public class main extends javax.swing.JFrame {
         EmployeeEvaluation = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
         AddJobVacancy = new javax.swing.JMenuItem();
+        jSeparator24 = new javax.swing.JPopupMenu.Separator();
         POSystem = new javax.swing.JMenu();
         WarehouseSystem = new javax.swing.JMenu();
         AcountingSystem = new javax.swing.JMenu();
@@ -304,12 +319,12 @@ public class main extends javax.swing.JFrame {
                                 .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +353,7 @@ public class main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(customTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonLogin2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         homeBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/IconHome.png"))); // NOI18N
@@ -398,8 +413,9 @@ public class main extends javax.swing.JFrame {
         });
 
         candidateApplication.setText("Candidate Application");
-        candidateApplication.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        candidateApplication.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
+        candidateList.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         candidateList.setText("Candidate List");
         candidateList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,6 +425,7 @@ public class main extends javax.swing.JFrame {
         candidateApplication.add(candidateList);
         candidateApplication.add(jSeparator15);
 
+        applicationForm.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         applicationForm.setText("Application Form");
         applicationForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -438,7 +455,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(candidateApplication);
         HumanResourceSystem.add(jSeparator1);
 
-        employingConfirmation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        employingConfirmation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         employingConfirmation.setText("Employing Confirmation");
         employingConfirmation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -448,7 +465,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(employingConfirmation);
         HumanResourceSystem.add(jSeparator2);
 
-        NotificationtoNewEmployee.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        NotificationtoNewEmployee.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         NotificationtoNewEmployee.setText("Notification to New Employee");
         NotificationtoNewEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,7 +475,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(NotificationtoNewEmployee);
         HumanResourceSystem.add(jSeparator3);
 
-        EmployeeStatus.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        EmployeeStatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         EmployeeStatus.setText("Employee Status");
         EmployeeStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -468,7 +485,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(EmployeeStatus);
         HumanResourceSystem.add(jSeparator4);
 
-        Checklist.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        Checklist.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Checklist.setText("Checklist");
         Checklist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -478,7 +495,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(Checklist);
         HumanResourceSystem.add(jSeparator5);
 
-        AllocationAnouncement.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        AllocationAnouncement.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         AllocationAnouncement.setText("Allocation Anouncement");
         AllocationAnouncement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -488,43 +505,87 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(AllocationAnouncement);
         HumanResourceSystem.add(jSeparator6);
 
-        RequestEmployeeAllocation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         RequestEmployeeAllocation.setText("Request - Employee Allocation ");
-        RequestEmployeeAllocation.addActionListener(new java.awt.event.ActionListener() {
+        RequestEmployeeAllocation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jMenuItem11.setText("Requested Employee Allocation List");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RequestEmployeeAllocationActionPerformed(evt);
+                jMenuItem11ActionPerformed(evt);
             }
         });
+        RequestEmployeeAllocation.add(jMenuItem11);
+        RequestEmployeeAllocation.add(jSeparator26);
+
+        jMenuItem12.setText("Request Allocation");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        RequestEmployeeAllocation.add(jMenuItem12);
+
         HumanResourceSystem.add(RequestEmployeeAllocation);
         HumanResourceSystem.add(jSeparator7);
 
-        ApplicationLeaveofAbsence.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        ApplicationLeaveofAbsence.setText("Application - Leave of Absence");
-        ApplicationLeaveofAbsence.addActionListener(new java.awt.event.ActionListener() {
+        AplicationLeaveOfAbsence.setText("Application - Leave of Absence");
+        AplicationLeaveOfAbsence.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jMenuItem9.setText("Employee Leave of Absence List");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ApplicationLeaveofAbsenceActionPerformed(evt);
+                jMenuItem9ActionPerformed(evt);
             }
         });
-        HumanResourceSystem.add(ApplicationLeaveofAbsence);
+        AplicationLeaveOfAbsence.add(jMenuItem9);
+        AplicationLeaveOfAbsence.add(jSeparator25);
+
+        jMenuItem10.setText("Request Leave of Absence");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        AplicationLeaveOfAbsence.add(jMenuItem10);
+
+        HumanResourceSystem.add(AplicationLeaveOfAbsence);
         HumanResourceSystem.add(jSeparator8);
 
-        ApplicationRehabilitation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         ApplicationRehabilitation.setText("Application - Rehabilitation");
-        ApplicationRehabilitation.addActionListener(new java.awt.event.ActionListener() {
+        ApplicationRehabilitation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jMenuItem7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jMenuItem7.setText("Employee Rehabilitation List");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ApplicationRehabilitationActionPerformed(evt);
+                jMenuItem7ActionPerformed(evt);
             }
         });
+        ApplicationRehabilitation.add(jMenuItem7);
+        ApplicationRehabilitation.add(jSeparator22);
+
+        jMenuItem8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jMenuItem8.setText("Request Rehabilitation");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        ApplicationRehabilitation.add(jMenuItem8);
+        ApplicationRehabilitation.add(jSeparator23);
+
         HumanResourceSystem.add(ApplicationRehabilitation);
         HumanResourceSystem.add(jSeparator9);
 
         ApplicationResignation.setText("Application - Resignation");
+        ApplicationResignation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ApplicationResignation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ApplicationResignationActionPerformed(evt);
             }
         });
 
+        jMenuItem5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jMenuItem5.setText("Employee Resignation List");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -534,6 +595,7 @@ public class main extends javax.swing.JFrame {
         ApplicationResignation.add(jMenuItem5);
         ApplicationResignation.add(jSeparator20);
 
+        jMenuItem6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jMenuItem6.setText("Request Resignation");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -546,7 +608,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(ApplicationResignation);
         HumanResourceSystem.add(jSeparator10);
 
-        EmployeeClearanceStatus.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        EmployeeClearanceStatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         EmployeeClearanceStatus.setText("Employee Clearance Status");
         EmployeeClearanceStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -556,7 +618,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(EmployeeClearanceStatus);
         HumanResourceSystem.add(jSeparator11);
 
-        ConfirmationHandoverTakeover.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ConfirmationHandoverTakeover.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ConfirmationHandoverTakeover.setText("Confirmation - Handover & Takeover");
         ConfirmationHandoverTakeover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -566,7 +628,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(ConfirmationHandoverTakeover);
         HumanResourceSystem.add(jSeparator12);
 
-        DiciplinaryRevolution.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        DiciplinaryRevolution.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         DiciplinaryRevolution.setText("Diciplinary Revolution");
         DiciplinaryRevolution.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -576,7 +638,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(DiciplinaryRevolution);
         HumanResourceSystem.add(jSeparator13);
 
-        EmployeeEvaluation.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        EmployeeEvaluation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         EmployeeEvaluation.setText("Employee Evaluation");
         EmployeeEvaluation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -586,7 +648,7 @@ public class main extends javax.swing.JFrame {
         HumanResourceSystem.add(EmployeeEvaluation);
         HumanResourceSystem.add(jSeparator14);
 
-        AddJobVacancy.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        AddJobVacancy.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         AddJobVacancy.setText("Add Job Vacancy");
         AddJobVacancy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -594,6 +656,7 @@ public class main extends javax.swing.JFrame {
             }
         });
         HumanResourceSystem.add(AddJobVacancy);
+        HumanResourceSystem.add(jSeparator24);
 
         ToolBar.add(HumanResourceSystem);
 
@@ -668,7 +731,7 @@ public class main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+            .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -706,22 +769,22 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_HumanResourceSystemMouseClicked
 
     private void SMLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMLogoutActionPerformed
-            bodyPanel.setVisible(false);
-            HumanResourceSystem.setEnabled(true);
-            POSystem.setEnabled(false);
-            WarehouseSystem.setEnabled(false);
-            AcountingSystem.setEnabled(false);
-            myProfile.setVisible(false);
-            SMLogout.setVisible(false);
-            HumanResourceSystem.setVisible(false);
-            ToolBar.setVisible(true);
-            homeBar.setVisible(false);
-            undoBar.setVisible(false);
-            redoBar.setVisible(false);
-            jPanel2.setVisible(true);
+//            bodyPanel.setVisible(false);
+//            HumanResourceSystem.setEnabled(true);
+//            POSystem.setEnabled(false);
+//            WarehouseSystem.setEnabled(false);
+//            AcountingSystem.setEnabled(false);
+//            myProfile.setVisible(false);
+//            SMLogout.setVisible(false);
+//            HumanResourceSystem.setVisible(false);
+//            ToolBar.setVisible(true);
+//            homeBar.setVisible(false);
+//            undoBar.setVisible(false);
+//            redoBar.setVisible(false);
+//            jPanel2.setVisible(true);
             myLogout();
-            main.getMain().setVisible(false);
-            new LoginFrame().setVisible(true);
+//            main.getMain().setVisible(false);
+//            new LoginFrame().setVisible(true);
     }//GEN-LAST:event_SMLogoutActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -729,22 +792,6 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-//        try {
-//            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery("select * from foto_employee where karyawan_id = '"+MySession.get_ID()+"'");
-//
-//            if (rs.next()) {
-//                byte[] imageData = rs.getBytes("File");
-//                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-//                BufferedImage bImage = ImageIO.read(bis);
-//                ImageIcon Myicon = new ImageIcon(bImage);
-////                Image imageResize = Myicon.getImage().getScaledInstance(130, 140, Image.SCALE_SMOOTH);
-//                EmployeeProfilePanel.labelFotoKaryawan.setIcon(Myicon);
-//            }
-//        } catch (SQLException | IOException e) {
-////            e.printStackTrace();
-//        }
         showForm(new EmployeeProfilePanel());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -759,18 +806,6 @@ public class main extends javax.swing.JFrame {
     private void ChecklistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChecklistActionPerformed
 //        ceklis
     }//GEN-LAST:event_ChecklistActionPerformed
-
-    private void RequestEmployeeAllocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestEmployeeAllocationActionPerformed
-        showForm(new RequestEmployeeAllocation());
-    }//GEN-LAST:event_RequestEmployeeAllocationActionPerformed
-
-    private void ApplicationLeaveofAbsenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationLeaveofAbsenceActionPerformed
-        showForm(new LeaveOfAbsense());
-    }//GEN-LAST:event_ApplicationLeaveofAbsenceActionPerformed
-
-    private void ApplicationRehabilitationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationRehabilitationActionPerformed
-        showForm(new AplicationRehabilitation());
-    }//GEN-LAST:event_ApplicationRehabilitationActionPerformed
 
     private void EmployeeClearanceStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeClearanceStatusActionPerformed
         showForm(new EmployeeClearanceStatus());
@@ -823,6 +858,7 @@ public class main extends javax.swing.JFrame {
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         new LoginFrame().setVisible(true);
         main.getMain().setVisible(false);
+//        main.getMain().dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void buttonLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin1ActionPerformed
@@ -880,6 +916,30 @@ public class main extends javax.swing.JFrame {
         showForm(new ApplicationResignation());
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        showForm(new RehabilitationList());
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        showForm(new AplicationRehabilitation());
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        showForm(new LeaveOfAbsenceList());
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        showForm(new LeaveOfAbsense());
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        showForm(new RequestAllocationList());
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        showForm(new RequestEmployeeAllocation());
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -927,8 +987,8 @@ public class main extends javax.swing.JFrame {
     public static javax.swing.JMenu AcountingSystem;
     private javax.swing.JMenuItem AddJobVacancy;
     private javax.swing.JMenuItem AllocationAnouncement;
-    private javax.swing.JMenuItem ApplicationLeaveofAbsence;
-    private javax.swing.JMenuItem ApplicationRehabilitation;
+    private javax.swing.JMenu AplicationLeaveOfAbsence;
+    private javax.swing.JMenu ApplicationRehabilitation;
     private javax.swing.JMenu ApplicationResignation;
     private javax.swing.JMenuItem Checklist;
     private javax.swing.JMenuItem ConfirmationHandoverTakeover;
@@ -939,7 +999,7 @@ public class main extends javax.swing.JFrame {
     public static javax.swing.JMenu HumanResourceSystem;
     private javax.swing.JMenuItem NotificationtoNewEmployee;
     public static javax.swing.JMenu POSystem;
-    private javax.swing.JMenuItem RequestEmployeeAllocation;
+    private javax.swing.JMenu RequestEmployeeAllocation;
     public static javax.swing.JMenuItem SMLogout;
     public static javax.swing.JMenuBar ToolBar;
     public static javax.swing.JMenu WarehouseSystem;
@@ -962,11 +1022,17 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
@@ -982,6 +1048,11 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator20;
     private javax.swing.JPopupMenu.Separator jSeparator21;
+    private javax.swing.JPopupMenu.Separator jSeparator22;
+    private javax.swing.JPopupMenu.Separator jSeparator23;
+    private javax.swing.JPopupMenu.Separator jSeparator24;
+    private javax.swing.JPopupMenu.Separator jSeparator25;
+    private javax.swing.JPopupMenu.Separator jSeparator26;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;

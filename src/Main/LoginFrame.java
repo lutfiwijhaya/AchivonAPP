@@ -262,8 +262,6 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         myLogin();
-        main.getMain().setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textKaryawanidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textKaryawanidKeyPressed
@@ -291,8 +289,6 @@ public class LoginFrame extends javax.swing.JFrame {
         int key = evt.getKeyCode();
         if (key == 10) {
             myLogin();
-            main.getMain().setVisible(true);
-            this.dispose();
         }
     }//GEN-LAST:event_jButton1KeyPressed
 
@@ -300,8 +296,6 @@ public class LoginFrame extends javax.swing.JFrame {
         int key = evt.getKeyCode();
         if (key == 10) {
             myLogin();
-            main.getMain().setVisible(true);
-            this.dispose();
         }
     }//GEN-LAST:event_textMailKeyPressed
 
@@ -439,7 +433,8 @@ public class LoginFrame extends javax.swing.JFrame {
                                 MySession.set_Sallary(myRess.getString("sallary"));
                                 MySession.set_Role(myRess.getString("role_id"));
                                 JOptionPane.showMessageDialog(null, "Berhasil Login\nsuccessfull logged in \n\nSelamat Datang " +MySession.get_nama()+"\n"+"Welcome "+MySession.get_nama());
-                                
+                                main.getMain().setVisible(true);
+                                this.dispose();
                             }else{
                                 JOptionPane.showMessageDialog(rootPane,"Kata Sandi Salah, Masukan kata sandi yang benar \n wrong password, make sure you enter the correct Password");
                                 textPassword.setText("");

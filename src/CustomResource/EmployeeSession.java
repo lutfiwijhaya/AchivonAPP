@@ -6,7 +6,10 @@ package CustomResource;
 
 public class EmployeeSession {
     private static String EmployeeID;
-    private static String KTP;
+    private static String KTPResign;
+    private static String KTPRehab;
+    private static String KTPAbsence;
+    private static String KTPAllocation;
     
     public static String getEmployeeID(){
         return EmployeeID;
@@ -16,11 +19,35 @@ public class EmployeeSession {
         EmployeeSession.EmployeeID = EmployeeID;
     }
     
-    public static String getKTP(){
-        return KTP;
+    public static String getKTPResign(){
+        return KTPResign;
     }
     
-    public static void setKTP(String KTP){
-        EmployeeSession.KTP = KTP;
+    public static void setKTPResign(String KTPResign){
+        EmployeeSession.KTPResign = KTPResign;
+    }
+    
+    public static String getKTPRehab(){
+        return KTPRehab;
+    }
+    
+    public static void setKTPRehab(String KTPRehab){
+        EmployeeSession.KTPRehab = KTPRehab;
+    }
+    
+    public static String getKTPAbsence(){
+        return KTPAbsence;
+    }
+    
+    public static void setKTPAbsence(String KTPAbsence){
+        EmployeeSession.KTPAbsence = KTPAbsence;
+    }
+    
+    public static String getKTPAllocation(){
+        return KTPAllocation;
+    }
+    
+    public static void setKTPAllocation(String KTPAllocation){
+        EmployeeSession.KTPAllocation = KTPAllocation;
     }
 }

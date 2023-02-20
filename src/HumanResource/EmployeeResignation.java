@@ -10,6 +10,8 @@ import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -34,10 +36,19 @@ public class EmployeeResignation extends MasterForm {
         
         jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
         myRole();
+        
+        jLabel16.setVisible(false);
+        jLabel25.setVisible(false);
+        jLabel26.setVisible(false);
+        jLabel28.setVisible(false);
+        jLabel29.setVisible(false);
+        jLabel31.setVisible(false);
+        jLabel4.setVisible(false);
+        
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTP()+"'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPResign()+"'");
             if (rs.next()) {
                 labelDiscipline.setText(rs.getString(23));
                 labelName.setText(rs.getString(14));
@@ -45,10 +56,249 @@ public class EmployeeResignation extends MasterForm {
                 labelKTP.setText(rs.getString(13));
                 labelNameSign.setText(rs.getString(14));
                 labelDateSign.setText(rs.getString(10));
+                
+                jLabel16.setText(rs.getString(3));
+                jLabel25.setText(rs.getString(4));
+                jLabel26.setText(rs.getString(5));
+                jLabel28.setText(rs.getString(6));
+                jLabel29.setText(rs.getString(7));
+                jLabel31.setText(rs.getString(8));
+                jLabel4.setText(rs.getString(9));
+                if (jLabel16 != null) {
+                    signTeamPred.setText(null);
+                    try {
+                            Statement stmt11 = conn.createStatement();
+                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+jLabel16.getText()+"'");
+                            if (rs11.next()) {
+                                labelNameTeamPred.setText(rs11.getString(4));
+                            }
+                        } catch (Exception e) {
+                        }
+                    try {
+                        Statement stmt1 = conn.createStatement();
+                        ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+jLabel16.getText()+"'");
+                        if (rs1.next()) {
+                            byte[] imageData = rs1.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signTeamPred.addComponentListener(new ComponentAdapter() {
+                                @Override
+                                public void componentResized(ComponentEvent e) {
+                                    int width = signTeamPred.getWidth();
+                                    int height = signTeamPred.getHeight();
+                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                    signTeamPred.setIcon(new ImageIcon(imageResize));
+                                }
+                            });
+                        }else{
+
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                if (jLabel25 != null) {
+                    signTeamRecd.setText(null);
+                    try {
+                            Statement stmt21 = conn.createStatement();
+                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+jLabel25.getText()+"'");
+                            if (rs21.next()) {
+                                labelNameTeamRecd.setText(rs21.getString(4));
+                            }
+                        } catch (Exception e) {
+                        }
+                    try {
+                        Statement stmt2 = conn.createStatement();
+                        ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+jLabel25.getText()+"'");
+                        if (rs2.next()) {
+                            byte[] imageData = rs2.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signTeamRecd.addComponentListener(new ComponentAdapter() {
+                                @Override
+                                public void componentResized(ComponentEvent e) {
+                                    int width = signTeamRecd.getWidth();
+                                    int height = signTeamRecd.getHeight();
+                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                    signTeamRecd.setIcon(new ImageIcon(imageResize));
+                                }
+                            });
+                        }else{
+                            
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                if (jLabel26 != null) {
+                    signTeamRevd.setText(null);
+                    try {
+                            Statement stmt31 = conn.createStatement();
+                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+jLabel26.getText()+"'");
+                            if (rs31.next()) {
+                                labelNameTeamRevd.setText(rs31.getString(4));
+                            }
+                        } catch (Exception e) {
+                        }
+                    try {
+                        Statement stmt3 = conn.createStatement();
+                        ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+jLabel26.getText()+"'");
+                        if (rs3.next()) {
+                            byte[] imageData = rs3.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signTeamRevd.addComponentListener(new ComponentAdapter() {
+                                @Override
+                                public void componentResized(ComponentEvent e) {
+                                    int width = signTeamRevd.getWidth();
+                                    int height = signTeamRevd.getHeight();
+                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                    signTeamRevd.setIcon(new ImageIcon(imageResize));
+                                }
+                            });
+                        }else{
+                            
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                if (jLabel28 != null) {
+                    signTeamMGR.setText(null);
+                    try {
+                            Statement stmt41 = conn.createStatement();
+                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+jLabel28.getText()+"'");
+                            if (rs41.next()) {
+                                labelNameTeamMGR.setText(rs41.getString(4));
+                            }
+                        } catch (Exception e) {
+                        }
+                    try {
+                        Statement stmt4 = conn.createStatement();
+                        ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+jLabel28.getText()+"'");
+                        if (rs4.next()) {
+                            byte[] imageData = rs4.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signTeamMGR.addComponentListener(new ComponentAdapter() {
+                            @Override
+                            public void componentResized(ComponentEvent e) {
+                                int width = signTeamMGR.getWidth();
+                                int height = signTeamMGR.getHeight();
+                                Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                signTeamMGR.setIcon(new ImageIcon(imageResize));
+                            }
+                        });
+                        }else{
+                            
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                if (jLabel29 != null) {
+                    signHRRevd.setText(null);
+                    try {
+                            Statement stmt51 = conn.createStatement();
+                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+jLabel29.getText()+"'");
+                            if (rs51.next()) {
+                                labelNameHRRevd.setText(rs51.getString(4));
+                            }
+                        } catch (Exception e) {
+                        }
+                    try {
+                        Statement stmt5 = conn.createStatement();
+                        ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+jLabel29.getText()+"'");
+                        if (rs5.next()) {
+                            byte[] imageData = rs5.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signHRRevd.addComponentListener(new ComponentAdapter() {
+                                @Override
+                                public void componentResized(ComponentEvent e) {
+                                    int width = signHRRevd.getWidth();
+                                    int height = signHRRevd.getHeight();
+                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                    signHRRevd.setIcon(new ImageIcon(imageResize));
+                                }
+                            });
+                        }else{
+                            
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                if (jLabel31 != null) {
+                    signHRMGR.setText(null);
+                    try {
+                            Statement stmt61 = conn.createStatement();
+                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+jLabel31.getText()+"'");
+                            if (rs61.next()) {
+                                labelNameHRMGR.setText(rs61.getString(4));
+                            }
+                        } catch (Exception e) {
+                        }
+                    try {
+                        Statement stmt6 = conn.createStatement();
+                        ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+jLabel31.getText()+"'");
+                        if (rs6.next()) {
+                            byte[] imageData = rs6.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signHRMGR.addComponentListener(new ComponentAdapter() {
+                                @Override
+                                public void componentResized(ComponentEvent e) {
+                                    int width = signHRMGR.getWidth();
+                                    int height = signHRMGR.getHeight();
+                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                    signHRMGR.setIcon(new ImageIcon(imageResize));
+                                }
+                            });
+                        }else{
+                            
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                if (jLabel4 != null) {
+                    signPresident.setText(null);
+                    try {
+                            Statement stmt71 = conn.createStatement();
+                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+jLabel4.getText()+"'");
+                            if (rs71.next()) {
+                                labelNamePresident.setText(rs71.getString(4));
+                            }
+                        } catch (Exception e) {
+                        }
+                    try {
+                        Statement stmt7 = conn.createStatement();
+                        ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+jLabel4.getText()+"'");
+                        if (rs7.next()) {
+                            byte[] imageData = rs7.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signPresident.addComponentListener(new ComponentAdapter() {
+                                @Override
+                                public void componentResized(ComponentEvent e) {
+                                    int width = signPresident.getWidth();
+                                    int height = signPresident.getHeight();
+                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                    signPresident.setIcon(new ImageIcon(imageResize));
+                                }
+                            });
+                        }else{
+                            
+                        }
+                    } catch (Exception e) {
+                    }
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }  
+        }
     }
 
     /**
@@ -115,6 +365,13 @@ public class EmployeeResignation extends MasterForm {
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         SaveButton = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -395,6 +652,27 @@ public class EmployeeResignation extends MasterForm {
         });
         jPanel1.add(SaveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 950, 170, 40));
 
+        jLabel16.setText("jLabel4");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+
+        jLabel25.setText("jLabel4");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+
+        jLabel26.setText("jLabel4");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
+
+        jLabel28.setText("jLabel4");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, -1, -1));
+
+        jLabel29.setText("jLabel4");
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, -1));
+
+        jLabel31.setText("jLabel4");
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
+
+        jLabel4.setText("jLabel4");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
+
         jScrollPane6.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -589,6 +867,7 @@ public class EmployeeResignation extends MasterForm {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -598,11 +877,17 @@ public class EmployeeResignation extends MasterForm {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;

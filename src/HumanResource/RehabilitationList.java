@@ -37,7 +37,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author hi
  */
-public class ResignationList extends MasterForm {
+public class RehabilitationList extends MasterForm {
     Statement stm;
     ResultSet rs;
     Connection koneksi;
@@ -48,7 +48,7 @@ public class ResignationList extends MasterForm {
     DefaultTableModel myModel;
      String id = null;
 
-    public ResignationList() {
+    public RehabilitationList() {
         Statement stm;
         ResultSet rs;
         Connection koneksi;
@@ -62,39 +62,9 @@ public class ResignationList extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     void  settable (){
-        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal pengunduran diri / Resignation Date"};
+        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal Rehabilitasi / Rehabilitation Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
-//        actiontable event = new actiontable() {
-//            @Override
-//            public void lihat(int row) {
-//                try {
-//                    String tnama = (String) MyTable.getValueAt(row, 1);
-//                    String email = (String) MyTable.getValueAt(row, 5);
-//                    id = (String) MyTable.getValueAt(row, 0);
-//                    Class.forName("com.mysql.jdbc.Driver");
-//
-//                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-//                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-//                    jasperdesign = JRXmlLoader.load(O);
-//                    param.clear();
-//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
-//                    param.put("id",id);
-//                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-//                    JasperViewer.viewReport(jasperprint, false);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            @Override
-//            public void tambah(int row) {
-//                System.out.println("tambah");
-//            }
-//            @Override
-//            public void hapus(int row) {
-//                System.out.println("hapus");
-//            }
-//        };
 //        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
         MyTable.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -162,12 +132,12 @@ void remove (){
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Daftar pengunduran diri karyawan / Employee Resignation List");
+        jLabel1.setText("Daftar Rehabilitation diri karyawan / Employee Rehabilitation List");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 40));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 840, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 830, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
@@ -198,8 +168,8 @@ void remove (){
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
         try{
-            EmployeeSession.setKTPResign(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
-            Main.main.getMain().showForm(new EmployeeResignation());    
+            EmployeeSession.setKTPRehab(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
+            Main.main.getMain().showForm(new EmployeeRehabilitation());    
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -234,7 +204,7 @@ void remove (){
         }
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_rehabilitation inner join employee on employee_rehabilitation.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(11),myRess.getString(12), myRess.getString(13), myRess.getString(14),myRess.getString(19), 
                                     myRess.getString(20),myRess.getString(23) ,myRess.getString(16)};

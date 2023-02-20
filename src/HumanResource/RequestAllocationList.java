@@ -37,7 +37,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author hi
  */
-public class ResignationList extends MasterForm {
+public class RequestAllocationList extends MasterForm {
     Statement stm;
     ResultSet rs;
     Connection koneksi;
@@ -48,7 +48,7 @@ public class ResignationList extends MasterForm {
     DefaultTableModel myModel;
      String id = null;
 
-    public ResignationList() {
+    public RequestAllocationList() {
         Statement stm;
         ResultSet rs;
         Connection koneksi;
@@ -162,12 +162,12 @@ void remove (){
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Daftar pengunduran diri karyawan / Employee Resignation List");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 40));
+        jLabel1.setText("Daftar permintaan pengalokasiankaryawan / Request Employee allocation list");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 430, 40));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 840, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 760, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
@@ -198,8 +198,8 @@ void remove (){
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
         try{
-            EmployeeSession.setKTPResign(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
-            Main.main.getMain().showForm(new EmployeeResignation());    
+            EmployeeSession.setKTPAllocation(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
+            Main.main.getMain().showForm(new EmployeeRequestAllocation());    
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -234,7 +234,7 @@ void remove (){
         }
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_allocation inner join employee on employee_allocation.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(11),myRess.getString(12), myRess.getString(13), myRess.getString(14),myRess.getString(19), 
                                     myRess.getString(20),myRess.getString(23) ,myRess.getString(16)};
