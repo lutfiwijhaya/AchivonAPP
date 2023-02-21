@@ -48,6 +48,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -494,7 +495,7 @@ public class CandidateApplicationedit extends MasterForm {
             while (rs.next()) {
                 String[] data = {
                     rs.getString("Graduation"), rs.getString("School_name"), rs.getString("location"), rs.getString("major"),};
-                dataModel.addRow(data);
+                dataModel.insertRow(0, data);
             }
 
         } catch (Exception e) {
@@ -508,7 +509,7 @@ public class CandidateApplicationedit extends MasterForm {
             while (rs.next()) {
                 String[] data = {
                     rs.getString("name"), rs.getString("hubungan"), rs.getString("Birthday"), rs.getString("cohabit"), rs.getString("No_HP")};
-                dataModel1.addRow(data);
+                dataModel1.insertRow(0, data);
             }
 
         } catch (Exception e) {
@@ -522,7 +523,7 @@ public class CandidateApplicationedit extends MasterForm {
             while (rs.next()) {
                 String[] data = {
                     rs.getString("acquisition"), rs.getString("name_certificate"), rs.getString("location"), rs.getString("name_authority"), rs.getString("no_certificate")};
-                dataModel2.addRow(data);
+                dataModel2.insertRow(0, data);
             }
 
         } catch (Exception e) {
@@ -536,7 +537,7 @@ public class CandidateApplicationedit extends MasterForm {
             while (rs.next()) {
                 String[] data = {
                     rs.getString("company_name"), rs.getString("job_position"), rs.getString("period"), rs.getString("career"),};
-                dataModel3.addRow(data);
+                dataModel3.insertRow(0, data);
             }
 
         } catch (Exception e) {
@@ -720,6 +721,11 @@ public class CandidateApplicationedit extends MasterForm {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setAutoscrolls(true);
+        jPanel1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jPanel1MouseWheelMoved(evt);
+            }
+        });
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
@@ -803,6 +809,11 @@ public class CandidateApplicationedit extends MasterForm {
         t_motif.setColumns(20);
         t_motif.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_motif.setRows(5);
+        t_motif.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_motifMouseWheelMoved(evt);
+            }
+        });
         jScrollPane23.setViewportView(t_motif);
 
         jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2350, 800, 130));
@@ -814,6 +825,11 @@ public class CandidateApplicationedit extends MasterForm {
         t_latar.setColumns(20);
         t_latar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_latar.setRows(5);
+        t_latar.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_latarMouseWheelMoved(evt);
+            }
+        });
         jScrollPane24.setViewportView(t_latar);
 
         jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2550, 800, 130));
@@ -837,6 +853,11 @@ public class CandidateApplicationedit extends MasterForm {
         t_halamat.setColumns(20);
         t_halamat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_halamat.setRows(5);
+        t_halamat.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_halamatMouseWheelMoved(evt);
+            }
+        });
         jScrollPane25.setViewportView(t_halamat);
 
         jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 740, 210, -1));
@@ -848,6 +869,11 @@ public class CandidateApplicationedit extends MasterForm {
         t_calamat.setColumns(20);
         t_calamat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_calamat.setRows(5);
+        t_calamat.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_calamatMouseWheelMoved(evt);
+            }
+        });
         jScrollPane26.setViewportView(t_calamat);
 
         jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 730, 210, -1));
@@ -1063,7 +1089,11 @@ public class CandidateApplicationedit extends MasterForm {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Tanggal Lulus / Graduation Date", "Nama Sekolah / School Name", "Lokasi / Location", "Jurusan / Major"
@@ -1078,6 +1108,11 @@ public class CandidateApplicationedit extends MasterForm {
             }
         });
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable2.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTable2MouseWheelMoved(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
@@ -1089,7 +1124,11 @@ public class CandidateApplicationedit extends MasterForm {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Nama Anggota / Members Name", "Relation / Hubungan", "Tanggal lahir / Birthday", "Tinggal bersama / Cohabit", "No HP"
@@ -1104,6 +1143,11 @@ public class CandidateApplicationedit extends MasterForm {
             }
         });
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable3.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTable3MouseWheelMoved(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable3);
         if (jTable3.getColumnModel().getColumnCount() > 0) {
             jTable3.getColumnModel().getColumn(3).setPreferredWidth(150);
@@ -1113,13 +1157,22 @@ public class CandidateApplicationedit extends MasterForm {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Diakuisisi / Acquisition", "Nama Sertifikat / Sertifikat Name", "Nama Penyelenggara / Authority Name", "Lokasi / Location", "No Sertifikat / Certificate No."
             }
         ));
         jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable4.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTable4MouseWheelMoved(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable4);
         if (jTable4.getColumnModel().getColumnCount() > 0) {
             jTable4.getColumnModel().getColumn(3).setPreferredWidth(200);
@@ -1129,7 +1182,11 @@ public class CandidateApplicationedit extends MasterForm {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Nama Perusahaan / Company name", "Posisi Pekerjaan / Job Position", "Periode / Period", "Karir / Career"
@@ -1144,6 +1201,11 @@ public class CandidateApplicationedit extends MasterForm {
             }
         });
         jTable5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable5.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTable5MouseWheelMoved(evt);
+            }
+        });
         jScrollPane5.setViewportView(jTable5);
         if (jTable5.getColumnModel().getColumnCount() > 0) {
             jTable5.getColumnModel().getColumn(2).setPreferredWidth(280);
@@ -1220,7 +1282,7 @@ public class CandidateApplicationedit extends MasterForm {
         jPanel1.add(t_jurusan, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1000, 310, -1));
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jButton4.setText("Add/Tambah");
+        jButton4.setText("Tambah/add");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -1264,7 +1326,7 @@ public class CandidateApplicationedit extends MasterForm {
         });
         jPanel1.add(t_hp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 1280, 260, -1));
 
-        jButton3.setText("Simpan / Save");
+        jButton3.setText("Tambah/add");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -1323,7 +1385,7 @@ public class CandidateApplicationedit extends MasterForm {
         t_sertifikat.setLabelText("No. Sertifikat");
         jPanel1.add(t_sertifikat, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1660, 270, -1));
 
-        jButton6.setText("Simpan / Save");
+        jButton6.setText("Tambah/add");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -1350,7 +1412,7 @@ public class CandidateApplicationedit extends MasterForm {
         jPanel1.add(tahun_akhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 2110, -1, -1));
 
         jButton7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jButton7.setText("Simpan / Save");
+        jButton7.setText("Tambah/add");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -1392,15 +1454,21 @@ public class CandidateApplicationedit extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        int row = jTable4.getSelectedRow();
+        int[] selectedRows = jTable4.getSelectedRows();
+
         DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
-        model.removeRow(row);  // TODO add your handling code here:
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            model.removeRow(selectedRows[i]);
+        };  // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        int row = jTable3.getSelectedRow();
+         int[] selectedRows = jTable3.getSelectedRows();
+
         DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
-        model.removeRow(row);          // TODO add your handling code here:
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            model.removeRow(selectedRows[i]);
+        };        // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1421,7 +1489,7 @@ public class CandidateApplicationedit extends MasterForm {
         list.add(t_posisi.getText());
         list.add("(" + tgl_awal.getMonth() + "-" + tgl_awal.getYear() + ")" + " - " + "(" + tgl_akhir.getMonth() + "-" + tgl_akhir.getYear() + ")");
         list.add(hasil_tahun + " Tahun " + hasil_bulan + " Bulan");
-        dataModel.addRow(list.toArray());
+         dataModel.insertRow(0, list.toArray());
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -1438,13 +1506,16 @@ public class CandidateApplicationedit extends MasterForm {
         list.add(tanggal_family);
         list.add(buttongrup.getSelection().getActionCommand());
         list.add(t_hp1.getText());
-        dataModel.addRow(list.toArray());        // TODO add your handling code here:
+         dataModel.insertRow(0, list.toArray());       // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int row = jTable2.getSelectedRow();
+         int[] selectedRows = jTable2.getSelectedRows();
+
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        model.removeRow(row);           // TODO add your handling code here:
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            model.removeRow(selectedRows[i]);
+        };         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1459,7 +1530,7 @@ public class CandidateApplicationedit extends MasterForm {
         list.add(t_author.getText());
         list.add(t_lokasi.getSelectedItem());
         list.add(t_sertifikat.getText());
-        dataModel.addRow(list.toArray());
+         dataModel.insertRow(0, list.toArray());
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1495,9 +1566,12 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_t_hp1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int row = jTable5.getSelectedRow();
+        int[] selectedRows = jTable5.getSelectedRows();
+
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
-        model.removeRow(row);        // TODO add your handling code here:
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            model.removeRow(selectedRows[i]);
+        };      // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1516,7 +1590,7 @@ public class CandidateApplicationedit extends MasterForm {
         list.add(t_sekolah.getText());
         list.add(t_lokasi.getSelectedItem());
         list.add(t_jurusan.getText());
-        dataModel.addRow(list.toArray());
+         dataModel.insertRow(0, list.toArray());
 
         // TODO add your handling code here:
         // TODO add your handling code here:
@@ -1911,6 +1985,105 @@ char c = evt.getKeyChar();
             evt.consume();
         }          // TODO add your handling code here:
     }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyTyped
+
+    private void t_halamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_halamatMouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_t_halamatMouseWheelMoved
+
+    private void t_calamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_calamatMouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_t_calamatMouseWheelMoved
+
+    private void jTable2MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable2MouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_jTable2MouseWheelMoved
+
+    private void jPanel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jPanel1MouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1MouseWheelMoved
+
+    private void jTable3MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable3MouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_jTable3MouseWheelMoved
+
+    private void jTable4MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable4MouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_jTable4MouseWheelMoved
+
+    private void jTable5MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable5MouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_jTable5MouseWheelMoved
+
+    private void t_motifMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_motifMouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_t_motifMouseWheelMoved
+
+    private void t_latarMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_latarMouseWheelMoved
+ JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_t_latarMouseWheelMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

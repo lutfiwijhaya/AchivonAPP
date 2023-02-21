@@ -19,33 +19,33 @@ public class panelbutton extends javax.swing.JPanel {
      */
     public panelbutton() {
         initComponents();
+      
     }
 
     
-    public void initevent (actiontable event, int row){
+  public void initevent(actiontable event, int row) {
+    b_mata.setToolTipText("Ini adalah hint atau tooltip");
     b_mata.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             event.lihat(row);
         }
     });
-    b_ceklis.addActionListener (new ActionListener() {
+
+    b_ceklis.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-           event.tambah(row);
+            event.tambah(row);
         }
     });
-    
-   b_silang.addActionListener(new ActionListener() {
+
+    b_silang.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-      event.hapus(row);
+            event.hapus(row);
         }
-   });
-    
-    
-    
-    }
+    });
+}
     
     
     /**
@@ -65,10 +65,18 @@ public class panelbutton extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         b_ceklis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Ceklis.png"))); // NOI18N
+        b_ceklis.setText("Accept");
+        b_ceklis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_ceklisActionPerformed(evt);
+            }
+        });
 
         b_mata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/mata.png"))); // NOI18N
+        b_mata.setText("Preview");
 
         b_silang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/silang.png"))); // NOI18N
+        b_silang.setText("Reject");
         b_silang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_silangActionPerformed(evt);
@@ -80,23 +88,25 @@ public class panelbutton extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(2, 2, 2)
+                .addContainerGap()
                 .addComponent(b_mata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b_ceklis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b_silang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(b_mata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(b_silang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(b_ceklis, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addComponent(b_ceklis, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(b_silang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(b_mata, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -104,6 +114,10 @@ public class panelbutton extends javax.swing.JPanel {
     private void b_silangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_silangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_silangActionPerformed
+
+    private void b_ceklisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_ceklisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_ceklisActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

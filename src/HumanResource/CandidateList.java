@@ -25,6 +25,8 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -39,12 +41,12 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 /**
  *
  * @author hi
  */
 public class CandidateList extends MasterForm {
+
     Statement stm;
     ResultSet rs;
     Connection koneksi;
@@ -53,7 +55,7 @@ public class CandidateList extends MasterForm {
     JasperPrint jasperprint;
     Map<String, Object> param = new HashMap<String, Object>();
     DefaultTableModel myModel;
-     String id = null;
+    String id = null;
 
     public CandidateList() {
         Statement stm;
@@ -64,67 +66,108 @@ public class CandidateList extends MasterForm {
         myShow();
         MyWindow();
         remove();
+
 //        CandidateSession.setCandidateID("");
-        ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer) MyTable.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
     }
-    void  settable (){
-        String [] header = {"id","KTP", "Nama / Name", "Tempat, Tanggal Lahir / Place, Birthday", "Jenis Kelamin / Gender", "Status Pernikahan / Marital Status", "Email", "No. Hp", "Posisi yang dilamar / Job Applying", "gaji / Sallary","Action"};
-        myModel = new DefaultTableModel(header,0);
+
+    void settable() {
+        String[] header = {"id", "KTP", "Nama / Name", "Tempat, Tanggal Lahir / Place, Birthday", "Jenis Kelamin / Gender", "Status Pernikahan / Marital Status", "Email", "No. Hp", "Posisi yang dilamar / Job Applying", "gaji / Sallary", "Action"};
+        myModel = new DefaultTableModel(header, 0);
         MyTable.setModel(myModel);
         actiontable event = new actiontable() {
             @Override
             public void lihat(int row) {
                 try {
-                    String tnama = (String) MyTable.getValueAt(row, 1);
-                    String email = (String) MyTable.getValueAt(row, 5);
-                    id = (String) MyTable.getValueAt(row, 0);
-                    Class.forName("com.mysql.jdbc.Driver");
-
-                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-                    jasperdesign = JRXmlLoader.load(O);
-                    param.clear();
-                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
-                    param.put("id",id);
-                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-                    JasperViewer.viewReport(jasperprint, false);
+                    CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+                    Main.main.getMain().showForm(new CandidateProfile());
                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                Main.main.getMain().showForm(new CandidateProfile());
+                try {
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery("select * from cd_foto where id_employee ='" + CandidateSession.getCandidateID() + "'"); // assuming the image is stored in the 'images' table with an ID of 1
+
+                    if (rs.next()) {
+                        byte[] imageData = rs.getBytes("foto");
+                        ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                        BufferedImage bImage = ImageIO.read(bis);
+                        ImageIcon Myicon = new ImageIcon(bImage);
+                        Image imageResize = Myicon.getImage().getScaledInstance(130, 140, Image.SCALE_SMOOTH);
+                        CandidateProfile.labelfoto.setIcon(new ImageIcon(imageResize));
+                    }
+                } catch (SQLException | IOException e) {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void tambah(int row) {
-                System.out.println("tambah");
+                Connection myConn;
+                try {
+                    CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+                    myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                    myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '" + CandidateSession.getCandidateID() + "'");
+//            while (myRess.next()) {
+//                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
+//            }
+                    Main.main.getMain().showForm(new CandidateList());
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+//                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
+
+                }
             }
+
             @Override
             public void hapus(int row) {
-                System.out.println("hapus");
+                 int respon = JOptionPane.showConfirmDialog(null, "Are You Sure Want To Reject ?", "Option", JOptionPane.YES_NO_OPTION);
+        if (respon == 0) {
+              Connection myConn;
+                try {
+                    CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+                    myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                    myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '" + CandidateSession.getCandidateID() + "'");
+//            while (myRess.next()) {
+//                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
+//            }
+                    Main.main.getMain().showForm(new CandidateList());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+//                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
+
+                }
+            
+        } 
+              
             }
         };
-//        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
+        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
         MyTable.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-        MyTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(1).setPreferredWidth(130);
         MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
         MyTable.getColumnModel().getColumn(3).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(4).setPreferredWidth(70);
+        MyTable.getColumnModel().getColumn(5).setPreferredWidth(60);
         MyTable.getColumnModel().getColumn(6).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(7).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(8).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(9).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(10).setPreferredWidth(120);
-        
-        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
-        
-//        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
+        MyTable.getColumnModel().getColumn(10).setPreferredWidth(245);
+//        
+//        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
+//        
+        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));
     }
 
+    void remove() {
 
-void remove (){ 
-    
-} 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,9 +184,13 @@ void remove (){
         MyTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
         textSearch = new CustomResource.CustomTextfield();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(900, 585));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -174,7 +221,7 @@ void remove (){
         });
         jScrollPane1.setViewportView(MyTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 1280, 440));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Daftar kandidat / Candidate List");
@@ -184,9 +231,6 @@ void remove (){
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 1000, 20));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
-
         textSearch.setLabelText("Cari / Search");
         textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -195,46 +239,90 @@ void remove (){
         });
         jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 460, -1));
 
+        jButton1.setText("Accept");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Reject");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Reject or Accept marked");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 760, 280, 90));
+
         jScrollPane2.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1295, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
-        try{
-            CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
-            Main.main.getMain().showForm(new CandidateProfile());    
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        Main.main.getMain().showForm(new CandidateProfile());
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from cd_foto where id_employee ='"+CandidateSession.getCandidateID()+"'"); // assuming the image is stored in the 'images' table with an ID of 1
-
-            if (rs.next()) {
-                byte[] imageData = rs.getBytes("foto");
-                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-                BufferedImage bImage = ImageIO.read(bis);
-                ImageIcon Myicon = new ImageIcon(bImage);
-                Image imageResize = Myicon.getImage().getScaledInstance(130, 140, Image.SCALE_SMOOTH);
-                CandidateProfile.labelfoto.setIcon(new ImageIcon(imageResize));
-            }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
+//        try{
+//            CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+//            Main.main.getMain().showForm(new CandidateProfile());    
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//        Main.main.getMain().showForm(new CandidateProfile());
+//        try {
+//            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("select * from cd_foto where id_employee ='"+CandidateSession.getCandidateID()+"'"); // assuming the image is stored in the 'images' table with an ID of 1
+//
+//            if (rs.next()) {
+//                byte[] imageData = rs.getBytes("foto");
+//                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+//                BufferedImage bImage = ImageIO.read(bis);
+//                ImageIcon Myicon = new ImageIcon(bImage);
+//                Image imageResize = Myicon.getImage().getScaledInstance(130, 140, Image.SCALE_SMOOTH);
+//                CandidateProfile.labelfoto.setIcon(new ImageIcon(imageResize));
+//            }
+//        } catch (SQLException | IOException e) {
+//            e.printStackTrace();
+//        }
     }//GEN-LAST:event_MyTableMouseClicked
 
     private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
@@ -245,12 +333,46 @@ void remove (){
         // TODO add your handling code here:
     }//GEN-LAST:event_MyTableMousePressed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+ int respon = JOptionPane.showConfirmDialog(null, "Are You Sure Want To Reject ?", "Option", JOptionPane.YES_NO_OPTION);
+        if (respon == 0) {
+            int[] selectedRows = MyTable.getSelectedRows();
+        Connection myConn;
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '" + myModel.getValueAt(selectedRows[i], 0) + "'");
+            } catch (SQLException ex) {
+                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        Main.main.getMain().showForm(new CandidateList()); 
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int[] selectedRows = MyTable.getSelectedRows();
+        Connection myConn;
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '" + myModel.getValueAt(selectedRows[i], 0) + "'");
+            } catch (SQLException ex) {
+                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        Main.main.getMain().showForm(new CandidateList());      // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -261,23 +383,23 @@ void remove (){
         Connection myConn;
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
-        for(int i = 0; i < row; i++){
+        for (int i = 0; i < row; i++) {
             myModel.removeRow(0);
         }
         if (mySearch != null) {
             try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%"+mySearch+"%'");
-            while (myRess.next()) {
-                String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
-                                    myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
-                                    myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-                
-                myModel.addRow(myData);
-            }
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%" + mySearch + "%'");
+                while (myRess.next()) {
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+
+                    myModel.addRow(myData);
+                }
             } catch (SQLException ex) {
             }
-        }else{
+        } else {
             try {
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
                 ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
@@ -292,18 +414,18 @@ void remove (){
 //                    for (int i = 1; i <= numColumns; i++) {
 //                        mrow[i - 1] = myRess.getObject(i);
 //                    }
-                    String myData [] = {myRess.getString(1),myRess.getString(3), myRess.getString(2), myRess.getString(7)+","+myRess.getString(8), 
-                                        myRess.getString(6),myRess.getString(9) ,myRess.getString(4), 
-                                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                     myModel.addRow(myData);
                 }
-               
+
             } catch (SQLException ex) {
             }
         }
     }
-    
-    private void MyWindow(){
+
+    private void MyWindow() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height);
         this.setPreferredSize(new Dimension(screen.width, screen.height));
