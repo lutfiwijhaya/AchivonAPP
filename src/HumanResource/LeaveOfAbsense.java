@@ -433,7 +433,7 @@ public class LeaveOfAbsense extends MasterForm {
         jLabel1.setForeground(new java.awt.Color(0, 102, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("APPLICATION - LEAVE OF ABSENSE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 310, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 310, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("A. EMPLOYE STATUS");

@@ -227,17 +227,16 @@ void remove (){
 
     private void myShow() {
         Connection myConn;
-        String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
         for(int i = 0; i < row; i++){
             myModel.removeRow(0);
         }
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id where ");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(11),myRess.getString(12), myRess.getString(13), myRess.getString(14),myRess.getString(19), 
-                                    myRess.getString(20),myRess.getString(23) ,myRess.getString(16)};
+                String myData [] = {myRess.getString(13),myRess.getString(14), myRess.getString(15), myRess.getString(16),myRess.getString(21), 
+                                    myRess.getString(22),myRess.getString(25) ,myRess.getString(18)};
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {

@@ -5,6 +5,7 @@
 package HumanResource;
 
 import CustomResource.MySession;
+import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -20,6 +21,8 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -31,15 +34,19 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author USER
  */
 public class AplicationRehabilitation extends MasterForm {
-
-    /**
-     * Creates new form AplicationRehabilitation
-     */
+    Statement stm;
+    ResultSet rs;
+    ResultSet rsf;
+    Connection koneksi;
     public AplicationRehabilitation() {
         initComponents();
         MyWindow();
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        dateNow.setText(formatter.format(date));
+        dateNow.setVisible(false);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        
+        openDB();
         labelDiscipline.setText(MySession.get_JobPosition());
         labelName.setText(MySession.get_nama());
         labelPosition.setText(MySession.get_JobPosition());
@@ -48,15 +55,15 @@ public class AplicationRehabilitation extends MasterForm {
         
         SendButton.setVisible(true);
 //        SaveButton.setVisible(false);
-        jLabel38.setVisible(false);
-        jLabel36.setVisible(false);
-        jLabel32.setVisible(false);
-        jLabel28.setVisible(false);
+        idTeamPred.setVisible(false);
+        idTeamRecd.setVisible(false);
+        idTeamRevd.setVisible(false);
+        idTeamMGR.setVisible(false);
                    
-        jLabel29.setVisible(false);
-        jLabel31.setVisible(false);
+        idHRRevd.setVisible(false);
+        idHRMGR.setVisible(false);
                     
-        jLabel24.setVisible(false);
+        idPresiden.setVisible(false);
         
         try {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
@@ -64,19 +71,19 @@ public class AplicationRehabilitation extends MasterForm {
                 ResultSet rs = stmt.executeQuery("select * from employee_rehabilitation where karyawan_id = '"+MySession.get_karyawanID()+"'");
                 if (rs.next()) {
                     SendButton.setVisible(false);
-                    jLabel38.setText(rs.getString(3));
-                    jLabel36.setText(rs.getString(4));
-                    jLabel32.setText(rs.getString(5));
-                    jLabel28.setText(rs.getString(6));
-                    jLabel29.setText(rs.getString(7));
-                    jLabel31.setText(rs.getString(8));
-                    jLabel24.setText(rs.getString(9));
+                    idTeamPred.setText(rs.getString(3));
+                    idTeamRecd.setText(rs.getString(4));
+                    idTeamRevd.setText(rs.getString(5));
+                    idTeamMGR.setText(rs.getString(6));
+                    idHRRevd.setText(rs.getString(7));
+                    idHRMGR.setText(rs.getString(8));
+                    idPresiden.setText(rs.getString(9));
                     
-                    if (jLabel38 != null) {
+                    if (idTeamPred != null) {
                         signTeamPred.setText(null);
                         try {
                             Statement stmt11 = conn.createStatement();
-                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+jLabel38.getText()+"'");
+                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+idTeamPred.getText()+"'");
                             if (rs11.next()) {
                                 labelNameTeamPred.setText(rs11.getString(4));
                             }
@@ -84,7 +91,7 @@ public class AplicationRehabilitation extends MasterForm {
                         }
                         try {
                             Statement stmt1 = conn.createStatement();
-                            ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+jLabel38.getText()+"'");
+                            ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+idTeamPred.getText()+"'");
                             if (rs1.next()) {
                                 byte[] imageData = rs1.getBytes("scan");
                                 ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -105,11 +112,11 @@ public class AplicationRehabilitation extends MasterForm {
                         } catch (Exception e) {
                         }
                     }
-                    if (jLabel36 != null) {
+                    if (idTeamRecd != null) {
                         signTeamRecd.setText(null);
                         try {
                             Statement stmt21 = conn.createStatement();
-                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+jLabel36.getText()+"'");
+                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+idTeamRecd.getText()+"'");
                             if (rs21.next()) {
                                 labelNameTeamRecd.setText(rs21.getString(4));
                             }
@@ -117,7 +124,7 @@ public class AplicationRehabilitation extends MasterForm {
                         }
                         try {
                             Statement stmt2 = conn.createStatement();
-                            ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+jLabel36.getText()+"'");
+                            ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+idTeamRecd.getText()+"'");
                             if (rs2.next()) {
                                 byte[] imageData = rs2.getBytes("scan");
                                 ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -137,11 +144,11 @@ public class AplicationRehabilitation extends MasterForm {
                         } catch (Exception e) {
                         }
                     }
-                    if (jLabel32 != null) {
+                    if (idTeamRevd != null) {
                         signTeamRevd.setText(null);
                         try {
                             Statement stmt31 = conn.createStatement();
-                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+jLabel32.getText()+"'");
+                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+idTeamRevd.getText()+"'");
                             if (rs31.next()) {
                                 labelNameTeamRevd.setText(rs31.getString(4));
                             }
@@ -149,7 +156,7 @@ public class AplicationRehabilitation extends MasterForm {
                         }
                         try {
                             Statement stmt3 = conn.createStatement();
-                            ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+jLabel32.getText()+"'");
+                            ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+idTeamRevd.getText()+"'");
                             if (rs3.next()) {
                                 byte[] imageData = rs3.getBytes("scan");
                                 ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -170,11 +177,11 @@ public class AplicationRehabilitation extends MasterForm {
                         } catch (Exception e) {
                         }
                     }
-                    if (jLabel28 != null) {
+                    if (idTeamMGR != null) {
                         signTeamMGR.setText(null);
                         try {
                             Statement stmt41 = conn.createStatement();
-                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+jLabel28.getText()+"'");
+                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
                             if (rs41.next()) {
                                 labelNameTeamMGR.setText(rs41.getString(4));
                             }
@@ -182,7 +189,7 @@ public class AplicationRehabilitation extends MasterForm {
                         }
                         try {
                             Statement stmt4 = conn.createStatement();
-                            ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+jLabel28.getText()+"'");
+                            ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
                             if (rs4.next()) {
                                 byte[] imageData = rs4.getBytes("scan");
                                 ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -203,11 +210,11 @@ public class AplicationRehabilitation extends MasterForm {
                         } catch (Exception e) {
                         }
                     }
-                    if (jLabel29 != null) {
+                    if (idHRRevd != null) {
                         signHRRevd.setText(null);
                         try {
                             Statement stmt51 = conn.createStatement();
-                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+jLabel29.getText()+"'");
+                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
                             if (rs51.next()) {
                                 labelNameHRRevd.setText(rs51.getString(4));
                             }
@@ -215,7 +222,7 @@ public class AplicationRehabilitation extends MasterForm {
                         }
                         try {
                             Statement stmt5 = conn.createStatement();
-                            ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+jLabel29.getText()+"'");
+                            ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
                             if (rs5.next()) {
                                 byte[] imageData = rs5.getBytes("scan");
                                 ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -236,11 +243,11 @@ public class AplicationRehabilitation extends MasterForm {
                         } catch (Exception e) {
                         }
                     }
-                    if (jLabel31 != null) {
+                    if (idHRMGR != null) {
                         signHRMGR.setText(null);
                         try {
                             Statement stmt61 = conn.createStatement();
-                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+jLabel31.getText()+"'");
+                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
                             if (rs61.next()) {
                                 labelNameHRMGR.setText(rs61.getString(4));
                             }
@@ -248,7 +255,7 @@ public class AplicationRehabilitation extends MasterForm {
                         }
                         try {
                             Statement stmt6 = conn.createStatement();
-                            ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+jLabel31.getText()+"'");
+                            ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
                             if (rs6.next()) {
                                 byte[] imageData = rs6.getBytes("scan");
                                 ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -269,11 +276,11 @@ public class AplicationRehabilitation extends MasterForm {
                         } catch (Exception e) {
                         }
                     }
-                    if (jLabel24 != null) {
+                    if (idPresiden != null) {
                         signPresident.setText(null);
                         try {
                             Statement stmt71 = conn.createStatement();
-                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+jLabel24.getText()+"'");
+                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresiden.getText()+"'");
                             if (rs71.next()) {
                                 labelNamePresident.setText(rs71.getString(4));
                             }
@@ -281,7 +288,7 @@ public class AplicationRehabilitation extends MasterForm {
                         }
                         try {
                             Statement stmt7 = conn.createStatement();
-                            ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+jLabel24.getText()+"'");
+                            ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresiden.getText()+"'");
                             if (rs7.next()) {
                                 byte[] imageData = rs7.getBytes("scan");
                                 ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -342,7 +349,14 @@ public class AplicationRehabilitation extends MasterForm {
                 e.printStackTrace();
             }  
     }
-
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -352,6 +366,9 @@ public class AplicationRehabilitation extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
+        dateChooser2 = new com.raven.datechooser.DateChooser();
+        dateChooser3 = new com.raven.datechooser.DateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -360,18 +377,15 @@ public class AplicationRehabilitation extends MasterForm {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        stateRehab = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        docRehab = new javax.swing.JTextArea();
         jLabel20 = new javax.swing.JLabel();
         SendButton = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
@@ -396,13 +410,13 @@ public class AplicationRehabilitation extends MasterForm {
         labelNamePresident = new javax.swing.JLabel();
         signPresident = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
+        idHRMGR = new javax.swing.JLabel();
+        idPresiden = new javax.swing.JLabel();
+        idHRRevd = new javax.swing.JLabel();
+        idTeamMGR = new javax.swing.JLabel();
+        idTeamRevd = new javax.swing.JLabel();
+        idTeamRecd = new javax.swing.JLabel();
+        idTeamPred = new javax.swing.JLabel();
         labelDiscipline = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
         labelPosition = new javax.swing.JLabel();
@@ -411,14 +425,21 @@ public class AplicationRehabilitation extends MasterForm {
         jLabel42 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         labelHP = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        dateJoin = new CustomResource.CustomTextfield();
+        dateLeave = new CustomResource.CustomTextfield();
+        dateRehab = new CustomResource.CustomTextfield();
+        dateNow = new javax.swing.JLabel();
+
+        dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser1.setTextRefernce(dateJoin);
+
+        dateChooser2.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser2.setTextRefernce(dateLeave);
+
+        dateChooser3.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser3.setTextRefernce(dateRehab);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -448,36 +469,24 @@ public class AplicationRehabilitation extends MasterForm {
         jLabel3.setText("A. EMPLOYEE INFORMATION");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel7.setText("Date -  Initial Join");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel13.setText("Date - Leave of Absence");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, -1, -1));
-
-        jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel14.setText("Date - Rehabilitation");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, -1, -1));
-
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 880, 80, 20));
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel25.setText("TEAM");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel26.setText("HR TEAM");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, -1, -1));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 100, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setText("B. STEATMENT OF REHABILITATION REASON");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane5.setViewportView(jTextArea1);
+        stateRehab.setColumns(20);
+        stateRehab.setRows(5);
+        jScrollPane5.setViewportView(stateRehab);
 
         jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, 524, -1));
 
@@ -485,9 +494,9 @@ public class AplicationRehabilitation extends MasterForm {
         jLabel19.setText("C. SUPPORTING DOCUMENTS FOR REHABILITATION");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 580, -1, -1));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane6.setViewportView(jTextArea2);
+        docRehab.setColumns(20);
+        docRehab.setRows(5);
+        jScrollPane6.setViewportView(docRehab);
 
         jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, 524, -1));
 
@@ -499,11 +508,16 @@ public class AplicationRehabilitation extends MasterForm {
         SendButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SendButton.setForeground(new java.awt.Color(255, 255, 255));
         SendButton.setText("Kirim/Send");
+        SendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(SendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 770, 170, 50));
 
         jLabel21.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel21.setText("Mobile No.");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, -1, -1));
 
         signTeamPred.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamPred.setText("Signatute");
@@ -513,22 +527,22 @@ public class AplicationRehabilitation extends MasterForm {
                 signTeamPredMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 120, 90));
+        jPanel1.add(signTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 120, 90));
 
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel40.setText("Pre'd");
         jLabel40.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 120, 20));
+        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 120, 20));
 
         labelNameTeamPred.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamPred.setText("Name");
         labelNameTeamPred.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 120, 20));
+        jPanel1.add(labelNameTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 120, 20));
 
         labelNameTeamRecd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamRecd.setText("Name");
         labelNameTeamRecd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 120, 20));
+        jPanel1.add(labelNameTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 120, 20));
 
         signTeamRecd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamRecd.setText("Signature");
@@ -538,17 +552,17 @@ public class AplicationRehabilitation extends MasterForm {
                 signTeamRecdMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 120, 90));
+        jPanel1.add(signTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 120, 90));
 
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setText("Rec'd");
         jLabel37.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 120, 20));
+        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 120, 20));
 
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("Rev'd");
         jLabel35.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 120, 20));
+        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, 120, 20));
 
         signTeamRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamRevd.setText("Signature");
@@ -558,17 +572,17 @@ public class AplicationRehabilitation extends MasterForm {
                 signTeamRevdMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 120, 90));
+        jPanel1.add(signTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 120, 90));
 
         labelNameTeamRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamRevd.setText("Name");
         labelNameTeamRevd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 120, 20));
+        jPanel1.add(labelNameTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 120, 20));
 
         labelNameTeamMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamMGR.setText("Name");
         labelNameTeamMGR.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 120, 20));
+        jPanel1.add(labelNameTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 120, 20));
 
         signTeamMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamMGR.setText("Signature");
@@ -578,17 +592,17 @@ public class AplicationRehabilitation extends MasterForm {
                 signTeamMGRMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 120, 90));
+        jPanel1.add(signTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 120, 90));
 
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("MGR");
         jLabel30.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 120, 20));
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 120, 20));
 
         labelNameHRRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameHRRevd.setText("Name");
         labelNameHRRevd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 120, 20));
+        jPanel1.add(labelNameHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 120, 20));
 
         signHRRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signHRRevd.setText("Signature");
@@ -598,17 +612,17 @@ public class AplicationRehabilitation extends MasterForm {
                 signHRRevdMouseClicked(evt);
             }
         });
-        jPanel1.add(signHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 120, 90));
+        jPanel1.add(signHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, 120, 90));
 
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Rev'd");
         jLabel22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 120, 20));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 120, 120, 20));
 
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText("MGR");
         jLabel27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, 120, 20));
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 120, 120, 20));
 
         signHRMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signHRMGR.setText("Signature");
@@ -618,17 +632,17 @@ public class AplicationRehabilitation extends MasterForm {
                 signHRMGRMouseClicked(evt);
             }
         });
-        jPanel1.add(signHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 120, 90));
+        jPanel1.add(signHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 140, 120, 90));
 
         labelNameHRMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameHRMGR.setText("Name");
         labelNameHRMGR.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 220, 120, 20));
+        jPanel1.add(labelNameHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 230, 120, 20));
 
         labelNamePresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNamePresident.setText("Name");
         labelNamePresident.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNamePresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 220, 120, 20));
+        jPanel1.add(labelNamePresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 230, 120, 20));
 
         signPresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signPresident.setText("Signature");
@@ -638,97 +652,90 @@ public class AplicationRehabilitation extends MasterForm {
                 signPresidentMouseClicked(evt);
             }
         });
-        jPanel1.add(signPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 130, 120, 90));
+        jPanel1.add(signPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 140, 120, 90));
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("President");
         jLabel23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 110, 120, 20));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 120, 120, 20));
 
-        jLabel31.setText("jLabel4");
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
+        idHRMGR.setText("jLabel4");
+        jPanel1.add(idHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 250, -1, -1));
 
-        jLabel24.setText("jLabel4");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
+        idPresiden.setText("jLabel4");
+        jPanel1.add(idPresiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 250, -1, -1));
 
-        jLabel29.setText("jLabel4");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, -1));
+        idHRRevd.setText("jLabel4");
+        jPanel1.add(idHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 250, -1, -1));
 
-        jLabel28.setText("jLabel4");
-        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, -1, -1));
+        idTeamMGR.setText("jLabel4");
+        jPanel1.add(idTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, -1, -1));
 
-        jLabel32.setText("jLabel4");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
+        idTeamRevd.setText("jLabel4");
+        jPanel1.add(idTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, -1, -1));
 
-        jLabel36.setText("jLabel4");
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+        idTeamRecd.setText("jLabel4");
+        jPanel1.add(idTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
 
-        jLabel38.setText("jLabel4");
-        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        idTeamPred.setText("jLabel4");
+        jPanel1.add(idTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         labelDiscipline.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelDiscipline.setText("...");
-        jPanel1.add(labelDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        jPanel1.add(labelDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
 
         labelName.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelName.setText("...");
-        jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
+        jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
 
         labelPosition.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelPosition.setText("...");
-        jPanel1.add(labelPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
+        jPanel1.add(labelPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
 
         labelKTP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelKTP.setText("...");
-        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, -1));
+        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
 
         jLabel43.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel43.setText(":");
-        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 10, -1));
+        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 10, -1));
 
         jLabel42.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel42.setText(":");
-        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 10, -1));
+        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 10, -1));
 
         jLabel41.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel41.setText(":");
-        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 10, -1));
+        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 10, -1));
 
         jLabel39.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel39.setText(":");
-        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 10, -1));
-
-        jLabel47.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel47.setText(":");
-        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 310, 10, -1));
-
-        jLabel46.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel46.setText(":");
-        jPanel1.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 10, -1));
-
-        jLabel45.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel45.setText(":");
-        jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 10, -1));
+        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 10, -1));
 
         jLabel44.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel44.setText(":");
-        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, 10, -1));
+        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 10, -1));
 
         labelHP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelHP.setText("...");
-        jPanel1.add(labelHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 400, -1, -1));
+        jPanel1.add(labelHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel15.setText("...");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 370, -1, -1));
+        dateJoin.setLabelText("Date -  Initial Join");
+        jPanel1.add(dateJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 200, -1));
 
-        jLabel34.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel34.setText("...");
-        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, -1, -1));
+        dateLeave.setLabelText("Date - Leave of Absence");
+        dateLeave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateLeaveActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dateLeave, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 200, -1));
 
-        jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel12.setText("...");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 310, -1, -1));
+        dateRehab.setLabelText("Date - Rehabilitation");
+        jPanel1.add(dateRehab, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, 200, -1));
+
+        dateNow.setText("jLabel2");
+        jPanel1.add(dateNow, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -910,15 +917,54 @@ public class AplicationRehabilitation extends MasterForm {
         }
     }//GEN-LAST:event_signTeamPredMouseClicked
 
+    private void dateLeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateLeaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateLeaveActionPerformed
+
+    private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
+        try {
+            stm = koneksi.createStatement();
+            String sql = "insert into employee_rehabilitation (karyawan_id,team_pred,team_recd,team_revd,team_mgr,hr_revd,hr_mgr,president,date_join,date_leave,date_rehab,statement_rehab,doucument_rehab,date) values('" + MySession.get_karyawanID() + "'"
+                    + ",'0'"
+                    + ",'0'"
+                    + ",'0'"
+                    + ",'0'"
+                    + ",'0'"
+                    + ",'0'"
+                    + ",'0'"
+                    + ",'" + dateJoin.getText() + "'"
+                    + ",'" + dateLeave.getText()+ "'"
+                    + ",'" + dateRehab.getText() + "'"
+                    + ",'" + stateRehab.getText() + "'"
+                    + ",'" + docRehab.getText() + "'"
+                    + ",'" + dateNow.getText()+ "')";
+                    stm.executeUpdate(sql);
+                    JOptionPane.showMessageDialog(null, "Berhasil mengajukan Rehabilitasi \nSucceed requesting rehabilitation" );
+        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Gagal mengajukan Rehabilitasi \nFailed requesting rehabilitation" );
+        }
+    }//GEN-LAST:event_SendButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SendButton;
+    private com.raven.datechooser.DateChooser dateChooser1;
+    private com.raven.datechooser.DateChooser dateChooser2;
+    private com.raven.datechooser.DateChooser dateChooser3;
+    private CustomResource.CustomTextfield dateJoin;
+    private CustomResource.CustomTextfield dateLeave;
+    private javax.swing.JLabel dateNow;
+    private CustomResource.CustomTextfield dateRehab;
+    private javax.swing.JTextArea docRehab;
+    private javax.swing.JLabel idHRMGR;
+    private javax.swing.JLabel idHRRevd;
+    private javax.swing.JLabel idPresiden;
+    private javax.swing.JLabel idTeamMGR;
+    private javax.swing.JLabel idTeamPred;
+    private javax.swing.JLabel idTeamRecd;
+    private javax.swing.JLabel idTeamRevd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -926,21 +972,13 @@ public class AplicationRehabilitation extends MasterForm {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
@@ -948,18 +986,12 @@ public class AplicationRehabilitation extends MasterForm {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel labelDiscipline;
     private javax.swing.JLabel labelHP;
     private javax.swing.JLabel labelKTP;
@@ -979,6 +1011,7 @@ public class AplicationRehabilitation extends MasterForm {
     private javax.swing.JLabel signTeamPred;
     private javax.swing.JLabel signTeamRecd;
     private javax.swing.JLabel signTeamRevd;
+    private javax.swing.JTextArea stateRehab;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

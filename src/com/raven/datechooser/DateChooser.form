@@ -110,6 +110,11 @@
           </AuxValues>
         </Component>
         <Container class="javax.swing.JLayeredPane" name="MY">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="33" type="rgb"/>
+            </Property>
+          </Properties>
           <SubComponents>
             <Component class="com.raven.datechooser.Button" name="cmdMonth">
               <Properties>

@@ -250,6 +250,7 @@ public final class DateChooser extends javax.swing.JPanel {
             }
         });
 
+        MY.setBackground(new java.awt.Color(51, 51, 255));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0);
         flowLayout1.setAlignOnBaseline(true);
         MY.setLayout(flowLayout1);
