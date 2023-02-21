@@ -40,6 +40,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -60,7 +61,6 @@ public class CandidateApplication extends MasterForm {
     String full_curent;
     String full_home;
     int k = 0;
-    String g_tgl_personal="";
    
 
     /**
@@ -79,9 +79,6 @@ public class CandidateApplication extends MasterForm {
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
         homeCountry.setSelectedItem("Indonesia");
         curentCountry.setSelectedItem("Indonesia");
-        
-    
-       
 
     }
 
@@ -280,7 +277,7 @@ public class CandidateApplication extends MasterForm {
     }
 
     private void simpan_career() {
-       
+
         DefaultTableModel ImportDataExel = (DefaultTableModel) jTable5.getModel();
         int jtabelrows = jTable5.getRowCount();
 
@@ -355,8 +352,6 @@ public class CandidateApplication extends MasterForm {
         curentCountry.setEnabled(true);
     }
 
-    
-    
 //    void tampildata() {
 //        t_nama.setText(CandidateApplicationPersonal.get_nama());
 //        t_ktp.setText(CandidateApplicationPersonal.get_ktp());
@@ -467,7 +462,6 @@ public class CandidateApplication extends MasterForm {
 //            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
 //        }
 //    }
-
 //    void tampil_foto() {
 //        try {
 //            CandidateApplication.func f = new CandidateApplication.func();
@@ -484,7 +478,6 @@ public class CandidateApplication extends MasterForm {
 //        } catch (Exception e) {
 //        }
 //    }
-
 //    public class func {
 //
 //        public ResultSet find(String s) {
@@ -501,7 +494,6 @@ public class CandidateApplication extends MasterForm {
 //        }
 //
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -514,11 +506,11 @@ public class CandidateApplication extends MasterForm {
         radioGrupGender = new javax.swing.ButtonGroup();
         radioGrupStatus = new javax.swing.ButtonGroup();
         buttongrup = new javax.swing.ButtonGroup();
+        dateChooser1 = new com.raven.datechooser.DateChooser();
         jScrollPane18 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
         jSeparator25 = new javax.swing.JSeparator();
-        jLabel75 = new javax.swing.JLabel();
         jSeparator26 = new javax.swing.JSeparator();
         jLabel81 = new javax.swing.JLabel();
         jSeparator27 = new javax.swing.JSeparator();
@@ -562,7 +554,7 @@ public class CandidateApplication extends MasterForm {
         labelfoto = new javax.swing.JLabel();
         t_nama = new CustomResource.CustomTextfield();
         t_ktp = new CustomResource.CustomTextfield();
-        t_tlhir = new CustomResource.CustomTextfield();
+        t_tgl_personal = new CustomResource.CustomTextfield();
         t_gaji = new CustomResource.CustomTextfield();
         t_hp = new CustomResource.CustomTextfield();
         t_email = new CustomResource.CustomTextfield();
@@ -598,7 +590,6 @@ public class CandidateApplication extends MasterForm {
         t_pria = new javax.swing.JRadioButton();
         t_lajang = new javax.swing.JRadioButton();
         t_menikah = new javax.swing.JRadioButton();
-        t_tgl_personal = new com.toedter.calendar.JDateChooser();
         jCheckBox1 = new javax.swing.JCheckBox();
         t_lokasi = new CustomResource.ComboBoxSuggestion();
         t_sekolah = new CustomResource.CustomTextfield();
@@ -640,12 +631,24 @@ public class CandidateApplication extends MasterForm {
         jLabel95 = new javax.swing.JLabel();
         jLabel92 = new javax.swing.JLabel();
         Bataslabel = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        t_tlhir = new CustomResource.CustomTextfield();
+
+        dateChooser1.setDateFormat("dd-MMM-yyyy");
+        dateChooser1.setTextRefernce(t_tgl_personal);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
 
+        jScrollPane18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setAutoscrolls(true);
+        jPanel1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jPanel1MouseWheelMoved(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel71.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -655,9 +658,6 @@ public class CandidateApplication extends MasterForm {
         jSeparator25.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator25.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 870, 650, 20));
-
-        jLabel75.setText("Tanggal Lahir / Birth Date : ");
-        jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, 20));
         jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, 40, 20));
 
         jLabel81.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -724,6 +724,11 @@ public class CandidateApplication extends MasterForm {
         t_motif.setColumns(20);
         t_motif.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_motif.setRows(5);
+        t_motif.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_motifMouseWheelMoved(evt);
+            }
+        });
         jScrollPane23.setViewportView(t_motif);
 
         jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2350, 800, 130));
@@ -735,6 +740,11 @@ public class CandidateApplication extends MasterForm {
         t_latar.setColumns(20);
         t_latar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_latar.setRows(5);
+        t_latar.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_latarMouseWheelMoved(evt);
+            }
+        });
         jScrollPane24.setViewportView(t_latar);
 
         jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 2550, 800, 130));
@@ -761,11 +771,16 @@ public class CandidateApplication extends MasterForm {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 2800, 130, 40));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2800, 130, 40));
 
         t_halamat.setColumns(20);
         t_halamat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_halamat.setRows(5);
+        t_halamat.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_halamatMouseWheelMoved(evt);
+            }
+        });
         jScrollPane25.setViewportView(t_halamat);
 
         jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 740, 210, -1));
@@ -777,6 +792,11 @@ public class CandidateApplication extends MasterForm {
         t_calamat.setColumns(20);
         t_calamat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_calamat.setRows(5);
+        t_calamat.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_calamatMouseWheelMoved(evt);
+            }
+        });
         jScrollPane26.setViewportView(t_calamat);
 
         jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 730, 210, -1));
@@ -826,8 +846,8 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 340, -1));
 
-        t_tlhir.setLabelText("Tempat Lahir / Birth Place");
-        jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 340, -1));
+        t_tgl_personal.setLabelText("Tempat Lahir / Birth Place");
+        jPanel1.add(t_tgl_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 340, -1));
 
         t_gaji.setLabelText("Estimasi Gaji / Sallary");
         t_gaji.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -996,7 +1016,11 @@ public class CandidateApplication extends MasterForm {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Tanggal Lulus / Graduation Date", "Nama Sekolah / School Name", "Lokasi / Location", "Jurusan / Major"
@@ -1010,11 +1034,21 @@ public class CandidateApplication extends MasterForm {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setAutoscrolls(false);
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable2.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTable2MouseWheelMoved(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
+            jTable2.getColumnModel().getColumn(2).setResizable(false);
             jTable2.getColumnModel().getColumn(2).setPreferredWidth(200);
+            jTable2.getColumnModel().getColumn(3).setResizable(false);
             jTable2.getColumnModel().getColumn(3).setPreferredWidth(5);
         }
 
@@ -1022,7 +1056,11 @@ public class CandidateApplication extends MasterForm {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Nama Anggota / Members Name", "Relation / Hubungan", "Tanggal lahir / Birthday", "Tinggal bersama / Cohabit", "No HP"
@@ -1036,7 +1074,13 @@ public class CandidateApplication extends MasterForm {
                 return canEdit [columnIndex];
             }
         });
+        jTable3.setAutoscrolls(false);
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable3.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTable3MouseWheelMoved(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable3);
         if (jTable3.getColumnModel().getColumnCount() > 0) {
             jTable3.getColumnModel().getColumn(3).setPreferredWidth(150);
@@ -1046,13 +1090,22 @@ public class CandidateApplication extends MasterForm {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Diakuisisi / Acquisition", "Nama Sertifikat / Sertifikat Name", "Nama Penyelenggara / Authority Name", "Lokasi / Location", "No Sertifikat / Certificate No."
             }
         ));
         jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable4.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTable4MouseWheelMoved(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable4);
         if (jTable4.getColumnModel().getColumnCount() > 0) {
             jTable4.getColumnModel().getColumn(3).setPreferredWidth(200);
@@ -1062,7 +1115,11 @@ public class CandidateApplication extends MasterForm {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Nama Perusahaan / Company name", "Posisi Pekerjaan / Job Position", "Periode / Period", "Karir / Career"
@@ -1077,6 +1134,11 @@ public class CandidateApplication extends MasterForm {
             }
         });
         jTable5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable5.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTable5MouseWheelMoved(evt);
+            }
+        });
         jScrollPane5.setViewportView(jTable5);
         if (jTable5.getColumnModel().getColumnCount() > 0) {
             jTable5.getColumnModel().getColumn(2).setPreferredWidth(280);
@@ -1105,7 +1167,7 @@ public class CandidateApplication extends MasterForm {
                 jToggleButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 2810, 120, 40));
+        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 2800, 120, 40));
 
         radioGrupGender.add(t_wanita);
         t_wanita.setText("Perempuan");
@@ -1127,7 +1189,6 @@ public class CandidateApplication extends MasterForm {
         radioGrupStatus.add(t_menikah);
         t_menikah.setText("Married");
         jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 171, -1, 20));
-        jPanel1.add(t_tgl_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 150, -1));
 
         jCheckBox1.setText("Sama Dengan Home Address");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -1143,7 +1204,7 @@ public class CandidateApplication extends MasterForm {
 
         t_sekolah.setLabelText("Nama Sekolah / School Name & Graduate Years\n");
         jPanel1.add(t_sekolah, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 890, 240, -1));
-        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 910, -1, -1));
+        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 910, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("Lokasi / Location");
@@ -1280,7 +1341,7 @@ public class CandidateApplication extends MasterForm {
         jLabel9.setText("Periode (sampai Tahun)");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 2095, 190, -1));
         jPanel1.add(bulan_akhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 2110, -1, -1));
-        jPanel1.add(tahun_akhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 2110, -1, -1));
+        jPanel1.add(tahun_akhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 2110, 80, -1));
 
         jButton7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton7.setText("Add/Tambah");
@@ -1317,6 +1378,10 @@ public class CandidateApplication extends MasterForm {
         jLabel92.setText("1. Motivasi untuk Melamar");
         jPanel1.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 2310, 350, -1));
         jPanel1.add(Bataslabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 2950, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 470, 30, 40));
+
+        t_tlhir.setLabelText("Tempat Lahir / Birth Place");
+        jPanel1.add(t_tlhir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 340, -1));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -1324,7 +1389,7 @@ public class CandidateApplication extends MasterForm {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1169, Short.MAX_VALUE)
+            .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1153, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1333,11 +1398,12 @@ public class CandidateApplication extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-         if (MySession.get_ID()==null){
-             Main.main.jPanel2.setVisible(true);
-             Main.main.bodyPanel.setVisible(false);
+        if (MySession.get_ID() == null) {
+            Main.main.jPanel2.setVisible(true);
+            Main.main.bodyPanel.setVisible(false);
             Main.main.getMain().setVisible(true);
-            } Main.main.getMain().showForm(new NewJPanel());     
+        }
+        Main.main.getMain().showForm(new NewJPanel());
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
@@ -1354,25 +1420,26 @@ public class CandidateApplication extends MasterForm {
 
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
-        }             String a ;
+        }
+        String a;
         String b = "-";
-        if(t_hp.getText().length()<3){
+        if (t_hp.getText().length() < 3) {
             t_hp.setText("(0)");
-        }else if (t_hp.getText().length() == 6) {
-            t_hp.setText(t_hp.getText()+"-");
-        }else if(t_hp.getText().length() == 7){
-StringBuffer sb = new StringBuffer(t_hp.getText());
-       sb.setLength(6); 
-       t_hp.setText(""+sb);
-        }else if(t_hp.getText().length() == 11){
-            t_hp.setText(t_hp.getText()+"-");
-        }else if(t_hp.getText().length() == 12){
-           StringBuffer sb = new StringBuffer(t_hp.getText());
-       sb.setLength(11); 
-       t_hp.setText(""+sb);
-        }else if(t_hp.getText().length() == 17){
+        } else if (t_hp.getText().length() == 6) {
+            t_hp.setText(t_hp.getText() + "-");
+        } else if (t_hp.getText().length() == 7) {
+            StringBuffer sb = new StringBuffer(t_hp.getText());
+            sb.setLength(6);
+            t_hp.setText("" + sb);
+        } else if (t_hp.getText().length() == 11) {
+            t_hp.setText(t_hp.getText() + "-");
+        } else if (t_hp.getText().length() == 12) {
+            StringBuffer sb = new StringBuffer(t_hp.getText());
+            sb.setLength(11);
+            t_hp.setText("" + sb);
+        } else if (t_hp.getText().length() == 17) {
             t_hp.setText(t_hp.getText());
             evt.consume();
         }
@@ -1413,9 +1480,9 @@ StringBuffer sb = new StringBuffer(t_hp.getText());
     }//GEN-LAST:event_t_cdesaActionPerformed
 
     private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
-         Connection myConn;
+        Connection myConn;
         try {
-homeCity.removeAllItems();
+            homeCity.removeAllItems();
 
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
@@ -1469,8 +1536,8 @@ homeCity.removeAllItems();
     }//GEN-LAST:event_t_hpKeyReleased
 
     private void t_bpjsKesehatanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyTyped
-char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }  //        asd
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
@@ -1480,7 +1547,7 @@ char c = evt.getKeyChar();
     }//GEN-LAST:event_t_ktpKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- String currentdirectory = "C:\\Users\\USER\\Pictures";
+        String currentdirectory = "C:\\Users\\USER\\Pictures";
         JFileChooser imageFileChooser = new JFileChooser(currentdirectory);
         imageFileChooser.setDialogTitle("Pilih gambar...");
         FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
@@ -1496,187 +1563,182 @@ char c = evt.getKeyChar();
                 ImageIcon imageicon = new ImageIcon(crudimage);
                 Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
                 labelfoto.setIcon(new ImageIcon(imageResize));
-            }else{JOptionPane.showMessageDialog(null,"Maximum Size (200kb)");}
+            } else {
+                JOptionPane.showMessageDialog(null, "Maximum Size (200kb)");
+            }
 
         }       // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
- if (t_tgl_personal.getDate()!= null){SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-        g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));}
-         t_pria.setActionCommand("Male");
+//        if (t_tgl_personal.getDate() != null) {
+//            SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+//            g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));
+//        }
+        t_pria.setActionCommand("Male");
         t_wanita.setActionCommand("Female");
         t_lajang.setActionCommand("Single");
         t_menikah.setActionCommand("Married");
-   
-        
+
         if (t_gaji.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Estimasi Gaji Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_dicipline.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Dicipline Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_nama.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_ktp.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "KTP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_tlhir.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (t_hp.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Nomor HP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_email.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Email Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_hkec.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_ddesa.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Desa  Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_halamat.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Alamat Rumah Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (t_ckec.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_cdesa.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Desa Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_calamat.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Alamat Sekarang Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (radioGrupGender.getSelection()==null) {
-      JOptionPane.showMessageDialog(null, "Jenis Kelamin Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (radioGrupStatus.getSelection()==null) {
-      JOptionPane.showMessageDialog(null, "Status Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (g_tgl_personal.length()<2) {
-      JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (labelfoto.getIcon()==null) {
-      JOptionPane.showMessageDialog(null, "Foto Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else {
-       
-     
-      if (t_bpjsKesehatan.getText().equals("")) {
-     t_bpjsKesehatan.setText("0");
- }
-       if (t_bpjsKetenagakerjaan.getText().equals("")) {
-      t_bpjsKetenagakerjaan.setText("0");
- } 
-       
-         full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
-       full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + curentCountry.getSelectedItem();
-         try {
-            stm = koneksi.createStatement();
-            String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,bpjs_ket,Applying_A,D_Salary,discipline,cd_date_apply,approval) values('" + t_nama.getText() + "'"
-                    + ",'" + t_ktp.getText() + "'"
-                    + ",'" + t_email.getText() + "'"
-                    + ",'" + t_npwp.getText() + "'"
-                    + ",'" + radioGrupGender.getSelection().getActionCommand() + "'"
-                    + ",'" + t_tlhir.getText()+ "'"
-                    + ",'" + g_tgl_personal + "'"
-                    + ",'" + radioGrupStatus.getSelection().getActionCommand() + "'"
-                    + ",'" + t_hp.getText() + "'"
-                    + ",'" + t_bpjsKesehatan.getText() + "'"
-                    + ",'" + t_bpjsKetenagakerjaan.getText() + "'"
-                    + ",'" + t_lamaran.getSelectedItem() + "'"
-                    + ",'" + t_gaji.getText() + "'"
-                    + ",'" + t_dicipline.getText() + "'"
-                    + ",'" + tanggal + "'" 
-                    + ",'" + k + "')";
+            JOptionPane.showMessageDialog(null, "Estimasi Gaji Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_dicipline.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dicipline Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_nama.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_ktp.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "KTP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_tlhir.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_hp.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nomor HP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_email.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Email Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_hkec.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_ddesa.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Desa  Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_halamat.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Alamat Rumah Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_ckec.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_cdesa.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Desa Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_calamat.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Alamat Sekarang Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (radioGrupGender.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Jenis Kelamin Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (radioGrupStatus.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Status Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_tgl_personal.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (labelfoto.getIcon() == null) {
+            JOptionPane.showMessageDialog(null, "Foto Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else {
 
-            stm.executeUpdate(sql);
-
-            try {
-                Statement stm = koneksi.createStatement();
-
-                rs = stm.executeQuery("select*from cd_employee where KTP = " + t_ktp.getText() + "");
-                while (rs.next()) {
-                    da = rs.getString("id_employee");
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (t_bpjsKesehatan.getText().equals("")) {
+                t_bpjsKesehatan.setText("0");
+            }
+            if (t_bpjsKetenagakerjaan.getText().equals("")) {
+                t_bpjsKetenagakerjaan.setText("0");
             }
 
-            String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
-                    + ",'" + homeCountry.getSelectedItem() + "'"
-                    + ",'" + homeState.getSelectedItem() + "'"
-                    + ",'" + homeCity.getSelectedItem() + "'"
-                    + ",'" + t_hkec.getText() + "'"
-                    + ",'" + t_ddesa.getText() + "'"
-                    + ",'" + t_halamat.getText() + "'"
-                    + ",'" + curentCountry.getSelectedItem() + "'"
-                    + ",'" + cprov.getSelectedItem() + "'"
-                    + ",'" + ccity.getSelectedItem() + "'"
-                    + ",'" + t_ckec.getText() + "'"
-                    + ",'" + t_cdesa.getText() + "'"
-                    + ",'" + t_calamat.getText() + "'"
-                    + ",'" + full_home + "'"
-                    + ",'" + full_curent + "')";
+            full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
+            full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + curentCountry.getSelectedItem();
+            try {
+                stm = koneksi.createStatement();
+                String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,bpjs_ket,Applying_A,D_Salary,discipline,cd_date_apply,approval) values('" + t_nama.getText() + "'"
+                        + ",'" + t_ktp.getText() + "'"
+                        + ",'" + t_email.getText() + "'"
+                        + ",'" + t_npwp.getText() + "'"
+                        + ",'" + radioGrupGender.getSelection().getActionCommand() + "'"
+                        + ",'" + t_tgl_personal.getText() + "'"
+                        + ",'" + t_tgl_personal.getText() + "'"
+                        + ",'" + radioGrupStatus.getSelection().getActionCommand() + "'"
+                        + ",'" + t_hp.getText() + "'"
+                        + ",'" + t_bpjsKesehatan.getText() + "'"
+                        + ",'" + t_bpjsKetenagakerjaan.getText() + "'"
+                        + ",'" + t_lamaran.getSelectedItem() + "'"
+                        + ",'" + t_gaji.getText() + "'"
+                        + ",'" + t_dicipline.getText() + "'"
+                        + ",'" + tanggal + "'"
+                        + ",'" + k + "')";
 
-            stm.executeUpdate(sql0);
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-        }
-        
-       
-        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
-        int jtabelrows = jTable2.getRowCount();
-
-        for (int i = 0; i <= jtabelrows - 1; i++) {
-            if (jTable2.getValueAt(i, 0) == null) {
-
-            } else {
-                String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
-                String dtabel_univ = jTable2.getValueAt(i, 1).toString();
-                String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
-                String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
+                stm.executeUpdate(sql);
 
                 try {
-                    stm = koneksi.createStatement();
-                    String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
-                            + ",'" + dtabel_tgl + "'"
-                            + ",'" + dtabel_univ + "'"
-                            + ",'" + dtabel_lokasi + "'"
-                            + ",'" + dtabel_jurusan + "')";
+                    Statement stm = koneksi.createStatement();
 
-                    stm.executeUpdate(sql);
+                    rs = stm.executeQuery("select*from cd_employee where KTP = " + t_ktp.getText() + "");
+                    while (rs.next()) {
+                        da = rs.getString("id_employee");
 
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
+                        + ",'" + homeCountry.getSelectedItem() + "'"
+                        + ",'" + homeState.getSelectedItem() + "'"
+                        + ",'" + homeCity.getSelectedItem() + "'"
+                        + ",'" + t_hkec.getText() + "'"
+                        + ",'" + t_ddesa.getText() + "'"
+                        + ",'" + t_halamat.getText() + "'"
+                        + ",'" + curentCountry.getSelectedItem() + "'"
+                        + ",'" + cprov.getSelectedItem() + "'"
+                        + ",'" + ccity.getSelectedItem() + "'"
+                        + ",'" + t_ckec.getText() + "'"
+                        + ",'" + t_cdesa.getText() + "'"
+                        + ",'" + t_calamat.getText() + "'"
+                        + ",'" + full_home + "'"
+                        + ",'" + full_curent + "')";
+
+                stm.executeUpdate(sql0);
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+            }
+
+            DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
+            int jtabelrows = jTable2.getRowCount();
+
+            for (int i = 0; i <= jtabelrows - 1; i++) {
+                if (jTable2.getValueAt(i, 0) == null) {
+
+                } else {
+                    String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
+                    String dtabel_univ = jTable2.getValueAt(i, 1).toString();
+                    String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
+                    String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
+
+                    try {
+                        stm = koneksi.createStatement();
+                        String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
+                                + ",'" + dtabel_tgl + "'"
+                                + ",'" + dtabel_univ + "'"
+                                + ",'" + dtabel_lokasi + "'"
+                                + ",'" + dtabel_jurusan + "')";
+
+                        stm.executeUpdate(sql);
+
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             }
-        }
-        simpan_family();
-        simpan_serifikat();
-        simpan_career();
-        simpan_motivation();
-       
-        File foto = new File(crudimage);
-         try {
-            InputStream fhoto = new FileInputStream(foto);
-            String inputfoto = "INSERT INTO cd_foto(foto,id_employee)  VALUE (?,?)";
-            PreparedStatement ifoto = this.koneksi.prepareStatement(inputfoto);
-            ifoto.setBlob(1, fhoto);
-            ifoto.setString(2, da);
-            int ph = ifoto.executeUpdate();
-            if (ph > 0) {
-                JOptionPane.showMessageDialog(null, "foto masuk");
+            simpan_family();
+            simpan_serifikat();
+            simpan_career();
+            simpan_motivation();
+
+            File foto = new File(crudimage);
+            try {
+                InputStream fhoto = new FileInputStream(foto);
+                String inputfoto = "INSERT INTO cd_foto(foto,id_employee)  VALUE (?,?)";
+                PreparedStatement ifoto = this.koneksi.prepareStatement(inputfoto);
+                ifoto.setBlob(1, fhoto);
+                ifoto.setString(2, da);
+                int ph = ifoto.executeUpdate();
+                if (ph > 0) {
+                    JOptionPane.showMessageDialog(null, "foto masuk");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(CandidateApplication.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) { 
-            Logger.getLogger(CandidateApplication.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Data Tersimpan");
+
+            if (MySession.get_ID() == null) {
+                Main.main.jPanel2.setVisible(true);
+                Main.main.bodyPanel.setVisible(false);
+                Main.main.getMain().setVisible(true);
+            }
+            Main.main.getMain().showForm(new NewJPanel());
         }
-        
-        
-        
-        
-        
-        
-        JOptionPane.showMessageDialog(null, "Data Tersimpan");
-        
-       
-        
-         if (MySession.get_ID()==null){
-             Main.main.jPanel2.setVisible(true);
-             Main.main.bodyPanel.setVisible(false);
-            Main.main.getMain().setVisible(true);
-            } Main.main.getMain().showForm(new NewJPanel());  
- }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void t_lajangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lajangActionPerformed
@@ -1699,46 +1761,50 @@ char c = evt.getKeyChar();
         list.add(t_sekolah.getText());
         list.add(t_lokasi.getSelectedItem());
         list.add(t_jurusan.getText());
-        dataModel.addRow(list.toArray());
+        dataModel.insertRow(0, list.toArray());
 
         // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int row = jTable5.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)jTable5.getModel();
-        model.removeRow( row );        // TODO add your handling code here:
+        int[] selectedRows = jTable5.getSelectedRows();
+
+        DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            model.removeRow(selectedRows[i]);
+        };       // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void t_hp1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hp1KeyTyped
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
-        }     String a ;
+        }
+        String a;
         String b = "-";
-        if(t_hp1.getText().length()<3){
+        if (t_hp1.getText().length() < 3) {
             t_hp1.setText("(0)");
-        }else if (t_hp1.getText().length() == 6) {
-            t_hp1.setText(t_hp1.getText()+"-");
-        }else if(t_hp1.getText().length() == 7){
+        } else if (t_hp1.getText().length() == 6) {
+            t_hp1.setText(t_hp1.getText() + "-");
+        } else if (t_hp1.getText().length() == 7) {
             StringBuffer sb = new StringBuffer(t_hp1.getText());
             sb.setLength(6);
-            t_hp1.setText(""+sb);
-        }else if(t_hp1.getText().length() == 11){
-            t_hp1.setText(t_hp1.getText()+"-");
-        }else if(t_hp1.getText().length() == 12){
+            t_hp1.setText("" + sb);
+        } else if (t_hp1.getText().length() == 11) {
+            t_hp1.setText(t_hp1.getText() + "-");
+        } else if (t_hp1.getText().length() == 12) {
             StringBuffer sb = new StringBuffer(t_hp1.getText());
             sb.setLength(11);
-            t_hp1.setText(""+sb);
-        }else if(t_hp1.getText().length() == 17){
+            t_hp1.setText("" + sb);
+        } else if (t_hp1.getText().length() == 17) {
             t_hp1.setText(t_hp1.getText());
             evt.consume();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_t_hp1KeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
         String tanggal_certificate = String.valueOf(fm.format(t_tgl_certificate.getDate()));
 
         DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
@@ -1749,30 +1815,33 @@ char c = evt.getKeyChar();
         list.add(t_author.getText());
         list.add(t_lokasi.getSelectedItem());
         list.add(t_sertifikat.getText());
-        dataModel.addRow(list.toArray());
+        dataModel.insertRow(0, list.toArray());
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-int row = jTable2.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
-        model.removeRow( row );
+      int[] selectedRows = jTable2.getSelectedRows();
+
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            model.removeRow(selectedRows[i]);
+        };
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-            String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
-            r_y.setActionCommand("Yes");
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+        String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
+        r_y.setActionCommand("Yes");
         r_n.setActionCommand("No");
         DefaultTableModel dataModel = (DefaultTableModel) jTable3.getModel();
-          List list = new ArrayList<>();
-            jTable3.setAutoCreateColumnsFromModel(true);
-            list.add(t_nama1.getText());
-            list.add(t_hubungan.getSelectedItem());
-            list.add(tanggal_family);
-            list.add(buttongrup.getSelection().getActionCommand());
-            list.add(t_hp1.getText());
-            dataModel.addRow(list.toArray());        // TODO add your handling code here:
+        List list = new ArrayList<>();
+        jTable3.setAutoCreateColumnsFromModel(true);
+        list.add(t_nama1.getText());
+        list.add(t_hubungan.getSelectedItem());
+        list.add(tanggal_family);
+        list.add(buttongrup.getSelection().getActionCommand());
+        list.add(t_hp1.getText());
+        dataModel.insertRow(0, list.toArray());        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1789,24 +1858,30 @@ SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
         DefaultTableModel dataModel = (DefaultTableModel) jTable5.getModel();
         List list = new ArrayList<>();
         jTable5.setAutoCreateColumnsFromModel(true);
-        list.add(t_nama.getText());
+        list.add(t_nama3.getText());
         list.add(t_posisi.getText());
-        list.add("("+tgl_awal.getMonth() + "-" + tgl_awal.getYear() +")"+ " - " +"("+ tgl_akhir.getMonth() + "-" + tgl_akhir.getYear()+")");
+        list.add("(" + tgl_awal.getMonth() + "-" + tgl_awal.getYear() + ")" + " - " + "(" + tgl_akhir.getMonth() + "-" + tgl_akhir.getYear() + ")");
         list.add(hasil_tahun + " Tahun " + hasil_bulan + " Bulan");
-        dataModel.addRow(list.toArray());
+        dataModel.insertRow(0, list.toArray());
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-int row = jTable3.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)jTable3.getModel();
-        model.removeRow( row );
+        int[] selectedRows = jTable3.getSelectedRows();
+
+        DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            model.removeRow(selectedRows[i]);
+        };
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-      int row = jTable4.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)jTable4.getModel();
-        model.removeRow( row );  // TODO add your handling code here:
+        int[] selectedRows = jTable4.getSelectedRows();
+
+        DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
+        for (int i = selectedRows.length - 1; i >= 0; i--) {
+            model.removeRow(selectedRows[i]);
+        }; // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void t_hp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hp1ActionPerformed
@@ -1814,7 +1889,7 @@ int row = jTable3.getSelectedRow();
     }//GEN-LAST:event_t_hp1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
- curentCountry.setSelectedItem(homeCountry.getSelectedItem());
+        curentCountry.setSelectedItem(homeCountry.getSelectedItem());
         cprov.setSelectedItem(homeState.getSelectedItem());
         ccity.setSelectedItem(homeCity.getSelectedItem());
         t_ckec.setText(t_hkec.getText());
@@ -1823,32 +1898,131 @@ int row = jTable3.getSelectedRow();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
-char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
-        if (t_gaji.getText().length()>8){
+        if (t_gaji.getText().length() > 8) {
             evt.consume();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_t_gajiKeyTyped
 
     private void t_ktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyTyped
-char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
-        if (t_ktp.getText().length()>15){
+        if (t_ktp.getText().length() > 15) {
             evt.consume();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_t_ktpKeyTyped
 
     private void t_bpjsKetenagakerjaanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKetenagakerjaanKeyTyped
-char c = evt.getKeyChar();
-        if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }          // TODO add your handling code here:
     }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyTyped
+
+    private void t_calamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_calamatMouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_calamatMouseWheelMoved
+
+    private void t_halamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_halamatMouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_halamatMouseWheelMoved
+
+    private void jPanel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jPanel1MouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }
+    }//GEN-LAST:event_jPanel1MouseWheelMoved
+
+    private void jTable2MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable2MouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_jTable2MouseWheelMoved
+
+    private void t_motifMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_motifMouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_t_motifMouseWheelMoved
+
+    private void t_latarMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_latarMouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }     // TODO add your handling code here:
+    }//GEN-LAST:event_t_latarMouseWheelMoved
+
+    private void jTable3MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable3MouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable3MouseWheelMoved
+
+    private void jTable4MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable4MouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable4MouseWheelMoved
+
+    private void jTable5MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable5MouseWheelMoved
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        int notches = evt.getWheelRotation();
+        int increment = 5; // set increment to 3 units
+        if (notches < 0) {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
+        } else {
+            verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable5MouseWheelMoved
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1859,6 +2033,7 @@ char c = evt.getKeyChar();
     private CustomResource.ComboBoxSuggestion ccity;
     private CustomResource.ComboBoxSuggestion cprov;
     private CustomResource.ComboBoxSuggestion curentCountry;
+    private com.raven.datechooser.DateChooser dateChooser1;
     private CustomResource.ComboBoxSuggestion homeCity;
     private CustomResource.ComboBoxSuggestion homeCountry;
     private CustomResource.ComboBoxSuggestion homeState;
@@ -1874,6 +2049,7 @@ char c = evt.getKeyChar();
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
@@ -1885,7 +2061,6 @@ char c = evt.getKeyChar();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel8;
@@ -1976,7 +2151,7 @@ char c = evt.getKeyChar();
     private com.toedter.calendar.JYearChooser t_tgl;
     private com.toedter.calendar.JDateChooser t_tgl_certificate;
     private com.toedter.calendar.JDateChooser t_tgl_family;
-    private com.toedter.calendar.JDateChooser t_tgl_personal;
+    private CustomResource.CustomTextfield t_tgl_personal;
     private CustomResource.CustomTextfield t_tlhir;
     private javax.swing.JRadioButton t_wanita;
     private com.toedter.calendar.JYearChooser tahun_akhir;

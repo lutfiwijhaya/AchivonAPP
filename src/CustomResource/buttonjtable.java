@@ -62,9 +62,9 @@ public class buttonjtable extends JButton {
                 ;
         
         }else {
-        g2.setColor(new Color(199,199,199));
+        g2.setColor(new Color(255, 255, 255));
         
-        }g2.fill(new Ellipse2D.Double(x,y,size,size));
+        }g2.fill3DRect(x, y, width, height, mousePress);
         g2.dispose();
         
         
