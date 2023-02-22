@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -851,7 +852,6 @@ public class AplicationRehabilitation extends MasterForm {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -899,7 +899,6 @@ public class AplicationRehabilitation extends MasterForm {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -922,26 +921,54 @@ public class AplicationRehabilitation extends MasterForm {
     }//GEN-LAST:event_dateLeaveActionPerformed
 
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
+        String url = "jdbc:mysql://localhost:3306/achivonapp";
+        String username = "root";
+        String password = "";
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        
         try {
-            stm = koneksi.createStatement();
-            String sql = "insert into employee_rehabilitation (karyawan_id,team_pred,team_recd,team_revd,team_mgr,hr_revd,hr_mgr,president,date_join,date_leave,date_rehab,statement_rehab,doucument_rehab,date) values('" + MySession.get_karyawanID() + "'"
-                    + ",'0'"
-                    + ",'0'"
-                    + ",'0'"
-                    + ",'0'"
-                    + ",'0'"
-                    + ",'0'"
-                    + ",'0'"
-                    + ",'" + dateJoin.getText() + "'"
-                    + ",'" + dateLeave.getText()+ "'"
-                    + ",'" + dateRehab.getText() + "'"
-                    + ",'" + stateRehab.getText() + "'"
-                    + ",'" + docRehab.getText() + "'"
-                    + ",'" + dateNow.getText()+ "')";
-                    stm.executeUpdate(sql);
-                    JOptionPane.showMessageDialog(null, "Berhasil mengajukan Rehabilitasi \nSucceed requesting rehabilitation" );
-        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Gagal mengajukan Rehabilitasi \nFailed requesting rehabilitation" );
+            conn = DriverManager.getConnection(url, username, password);
+            String sql = "INSERT INTO employee_rehabilitation (karyawan_id, team_pred, team_recd, team_revd, team_mgr, hr_revd, hr_mgr, president, date_join , date_leave, date_rehab, statement_rehab, document_rehab, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            stmt = conn.prepareStatement(sql);
+            // Mengisi nilai parameter
+            stmt.setString(1, MySession.get_karyawanID());
+            stmt.setString(2, "0");
+            stmt.setString(3, "0");
+            stmt.setString(4, "0");
+            stmt.setString(5, "0");
+            stmt.setString(6, "0");
+            stmt.setString(7, "0");
+            stmt.setString(8, "0");
+            stmt.setString(9, dateJoin.getText());
+            stmt.setString(10, dateLeave.getText());
+            stmt.setString(11, dateRehab.getText());
+            stmt.setString(12, stateRehab.getText());
+            stmt.setString(13, docRehab.getText());
+            stmt.setString(14, dateNow.getText());
+            // Mengeksekusi perintah SQL
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Berhasil mengajukan Rehabilitasi \nSucceed requesting rehabilitation" );
+            // Menampilkan jumlah baris yang terpengaruh
+//            int rowsAffected = stmt.executeUpdate();
+//            System.out.println("Jumlah baris yang terpengaruh: " + rowsAffected);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Gagal mengajukan Rehabilitasi \nFailed requesting rehabilitation" );
+        } finally {
+            // Menutup objek PreparedStatement dan Connection
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_SendButtonActionPerformed
 

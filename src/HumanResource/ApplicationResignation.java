@@ -922,7 +922,7 @@ public class ApplicationResignation extends MasterForm {
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
         try {
             stm = koneksi.createStatement();
-            String sql = "insert into employee_resignation (karyawan_id,team_pred,team_recd,team_revd,team_mgr,hr_revd,hr_mgr,president,description,fordate,date) values('" + MySession.get_karyawanID() + "'"
+            String sql1 = "insert into employee_resignation (karyawan_id,team_pred,team_recd,team_revd,team_mgr,hr_revd,hr_mgr,president,description,fordate,date) values('" + MySession.get_karyawanID() + "'"
                     + ",'0'"
                     + ",'0'"
                     + ",'0'"
@@ -934,7 +934,7 @@ public class ApplicationResignation extends MasterForm {
                     + ",'" + textDate.getText()+ "'"
                     + ",'" + labelDateSign.getText() + "')";
                     
-            stm.executeUpdate(sql);
+            stm.executeUpdate(sql1);
             JOptionPane.showMessageDialog(null, "Berhasil mengajukan Pengunduran diri \nSucceed requesting resignation" );
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Gagal mengajukan Pengunduran diri \nFailed requesting resignation" );

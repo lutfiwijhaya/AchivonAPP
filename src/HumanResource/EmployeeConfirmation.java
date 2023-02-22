@@ -194,7 +194,7 @@ public class EmployeeConfirmation extends MasterForm {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel1.setText(":");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 20, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 20, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText(":");
@@ -270,10 +270,10 @@ public class EmployeeConfirmation extends MasterForm {
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel8.setText("A7. E-mail.");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
 
         l_email.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(l_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 230, 13));
+        jPanel1.add(l_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 230, 13));
 
         l_ktp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 390, 13));
@@ -288,11 +288,11 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 1140, 80, 20));
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel25.setText("Input Candidate Employee");
+        jLabel25.setText("Select Candidate Employee");
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 133, -1, 20));
 
         jToggleButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jToggleButton1.setText("Add/tambah");
+        jToggleButton1.setText("Pilih / Select");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);

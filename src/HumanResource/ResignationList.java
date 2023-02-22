@@ -228,7 +228,7 @@ void remove (){
         }
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id where ");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(13),myRess.getString(14), myRess.getString(15), myRess.getString(16),myRess.getString(21), 
                                     myRess.getString(22),myRess.getString(25) ,myRess.getString(18)};

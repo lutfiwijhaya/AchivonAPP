@@ -462,6 +462,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 textKaryawanid.requestFocus();
             }
         }catch(SQLException ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Gagal Mendapatkan Informasi \n Failed to Retrieve Information");
         }
     }

@@ -15,11 +15,11 @@ import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -37,38 +37,40 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         initComponents();
         MyWindow();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        jLabel24.setVisible(false);
-        jLabel28.setVisible(false);
-        jLabel29.setVisible(false);
-        jLabel31.setVisible(false);
-        jLabel32.setVisible(false);
-        jLabel36.setVisible(false);
-        jLabel38.setVisible(false);
+        idTeamPred.setVisible(false);
+        idTeamRecd.setVisible(false);
+        idTeamRevd.setVisible(false);
+        idTeamMGR.setVisible(false);
+        idHRRevd.setVisible(false);
+        idHRMGR.setVisible(false);
+        idPresiden.setVisible(false);
+        labelID.setVisible(false);
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM employee_rehabilitation inner join employee on employee_rehabilitation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPAbsence()+"'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM employee_absence inner join employee on employee_absence.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPAbsence()+"'");
             if (rs.next()) {
-                labelDiscipline.setText(rs.getString(23));
-                labelName.setText(rs.getString(14));
-                labelPosition.setText(rs.getString(23));
-                labelHP.setText(rs.getString(20));
+                labelID.setText(rs.getString(2));
+                labelDiscipline.setText(rs.getString(29));
+                labelName.setText(rs.getString(20));
+                labelPosition.setText(rs.getString(29));
+                labelHP.setText(rs.getString(26));
 //                labelKTP.setText(rs.getString(13));
 //                labelNameSign.setText(rs.getString(14));
 //                labelDateSign.setText(rs.getString(10));
                 
-                jLabel24.setText(rs.getString(3));
-                jLabel28.setText(rs.getString(4));
-                jLabel29.setText(rs.getString(5));
-                jLabel31.setText(rs.getString(6));
-                jLabel32.setText(rs.getString(7));
-                jLabel36.setText(rs.getString(8));
-                jLabel38.setText(rs.getString(9));
-                if (jLabel24 != null) {
+                idTeamPred.setText(rs.getString(3));
+                idTeamRecd.setText(rs.getString(4));
+                idTeamRevd.setText(rs.getString(5));
+                idTeamMGR.setText(rs.getString(6));
+                idHRRevd.setText(rs.getString(7));
+                idHRMGR.setText(rs.getString(8));
+                idPresiden.setText(rs.getString(9));
+                if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {
                             Statement stmt11 = conn.createStatement();
-                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+jLabel24.getText()+"'");
+                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+idTeamPred.getText()+"'");
                             if (rs11.next()) {
                                 labelNameTeamPred.setText(rs11.getString(4));
                             }
@@ -76,7 +78,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                         }
                     try {
                         Statement stmt1 = conn.createStatement();
-                        ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+jLabel24.getText()+"'");
+                        ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+idTeamPred.getText()+"'");
                         if (rs1.next()) {
                             byte[] imageData = rs1.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -97,11 +99,11 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel28 != null) {
+                if (idTeamRecd != null) {
                     signTeamRecd.setText(null);
                     try {
                             Statement stmt21 = conn.createStatement();
-                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+jLabel28.getText()+"'");
+                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+idTeamRecd.getText()+"'");
                             if (rs21.next()) {
                                 labelNameTeamRecd.setText(rs21.getString(4));
                             }
@@ -109,7 +111,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                         }
                     try {
                         Statement stmt2 = conn.createStatement();
-                        ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+jLabel28.getText()+"'");
+                        ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+idTeamRecd.getText()+"'");
                         if (rs2.next()) {
                             byte[] imageData = rs2.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -130,11 +132,11 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel29 != null) {
+                if (idTeamRevd != null) {
                     signTeamRevd.setText(null);
                     try {
                             Statement stmt31 = conn.createStatement();
-                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+jLabel29.getText()+"'");
+                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+idTeamRevd.getText()+"'");
                             if (rs31.next()) {
                                 labelNameTeamRevd.setText(rs31.getString(4));
                             }
@@ -142,7 +144,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                         }
                     try {
                         Statement stmt3 = conn.createStatement();
-                        ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+jLabel29.getText()+"'");
+                        ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+idTeamRevd.getText()+"'");
                         if (rs3.next()) {
                             byte[] imageData = rs3.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -163,11 +165,11 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel31 != null) {
+                if (idTeamMGR != null) {
                     signTeamMGR.setText(null);
                         try {
                             Statement stmt41 = conn.createStatement();
-                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+jLabel31.getText()+"'");
+                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
                             if (rs41.next()) {
                                 labelNameTeamMGR.setText(rs41.getString(4));
                             }
@@ -175,7 +177,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                         }
                     try {
                         Statement stmt4 = conn.createStatement();
-                        ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+jLabel31.getText()+"'");
+                        ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
                         if (rs4.next()) {
                             byte[] imageData = rs4.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -196,11 +198,11 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel32 != null) {
+                if (idHRRevd != null) {
                     signHRRevd.setText(null);
                     try {
                             Statement stmt51 = conn.createStatement();
-                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+jLabel32.getText()+"'");
+                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
                             if (rs51.next()) {
                                 labelNameHRRevd.setText(rs51.getString(4));
                             }
@@ -208,7 +210,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                         }
                     try {
                         Statement stmt5 = conn.createStatement();
-                        ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+jLabel32.getText()+"'");
+                        ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
                         if (rs5.next()) {
                             byte[] imageData = rs5.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -229,11 +231,11 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel36 != null) {
+                if (idHRMGR != null) {
                     signHRMGR.setText(null);
                     try {
                             Statement stmt61 = conn.createStatement();
-                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+jLabel36.getText()+"'");
+                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
                             if (rs61.next()) {
                                 labelNameHRMGR.setText(rs61.getString(4));
                             }
@@ -241,7 +243,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                         }
                     try {
                         Statement stmt6 = conn.createStatement();
-                        ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+jLabel36.getText()+"'");
+                        ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
                         if (rs6.next()) {
                             byte[] imageData = rs6.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -262,11 +264,11 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel38 != null) {
+                if (idPresiden != null) {
                     signPresident.setText(null);
                     try {
                             Statement stmt71 = conn.createStatement();
-                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+jLabel38.getText()+"'");
+                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresiden.getText()+"'");
                             if (rs71.next()) {
                                 labelNamePresident.setText(rs71.getString(4));
                             }
@@ -274,7 +276,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                         }
                     try {
                         Statement stmt7 = conn.createStatement();
-                        ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+jLabel38.getText()+"'");
+                        ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresiden.getText()+"'");
                         if (rs7.next()) {
                             byte[] imageData = rs7.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -310,6 +312,8 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
+        dateChooser2 = new com.raven.datechooser.DateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -338,18 +342,17 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         labelNamePresident = new javax.swing.JLabel();
         signPresident = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
+        idTeamPred = new javax.swing.JLabel();
+        idTeamRecd = new javax.swing.JLabel();
+        idTeamRevd = new javax.swing.JLabel();
+        idTeamMGR = new javax.swing.JLabel();
+        idHRRevd = new javax.swing.JLabel();
+        idHRMGR = new javax.swing.JLabel();
+        idPresiden = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel33 = new javax.swing.JLabel();
+        textReason = new javax.swing.JTextArea();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        textEvidance = new javax.swing.JTextArea();
         jLabel21 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
@@ -359,17 +362,13 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         jLabel14 = new javax.swing.JLabel();
         labelDiscipline = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
         labelPosition = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -378,6 +377,17 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         jLabel34 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
+        dateFrom = new CustomResource.CustomTextfield();
+        dateTo = new CustomResource.CustomTextfield();
+        textMobile = new CustomResource.CustomTextfield();
+        textRelative = new CustomResource.CustomTextfield();
+        labelID = new javax.swing.JLabel();
+
+        dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser1.setTextRefernce(dateFrom);
+
+        dateChooser2.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser2.setTextRefernce(dateTo);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -402,7 +412,12 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Simpan / Save");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 1080, 170, 50));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 1080, 170, 50));
 
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel40.setText("Pre'd");
@@ -544,46 +559,42 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         jLabel23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 110, 120, 20));
 
-        jLabel24.setText("jLabel4");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        idTeamPred.setText("jLabel4");
+        jPanel1.add(idTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
 
-        jLabel28.setText("jLabel4");
-        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+        idTeamRecd.setText("jLabel4");
+        jPanel1.add(idTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
 
-        jLabel29.setText("jLabel4");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
+        idTeamRevd.setText("jLabel4");
+        jPanel1.add(idTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
 
-        jLabel31.setText("jLabel4");
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, -1, -1));
+        idTeamMGR.setText("jLabel4");
+        jPanel1.add(idTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, -1, -1));
 
-        jLabel32.setText("jLabel4");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, -1));
+        idHRRevd.setText("jLabel4");
+        jPanel1.add(idHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, -1));
 
-        jLabel36.setText("jLabel4");
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
+        idHRMGR.setText("jLabel4");
+        jPanel1.add(idHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
 
-        jLabel38.setText("jLabel4");
-        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
+        idPresiden.setText("jLabel4");
+        jPanel1.add(idPresiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane5.setViewportView(jTextArea1);
+        textReason.setColumns(20);
+        textReason.setRows(5);
+        jScrollPane5.setViewportView(textReason);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, -1, -1));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 250, -1));
 
-        jLabel33.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel33.setText("Relative :");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 700, -1, -1));
+        textEvidance.setColumns(20);
+        textEvidance.setRows(5);
+        jScrollPane7.setViewportView(textEvidance);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane7.setViewportView(jTextArea3);
-
-        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 580, -1, -1));
+        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 580, 250, -1));
 
         jLabel21.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel21.setText("Emergency");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 680, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 690, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel13.setText("Mobile No.");
@@ -594,7 +605,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
 
         jLabel20.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel20.setText("Evidence");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, -1, -1));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel7.setText("Discipline");
@@ -614,19 +625,11 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel18.setText("Reason");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, -1, -1));
-
-        jLabel50.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel50.setText("To      :");
-        jPanel1.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, -1, -1));
 
         jLabel51.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel51.setText("Contact Poin");
-        jPanel1.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 700, -1, -1));
-
-        jLabel52.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel52.setText("Mobile No :");
-        jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 680, -1, -1));
+        jPanel1.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 710, -1, -1));
 
         labelPosition.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelPosition.setText("...");
@@ -661,14 +664,6 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
 
         jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 740, 818, 211));
 
-        jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel16.setText("From :");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
-
-        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel15.setText("Period ");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
-
         labelName.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelName.setText("...");
         jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
@@ -679,7 +674,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel19.setText("Suporting");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 580, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 580, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel6.setText("A. EMPLOYE STATUS");
@@ -700,6 +695,26 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         jLabel41.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel41.setText(":");
         jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 340, -1, -1));
+
+        dateFrom.setLabelText("from period");
+        dateFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateFromActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dateFrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 150, -1));
+
+        dateTo.setLabelText("to period");
+        jPanel1.add(dateTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 160, -1));
+
+        textMobile.setLabelText("Mobile No.");
+        jPanel1.add(textMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 680, 120, -1));
+
+        textRelative.setLabelText("Relative :");
+        jPanel1.add(textRelative, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 680, 120, -1));
+
+        labelID.setText("asd");
+        jPanel1.add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -730,6 +745,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamPred.setIcon(new ImageIcon(imageResize));
                     labelNameTeamPred.setText(MySession.get_nama());
+                    idTeamPred.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -754,6 +770,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamRecd.setIcon(new ImageIcon(imageResize));
                     labelNameTeamRecd.setText(MySession.get_nama());
+                    idTeamRecd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -778,6 +795,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamRevd.setIcon(new ImageIcon(imageResize));
                     labelNameTeamRevd.setText(MySession.get_nama());
+                    idTeamRevd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -802,6 +820,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamMGR.setIcon(new ImageIcon(imageResize));
                     labelNameTeamMGR.setText(MySession.get_nama());
+                    idTeamMGR.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -826,6 +845,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signHRRevd.setIcon(new ImageIcon(imageResize));
                     labelNameHRRevd.setText(MySession.get_nama());
+                    idHRRevd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -850,6 +870,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signHRMGR.setIcon(new ImageIcon(imageResize));
                     labelNameHRMGR.setText(MySession.get_nama());
+                    idHRMGR.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -874,6 +895,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signPresident.setIcon(new ImageIcon(imageResize));
                     labelNamePresident.setText(MySession.get_nama());
+                    idPresiden.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -881,15 +903,83 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         }
     }//GEN-LAST:event_signPresidentMouseClicked
 
+    private void dateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFromActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateFromActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (idTeamPred.getText() == null) {
+            idTeamPred.setText("0");
+        }
+        if (idTeamRecd.getText() == null) {
+            idTeamRecd.setText("0");
+        }
+        if (idTeamRevd.getText() == null) {
+            idTeamRevd.setText("0");
+        }
+        if (idTeamMGR.getText() == null) {
+            idTeamMGR.setText("0");
+        }
+        if (idHRRevd.getText() == null) {
+            idHRRevd.setText("0");
+        }
+        if (idHRMGR.getText() == null) {
+            idHRMGR.setText("0");
+        }
+        if (idPresiden.getText() == null) {
+            idPresiden.setText("0");
+        }
+        
+        Connection myConn = null;
+        PreparedStatement myStmt = null;
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            String sql = "UPDATE employee_absence SET team_pred=?, team_recd=?, team_revd=?, team_mgr=?, hr_revd=?, hr_mgr=?, president=? WHERE karyawan_id=?";
+            myStmt = myConn.prepareStatement(sql);
+            myStmt.setString(1, idTeamPred.getText());
+            myStmt.setString(2, idTeamRecd.getText());
+            myStmt.setString(3, idTeamRevd.getText());
+            myStmt.setString(4, idTeamMGR.getText());
+            myStmt.setString(5, idHRRevd.getText());
+            myStmt.setString(6, idHRMGR.getText());
+            myStmt.setString(7, idPresiden.getText());
+            myStmt.setString(8, labelID.getText());
+            myStmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Berhasil Menyimpan data \n Succeed saving data");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Gagal Menyimpan data \n Failed saving data");
+        } finally {
+            try {
+                if (myStmt != null) {
+                    myStmt.close();
+                }
+                if (myConn != null) {
+                    myConn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.datechooser.DateChooser dateChooser1;
+    private com.raven.datechooser.DateChooser dateChooser2;
+    private CustomResource.CustomTextfield dateFrom;
+    private CustomResource.CustomTextfield dateTo;
+    private javax.swing.JLabel idHRMGR;
+    private javax.swing.JLabel idHRRevd;
+    private javax.swing.JLabel idPresiden;
+    private javax.swing.JLabel idTeamMGR;
+    private javax.swing.JLabel idTeamPred;
+    private javax.swing.JLabel idTeamRecd;
+    private javax.swing.JLabel idTeamRevd;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -897,28 +987,18 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
@@ -931,10 +1011,9 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JLabel labelDiscipline;
     private javax.swing.JLabel labelHP;
+    private javax.swing.JLabel labelID;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelNameHRMGR;
     private javax.swing.JLabel labelNameHRRevd;
@@ -951,6 +1030,10 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
     private javax.swing.JLabel signTeamPred;
     private javax.swing.JLabel signTeamRecd;
     private javax.swing.JLabel signTeamRevd;
+    private javax.swing.JTextArea textEvidance;
+    private CustomResource.CustomTextfield textMobile;
+    private javax.swing.JTextArea textReason;
+    private CustomResource.CustomTextfield textRelative;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
