@@ -1,10 +1,9 @@
 package TestResource;
 
 import CustomResource.koneksi;
-import Employee.ChangePassword;
-import Employee.EmployeeProfilePanel;
+
 import Main.MasterForm;
-import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
+
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import jxl.common.Logger;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

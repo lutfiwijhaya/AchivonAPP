@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import Main.NewJPanel;
+import static com.lowagie.text.pdf.BidiOrder.R;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -36,15 +37,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import javax.swing.table.DefaultTableModel;
+import jxl.biff.drawing.CheckBox;
 
 public class CandidateApplication extends MasterForm {
 
@@ -1407,7 +1409,12 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        jToggleButton2.setEnabled(true);
+JCheckBox jCheckBox5A = new JCheckBox("jCheckBox5A");
+if (jCheckBox5A.isSelected()) {
+   jToggleButton2.setVisible(true);
+} else {
+    // Checkbox belum dicentang
+}
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed

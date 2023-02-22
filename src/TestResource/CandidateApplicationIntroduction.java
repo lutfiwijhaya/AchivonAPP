@@ -5,7 +5,7 @@
 package TestResource;
 
 import HumanResource.CandidateApplication;
-import Main.MainPanel;
+
 import Main.MasterForm;
 
 /**

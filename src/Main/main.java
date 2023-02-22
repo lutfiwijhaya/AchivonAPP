@@ -19,7 +19,7 @@ import HumanResource.AplicationRehabilitation;
 import HumanResource.ApplicationResignation;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
-import TestResource.CandidateApplicationPersonal;
+
 import HumanResource.CandidateApplicationedit;
 import HumanResource.ClearanceList;
 import HumanResource.ConfirmationHandingOverTakingOver;
@@ -27,7 +27,7 @@ import HumanResource.ConfirmationHandoverandTakeoverList;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
 import HumanResource.EmployeeEvaluation;
-import HumanResource.EmployeeRehabilitation;
+
 import HumanResource.LeaveOfAbsenceList;
 import HumanResource.LeaveOfAbsense;
 import HumanResource.NotificationToNewEmployee;
@@ -53,8 +53,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import org.apache.poi.hssf.record.PageBreakRecord;
-import org.apache.poi.hssf.record.PageBreakRecord.Break;
+
 
  
 public class main extends javax.swing.JFrame {
@@ -110,8 +109,8 @@ public class main extends javax.swing.JFrame {
         openDB();
         bg();
         
-        ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
-        this.setIconImage(logo.getImage());
+//        ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
+//        this.setIconImage(logo.getImage());
         
     }
     
@@ -140,7 +139,7 @@ public class main extends javax.swing.JFrame {
     }
     
     void bg(){
-   String crudimage = "src/Main/rm347-porpla-01.jpg";
+   String crudimage = "D:\\AchivonAPP\\dist\\rm347-porpla-01.jpg";
    ImageIcon imageicon = new ImageIcon(crudimage);
    JLabel label = new JLabel(imageicon);
    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

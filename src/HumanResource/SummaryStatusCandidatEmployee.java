@@ -6,8 +6,7 @@ package HumanResource;
 
 import CustomResource.koneksi;
 import Main.MasterForm;
-import com.mysql.cj.xdevapi.Statement;
-import com.sun.jdi.connect.spi.Connection;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.ResultSet;

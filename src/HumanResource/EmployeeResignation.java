@@ -22,13 +22,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
+
 
 public class EmployeeResignation extends MasterForm {
     Statement stm;

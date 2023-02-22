@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import CustomResource.MySession;
-import static Main.main.bodyPanel;
+
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.Dimension;
@@ -24,8 +24,8 @@ public class LoginFrame extends javax.swing.JFrame {
         super("ACV-OS-Login");
         initComponents();
         MyWindow();
-        ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
-        this.setIconImage(logo.getImage());
+//        ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
+//        this.setIconImage(logo.getImage());
 //        openeye.setVisible(false);
 //        openeye1.setVisible(false);
     }

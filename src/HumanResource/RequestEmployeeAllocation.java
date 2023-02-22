@@ -4,7 +4,7 @@
  */
 package HumanResource;
 
-import CustomResource.EmployeeSession;
+
 import CustomResource.MySession;
 import Main.MasterForm;
 
@@ -23,9 +23,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
+
 
 /**
  *
