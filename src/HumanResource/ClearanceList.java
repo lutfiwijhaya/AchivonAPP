@@ -74,7 +74,6 @@ public class ClearanceList extends MasterForm {
 //                    id = (String) MyTable.getValueAt(row, 0);
 //                    Class.forName("com.mysql.jdbc.Driver");
 //
-//                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
 //                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
 //                    jasperdesign = JRXmlLoader.load(O);
 //                    param.clear();

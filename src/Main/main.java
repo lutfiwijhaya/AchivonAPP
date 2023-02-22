@@ -798,22 +798,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_HumanResourceSystemMouseClicked
 
     private void SMLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMLogoutActionPerformed
-//            bodyPanel.setVisible(false);
-//            HumanResourceSystem.setEnabled(true);
-//            POSystem.setEnabled(false);
-//            WarehouseSystem.setEnabled(false);
-//            AcountingSystem.setEnabled(false);
-//            myProfile.setVisible(false);
-//            SMLogout.setVisible(false);
-//            HumanResourceSystem.setVisible(false);
-//            ToolBar.setVisible(true);
-//            homeBar.setVisible(false);
-//            undoBar.setVisible(false);
-//            redoBar.setVisible(false);
-//            jPanel2.setVisible(true);
-            myLogout();
-//            main.getMain().setVisible(false);
-//            new LoginFrame().setVisible(true);
+        myLogout();
     }//GEN-LAST:event_SMLogoutActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -945,7 +930,7 @@ public class main extends javax.swing.JFrame {
         }
         Main.main.getMain().showForm(new CandidateApplicationedit());
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "wm", "qwe");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from cd_foto where id_employee ='"+MySession.get_cd_ktp()+"'"); // assuming the image is stored in the 'images' table with an ID of 1
 
@@ -1133,7 +1118,6 @@ showForm(new CandidateList());        // TODO add your handling code here:
         new LoginFrame().setVisible(true);
         main.jPanel2.setVisible(true);
         main.getMain().setVisible(false);
-//        this.dispose(); s
     }
     
     private void MyWindow(){

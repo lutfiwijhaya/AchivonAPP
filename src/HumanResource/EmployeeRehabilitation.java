@@ -717,6 +717,7 @@ public class EmployeeRehabilitation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamPred.setIcon(new ImageIcon(imageResize));
                     labelNameTeamPred.setText(MySession.get_nama());
+                    idTeamPred.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -741,6 +742,7 @@ public class EmployeeRehabilitation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamRecd.setIcon(new ImageIcon(imageResize));
                     labelNameTeamRecd.setText(MySession.get_nama());
+                    idTeamRecd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -765,6 +767,7 @@ public class EmployeeRehabilitation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamRevd.setIcon(new ImageIcon(imageResize));
                     labelNameTeamRevd.setText(MySession.get_nama());
+                    idTeamRevd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -789,6 +792,7 @@ public class EmployeeRehabilitation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamMGR.setIcon(new ImageIcon(imageResize));
                     labelNameTeamMGR.setText(MySession.get_nama());
+                    idTeamMgr.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -813,6 +817,7 @@ public class EmployeeRehabilitation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signHRRevd.setIcon(new ImageIcon(imageResize));
                     labelNameHRRevd.setText(MySession.get_nama());
+                    idHRRevd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -837,6 +842,7 @@ public class EmployeeRehabilitation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signHRMGR.setIcon(new ImageIcon(imageResize));
                     labelNameHRMGR.setText(MySession.get_nama());
+                    idHRMgr.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -861,6 +867,7 @@ public class EmployeeRehabilitation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signPresident.setIcon(new ImageIcon(imageResize));
                     labelNamePresident.setText(MySession.get_nama());
+                    idPresident.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -892,7 +899,7 @@ public class EmployeeRehabilitation extends MasterForm {
             idHRMgr.setText("0");
         }
         if (idPresident.getText() == null) {
-            idPresident.setText("0");
+            idPresident.setText("1");
         }
         
         Connection myConn = null;

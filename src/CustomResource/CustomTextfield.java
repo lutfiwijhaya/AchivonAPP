@@ -49,6 +49,7 @@ public class CustomTextfield extends JTextField {
         setFont(new Font("Arial", Font.PLAIN, 11));
         setBorder(new EmptyBorder(20, 3, 10, 3));
         setSelectionColor(new Color(76, 204, 255));
+//        setOpaque(false);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
@@ -126,6 +127,7 @@ public class CustomTextfield extends JTextField {
     private void createHintText(Graphics2D g2) {
         Insets in = getInsets();
         g2.setColor(new Color(150, 150, 150));
+//        setOpaque(false);
         FontMetrics ft = g2.getFontMetrics();
         Rectangle2D r2 = ft.getStringBounds(labelText, g2);
         double height = getHeight() - in.top - in.bottom;

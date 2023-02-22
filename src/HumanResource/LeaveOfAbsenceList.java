@@ -206,8 +206,8 @@ void remove (){
             myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_absence inner join employee on employee_absence.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(11),myRess.getString(12), myRess.getString(13), myRess.getString(14),myRess.getString(19), 
-                                    myRess.getString(20),myRess.getString(23) ,myRess.getString(16)};
+                String myData [] = {myRess.getString(17),myRess.getString(18), myRess.getString(19), myRess.getString(20),myRess.getString(25), 
+                                    myRess.getString(26),myRess.getString(29) ,myRess.getString(22)};
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {

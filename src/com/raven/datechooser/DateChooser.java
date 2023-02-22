@@ -44,7 +44,7 @@ public final class DateChooser extends javax.swing.JPanel {
         setForeground(new Color(204, 93, 93));
         events = new ArrayList<>();
         popup.add(this);
-        toDay(false);
+//        toDay(false);
     }
 
     public void setTextRefernce(JTextField txt) {
