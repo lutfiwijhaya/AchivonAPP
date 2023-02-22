@@ -1415,7 +1415,7 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_emailActionPerformed
 
     private void t_hpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hpActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_t_hpActionPerformed
 
     private void t_hpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyTyped
