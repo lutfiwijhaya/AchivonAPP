@@ -17,6 +17,7 @@ import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
 import CustomResource.EmployeeSession;
+import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -52,6 +53,7 @@ public class LeaveOfAbsenceList extends MasterForm {
         
         initComponents();
         settable();
+        openDB();
         myShow();
         MyWindow();
         remove();
@@ -80,7 +82,15 @@ public class LeaveOfAbsenceList extends MasterForm {
 //        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
     }
 
-
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
+    
 void remove (){ 
     
 }
@@ -130,12 +140,12 @@ void remove (){
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Daftar Rehabilitation diri karyawan / Employee Rehabilitation List");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 40));
+        jLabel1.setText("Daftar Daftar Pengajuan cuti karyawan / Request Employee Leave of Absence List");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 40));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 830, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 730, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));

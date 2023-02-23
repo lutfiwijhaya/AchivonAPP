@@ -52,6 +52,7 @@ public class ResignationList extends MasterForm {
     public ResignationList() {
         
         initComponents();
+        openDB();
         settable();
         myShow();
         MyWindow();

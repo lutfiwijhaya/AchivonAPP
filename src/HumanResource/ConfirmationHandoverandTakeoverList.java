@@ -166,12 +166,12 @@ public class ConfirmationHandoverandTakeoverList extends MasterForm {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Daftar pengunduran diri karyawan / Employee Resignation List");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 40));
+        jLabel1.setText("Daftar penyerahan dan pengambil alihan diri karyawan / Employee hand over and take over list");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 40));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 840, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 660, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));

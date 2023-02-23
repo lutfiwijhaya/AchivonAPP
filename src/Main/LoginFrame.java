@@ -5,13 +5,11 @@
 package Main;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import CustomResource.MySession;
 import CustomResource.koneksi;
-import static Main.main.bodyPanel;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.Dimension;
@@ -22,6 +20,7 @@ public class LoginFrame extends javax.swing.JFrame {
         super("ACV-OS-Login");
         initComponents();
         MyWindow();
+        openDB();
         ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
         this.setIconImage(logo.getImage());
 //        openeye.setVisible(false);

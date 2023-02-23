@@ -374,7 +374,7 @@ public class CandidateApplicationedit extends MasterForm {
 
     void get_tanggal() {
         Date ys = new Date();
-        SimpleDateFormat s = new SimpleDateFormat("dd-MMM-yyy");
+        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyy");
         tanggal = s.format(ys);
     }
 
@@ -416,7 +416,7 @@ public class CandidateApplicationedit extends MasterForm {
                 t_ktp.setText(rs.getString("KTP"));
                 t_tlhir.setText(rs.getString("b_place"));
                 String b_d = (rs.getString("birthday"));
-                SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
                 Date det = fm.parse(b_d);
                 t_tgl_personal.setDate(det);
                 t_hp.setText(rs.getString("No_HP"));
@@ -1487,7 +1487,7 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
         String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
         r_y.setActionCommand("Yes");
         r_n.setActionCommand("No");
@@ -1512,7 +1512,7 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
         String tanggal_certificate = String.valueOf(fm.format(t_tgl_certificate.getDate()));
 
         DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();

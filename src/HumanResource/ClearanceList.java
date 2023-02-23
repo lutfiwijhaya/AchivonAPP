@@ -162,7 +162,7 @@ public class ClearanceList extends MasterForm {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Daftar pengunduran diri karyawan / Employee Resignation List");
+        jLabel1.setText("Daftar pengajuan izin karyawan / Employee clearance List");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 40));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
