@@ -20,8 +20,7 @@ public class LoginFrame extends javax.swing.JFrame {
         super("ACV-OS-Login");
         initComponents();
         MyWindow();
-        openDB();
-        ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
+        ImageIcon logo = new ImageIcon("C:\\Program Files (x86)\\AchivonAPP\\Logo.png");
         this.setIconImage(logo.getImage());
 //        openeye.setVisible(false);
 //        openeye1.setVisible(false);

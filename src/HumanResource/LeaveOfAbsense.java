@@ -4,7 +4,7 @@
  */
 package HumanResource;
 
-import CustomResource.EmployeeSession;
+
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
@@ -13,8 +13,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -28,10 +27,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableCellRenderer;
+
 
 import java.sql.PreparedStatement;
 /**

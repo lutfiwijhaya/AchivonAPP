@@ -4,7 +4,7 @@
  */
 package HumanResource;
 
-import java.io.File;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ import CustomResource.CandidateSession;
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -34,13 +34,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
+
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -223,7 +220,7 @@ public class CandidateList extends MasterForm {
         });
         jScrollPane1.setViewportView(MyTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 1280, 440));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 1280, 440));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Daftar kandidat / Candidate List");
@@ -234,12 +231,17 @@ public class CandidateList extends MasterForm {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 1000, 20));
 
         textSearch.setLabelText("Cari / Search");
+        textSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchActionPerformed(evt);
+            }
+        });
         textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textSearchKeyTyped(evt);
             }
         });
-        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 460, -1));
+        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 460, -1));
 
         jButton1.setText("Accept");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -285,7 +287,7 @@ public class CandidateList extends MasterForm {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 760, 280, 90));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 570, 280, 90));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -361,6 +363,10 @@ public class CandidateList extends MasterForm {
         }
         Main.main.getMain().showForm(new CandidateList());      // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -19,13 +19,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
+
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -33,6 +32,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.engine.JasperExportManager;
+
 /**
  *
  * @author hi
@@ -48,24 +48,23 @@ public class CandidateProfile extends MasterForm {
     JasperDesign jasperdesign;
     JasperPrint jasperprint;
     Map<String, Object> param = new HashMap<String, Object>();
-    
-    
+
     public CandidateProfile() {
         initComponents();
         MyWindow();
         openDB();
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
-        
+
         getDataCandidate();
-        
-        ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
-        
-        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
-        
-        ((DefaultTableCellRenderer)jTable3.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
+
+        ((DefaultTableCellRenderer) jTable1.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
+
+        ((DefaultTableCellRenderer) jTable2.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
+
+        ((DefaultTableCellRenderer) jTable3.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(JLabel.CENTER);
     }
     
     private void openDB() {
@@ -159,7 +158,6 @@ public class CandidateProfile extends MasterForm {
         jTable4 = new javax.swing.JTable();
         jLabel33 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -527,14 +525,6 @@ public class CandidateProfile extends MasterForm {
         jSeparator6.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 920, 610, 20));
 
-        jButton4.setText("Buat pdf");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 1540, -1, -1));
-
         jScrollPane3.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -559,13 +549,13 @@ public class CandidateProfile extends MasterForm {
 //            while (myRess.next()) {
 //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
 //            }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
 //                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
-            
+
         }
-        
-         Main.main.getMain().showForm(new CandidateList());
+
+        Main.main.getMain().showForm(new CandidateList());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -574,44 +564,44 @@ public class CandidateProfile extends MasterForm {
 //            while (myRess.next()) {
 //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
 //            }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
 //                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
-            
+
         }
-        
-         Main.main.getMain().showForm(new CandidateList());
+
+        Main.main.getMain().showForm(new CandidateList());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String filePath = "src/Doc/test.pdf";
-//            Connection kon = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-            File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-            jasperdesign = JRXmlLoader.load(O);
-            param.clear();
-            jasperreport = JasperCompileManager.compileReport(jasperdesign);
-            param.put("id",CandidateSession.getCandidateID());
-            jasperprint = JasperFillManager.fillReport(jasperreport, param, koneksi);
-            JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
-            JasperViewer.viewReport(jasperprint, false);
+
+//                    Class.forName("com.mysql.jdbc.Driver");
+//String filePath = "src/Doc/test.pdf";
+                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
+//                    File O = new File("C:\\Program Files (x86)\\AchivonAPP\\cdemployee.jasper");
+//                    jasperdesign = JRXmlLoader.load(O);
+                    param.clear();
+//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
+                    param.put("id",CandidateSession.getCandidateID());
+//                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
+//                    JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
+//                    JasperViewer.viewReport(jasperprint, false);
+            String reportPath = "C:\\Program Files (x86)\\AchivonAPP\\cdemployee.jasper";
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, param, kon);
+            JasperViewer viewer = new JasperViewer(jasperPrint, false);
+            viewer.setVisible(true);
+
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -683,11 +673,11 @@ public class CandidateProfile extends MasterForm {
     private javax.swing.JLabel labelTTL;
     public static javax.swing.JLabel labelfoto;
     // End of variables declaration//GEN-END:variables
-    private void MyWindow(){
+    private void MyWindow() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screen.width, screen.height-45);
-        this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
+        this.setSize(screen.width, screen.height - 45);
+        this.setPreferredSize(new Dimension(screen.width, screen.height - 100));
+
 //        int x = (screen.width/2) - (this.getSize().width/2);
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
@@ -702,7 +692,7 @@ public class CandidateProfile extends MasterForm {
                 labelMail.setText(myRess.getString(4));
                 labelNPWP.setText(myRess.getString(5));
                 labelGender.setText(myRess.getString(6));
-                labelTTL.setText(myRess.getString(7)+", " +myRess.getString(8));
+                labelTTL.setText(myRess.getString(7) + ", " + myRess.getString(8));
                 labelMarital.setText(myRess.getString(9));
                 labelMobile.setText(myRess.getString(10));
                 labelBPJS.setText(myRess.getString(11));
@@ -714,85 +704,85 @@ public class CandidateProfile extends MasterForm {
 //                                    myRess.getString(10), myRess.getString(12), myRess.getString(13)};
 //                
 //                myModel.addRow(myData);
-           
+
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Maaf, Data Tidak Dapat kami temukan");
 //            Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        DefaultTableModel MyModel2= (DefaultTableModel)jTable2.getModel();
+
+        DefaultTableModel MyModel2 = (DefaultTableModel) jTable2.getModel();
         int row2 = jTable2.getRowCount();
-        for(int i = 0; i < row2; i++){
+        for (int i = 0; i < row2; i++) {
             MyModel2.removeRow(0);
         }
-        
+
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_academic WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6)};            
+                String myData[] = {myRess.getString(3), myRess.getString(4), myRess.getString(5), myRess.getString(6)};
                 MyModel2.addRow(myData);
             }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Maaf, Data Akademik Tidak Dapat kami temukan \n Sorry, we cant find academic data");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Maaf, Data Akademik Tidak Dapat kami temukan \n Sorry, we cant find academic data");
 //                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        DefaultTableModel MyModel3= (DefaultTableModel)jTable3.getModel();
+        }
+        DefaultTableModel MyModel3 = (DefaultTableModel) jTable3.getModel();
         int row3 = jTable3.getRowCount();
-        for(int i = 0; i < row3; i++){
+        for (int i = 0; i < row3; i++) {
             MyModel3.removeRow(0);
         }
-        
+
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_family WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6), myRess.getString(7)};            
+                String myData[] = {myRess.getString(3), myRess.getString(4), myRess.getString(5), myRess.getString(6), myRess.getString(7)};
                 MyModel3.addRow(myData);
             }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Maaf, Data Keluarga Tidak Dapat kami temukan \n Sorry, we cant find Family data");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Maaf, Data Keluarga Tidak Dapat kami temukan \n Sorry, we cant find Family data");
 //                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        DefaultTableModel MyModel1= (DefaultTableModel)jTable1.getModel();
+        }
+        DefaultTableModel MyModel1 = (DefaultTableModel) jTable1.getModel();
         int row1 = jTable1.getRowCount();
-        for(int i = 0; i < row1; i++){
+        for (int i = 0; i < row1; i++) {
             MyModel1.removeRow(0);
         }
-        
+
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_certificates WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6), myRess.getString(7)};            
+                String myData[] = {myRess.getString(3), myRess.getString(4), myRess.getString(5), myRess.getString(6), myRess.getString(7)};
                 MyModel1.addRow(myData);
             }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Maaf, Data Sertifikat Tidak Dapat kami temukan \n Sorry we cant find Certificate data");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Maaf, Data Sertifikat Tidak Dapat kami temukan \n Sorry we cant find Certificate data");
 //                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_adress WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
-                jTextArea1.setText(myRess.getString(8)+", \n"+myRess.getString(7)+", "+myRess.getString(6)+", \n"+myRess.getString(5)+", "+myRess.getString(4)+", \n"+myRess.getString(3));
-                jTextArea2.setText(myRess.getString(14)+", \n"+myRess.getString(13)+", "+myRess.getString(12)+", \n"+myRess.getString(11)+", "+myRess.getString(10)+", \n"+myRess.getString(9));
+                jTextArea1.setText(myRess.getString(8) + ", \n" + myRess.getString(7) + ", " + myRess.getString(6) + ", \n" + myRess.getString(5) + ", " + myRess.getString(4) + ", \n" + myRess.getString(3));
+                jTextArea2.setText(myRess.getString(14) + ", \n" + myRess.getString(13) + ", " + myRess.getString(12) + ", \n" + myRess.getString(11) + ", " + myRess.getString(10) + ", \n" + myRess.getString(9));
             }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Maaf, Data Alamat Tidak Dapat kami temukan \n Sorry we cant find Address data");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Maaf, Data Alamat Tidak Dapat kami temukan \n Sorry we cant find Address data");
 //                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+        }
+
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_motivation WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
-                
+
                 jTextArea3.setText(myRess.getString(3));
                 jTextArea4.setText(myRess.getString(4));
             }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Maaf, Data Motivasi Tidak Dapat kami temukan \n Sorry we cant find Motivation data");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Maaf, Data Motivasi Tidak Dapat kami temukan \n Sorry we cant find Motivation data");
 //                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-         DefaultTableModel dataModel3 = (DefaultTableModel) jTable4.getModel();
+        }
+
+        DefaultTableModel dataModel3 = (DefaultTableModel) jTable4.getModel();
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from cd_summary_career where id_employee = " + CandidateSession.getCandidateID() + "");

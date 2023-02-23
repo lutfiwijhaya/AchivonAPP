@@ -4,7 +4,7 @@
  */
 package TestResource;
 
-import Main.MainPanel;
+
 import Main.MasterForm;
 
 /**

@@ -8,7 +8,7 @@ package TestResource;
  *
  * @author hi
  */
-import CustomResource.MySession;
+
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -21,8 +21,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import CustomResource.koneksi;
-import Employee.ChangePassword;
-import Employee.EmployeeProfilePanel;
+
 import Main.MasterForm;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
