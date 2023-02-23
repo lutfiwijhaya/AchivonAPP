@@ -423,9 +423,9 @@ public class CandidateApplicationedit extends MasterForm {
                 t_ktp.setText(rs.getString("KTP"));
                 t_tlhir.setText(rs.getString("b_place"));
                 String b_d = (rs.getString("birthday"));
-                SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-                Date det = fm.parse(b_d);
-                t_tgl_personal.setDate(det);
+//                SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+//                Date det = fm.parse(b_d);
+                t_tgl_personal.setText("birthday");
                 t_hp.setText(rs.getString("No_HP"));
                 t_email.setText(rs.getString("email"));
                 t_bpjsKesehatan.setText(rs.getString("BPJS"));
@@ -592,11 +592,13 @@ public class CandidateApplicationedit extends MasterForm {
         radioGrupGender = new javax.swing.ButtonGroup();
         radioGrupStatus = new javax.swing.ButtonGroup();
         buttongrup = new javax.swing.ButtonGroup();
+        dateChooser1 = new com.raven.datechooser.DateChooser();
+        dateChooser2 = new com.raven.datechooser.DateChooser();
+        dateChooser3 = new com.raven.datechooser.DateChooser();
         jScrollPane18 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
         jSeparator25 = new javax.swing.JSeparator();
-        jLabel75 = new javax.swing.JLabel();
         jSeparator26 = new javax.swing.JSeparator();
         jLabel81 = new javax.swing.JLabel();
         jSeparator27 = new javax.swing.JSeparator();
@@ -675,7 +677,6 @@ public class CandidateApplicationedit extends MasterForm {
         t_pria = new javax.swing.JRadioButton();
         t_lajang = new javax.swing.JRadioButton();
         t_menikah = new javax.swing.JRadioButton();
-        t_tgl_personal = new com.toedter.calendar.JDateChooser();
         jCheckBox1 = new javax.swing.JCheckBox();
         t_lokasi = new CustomResource.ComboBoxSuggestion();
         t_sekolah = new CustomResource.CustomTextfield();
@@ -689,14 +690,11 @@ public class CandidateApplicationedit extends MasterForm {
         jLabel3 = new javax.swing.JLabel();
         t_hp1 = new CustomResource.CustomTextfield();
         jButton3 = new javax.swing.JButton();
-        t_tgl_family = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         t_hubungan = new CustomResource.ComboBoxSuggestion();
         jLabel5 = new javax.swing.JLabel();
         t_nama1 = new CustomResource.CustomTextfield();
         jButton5 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        t_tgl_certificate = new com.toedter.calendar.JDateChooser();
         t_lokasi1 = new CustomResource.ComboBoxSuggestion();
         jLabel7 = new javax.swing.JLabel();
         t_nama2 = new CustomResource.CustomTextfield();
@@ -715,6 +713,15 @@ public class CandidateApplicationedit extends MasterForm {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        t_tgl_personal = new CustomResource.CustomTextfield();
+        t_tgl_family = new CustomResource.CustomTextfield();
+        t_tgl_certificate = new CustomResource.CustomTextfield();
+
+        dateChooser1.setTextRefernce(t_tgl_personal);
+
+        dateChooser2.setTextRefernce(t_tgl_family);
+
+        dateChooser3.setTextRefernce(t_tgl_certificate);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setAutoscrolls(true);
@@ -740,9 +747,6 @@ public class CandidateApplicationedit extends MasterForm {
         jSeparator25.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator25.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 870, 650, 20));
-
-        jLabel75.setText("Tanggal Lahir / Birth Date : ");
-        jPanel1.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, 20));
         jPanel1.add(jSeparator26, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, 40, 20));
 
         jLabel81.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -1256,7 +1260,6 @@ public class CandidateApplicationedit extends MasterForm {
         radioGrupStatus.add(t_menikah);
         t_menikah.setText("Married");
         jPanel1.add(t_menikah, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 180, -1, -1));
-        jPanel1.add(t_tgl_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 150, -1));
 
         jCheckBox1.setText("Sama Dengan Home Address");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -1334,9 +1337,6 @@ public class CandidateApplicationedit extends MasterForm {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 1730, -1, 30));
 
-        t_tgl_family.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(t_tgl_family, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 1360, 250, 30));
-
         jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel4.setText("Tanggal Lahir / Birthday");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 1340, 190, 20));
@@ -1361,13 +1361,6 @@ public class CandidateApplicationedit extends MasterForm {
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 1170, 110, 30));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel6.setText("diakuisisi Tanggal / acquisition date");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1600, 180, -1));
-
-        t_tgl_certificate.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(t_tgl_certificate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1620, 220, 30));
-
         t_lokasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Serang", " " }));
         t_lokasi1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jPanel1.add(t_lokasi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1620, 270, -1));
@@ -1377,7 +1370,7 @@ public class CandidateApplicationedit extends MasterForm {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1600, 90, -1));
 
         t_nama2.setLabelText("Nama Sertifikat / Certificate Namel");
-        jPanel1.add(t_nama2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1660, 270, -1));
+        jPanel1.add(t_nama2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1670, 270, -1));
 
         t_author.setLabelText("Nama Badan Penyelenggara / Authority Name");
         jPanel1.add(t_author, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1710, 270, -1));
@@ -1439,6 +1432,15 @@ public class CandidateApplicationedit extends MasterForm {
         jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 1870, 110, 30));
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1023, 2976, 130, 30));
 
+        t_tgl_personal.setLabelText("Tanggal Lahir/Birthday");
+        jPanel1.add(t_tgl_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 340, -1));
+
+        t_tgl_family.setLabelText("Tanggal Lahir/Birthday");
+        jPanel1.add(t_tgl_family, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 1360, 250, -1));
+
+        t_tgl_certificate.setLabelText("diakuisisi Tanggal / acquisition date");
+        jPanel1.add(t_tgl_certificate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1620, 270, -1));
+
         jScrollPane18.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1485,17 +1487,20 @@ public class CandidateApplicationedit extends MasterForm {
         DefaultTableModel dataModel = (DefaultTableModel) jTable5.getModel();
         List list = new ArrayList<>();
         jTable5.setAutoCreateColumnsFromModel(true);
-        list.add(t_nama.getText());
+        list.add(t_nama3.getText());
         list.add(t_posisi.getText());
         list.add("(" + tgl_awal.getMonth() + "-" + tgl_awal.getYear() + ")" + " - " + "(" + tgl_akhir.getMonth() + "-" + tgl_akhir.getYear() + ")");
         list.add(hasil_tahun + " Tahun " + hasil_bulan + " Bulan");
          dataModel.insertRow(0, list.toArray());
+         
+          t_nama3.setText("");
+        t_posisi.setText("");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-        String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
+//        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+//        String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
         r_y.setActionCommand("Yes");
         r_n.setActionCommand("No");
         DefaultTableModel dataModel = (DefaultTableModel) jTable3.getModel();
@@ -1503,10 +1508,15 @@ public class CandidateApplicationedit extends MasterForm {
         jTable3.setAutoCreateColumnsFromModel(true);
         list.add(t_nama1.getText());
         list.add(t_hubungan.getSelectedItem());
-        list.add(tanggal_family);
+        list.add(t_tgl_family.getText());
         list.add(buttongrup.getSelection().getActionCommand());
         list.add(t_hp1.getText());
-         dataModel.insertRow(0, list.toArray());       // TODO add your handling code here:
+         dataModel.insertRow(0, list.toArray());
+         
+t_nama1.setText("");
+t_hp1.setText("(0)");
+
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1519,18 +1529,22 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-        String tanggal_certificate = String.valueOf(fm.format(t_tgl_certificate.getDate()));
+//        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+//        String tanggal_certificate = String.valueOf(fm.format(t_tgl_certificate.getDate()));
 
         DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
         List list = new ArrayList<>();
         jTable4.setAutoCreateColumnsFromModel(true);
-        list.add(tanggal);
-        list.add(t_nama.getText());
+        list.add(t_tgl_certificate.getText());
+        list.add(t_nama2.getText());
         list.add(t_author.getText());
         list.add(t_lokasi.getSelectedItem());
         list.add(t_sertifikat.getText());
          dataModel.insertRow(0, list.toArray());
+         
+         t_nama2.setText("");
+        t_author.setText("");
+        t_sertifikat.setText("");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1591,55 +1605,56 @@ public class CandidateApplicationedit extends MasterForm {
         list.add(t_lokasi.getSelectedItem());
         list.add(t_jurusan.getText());
          dataModel.insertRow(0, list.toArray());
+         t_sekolah.setText("");
+        t_jurusan.setText("");
 
         // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-    if (t_tgl_personal.getDate()!= null){SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-        g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));}
+//    if (t_tgl_personal.getDate()!= null){SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+//        g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));}
          t_pria.setActionCommand("Male");
         t_wanita.setActionCommand("Female");
         t_lajang.setActionCommand("Single");
         t_menikah.setActionCommand("Married");
         
-         if (t_gaji.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Estimasi Gaji Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_dicipline.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Dicipline Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_nama.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_ktp.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "KTP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_tlhir.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (t_hp.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Nomor HP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_email.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Email Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_hkec.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_ddesa.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Desa  Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_halamat.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Alamat Rumah Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (t_ckec.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_cdesa.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Desa Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- } else if (t_calamat.getText().equals("")) {
-      JOptionPane.showMessageDialog(null, "Alamat Sekarang Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (radioGrupGender.getSelection()==null) {
-      JOptionPane.showMessageDialog(null, "Jenis Kelamin Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (radioGrupStatus.getSelection()==null) {
-      JOptionPane.showMessageDialog(null, "Status Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (g_tgl_personal.length()<2) {
-      JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else if (labelfoto.getIcon()==null) {
-      JOptionPane.showMessageDialog(null, "Foto Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
- }else {
-       
+        if (t_gaji.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Estimasi Gaji Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_dicipline.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dicipline Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_nama.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_ktp.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "KTP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_tlhir.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_hp.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nomor HP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_email.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Email Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_hkec.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_ddesa.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Desa  Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_halamat.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Alamat Rumah Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_ckec.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_cdesa.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Desa Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_calamat.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Alamat Sekarang Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (radioGrupGender.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Jenis Kelamin Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (radioGrupStatus.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Status Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (t_tgl_personal.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (labelfoto.getIcon() == null) {
+            JOptionPane.showMessageDialog(null, "Foto Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else {
      
       if (t_bpjsKesehatan.getText().equals("")) {
      t_bpjsKesehatan.setText("0");
@@ -1655,7 +1670,7 @@ public class CandidateApplicationedit extends MasterForm {
             String sql9 = "update cd_employee set nama='" + t_nama.getText() + "',KTP ='" + t_ktp.getText() + "',"
                     + "email='" + t_email.getText() + "',NPWP='" + t_npwp.getText() + "',"
                     + "sex='" + radioGrupGender.getSelection().getActionCommand() + "',b_place='" + t_tlhir.getText() + "',"
-                    + "birthday='" + g_tgl_personal + "',marital='" + radioGrupStatus.getSelection().getActionCommand() + "',"
+                    + "birthday='" + t_tgl_personal.getText() + "',marital='" + radioGrupStatus.getSelection().getActionCommand() + "',"
                     + "No_HP='" + t_hp.getText() + "',BPJS='" + t_bpjsKesehatan.getText() + "',"
                     + "bpjs_ket='" + t_bpjsKetenagakerjaan.getText() + "',Applying_A='" + t_lamaran.getSelectedItem() + "',"
                     + "D_Salary='" + t_gaji.getText() + "',discipline='" + t_dicipline.getText() + "',"
@@ -2093,6 +2108,9 @@ char c = evt.getKeyChar();
     private CustomResource.ComboBoxSuggestion ccity;
     private CustomResource.ComboBoxSuggestion cprov;
     private CustomResource.ComboBoxSuggestion curentCountry;
+    private com.raven.datechooser.DateChooser dateChooser1;
+    private com.raven.datechooser.DateChooser dateChooser2;
+    private com.raven.datechooser.DateChooser dateChooser3;
     private CustomResource.ComboBoxSuggestion homeCity;
     private CustomResource.ComboBoxSuggestion homeCountry;
     private CustomResource.ComboBoxSuggestion homeState;
@@ -2116,10 +2134,8 @@ char c = evt.getKeyChar();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel8;
@@ -2206,9 +2222,9 @@ char c = evt.getKeyChar();
     private CustomResource.CustomTextfield t_sekolah;
     private CustomResource.CustomTextfield t_sertifikat;
     private com.toedter.calendar.JYearChooser t_tgl;
-    private com.toedter.calendar.JDateChooser t_tgl_certificate;
-    private com.toedter.calendar.JDateChooser t_tgl_family;
-    private com.toedter.calendar.JDateChooser t_tgl_personal;
+    private CustomResource.CustomTextfield t_tgl_certificate;
+    private CustomResource.CustomTextfield t_tgl_family;
+    private CustomResource.CustomTextfield t_tgl_personal;
     private CustomResource.CustomTextfield t_tlhir;
     private javax.swing.JRadioButton t_wanita;
     private com.toedter.calendar.JYearChooser tahun_akhir;

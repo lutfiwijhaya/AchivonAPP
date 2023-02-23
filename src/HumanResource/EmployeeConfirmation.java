@@ -37,10 +37,12 @@ import javax.mail.Transport;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
 
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -52,6 +54,7 @@ public class EmployeeConfirmation extends MasterForm {
     ResultSet rs;
     Connection koneksi;
     String tanggal;
+    String da;
    
     JasperReport jasperreport;
     JasperDesign jasperdesign;
@@ -158,6 +161,7 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel28 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         l_hp = new javax.swing.JLabel();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -385,13 +389,21 @@ public class EmployeeConfirmation extends MasterForm {
         l_hp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 230, 13));
 
+        jToggleButton2.setText("jToggleButton2");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 1120, -1, -1));
+
         jScrollPane3.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,6 +513,44 @@ public class EmployeeConfirmation extends MasterForm {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+  try {
+                    Statement stm = koneksi.createStatement();
+
+                    rs = stm.executeQuery("select*from cd_employee where KTP = " + l_ktp.getText() + "");
+                    while (rs.next()) {
+                        da = rs.getString("id_employee");
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        
+        try {
+
+//                    Class.forName("com.mysql.jdbc.Driver");
+//String filePath = "src/Doc/test.pdf";
+                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
+//                    File O = new File("C:\\Program Files (x86)\\AchivonAPP\\cdemployee.jasper");
+//                    jasperdesign = JRXmlLoader.load(O);
+                    param.clear();
+//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
+                    param.put("id",da);
+                    param.put("tgl",l_tgl.getText());
+                    
+//                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
+//                    JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
+//                    JasperViewer.viewReport(jasperprint, false);
+            String reportPath = "C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\notification_cd.jasper";
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, param, kon);
+            JasperViewer viewer = new JasperViewer(jasperPrint, false);
+            viewer.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -548,6 +598,7 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel l_cadd;
     private javax.swing.JLabel l_date;
     private javax.swing.JLabel l_email;

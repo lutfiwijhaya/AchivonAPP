@@ -109,8 +109,8 @@ public class main extends javax.swing.JFrame {
         openDB();
         bg();
         
-//        ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource(".//Pictures//Logo.png"));
-//        this.setIconImage(logo.getImage());
+        ImageIcon logo = new ImageIcon("C:\\Program Files (x86)\\AchivonAPP\\Logo.png");
+        this.setIconImage(logo.getImage());
         
     }
     
@@ -139,7 +139,7 @@ public class main extends javax.swing.JFrame {
     }
     
     void bg(){
-   String crudimage = "D:\\AchivonAPP\\dist\\rm347-porpla-01.jpg";
+   String crudimage = "C:\\Program Files (x86)\\AchivonAPP\\rm347-porpla-01.jpg";
    ImageIcon imageicon = new ImageIcon(crudimage);
    JLabel label = new JLabel(imageicon);
    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -929,7 +929,7 @@ public class main extends javax.swing.JFrame {
         }
         Main.main.getMain().showForm(new CandidateApplicationedit());
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "wm", "qwe");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from cd_foto where id_employee ='"+MySession.get_cd_ktp()+"'"); // assuming the image is stored in the 'images' table with an ID of 1
 
