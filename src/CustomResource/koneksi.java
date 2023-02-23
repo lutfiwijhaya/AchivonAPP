@@ -27,7 +27,21 @@ public class koneksi {
     public static Connection getConnection(){
      //cek apakah koneksi null
         if(koneksi == null){
-            try{
+            String asd = "lutpi";
+            if (asd == "lutpi") {
+                try{
+                String url = "jdbc:mysql://localhost/achivonapp";
+                String user = "root";
+                String password = "";
+
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+                koneksi = DriverManager.getConnection(url, user, password);
+                System.out.println("Connected");
+            }catch (SQLException t){
+                System.out.println(t);
+            }
+            }else{
+                try{
                 String url = "jdbc:mysql://192.168.8.111/achivonapp";
                 String user = "wm";
                 String password = "qwe";
@@ -39,6 +53,7 @@ public class koneksi {
                 System.out.println(t);
             }
         }
+    }
         return koneksi;
     }
 }
