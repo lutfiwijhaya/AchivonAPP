@@ -34,6 +34,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
     public EmployeeLeaveOfAbsence() {
         initComponents();
         MyWindow();
+        openDB();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         idTeamPred.setVisible(false);
         idTeamRecd.setVisible(false);
@@ -52,9 +53,12 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                 labelName.setText(rs.getString(20));
                 labelPosition.setText(rs.getString(29));
                 labelHP.setText(rs.getString(26));
-//                labelKTP.setText(rs.getString(13));
-//                labelNameSign.setText(rs.getString(14));
-//                labelDateSign.setText(rs.getString(10));
+                dateFrom.setText(rs.getString(11));
+                dateTo.setText(rs.getString(12));
+                textReason.setText(rs.getString(13));
+                textEvidance.setText(rs.getString(14));
+                textMobile.setText(rs.getString(15));
+                textRelative.setText(rs.getString(16));
                 
                 idTeamPred.setText(rs.getString(3));
                 idTeamRecd.setText(rs.getString(4));

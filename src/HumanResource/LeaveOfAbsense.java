@@ -1000,17 +1000,17 @@ public class LeaveOfAbsense extends MasterForm {
             JOptionPane.showMessageDialog(null, "Gagal mengajukan untuk meninggalkan absen \nFailed requesting to leave of absence" );
         } finally {
             // Menutup objek PreparedStatement dan Connection
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                
-                if (koneksi != null) {
-                    koneksi.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                if (stmt != null) {
+//                    stmt.close();
+//                }
+//                
+//                if (koneksi != null) {
+//                    koneksi.close();
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
         }
     }//GEN-LAST:event_SendButtonActionPerformed
 

@@ -220,7 +220,7 @@ public class CandidateList extends MasterForm {
         });
         jScrollPane1.setViewportView(MyTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 1280, 440));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 1170, 380));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Daftar kandidat / Candidate List");
@@ -228,7 +228,7 @@ public class CandidateList extends MasterForm {
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 1000, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 1030, 20));
 
         textSearch.setLabelText("Cari / Search");
         textSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -241,8 +241,12 @@ public class CandidateList extends MasterForm {
                 textSearchKeyTyped(evt);
             }
         });
-        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 460, -1));
+        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 460, -1));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setBackground(new java.awt.Color(51, 51, 255));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Accept");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +254,7 @@ public class CandidateList extends MasterForm {
             }
         });
 
+        jButton2.setForeground(new java.awt.Color(51, 51, 255));
         jButton2.setText("Reject");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,7 +292,7 @@ public class CandidateList extends MasterForm {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 570, 280, 90));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 500, 280, 90));
 
         jScrollPane2.setViewportView(jPanel1);
 

@@ -29,9 +29,7 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 
 public class ApplicationResignation extends MasterForm {
- Statement stm;
-    ResultSet rs;
-    ResultSet rsf;
+    Statement stm;
     Connection koneksi;
     /**
      * Creates new form ApplicationResignation

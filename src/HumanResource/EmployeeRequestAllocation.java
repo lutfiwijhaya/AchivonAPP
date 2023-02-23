@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -36,37 +37,41 @@ public class EmployeeRequestAllocation extends MasterForm {
         MyWindow();
         openDB();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        jLabel24.setVisible(false);
-        jLabel28.setVisible(false);
-        jLabel29.setVisible(false);
-        jLabel31.setVisible(false);
-        jLabel32.setVisible(false);
-        jLabel36.setVisible(false);
-        jLabel38.setVisible(false);
+        idTeamPred.setVisible(false);
+        idTeamRecd.setVisible(false);
+        idTeamRevd.setVisible(false);
+        idTeamMGR.setVisible(false);
+        idHRRevd.setVisible(false);
+        idHRMGR.setVisible(false);
+//        idPresident.setVisible(false);
+//        labelID.setVisible(false);
         try {
-            
             Statement stmt = koneksi.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM employee_allocation inner join employee on employee_allocation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPAllocation()+"'");
             if (rs.next()) {
-                labelDiscipline.setText(rs.getString(23));
-                labelName.setText(rs.getString(14));
-                labelPosition.setText(rs.getString(23));
-//                labelKTP.setText(rs.getString(13));
-//                labelNameSign.setText(rs.getString(14));
-//                labelDateSign.setText(rs.getString(10));
+                labelID.setText(rs.getString(2));
+                labelDiscipline.setText(rs.getString(28));
+                labelName.setText(rs.getString(19));
+                labelPosition.setText(rs.getString(28));
+                labelWork.setText(rs.getString(20));
+                textDescription.setText(rs.getString(10));
+                t_tgl.setText(rs.getString(11));
+                statement_employee.setText(rs.getString(12));
+                statement_manager.setText(rs.getString(13));
+                t_tgl1.setText(rs.getString(14));
                 
-                jLabel24.setText(rs.getString(3));
-                jLabel28.setText(rs.getString(4));
-                jLabel29.setText(rs.getString(5));
-                jLabel31.setText(rs.getString(6));
-                jLabel32.setText(rs.getString(7));
-                jLabel36.setText(rs.getString(8));
-                jLabel38.setText(rs.getString(9));
-                if (jLabel24 != null) {
+                idTeamPred.setText(rs.getString(3));
+                idTeamRecd.setText(rs.getString(4));
+                idTeamRevd.setText(rs.getString(5));
+                idTeamMGR.setText(rs.getString(6));
+                idHRRevd.setText(rs.getString(7));
+                idHRMGR.setText(rs.getString(8));
+                idPresident.setText(rs.getString(9));
+                if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {
                             Statement stmt11 = koneksi.createStatement();
-                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+jLabel24.getText()+"'");
+                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+idTeamPred.getText()+"'");
                             if (rs11.next()) {
                                 labelNameTeamPred.setText(rs11.getString(4));
                             }
@@ -74,7 +79,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                         }
                     try {
                         Statement stmt1 = koneksi.createStatement();
-                        ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+jLabel24.getText()+"'");
+                        ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+idTeamPred.getText()+"'");
                         if (rs1.next()) {
                             byte[] imageData = rs1.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -95,11 +100,11 @@ public class EmployeeRequestAllocation extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel28 != null) {
+                if (idTeamRecd != null) {
                     signTeamRecd.setText(null);
                     try {
                             Statement stmt21 = koneksi.createStatement();
-                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+jLabel28.getText()+"'");
+                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+idTeamRecd.getText()+"'");
                             if (rs21.next()) {
                                 labelNameTeamRecd.setText(rs21.getString(4));
                             }
@@ -107,7 +112,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                         }
                     try {
                         Statement stmt2 = koneksi.createStatement();
-                        ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+jLabel28.getText()+"'");
+                        ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+idTeamRecd.getText()+"'");
                         if (rs2.next()) {
                             byte[] imageData = rs2.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -128,11 +133,11 @@ public class EmployeeRequestAllocation extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel29 != null) {
+                if (idTeamRevd != null) {
                     signTeamRevd.setText(null);
                     try {
                             Statement stmt31 = koneksi.createStatement();
-                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+jLabel29.getText()+"'");
+                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+idTeamRevd.getText()+"'");
                             if (rs31.next()) {
                                 labelNameTeamRevd.setText(rs31.getString(4));
                             }
@@ -140,7 +145,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                         }
                     try {
                         Statement stmt3 = koneksi.createStatement();
-                        ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+jLabel29.getText()+"'");
+                        ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+idTeamRevd.getText()+"'");
                         if (rs3.next()) {
                             byte[] imageData = rs3.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -161,11 +166,11 @@ public class EmployeeRequestAllocation extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel31 != null) {
+                if (idTeamMGR != null) {
                     signTeamMGR.setText(null);
                         try {
                             Statement stmt41 = koneksi.createStatement();
-                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+jLabel31.getText()+"'");
+                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
                             if (rs41.next()) {
                                 labelNameTeamMGR.setText(rs41.getString(4));
                             }
@@ -173,7 +178,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                         }
                     try {
                         Statement stmt4 = koneksi.createStatement();
-                        ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+jLabel31.getText()+"'");
+                        ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
                         if (rs4.next()) {
                             byte[] imageData = rs4.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -194,11 +199,11 @@ public class EmployeeRequestAllocation extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel32 != null) {
+                if (idHRRevd != null) {
                     signHRRevd.setText(null);
                     try {
                             Statement stmt51 = koneksi.createStatement();
-                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+jLabel32.getText()+"'");
+                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
                             if (rs51.next()) {
                                 labelNameHRRevd.setText(rs51.getString(4));
                             }
@@ -206,7 +211,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                         }
                     try {
                         Statement stmt5 = koneksi.createStatement();
-                        ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+jLabel32.getText()+"'");
+                        ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
                         if (rs5.next()) {
                             byte[] imageData = rs5.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -227,11 +232,11 @@ public class EmployeeRequestAllocation extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel36 != null) {
+                if (idHRMGR != null) {
                     signHRMGR.setText(null);
                     try {
                             Statement stmt61 = koneksi.createStatement();
-                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+jLabel36.getText()+"'");
+                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
                             if (rs61.next()) {
                                 labelNameHRMGR.setText(rs61.getString(4));
                             }
@@ -239,7 +244,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                         }
                     try {
                         Statement stmt6 = koneksi.createStatement();
-                        ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+jLabel36.getText()+"'");
+                        ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
                         if (rs6.next()) {
                             byte[] imageData = rs6.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -260,11 +265,11 @@ public class EmployeeRequestAllocation extends MasterForm {
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel38 != null) {
+                if (idPresident != null) {
                     signPresident.setText(null);
                     try {
                             Statement stmt71 = koneksi.createStatement();
-                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+jLabel38.getText()+"'");
+                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresident.getText()+"'");
                             if (rs71.next()) {
                                 labelNamePresident.setText(rs71.getString(4));
                             }
@@ -272,7 +277,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                         }
                     try {
                         Statement stmt7 = koneksi.createStatement();
-                        ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+jLabel38.getText()+"'");
+                        ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresident.getText()+"'");
                         if (rs7.next()) {
                             byte[] imageData = rs7.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -311,6 +316,8 @@ public class EmployeeRequestAllocation extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
+        dateChooser2 = new com.raven.datechooser.DateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -338,13 +345,13 @@ public class EmployeeRequestAllocation extends MasterForm {
         labelNamePresident = new javax.swing.JLabel();
         signPresident = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
+        idTeamPred = new javax.swing.JLabel();
+        idTeamRecd = new javax.swing.JLabel();
+        idTeamRevd = new javax.swing.JLabel();
+        idTeamMGR = new javax.swing.JLabel();
+        idHRRevd = new javax.swing.JLabel();
+        idHRMGR = new javax.swing.JLabel();
+        idPresident = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -359,23 +366,30 @@ public class EmployeeRequestAllocation extends MasterForm {
         jLabel13 = new javax.swing.JLabel();
         labelPosition = new javax.swing.JLabel();
         labelWork = new javax.swing.JLabel();
-        customTextfield2 = new CustomResource.CustomTextfield();
-        t_tgl = new com.toedter.calendar.JDateChooser();
+        textDescription = new CustomResource.CustomTextfield();
         jLabel1 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        statement_employee = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        statement_manager = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        t_tgl1 = new CustomResource.CustomTextfield();
         jLabel21 = new javax.swing.JLabel();
+        labelID = new javax.swing.JLabel();
+        t_tgl = new CustomResource.CustomTextfield();
+
+        dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser1.setDateFormat("dd-MMM-yyyy");
+
+        dateChooser2.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser2.setDateFormat("dd-MMM-yyyy");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -385,11 +399,11 @@ public class EmployeeRequestAllocation extends MasterForm {
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel25.setText("TEAM");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel26.setText("HR TEAM");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, -1, -1));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 90, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -405,7 +419,7 @@ public class EmployeeRequestAllocation extends MasterForm {
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel40.setText("Pre'd");
         jLabel40.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 120, 20));
+        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 120, 20));
 
         signTeamPred.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamPred.setText("Signatute");
@@ -415,17 +429,17 @@ public class EmployeeRequestAllocation extends MasterForm {
                 signTeamPredMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 120, 90));
+        jPanel1.add(signTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 120, 90));
 
         labelNameTeamPred.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamPred.setText("Name");
         labelNameTeamPred.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 120, 20));
+        jPanel1.add(labelNameTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 120, 20));
 
         labelNameTeamRecd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamRecd.setText("Name");
         labelNameTeamRecd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 120, 20));
+        jPanel1.add(labelNameTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 120, 20));
 
         signTeamRecd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamRecd.setText("Signature");
@@ -435,17 +449,17 @@ public class EmployeeRequestAllocation extends MasterForm {
                 signTeamRecdMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 120, 90));
+        jPanel1.add(signTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 120, 90));
 
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setText("Rec'd");
         jLabel37.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 120, 20));
+        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 120, 20));
 
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("Rev'd");
         jLabel35.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 120, 20));
+        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 120, 20));
 
         signTeamRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamRevd.setText("Signature");
@@ -455,17 +469,17 @@ public class EmployeeRequestAllocation extends MasterForm {
                 signTeamRevdMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 120, 90));
+        jPanel1.add(signTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 120, 90));
 
         labelNameTeamRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamRevd.setText("Name");
         labelNameTeamRevd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 120, 20));
+        jPanel1.add(labelNameTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 120, 20));
 
         labelNameTeamMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamMGR.setText("Name");
         labelNameTeamMGR.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 120, 20));
+        jPanel1.add(labelNameTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 120, 20));
 
         signTeamMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamMGR.setText("Signature");
@@ -475,17 +489,17 @@ public class EmployeeRequestAllocation extends MasterForm {
                 signTeamMGRMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 120, 90));
+        jPanel1.add(signTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 120, 90));
 
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("MGR");
         jLabel30.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 120, 20));
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 120, 20));
 
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Rev'd");
         jLabel22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 120, 20));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 120, 20));
 
         signHRRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signHRRevd.setText("Signature");
@@ -495,12 +509,12 @@ public class EmployeeRequestAllocation extends MasterForm {
                 signHRRevdMouseClicked(evt);
             }
         });
-        jPanel1.add(signHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 120, 90));
+        jPanel1.add(signHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 130, 120, 90));
 
         labelNameHRRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameHRRevd.setText("Name");
         labelNameHRRevd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 120, 20));
+        jPanel1.add(labelNameHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 220, 120, 20));
 
         signHRMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signHRMGR.setText("Signature");
@@ -510,22 +524,22 @@ public class EmployeeRequestAllocation extends MasterForm {
                 signHRMGRMouseClicked(evt);
             }
         });
-        jPanel1.add(signHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 120, 90));
+        jPanel1.add(signHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 120, 90));
 
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText("MGR");
         jLabel27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, 120, 20));
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 110, 120, 20));
 
         labelNameHRMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameHRMGR.setText("Name");
         labelNameHRMGR.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 220, 120, 20));
+        jPanel1.add(labelNameHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, 120, 20));
 
         labelNamePresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNamePresident.setText("Name");
         labelNamePresident.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNamePresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 220, 120, 20));
+        jPanel1.add(labelNamePresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, 120, 20));
 
         signPresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signPresident.setText("Signature");
@@ -535,33 +549,33 @@ public class EmployeeRequestAllocation extends MasterForm {
                 signPresidentMouseClicked(evt);
             }
         });
-        jPanel1.add(signPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 130, 120, 90));
+        jPanel1.add(signPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 130, 120, 90));
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("President");
         jLabel23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 110, 120, 20));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 110, 120, 20));
 
-        jLabel24.setText("jLabel4");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        idTeamPred.setText("jLabel4");
+        jPanel1.add(idTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
 
-        jLabel28.setText("jLabel4");
-        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+        idTeamRecd.setText("jLabel4");
+        jPanel1.add(idTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, -1));
 
-        jLabel29.setText("jLabel4");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
+        idTeamRevd.setText("jLabel4");
+        jPanel1.add(idTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, -1));
 
-        jLabel31.setText("jLabel4");
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, -1, -1));
+        idTeamMGR.setText("jLabel4");
+        jPanel1.add(idTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, -1, -1));
 
-        jLabel32.setText("jLabel4");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, -1));
+        idHRRevd.setText("jLabel4");
+        jPanel1.add(idHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 240, -1, -1));
 
-        jLabel36.setText("jLabel4");
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
+        idHRMGR.setText("jLabel4");
+        jPanel1.add(idHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 240, -1, -1));
 
-        jLabel38.setText("jLabel4");
-        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
+        idPresident.setText("jLabel4");
+        jPanel1.add(idPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 240, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 255));
@@ -607,18 +621,12 @@ public class EmployeeRequestAllocation extends MasterForm {
         labelWork.setText("Discipline");
         jPanel1.add(labelWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 230, -1));
 
-        customTextfield2.setLabelText("Description Allocation     :");
-        jPanel1.add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 330, 40));
-
-        t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 190, 30));
+        textDescription.setLabelText("Description Allocation     :");
+        jPanel1.add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 330, 40));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Summary for Company Allocation");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, -1, 30));
-
-        jLabel10.setText("Required Allocation Date :");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 230, -1));
 
         jLabel52.setText("B. REASON STATEMENT");
         jPanel1.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, -1, -1));
@@ -626,22 +634,22 @@ public class EmployeeRequestAllocation extends MasterForm {
         jLabel3.setText("B1. Statement by Employee Allocated");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        statement_employee.setColumns(20);
+        statement_employee.setRows(5);
+        jScrollPane2.setViewportView(statement_employee);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 580, 690, -1));
 
         jLabel18.setText("B2. Statement by Team Manager");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 680, -1, -1));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        statement_manager.setColumns(20);
+        statement_manager.setRows(5);
+        jScrollPane3.setViewportView(statement_manager);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 700, 690, -1));
 
-        jLabel15.setText("C. ADJUSTMENT DATE AGAINST ALLOCATION SCHEDULE       : DD-MMM-YYYY");
+        jLabel15.setText("C. ADJUSTMENT DATE AGAINST ALLOCATION SCHEDULE       ");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 810, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -666,8 +674,17 @@ public class EmployeeRequestAllocation extends MasterForm {
         jLabel19.setText("For the above reasons, we would like to adjust the allocation of the relevant personnel, so please review and approve this adjustment ");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 1090, -1, 30));
 
+        t_tgl1.setLabelText("Required Allocation Date :");
+        jPanel1.add(t_tgl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 810, 330, -1));
+
         jLabel21.setText("of the allocation.");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 1120, -1, -1));
+
+        labelID.setText("jLabel7");
+        jPanel1.add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, -1, -1));
+
+        t_tgl.setLabelText("Required Allocation Date :");
+        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 330, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -698,6 +715,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamPred.setIcon(new ImageIcon(imageResize));
                     labelNameTeamPred.setText(MySession.get_nama());
+                    idTeamPred.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -722,6 +740,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamRecd.setIcon(new ImageIcon(imageResize));
                     labelNameTeamRecd.setText(MySession.get_nama());
+                    idTeamRecd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -746,6 +765,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamRevd.setIcon(new ImageIcon(imageResize));
                     labelNameTeamRevd.setText(MySession.get_nama());
+                    idTeamRevd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -770,6 +790,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamMGR.setIcon(new ImageIcon(imageResize));
                     labelNameTeamMGR.setText(MySession.get_nama());
+                    idTeamMGR.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -794,6 +815,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signHRRevd.setIcon(new ImageIcon(imageResize));
                     labelNameHRRevd.setText(MySession.get_nama());
+                    idHRRevd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -818,6 +840,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signHRMGR.setIcon(new ImageIcon(imageResize));
                     labelNameHRMGR.setText(MySession.get_nama());
+                    idHRMGR.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -842,6 +865,7 @@ public class EmployeeRequestAllocation extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signPresident.setIcon(new ImageIcon(imageResize));
                     labelNamePresident.setText(MySession.get_nama());
+                    idPresident.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -850,15 +874,71 @@ public class EmployeeRequestAllocation extends MasterForm {
     }//GEN-LAST:event_signPresidentMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (idTeamPred.getText() == null) {
+            idTeamPred.setText("0");
+        }
+        if (idTeamRecd.getText() == null) {
+            idTeamRecd.setText("0");
+        }
+        if (idTeamRevd.getText() == null) {
+            idTeamRevd.setText("0");
+        }
+        if (idTeamMGR.getText() == null) {
+            idTeamMGR.setText("0");
+        }
+        if (idHRRevd.getText() == null) {
+            idHRRevd.setText("0");
+        }
+        if (idHRMGR.getText() == null) {
+            idHRMGR.setText("0");
+        }
+        if (idPresident.getText() == null) {
+            idPresident.setText("0");
+        }
+        
+        PreparedStatement myStmt = null;
+        try {
+            String sql = "UPDATE employee_allocation SET team_pred=?, team_recd=?, team_revd=?, team_mgr=?, hr_revd=?, hr_mgr=?, president=? WHERE karyawan_id=?";
+            myStmt = koneksi.prepareStatement(sql);
+            myStmt.setString(1, idTeamPred.getText());
+            myStmt.setString(2, idTeamRecd.getText());
+            myStmt.setString(3, idTeamRevd.getText());
+            myStmt.setString(4, idTeamMGR.getText());
+            myStmt.setString(5, idHRRevd.getText());
+            myStmt.setString(6, idHRMGR.getText());
+            myStmt.setString(7, idPresident.getText());
+            myStmt.setString(8, labelID.getText());
+            myStmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Berhasil menyimpan Data \nSucceed saving data");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Gagal menyimpan Data \nFailed saving data");
+        } finally {
+//            try {
+//                if (myStmt != null) {
+//                    myStmt.close();
+//                }
+//                if (koneksi != null) {
+//                    koneksi.close();
+//                }
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
+        }      
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CustomResource.CustomTextfield customTextfield2;
+    private com.raven.datechooser.DateChooser dateChooser1;
+    private com.raven.datechooser.DateChooser dateChooser2;
+    private javax.swing.JLabel idHRMGR;
+    private javax.swing.JLabel idHRRevd;
+    private javax.swing.JLabel idPresident;
+    private javax.swing.JLabel idTeamMGR;
+    private javax.swing.JLabel idTeamPred;
+    private javax.swing.JLabel idTeamRecd;
+    private javax.swing.JLabel idTeamRevd;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -872,21 +952,14 @@ public class EmployeeRequestAllocation extends MasterForm {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
@@ -899,9 +972,8 @@ public class EmployeeRequestAllocation extends MasterForm {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel labelDiscipline;
+    private javax.swing.JLabel labelID;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelNameHRMGR;
     private javax.swing.JLabel labelNameHRRevd;
@@ -919,7 +991,11 @@ public class EmployeeRequestAllocation extends MasterForm {
     private javax.swing.JLabel signTeamPred;
     private javax.swing.JLabel signTeamRecd;
     private javax.swing.JLabel signTeamRevd;
-    private com.toedter.calendar.JDateChooser t_tgl;
+    private javax.swing.JTextArea statement_employee;
+    private javax.swing.JTextArea statement_manager;
+    private CustomResource.CustomTextfield t_tgl;
+    private CustomResource.CustomTextfield t_tgl1;
+    private CustomResource.CustomTextfield textDescription;
     // End of variables declaration//GEN-END:variables
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
