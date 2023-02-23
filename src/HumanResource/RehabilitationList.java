@@ -17,6 +17,7 @@ import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
 import CustomResource.EmployeeSession;
+import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -49,10 +50,9 @@ public class RehabilitationList extends MasterForm {
      String id = null;
 
     public RehabilitationList() {
-        Statement stm;
-        ResultSet rs;
-        Connection koneksi;
+        
         initComponents();
+        openDB();
         settable();
         myShow();
         MyWindow();
@@ -81,11 +81,18 @@ public class RehabilitationList extends MasterForm {
         
 //        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
     }
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
 
+    void remove (){ 
 
-void remove (){ 
-    
-}
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -196,15 +203,13 @@ void remove (){
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
-        Connection myConn;
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
         for(int i = 0; i < row; i++){
             myModel.removeRow(0);
         }
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_rehabilitation inner join employee on employee_rehabilitation.karyawan_id = employee.karyawan_id");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_rehabilitation inner join employee on employee_rehabilitation.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(16),myRess.getString(17), myRess.getString(18), myRess.getString(19),myRess.getString(24), 
                                     myRess.getString(25),myRess.getString(28) ,myRess.getString(21)};

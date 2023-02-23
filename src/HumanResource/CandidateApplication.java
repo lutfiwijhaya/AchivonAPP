@@ -186,10 +186,8 @@ public class CandidateApplication extends MasterForm {
     }
 
     private void tampil() {
-        Connection myConn;
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
                 homeCountry.addItem(myRess.getString("name"));
             }
@@ -327,10 +325,8 @@ public class CandidateApplication extends MasterForm {
     }
 
     public void currentBox() {
-        Connection myConn;
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
                 curentCountry.addItem(myRess.getString("name"));
             }
@@ -340,10 +336,8 @@ public class CandidateApplication extends MasterForm {
     }
 
     public void codeCountryBox() {
-        Connection myConn;
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
                 // t_kodeNegara.addItem(myRess.getString("name") +" "+ myRess.getString("phone_code"));
             }
@@ -1446,11 +1440,8 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_hpKeyTyped
 
     private void curentCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curentCountryActionPerformed
-        Connection myConn;
         try {
-
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + curentCountry.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + curentCountry.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 cprov.addItem(myRess.getString("name"));
             }
@@ -1459,11 +1450,9 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_curentCountryActionPerformed
 
     private void cprovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cprovActionPerformed
-        Connection myConn;
         try {
             ccity.removeAllItems();
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 ccity.addItem(myRess.getString("name"));
             }
@@ -1480,12 +1469,9 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_cdesaActionPerformed
 
     private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
-        Connection myConn;
         try {
             homeCity.removeAllItems();
-
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 homeCity.addItem(myRess.getString("name"));
             }
@@ -1495,11 +1481,8 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_homeStateActionPerformed
 
     private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
-        Connection myConn;
         try {
-
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 homeState.addItem(myRess.getString("name"));
             }
@@ -1763,8 +1746,6 @@ public class CandidateApplication extends MasterForm {
         list.add(t_jurusan.getText());
         dataModel.insertRow(0, list.toArray());
 
-        // TODO add your handling code here:
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1773,7 +1754,7 @@ public class CandidateApplication extends MasterForm {
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        };       // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void t_hp1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hp1KeyTyped
@@ -1800,7 +1781,7 @@ public class CandidateApplication extends MasterForm {
         } else if (t_hp1.getText().length() == 17) {
             t_hp1.setText(t_hp1.getText());
             evt.consume();
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_hp1KeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1816,7 +1797,6 @@ public class CandidateApplication extends MasterForm {
         list.add(t_lokasi.getSelectedItem());
         list.add(t_sertifikat.getText());
         dataModel.insertRow(0, list.toArray());
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1825,7 +1805,7 @@ public class CandidateApplication extends MasterForm {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        };
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1841,7 +1821,7 @@ public class CandidateApplication extends MasterForm {
         list.add(tanggal_family);
         list.add(buttongrup.getSelection().getActionCommand());
         list.add(t_hp1.getText());
-        dataModel.insertRow(0, list.toArray());        // TODO add your handling code here:
+        dataModel.insertRow(0, list.toArray());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1863,7 +1843,7 @@ public class CandidateApplication extends MasterForm {
         list.add("(" + tgl_awal.getMonth() + "-" + tgl_awal.getYear() + ")" + " - " + "(" + tgl_akhir.getMonth() + "-" + tgl_akhir.getYear() + ")");
         list.add(hasil_tahun + " Tahun " + hasil_bulan + " Bulan");
         dataModel.insertRow(0, list.toArray());
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1872,7 +1852,7 @@ public class CandidateApplication extends MasterForm {
         DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        };
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1881,7 +1861,7 @@ public class CandidateApplication extends MasterForm {
         DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        }; // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void t_hp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hp1ActionPerformed
@@ -1894,7 +1874,7 @@ public class CandidateApplication extends MasterForm {
         ccity.setSelectedItem(homeCity.getSelectedItem());
         t_ckec.setText(t_hkec.getText());
         t_calamat.setText(t_halamat.getText());
-        t_cdesa.setText(t_ddesa.getText());          // TODO add your handling code here:
+        t_cdesa.setText(t_ddesa.getText());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
@@ -1904,7 +1884,7 @@ public class CandidateApplication extends MasterForm {
         }
         if (t_gaji.getText().length() > 8) {
             evt.consume();
-        }         // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_gajiKeyTyped
 
     private void t_ktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyTyped
@@ -1915,14 +1895,13 @@ public class CandidateApplication extends MasterForm {
         if (t_ktp.getText().length() > 15) {
             evt.consume();
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_t_ktpKeyTyped
 
     private void t_bpjsKetenagakerjaanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKetenagakerjaanKeyTyped
         char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
-        }          // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyTyped
 
     private void t_calamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_calamatMouseWheelMoved
@@ -1933,7 +1912,7 @@ public class CandidateApplication extends MasterForm {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_calamatMouseWheelMoved
 
     private void t_halamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_halamatMouseWheelMoved
@@ -1944,7 +1923,7 @@ public class CandidateApplication extends MasterForm {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_halamatMouseWheelMoved
 
     private void jPanel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jPanel1MouseWheelMoved
@@ -1966,7 +1945,7 @@ public class CandidateApplication extends MasterForm {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        } // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTable2MouseWheelMoved
 
     private void t_motifMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_motifMouseWheelMoved
@@ -1977,7 +1956,7 @@ public class CandidateApplication extends MasterForm {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_motifMouseWheelMoved
 
     private void t_latarMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_latarMouseWheelMoved
@@ -1988,7 +1967,7 @@ public class CandidateApplication extends MasterForm {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }     // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_latarMouseWheelMoved
 
     private void jTable3MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable3MouseWheelMoved
@@ -1999,7 +1978,7 @@ public class CandidateApplication extends MasterForm {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTable3MouseWheelMoved
 
     private void jTable4MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable4MouseWheelMoved
@@ -2010,7 +1989,7 @@ public class CandidateApplication extends MasterForm {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTable4MouseWheelMoved
 
     private void jTable5MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable5MouseWheelMoved
@@ -2021,7 +2000,7 @@ public class CandidateApplication extends MasterForm {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTable5MouseWheelMoved
 
 

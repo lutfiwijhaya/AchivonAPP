@@ -17,6 +17,7 @@ import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
 import CustomResource.EmployeeSession;
+import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -46,17 +47,14 @@ public class ClearanceList extends MasterForm {
     JasperPrint jasperprint;
     Map<String, Object> param = new HashMap<String, Object>();
     DefaultTableModel myModel;
-     String id = null;
+    String id = null;
 
     public ClearanceList() {
-        Statement stm;
-        ResultSet rs;
-        Connection koneksi;
         initComponents();
+        openDB();
         settable();
         myShow();
         MyWindow();
-        remove();
 //        CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
@@ -110,11 +108,14 @@ public class ClearanceList extends MasterForm {
         
 //        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
     }
-
-
-void remove (){ 
-    
-}
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -225,15 +226,13 @@ void remove (){
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
-        Connection myConn;
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
         for(int i = 0; i < row; i++){
             myModel.removeRow(0);
         }
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_clearance inner join employee on employee_clearance.karyawan_id = employee.karyawan_id");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_clearance inner join employee on employee_clearance.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(11),myRess.getString(12), myRess.getString(13), myRess.getString(14),myRess.getString(19), 
                                     myRess.getString(20),myRess.getString(23) ,myRess.getString(16)};

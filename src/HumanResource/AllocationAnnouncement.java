@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -42,12 +43,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AllocationAnnouncement extends MasterForm {
     DefaultTableModel myModel3;
-    /**
-     * Creates new form AllocationAnnouncement
-     */
+    Connection koneksi;
     public AllocationAnnouncement() {
         initComponents();
-        
+        openDB();
         
         MyWindow();
 //        myModel3 = new DefaultTableModel();
@@ -58,12 +57,19 @@ public class AllocationAnnouncement extends MasterForm {
 //        jTable1.setModel(myModel3);
         tampil();
     }
-
-    private void tampil() {
-        Connection myConn;
+    
+    private void openDB() {
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
+    
+    private void tampil() {
+        try {
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee");
             while (myRess.next()) {
                 textSearch.addItem(myRess.getString("name"));
             }
@@ -177,11 +183,8 @@ public class AllocationAnnouncement extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
-        Connection myConn;
         try {
-
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE name ='" + textSearch.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee WHERE name ='" + textSearch.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 textName.setText(myRess.getString("name"));
                 textPosition.setText(myRess.getString("job_position"));
@@ -291,7 +294,6 @@ public class AllocationAnnouncement extends MasterForm {
     // End of variables declaration//GEN-END:variables
     
     private void myShow() {
-        Connection myConn;
         String mySearch = textSearch.getSelectedItem().toString();
         int row = jTable1.getRowCount();
         for(int i = 0; i < row; i++){
@@ -299,8 +301,7 @@ public class AllocationAnnouncement extends MasterForm {
         }
         if (mySearch != null) {
             try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE name LIKE '%"+mySearch+"%'");
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee WHERE name LIKE '%"+mySearch+"%'");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
                 myModel3.addRow(myData);
@@ -310,8 +311,7 @@ public class AllocationAnnouncement extends MasterForm {
             }
         }else{
             try {
-                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee");
                 while (myRess.next()) {
                     
                     String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
@@ -332,6 +332,5 @@ public class AllocationAnnouncement extends MasterForm {
     }
     @Override
     public void formrefresh() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

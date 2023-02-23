@@ -41,7 +41,7 @@ public class CandidateProfile extends MasterForm {
 
     private static final int TA_ROWS = 5;
     private static final int TA_COLS = 20;
-     Statement stm;
+    Statement stm;
     ResultSet rs;
     Connection koneksi;
     JasperReport jasperreport;
@@ -68,7 +68,7 @@ public class CandidateProfile extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     
-      private void openDB() {
+    private void openDB() {
         try {
             koneksi kon = new koneksi();
             koneksi = kon.getConnection();
@@ -554,10 +554,8 @@ public class CandidateProfile extends MasterForm {
     }//GEN-LAST:event_jTable2InputMethodTextChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Connection myConn;
         try{
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
 //            while (myRess.next()) {
 //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
 //            }
@@ -571,10 +569,8 @@ public class CandidateProfile extends MasterForm {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Connection myConn;
         try{
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
 //            while (myRess.next()) {
 //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
 //            }
@@ -588,22 +584,21 @@ public class CandidateProfile extends MasterForm {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- try {
-                   
-                    Class.forName("com.mysql.jdbc.Driver");
-String filePath = "src/Doc/test.pdf";
-                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-                    jasperdesign = JRXmlLoader.load(O);
-                    param.clear();
-                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
-                    param.put("id",CandidateSession.getCandidateID());
-                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-                    JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
-                    JasperViewer.viewReport(jasperprint, false);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String filePath = "src/Doc/test.pdf";
+//            Connection kon = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
+            File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
+            jasperdesign = JRXmlLoader.load(O);
+            param.clear();
+            jasperreport = JasperCompileManager.compileReport(jasperdesign);
+            param.put("id",CandidateSession.getCandidateID());
+            jasperprint = JasperFillManager.fillReport(jasperreport, param, koneksi);
+            JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
+            JasperViewer.viewReport(jasperprint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -699,10 +694,8 @@ String filePath = "src/Doc/test.pdf";
     }
     
     private void getDataCandidate(){
-        Connection myConn;
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
                 labelNama.setText(myRess.getString(2));
                 labelKTP.setText(myRess.getString(3));
@@ -735,8 +728,7 @@ String filePath = "src/Doc/test.pdf";
         }
         
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_academic WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_academic WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6)};            
                 MyModel2.addRow(myData);
@@ -752,8 +744,7 @@ String filePath = "src/Doc/test.pdf";
         }
         
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_family WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_family WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6), myRess.getString(7)};            
                 MyModel3.addRow(myData);
@@ -769,8 +760,7 @@ String filePath = "src/Doc/test.pdf";
         }
         
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_certificates WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_certificates WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(3),myRess.getString(4), myRess.getString(5), myRess.getString(6), myRess.getString(7)};            
                 MyModel1.addRow(myData);
@@ -780,8 +770,7 @@ String filePath = "src/Doc/test.pdf";
 //                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_adress WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_adress WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
                 jTextArea1.setText(myRess.getString(8)+", \n"+myRess.getString(7)+", "+myRess.getString(6)+", \n"+myRess.getString(5)+", "+myRess.getString(4)+", \n"+myRess.getString(3));
                 jTextArea2.setText(myRess.getString(14)+", \n"+myRess.getString(13)+", "+myRess.getString(12)+", \n"+myRess.getString(11)+", "+myRess.getString(10)+", \n"+myRess.getString(9));
@@ -792,8 +781,7 @@ String filePath = "src/Doc/test.pdf";
             }
         
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_motivation WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_motivation WHERE id_employee = '"+CandidateSession.getCandidateID()+"'");
             while (myRess.next()) {
                 
                 jTextArea3.setText(myRess.getString(3));

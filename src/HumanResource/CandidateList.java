@@ -17,6 +17,7 @@ import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
 import CustomResource.MySession;
+import CustomResource.koneksi;
 import Main.MasterForm;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.awt.Dimension;
@@ -58,10 +59,9 @@ public class CandidateList extends MasterForm {
     String id = null;
 
     public CandidateList() {
-        Statement stm;
-        ResultSet rs;
-        Connection koneksi;
+        
         initComponents();
+        openDB();
         settable();
         myShow();
         MyWindow();
@@ -87,8 +87,7 @@ public class CandidateList extends MasterForm {
                 }
                 Main.main.getMain().showForm(new CandidateProfile());
                 try {
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                    Statement stmt = conn.createStatement();
+                    Statement stmt = koneksi.createStatement();
                     ResultSet rs = stmt.executeQuery("select * from cd_foto where id_employee ='" + CandidateSession.getCandidateID() + "'"); // assuming the image is stored in the 'images' table with an ID of 1
 
                     if (rs.next()) {
@@ -106,11 +105,9 @@ public class CandidateList extends MasterForm {
 
             @Override
             public void tambah(int row) {
-                Connection myConn;
                 try {
                     CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
-                    myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                    myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '" + CandidateSession.getCandidateID() + "'");
+                    koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '" + CandidateSession.getCandidateID() + "'");
 //            while (myRess.next()) {
 //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
 //            }
@@ -125,24 +122,22 @@ public class CandidateList extends MasterForm {
 
             @Override
             public void hapus(int row) {
-                 int respon = JOptionPane.showConfirmDialog(null, "Are You Sure Want To Reject ?", "Option", JOptionPane.YES_NO_OPTION);
-        if (respon == 0) {
-              Connection myConn;
-                try {
-                    CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
-                    myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                    myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '" + CandidateSession.getCandidateID() + "'");
-//            while (myRess.next()) {
-//                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
-//            }
-                    Main.main.getMain().showForm(new CandidateList());
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e);
-//                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
+                int respon = JOptionPane.showConfirmDialog(null, "Are You Sure Want To Reject ?", "Option", JOptionPane.YES_NO_OPTION);
+                if (respon == 0) {
+                    try {
+                        CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
+                        koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '" + CandidateSession.getCandidateID() + "'");
+    //            while (myRess.next()) {
+    //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
+    //            }
+                        Main.main.getMain().showForm(new CandidateList());
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e);
+    //                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
 
-                }
-            
-        } 
+                    }
+
+            } 
               
             }
         };
@@ -168,7 +163,14 @@ public class CandidateList extends MasterForm {
     void remove() {
 
     }
-
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -337,11 +339,9 @@ public class CandidateList extends MasterForm {
  int respon = JOptionPane.showConfirmDialog(null, "Are You Sure Want To Reject ?", "Option", JOptionPane.YES_NO_OPTION);
         if (respon == 0) {
             int[] selectedRows = MyTable.getSelectedRows();
-        Connection myConn;
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             try {
-                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '" + myModel.getValueAt(selectedRows[i], 0) + "'");
+                koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '" + myModel.getValueAt(selectedRows[i], 0) + "'");
             } catch (SQLException ex) {
                 Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -352,11 +352,9 @@ public class CandidateList extends MasterForm {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int[] selectedRows = MyTable.getSelectedRows();
-        Connection myConn;
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             try {
-                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '" + myModel.getValueAt(selectedRows[i], 0) + "'");
+                koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '" + myModel.getValueAt(selectedRows[i], 0) + "'");
             } catch (SQLException ex) {
                 Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -380,7 +378,6 @@ public class CandidateList extends MasterForm {
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
-        Connection myConn;
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
         for (int i = 0; i < row; i++) {
@@ -388,8 +385,7 @@ public class CandidateList extends MasterForm {
         }
         if (mySearch != null) {
             try {
-                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%" + mySearch + "%'");
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%" + mySearch + "%'");
                 while (myRess.next()) {
                     String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
                         myRess.getString(6), myRess.getString(9), myRess.getString(4),
@@ -401,8 +397,7 @@ public class CandidateList extends MasterForm {
             }
         } else {
             try {
-                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
 //                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
 //                int numColumns = rsmd.getColumnCount();
 //                for (int i = 1; i <= numColumns; i++) {

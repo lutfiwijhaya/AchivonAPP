@@ -38,7 +38,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author hi
  */
-public class ResignationList extends MasterForm {
+public class Checklist extends MasterForm {
     Statement stm;
     ResultSet rs;
     Connection koneksi;
@@ -49,68 +49,48 @@ public class ResignationList extends MasterForm {
     DefaultTableModel myModel;
      String id = null;
 
-    public ResignationList() {
-        
+    public Checklist() {
         initComponents();
+        openDB();
         settable();
         myShow();
         MyWindow();
-        remove();
 //        CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
     }
     void  settable (){
-        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal pengunduran diri / Resignation Date"};
+        String [] header = {"id","Karyawan Id / Employee Id", "Nama / Name", "join date", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
-//        actiontable event = new actiontable() {
-//            @Override
-//            public void lihat(int row) {
-//                try {
-//                    String tnama = (String) MyTable.getValueAt(row, 1);
-//                    String email = (String) MyTable.getValueAt(row, 5);
-//                    id = (String) MyTable.getValueAt(row, 0);
-//                    Class.forName("com.mysql.jdbc.Driver");
-//
-//                    Connection kon =DriverManager.getConnection("jdbc:mysql://192.168.8.111/achivonapp","root","");
-//                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-//                    jasperdesign = JRXmlLoader.load(O);
-//                    param.clear();
-//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
-//                    param.put("id",id);
-//                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-//                    JasperViewer.viewReport(jasperprint, false);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            @Override
-//            public void tambah(int row) {
-//                System.out.println("tambah");
-//            }
-//            @Override
-//            public void hapus(int row) {
-//                System.out.println("hapus");
-//            }
-//        };
 //        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
         MyTable.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
         MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(3).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(4).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(5).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(6).setPreferredWidth(170);
-        MyTable.getColumnModel().getColumn(7).setPreferredWidth(170);
-        MyTable.getColumnModel().getColumn(8).setPreferredWidth(170);
+        MyTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(6).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(7).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(8).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(9).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(10).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(11).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(12).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(13).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(14).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(15).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(16).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(17).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(18).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(19).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(20).setPreferredWidth(50);
         
 //        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
         
 //        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
     }
-    
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -118,10 +98,6 @@ public class ResignationList extends MasterForm {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
-    }
-
-    void remove (){ 
-
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -169,12 +145,12 @@ public class ResignationList extends MasterForm {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Daftar pengunduran diri karyawan / Employee Resignation List");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 40));
+        jLabel1.setText("Daftar Kelengkapan Dokumen karyawan /  Complete list of employee documents");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 450, 40));
 
         jSeparator1.setBackground(new java.awt.Color(255, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 840, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 740, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo4.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
@@ -205,8 +181,8 @@ public class ResignationList extends MasterForm {
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
         try{
-            EmployeeSession.setKTPResign(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
-            Main.main.getMain().showForm(new EmployeeResignation());    
+            EmployeeSession.setKTPRehab(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
+            Main.main.getMain().showForm(new EmployeeRehabilitation());    
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -233,19 +209,22 @@ public class ResignationList extends MasterForm {
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
-        int row = MyTable.getRowCount();
-        for(int i = 0; i < row; i++){
-            myModel.removeRow(0);
-        }
-        try {
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id");
-            while (myRess.next()) {
-                String myData [] = {myRess.getString(13),myRess.getString(14), myRess.getString(15), myRess.getString(16),myRess.getString(21), 
-                                    myRess.getString(22),myRess.getString(25) ,myRess.getString(18)};
-                myModel.addRow(myData);
-            }
-        } catch (SQLException ex) {
-        }
+//        Connection myConn;
+//        String mySearch = textSearch.getText();
+//        int row = MyTable.getRowCount();
+//        for(int i = 0; i < row; i++){
+//            myModel.removeRow(0);
+//        }
+//        try {
+//            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+//            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_rehabilitation inner join employee on employee_rehabilitation.karyawan_id = employee.karyawan_id");
+//            while (myRess.next()) {
+//                String myData [] = {myRess.getString(16),myRess.getString(17), myRess.getString(18), myRess.getString(19),myRess.getString(24), 
+//                                    myRess.getString(25),myRess.getString(28) ,myRess.getString(21)};
+//                myModel.addRow(myData);
+//            }
+//        } catch (SQLException ex) {
+//        }
     }
     
     private void MyWindow(){

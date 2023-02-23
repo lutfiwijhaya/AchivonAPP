@@ -21,6 +21,7 @@ import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
 import TestResource.CandidateApplicationPersonal;
 import HumanResource.CandidateApplicationedit;
+import HumanResource.Checklist;
 import HumanResource.ClearanceList;
 import HumanResource.ConfirmationHandingOverTakingOver;
 import HumanResource.ConfirmationHandoverandTakeoverList;
@@ -818,7 +819,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_NotificationtoNewEmployeeActionPerformed
 
     private void ChecklistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChecklistActionPerformed
-//        ceklis
+        showForm(new Checklist());
     }//GEN-LAST:event_ChecklistActionPerformed
 
     private void DiciplinaryRevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiciplinaryRevolutionActionPerformed

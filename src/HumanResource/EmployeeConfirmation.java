@@ -10,8 +10,6 @@ import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
-//import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -71,26 +69,22 @@ public class EmployeeConfirmation extends MasterForm {
         openDB();
         MyWindow();
         get_tanggal();
-//        setcombo();
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
         getMyRole();
     }
     
     void get_tanggal() {
-
         Date ys = new Date();
-        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyy");
+        SimpleDateFormat s = new SimpleDateFormat("dd-MMM-yyy");
         tanggal = s.format(ys);
         l_tgl.setText(tanggal);
         l_emnama1.setText(MySession.get_nama());
         l_emnama.setText(MySession.get_nama());
         jLabel37.setText(MySession.get_JobPosition());
-
     }
 
     private void openDB() {
         try {
-
             koneksi kon = new koneksi();
             koneksi = kon.getConnection();
         } catch (Exception e) {
@@ -492,10 +486,9 @@ public class EmployeeConfirmation extends MasterForm {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Connection myConn;
+        
         try{
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_nama()+"' WHERE KTP = '"+l_ktp.getText()+"'");
+           koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_nama()+"' WHERE KTP = '"+l_ktp.getText()+"'");
 //            while (myRess.next()) {
                 JOptionPane.showMessageDialog(null, "berhasil tanda tangan \n Succesed signature");
 //            }

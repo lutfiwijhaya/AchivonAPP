@@ -215,10 +215,8 @@ public class CandidateApplicationedit extends MasterForm {
     }
 
     private void tampil() {
-        Connection myConn;
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
+           ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
                 homeCountry.addItem(myRess.getString("name"));
             }
@@ -381,10 +379,8 @@ public class CandidateApplicationedit extends MasterForm {
     }
 
     public void currentBox() {
-        Connection myConn;
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
                 curentCountry.addItem(myRess.getString("name"));
             }
@@ -394,10 +390,8 @@ public class CandidateApplicationedit extends MasterForm {
     }
 
     public void codeCountryBox() {
-        Connection myConn;
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM countries");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
                 // t_kodeNegara.addItem(myRess.getString("name") +" "+ myRess.getString("phone_code"));
             }
@@ -409,7 +403,6 @@ public class CandidateApplicationedit extends MasterForm {
     void tampildata() {
         try {
             Statement stm = koneksi.createStatement();
-
             rs = stm.executeQuery("select*from cd_employee where id_employee = " + da + "");
             while (rs.next()) {
                 t_lamaran.addItem(rs.getString("Applying_A"));
@@ -1494,7 +1487,7 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
         String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
         r_y.setActionCommand("Yes");
         r_n.setActionCommand("No");
@@ -1519,7 +1512,7 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
         String tanggal_certificate = String.valueOf(fm.format(t_tgl_certificate.getDate()));
 
         DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
@@ -1597,7 +1590,7 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-    if (t_tgl_personal.getDate()!= null){SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+    if (t_tgl_personal.getDate()!= null){SimpleDateFormat fm = new SimpleDateFormat("yyyy-MMM-dd");
         g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));}
          t_pria.setActionCommand("Male");
         t_wanita.setActionCommand("Female");
@@ -1804,12 +1797,10 @@ public class CandidateApplicationedit extends MasterForm {
     }//GEN-LAST:event_homeCityActionPerformed
 
     private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
-        Connection myConn;
         try {
-homeCity.removeAllItems();
+            homeCity.removeAllItems();
 
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 homeCity.addItem(myRess.getString("name"));
             }
@@ -1819,11 +1810,9 @@ homeCity.removeAllItems();
     }//GEN-LAST:event_homeStateActionPerformed
 
     private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
-        Connection myConn;
         try {
 
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 homeState.addItem(myRess.getString("name"));
             }
@@ -1844,11 +1833,9 @@ homeCity.removeAllItems();
     }//GEN-LAST:event_ccityActionPerformed
 
     private void cprovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cprovActionPerformed
-        Connection myConn;
         try {
             ccity.removeAllItems();
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + cprov.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 ccity.addItem(myRess.getString("name"));
             }
@@ -1861,11 +1848,8 @@ homeCity.removeAllItems();
     }//GEN-LAST:event_cprovActionPerformed
 
     private void curentCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curentCountryActionPerformed
-        Connection myConn;
         try {
-
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + curentCountry.getSelectedItem().toString() + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + curentCountry.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 cprov.addItem(myRess.getString("name"));
             }
@@ -1874,10 +1858,10 @@ homeCity.removeAllItems();
     }//GEN-LAST:event_curentCountryActionPerformed
 
     private void t_bpjsKesehatanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKesehatanKeyTyped
-char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
             evt.consume();
-        }          //        asd
+        }
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
 
     private void t_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_emailActionPerformed
@@ -1888,22 +1872,24 @@ char c = evt.getKeyChar();
        char c = evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
             evt.consume();
-        }             String a ;
+        }             
+        String a ;
         String b = "-";
+        
         if(t_hp.getText().length()<3){
             t_hp.setText("(0)");
         }else if (t_hp.getText().length() == 6) {
             t_hp.setText(t_hp.getText()+"-");
         }else if(t_hp.getText().length() == 7){
-StringBuffer sb = new StringBuffer(t_hp.getText());
-       sb.setLength(6); 
-       t_hp.setText(""+sb);
+            StringBuffer sb = new StringBuffer(t_hp.getText());
+            sb.setLength(6); 
+            t_hp.setText(""+sb);
         }else if(t_hp.getText().length() == 11){
             t_hp.setText(t_hp.getText()+"-");
         }else if(t_hp.getText().length() == 12){
            StringBuffer sb = new StringBuffer(t_hp.getText());
-       sb.setLength(11); 
-       t_hp.setText(""+sb);
+            sb.setLength(11); 
+            t_hp.setText(""+sb);
         }else if(t_hp.getText().length() == 17){
             t_hp.setText(t_hp.getText());
             evt.consume();
@@ -1923,11 +1909,12 @@ StringBuffer sb = new StringBuffer(t_hp.getText());
     }//GEN-LAST:event_t_ktpKeyReleased
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-   if (MySession.get_ID()==null){
-             Main.main.jPanel2.setVisible(true);
-             Main.main.bodyPanel.setVisible(false);
+        if (MySession.get_ID()==null){
+            Main.main.jPanel2.setVisible(true);
+            Main.main.bodyPanel.setVisible(false);
             Main.main.getMain().setVisible(true);
-            } Main.main.getMain().showForm(new NewJPanel());  
+        } 
+        Main.main.getMain().showForm(new NewJPanel());  
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void t_lajangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lajangActionPerformed
@@ -1951,16 +1938,16 @@ StringBuffer sb = new StringBuffer(t_hp.getText());
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
- curentCountry.setSelectedItem(homeCountry.getSelectedItem());
+        curentCountry.setSelectedItem(homeCountry.getSelectedItem());
         cprov.setSelectedItem(homeState.getSelectedItem());
         ccity.setSelectedItem(homeCity.getSelectedItem());
         t_ckec.setText(t_hkec.getText());
         t_calamat.setText(t_halamat.getText());
-        t_cdesa.setText(t_ddesa.getText());          // TODO add your handling code here:
+        t_cdesa.setText(t_ddesa.getText());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void t_ktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyTyped
-char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
             evt.consume();
         }
@@ -1970,119 +1957,119 @@ char c = evt.getKeyChar();
     }//GEN-LAST:event_t_ktpKeyTyped
 
     private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
-char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
             evt.consume();
         }
         if (t_gaji.getText().length()>8){
             evt.consume();
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_gajiKeyTyped
 
     private void t_bpjsKetenagakerjaanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_bpjsKetenagakerjaanKeyTyped
-char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE) ||(c==KeyEvent.VK_DELETE))){
             evt.consume();
-        }          // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_bpjsKetenagakerjaanKeyTyped
 
     private void t_halamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_halamatMouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_halamatMouseWheelMoved
 
     private void t_calamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_calamatMouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_calamatMouseWheelMoved
 
     private void jTable2MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable2MouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTable2MouseWheelMoved
 
     private void jPanel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jPanel1MouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jPanel1MouseWheelMoved
 
     private void jTable3MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable3MouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTable3MouseWheelMoved
 
     private void jTable4MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable4MouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTable4MouseWheelMoved
 
     private void jTable5MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable5MouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jTable5MouseWheelMoved
 
     private void t_motifMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_motifMouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_motifMouseWheelMoved
 
     private void t_latarMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_latarMouseWheelMoved
- JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
         int increment = 5; // set increment to 3 units
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
             verticalScrollBar.setValue(verticalScrollBar.getValue() + (increment * verticalScrollBar.getBlockIncrement()));
-        }           // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_latarMouseWheelMoved
 
 

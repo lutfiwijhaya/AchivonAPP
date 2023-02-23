@@ -53,8 +53,7 @@ public class EmployeeResignation extends MasterForm {
         idPresiden.setVisible(false);
         labelID.setVisible(false);
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            Statement stmt = conn.createStatement();
+            Statement stmt = koneksi.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPResign()+"'");
             if (rs.next()) {
                 labelID.setText(rs.getString(2));
@@ -77,7 +76,7 @@ public class EmployeeResignation extends MasterForm {
                 if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {
-                            Statement stmt11 = conn.createStatement();
+                            Statement stmt11 = koneksi.createStatement();
                             ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+idTeamPred.getText()+"'");
                             if (rs11.next()) {
                                 labelNameTeamPred.setText(rs11.getString(4));
@@ -85,7 +84,7 @@ public class EmployeeResignation extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt1 = conn.createStatement();
+                        Statement stmt1 = koneksi.createStatement();
                         ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+idTeamPred.getText()+"'");
                         if (rs1.next()) {
                             byte[] imageData = rs1.getBytes("scan");
@@ -110,7 +109,7 @@ public class EmployeeResignation extends MasterForm {
                 if (idTeamRecd != null) {
                     signTeamRecd.setText(null);
                     try {
-                            Statement stmt21 = conn.createStatement();
+                            Statement stmt21 = koneksi.createStatement();
                             ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+idTeamRecd.getText()+"'");
                             if (rs21.next()) {
                                 labelNameTeamRecd.setText(rs21.getString(4));
@@ -118,7 +117,7 @@ public class EmployeeResignation extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt2 = conn.createStatement();
+                        Statement stmt2 = koneksi.createStatement();
                         ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+idTeamRecd.getText()+"'");
                         if (rs2.next()) {
                             byte[] imageData = rs2.getBytes("scan");
@@ -143,7 +142,7 @@ public class EmployeeResignation extends MasterForm {
                 if (idTeamRevd != null) {
                     signTeamRevd.setText(null);
                     try {
-                            Statement stmt31 = conn.createStatement();
+                            Statement stmt31 = koneksi.createStatement();
                             ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+idTeamRevd.getText()+"'");
                             if (rs31.next()) {
                                 labelNameTeamRevd.setText(rs31.getString(4));
@@ -151,7 +150,7 @@ public class EmployeeResignation extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt3 = conn.createStatement();
+                        Statement stmt3 = koneksi.createStatement();
                         ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+idTeamRevd.getText()+"'");
                         if (rs3.next()) {
                             byte[] imageData = rs3.getBytes("scan");
@@ -176,7 +175,7 @@ public class EmployeeResignation extends MasterForm {
                 if (idTeamMGR != null) {
                     signTeamMGR.setText(null);
                     try {
-                            Statement stmt41 = conn.createStatement();
+                            Statement stmt41 = koneksi.createStatement();
                             ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
                             if (rs41.next()) {
                                 labelNameTeamMGR.setText(rs41.getString(4));
@@ -184,7 +183,7 @@ public class EmployeeResignation extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt4 = conn.createStatement();
+                        Statement stmt4 = koneksi.createStatement();
                         ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
                         if (rs4.next()) {
                             byte[] imageData = rs4.getBytes("scan");
@@ -209,7 +208,7 @@ public class EmployeeResignation extends MasterForm {
                 if (idHRRevd != null) {
                     signHRRevd.setText(null);
                     try {
-                            Statement stmt51 = conn.createStatement();
+                            Statement stmt51 = koneksi.createStatement();
                             ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
                             if (rs51.next()) {
                                 labelNameHRRevd.setText(rs51.getString(4));
@@ -217,7 +216,7 @@ public class EmployeeResignation extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt5 = conn.createStatement();
+                        Statement stmt5 = koneksi.createStatement();
                         ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
                         if (rs5.next()) {
                             byte[] imageData = rs5.getBytes("scan");
@@ -242,7 +241,7 @@ public class EmployeeResignation extends MasterForm {
                 if (idHRMGR != null) {
                     signHRMGR.setText(null);
                     try {
-                            Statement stmt61 = conn.createStatement();
+                            Statement stmt61 = koneksi.createStatement();
                             ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
                             if (rs61.next()) {
                                 labelNameHRMGR.setText(rs61.getString(4));
@@ -250,7 +249,7 @@ public class EmployeeResignation extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt6 = conn.createStatement();
+                        Statement stmt6 = koneksi.createStatement();
                         ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
                         if (rs6.next()) {
                             byte[] imageData = rs6.getBytes("scan");
@@ -275,7 +274,7 @@ public class EmployeeResignation extends MasterForm {
                 if (idPresiden != null) {
                     signPresident.setText(null);
                     try {
-                            Statement stmt71 = conn.createStatement();
+                            Statement stmt71 = koneksi.createStatement();
                             ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresiden.getText()+"'");
                             if (rs71.next()) {
                                 labelNamePresident.setText(rs71.getString(4));
@@ -283,7 +282,7 @@ public class EmployeeResignation extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt7 = conn.createStatement();
+                        Statement stmt7 = koneksi.createStatement();
                         ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresiden.getText()+"'");
                         if (rs7.next()) {
                             byte[] imageData = rs7.getBytes("scan");
@@ -719,8 +718,7 @@ public class EmployeeResignation extends MasterForm {
     private void signPresidentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signPresidentMouseClicked
         if ("1".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -742,8 +740,7 @@ public class EmployeeResignation extends MasterForm {
     private void signHRMGRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signHRMGRMouseClicked
         if ("2".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -767,8 +764,7 @@ public class EmployeeResignation extends MasterForm {
     private void signHRRevdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signHRRevdMouseClicked
         if ("2".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -792,8 +788,7 @@ public class EmployeeResignation extends MasterForm {
     private void signTeamMGRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamMGRMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -817,8 +812,7 @@ public class EmployeeResignation extends MasterForm {
     private void signTeamRevdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamRevdMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -842,8 +836,7 @@ public class EmployeeResignation extends MasterForm {
     private void signTeamRecdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamRecdMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -867,8 +860,7 @@ public class EmployeeResignation extends MasterForm {
     private void signTeamPredMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamPredMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -912,12 +904,10 @@ public class EmployeeResignation extends MasterForm {
             idPresiden.setText("0");
         }
         
-        Connection myConn = null;
         PreparedStatement myStmt = null;
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
             String sql = "UPDATE employee_resignation SET team_pred=?, team_recd=?, team_revd=?, team_mgr=?, hr_revd=?, hr_mgr=?, president=? WHERE karyawan_id=?";
-            myStmt = myConn.prepareStatement(sql);
+            myStmt = koneksi.prepareStatement(sql);
             myStmt.setString(1, idTeamPred.getText());
             myStmt.setString(2, idTeamRecd.getText());
             myStmt.setString(3, idTeamRevd.getText());
@@ -935,29 +925,13 @@ public class EmployeeResignation extends MasterForm {
                 if (myStmt != null) {
                     myStmt.close();
                 }
-                if (myConn != null) {
-                    myConn.close();
+                if (koneksi != null) {
+                    koneksi.close();
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }
-        
-//            Connection myConn;
-//        try {
-//            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-//            myConn.createStatement().executeUpdate("update employee_resignation set team_pred='"+idTeamPred.getText()+"',team_recd ='"+idTeamRecd.getText()+"',team_revd='"+idTeamRevd.getText()+"',team_mgr='"+idTeamMGR.getText()+"',hr_revd='"+idHRRevd.getText()+"',hr_mgr='"+idHRMGR.getText()+"',president='"+idPresiden.getText()+"' where karyawan_id ='"+labelID+"'");
-//                    
-////            stm = koneksi.createStatement();
-////                String sql = "update employee_resignation set team_pred='"+idTeamPred.getText()+"',team_recd ='"+idTeamRecd.getText()+"',"
-////                    + "team_revd='"+idTeamRevd.getText()+"',team_mgr='"+idTeamMGR.getText()+"',"
-////                    + "hr_revd='"+idHRRevd.getText()+"',hr_mgr='"+idHRMGR.getText()+"',"
-////                    + "president='"+idPresiden.getText()+"' where karyawan_id ='"+labelID+"'";
-//
-////            stm.executeUpdate(sql);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }        
+        }      
     }//GEN-LAST:event_SaveButtonActionPerformed
 
 
@@ -1067,6 +1041,5 @@ public class EmployeeResignation extends MasterForm {
     
     @Override
     public void formrefresh() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

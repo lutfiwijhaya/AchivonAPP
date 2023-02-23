@@ -49,9 +49,7 @@ public class LeaveOfAbsenceList extends MasterForm {
      String id = null;
 
     public LeaveOfAbsenceList() {
-        Statement stm;
-        ResultSet rs;
-        Connection koneksi;
+        
         initComponents();
         settable();
         myShow();
@@ -196,15 +194,13 @@ void remove (){
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
-        Connection myConn;
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
         for(int i = 0; i < row; i++){
             myModel.removeRow(0);
         }
         try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_absence inner join employee on employee_absence.karyawan_id = employee.karyawan_id");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_absence inner join employee on employee_absence.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(17),myRess.getString(18), myRess.getString(19), myRess.getString(20),myRess.getString(25), 
                                     myRess.getString(26),myRess.getString(29) ,myRess.getString(22)};

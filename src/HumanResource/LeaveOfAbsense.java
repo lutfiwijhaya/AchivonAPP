@@ -74,8 +74,8 @@ public class LeaveOfAbsense extends MasterForm {
         idPresiden.setVisible(false);
         
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            Statement stmt = conn.createStatement();
+            
+            Statement stmt = koneksi.createStatement();
             ResultSet rs = stmt.executeQuery("select * from employee_absence where karyawan_id = '"+MySession.get_karyawanID()+"'");
             if (rs.next()) {
                 SendButton.setVisible(false);
@@ -92,7 +92,7 @@ public class LeaveOfAbsense extends MasterForm {
                 if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {
-                            Statement stmt11 = conn.createStatement();
+                            Statement stmt11 = koneksi.createStatement();
                             ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+idTeamPred.getText()+"'");
                             if (rs11.next()) {
                                 labelNameTeamPred.setText(rs11.getString(4));
@@ -100,7 +100,7 @@ public class LeaveOfAbsense extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt1 = conn.createStatement();
+                        Statement stmt1 = koneksi.createStatement();
                         ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+idTeamPred.getText()+"'");
                         if (rs1.next()) {
                             byte[] imageData = rs1.getBytes("scan");
@@ -125,7 +125,7 @@ public class LeaveOfAbsense extends MasterForm {
                 if (idTeamRecd != null) {
                     signTeamRecd.setText(null);
                     try {
-                            Statement stmt21 = conn.createStatement();
+                            Statement stmt21 = koneksi.createStatement();
                             ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+idTeamRecd.getText()+"'");
                             if (rs21.next()) {
                                 labelNameTeamRecd.setText(rs21.getString(4));
@@ -133,7 +133,7 @@ public class LeaveOfAbsense extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt2 = conn.createStatement();
+                        Statement stmt2 = koneksi.createStatement();
                         ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+idTeamRecd.getText()+"'");
                         if (rs2.next()) {
                             byte[] imageData = rs2.getBytes("scan");
@@ -158,7 +158,7 @@ public class LeaveOfAbsense extends MasterForm {
                 if (idTeamRevd != null) {
                     signTeamRevd.setText(null);
                     try {
-                            Statement stmt31 = conn.createStatement();
+                            Statement stmt31 = koneksi.createStatement();
                             ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+idTeamRevd.getText()+"'");
                             if (rs31.next()) {
                                 labelNameTeamRevd.setText(rs31.getString(4));
@@ -166,7 +166,7 @@ public class LeaveOfAbsense extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt3 = conn.createStatement();
+                        Statement stmt3 = koneksi.createStatement();
                         ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+idTeamRevd.getText()+"'");
                         if (rs3.next()) {
                             byte[] imageData = rs3.getBytes("scan");
@@ -191,7 +191,7 @@ public class LeaveOfAbsense extends MasterForm {
                 if (idTeamMGR != null) {
                     signTeamMGR.setText(null);
                         try {
-                            Statement stmt41 = conn.createStatement();
+                            Statement stmt41 = koneksi.createStatement();
                             ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
                             if (rs41.next()) {
                                 labelNameTeamMGR.setText(rs41.getString(4));
@@ -199,7 +199,7 @@ public class LeaveOfAbsense extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt4 = conn.createStatement();
+                        Statement stmt4 = koneksi.createStatement();
                         ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
                         if (rs4.next()) {
                             byte[] imageData = rs4.getBytes("scan");
@@ -224,7 +224,7 @@ public class LeaveOfAbsense extends MasterForm {
                 if (idHRRevd != null) {
                     signHRRevd.setText(null);
                     try {
-                            Statement stmt51 = conn.createStatement();
+                            Statement stmt51 = koneksi.createStatement();
                             ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
                             if (rs51.next()) {
                                 labelNameHRRevd.setText(rs51.getString(4));
@@ -232,7 +232,7 @@ public class LeaveOfAbsense extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt5 = conn.createStatement();
+                        Statement stmt5 = koneksi.createStatement();
                         ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
                         if (rs5.next()) {
                             byte[] imageData = rs5.getBytes("scan");
@@ -257,7 +257,7 @@ public class LeaveOfAbsense extends MasterForm {
                 if (idHRMGR != null) {
                     signHRMGR.setText(null);
                     try {
-                            Statement stmt61 = conn.createStatement();
+                            Statement stmt61 = koneksi.createStatement();
                             ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
                             if (rs61.next()) {
                                 labelNameHRMGR.setText(rs61.getString(4));
@@ -265,7 +265,7 @@ public class LeaveOfAbsense extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt6 = conn.createStatement();
+                        Statement stmt6 = koneksi.createStatement();
                         ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
                         if (rs6.next()) {
                             byte[] imageData = rs6.getBytes("scan");
@@ -290,7 +290,7 @@ public class LeaveOfAbsense extends MasterForm {
                 if (idPresiden != null) {
                     signPresident.setText(null);
                     try {
-                            Statement stmt71 = conn.createStatement();
+                            Statement stmt71 = koneksi.createStatement();
                             ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresiden.getText()+"'");
                             if (rs71.next()) {
                                 labelNamePresident.setText(rs71.getString(4));
@@ -298,7 +298,7 @@ public class LeaveOfAbsense extends MasterForm {
                         } catch (Exception e) {
                         }
                     try {
-                        Statement stmt7 = conn.createStatement();
+                        Statement stmt7 = koneksi.createStatement();
                         ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresiden.getText()+"'");
                         if (rs7.next()) {
                             byte[] imageData = rs7.getBytes("scan");
@@ -804,8 +804,8 @@ public class LeaveOfAbsense extends MasterForm {
     private void signTeamPredMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamPredMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -828,8 +828,8 @@ public class LeaveOfAbsense extends MasterForm {
     private void signTeamRecdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamRecdMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -852,8 +852,8 @@ public class LeaveOfAbsense extends MasterForm {
     private void signTeamRevdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamRevdMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -876,8 +876,8 @@ public class LeaveOfAbsense extends MasterForm {
     private void signTeamMGRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamMGRMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -900,8 +900,8 @@ public class LeaveOfAbsense extends MasterForm {
     private void signHRRevdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signHRRevdMouseClicked
         if ("2".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -924,8 +924,8 @@ public class LeaveOfAbsense extends MasterForm {
     private void signHRMGRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signHRMGRMouseClicked
         if ("2".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -948,8 +948,8 @@ public class LeaveOfAbsense extends MasterForm {
     private void signPresidentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signPresidentMouseClicked
         if ("1".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
@@ -972,17 +972,10 @@ public class LeaveOfAbsense extends MasterForm {
     }//GEN-LAST:event_dateFromActionPerformed
 
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
-        String url = "jdbc:mysql://localhost:3306/achivonapp";
-        String username = "root";
-        String password = "";
-        
-        Connection conn = null;
         PreparedStatement stmt = null;
-        
         try {
-            conn = DriverManager.getConnection(url, username, password);
             String sql = "INSERT INTO employee_absence (karyawan_id, team_pred, team_recd, team_revd, team_mgr, hr_revd, hr_mgr, president, date, date_from, date_to, reason, evidence, mobile_no, relative) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            stmt = conn.prepareStatement(sql);
+            stmt = koneksi.prepareStatement(sql);
             // Mengisi nilai parameter
             stmt.setString(1, MySession.get_karyawanID());
             stmt.setString(2, "0");
@@ -1014,8 +1007,8 @@ public class LeaveOfAbsense extends MasterForm {
                     stmt.close();
                 }
                 
-                if (conn != null) {
-                    conn.close();
+                if (koneksi != null) {
+                    koneksi.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

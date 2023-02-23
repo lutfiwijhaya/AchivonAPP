@@ -17,6 +17,7 @@ import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
 import CustomResource.EmployeeSession;
+import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -49,13 +50,12 @@ public class RequestAllocationList extends MasterForm {
      String id = null;
 
     public RequestAllocationList() {
-        Statement stm;
-        ResultSet rs;
-        Connection koneksi;
+        
         initComponents();
+        openDB();
+        MyWindow();
         settable();
         myShow();
-        MyWindow();
         remove();
 //        CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
@@ -111,11 +111,19 @@ public class RequestAllocationList extends MasterForm {
         
 //        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
     }
-
-
-void remove (){ 
     
-}
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
+
+    void remove (){ 
+
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

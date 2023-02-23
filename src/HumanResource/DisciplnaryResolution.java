@@ -5,6 +5,7 @@
 package HumanResource;
 
 import CustomResource.MySession;
+import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -22,15 +23,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 /**
  *
  * @author USER
  */
 public class DisciplnaryResolution extends MasterForm {
-
-    /**
-     * Creates new form DisciplnaryResolution
-     */
+    Statement stm;
+    ResultSet rs;
+    Connection koneksi;
     public DisciplnaryResolution() {
         initComponents();
         MyWindow();
@@ -45,7 +46,14 @@ public class DisciplnaryResolution extends MasterForm {
             labelNamePresident.setVisible(false);
         }
     }
-
+    private void openDB() {
+        try {
+            koneksi kon = new koneksi();
+            koneksi = kon.getConnection();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -214,8 +222,7 @@ public class DisciplnaryResolution extends MasterForm {
     private void signPresidentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signPresidentMouseClicked
         if ("1".equals(MySession.get_Role())) {
             try {
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                Statement stmt = conn.createStatement();
+                Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
 
                 if (rs.next()) {
