@@ -63,6 +63,7 @@ public class CandidateApplication extends MasterForm {
     String full_curent;
     String full_home;
     int k = 0;
+    String id_lamar;
    
 
     /**
@@ -82,6 +83,7 @@ public class CandidateApplication extends MasterForm {
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
         homeCountry.setSelectedItem("Indonesia");
         curentCountry.setSelectedItem("Indonesia");
+        c_job();
 
     }
 
@@ -199,6 +201,17 @@ public class CandidateApplication extends MasterForm {
         homeCountry.setEnabled(true);
     }
 
+    void c_job(){
+    try {
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM job_facancy");
+            while (myRess.next()) {
+                t_lamaran.addItem(myRess.getString("name_job"));
+            }
+        } catch (SQLException ex) {
+        }
+    
+    }
+    
     private void setfokus() {
         jTable3.requestFocus();
         jTable3.editCellAt(0, 0);
@@ -542,7 +555,6 @@ public class CandidateApplication extends MasterForm {
         jLabel97 = new javax.swing.JLabel();
         jScrollPane26 = new javax.swing.JScrollPane();
         t_calamat = new javax.swing.JTextArea();
-        jLabel99 = new javax.swing.JLabel();
         jLabel101 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();
         jLabel103 = new javax.swing.JLabel();
@@ -557,7 +569,6 @@ public class CandidateApplication extends MasterForm {
         t_hp = new CustomResource.CustomTextfield();
         t_email = new CustomResource.CustomTextfield();
         t_bpjsKetenagakerjaan = new CustomResource.CustomTextfield();
-        t_dicipline = new CustomResource.CustomTextfield();
         t_bpjsKesehatan = new CustomResource.CustomTextfield();
         jLabel94 = new javax.swing.JLabel();
         curentCountry = new CustomResource.ComboBoxSuggestion();
@@ -589,10 +600,8 @@ public class CandidateApplication extends MasterForm {
         t_lajang = new javax.swing.JRadioButton();
         t_menikah = new javax.swing.JRadioButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-        t_lokasi = new CustomResource.ComboBoxSuggestion();
         t_sekolah = new CustomResource.CustomTextfield();
         t_tgl = new com.toedter.calendar.JYearChooser();
-        jLabel2 = new javax.swing.JLabel();
         t_jurusan = new CustomResource.CustomTextfield();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -605,8 +614,6 @@ public class CandidateApplication extends MasterForm {
         jLabel5 = new javax.swing.JLabel();
         t_tgl_family = new CustomResource.CustomTextfield();
         jButton5 = new javax.swing.JButton();
-        t_lokasi1 = new CustomResource.ComboBoxSuggestion();
-        jLabel7 = new javax.swing.JLabel();
         t_nama2 = new CustomResource.CustomTextfield();
         t_author = new CustomResource.CustomTextfield();
         t_sertifikat = new CustomResource.CustomTextfield();
@@ -629,6 +636,9 @@ public class CandidateApplication extends MasterForm {
         t_tlhir = new CustomResource.CustomTextfield();
         t_nama4 = new CustomResource.CustomTextfield();
         t_tgl_certificate = new CustomResource.CustomTextfield();
+        t_lamaran1 = new CustomResource.ComboBoxSuggestion();
+        t_lokasi_academic = new CustomResource.CustomTextfield();
+        t_lokasi_certificate = new CustomResource.CustomTextfield();
 
         dateChooser1.setDateFormat("dd-MMM-yyyy");
         dateChooser1.setTextRefernce(t_tgl_personal);
@@ -795,10 +805,6 @@ public class CandidateApplication extends MasterForm {
 
         jPanel1.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 730, 210, -1));
 
-        jLabel99.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel99.setText("Posisi Yang Dilamar /Job Applying");
-        jPanel1.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, 30));
-
         jLabel101.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel101.setText("Negara / Country");
         jPanel1.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 510, -1, 20));
@@ -820,11 +826,11 @@ public class CandidateApplication extends MasterForm {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel1.setText("...");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 100, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 100, -1));
 
         labelfoto.setBackground(new java.awt.Color(255, 255, 204));
         labelfoto.setOpaque(true);
-        jPanel1.add(labelfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 100, 90));
+        jPanel1.add(labelfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 100, 90));
 
         t_nama.setLabelText("Nama / Name");
         jPanel1.add(t_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 340, -1));
@@ -882,9 +888,6 @@ public class CandidateApplication extends MasterForm {
             }
         });
         jPanel1.add(t_bpjsKetenagakerjaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 340, -1));
-
-        t_dicipline.setLabelText("Discipline");
-        jPanel1.add(t_dicipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 340, -1));
 
         t_bpjsKesehatan.setLabelText("No BPJS Kesehatan");
         t_bpjsKesehatan.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -999,14 +1002,14 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_npwp, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, 340, -1));
 
-        t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Test", " " }));
+        t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Posisi Yang Dilamar /Job Applying" }));
         t_lamaran.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         t_lamaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t_lamaranActionPerformed(evt);
             }
         });
-        jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 190, 30));
+        jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 220, 30));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1152,7 +1155,7 @@ public class CandidateApplication extends MasterForm {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
 
         jToggleButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jToggleButton2.setText("SIMPAN / SAVE");
@@ -1192,20 +1195,12 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 480, -1, -1));
 
-        t_lokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "test" }));
-        t_lokasi.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(t_lokasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 960, 220, -1));
-
         t_sekolah.setLabelText("Nama Sekolah / School Name & Graduate Years\n");
         jPanel1.add(t_sekolah, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 890, 240, -1));
         jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 910, 90, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel2.setText("Lokasi / Location");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 960, -1, 30));
-
         t_jurusan.setLabelText("Jurusan / Major");
-        jPanel1.add(t_jurusan, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1000, 310, -1));
+        jPanel1.add(t_jurusan, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 1010, 310, -1));
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton4.setText("Add/Tambah");
@@ -1280,14 +1275,6 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 1170, 110, 30));
 
-        t_lokasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Serang", " " }));
-        t_lokasi1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jPanel1.add(t_lokasi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1620, 270, -1));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel7.setText("Lokasi / Location");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1600, 90, -1));
-
         t_nama2.setLabelText("Nama Sertifikat / Certificate Namel");
         jPanel1.add(t_nama2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1670, 270, -1));
 
@@ -1295,7 +1282,7 @@ public class CandidateApplication extends MasterForm {
         jPanel1.add(t_author, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1710, 270, -1));
 
         t_sertifikat.setLabelText("No. Sertifikat");
-        jPanel1.add(t_sertifikat, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1660, 270, -1));
+        jPanel1.add(t_sertifikat, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1670, 270, -1));
 
         jButton6.setText("Add/Tambah");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -1368,6 +1355,21 @@ public class CandidateApplication extends MasterForm {
 
         t_tgl_certificate.setLabelText("Diakuisisi Tanggal / Acquisition Date");
         jPanel1.add(t_tgl_certificate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1620, 270, -1));
+
+        t_lamaran1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Disiplin/Chose Discipline" }));
+        t_lamaran1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        t_lamaran1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_lamaran1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(t_lamaran1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 190, 30));
+
+        t_lokasi_academic.setLabelText("Lokasi/Location");
+        jPanel1.add(t_lokasi_academic, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 960, 310, -1));
+
+        t_lokasi_certificate.setLabelText("Lokasi/Location");
+        jPanel1.add(t_lokasi_certificate, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 1620, 270, -1));
 
         jScrollPane18.setViewportView(jPanel1);
 
@@ -1499,7 +1501,29 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_npwpActionPerformed
 
     private void t_lamaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lamaranActionPerformed
-        // TODO add your handling code here:
+String l = "Pilih Disiplin/Chose Discipline";
+        t_lamaran1.removeAllItems();
+t_lamaran1.addItem(l);
+
+try {
+            Statement stm = koneksi.createStatement();
+
+            rs = stm.executeQuery("select*from job_facancy where name_job = '" + t_lamaran.getSelectedItem() + "'");
+            while (rs.next()) {
+                id_lamar = rs.getString("id_job");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM job_facancy_discipline where id_job = '"+id_lamar+"'");
+            while (myRess.next()) {
+                t_lamaran1.addItem(myRess.getString("name_dicipline"));
+            }
+        } catch (SQLException ex) {
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_t_lamaranActionPerformed
 
     private void t_hpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyReleased
@@ -1548,12 +1572,16 @@ int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save 
         t_wanita.setActionCommand("Female");
         t_lajang.setActionCommand("Single");
         t_menikah.setActionCommand("Married");
+       String t_dicipline = (String) t_lamaran1.getSelectedItem();
+       String t_job = (String) t_lamaran.getSelectedItem();
 
         if (t_gaji.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Estimasi Gaji Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_dicipline.getText().equals("")) {
+        } else if (t_dicipline.equals("Pilih Disiplin/Chose Discipline")) {
             JOptionPane.showMessageDialog(null, "Dicipline Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_nama.getText().equals("")) {
+        }else if (t_job.equals("Posisi Yang Dilamar /Job Applying")) {
+            JOptionPane.showMessageDialog(null, "Posisi Yang Di Lamar Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE); 
+        }else if (t_nama.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else if (t_ktp.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "KTP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
@@ -1609,7 +1637,7 @@ int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save 
                         + ",'" + t_bpjsKetenagakerjaan.getText() + "'"
                         + ",'" + t_lamaran.getSelectedItem() + "'"
                         + ",'" + t_gaji.getText() + "'"
-                        + ",'" + t_dicipline.getText() + "'"
+                        + ",'" + t_lamaran1.getSelectedItem() + "'"
                         + ",'" + tanggal + "'"
                         + ",'" + k + "')";
 
@@ -1722,17 +1750,18 @@ int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save 
         String name = t_sekolah.getText();
         int year = t_tgl.getYear();
         String major = t_jurusan.getText();
-        String loc = t_lokasi.getSelectedItem().toString();
+        
 
         List list = new ArrayList<>();
         jTable2.setAutoCreateColumnsFromModel(true);
         list.add(t_tgl.getYear());
         list.add(t_sekolah.getText());
-        list.add(t_lokasi.getSelectedItem());
+        list.add(t_lokasi_academic.getText());
         list.add(t_jurusan.getText());
         dataModel.insertRow(0, list.toArray());
         
         t_sekolah.setText("");
+        t_lokasi_academic.setText("");
         t_jurusan.setText("");
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1782,11 +1811,12 @@ int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save 
         list.add(t_tgl_certificate.getText());
         list.add(t_nama2.getText());
         list.add(t_author.getText());
-        list.add(t_lokasi.getSelectedItem());
+        list.add(t_lokasi_certificate.getText());
         list.add(t_sertifikat.getText());
         dataModel.insertRow(0, list.toArray());
         
         t_nama2.setText("");
+        t_lokasi_certificate.setText("");
         t_author.setText("");
         t_sertifikat.setText("");
         
@@ -2006,6 +2036,10 @@ t_hp1.setText("(0)");
         }
     }//GEN-LAST:event_jTable5MouseWheelMoved
 
+    private void t_lamaran1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lamaran1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_lamaran1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Bataslabel;
@@ -2037,10 +2071,8 @@ t_hp1.setText("(0)");
     private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel78;
@@ -2062,7 +2094,6 @@ t_hp1.setText("(0)");
     private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane18;
@@ -2103,7 +2134,6 @@ t_hp1.setText("(0)");
     private CustomResource.CustomTextfield t_cdesa;
     private CustomResource.CustomTextfield t_ckec;
     private CustomResource.CustomTextfield t_ddesa;
-    private CustomResource.CustomTextfield t_dicipline;
     private CustomResource.CustomTextfield t_email;
     private CustomResource.CustomTextfield t_gaji;
     private javax.swing.JTextArea t_halamat;
@@ -2115,9 +2145,10 @@ t_hp1.setText("(0)");
     private CustomResource.CustomTextfield t_ktp;
     private javax.swing.JRadioButton t_lajang;
     private CustomResource.ComboBoxSuggestion t_lamaran;
+    private CustomResource.ComboBoxSuggestion t_lamaran1;
     private javax.swing.JTextArea t_latar;
-    private CustomResource.ComboBoxSuggestion t_lokasi;
-    private CustomResource.ComboBoxSuggestion t_lokasi1;
+    private CustomResource.CustomTextfield t_lokasi_academic;
+    private CustomResource.CustomTextfield t_lokasi_certificate;
     private javax.swing.JRadioButton t_menikah;
     private javax.swing.JTextArea t_motif;
     private CustomResource.CustomTextfield t_nama;
