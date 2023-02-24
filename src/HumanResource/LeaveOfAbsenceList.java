@@ -42,7 +42,7 @@ public class LeaveOfAbsenceList extends MasterForm {
     JasperPrint jasperprint;
     Map<String, Object> param = new HashMap<String, Object>();
     DefaultTableModel myModel;
-     String id = null;
+    String id = null;
 
     public LeaveOfAbsenceList() {
         

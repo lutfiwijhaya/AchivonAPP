@@ -4,13 +4,16 @@
  */
 package ProcurementSystem;
 
+import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,8 +21,26 @@ import java.sql.Statement;
  */
 public class BizPointment extends MasterForm {
     Connection koneksi;
+    DefaultTableModel myModel;
     public BizPointment() {
         initComponents();
+        openDB();
+        CountryBox();
+        
+        String [] header = {"id","Partner ID","Register Date", "Name", "Telp or HP", "Email", "city/district", "Address", "tax payer", "pph"};
+        myModel = new DefaultTableModel(header,0);
+        MyTable.setModel(myModel);
+        MyTable.setDefaultEditor(Object.class, null);
+        MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+        MyTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(7).setPreferredWidth(170);
+        MyTable.getColumnModel().getColumn(8).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(8).setPreferredWidth(50);
     }
     private void openDB() {
         try {
@@ -38,32 +59,32 @@ public class BizPointment extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        customTextfield1 = new CustomResource.CustomTextfield();
-        comboBoxSuggestion1 = new CustomResource.ComboBoxSuggestion();
-        comboBoxSuggestion2 = new CustomResource.ComboBoxSuggestion();
-        customTextfield2 = new CustomResource.CustomTextfield();
-        customTextfield3 = new CustomResource.CustomTextfield();
-        customTextfield4 = new CustomResource.CustomTextfield();
-        customTextfield5 = new CustomResource.CustomTextfield();
-        comboBoxSuggestion3 = new CustomResource.ComboBoxSuggestion();
-        comboBoxSuggestion4 = new CustomResource.ComboBoxSuggestion();
-        comboBoxSuggestion5 = new CustomResource.ComboBoxSuggestion();
+        idIntegrated = new CustomResource.CustomTextfield();
+        boxID1 = new CustomResource.ComboBoxSuggestion();
+        boxID2 = new CustomResource.ComboBoxSuggestion();
+        textID3 = new CustomResource.CustomTextfield();
+        textName = new CustomResource.CustomTextfield();
+        textHP = new CustomResource.CustomTextfield();
+        textMail = new CustomResource.CustomTextfield();
+        country = new CustomResource.ComboBoxSuggestion();
+        province = new CustomResource.ComboBoxSuggestion();
+        city = new CustomResource.ComboBoxSuggestion();
         customTextfield6 = new CustomResource.CustomTextfield();
         customTextfield7 = new CustomResource.CustomTextfield();
         customTextfield8 = new CustomResource.CustomTextfield();
-        customTextfield9 = new CustomResource.CustomTextfield();
-        customTextfield10 = new CustomResource.CustomTextfield();
-        customTextfield11 = new CustomResource.CustomTextfield();
+        textRT = new CustomResource.CustomTextfield();
+        textRW = new CustomResource.CustomTextfield();
+        textPostcode = new CustomResource.CustomTextfield();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        customTextfield12 = new CustomResource.CustomTextfield();
-        comboBoxSuggestion6 = new CustomResource.ComboBoxSuggestion();
-        customFormatField1 = new CustomResource.CustomFormatField();
-        comboBoxSuggestion7 = new CustomResource.ComboBoxSuggestion();
+        textAddress = new javax.swing.JTextArea();
+        textDateRegister = new CustomResource.CustomTextfield();
+        boxTax = new CustomResource.ComboBoxSuggestion();
+        textNPWP = new CustomResource.CustomFormatField();
+        boxPPH = new CustomResource.ComboBoxSuggestion();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        customTextfield13 = new CustomResource.CustomTextfield();
+        MyTable = new javax.swing.JTable();
+        textSearch = new CustomResource.CustomTextfield();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -73,35 +94,49 @@ public class BizPointment extends MasterForm {
         comboBoxSuggestion11 = new CustomResource.ComboBoxSuggestion();
         customTextfield14 = new CustomResource.CustomTextfield();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        customTextfield1.setLabelText("ID Integrated");
+        idIntegrated.setLabelText("ID Integrated");
 
-        comboBoxSuggestion1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID #1" }));
-        comboBoxSuggestion1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        comboBoxSuggestion1.setName(""); // NOI18N
+        boxID1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID #1" }));
+        boxID1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        boxID1.setName(""); // NOI18N
 
-        comboBoxSuggestion2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID #2" }));
-        comboBoxSuggestion2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        boxID2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID #2" }));
+        boxID2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
-        customTextfield2.setLabelText("ID #3");
+        textID3.setLabelText("ID #3");
 
-        customTextfield3.setLabelText("Name");
+        textName.setLabelText("Name");
 
-        customTextfield4.setLabelText("Telp or HP");
+        textHP.setLabelText("Telp or HP");
 
-        customTextfield5.setLabelText("e-mail");
+        textMail.setLabelText("e-mail");
 
-        comboBoxSuggestion3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Country" }));
-        comboBoxSuggestion3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        country.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Country" }));
+        country.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        country.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryActionPerformed(evt);
+            }
+        });
 
-        comboBoxSuggestion4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Province" }));
-        comboBoxSuggestion4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        province.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Province" }));
+        province.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        province.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provinceActionPerformed(evt);
+            }
+        });
 
-        comboBoxSuggestion5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "City / District" }));
-        comboBoxSuggestion5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        city.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "City / District" }));
+        city.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
         customTextfield6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,37 +144,43 @@ public class BizPointment extends MasterForm {
             }
         });
 
-        customTextfield9.setLabelText("RT");
-        customTextfield9.addActionListener(new java.awt.event.ActionListener() {
+        customTextfield8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customTextfield9ActionPerformed(evt);
+                customTextfield8ActionPerformed(evt);
             }
         });
 
-        customTextfield10.setLabelText("RW");
+        textRT.setLabelText("RT");
+        textRT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textRTActionPerformed(evt);
+            }
+        });
 
-        customTextfield11.setLabelText("Postcode");
+        textRW.setLabelText("RW");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setToolTipText("Address");
-        jScrollPane1.setViewportView(jTextArea1);
+        textPostcode.setLabelText("Postcode");
 
-        customTextfield12.setText("customTextfield12");
-        customTextfield12.setLabelText("Reg. Date");
+        textAddress.setColumns(20);
+        textAddress.setRows(5);
+        textAddress.setToolTipText("Address");
+        jScrollPane1.setViewportView(textAddress);
 
-        comboBoxSuggestion6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tax Payer" }));
-        comboBoxSuggestion6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        textDateRegister.setText("customTextfield12");
+        textDateRegister.setLabelText("Reg. Date");
 
-        customFormatField1.setText("customFormatField1");
-        customFormatField1.setLabelText("NPWP No.");
+        boxTax.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tax Payer" }));
+        boxTax.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
-        comboBoxSuggestion7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PPh23 (%)" }));
-        comboBoxSuggestion7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        textNPWP.setText("customFormatField1");
+        textNPWP.setLabelText("NPWP No.");
+
+        boxPPH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PPh23 (%)", "1%", "1,5%", "2%", "2,5%", "3%", "3,5%", "4%", "4,5%", "5%", "5,5%", "6%", "6,5%", "7%", "7,5%", "8%", "8,5%", "9%", "9,5%", "10%" }));
+        boxPPH.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
         jLabel1.setText("Address");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        MyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -151,12 +192,12 @@ public class BizPointment extends MasterForm {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(MyTable);
 
-        customTextfield13.setLabelText("Search");
-        customTextfield13.addActionListener(new java.awt.event.ActionListener() {
+        textSearch.setLabelText("Search");
+        textSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customTextfield13ActionPerformed(evt);
+                textSearchActionPerformed(evt);
             }
         });
 
@@ -181,13 +222,13 @@ public class BizPointment extends MasterForm {
         jLabel4.setText("Evaluation of Biz. Partner");
         jLabel4.setOpaque(true);
 
-        comboBoxSuggestion8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Price" }));
+        comboBoxSuggestion8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Price", "Very Low", "Low", "Moderate", "High", "Very High" }));
 
         comboBoxSuggestion9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cordination" }));
 
         comboBoxSuggestion10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Delivery" }));
 
-        comboBoxSuggestion11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Quality" }));
+        comboBoxSuggestion11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Quality", "Best", "Moderate", "Worst" }));
 
         customTextfield14.setLabelText("Remark / Specific Note");
 
@@ -195,31 +236,55 @@ public class BizPointment extends MasterForm {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Evaluation of Biz. Partner");
+        jLabel5.setText("List - Biz. Partner Status");
         jLabel5.setOpaque(true);
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Biz Partner System");
+        jButton1.setText("Initialize");
+
+        jButton2.setText("Register");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Edit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Delete");
+
+        jButton5.setText("Close");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(106, 106, 106)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(customTextfield13, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -229,51 +294,52 @@ public class BizPointment extends MasterForm {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(customTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxSuggestion1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                            .addComponent(comboBoxSuggestion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(textID3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boxID1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boxID2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(idIntegrated, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxSuggestion5, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                            .addComponent(comboBoxSuggestion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboBoxSuggestion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(customTextfield5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(customTextfield4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(customTextfield3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(city, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(province, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(country, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textHP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(customTextfield9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textRT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(customTextfield10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textRW, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(customTextfield11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(customTextfield8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customTextfield7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customTextfield6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                        .addComponent(textPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(customTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(customTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(customTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(customTextfield12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(customFormatField1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                    .addComponent(comboBoxSuggestion7, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBoxSuggestion6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(textDateRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textNPWP, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                    .addComponent(boxPPH, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boxTax, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(83, 83, 83))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, 0)))))
+                .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,127 +348,241 @@ public class BizPointment extends MasterForm {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(customTextfield3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idIntegrated, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boxID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boxID2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textID3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textHP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(customTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(customTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(country, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(province, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textDateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(customTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboBoxSuggestion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxSuggestion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(customTextfield2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(customTextfield4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(customTextfield5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxSuggestion3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxSuggestion4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxSuggestion5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(customTextfield12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textRT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textRW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(customTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boxTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(customTextfield9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customTextfield10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customTextfield11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboBoxSuggestion6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textNPWP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(customFormatField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxSuggestion7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(boxPPH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(customTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(customTextfield13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)))
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
+                .addContainerGap(295, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void customTextfield9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextfield9ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_customTextfield9ActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void customTextfield13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextfield13ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PreparedStatement stmt = null;
+        try {
+            String sql = "INSERT INTO biz_partner (partner_id, partner_id1, partner_id2, partner_id3, name, no_hp, email, country, province, city, rt, rw, postcode, address, register_date, tax_payer, npwp_no, pph) VALUES (?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            stmt = koneksi.prepareStatement(sql);
+            // Mengisi nilai parameter
+            stmt.setString(1, boxID1.getSelectedItem().toString()+"-"+boxID2.getSelectedItem().toString()+"-"+textID3.getText());
+            stmt.setString(2, boxID1.getSelectedItem().toString());
+            stmt.setString(3, boxID2.getSelectedItem().toString());
+            stmt.setString(4, textID3.getText());
+            stmt.setString(5, textName.getText());
+            stmt.setString(6, textHP.getText());
+            stmt.setString(7, textMail.getText());
+            stmt.setString(8, country.getSelectedItem().toString());
+            stmt.setString(9, province.getSelectedItem().toString());
+            stmt.setString(10, city.getSelectedItem().toString());
+            stmt.setString(11, textRT.getText());
+            stmt.setString(12, textRW.getText());
+            stmt.setString(13, textPostcode.getText());
+            stmt.setString(14, textAddress.getText());
+            stmt.setString(15, textDateRegister.getText());
+            stmt.setString(16, boxTax.getSelectedItem().toString());
+            stmt.setString(17, textNPWP.getText());
+            stmt.setString(18, boxPPH.getSelectedItem().toString());
+            // Mengeksekusi perintah SQL
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Berhasil mendaftarkan \nSucceed registering" );
+            // Menampilkan jumlah baris yang terpengaruh
+//            int rowsAffected = stmt.executeUpdate();
+//            System.out.println("Jumlah baris yang terpengaruh: " + rowsAffected);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Gagal mendaftarkan \nFailed Regstering" );
+        } finally {
+            // Menutup objek PreparedStatement dan Connection
+//            try {
+//                if (stmt != null) {
+//                    stmt.close();
+//                }
+//                
+//                if (koneksi != null) {
+//                    koneksi.close();
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_customTextfield13ActionPerformed
+    }//GEN-LAST:event_textSearchActionPerformed
+
+    private void textRTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textRTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textRTActionPerformed
 
     private void customTextfield6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextfield6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_customTextfield6ActionPerformed
 
+    private void customTextfield8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextfield8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customTextfield8ActionPerformed
+
+    private void countryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryActionPerformed
+        try {
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + country.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                province.addItem(myRess.getString("name"));
+            }
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_countryActionPerformed
+
+    private void provinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceActionPerformed
+        try {
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + province.getSelectedItem().toString() + "'");
+            while (myRess.next()) {
+                city.addItem(myRess.getString("name"));
+            }
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_provinceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CustomResource.ComboBoxSuggestion comboBoxSuggestion1;
+    private javax.swing.JTable MyTable;
+    private CustomResource.ComboBoxSuggestion boxID1;
+    private CustomResource.ComboBoxSuggestion boxID2;
+    private CustomResource.ComboBoxSuggestion boxPPH;
+    private CustomResource.ComboBoxSuggestion boxTax;
+    private CustomResource.ComboBoxSuggestion city;
     private CustomResource.ComboBoxSuggestion comboBoxSuggestion10;
     private CustomResource.ComboBoxSuggestion comboBoxSuggestion11;
-    private CustomResource.ComboBoxSuggestion comboBoxSuggestion2;
-    private CustomResource.ComboBoxSuggestion comboBoxSuggestion3;
-    private CustomResource.ComboBoxSuggestion comboBoxSuggestion4;
-    private CustomResource.ComboBoxSuggestion comboBoxSuggestion5;
-    private CustomResource.ComboBoxSuggestion comboBoxSuggestion6;
-    private CustomResource.ComboBoxSuggestion comboBoxSuggestion7;
     private CustomResource.ComboBoxSuggestion comboBoxSuggestion8;
     private CustomResource.ComboBoxSuggestion comboBoxSuggestion9;
-    private CustomResource.CustomFormatField customFormatField1;
-    private CustomResource.CustomTextfield customTextfield1;
-    private CustomResource.CustomTextfield customTextfield10;
-    private CustomResource.CustomTextfield customTextfield11;
-    private CustomResource.CustomTextfield customTextfield12;
-    private CustomResource.CustomTextfield customTextfield13;
+    private CustomResource.ComboBoxSuggestion country;
     private CustomResource.CustomTextfield customTextfield14;
-    private CustomResource.CustomTextfield customTextfield2;
-    private CustomResource.CustomTextfield customTextfield3;
-    private CustomResource.CustomTextfield customTextfield4;
-    private CustomResource.CustomTextfield customTextfield5;
     private CustomResource.CustomTextfield customTextfield6;
     private CustomResource.CustomTextfield customTextfield7;
     private CustomResource.CustomTextfield customTextfield8;
-    private CustomResource.CustomTextfield customTextfield9;
+    private CustomResource.CustomTextfield idIntegrated;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private CustomResource.ComboBoxSuggestion province;
+    private javax.swing.JTextArea textAddress;
+    private CustomResource.CustomTextfield textDateRegister;
+    private CustomResource.CustomTextfield textHP;
+    private CustomResource.CustomTextfield textID3;
+    private CustomResource.CustomTextfield textMail;
+    private CustomResource.CustomFormatField textNPWP;
+    private CustomResource.CustomTextfield textName;
+    private CustomResource.CustomTextfield textPostcode;
+    private CustomResource.CustomTextfield textRT;
+    private CustomResource.CustomTextfield textRW;
+    private CustomResource.CustomTextfield textSearch;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void formrefresh() {
+    }
+    
+    private void myShow() {
+        String mySearch = textSearch.getText();
+        int row = MyTable.getRowCount();
+        for(int i = 0; i < row; i++){
+            myModel.removeRow(0);
+        }
+        try {
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_absence inner join employee on employee_absence.karyawan_id = employee.karyawan_id");
+            while (myRess.next()) {
+                String myData [] = {myRess.getString(17),myRess.getString(18), myRess.getString(19), myRess.getString(20),myRess.getString(25), 
+                                    myRess.getString(26),myRess.getString(29) ,myRess.getString(22)};
+                myModel.addRow(myData);
+            }
+        } catch (SQLException ex) {
+        }
+    }
+    
+    private void CountryBox() {
+        try {
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
+            while (myRess.next()) {
+                country.addItem(myRess.getString("name"));
+            }
+        } catch (SQLException ex) {
+        }
+        country.setEnabled(true);
     }
 }

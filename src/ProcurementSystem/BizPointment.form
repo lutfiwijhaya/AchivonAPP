@@ -22,18 +22,28 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel6" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jButton1" min="-2" pref="102" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="106" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" pref="92" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Component id="jButton4" min="-2" pref="97" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Component id="jButton5" min="-2" pref="99" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="customTextfield13" min="-2" pref="173" max="-2" attributes="0"/>
+                      <Component id="textSearch" min="-2" pref="173" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="comboBoxSuggestion8" pref="0" max="32767" attributes="0"/>
+                              <Component id="comboBoxSuggestion8" min="-2" pref="137" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="comboBoxSuggestion9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="comboBoxSuggestion10" min="-2" pref="107" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="comboBoxSuggestion11" min="-2" pref="105" max="-2" attributes="0"/>
@@ -46,64 +56,67 @@
                   <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="customTextfield2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="customTextfield1" min="-2" pref="110" max="-2" attributes="0"/>
-                          <Component id="comboBoxSuggestion1" alignment="0" pref="148" max="32767" attributes="0"/>
-                          <Component id="comboBoxSuggestion2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textID3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="boxID1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="boxID2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="idIntegrated" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="comboBoxSuggestion5" pref="148" max="32767" attributes="0"/>
-                          <Component id="comboBoxSuggestion4" alignment="0" max="32767" attributes="0"/>
-                          <Component id="comboBoxSuggestion3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="customTextfield5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="customTextfield4" alignment="0" max="32767" attributes="0"/>
-                          <Component id="customTextfield3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="city" max="32767" attributes="0"/>
+                          <Component id="province" alignment="0" max="32767" attributes="0"/>
+                          <Component id="country" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textMail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textHP" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textName" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="customTextfield9" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="textRT" min="-2" pref="50" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="customTextfield10" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="textRW" min="-2" pref="50" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="customTextfield11" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <Component id="textPostcode" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="customTextfield8" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
-                                  <Component id="customTextfield7" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
-                                  <Component id="customTextfield6" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="customTextfield8" min="-2" pref="202" max="-2" attributes="0"/>
+                                          <Component id="customTextfield7" min="-2" pref="202" max="-2" attributes="0"/>
+                                          <Component id="customTextfield6" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="26" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="customTextfield12" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="customFormatField1" alignment="0" pref="149" max="32767" attributes="0"/>
-                                  <Component id="comboBoxSuggestion7" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                                  <Component id="comboBoxSuggestion6" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                                  <Component id="textDateRegister" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textNPWP" alignment="0" pref="149" max="32767" attributes="0"/>
+                                  <Component id="boxPPH" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                                  <Component id="boxTax" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="jLabel6" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
@@ -113,55 +126,58 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="customTextfield1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="customTextfield3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="idIntegrated" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="boxID1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="boxID2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="textID3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textHP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="customTextfield7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textMail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="customTextfield8" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="country" min="-2" pref="35" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="province" min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="city" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textDateRegister" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="customTextfield6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="comboBoxSuggestion1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboBoxSuggestion2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="customTextfield2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="customTextfield4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="customTextfield7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="customTextfield5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboBoxSuggestion3" min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="comboBoxSuggestion4" min="-2" pref="39" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="comboBoxSuggestion5" min="-2" pref="35" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="customTextfield12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="customTextfield8" min="-2" pref="43" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="customTextfield9" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="customTextfield10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="customTextfield11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textRT" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textRW" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textPostcode" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="comboBoxSuggestion6" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxTax" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="customFormatField1" min="-2" max="-2" attributes="0"/>
+                              <Component id="textNPWP" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboBoxSuggestion7" min="-2" max="-2" attributes="0"/>
+                              <Component id="boxPPH" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -171,40 +187,45 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="jLabel4" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="comboBoxSuggestion8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxSuggestion9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxSuggestion10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxSuggestion11" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="customTextfield14" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="customTextfield13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="comboBoxSuggestion8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboBoxSuggestion9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboBoxSuggestion10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboBoxSuggestion11" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="customTextfield14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel5" min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="115" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jButton5" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton3" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Component id="jLabel5" min="-2" pref="24" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="133" max="-2" attributes="0"/>
-              <EmptySpace pref="213" max="32767" attributes="0"/>
+              <EmptySpace pref="295" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield1">
+    <Component class="CustomResource.CustomTextfield" name="idIntegrated">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="ID Integrated"/>
       </Properties>
     </Component>
-    <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion1">
+    <Component class="CustomResource.ComboBoxSuggestion" name="boxID1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -217,7 +238,7 @@
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion2">
+    <Component class="CustomResource.ComboBoxSuggestion" name="boxID2">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -229,27 +250,27 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield2">
+    <Component class="CustomResource.CustomTextfield" name="textID3">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="ID #3"/>
       </Properties>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield3">
+    <Component class="CustomResource.CustomTextfield" name="textName">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield4">
+    <Component class="CustomResource.CustomTextfield" name="textHP">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Telp or HP"/>
       </Properties>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield5">
+    <Component class="CustomResource.CustomTextfield" name="textMail">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="e-mail"/>
       </Properties>
     </Component>
-    <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion3">
+    <Component class="CustomResource.ComboBoxSuggestion" name="country">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -260,8 +281,11 @@
           <Font name="Arial" size="11" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion4">
+    <Component class="CustomResource.ComboBoxSuggestion" name="province">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -272,8 +296,11 @@
           <Font name="Arial" size="11" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="provinceActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion5">
+    <Component class="CustomResource.ComboBoxSuggestion" name="city">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -293,21 +320,24 @@
     <Component class="CustomResource.CustomTextfield" name="customTextfield7">
     </Component>
     <Component class="CustomResource.CustomTextfield" name="customTextfield8">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customTextfield8ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield9">
+    <Component class="CustomResource.CustomTextfield" name="textRT">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="RT"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customTextfield9ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textRTActionPerformed"/>
       </Events>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield10">
+    <Component class="CustomResource.CustomTextfield" name="textRW">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="RW"/>
       </Properties>
     </Component>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield11">
+    <Component class="CustomResource.CustomTextfield" name="textPostcode">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Postcode"/>
       </Properties>
@@ -319,7 +349,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="textAddress">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -328,13 +358,13 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield12">
+    <Component class="CustomResource.CustomTextfield" name="textDateRegister">
       <Properties>
         <Property name="text" type="java.lang.String" value="customTextfield12"/>
         <Property name="labelText" type="java.lang.String" value="Reg. Date"/>
       </Properties>
     </Component>
-    <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion6">
+    <Component class="CustomResource.ComboBoxSuggestion" name="boxTax">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -346,17 +376,36 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="CustomResource.CustomFormatField" name="customFormatField1">
+    <Component class="CustomResource.CustomFormatField" name="textNPWP">
       <Properties>
         <Property name="text" type="java.lang.String" value="customFormatField1"/>
         <Property name="labelText" type="java.lang.String" value="NPWP No."/>
       </Properties>
     </Component>
-    <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion7">
+    <Component class="CustomResource.ComboBoxSuggestion" name="boxPPH">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
+          <StringArray count="20">
             <StringItem index="0" value="PPh23 (%)"/>
+            <StringItem index="1" value="1%"/>
+            <StringItem index="2" value="1,5%"/>
+            <StringItem index="3" value="2%"/>
+            <StringItem index="4" value="2,5%"/>
+            <StringItem index="5" value="3%"/>
+            <StringItem index="6" value="3,5%"/>
+            <StringItem index="7" value="4%"/>
+            <StringItem index="8" value="4,5%"/>
+            <StringItem index="9" value="5%"/>
+            <StringItem index="10" value="5,5%"/>
+            <StringItem index="11" value="6%"/>
+            <StringItem index="12" value="6,5%"/>
+            <StringItem index="13" value="7%"/>
+            <StringItem index="14" value="7,5%"/>
+            <StringItem index="15" value="8%"/>
+            <StringItem index="16" value="8,5%"/>
+            <StringItem index="17" value="9%"/>
+            <StringItem index="18" value="9,5%"/>
+            <StringItem index="19" value="10%"/>
           </StringArray>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -376,7 +425,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="MyTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="5">
@@ -417,12 +466,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="CustomResource.CustomTextfield" name="customTextfield13">
+    <Component class="CustomResource.CustomTextfield" name="textSearch">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Search"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customTextfield13ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textSearchActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -476,8 +525,13 @@
     <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion8">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
+          <StringArray count="6">
             <StringItem index="0" value="Price"/>
+            <StringItem index="1" value="Very Low"/>
+            <StringItem index="2" value="Low"/>
+            <StringItem index="3" value="Moderate"/>
+            <StringItem index="4" value="High"/>
+            <StringItem index="5" value="Very High"/>
           </StringArray>
         </Property>
       </Properties>
@@ -503,8 +557,11 @@
     <Component class="CustomResource.ComboBoxSuggestion" name="comboBoxSuggestion11">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
+          <StringArray count="4">
             <StringItem index="0" value="Quality"/>
+            <StringItem index="1" value="Best"/>
+            <StringItem index="2" value="Moderate"/>
+            <StringItem index="3" value="Worst"/>
           </StringArray>
         </Property>
       </Properties>
@@ -526,20 +583,39 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Evaluation of Biz. Partner"/>
+        <Property name="text" type="java.lang.String" value="List - Biz. Partner Status"/>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="14" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="33" red="33" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Biz Partner System"/>
+        <Property name="text" type="java.lang.String" value="Initialize"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Register"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Edit"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Close"/>
       </Properties>
     </Component>
   </SubComponents>
