@@ -921,16 +921,16 @@ public class EmployeeRehabilitation extends MasterForm {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Gagal Menyimpan data \n Failed saving data");
         } finally {
-            try {
-                if (myStmt != null) {
-                    myStmt.close();
-                }
-                if (koneksi != null) {
-                    koneksi.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+//            try {
+//                if (myStmt != null) {
+//                    myStmt.close();
+//                }
+//                if (koneksi != null) {
+//                    koneksi.close();
+//                }
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
