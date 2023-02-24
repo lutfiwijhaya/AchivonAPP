@@ -232,7 +232,7 @@ public class ConfirmationHandoverandTakeoverList extends MasterForm {
             myModel.removeRow(0);
         }
         try {
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_handover inner join employee on employee_handover.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
                 String myData [] = {myRess.getString(11),myRess.getString(12), myRess.getString(13), myRess.getString(14),myRess.getString(19), 
                                     myRess.getString(20),myRess.getString(23) ,myRess.getString(16)};

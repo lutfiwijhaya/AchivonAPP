@@ -43,8 +43,8 @@ public class EmployeeRequestAllocation extends MasterForm {
         idTeamMGR.setVisible(false);
         idHRRevd.setVisible(false);
         idHRMGR.setVisible(false);
-//        idPresident.setVisible(false);
-//        labelID.setVisible(false);
+        idPresident.setVisible(false);
+        labelID.setVisible(false);
         try {
             Statement stmt = koneksi.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM employee_allocation inner join employee on employee_allocation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPAllocation()+"'");
@@ -580,7 +580,7 @@ public class EmployeeRequestAllocation extends MasterForm {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 255));
         jLabel2.setText("REQUEST - EMPLOYEE ALLOCATION");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
 
         jLabel14.setText("A. EMPLOYEE INFORMATION FOR ALLOCATION");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));

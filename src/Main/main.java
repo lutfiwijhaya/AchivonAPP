@@ -37,6 +37,7 @@ import HumanResource.RequestAllocationList;
 import HumanResource.RequestEmployeeAllocation;
 import HumanResource.ResignationList;
 import HumanResource.SummaryStatusCandidatEmployee;
+import ProcurementSystem.BizPointment;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -181,7 +182,7 @@ public class main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         buttonLogin2 = new javax.swing.JButton();
         jSeparator29 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         ToolBar = new javax.swing.JMenuBar();
         homeBar = new javax.swing.JMenu();
         undoBar = new javax.swing.JMenu();
@@ -236,7 +237,11 @@ public class main extends javax.swing.JFrame {
         EmployeeEvaluation = new javax.swing.JMenuItem();
         jSeparator24 = new javax.swing.JPopupMenu.Separator();
         AddJobVacancy = new javax.swing.JMenuItem();
-        POSystem = new javax.swing.JMenu();
+        ProcurementSystem = new javax.swing.JMenu();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jSeparator16 = new javax.swing.JPopupMenu.Separator();
+        jMenu1 = new javax.swing.JMenu();
+        jSeparator15 = new javax.swing.JPopupMenu.Separator();
         WarehouseSystem = new javax.swing.JMenu();
         AcountingSystem = new javax.swing.JMenu();
         myProfile = new javax.swing.JMenu();
@@ -320,16 +325,12 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 51));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Untuk Non Karywan (For Applicant)");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel2.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Untuk Non Karywan (For Applicant)");
+        jLabel2.setOpaque(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -337,53 +338,50 @@ public class main extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jSeparator29, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator29)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator29, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jSeparator29, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -397,7 +395,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonLogin2)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         ToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -697,9 +695,23 @@ public class main extends javax.swing.JFrame {
 
         ToolBar.add(HumanResourceSystem);
 
-        POSystem.setText("PO System  |");
-        POSystem.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        ToolBar.add(POSystem);
+        ProcurementSystem.setText("Procurement System |");
+        ProcurementSystem.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+
+        jMenuItem16.setText("Biz Pointment");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        ProcurementSystem.add(jMenuItem16);
+        ProcurementSystem.add(jSeparator16);
+
+        jMenu1.setText("PO System");
+        ProcurementSystem.add(jMenu1);
+        ProcurementSystem.add(jSeparator15);
+
+        ToolBar.add(ProcurementSystem);
 
         WarehouseSystem.setText("Warehouse System  |");
         WarehouseSystem.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -913,10 +925,6 @@ public class main extends javax.swing.JFrame {
         showForm(new ConfirmationHandingOverTakingOver());
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void buttonLogin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin2ActionPerformed
         try {
             Statement stm = koneksi.createStatement();
@@ -970,8 +978,12 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-showForm(new CandidateList());        // TODO add your handling code here:
+        showForm(new CandidateList());
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        showForm(new BizPointment());
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1031,7 +1043,7 @@ showForm(new CandidateList());        // TODO add your handling code here:
     private javax.swing.JMenuItem EmployeeStatus;
     public static javax.swing.JMenu HumanResourceSystem;
     private javax.swing.JMenuItem NotificationtoNewEmployee;
-    public static javax.swing.JMenu POSystem;
+    public static javax.swing.JMenu ProcurementSystem;
     private javax.swing.JMenu RequestEmployeeAllocation;
     public static javax.swing.JMenuItem SMLogout;
     public static javax.swing.JMenuBar ToolBar;
@@ -1043,15 +1055,16 @@ showForm(new CandidateList());        // TODO add your handling code here:
     private CustomResource.CustomTextfield customTextfield1;
     private javax.swing.JMenuItem employingConfirmation;
     public static javax.swing.JMenu homeBar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
@@ -1059,6 +1072,7 @@ showForm(new CandidateList());        // TODO add your handling code here:
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -1073,6 +1087,8 @@ showForm(new CandidateList());        // TODO add your handling code here:
     private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator14;
+    private javax.swing.JPopupMenu.Separator jSeparator15;
+    private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator19;
@@ -1140,7 +1156,7 @@ showForm(new CandidateList());        // TODO add your handling code here:
             MyWindow1();
             bodyPanel.setVisible(false);
             HumanResourceSystem.setEnabled(false);
-            POSystem.setEnabled(false);
+            ProcurementSystem.setEnabled(false);
             WarehouseSystem.setEnabled(false);
             AcountingSystem.setEnabled(false);
             myProfile.setVisible(false);
@@ -1155,7 +1171,7 @@ showForm(new CandidateList());        // TODO add your handling code here:
             this.setExtendedState(JFrame.MAXIMIZED_BOTH);
             bodyPanel.setVisible(true);
             HumanResourceSystem.setEnabled(true);
-            POSystem.setEnabled(true);
+            ProcurementSystem.setEnabled(true);
             WarehouseSystem.setEnabled(true);
             AcountingSystem.setEnabled(true);
             myProfile.setVisible(true);
