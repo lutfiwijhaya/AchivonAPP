@@ -4,6 +4,8 @@
  */
 package HumanResource;
 
+import CustomResource.ColumnGroup;
+import CustomResource.GroupableTableHeader;
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
@@ -31,6 +33,11 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -46,10 +53,45 @@ public class EmployeeClearanceStatus extends MasterForm{
         openDB();
         jScrollPane5.setWheelScrollingEnabled(false);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
+//        ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
+//        .setHorizontalAlignment(JLabel.CENTER);
+//        String[] header = {"No.","item","qty","status","item","qty","status","item","qty","status"};
         
+        DefaultTableModel dm = (DefaultTableModel) jTable5.getModel();
+        dm.setDataVector(new Object[][]{
+                    {"119","foo","bar","ja","foo","bar","ja","foo","bar","ja"},
+                    {"911","bar","foo","en","bar","foo","en","bar","foo","en"}},
+                    new Object[]
+                    {"No.","item","qty","status","item","qty","status","item","qty","status"});
+        jTable5 = new JTable(dm) {
+            @Override
+            protected JTableHeader createDefaultTableHeader() {
+                return new GroupableTableHeader(columnModel);
+            }
+        };
+        TableColumnModel cm = jTable5.getColumnModel();
+        ColumnGroup g_name = new ColumnGroup("General Item");
+        g_name.add(cm.getColumn(1));
+        g_name.add(cm.getColumn(2));
+        g_name.add(cm.getColumn(3));
         
+        ColumnGroup g_lang = new ColumnGroup("Safety & Quality \nRelated Items");
+        g_lang.add(cm.getColumn(4));
+        g_lang.add(cm.getColumn(5));
+        g_lang.add(cm.getColumn(6));
+        
+        ColumnGroup g_other = new ColumnGroup("Tools & Consumables \nRelated Items");
+        g_other.add(cm.getColumn(7));
+        g_other.add(cm.getColumn(8));
+        g_other.add(cm.getColumn(9));
+//        g_lang.add(g_other);
+
+        GroupableTableHeader header = new GroupableTableHeader(cm);
+        header.addColumnGroup(g_name);
+        header.addColumnGroup(g_lang);
+        header.addColumnGroup(g_other);
+        jTable5.setTableHeader(header);
+
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         

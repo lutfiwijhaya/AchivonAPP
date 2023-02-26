@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
@@ -67,6 +68,20 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
                 idHRRevd.setText(rs.getString(7));
                 idHRMGR.setText(rs.getString(8));
                 idPresiden.setText(rs.getString(9));
+                DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
+                try {
+                    Statement stmt0 = koneksi.createStatement();
+                    ResultSet rs0 = stmt0.executeQuery("select * from employee_absence_table where karyawan_id = '"+labelID.getText()+"' order by absence_table_id desc");
+                        while (rs0.next()) {
+                            String[] data = {
+                                rs0.getString("job_description"), 
+                                rs0.getString("name_taking")
+                            };
+                            dataModel.insertRow(0, data);
+                        }
+                } catch (Exception e) {
+                    System.err.println("Error executing SQL query: " + e.getMessage());
+                }
                 if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {
