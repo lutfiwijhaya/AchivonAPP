@@ -165,12 +165,12 @@ public class AddJobVacancy extends MasterForm {
         jLabel86 = new javax.swing.JLabel();
         t_lamaran = new CustomResource.ComboBoxSuggestion();
         jLabel87 = new javax.swing.JLabel();
-        jSeparator30 = new javax.swing.JSeparator();
         jLabel88 = new javax.swing.JLabel();
         customTextfield3 = new CustomResource.CustomTextfield();
         customTextfield4 = new CustomResource.CustomTextfield();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -194,7 +194,7 @@ public class AddJobVacancy extends MasterForm {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 690, 370, 110));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 370, 110));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton1.setText("Tambah/Add");
@@ -203,7 +203,7 @@ public class AddJobVacancy extends MasterForm {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 660, 110, 30));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 110, 30));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton2.setText("Hapus / Delete");
@@ -212,15 +212,15 @@ public class AddJobVacancy extends MasterForm {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 800, 110, 30));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, 110, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
         jLabel3.setText("Add Job Vacancy");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, 40));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, 40));
 
         customTextfield1.setLabelText("Disiplin/Dicipline");
-        add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 580, 240, -1));
+        add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 240, -1));
 
         customTextfield2.setLabelText("Cari / Search");
         customTextfield2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -231,7 +231,7 @@ public class AddJobVacancy extends MasterForm {
                 customTextfield2KeyTyped(evt);
             }
         });
-        add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 640, 240, -1));
+        add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 240, -1));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -256,11 +256,11 @@ public class AddJobVacancy extends MasterForm {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(0);
         }
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 240, 110));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 240, 110));
 
         jLabel86.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel86.setText("Posisi/Position");
-        add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 540, 100, 30));
+        add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 100, 30));
 
         t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Test", " " }));
         t_lamaran.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -269,21 +269,18 @@ public class AddJobVacancy extends MasterForm {
                 t_lamaranActionPerformed(evt);
             }
         });
-        add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, 190, 30));
+        add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 190, 30));
 
         jLabel87.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel87.setText("Tambah Disiplin/Add Dicipilne");
-        add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 170, 30));
-
-        jSeparator30.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator30, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, 640, 20));
+        add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 170, 30));
 
         jLabel88.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel88.setText("Tambah Posisi Lowongan kerja/Add Job Vacancy");
-        add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 290, 30));
+        add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 290, 30));
 
         customTextfield3.setLabelText("Tambah Posisi/Add Position");
-        add(customTextfield3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 240, -1));
+        add(customTextfield3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 240, -1));
 
         customTextfield4.setLabelText("Cari / Search");
         customTextfield4.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -294,7 +291,7 @@ public class AddJobVacancy extends MasterForm {
                 customTextfield4KeyTyped(evt);
             }
         });
-        add(customTextfield4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 240, -1));
+        add(customTextfield4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 240, -1));
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton3.setText("Tambah/Add");
@@ -303,7 +300,7 @@ public class AddJobVacancy extends MasterForm {
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, 110, 30));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 110, 30));
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton4.setText("Hapus / Delete");
@@ -312,7 +309,8 @@ public class AddJobVacancy extends MasterForm {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, 110, 30));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 110, 30));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -633,7 +631,7 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
     private javax.swing.JLabel jLabel88;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator30;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private CustomResource.ComboBoxSuggestion t_lamaran;

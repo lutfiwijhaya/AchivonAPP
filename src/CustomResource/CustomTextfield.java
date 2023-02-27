@@ -168,4 +168,8 @@ public class CustomTextfield extends JTextField {
         }
         super.setText(string);
     }
+
+    public void setText(int id3) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
