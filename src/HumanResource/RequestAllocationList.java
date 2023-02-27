@@ -243,6 +243,8 @@ public class RequestAllocationList extends MasterForm {
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {
+            
+                    System.err.println("Error executing SQL query: " + ex.getMessage());
         }
     }
     

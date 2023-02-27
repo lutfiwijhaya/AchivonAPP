@@ -26,6 +26,7 @@ import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
@@ -67,6 +68,20 @@ public class EmployeeRequestAllocation extends MasterForm {
                 idHRRevd.setText(rs.getString(7));
                 idHRMGR.setText(rs.getString(8));
                 idPresident.setText(rs.getString(9));
+                DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
+                try {
+                    Statement stmt0 = koneksi.createStatement();
+                    ResultSet rs0 = stmt0.executeQuery("select * from employee_allocation_table where karyawan_id = '"+labelID.getText()+"' order by allocation_table_id desc");
+                        while (rs0.next()) {
+                            String[] data = {
+                                rs0.getString("description"), 
+                                rs0.getString("expected_time")
+                            };
+                            dataModel.insertRow(0, data);
+                        }
+                } catch (Exception e) {
+                    System.err.println("Error executing SQL query: " + e.getMessage());
+                }
                 if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {
@@ -622,7 +637,7 @@ public class EmployeeRequestAllocation extends MasterForm {
         jPanel1.add(labelWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 230, -1));
 
         textDescription.setLabelText("Description Allocation     :");
-        jPanel1.add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 330, 40));
+        jPanel1.add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 330, 50));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Summary for Company Allocation");
