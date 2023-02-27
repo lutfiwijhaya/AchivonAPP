@@ -808,6 +808,12 @@ public class AplicationRehabilitation extends MasterForm {
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from employee_rehabilitation where karyawan_id = '"+MySession.get_karyawanID()+"'");
                 if (rs.next()) {
+                    dateJoin.setText(rs.getString(10));
+                    dateLeave.setText(rs.getString(11));
+                    dateRehab.setText(rs.getString(12));
+                    stateRehab.setText(rs.getString(13));
+                    docRehab.setText(rs.getString(14));
+                    
                     SendButton.setVisible(false);
                     idTeamPred.setText(rs.getString(3));
                     idTeamRecd.setText(rs.getString(4));

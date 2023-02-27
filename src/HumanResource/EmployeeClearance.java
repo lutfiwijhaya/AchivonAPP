@@ -4,7 +4,9 @@
  */
 package HumanResource;
 
+import CustomResource.ColumnGroup;
 import CustomResource.EmployeeSession;
+import CustomResource.GroupableTableHeader;
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
@@ -24,6 +26,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,6 +35,10 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -39,38 +46,90 @@ import javax.swing.JOptionPane;
  */
 public class EmployeeClearance extends MasterForm{
     
-    Statement stm;
-    ResultSet rs;
+    DefaultTableModel dm;
     Connection koneksi;
     
     public EmployeeClearance() {
         initComponents();
         MyWindow();
         openDB();
-        
+        fresh();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
+//        labelID.setVisible(true);
+        DefaultTableModel dm = (DefaultTableModel) jTable5.getModel();
+        dm.setDataVector(new Object[][]{
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""}},
+                    new Object[]
+                    {"item", "qty", "status", "item", "qty", "status", "item", "qty", "status"});
+//        jTable5 = new JTable(dm) {
+//            @Override
+//            protected JTableHeader createDefaultTableHeader() {
+//                return new GroupableTableHeader(columnModel);
+//            }
+//        };
+        TableColumnModel cm = jTable5.getColumnModel();
+        ColumnGroup g_name = new ColumnGroup("General Item");
+        g_name.add(cm.getColumn(0));
+        g_name.add(cm.getColumn(1));
+        g_name.add(cm.getColumn(2));
+        
+        ColumnGroup g_lang = new ColumnGroup("Safety & Quality \nRelated Items");
+        g_lang.add(cm.getColumn(3));
+        g_lang.add(cm.getColumn(4));
+        g_lang.add(cm.getColumn(5));
+        
+        ColumnGroup g_other = new ColumnGroup("Tools & Consumables \nRelated Items");
+        g_other.add(cm.getColumn(6));
+        g_other.add(cm.getColumn(7));
+        g_other.add(cm.getColumn(8));
+//        g_lang.add(g_other);
+
+        GroupableTableHeader header = new GroupableTableHeader(cm);
+        header.addColumnGroup(g_name);
+        header.addColumnGroup(g_lang);
+        header.addColumnGroup(g_other);
+        jTable5.setTableHeader(header);
         
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         
-        jLabel16.setVisible(false);
-        jLabel25.setVisible(false);
-        jLabel26.setVisible(false);
-        jLabel28.setVisible(false);
+        idTeamPred.setVisible(false);
+        idTeamRecd.setVisible(false);
+        idTeamRevd.setVisible(false);
+        idTeamMGR.setVisible(false);
         
-        jLabel31.setVisible(false);
-        jLabel32.setVisible(false);
+        idHRRevd.setVisible(false);
+        idHRMGR.setVisible(false);
         
-        jLabel4.setVisible(false);
+        idPresident.setVisible(false);
 //        SaveButton.setVisible(false);
         saveButton.setVisible(true);
             try {
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM employee_clearance inner join employee on employee_clearance.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPClearance()+"'");
                 if (rs.next()) {
-                    
+                    labelID.setText(rs.getString(2));
                     labelDiscipline.setText(rs.getString(23));
                     labelName.setText(rs.getString(14));
                     labelPosition.setText(rs.getString(23));
@@ -80,18 +139,35 @@ public class EmployeeClearance extends MasterForm{
                     labelDateSign.setText(rs.getString(10));
 //                    saveButton.setVisible(true);
 //                    SaveButton.setVisible(false);
-                    jLabel16.setText(rs.getString(3));
-                    jLabel25.setText(rs.getString(4));
-                    jLabel26.setText(rs.getString(5));
-                    jLabel28.setText(rs.getString(6));
-                    jLabel31.setText(rs.getString(8));
-                    jLabel32.setText(rs.getString(7));
-                    jLabel4.setText(rs.getString(9));
-                    if (jLabel16 != null) {
+                    idTeamPred.setText(rs.getString(3));
+                    idTeamRecd.setText(rs.getString(4));
+                    idTeamRevd.setText(rs.getString(5));
+                    idTeamMGR.setText(rs.getString(6));
+                    idHRRevd.setText(rs.getString(8));
+                    idHRMGR.setText(rs.getString(7));
+                    idPresident.setText(rs.getString(9));
+//                    DefaultTableModel dm = (DefaultTableModel) jTable5.getModel();
+                    Statement stmt0 = koneksi.createStatement();
+                    ResultSet rs0 = stmt0.executeQuery("select * from employee_clearance_table where karyawan_id = '"+labelID.getText()+"' order by clearance_table_id desc");
+                        while (rs0.next()) {
+                            String[] data = {
+                                rs0.getString(3), 
+                                rs0.getString(4), 
+                                rs0.getString(5), 
+                                rs0.getString(6), 
+                                rs0.getString(7), 
+                                rs0.getString(8), 
+                                rs0.getString(9), 
+                                rs0.getString(10), 
+                                rs0.getString(11)
+                            };
+                            dm.insertRow(0, data);
+                        }                
+                    if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {
                             Statement stmt11 = koneksi.createStatement();
-                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+jLabel16.getText()+"'");
+                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+idTeamPred.getText()+"'");
                             if (rs11.next()) {
                                 labelNameTeamPred.setText(rs11.getString(4));
                             }
@@ -99,7 +175,7 @@ public class EmployeeClearance extends MasterForm{
                         }
                     try {
                         Statement stmt1 = koneksi.createStatement();
-                        ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+jLabel16.getText()+"'");
+                        ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+idTeamPred.getText()+"'");
                         if (rs1.next()) {
                             byte[] imageData = rs1.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -120,11 +196,11 @@ public class EmployeeClearance extends MasterForm{
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel25 != null) {
+                if (idTeamRecd != null) {
                     signTeamRecd.setText(null);
                     try {
                             Statement stmt21 = koneksi.createStatement();
-                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+jLabel25.getText()+"'");
+                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+idTeamRecd.getText()+"'");
                             if (rs21.next()) {
                                 labelNameTeamRecd.setText(rs21.getString(4));
                             }
@@ -132,7 +208,7 @@ public class EmployeeClearance extends MasterForm{
                         }
                     try {
                         Statement stmt2 = koneksi.createStatement();
-                        ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+jLabel25.getText()+"'");
+                        ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+idTeamRecd.getText()+"'");
                         if (rs2.next()) {
                             byte[] imageData = rs2.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -153,11 +229,11 @@ public class EmployeeClearance extends MasterForm{
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel26 != null) {
+                if (idTeamRevd != null) {
                     signTeamRevd.setText(null);
                     try {
                             Statement stmt31 = koneksi.createStatement();
-                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+jLabel26.getText()+"'");
+                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+idTeamRevd.getText()+"'");
                             if (rs31.next()) {
                                 labelNameTeamRevd.setText(rs31.getString(4));
                             }
@@ -165,7 +241,7 @@ public class EmployeeClearance extends MasterForm{
                         }
                     try {
                         Statement stmt3 = koneksi.createStatement();
-                        ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+jLabel26.getText()+"'");
+                        ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+idTeamRevd.getText()+"'");
                         if (rs3.next()) {
                             byte[] imageData = rs3.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -186,11 +262,11 @@ public class EmployeeClearance extends MasterForm{
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel28 != null) {
+                if (idTeamMGR != null) {
                     signTeamMGR.setText(null);
                     try {
                             Statement stmt41 = koneksi.createStatement();
-                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+jLabel28.getText()+"'");
+                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
                             if (rs41.next()) {
                                 labelNameTeamMGR.setText(rs41.getString(4));
                             }
@@ -198,7 +274,7 @@ public class EmployeeClearance extends MasterForm{
                         }
                     try {
                         Statement stmt4 = koneksi.createStatement();
-                        ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+jLabel28.getText()+"'");
+                        ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
                         if (rs4.next()) {
                             byte[] imageData = rs4.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -219,7 +295,7 @@ public class EmployeeClearance extends MasterForm{
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel31 != null) {
+                if (idHRRevd != null) {
                     signHRRevd.setText(null);
                     try {
                             Statement stmt51 = koneksi.createStatement();
@@ -231,7 +307,7 @@ public class EmployeeClearance extends MasterForm{
                         }
                     try {
                         Statement stmt5 = koneksi.createStatement();
-                        ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+jLabel31.getText()+"'");
+                        ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
                         if (rs5.next()) {
                             byte[] imageData = rs5.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -252,11 +328,11 @@ public class EmployeeClearance extends MasterForm{
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel32 != null) {
+                if (idHRMGR != null) {
                     signHRMGR.setText(null);
                     try {
                             Statement stmt61 = koneksi.createStatement();
-                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+jLabel32.getText()+"'");
+                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
                             if (rs61.next()) {
                                 labelNameHRMGR.setText(rs61.getString(4));
                             }
@@ -264,7 +340,7 @@ public class EmployeeClearance extends MasterForm{
                         }
                     try {
                         Statement stmt6 = koneksi.createStatement();
-                        ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+jLabel32.getText()+"'");
+                        ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
                         if (rs6.next()) {
                             byte[] imageData = rs6.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -285,11 +361,11 @@ public class EmployeeClearance extends MasterForm{
                     } catch (Exception e) {
                     }
                 }
-                if (jLabel4 != null) {
+                if (idPresident != null) {
                     signPresident.setText(null);
                     try {
                             Statement stmt71 = koneksi.createStatement();
-                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+jLabel4.getText()+"'");
+                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresident.getText()+"'");
                             if (rs71.next()) {
                                 labelNamePresident.setText(rs71.getString(4));
                             }
@@ -297,7 +373,7 @@ public class EmployeeClearance extends MasterForm{
                         }
                     try {
                         Statement stmt7 = koneksi.createStatement();
-                        ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+jLabel4.getText()+"'");
+                        ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresident.getText()+"'");
                         if (rs7.next()) {
                             byte[] imageData = rs7.getBytes("scan");
                             ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -378,7 +454,6 @@ public class EmployeeClearance extends MasterForm{
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -392,23 +467,23 @@ public class EmployeeClearance extends MasterForm{
         labelNameTeamRevd = new javax.swing.JLabel();
         signTeamRevd = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        idTeamRevd = new javax.swing.JLabel();
+        idTeamRecd = new javax.swing.JLabel();
+        idTeamPred = new javax.swing.JLabel();
         labelNameTeamMGR = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         signTeamMGR = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        idTeamMGR = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         signHRRevd = new javax.swing.JLabel();
         labelNameHRRevd = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
+        idHRRevd = new javax.swing.JLabel();
+        idHRMGR = new javax.swing.JLabel();
         labelNameHRMGR = new javax.swing.JLabel();
         signHRMGR = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        idPresident = new javax.swing.JLabel();
         labelNamePresident = new javax.swing.JLabel();
         signPresident = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -430,6 +505,7 @@ public class EmployeeClearance extends MasterForm{
         labelHP = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
         labelDateSign = new javax.swing.JLabel();
+        labelID = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -460,14 +536,15 @@ public class EmployeeClearance extends MasterForm{
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 910, -1, 20));
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 1170, 60, 20));
 
-        jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel24.setText("Date    :");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1080, -1, 20));
-
         saveButton.setBackground(new java.awt.Color(51, 51, 255));
         saveButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         saveButton.setForeground(new java.awt.Color(255, 255, 255));
         saveButton.setText("Simpan / Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 1120, 170, 40));
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -549,14 +626,14 @@ public class EmployeeClearance extends MasterForm{
         jLabel34.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 120, 20));
 
-        jLabel26.setText("jLabel4");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, -1, -1));
+        idTeamRevd.setText("jLabel4");
+        jPanel1.add(idTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, -1, -1));
 
-        jLabel25.setText("jLabel4");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, -1, -1));
+        idTeamRecd.setText("jLabel4");
+        jPanel1.add(idTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, -1, -1));
 
-        jLabel16.setText("jLabel4");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
+        idTeamPred.setText("jLabel4");
+        jPanel1.add(idTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
 
         labelNameTeamMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamMGR.setText("Name");
@@ -578,8 +655,8 @@ public class EmployeeClearance extends MasterForm{
         });
         jPanel1.add(signTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 120, 90));
 
-        jLabel28.setText("jLabel4");
-        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, -1, -1));
+        idTeamMGR.setText("jLabel4");
+        jPanel1.add(idTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, -1, -1));
 
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("Rev'd");
@@ -601,11 +678,11 @@ public class EmployeeClearance extends MasterForm{
         labelNameHRRevd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.add(labelNameHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, 120, 20));
 
-        jLabel31.setText("jLabel4");
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, -1, -1));
+        idHRRevd.setText("jLabel4");
+        jPanel1.add(idHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, -1, -1));
 
-        jLabel32.setText("jLabel4");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 230, -1, -1));
+        idHRMGR.setText("jLabel4");
+        jPanel1.add(idHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 230, -1, -1));
 
         labelNameHRMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameHRMGR.setText("Name");
@@ -632,8 +709,8 @@ public class EmployeeClearance extends MasterForm{
         jLabel42.setText("HR TEAM");
         jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 80, 250, -1));
 
-        jLabel4.setText("jLabel4");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 230, -1, -1));
+        idPresident.setText("jLabel4");
+        jPanel1.add(idPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 230, -1, -1));
 
         labelNamePresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNamePresident.setText("Name");
@@ -695,7 +772,7 @@ public class EmployeeClearance extends MasterForm{
 
         labelNameSign.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameSign.setText("Name");
-        jPanel1.add(labelNameSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 1060, -1, 20));
+        jPanel1.add(labelNameSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 1060, 200, 20));
 
         labelPosition.setText("Position");
         jPanel1.add(labelPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
@@ -709,8 +786,12 @@ public class EmployeeClearance extends MasterForm{
         labelName.setText("Name");
         jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, -1, -1));
 
+        labelDateSign.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDateSign.setText("Name");
-        jPanel1.add(labelDateSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 1080, -1, 20));
+        jPanel1.add(labelDateSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 1080, 200, 20));
+
+        labelID.setText("jLabel15");
+        jPanel1.add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -740,6 +821,7 @@ public class EmployeeClearance extends MasterForm{
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamPred.setIcon(new ImageIcon(imageResize));
                     labelNameTeamPred.setText(MySession.get_nama());
+                    idTeamPred.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -763,6 +845,7 @@ public class EmployeeClearance extends MasterForm{
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamRecd.setIcon(new ImageIcon(imageResize));
                     labelNameTeamRecd.setText(MySession.get_nama());
+                    idTeamRecd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -786,6 +869,7 @@ public class EmployeeClearance extends MasterForm{
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamRevd.setIcon(new ImageIcon(imageResize));
                     labelNameTeamRevd.setText(MySession.get_nama());
+                    idTeamRevd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -809,6 +893,7 @@ public class EmployeeClearance extends MasterForm{
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signTeamMGR.setIcon(new ImageIcon(imageResize));
                     labelNameTeamMGR.setText(MySession.get_nama());
+                    idTeamMGR.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -832,6 +917,7 @@ public class EmployeeClearance extends MasterForm{
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signHRRevd.setIcon(new ImageIcon(imageResize));
                     labelNameHRRevd.setText(MySession.get_nama());
+                    idHRRevd.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -855,6 +941,7 @@ public class EmployeeClearance extends MasterForm{
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signHRMGR.setIcon(new ImageIcon(imageResize));
                     labelNameHRMGR.setText(MySession.get_nama());
+                    idHRMGR.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -878,6 +965,7 @@ public class EmployeeClearance extends MasterForm{
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signPresident.setIcon(new ImageIcon(imageResize));
                     labelNamePresident.setText(MySession.get_nama());
+                    idPresident.setText(MySession.get_karyawanID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -885,36 +973,88 @@ public class EmployeeClearance extends MasterForm{
         }
     }//GEN-LAST:event_signPresidentMouseClicked
 
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+    if (idTeamPred.getText() == null) {
+            idTeamPred.setText("0");
+        }
+        if (idTeamRecd.getText() == null) {
+            idTeamRecd.setText("0");
+        }
+        if (idTeamRevd.getText() == null) {
+            idTeamRevd.setText("0");
+        }
+        if (idTeamMGR.getText() == null) {
+            idTeamMGR.setText("0");
+        }
+        if (idHRRevd.getText() == null) {
+            idHRRevd.setText("0");
+        }
+        if (idHRMGR.getText() == null) {
+            idHRMGR.setText("0");
+        }
+        if (idPresident.getText() == null) {
+            idPresident.setText("0");
+        }
+        
+        PreparedStatement myStmt = null;
+        try {
+            String sql = "UPDATE employee_clearance SET team_pred=?, team_recd=?, team_revd=?, team_mgr=?, hr_revd=?, hr_mgr=?, president=? WHERE karyawan_id=?";
+            myStmt = koneksi.prepareStatement(sql);
+            myStmt.setString(1, idTeamPred.getText());
+            myStmt.setString(2, idTeamRecd.getText());
+            myStmt.setString(3, idTeamRevd.getText());
+            myStmt.setString(4, idTeamMGR.getText());
+            myStmt.setString(5, idHRRevd.getText());
+            myStmt.setString(6, idHRMGR.getText());
+            myStmt.setString(7, idPresident.getText());
+            myStmt.setString(8, labelID.getText());
+            myStmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Berhasil Menyimpan data \n Succeed saving data");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Gagal Menyimpan data \n Failed saving data");
+        } finally {
+//            try {
+//                if (myStmt != null) {
+//                    myStmt.close();
+//                }
+//                if (koneksi != null) {
+//                    koneksi.close();
+//                }
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel idHRMGR;
+    private javax.swing.JLabel idHRRevd;
+    private javax.swing.JLabel idPresident;
+    private javax.swing.JLabel idTeamMGR;
+    private javax.swing.JLabel idTeamPred;
+    private javax.swing.JLabel idTeamRecd;
+    private javax.swing.JLabel idTeamRevd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
@@ -930,6 +1070,7 @@ public class EmployeeClearance extends MasterForm{
     private javax.swing.JLabel labelDateSign;
     private javax.swing.JLabel labelDiscipline;
     private javax.swing.JLabel labelHP;
+    private javax.swing.JLabel labelID;
     private javax.swing.JLabel labelKTP;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelNameHRMGR;
@@ -964,5 +1105,8 @@ public class EmployeeClearance extends MasterForm{
     @Override
     public void formrefresh() {
     }
-
+    
+    private void fresh(){
+        
+    }
 }

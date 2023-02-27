@@ -34,8 +34,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
  * @author hi
  */
 public class ConfirmationHandoverandTakeoverList extends MasterForm {
-    Statement stm;
-    ResultSet rs;
+    
     Connection koneksi;
     JasperReport jasperreport;
     JasperDesign jasperdesign;
@@ -45,9 +44,7 @@ public class ConfirmationHandoverandTakeoverList extends MasterForm {
      String id = null;
 
     public ConfirmationHandoverandTakeoverList() {
-        Statement stm;
-        ResultSet rs;
-        Connection koneksi;
+        
         initComponents();
         settable();
         openDB();
@@ -58,7 +55,7 @@ public class ConfirmationHandoverandTakeoverList extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     void  settable (){
-        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal pengunduran diri / Resignation Date"};
+        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal pengajuan / Request Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
 //        actiontable event = new actiontable() {
@@ -234,8 +231,8 @@ public class ConfirmationHandoverandTakeoverList extends MasterForm {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_handover inner join employee on employee_handover.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(11),myRess.getString(12), myRess.getString(13), myRess.getString(14),myRess.getString(19), 
-                                    myRess.getString(20),myRess.getString(23) ,myRess.getString(16)};
+                String myData [] = {myRess.getString(12),myRess.getString(13), myRess.getString(14), myRess.getString(15),myRess.getString(16), 
+                                    myRess.getString(21),myRess.getString(24) ,myRess.getString(17)};
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {

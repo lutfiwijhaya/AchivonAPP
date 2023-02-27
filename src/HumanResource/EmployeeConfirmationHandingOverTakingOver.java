@@ -26,6 +26,7 @@ import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
@@ -39,12 +40,10 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         initComponents();
         MyWindow();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        
+        openDB();
         ((DefaultTableCellRenderer)jTable4.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
-    
-        
-        
+        labelID.setVisible(false);
         SendButton.setVisible(true);
 //        SaveButton.setVisible(false);
         jLabel38.setVisible(false);
@@ -59,8 +58,9 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         
         try {
                 Statement stmt = koneksi.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM employee_rehabilitation inner join employee on employee_rehabilitation.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPHandover()+"'");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM employee_handover inner join employee on employee_handover.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPHandover()+"'");
                 if (rs.next()) {
+                    labelID.setText(rs.getString(2));
                     labelDiscipline.setText(rs.getString(23));
                     labelName.setText(rs.getString(14));
                     labelPosition.setText(rs.getString(23));
@@ -74,7 +74,20 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                     jLabel29.setText(rs.getString(7));
                     jLabel31.setText(rs.getString(8));
                     jLabel24.setText(rs.getString(9));
+                    expec_date.setText(rs.getString(11));
                     
+                    DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
+                    Statement stmt0 = koneksi.createStatement();
+                    ResultSet rs0 = stmt0.executeQuery("select * from employee_handover_table where karyawan_id = '"+labelID.getText()+"' order by handover_table_id desc");
+                        while (rs0.next()) {
+                            String[] data = {
+                                rs0.getString(3), 
+                                rs0.getString(4), 
+                                rs0.getString(5), 
+                                rs0.getString(6)
+                            };
+                            dataModel.insertRow(0, data);
+                        }
                     if (jLabel38 != null) {
                         signTeamPred.setText(null);
                         try {
@@ -319,8 +332,6 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                     labelNameHRMGR.setVisible(false);
                     jLabel26.setVisible(false);
 
-                    
-
                     jLabel25.setVisible(false);
                     jLabel30.setVisible(false);
                     signTeamMGR.setVisible(false);
@@ -374,7 +385,7 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         labelName = new javax.swing.JLabel();
         labelDiscipline = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        expec_date = new javax.swing.JLabel();
         labelNameSign = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -418,6 +429,7 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         SendButton = new javax.swing.JButton();
+        labelID = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -468,13 +480,13 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         jLabel12.setText("Expected Date - Resignation");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel13.setText("...");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 450, -1, -1));
+        expec_date.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        expec_date.setText("...");
+        jPanel1.add(expec_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 450, -1, -1));
 
         labelNameSign.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelNameSign.setText("...");
-        jPanel1.add(labelNameSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, -1, -1));
+        jPanel1.add(labelNameSign, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 420, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 1030, 80, 20));
@@ -516,7 +528,7 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel40.setText("Pre'd");
         jLabel40.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 120, 20));
+        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 120, 20));
 
         signTeamPred.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamPred.setText("Signatute");
@@ -526,20 +538,20 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                 signTeamPredMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 120, 90));
+        jPanel1.add(signTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 120, 90));
 
         labelNameTeamPred.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamPred.setText("Name");
         labelNameTeamPred.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 120, 20));
+        jPanel1.add(labelNameTeamPred, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 120, 20));
 
         labelNameTeamRecd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamRecd.setText("Name");
         labelNameTeamRecd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 120, 20));
+        jPanel1.add(labelNameTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 120, 20));
 
         jLabel36.setText("jLabel4");
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
+        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
         signTeamRecd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamRecd.setText("Signature");
@@ -549,16 +561,16 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                 signTeamRecdMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 120, 90));
+        jPanel1.add(signTeamRecd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 120, 90));
 
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setText("Rec'd");
         jLabel37.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 120, 20));
+        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 120, 20));
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel25.setText("TEAM");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
         signTeamRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamRevd.setText("Signature");
@@ -568,28 +580,28 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                 signTeamRevdMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 120, 90));
+        jPanel1.add(signTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 120, 90));
 
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("Rev'd");
         jLabel35.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 120, 20));
+        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 120, 20));
 
         labelNameTeamRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamRevd.setText("Name");
         labelNameTeamRevd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 120, 20));
+        jPanel1.add(labelNameTeamRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 120, 20));
 
         jLabel32.setText("jLabel4");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
+        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, -1, -1));
 
         jLabel28.setText("jLabel4");
-        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, -1, -1));
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, -1, -1));
 
         labelNameTeamMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameTeamMGR.setText("Name");
         labelNameTeamMGR.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 120, 20));
+        jPanel1.add(labelNameTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 120, 20));
 
         signTeamMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signTeamMGR.setText("Signature");
@@ -599,17 +611,17 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                 signTeamMGRMouseClicked(evt);
             }
         });
-        jPanel1.add(signTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 120, 90));
+        jPanel1.add(signTeamMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 120, 90));
 
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("MGR");
         jLabel30.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 120, 20));
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 120, 20));
 
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Rev'd");
         jLabel22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 120, 20));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 120, 20));
 
         signHRRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signHRRevd.setText("Signature");
@@ -619,24 +631,24 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                 signHRRevdMouseClicked(evt);
             }
         });
-        jPanel1.add(signHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 120, 90));
+        jPanel1.add(signHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 120, 90));
 
         labelNameHRRevd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameHRRevd.setText("Name");
         labelNameHRRevd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 120, 20));
+        jPanel1.add(labelNameHRRevd, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 120, 20));
 
         jLabel29.setText("jLabel4");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, -1, -1));
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 260, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel26.setText("HR TEAM");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, -1, -1));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, -1, -1));
 
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText("MGR");
         jLabel27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 120, 20));
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 130, 120, 20));
 
         signHRMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signHRMGR.setText("Signature");
@@ -646,23 +658,23 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                 signHRMGRMouseClicked(evt);
             }
         });
-        jPanel1.add(signHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 120, 90));
+        jPanel1.add(signHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 150, 120, 90));
 
         jLabel31.setText("jLabel4");
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 260, -1, -1));
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 260, -1, -1));
 
         labelNameHRMGR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNameHRMGR.setText("Name");
         labelNameHRMGR.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNameHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 120, 20));
+        jPanel1.add(labelNameHRMGR, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 120, 20));
 
         jLabel24.setText("jLabel4");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 260, -1, -1));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 260, -1, -1));
 
         labelNamePresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNamePresident.setText("Name");
         labelNamePresident.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(labelNamePresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 240, 120, 20));
+        jPanel1.add(labelNamePresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 240, 120, 20));
 
         signPresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signPresident.setText("Signature");
@@ -672,15 +684,15 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
                 signPresidentMouseClicked(evt);
             }
         });
-        jPanel1.add(signPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 150, 120, 90));
+        jPanel1.add(signPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 150, 120, 90));
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("President");
         jLabel23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 130, 120, 20));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 130, 120, 20));
 
         jLabel38.setText("jLabel4");
-        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
+        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText(":");
@@ -701,8 +713,16 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         SendButton.setBackground(new java.awt.Color(51, 51, 255));
         SendButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SendButton.setForeground(new java.awt.Color(255, 255, 255));
-        SendButton.setText("Kirim/Send");
+        SendButton.setText("Simpan / Save");
+        SendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(SendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 880, 170, 50));
+
+        labelID.setText("jLabel2");
+        jPanel1.add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -877,14 +897,18 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         }
     }//GEN-LAST:event_signPresidentMouseClicked
 
+    private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SendButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SendButton;
+    private javax.swing.JLabel expec_date;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -918,6 +942,7 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable4;
     private javax.swing.JLabel labelDiscipline;
+    private javax.swing.JLabel labelID;
     private javax.swing.JLabel labelKTP;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelNameHRMGR;

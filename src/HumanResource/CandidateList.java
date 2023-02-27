@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package HumanResource;
 
+package HumanResource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -131,7 +127,6 @@ public class CandidateList extends MasterForm {
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e);
     //                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
-
                     }
 
             } 
