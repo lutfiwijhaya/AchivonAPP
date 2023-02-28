@@ -38,7 +38,11 @@ public class EmployeeEvaluation extends MasterForm {
         MyWindow();
         openDB();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-
+        
+        idHRRevd.setVisible(false);
+        idHRMGR.setVisible(false);
+        idPresiden.setVisible(false);
+        
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.setDataVector(new Object[][]{
                     {"1. Coordination","","","","","","","",""},

@@ -58,12 +58,12 @@ public class Checklist extends MasterForm {
 //        CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
-        MyTable.setModel(myModel);
+
     }
 //    void  settable (){
 //        String [] header = {"id","Karyawan Id / Employee Id", "Nama / Name", "join date", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"};
 //        myModel = new DefaultTableModel(header,0);
-        
+//        MyTable.setModel(myModel);
 ////        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
 //        MyTable.setDefaultEditor(Object.class, null);
 //        MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -224,21 +224,21 @@ public class Checklist extends MasterForm {
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
-        Connection myConn;
-        String mySearch = textSearch.getText();
-        int row = MyTable.getRowCount();
-        for(int i = 0; i < row; i++){
-//            myModel.removeRow(0);
-        }
-        try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
-            while (myRess.next()) {
-                String myData [] = {myRess.getString(2),myRess.getString(3), myRess.getString(6)};
-                myModel.addRow(myData);
-            }
-        } catch (SQLException ex) {
-        }
+//        Connection myConn;
+//        String mySearch = textSearch.getText();
+//        int row = MyTable.getRowCount();
+//        for(int i = 0; i < row; i++){
+////            myModel.removeRow(0);
+//        }
+//        try {
+//            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+//            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
+//            while (myRess.next()) {
+//                String myData [] = {myRess.getString(2),myRess.getString(3), myRess.getString(6)};
+//                myModel.addRow(myData);
+//            }
+//        } catch (SQLException ex) {
+//        }
     }
     
     private void MyWindow(){
