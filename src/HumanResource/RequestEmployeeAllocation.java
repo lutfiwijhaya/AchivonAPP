@@ -29,6 +29,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -803,6 +804,20 @@ public class RequestEmployeeAllocation extends MasterForm {
                 idHRRevd.setText(rs.getString(7));
                 idHRMGR.setText(rs.getString(8));
                 idPresident.setText(rs.getString(9));
+                DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
+                try{
+                    Statement stmt0 = koneksi.createStatement();
+                    ResultSet rs0 = stmt0.executeQuery("select * from employee_allocation_table where karyawan_id = '"+MySession.get_karyawanID()+"' order by allocation_table_id desc");
+                        while (rs0.next()) {
+                            String[] data = {
+                                rs0.getString("description"), 
+                                rs0.getString("expected_time")
+                            };
+                            dataModel.insertRow(0, data);
+                        }
+                }catch(SQLException eq){
+                }
+                
                 if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {

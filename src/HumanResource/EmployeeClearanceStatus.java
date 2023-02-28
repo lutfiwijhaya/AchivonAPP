@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,46 +45,67 @@ import javax.swing.table.TableColumnModel;
  * @author hi
  */
 public class EmployeeClearanceStatus extends MasterForm{
-    Statement stm;
-    ResultSet rs;
+//    DefaultTableModel dm;
     Connection koneksi;
+    Date date = new Date();
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+    String myDate = formatter.format(date);
     public EmployeeClearanceStatus() {
         initComponents();
         MyWindow();
         openDB();
+        
         jScrollPane5.setWheelScrollingEnabled(false);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
 //        ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
 //        .setHorizontalAlignment(JLabel.CENTER);
-//        String[] header = {"No.","item","qty","status","item","qty","status","item","qty","status"};
         
         DefaultTableModel dm = (DefaultTableModel) jTable5.getModel();
+        
         dm.setDataVector(new Object[][]{
-                    {"119","foo","bar","ja","foo","bar","ja","foo","bar","ja"},
-                    {"911","bar","foo","en","bar","foo","en","bar","foo","en"}},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""},
+                    {"","","","","","","","",""}},
                     new Object[]
-                    {"No.","item","qty","status","item","qty","status","item","qty","status"});
-        jTable5 = new JTable(dm) {
-            @Override
-            protected JTableHeader createDefaultTableHeader() {
-                return new GroupableTableHeader(columnModel);
-            }
-        };
+                    {"item", "qty", "status", "item", "qty", "status", "item", "qty", "status"});
+//        jTable5 = new JTable(dm) {
+//            @Override
+//            protected JTableHeader createDefaultTableHeader() {
+//                return new GroupableTableHeader(columnModel);
+//            }
+//        };
         TableColumnModel cm = jTable5.getColumnModel();
         ColumnGroup g_name = new ColumnGroup("General Item");
+        g_name.add(cm.getColumn(0));
         g_name.add(cm.getColumn(1));
         g_name.add(cm.getColumn(2));
-        g_name.add(cm.getColumn(3));
         
         ColumnGroup g_lang = new ColumnGroup("Safety & Quality \nRelated Items");
+        g_lang.add(cm.getColumn(3));
         g_lang.add(cm.getColumn(4));
         g_lang.add(cm.getColumn(5));
-        g_lang.add(cm.getColumn(6));
         
         ColumnGroup g_other = new ColumnGroup("Tools & Consumables \nRelated Items");
+        g_other.add(cm.getColumn(6));
         g_other.add(cm.getColumn(7));
         g_other.add(cm.getColumn(8));
-        g_other.add(cm.getColumn(9));
 //        g_lang.add(g_other);
 
         GroupableTableHeader header = new GroupableTableHeader(cm);
@@ -91,9 +113,6 @@ public class EmployeeClearanceStatus extends MasterForm{
         header.addColumnGroup(g_lang);
         header.addColumnGroup(g_other);
         jTable5.setTableHeader(header);
-
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         
         labelDiscipline.setText(MySession.get_JobPosition());
         labelName.setText(MySession.get_nama());
@@ -127,6 +146,28 @@ public class EmployeeClearanceStatus extends MasterForm{
                     jLabel31.setText(rs.getString(8));
                     jLabel32.setText(rs.getString(7));
                     jLabel4.setText(rs.getString(9));
+                    
+//                    DefaultTableModel dm = (DefaultTableModel) jTable5.getModel();
+                    try{
+                    Statement stmt0 = koneksi.createStatement();
+                    ResultSet rs0 = stmt0.executeQuery("select * from employee_clearance_table where karyawan_id = '"+MySession.get_karyawanID()+"' order by clearance_table_id desc");
+                        while (rs0.next()) {
+                            String[] data = {
+                                rs0.getString(3), 
+                                rs0.getString(4), 
+                                rs0.getString(5), 
+                                rs0.getString(6), 
+                                rs0.getString(7), 
+                                rs0.getString(8), 
+                                rs0.getString(9), 
+                                rs0.getString(10), 
+                                rs0.getString(11)
+                            };
+                            dm.insertRow(0, data);
+                        }
+                    }catch(SQLException myEX){
+                        System.err.println("Error executing SQL query: " + myEX.getMessage());
+                    }
                     if (jLabel16 != null) {
                     signTeamPred.setText(null);
                     try {
@@ -394,7 +435,7 @@ public class EmployeeClearanceStatus extends MasterForm{
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            }  
+            }
     }
     private void openDB() {
         try {
@@ -514,6 +555,11 @@ public class EmployeeClearanceStatus extends MasterForm{
         sendButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         sendButton.setForeground(new java.awt.Color(255, 255, 255));
         sendButton.setText("Kirim / Send");
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(sendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 1120, 170, 40));
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -931,6 +977,98 @@ public class EmployeeClearanceStatus extends MasterForm{
         }
     }//GEN-LAST:event_signPresidentMouseClicked
 
+    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+        PreparedStatement pstmt = null;
+        PreparedStatement pstmt1 = null;
+        String sql = "INSERT INTO employee_clearance (karyawan_id, team_pred, team_recd, team_revd, team_mgr, hr_revd, hr_mgr, president, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            pstmt = koneksi.prepareStatement(sql);
+            pstmt.setString(1, MySession.get_karyawanID());
+            pstmt.setString(2, "0");
+            pstmt.setString(3, "0");
+            pstmt.setString(4, "0");
+            pstmt.setString(5, "0");
+            pstmt.setString(6, "0");
+            pstmt.setString(7, "0");
+            pstmt.setString(8, "0");
+            pstmt.setString(9, myDate);
+            pstmt.executeUpdate();
+            int jtabelrows = jTable5.getRowCount();
+            for (int i = 0; i <= jtabelrows - 1; i++) {
+                if (jTable5.getValueAt(i, 0) == null || jTable5.getValueAt(i, 0).toString().isEmpty()) {
+                    // Skip this row if the first column is null or empty
+                    continue;
+                } else {
+                    String general_item = jTable5.getValueAt(i, 0).toString();
+                    String general_qty = jTable5.getValueAt(i, 1) != null ? jTable5.getValueAt(i, 1).toString() : "";
+                    String general_status = jTable5.getValueAt(i, 2) != null ? jTable5.getValueAt(i, 1).toString() : "";
+                    String safety_item = jTable5.getValueAt(i, 3).toString();
+                    String safety_qty = jTable5.getValueAt(i, 4) != null ? jTable5.getValueAt(i, 1).toString() : "";
+                    String safety_status = jTable5.getValueAt(i, 5) != null ? jTable5.getValueAt(i, 1).toString() : "";
+                    String tools_item = jTable5.getValueAt(i, 6).toString();
+                    String tools_qty = jTable5.getValueAt(i, 7) != null ? jTable5.getValueAt(i, 1).toString() : "";
+                    String tools_status = jTable5.getValueAt(i, 8) != null ? jTable5.getValueAt(i, 1).toString() : "";
+
+                    String sql1 = "INSERT INTO employee_clearance_table (karyawan_id, general_item, general_qty, general_status, safety_item, safety_qty, safety_status, tools_item, tools_qty, tools_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    pstmt1 = koneksi.prepareStatement(sql1);
+                    pstmt1.setString(1, MySession.get_karyawanID());
+                    pstmt1.setString(2, general_item);
+                    pstmt1.setString(3, general_qty);
+                    pstmt1.setString(4, general_status);
+                    pstmt1.setString(5, safety_item);
+                    pstmt1.setString(6, safety_qty);
+                    pstmt1.setString(7, safety_status);
+                    pstmt1.setString(8, tools_item);
+                    pstmt1.setString(9, tools_qty);
+                    pstmt1.setString(10, tools_status);
+                    pstmt1.executeUpdate();
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Data berhasil dikirim \nData sent successfully");
+            labelNamePresident.setVisible(true);
+            signPresident.setVisible(true);
+            jLabel35.setVisible(true);
+
+            jLabel29.setVisible(true);
+            signHRRevd.setVisible(true);
+            labelNameHRRevd.setVisible(true);
+
+            jLabel33.setVisible(true);
+            signHRMGR.setVisible(true);
+            labelNameHRMGR.setVisible(true);
+            jLabel42.setVisible(true);
+
+            jLabel43.setVisible(true);
+            jLabel30.setVisible(true);
+            signTeamMGR.setVisible(true);
+            labelNameTeamMGR.setVisible(true);
+
+            jLabel34.setVisible(true);
+            signTeamRevd.setVisible(true);
+            labelNameTeamRevd.setVisible(true);
+
+            jLabel37.setVisible(true);
+            signTeamRecd.setVisible(true);
+            labelNameTeamRecd.setVisible(true);
+
+            jLabel40.setVisible(true);
+            signTeamPred.setVisible(true);
+            labelNameTeamPred.setVisible(true);
+            fresh();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Data gagal dikirim \nData failed to send");
+            e.printStackTrace();
+        } finally {
+//            try {
+//                if (koneksi != null) {
+//                    koneksi.close();
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+        }
+    }//GEN-LAST:event_sendButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -1010,6 +1148,10 @@ public class EmployeeClearanceStatus extends MasterForm{
 
     @Override
     public void formrefresh() {
+    }
+
+    private void fresh() {
+        
     }
 
 }
