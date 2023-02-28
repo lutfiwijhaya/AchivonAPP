@@ -293,13 +293,11 @@ this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_textSearchKeyTyped
 
     private void textSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyReleased
-        
+//candidate
         if ("2".equals(MySession.get_Role())){
             role = "1";
         }else if ("3".equals(MySession.get_Role())){
-        
          role = "2";
-        
         }
          if (CustomResource.EmployeeSession.getsesiform().equals("1")){
         DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();
