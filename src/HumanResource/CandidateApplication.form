@@ -633,7 +633,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_tgl_personal">
               <Properties>
-                <Property name="labelText" type="java.lang.String" value="Tempat Lahir / Birth Place"/>
+                <Property name="labelText" type="java.lang.String" value="Tanggal Lahir/Birtday Date"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

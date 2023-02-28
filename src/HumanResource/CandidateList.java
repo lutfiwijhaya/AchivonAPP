@@ -34,6 +34,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -60,6 +62,7 @@ public class CandidateList extends MasterForm {
         initComponents();
         openDB();
         settable();
+        id();
         myShow();
         MyWindow();
         remove();
@@ -68,10 +71,62 @@ public class CandidateList extends MasterForm {
         ((DefaultTableCellRenderer) MyTable.getTableHeader().getDefaultRenderer())
                 .setHorizontalAlignment(JLabel.CENTER);
     }
+    
+    void id(){
+        if(c_app.getSelectedItem().toString().equals("Belum Approve/Not Approved")){
+            
+             myModel.addRow(new Object[]{});
+           //mendapatkan model kolom pada JTable
+        TableColumnModel columnModel = MyTable.getColumnModel();
+//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
+        TableColumn column = columnModel.getColumn(0);
+//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
+        column.setMinWidth(0);
+        column.setMaxWidth(0);
+        column.setWidth(0);
+        column.setPreferredWidth(0);
+//mengakses nilai pada kolom yang disembunyikan
+        int rowIndex = 0; //indeks baris
+        Object value = MyTable.getValueAt(rowIndex, 0); 
+        
+         //mendapatkan model kolom pada JTable
+        TableColumnModel columnModel1 = MyTable.getColumnModel();
+//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
+        TableColumn column1 = columnModel1.getColumn(10);
+        TableColumn column2 = columnModel1.getColumn(9);
+//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
+        column1.setMinWidth(column2.getMinWidth());
+        column1.setMaxWidth(column2.getMaxWidth());
+        column1.setWidth(column2.getWidth());
+        column1.setPreferredWidth(245);
+//mengakses nilai pada kolom yang disembunyikan
+        int rowIndex1 = 0; //indeks baris
+        Object value1 = MyTable.getValueAt(rowIndex1, 0); 
+        
+        } else if(c_app.getSelectedItem().toString().equals("Sudah Approve/Approved")){
+            myModel.addRow(new Object[]{});
+             
+           //mendapatkan model kolom pada JTable
+        TableColumnModel columnModel = MyTable.getColumnModel();
+//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
+        TableColumn column = columnModel.getColumn(10);
+//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
+        column.setMinWidth(0);
+        column.setMaxWidth(0);
+        column.setWidth(0);
+        column.setPreferredWidth(0);
+//mengakses nilai pada kolom yang disembunyikan
+        int rowIndex = 0; //indeks baris
+        Object value = MyTable.getValueAt(rowIndex, 0); 
+        
+        }
+     
+    
+    }
 
     void settable() {
         String[] header = {"id", "KTP", "Nama / Name", "Tempat, Tanggal Lahir / Place, Birthday", "Jenis Kelamin / Gender", "Status Pernikahan / Marital Status", "Email", "No. Hp", "Posisi yang dilamar / Job Applying", "gaji / Sallary", "Action"};
-        myModel = new DefaultTableModel(header, 0);
+        myModel = new DefaultTableModel(header, 1);
         MyTable.setModel(myModel);
         actiontable event = new actiontable() {
             @Override
@@ -108,7 +163,7 @@ public class CandidateList extends MasterForm {
 //            while (myRess.next()) {
 //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
 //            }
-                    Main.main.getMain().showForm(new CandidateList());
+                    myShow();
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e);
@@ -127,7 +182,7 @@ public class CandidateList extends MasterForm {
     //            while (myRess.next()) {
     //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
     //            }
-                        Main.main.getMain().showForm(new CandidateList());
+                        myShow();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e);
     //                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
@@ -188,6 +243,7 @@ public class CandidateList extends MasterForm {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        c_app = new CustomResource.ComboBoxSuggestion();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(900, 585));
@@ -220,7 +276,7 @@ public class CandidateList extends MasterForm {
         });
         jScrollPane1.setViewportView(MyTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 1170, 380));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 1170, 380));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Daftar kandidat / Candidate List");
@@ -241,7 +297,7 @@ public class CandidateList extends MasterForm {
                 textSearchKeyTyped(evt);
             }
         });
-        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 460, -1));
+        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 460, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -293,6 +349,15 @@ public class CandidateList extends MasterForm {
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 500, 280, 90));
+
+        c_app.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Belum Approve/Not Approved", "Sudah Approve/Approved" }));
+        c_app.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        c_app.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c_appActionPerformed(evt);
+            }
+        });
+        jPanel1.add(c_app, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 80, 190, 30));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -353,7 +418,7 @@ public class CandidateList extends MasterForm {
                 Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        Main.main.getMain().showForm(new CandidateList()); 
+        myShow();
         }          // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -366,16 +431,21 @@ public class CandidateList extends MasterForm {
                 Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        Main.main.getMain().showForm(new CandidateList());      // TODO add your handling code here:
+        myShow();     // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textSearchActionPerformed
 
+    private void c_appActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_appActionPerformed
+myShow();        // TODO add your handling code here:
+    }//GEN-LAST:event_c_appActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
+    private CustomResource.ComboBoxSuggestion c_app;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -389,11 +459,16 @@ public class CandidateList extends MasterForm {
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
+        id();
+        
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
         for (int i = 0; i < row; i++) {
-            myModel.removeRow(0);
+          myModel.removeRow(0);  
         }
+        if(c_app.getSelectedItem().toString().equals("Belum Approve/Not Approved")){
+        
+        jPanel2.setVisible(true);
         if (mySearch != null) {
             try {
                 ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%" + mySearch + "%'");
@@ -428,6 +503,123 @@ public class CandidateList extends MasterForm {
 
             } catch (SQLException ex) {
             }
+        }}else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
+          
+        jPanel2.setVisible(false);
+            if (mySearch != null) {
+            try {
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '1' AND Nama LIKE '%" + mySearch + "%'");
+                while (myRess.next()) {
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+
+                    myModel.addRow(myData);
+                }
+            } catch (SQLException ex) {
+            }
+        } else {
+            try {
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '1'");
+//                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
+//                int numColumns = rsmd.getColumnCount();
+//                for (int i = 1; i <= numColumns; i++) {
+//                    myModel.addColumn(rsmd.getColumnName(i));
+//                }
+
+                while (myRess.next()) {
+//                    Object[] mrow = new Object[numColumns];
+//                    for (int i = 1; i <= numColumns; i++) {
+//                        mrow[i - 1] = myRess.getObject(i);
+//                    }
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                    myModel.addRow(myData);
+                }
+
+            } catch (SQLException ex) {
+            }
+        }
+        
+        }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
+           
+        jPanel2.setVisible(false);
+            if (mySearch != null) {
+            try {
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '2' AND Nama LIKE '%" + mySearch + "%'");
+                while (myRess.next()) {
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+
+                    myModel.addRow(myData);
+                }
+            } catch (SQLException ex) {
+            }
+        } else {
+            try {
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '2'");
+//                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
+//                int numColumns = rsmd.getColumnCount();
+//                for (int i = 1; i <= numColumns; i++) {
+//                    myModel.addColumn(rsmd.getColumnName(i));
+//                }
+
+                while (myRess.next()) {
+//                    Object[] mrow = new Object[numColumns];
+//                    for (int i = 1; i <= numColumns; i++) {
+//                        mrow[i - 1] = myRess.getObject(i);
+//                    }
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                    myModel.addRow(myData);
+                }
+
+            } catch (SQLException ex) {
+            }
+        }
+        
+        }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
+        
+        jPanel2.setVisible(false);
+            if (mySearch != null) {
+            try {
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '3' AND Nama LIKE '%" + mySearch + "%'");
+                while (myRess.next()) {
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+
+                    myModel.addRow(myData);
+                }
+            } catch (SQLException ex) {
+            }
+        } else {
+            try {
+                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '3'");
+//                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
+//                int numColumns = rsmd.getColumnCount();
+//                for (int i = 1; i <= numColumns; i++) {
+//                    myModel.addColumn(rsmd.getColumnName(i));
+//                }
+
+                while (myRess.next()) {
+//                    Object[] mrow = new Object[numColumns];
+//                    for (int i = 1; i <= numColumns; i++) {
+//                        mrow[i - 1] = myRess.getObject(i);
+//                    }
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                    myModel.addRow(myData);
+                }
+
+            } catch (SQLException ex) {
+            }
+        }
+        
         }
     }
 

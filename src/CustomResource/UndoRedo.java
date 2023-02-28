@@ -10,6 +10,7 @@ public class UndoRedo<E> implements Iterable<E> {
     public UndoRedo() {
         stack1 = new Stack<>();
         stack2 = new Stack<>();
+        
     }
 
     public void add(E item) {
