@@ -12,7 +12,17 @@ public class EmployeeSession {
     private static String KTPAllocation;
     private static String KTPClearance;
     private static String KTPHandover;
+    private static String sesi_form;
     
+    // sesi form : 1. 
+    
+    public static String getsesiform(){
+        return sesi_form;
+    }
+    
+    public static void setsesiform(String sesi_form){
+        EmployeeSession.sesi_form = sesi_form;
+    }
     public static String getEmployeeID(){
         return EmployeeID;
     }

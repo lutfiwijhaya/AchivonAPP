@@ -846,7 +846,7 @@ public class CandidateApplication extends MasterForm {
         });
         jPanel1.add(t_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 340, -1));
 
-        t_tgl_personal.setLabelText("Tempat Lahir / Birth Place");
+        t_tgl_personal.setLabelText("Tanggal Lahir/Birtday Date");
         jPanel1.add(t_tgl_personal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 340, -1));
 
         t_gaji.setLabelText("Estimasi Gaji / Sallary");

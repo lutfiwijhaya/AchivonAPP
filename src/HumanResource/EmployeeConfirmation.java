@@ -42,6 +42,8 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.view.JasperViewer;
 
+
+
 /**
  *
  * @author hi
@@ -69,6 +71,8 @@ public class EmployeeConfirmation extends MasterForm {
         get_tanggal();
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
         getMyRole();
+        addtext();
+        jToggleButton2.setVisible(false);
     }
     
     void get_tanggal() {
@@ -136,12 +140,9 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel40 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
         l_emnama1 = new javax.swing.JLabel();
         l_name1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox1 = new CustomResource.ComboBoxSuggestion();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -157,6 +158,7 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel3 = new javax.swing.JLabel();
         l_hp = new javax.swing.JLabel();
         jToggleButton2 = new javax.swing.JToggleButton();
+        jButton5 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -284,19 +286,6 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 820, 20, -1));
         jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 1140, 80, 20));
 
-        jLabel25.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel25.setText("Select Candidate Employee");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 133, -1, 20));
-
-        jToggleButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jToggleButton1.setText("Pilih / Select");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 130, -1, 30));
-
         l_emnama1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(l_emnama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 790, 270, 13));
 
@@ -307,9 +296,6 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel14.setForeground(new java.awt.Color(0, 51, 255));
         jLabel14.setText("Employee Confirmation");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
-
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 240, -1));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel15.setText("of Section A on behalf of The Company with the approval of The Company's Human Resources Director.");
@@ -342,7 +328,12 @@ public class EmployeeConfirmation extends MasterForm {
         jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 255));
         jButton1.setText("Reject");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 1070, 130, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 1070, 130, 30));
 
         jButton2.setBackground(new java.awt.Color(51, 51, 255));
         jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -358,7 +349,12 @@ public class EmployeeConfirmation extends MasterForm {
         jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 51, 255));
         jButton3.setText("Reject");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 640, 130, 30));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, 130, 30));
 
         jButton4.setBackground(new java.awt.Color(51, 51, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -390,6 +386,14 @@ public class EmployeeConfirmation extends MasterForm {
         });
         jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 1120, -1, -1));
 
+        jButton5.setText("Ambil/Data Employee");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, 40));
+
         jScrollPane3.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -403,10 +407,6 @@ public class EmployeeConfirmation extends MasterForm {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1229, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        addtext();  // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //        Connection myConn;
@@ -443,7 +443,7 @@ public class EmployeeConfirmation extends MasterForm {
 
 
 
-        String to = "lutfiwijhaya@gmail.com";
+        String to = l_email.getText();
         String from = "lutfiwijhaya@achivon.co.id";
         String emailPassword = "Achivon123";
 //        String emailPassword = "scqrsacneyuellbe";
@@ -489,6 +489,8 @@ public class EmployeeConfirmation extends MasterForm {
         } catch (MessagingException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        
+        set_kosong();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -503,36 +505,49 @@ public class EmployeeConfirmation extends MasterForm {
                 JOptionPane.showMessageDialog(null, "gagal di tanda tangan \n Failed Signature");
             
         }
+        
+        set_kosong();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-  try {
-                    Statement stm = koneksi.createStatement();
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+CustomResource.EmployeeSession.setsesiform("1");
+        new Employe_list().setVisible(true);
 
-                    rs = stm.executeQuery("select*from cd_employee where KTP = " + l_ktp.getText() + "");
-                    while (rs.next()) {
-                        da = rs.getString("id_employee");
 
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
         
+        
+ 
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        try {
+            Statement stm = koneksi.createStatement();
+
+            rs = stm.executeQuery("select*from cd_employee where KTP = " + l_ktp.getText() + "");
+            while (rs.next()) {
+                da = rs.getString("id_employee");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
 
-//                    Class.forName("com.mysql.jdbc.Driver");
-//String filePath = "src/Doc/test.pdf";
-                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-//                    File O = new File("C:\\Program Files (x86)\\AchivonAPP\\cdemployee.jasper");
-//                    jasperdesign = JRXmlLoader.load(O);
-                    param.clear();
-//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
-                    param.put("id",da);
-                    param.put("tgl",l_tgl.getText());
-                    
-//                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-//                    JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
-//                    JasperViewer.viewReport(jasperprint, false);
+            //                    Class.forName("com.mysql.jdbc.Driver");
+            //String filePath = "src/Doc/test.pdf";
+            Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
+            //                    File O = new File("C:\\Program Files (x86)\\AchivonAPP\\cdemployee.jasper");
+            //                    jasperdesign = JRXmlLoader.load(O);
+            param.clear();
+            //                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
+            param.put("id",da);
+            param.put("tgl",l_tgl.getText());
+
+            //                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
+            //                    JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
+            //                    JasperViewer.viewReport(jasperprint, false);
             String reportPath = "C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\notification_cd.jasper";
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, param, kon);
             JasperViewer viewer = new JasperViewer(jasperPrint, false);
@@ -543,13 +558,21 @@ public class EmployeeConfirmation extends MasterForm {
         }         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+set_kosong();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+set_kosong();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private CustomResource.ComboBoxSuggestion jComboBox1;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -567,7 +590,6 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -589,7 +611,6 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel l_cadd;
     private javax.swing.JLabel l_date;
@@ -637,7 +658,7 @@ public class EmployeeConfirmation extends MasterForm {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
                 while (rs.next()) {
-                    jComboBox1.addItem(rs.getString(2).trim());
+//                    jComboBox1.addItem(rs.getString(2).trim());
                     addtext();
                 }
             } catch (Exception e) {
@@ -651,7 +672,7 @@ public class EmployeeConfirmation extends MasterForm {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee WHERE approval = '2'");
                 while (rs.next()) {
-                    jComboBox1.addItem(rs.getString(2).trim());
+//                    jComboBox1.addItem(rs.getString(2).trim());
                     addtext();
                 }
             } catch (Exception e) {
@@ -660,22 +681,34 @@ public class EmployeeConfirmation extends MasterForm {
         }
     }
     
+    void set_kosong(){
+    l_name1.setText("");
+                l_name.setText("");
+                l_date.setText("");
+                l_ktp.setText("");
+                l_hp.setText("");
+                l_hadd.setText("");
+                l_cadd.setText("");
+                l_email.setText("");
+    
+    }
+    
     private void addtext() {
 
         try {
             stm = koneksi.createStatement();
-            rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where Nama = '" + jComboBox1.getSelectedItem() + "'");
+            rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where cd_employee.id_employee = "+ CustomResource.EmployeeSession.getEmployeeID()+"");
 
             while (rs.next()) {
                 
-                l_name1.setText(rs.getString(2).trim());
-                l_name.setText(rs.getString(18));
-                l_date.setText(rs.getString(15).trim());
-                l_ktp.setText(rs.getString(3).trim());
-                l_hp.setText(rs.getString(10).trim());
-                l_hadd.setText(rs.getString(32).trim());
-                l_cadd.setText(rs.getString(33).trim());
-                l_email.setText(rs.getString(4).trim());
+                l_name1.setText(rs.getString("Nama"));
+                l_name.setText(rs.getString("approved_by"));
+                l_date.setText(rs.getString("cd_date_apply"));
+                l_ktp.setText(rs.getString("KTP"));
+                l_hp.setText(rs.getString("No_HP"));
+                l_hadd.setText(rs.getString("full_home"));
+                l_cadd.setText(rs.getString("full_current"));
+                l_email.setText(rs.getString("email"));
             }
         } catch (Exception e) {
             e.printStackTrace();
