@@ -79,6 +79,7 @@ public class EmployeeConfirmation extends MasterForm {
         l_emnama1.setText(MySession.get_nama());
         l_emnama.setText(MySession.get_nama());
         jLabel37.setText(MySession.get_JobPosition());
+        jToggleButton2.setVisible(false);
     }
 
     private void openDB() {
@@ -250,8 +251,7 @@ public class EmployeeConfirmation extends MasterForm {
 
         l_name.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        l_name.setText("asd");
-        jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 270, 13));
+        jPanel1.add(l_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 270, 20));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel13.setText(":");
@@ -259,8 +259,7 @@ public class EmployeeConfirmation extends MasterForm {
 
         l_emnama.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_emnama.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        l_emnama.setText("asd");
-        jPanel1.add(l_emnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 1050, 270, 13));
+        jPanel1.add(l_emnama, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 1043, 270, 20));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("A. EMPLOYEE CONFIRMATION");
@@ -343,7 +342,7 @@ public class EmployeeConfirmation extends MasterForm {
         jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 255));
         jButton1.setText("Reject");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 1070, 130, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 1070, 130, 30));
 
         jButton2.setBackground(new java.awt.Color(51, 51, 255));
         jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -354,12 +353,12 @@ public class EmployeeConfirmation extends MasterForm {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 1070, 130, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 1070, 130, 30));
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 51, 255));
         jButton3.setText("Reject");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, 130, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 640, 130, 30));
 
         jButton4.setBackground(new java.awt.Color(51, 51, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -370,7 +369,7 @@ public class EmployeeConfirmation extends MasterForm {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 640, 130, 30));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 640, 130, 30));
 
         jLabel28.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel28.setText("A6. Mobile (HP) No.");

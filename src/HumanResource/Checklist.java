@@ -52,45 +52,46 @@ public class Checklist extends MasterForm {
     public Checklist() {
         initComponents();
         openDB();
-        settable();
+//        settable();
         myShow();
         MyWindow();
 //        CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
-    }
-    void  settable (){
-        String [] header = {"id","Karyawan Id / Employee Id", "Nama / Name", "join date", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"};
-        myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
-//        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
-        MyTable.setDefaultEditor(Object.class, null);
-        MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-        MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(5).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(6).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(7).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(8).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(9).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(10).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(11).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(12).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(13).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(14).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(15).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(16).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(17).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(18).setPreferredWidth(50);
-        MyTable.getColumnModel().getColumn(19).setPreferredWidth(50);
+    }
+//    void  settable (){
+//        String [] header = {"id","Karyawan Id / Employee Id", "Nama / Name", "join date", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"};
+//        myModel = new DefaultTableModel(header,0);
+        
+////        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
+//        MyTable.setDefaultEditor(Object.class, null);
+//        MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+//        MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+//        MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+//        MyTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(6).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(7).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(8).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(9).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(10).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(11).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(12).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(13).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(14).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(15).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(16).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(17).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(18).setPreferredWidth(50);
+//        MyTable.getColumnModel().getColumn(19).setPreferredWidth(50);
 //        MyTable.getColumnModel().getColumn(20).setPreferredWidth(50);
         
 //        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
         
 //        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
-    }
+//    }
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -119,15 +120,23 @@ public class Checklist extends MasterForm {
 
         MyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "Karyawan Id / Employee Id", "Nama / Name", "join date", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         MyTable.setAutoResizeMode(0);
         MyTable.setRowHeight(40);
         MyTable.setShowHorizontalLines(true);
@@ -141,6 +150,12 @@ public class Checklist extends MasterForm {
             }
         });
         jScrollPane1.setViewportView(MyTable);
+        if (MyTable.getColumnModel().getColumnCount() > 0) {
+            MyTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+            MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            MyTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+        }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
 
@@ -180,12 +195,12 @@ public class Checklist extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
-        try{
-            EmployeeSession.setKTPRehab(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
-            Main.main.getMain().showForm(new EmployeeRehabilitation());    
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+//        try{
+//            EmployeeSession.setKTPRehab(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
+//            Main.main.getMain().showForm(new EmployeeRehabilitation());    
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        }
     }//GEN-LAST:event_MyTableMouseClicked
 
     private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
@@ -209,22 +224,21 @@ public class Checklist extends MasterForm {
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
-//        Connection myConn;
-//        String mySearch = textSearch.getText();
-//        int row = MyTable.getRowCount();
-//        for(int i = 0; i < row; i++){
+        Connection myConn;
+        String mySearch = textSearch.getText();
+        int row = MyTable.getRowCount();
+        for(int i = 0; i < row; i++){
 //            myModel.removeRow(0);
-//        }
-//        try {
-//            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-//            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee_rehabilitation inner join employee on employee_rehabilitation.karyawan_id = employee.karyawan_id");
-//            while (myRess.next()) {
-//                String myData [] = {myRess.getString(16),myRess.getString(17), myRess.getString(18), myRess.getString(19),myRess.getString(24), 
-//                                    myRess.getString(25),myRess.getString(28) ,myRess.getString(21)};
-//                myModel.addRow(myData);
-//            }
-//        } catch (SQLException ex) {
-//        }
+        }
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
+            while (myRess.next()) {
+                String myData [] = {myRess.getString(2),myRess.getString(3), myRess.getString(6)};
+                myModel.addRow(myData);
+            }
+        } catch (SQLException ex) {
+        }
     }
     
     private void MyWindow(){

@@ -19,14 +19,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -395,7 +391,6 @@ public class EmployeeEvaluation extends MasterForm {
         if (idPresiden.getText() == null) {
             idPresiden.setText("0");
         }
-
         PreparedStatement myStmt = null;
         try {
             String sql = "UPDATE employee_clearance SET hr_revd=?, hr_mgr=?, president=? WHERE karyawan_id=?";

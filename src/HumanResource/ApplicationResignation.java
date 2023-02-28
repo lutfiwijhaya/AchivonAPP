@@ -140,7 +140,7 @@ public class ApplicationResignation extends MasterForm {
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText(":");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 20, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 20, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("A. INFORMATION OF EMPLOYEE TO RESIGN");
@@ -148,14 +148,14 @@ public class ApplicationResignation extends MasterForm {
 
         labelKTP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelKTP.setText("NO KTP");
-        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 260, -1));
+        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 260, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel5.setText("Name");
+        jLabel5.setText("Nama / Name");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel6.setText("Position");
+        jLabel6.setText("Posisi / Position");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -168,15 +168,15 @@ public class ApplicationResignation extends MasterForm {
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText(":");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 20, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 20, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel10.setText(":");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 20, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 20, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel11.setText(":");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 20, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 20, -1));
 
         textDesc.setColumns(20);
         textDesc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -233,20 +233,20 @@ public class ApplicationResignation extends MasterForm {
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 780, -1, 20));
 
         jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel24.setText("Discipline");
+        jLabel24.setText("Disiplin / Discipline");
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         labelDiscipline.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelDiscipline.setText("Discipline");
-        jPanel1.add(labelDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 260, -1));
+        jPanel1.add(labelDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 260, -1));
 
         labelName.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelName.setText("Nama");
-        jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 260, -1));
+        jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 260, -1));
 
         labelPosition.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelPosition.setText("Position");
-        jPanel1.add(labelPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 260, -1));
+        jPanel1.add(labelPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 260, -1));
 
         labelNamePresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNamePresident.setText("Name");
@@ -426,8 +426,8 @@ public class ApplicationResignation extends MasterForm {
         jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
 
         textDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textDate.setLabelText("Date to resign : ");
-        jPanel1.add(textDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 620, 210, -1));
+        textDate.setLabelText("Tanggal Pengunduran diri / Date to resign : ");
+        jPanel1.add(textDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 620, 230, -1));
 
         jScrollPane6.setViewportView(jPanel1);
 

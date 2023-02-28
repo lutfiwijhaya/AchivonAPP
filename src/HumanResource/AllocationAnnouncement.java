@@ -81,6 +81,7 @@ public class AllocationAnnouncement extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -94,7 +95,11 @@ public class AllocationAnnouncement extends MasterForm {
         textJoinDate = new CustomResource.CustomTextfield();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        t_tgl = new com.toedter.calendar.JDateChooser();
+        t_tgl = new CustomResource.CustomTextfield();
+
+        dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser1.setDateFormat("dd-MMM-yyyy");
+        dateChooser1.setTextRefernce(t_tgl);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -141,19 +146,19 @@ public class AllocationAnnouncement extends MasterForm {
         });
         add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 270, -1));
 
-        textName.setLabelText("Name");
+        textName.setLabelText("Nama / Name");
         add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 280, -1));
 
-        textDiscipline.setLabelText("Discipline");
+        textDiscipline.setLabelText(" Disiplin / Discipline");
         add(textDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 280, -1));
 
-        textPosition.setLabelText("Position");
+        textPosition.setLabelText("Posisi / Position");
         add(textPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 280, -1));
 
-        textDescription.setLabelText("Description Allocation");
+        textDescription.setLabelText("Deskripsi Alokasi / Description Allocation");
         add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 280, -1));
 
-        textJoinDate.setLabelText("Initial Join Date");
+        textJoinDate.setLabelText("Tanggal Bergabung / Initial Join Date");
         add(textJoinDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 280, -1));
 
         jButton4.setBackground(new java.awt.Color(51, 51, 255));
@@ -178,8 +183,8 @@ public class AllocationAnnouncement extends MasterForm {
         });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 240, 130, 40));
 
-        t_tgl.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 190, 30));
+        t_tgl.setLabelText("Tanggal Alokasi / Allocation Date");
+        add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 170, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
@@ -197,7 +202,8 @@ public class AllocationAnnouncement extends MasterForm {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
-        String tanggal = String.valueOf(fm.format(t_tgl.getDate()));
+//        String tanggal = String.valueOf(fm.format(t_tgl.getDate()));
+        String tanggal1 = t_tgl.getText();
            
         DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
         List list = new ArrayList<>();
@@ -207,7 +213,7 @@ public class AllocationAnnouncement extends MasterForm {
         list.add(textPosition.getText());
         list.add(textDescription.getText());
         list.add(textJoinDate.getText());
-        list.add(tanggal);
+        list.add(tanggal1);
         dataModel.addRow(list.toArray());
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -277,6 +283,7 @@ public class AllocationAnnouncement extends MasterForm {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.datechooser.DateChooser dateChooser1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -284,7 +291,7 @@ public class AllocationAnnouncement extends MasterForm {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private com.toedter.calendar.JDateChooser t_tgl;
+    private CustomResource.CustomTextfield t_tgl;
     private CustomResource.CustomTextfield textDescription;
     private CustomResource.CustomTextfield textDiscipline;
     private CustomResource.CustomTextfield textJoinDate;

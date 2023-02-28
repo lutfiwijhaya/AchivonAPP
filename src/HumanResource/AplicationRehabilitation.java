@@ -153,15 +153,15 @@ public class AplicationRehabilitation extends MasterForm {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel6.setText("Discipline");
+        jLabel6.setText("Disiplin / Discipline");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel4.setText("Name");
+        jLabel4.setText("Nama / Name");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel8.setText("Position");
+        jLabel8.setText("Posisi / Position");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -385,57 +385,62 @@ public class AplicationRehabilitation extends MasterForm {
 
         labelDiscipline.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelDiscipline.setText("...");
-        jPanel1.add(labelDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+        jPanel1.add(labelDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, -1, -1));
 
         labelName.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelName.setText("...");
-        jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
+        jPanel1.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
 
         labelPosition.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelPosition.setText("...");
-        jPanel1.add(labelPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
+        jPanel1.add(labelPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, -1, -1));
 
         labelKTP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelKTP.setText("...");
-        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
+        jPanel1.add(labelKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, -1, -1));
 
         jLabel43.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel43.setText(":");
-        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 10, -1));
+        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 10, -1));
 
         jLabel42.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel42.setText(":");
-        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 10, -1));
+        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 10, -1));
 
         jLabel41.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel41.setText(":");
-        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 10, -1));
+        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, 10, -1));
 
         jLabel39.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel39.setText(":");
-        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 10, -1));
+        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 10, -1));
 
         jLabel44.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel44.setText(":");
-        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 10, -1));
+        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 10, -1));
 
         labelHP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         labelHP.setText("...");
-        jPanel1.add(labelHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, -1, -1));
+        jPanel1.add(labelHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, -1, -1));
 
-        dateJoin.setLabelText("Date -  Initial Join");
-        jPanel1.add(dateJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 200, -1));
+        dateJoin.setLabelText("Tanggal / Date -  Bergabung / Initial Join");
+        dateJoin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateJoinActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dateJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 300, 220, -1));
 
-        dateLeave.setLabelText("Date - Leave of Absence");
+        dateLeave.setLabelText("Tanggal / Date - Cuti / Leave of Absence");
         dateLeave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dateLeaveActionPerformed(evt);
             }
         });
-        jPanel1.add(dateLeave, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 200, -1));
+        jPanel1.add(dateLeave, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 220, -1));
 
-        dateRehab.setLabelText("Date - Rehabilitation");
-        jPanel1.add(dateRehab, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, 200, -1));
+        dateRehab.setLabelText("Tanggal / Date - Rehabilitasi / Rehabilitation");
+        jPanel1.add(dateRehab, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, 220, -1));
 
         dateNow.setText("jLabel2");
         jPanel1.add(dateNow, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, -1, -1));
@@ -702,6 +707,10 @@ public class AplicationRehabilitation extends MasterForm {
 //            }
         }
     }//GEN-LAST:event_SendButtonActionPerformed
+
+    private void dateJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateJoinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateJoinActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
