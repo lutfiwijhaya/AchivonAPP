@@ -38,7 +38,7 @@ public class EmployeeEvaluation extends MasterForm {
         MyWindow();
         openDB();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        
+        labelID.setVisible(false);
         idHRRevd.setVisible(false);
         idHRMGR.setVisible(false);
         idPresiden.setVisible(false);
@@ -140,7 +140,7 @@ public class EmployeeEvaluation extends MasterForm {
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("EMPLOYEE EVALUATION");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 280, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 280, 40));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("B. NAME OF EVALUATORS");
@@ -270,7 +270,7 @@ public class EmployeeEvaluation extends MasterForm {
         jPanel1.add(idPresiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
 
         labelID.setText("asd");
-        jPanel1.add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, -1, -1));
+        jPanel1.add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -367,7 +367,6 @@ public class EmployeeEvaluation extends MasterForm {
             try {
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
