@@ -697,7 +697,7 @@ set_kosong();        // TODO add your handling code here:
 
         try {
             stm = koneksi.createStatement();
-            rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where cd_employee.id_employee = "+ CustomResource.EmployeeSession.getEmployeeID()+"");
+            rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where cd_employee.id_employee = "+ CustomResource.CandidateSession.getCandidateID()+"");
 
             while (rs.next()) {
                 

@@ -7,6 +7,8 @@ package ProcurementSystem;
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
+import static com.microsoft.schemas.office.x2006.encryption.CTKeyEncryptor.Uri.Enum.table;
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
@@ -14,9 +16,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -37,15 +52,15 @@ public class BizPointment extends MasterForm {
         initComponents();
         openDB();
         CountryBox();
-        id_employee();
+
         country.setSelectedItem("Indonesia");
 
-        String[] header = {"id", "Partner ID", "Register Date", "Name", "Telp or HP", "Email", "city/district", "Address", "tax payer", "pph"};
+        String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or HP", "Email", "Country", "Province", "city/district", "Address", "PostCode", "tax payer", "NPWP", "pph", "PIC Name", "PIC Mobile No", "PIC Email", "Price", "Cordination", "Delivery", "Quality", "Remark"};
         myModel = new DefaultTableModel(header, 1);
         MyTable.setModel(myModel);
         MyTable.setDefaultEditor(Object.class, null);
-//        MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-        MyTable.getColumnModel().getColumn(1).setPreferredWidth(40);
+        MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(2).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(3).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(4).setPreferredWidth(150);
@@ -54,10 +69,165 @@ public class BizPointment extends MasterForm {
         MyTable.getColumnModel().getColumn(7).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(8).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(9).setPreferredWidth(50);
+        MyTable.getColumnModel().getColumn(10).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(11).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(12).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(13).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(14).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(15).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(16).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(17).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(18).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(19).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(20).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(21).setPreferredWidth(100);
         table_id();
         tampil();
-        jButton4.setEnabled(false);
-        jButton1.setEnabled(false);
+        
+       
+    }
+    
+//  void shorttanggal(String startDateStr, String endDateStr) {
+//   try {
+//        int rowCount = myModel.getRowCount();
+//
+//        for (int i = rowCount - 1; i >= 0; i--) {
+//            myModel.removeRow(i);
+//        }
+//        
+//        // Konversi startDateStr dan endDateStr ke format tanggal
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+//        Date startDate = dateFormat.parse(startDateStr);
+//        Date endDate = dateFormat.parse(endDateStr);
+//
+//        // Filter data pada database berdasarkan rentang tanggal yang diberikan
+//        String query = "SELECT * FROM biz_partner WHERE register_date BETWEEN '?' AND '?'";
+//        PreparedStatement ps = koneksi.prepareStatement(query);
+//        ps.setDate(1, new java.sql.Date(startDate.getTime()));
+//        ps.setDate(2, new java.sql.Date(endDate.getTime()));
+//        rs = ps.executeQuery();
+//
+//        while (rs.next()) {
+//            String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+//
+//            String[] data = {
+//                rs.getString("biz_id"),
+//                rs.getString("partner_id"),
+//                rs.getString("register_date"),
+//                rs.getString("name"),
+//                rs.getString("no_hp"),
+//                rs.getString("email"),
+//                rs.getString("country"),
+//                rs.getString("province"),
+//                rs.getString("city"),
+//                add,
+//                rs.getString("postcode"),
+//                rs.getString("tax_payer"),
+//                rs.getString("npwp_no"),
+//                rs.getString("pph"),
+//                rs.getString("pic1"),
+//                rs.getString("pic2"),
+//                rs.getString("pic3"),
+//                rs.getString("price"),
+//                rs.getString("cordination"),
+//                rs.getString("delivery"),
+//                rs.getString("quality"),
+//                rs.getString("remark"),
+//            };
+//            myModel.addRow(data);
+//        }
+//
+//    } catch (Exception e) {
+//        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//    }
+//}
+
+    void FixedColumnTableExample() {
+//        DefaultTableModel model = new DefaultTableModel(10, 5);
+        JTable table = new JTable(myModel);
+
+        // lock the first two columns
+        TableColumnModel columnModel = table.getColumnModel();
+        columnModel.getColumn(0).setMinWidth(50);
+        columnModel.getColumn(0).setMaxWidth(50);
+        columnModel.getColumn(1).setMinWidth(50);
+        columnModel.getColumn(1).setMaxWidth(50);
+
+        // disable column reordering
+        table.getTableHeader().setReorderingAllowed(false);
+
+        // create row header with fixed columns
+        JTable fixedColumnTable = new JTable(myModel) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        fixedColumnTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        fixedColumnTable.setSelectionModel(table.getSelectionModel());
+        fixedColumnTable.setFocusable(false);
+        fixedColumnTable.setRowHeight(table.getRowHeight());
+        fixedColumnTable.setDefaultRenderer(Object.class, table.getDefaultRenderer(Object.class));
+        fixedColumnTable.setColumnSelectionAllowed(false);
+        fixedColumnTable.setRowSelectionAllowed(true);
+        fixedColumnTable.setPreferredScrollableViewportSize(fixedColumnTable.getPreferredSize());
+
+        // add fixed column table to scroll pane
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setRowHeaderView(fixedColumnTable);
+
+        add(scrollPane); // add scroll pane directly to JFrame
+        setSize(400, 300);
+
+        setVisible(true);
+
+        JTable myTable = new JTable(myModel);
+        myTable.setColumnSelectionAllowed(false);
+        myTable.setRowSelectionAllowed(true);
+
+    }
+
+    void tampil() {
+        try {
+            int rowCount = myModel.getRowCount();
+
+            for (int i = rowCount - 1; i >= 0; i--) {
+                myModel.removeRow(i);
+            }
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select*from biz_partner");
+            while (rs.next()) {
+                String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+
+                String[] data = {
+                    rs.getString("biz_id"),
+                    rs.getString("partner_id"),
+                    rs.getString("register_date"),
+                    rs.getString("name"),
+                    rs.getString("no_hp"),
+                    rs.getString("email"),
+                    rs.getString("country"),
+                    rs.getString("province"),
+                    rs.getString("city"),
+                    add,
+                    rs.getString("postcode"),
+                    rs.getString("tax_payer"),
+                    rs.getString("npwp_no"),
+                    rs.getString("pph"),
+                    rs.getString("pic1"),
+                    rs.getString("pic2"),
+                    rs.getString("pic3"),
+                    rs.getString("price"),
+                    rs.getString("cordination"),
+                    rs.getString("delivery"),
+                    rs.getString("quality"),
+                    rs.getString("remark"),};
+                myModel.insertRow(0, data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
     }
 
     void table_id() {
@@ -85,54 +255,31 @@ public class BizPointment extends MasterForm {
     }
 
     private void id_employee() {
-        String sql = "select max(partner_id3) from biz_partner";
+        String sql = "select max(partner_id3) from biz_partner where partner_id1 = '" + boxID1.getSelectedItem() + "' AND partner_id2 = '" + boxID2.getSelectedItem() + "'";
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery(sql);
             while (rs.next()) {
                 int a = rs.getInt(1);
                 id3 = a + 1;
+                System.out.println(id3);
             }
         } catch (Exception e) {
             System.out.println("" + e.getMessage());
         }
-    }
-
-    void tampil() {
-        try {
-            int rowCount = myModel.getRowCount();
-
-            for (int i = rowCount - 1; i >= 0; i--) {
-                myModel.removeRow(i);
-            }
-            stm = koneksi.createStatement();
-            rs = stm.executeQuery("select*from biz_partner");
-            while (rs.next()) {
-                String[] data = {
-                    rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("register_date"),
-                    rs.getString("name"),
-                    rs.getString("no_hp"),
-                    rs.getString("email"),
-                    rs.getString("city"),
-                    rs.getString("address"),
-                    rs.getString("tax_payer"),
-                    rs.getString("pph"),};
-                myModel.insertRow(0, data);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-        }
+        String id = Integer.toString(id3);
+        textID3.setText(id);
+        idIntegrated.setText(boxID1.getSelectedItem().toString() + "-" + boxID2.getSelectedItem().toString() + "-" + id);
     }
 
     void set_kosong() {
-        idIntegrated.setText("");
+
+//        boxID1.addItem("ID #1");
+//        boxID2.addItem("ID #2");
         boxID1.setSelectedItem("ID #1");
         boxID2.setSelectedItem("ID #2");
-
-        textID3.setText("");
+        idIntegrated.setText(" ");
+        textID3.setText(" ");
         textName.setText("");
         t_hp.setText("(0)");
         textMail.setText("");
@@ -168,6 +315,8 @@ public class BizPointment extends MasterForm {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
         jProgressBar1 = new javax.swing.JProgressBar();
+        dateChooser2 = new com.raven.datechooser.DateChooser();
+        dateChooser3 = new com.raven.datechooser.DateChooser();
         idIntegrated = new CustomResource.CustomTextfield();
         boxID1 = new CustomResource.ComboBoxSuggestion();
         boxID2 = new CustomResource.ComboBoxSuggestion();
@@ -209,23 +358,63 @@ public class BizPointment extends MasterForm {
         textNPWP = new CustomResource.CustomFormatField();
         boxTax1 = new CustomResource.ComboBoxSuggestion();
         jButton6 = new javax.swing.JButton();
+        stgl = new CustomResource.CustomTextfield();
+        etgl = new CustomResource.CustomTextfield();
+        jButton5 = new javax.swing.JButton();
 
-        dateChooser1.setDateFormat("dd-MMM-yyyy");
+        dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(textDateRegister);
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        dateChooser2.setDateFormat("yyyy-MM-dd");
+        dateChooser2.setTextRefernce(stgl);
+
+        dateChooser3.setDateFormat("yyyy-MM-dd");
+        dateChooser3.setTextRefernce(etgl);
+
+        setBackground(new java.awt.Color(255, 255, 102));
 
         idIntegrated.setEnabled(false);
         idIntegrated.setLabelText("ID Integrated");
+        idIntegrated.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idIntegratedActionPerformed(evt);
+            }
+        });
 
-        boxID1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID #1" }));
-        boxID1.setEnabled(false);
+        boxID1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID #1", "MT", "VD", "EQ", "TR", "TO", "CO", "OE", "OS", "OC", "AI", "QI", "SC", "CS", "OI" }));
         boxID1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         boxID1.setName(""); // NOI18N
+        boxID1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                boxID1PopupMenuWillBecomeVisible(evt);
+            }
+        });
+        boxID1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxID1ActionPerformed(evt);
+            }
+        });
 
-        boxID2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID #2" }));
-        boxID2.setEnabled(false);
+        boxID2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ID #2", "10", "20", "30", "40", "50", "60", "70", "80", "90", "A0" }));
         boxID2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        boxID2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                boxID2PopupMenuWillBecomeVisible(evt);
+            }
+        });
+        boxID2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxID2ActionPerformed(evt);
+            }
+        });
 
         textID3.setEnabled(false);
         textID3.setLabelText("ID #3");
@@ -260,16 +449,26 @@ public class BizPointment extends MasterForm {
         city.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "City / District" }));
         city.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
-        customTextfield6.setLabelText("PIC");
+        customTextfield6.setLabelText("PIC Name");
         customTextfield6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customTextfield6ActionPerformed(evt);
             }
         });
 
-        customTextfield7.setLabelText("PIC");
+        customTextfield7.setLabelText("PIC Mobile No");
+        customTextfield7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customTextfield7ActionPerformed(evt);
+            }
+        });
+        customTextfield7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customTextfield7KeyTyped(evt);
+            }
+        });
 
-        customTextfield8.setLabelText("PIC");
+        customTextfield8.setLabelText("PIC Email");
         customTextfield8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customTextfield8ActionPerformed(evt);
@@ -316,9 +515,27 @@ public class BizPointment extends MasterForm {
 
         boxTax.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tax Payer", "Yes", "No" }));
         boxTax.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        boxTax.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                boxTaxPopupMenuWillBecomeVisible(evt);
+            }
+        });
 
-        boxPPH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PPh23 (%)", "1%", "1,5%", "2%", "2,5%", "3%", "3,5%", "4%", "4,5%", "5%", "5,5%", "6%", "6,5%", "7%", "7,5%", "8%", "8,5%", "9%", "9,5%", "10%" }));
+        boxPPH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PPh23 (%)", "0.44%", "1.20%", "1.80%", "1.00%", "2.65%", "3.00%", "4.00%", "5.00%", "6.00%", "10.00%", "15.00%", "20.00%", "25.00%", "30.00%" }));
         boxPPH.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        boxPPH.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                boxPPHPopupMenuWillBecomeVisible(evt);
+            }
+        });
 
         jLabel1.setText("Address");
 
@@ -334,6 +551,12 @@ public class BizPointment extends MasterForm {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        MyTable.setAutoResizeMode(0);
+        MyTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MyTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(MyTable);
 
         textSearch.setLabelText("Search");
@@ -372,13 +595,49 @@ public class BizPointment extends MasterForm {
         jLabel4.setText("Evaluation of Biz. Partner");
         jLabel4.setOpaque(true);
 
-        comboBoxSuggestion8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Price", "Very Low", "Low", "Moderate", "High", "Very High" }));
+        comboBoxSuggestion8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Price", "Very High", "High", "Moderate", "Low", "Not Applicable" }));
+        comboBoxSuggestion8.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboBoxSuggestion8PopupMenuWillBecomeVisible(evt);
+            }
+        });
 
-        comboBoxSuggestion9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cordination" }));
+        comboBoxSuggestion9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cordination", "Exellent", "Good", "Normal", "Poor", "Worst", "Not Applicable" }));
+        comboBoxSuggestion9.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboBoxSuggestion9PopupMenuWillBecomeVisible(evt);
+            }
+        });
 
-        comboBoxSuggestion10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Delivery" }));
+        comboBoxSuggestion10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Delivery", "Exellent", "Good", "Normal", "Poor", "Worst", "Not Applicable" }));
+        comboBoxSuggestion10.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboBoxSuggestion10PopupMenuWillBecomeVisible(evt);
+            }
+        });
 
-        comboBoxSuggestion11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Quality", "Best", "Moderate", "Worst" }));
+        comboBoxSuggestion11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Quality", "Exellent", "Good", "Normal", "Poor", "Worst", "Not Applicable" }));
+        comboBoxSuggestion11.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboBoxSuggestion11PopupMenuWillBecomeVisible(evt);
+            }
+        });
 
         customTextfield14.setLabelText("Remark / Specific Note");
 
@@ -410,7 +669,7 @@ public class BizPointment extends MasterForm {
             }
         });
 
-        jButton4.setText("Cancel Edit");
+        jButton4.setText("Close");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -429,8 +688,17 @@ public class BizPointment extends MasterForm {
             }
         });
 
-        boxTax1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Search Category", "ID Partener", "Nama", "Kota", " " }));
+        boxTax1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Search Category", "ID", "Nama", "Kota", " " }));
         boxTax1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        boxTax1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                boxTax1PopupMenuWillBecomeVisible(evt);
+            }
+        });
         boxTax1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxTax1ActionPerformed(evt);
@@ -444,172 +712,233 @@ public class BizPointment extends MasterForm {
             }
         });
 
+        stgl.setLabelText("Search");
+        stgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stglActionPerformed(evt);
+            }
+        });
+        stgl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                stglKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                stglKeyTyped(evt);
+            }
+        });
+
+        etgl.setLabelText("Search");
+        etgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                etglActionPerformed(evt);
+            }
+        });
+        etgl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                etglKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                etglKeyTyped(evt);
+            }
+        });
+
+        jButton5.setText("Short");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textID3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idIntegrated, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxID1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxID2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 163, Short.MAX_VALUE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customTextfield14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textID3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(boxID1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(boxID2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(idIntegrated, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(t_hp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(6, 6, 6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(7, 7, 7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(city, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                    .addComponent(province, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(country, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(customTextfield14, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                                .addGap(60, 60, 60))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(165, 165, 165))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(city, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(province, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(country, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(t_hp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1)
+                                        .addGap(168, 168, 168))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(textRT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(textRT, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textRW, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(textRW, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
+                                                .addComponent(textPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 137, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(customTextfield8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(customTextfield7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(customTextfield6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGap(6, 6, 6))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(customTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(customTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(customTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(jLabel1)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(boxPPH, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(textNPWP, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                                            .addComponent(textDateRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(boxTax, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(boxTax1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(textNPWP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(boxTax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                            .addComponent(textDateRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(boxPPH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(6, 6, 6))))))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boxTax1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(87, 87, 87)
+                                .addComponent(stgl, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(etgl, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton5)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(82, 82, 82))
+                .addGap(136, 136, 136))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idIntegrated, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(idIntegrated, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(boxID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(boxID2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(textID3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(boxID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boxID2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textID3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(t_hp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)
+                                .addComponent(country, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(province, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(t_hp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(customTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textDateRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(customTextfield6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(country, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(province, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textDateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(customTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textRT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(textRW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(107, 107, 107)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textRT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(textRW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(textPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(customTextfield7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(boxTax, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(customTextfield8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(textNPWP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(boxPPH, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boxTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textNPWP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boxPPH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(customTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxTax1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton6))
-                .addContainerGap(165, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(customTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(boxTax1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(stgl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(etgl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4)
+                            .addComponent(jButton6))
+                        .addContainerGap(153, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -624,7 +953,7 @@ public class BizPointment extends MasterForm {
             rs = stm.executeQuery("select*from biz_partner where biz_id = " + a + "");
             while (rs.next()) {
 
-                customTextfield6.setText(rs.getString("pic1"));
+                 customTextfield6.setText(rs.getString("pic1"));
                 customTextfield7.setText(rs.getString("pic2"));
                 customTextfield8.setText(rs.getString("pic3"));
                 customTextfield14.setText(rs.getString("remark"));
@@ -655,14 +984,12 @@ public class BizPointment extends MasterForm {
                 comboBoxSuggestion10.setSelectedItem(rs.getString("delivery"));
 
                 comboBoxSuggestion11.setSelectedItem(rs.getString("quality"));
-                idIntegrated.setText(rs.getString("partner_id"));
-                boxID1.setSelectedItem("ID #1");
-                boxID2.setSelectedItem("ID #2");
+               
+//                boxID1.setSelectedItem("ID #1");
+//                boxID2.setSelectedItem("ID #2");
+                 idIntegrated.setText(rs.getString("partner_id"));
                 textID3.setText("");
-jButton1.setEnabled(true);
-jButton2.setEnabled(false);
-jButton3.setEnabled(false);
-jButton4.setEnabled(true);
+                jButton2.setVisible(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -757,18 +1084,12 @@ jButton4.setEnabled(true);
 
     private void provinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceActionPerformed
         try {
-            String id = Integer.toString(id3);
+            city.removeAllItems();
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + province.getSelectedItem().toString() + "'");
             while (myRess.next()) {
-                boxID1.removeAllItems();
-                boxID2.removeAllItems();
+
                 city.addItem(myRess.getString("name"));
-                boxID1.addItem(myRess.getString("state_code"));
-                boxID1.setSelectedItem(myRess.getString("state_code"));
-                boxID2.addItem(myRess.getString("state_id"));
-                boxID2.setSelectedItem(myRess.getString("state_id"));
-                textID3.setText(id);
-                idIntegrated.setText("" + boxID1.getSelectedItem() + "-" + boxID2.getSelectedItem() + "-" + id + "");
+//                idIntegrated.setText("" + boxID1.getSelectedItem() + "-" + boxID2.getSelectedItem() + "-" + id + "");
             }
         } catch (SQLException ex) {
         }
@@ -840,7 +1161,71 @@ jButton4.setEnabled(true);
     }//GEN-LAST:event_textNPWPActionPerformed
 
     private void boxTax1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTax1ActionPerformed
-        // TODO add your handling code here:
+        String a = boxTax1.getSelectedItem().toString();
+
+        if (a.equals("ID Partener")) {
+            b = "partner_id";
+        } else if (a.equals("Nama")) {
+            b = "name";
+        } else if (a.equals("Kota")) {
+            b = "city";
+        }
+
+        System.out.println(b);
+
+        String mySearch = textSearch.getText();
+        int row = MyTable.getRowCount();
+        for (int i = 0; i < row; i++) {
+            myModel.removeRow(0);
+        }
+        if (mySearch != null) {
+
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%'");
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("city"),
+                        rs.getString("address"),
+                        rs.getString("tax_payer"),
+                        rs.getString("pph"),};
+                    myModel.insertRow(0, data);
+
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            }
+        } else {
+
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("select*from biz_partner");
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("city"),
+                        rs.getString("address"),
+                        rs.getString("tax_payer"),
+                        rs.getString("pph"),};
+                    myModel.insertRow(0, data);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            }
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_boxTax1ActionPerformed
 
     private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
@@ -938,7 +1323,7 @@ jButton4.setEnabled(true);
                 rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%'");
                 while (rs.next()) {
                     String[] data = {
-                       rs.getString("biz_id"),
+                        rs.getString("biz_id"),
                         rs.getString("partner_id"),
                         rs.getString("register_date"),
                         rs.getString("name"),
@@ -962,7 +1347,7 @@ jButton4.setEnabled(true);
                 rs = stm.executeQuery("select*from biz_partner");
                 while (rs.next()) {
                     String[] data = {
-                       rs.getString("biz_id"),
+                        rs.getString("biz_id"),
                         rs.getString("partner_id"),
                         rs.getString("register_date"),
                         rs.getString("name"),
@@ -1005,45 +1390,284 @@ jButton4.setEnabled(true);
             }
 
             tampil();
+            jButton2.setVisible(true);
+            set_kosong();
 
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            Statement stm = koneksi.createStatement();
-            String sql = "update biz_partner set name='" + textName.getText() + "',no_hp ='" + t_hp.getText() + "',"
-                    + "email='" + textMail.getText() + "',country='" + country.getSelectedItem().toString() + "',"
-                    + "province='" + province.getSelectedItem().toString() + "',city='" + city.getSelectedItem().toString() + "',"
-                    + "rt='" + textRT.getText() + "',rw='" + textRW.getText() + "',"
-                    + "postcode='" + textPostcode.getText() + "',address='" + textAddress.getText() + "',"
-                    + "register_date='" + textDateRegister.getText() + "',tax_payer='" + boxTax.getSelectedItem().toString() + "',"
-                    + "npwp_no='" + textNPWP.getText() + "',pph='" + boxPPH.getSelectedItem().toString() + "',"
-                    + "pic1='" + customTextfield6.getText() + "',pic2='" + customTextfield7.getText() + "',"
-                    + "pic3='" + customTextfield8.getText() + "',price='" + comboBoxSuggestion8.getSelectedItem().toString() + "',"
-                    + "cordination='" + comboBoxSuggestion9.getSelectedItem().toString() + "',delivery='" + comboBoxSuggestion10.getSelectedItem().toString() + "',"
-                    + "quality='" + comboBoxSuggestion11.getSelectedItem().toString() + "',remark='" + customTextfield14.getText() + "' where biz_id='" + id_biz + "'";
-
-            stm.executeUpdate(sql);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
+        jButton2.setVisible(true);
         set_kosong();
-jButton1.setEnabled(false);
-jButton2.setEnabled(true);
-jButton3.setEnabled(true);
-jButton4.setEnabled(false);// TODO add your handling code here:
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        set_kosong(); 
-        jButton1.setEnabled(false);
-jButton2.setEnabled(true);
-jButton3.setEnabled(true);
-jButton4.setEnabled(false);// TODO add your handling code here:
+        int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save teh data and exit ?", "Option", JOptionPane.YES_NO_OPTION);
+        if (respon == 0) {
+            try {
+                Statement stm = koneksi.createStatement();
+                String sql = "update biz_partner set name='" + textName.getText() + "',no_hp ='" + t_hp.getText() + "',"
+                        + "email='" + textMail.getText() + "',country='" + country.getSelectedItem().toString() + "',"
+                        + "province='" + province.getSelectedItem().toString() + "',city='" + city.getSelectedItem().toString() + "',"
+                        + "rt='" + textRT.getText() + "',rw='" + textRW.getText() + "',"
+                        + "postcode='" + textPostcode.getText() + "',address='" + textAddress.getText() + "',"
+                        + "register_date='" + textDateRegister.getText() + "',tax_payer='" + boxTax.getSelectedItem().toString() + "',"
+                        + "npwp_no='" + textNPWP.getText() + "',pph='" + boxPPH.getSelectedItem().toString() + "',"
+                        + "pic1='" + customTextfield6.getText() + "',pic2='" + customTextfield7.getText() + "',"
+                        + "pic3='" + customTextfield8.getText() + "',price='" + comboBoxSuggestion8.getSelectedItem().toString() + "',"
+                        + "cordination='" + comboBoxSuggestion9.getSelectedItem().toString() + "',delivery='" + comboBoxSuggestion10.getSelectedItem().toString() + "',"
+                        + "quality='" + comboBoxSuggestion11.getSelectedItem().toString() + "',remark='" + customTextfield14.getText() + "' where biz_id='" + id_biz + "'";
+
+                stm.executeUpdate(sql);
+                set_kosong();
+                jButton2.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void customTextfield7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextfield7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customTextfield7ActionPerformed
+
+    private void idIntegratedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idIntegratedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idIntegratedActionPerformed
+
+    private void boxTaxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_boxTaxPopupMenuWillBecomeVisible
+
+        boxTax.removeItem("Tax Payer");
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_boxTaxPopupMenuWillBecomeVisible
+
+    private void boxPPHPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_boxPPHPopupMenuWillBecomeVisible
+        boxPPH.removeItem("PPh23 (%)"); // TODO add your handling code here:
+    }//GEN-LAST:event_boxPPHPopupMenuWillBecomeVisible
+
+    private void comboBoxSuggestion8PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboBoxSuggestion8PopupMenuWillBecomeVisible
+        comboBoxSuggestion8.removeItem("Price");  // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxSuggestion8PopupMenuWillBecomeVisible
+
+    private void comboBoxSuggestion9PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboBoxSuggestion9PopupMenuWillBecomeVisible
+        comboBoxSuggestion9.removeItem("Cordination");         // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxSuggestion9PopupMenuWillBecomeVisible
+
+    private void comboBoxSuggestion10PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboBoxSuggestion10PopupMenuWillBecomeVisible
+        comboBoxSuggestion10.removeItem("Delivery");         // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxSuggestion10PopupMenuWillBecomeVisible
+
+    private void comboBoxSuggestion11PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboBoxSuggestion11PopupMenuWillBecomeVisible
+        comboBoxSuggestion11.removeItem("Quality");         // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxSuggestion11PopupMenuWillBecomeVisible
+
+    private void boxTax1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_boxTax1PopupMenuWillBecomeVisible
+        boxTax1.removeItem("Search Category");    // TODO add your handling code here:
+    }//GEN-LAST:event_boxTax1PopupMenuWillBecomeVisible
+
+    private void boxID1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_boxID1PopupMenuWillBecomeVisible
+        boxID1.removeItem("ID #1");          // TODO add your handling code here:
+    }//GEN-LAST:event_boxID1PopupMenuWillBecomeVisible
+
+    private void boxID2PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_boxID2PopupMenuWillBecomeVisible
+        boxID2.removeItem("ID #2");      // TODO add your handling code here:
+    }//GEN-LAST:event_boxID2PopupMenuWillBecomeVisible
+
+    private void boxID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxID2ActionPerformed
+
+        id_employee();
+//       try {
+//            String id = Integer.toString(id3);
+//            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + province.getSelectedItem().toString() + "'");
+//            while (myRess.next()) {
+//                idIntegrated.setText("" + boxID1.getSelectedItem() + "-" + boxID2.getSelectedItem() + "-" + id + "");
+//            }
+//        } catch (SQLException ex) {
+//        }        // TODO add your handling code here:
+    }//GEN-LAST:event_boxID2ActionPerformed
+
+    private void boxID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxID1ActionPerformed
+        id_employee();        // TODO add your handling code here:
+    }//GEN-LAST:event_boxID1ActionPerformed
+
+    private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
+        int row = MyTable.getSelectedRow();
+        String a = ((String) MyTable.getValueAt(row, 0));
+        id_biz = a;
+        System.out.println(a);
+
+        try {
+            Statement stm = koneksi.createStatement();
+            rs = stm.executeQuery("select*from biz_partner where biz_id = " + a + "");
+            while (rs.next()) {
+             customTextfield6.setText(rs.getString("pic1"));
+                customTextfield7.setText(rs.getString("pic2"));
+                customTextfield8.setText(rs.getString("pic3"));
+                customTextfield14.setText(rs.getString("remark"));
+                textName.setText(rs.getString("name"));
+                t_hp.setText(rs.getString("no_hp"));
+                textMail.setText(rs.getString("email"));
+                textRT.setText(rs.getString("rt"));
+                textRW.setText(rs.getString("rw"));
+                textPostcode.setText(rs.getString("postcode"));
+                textAddress.setText(rs.getString("address"));
+                textNPWP.setText(rs.getString("npwp_no"));
+                textDateRegister.setText(rs.getString("register_date"));
+
+                country.setSelectedItem(rs.getString("country"));
+
+                province.setSelectedItem(rs.getString("province"));
+
+                city.setSelectedItem(rs.getString("city"));
+
+                boxTax.setSelectedItem(rs.getString("tax_payer"));
+
+                boxPPH.setSelectedItem(rs.getString("pph"));
+
+                comboBoxSuggestion8.setSelectedItem(rs.getString("price"));
+
+                comboBoxSuggestion9.setSelectedItem(rs.getString("cordination"));
+
+                comboBoxSuggestion10.setSelectedItem(rs.getString("delivery"));
+
+                comboBoxSuggestion11.setSelectedItem(rs.getString("quality"));
+               
+//                boxID1.setSelectedItem("ID #1");
+//                boxID2.setSelectedItem("ID #2");
+                 idIntegrated.setText(rs.getString("partner_id"));
+                textID3.setText("");
+                jButton2.setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_MyTableMouseClicked
+
+    private void customTextfield7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield7KeyTyped
+  char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume();
+        }
+        String a;
+        String b = "-";
+        if (t_hp.getText().length() < 3) {
+            t_hp.setText("(0)");
+        } else if (t_hp.getText().length() == 6) {
+            t_hp.setText(t_hp.getText() + "-");
+        } else if (t_hp.getText().length() == 7) {
+            StringBuffer sb = new StringBuffer(t_hp.getText());
+            sb.setLength(6);
+            t_hp.setText("" + sb);
+        } else if (t_hp.getText().length() == 11) {
+            t_hp.setText(t_hp.getText() + "-");
+        } else if (t_hp.getText().length() == 12) {
+            StringBuffer sb = new StringBuffer(t_hp.getText());
+            sb.setLength(11);
+            t_hp.setText("" + sb);
+        } else if (t_hp.getText().length() == 17) {
+            t_hp.setText(t_hp.getText());
+            evt.consume();
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_customTextfield7KeyTyped
+
+    private void stglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stglActionPerformed
+
+    private void stglKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stglKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stglKeyReleased
+
+    private void stglKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stglKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stglKeyTyped
+
+    private void etglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_etglActionPerformed
+
+    private void etglKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etglKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_etglKeyReleased
+
+    private void etglKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etglKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_etglKeyTyped
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+  String a = boxTax1.getSelectedItem().toString();
+
+        if (a.equals("ID Partener")) {
+            b = "partner_id";
+        } else if (a.equals("Nama")) {
+            b = "name";
+        } else if (a.equals("Kota")) {
+            b = "city";
+        }
+
+        System.out.println(b);
+
+        String mySearch = textSearch.getText();
+        int row = MyTable.getRowCount();
+        for (int i = 0; i < row; i++) {
+            myModel.removeRow(0);
+        }
+        if (mySearch != null) {
+
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%' AND register_date BETWEEN '"+stgl.getText()+"' AND '"+etgl.getText()+"' ");
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("city"),
+                        rs.getString("address"),
+                        rs.getString("tax_payer"),
+                        rs.getString("pph"),};
+                    myModel.insertRow(0, data);
+
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            }
+        } else {
+
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("select*from biz_partner");
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("city"),
+                        rs.getString("address"),
+                        rs.getString("tax_payer"),
+                        rs.getString("pph"),};
+                    myModel.insertRow(0, data);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            }
+        } 
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1064,11 +1688,15 @@ jButton4.setEnabled(false);// TODO add your handling code here:
     private CustomResource.CustomTextfield customTextfield7;
     private CustomResource.CustomTextfield customTextfield8;
     private com.raven.datechooser.DateChooser dateChooser1;
+    private com.raven.datechooser.DateChooser dateChooser2;
+    private com.raven.datechooser.DateChooser dateChooser3;
+    private CustomResource.CustomTextfield etgl;
     private CustomResource.CustomTextfield idIntegrated;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1079,6 +1707,7 @@ jButton4.setEnabled(false);// TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private CustomResource.ComboBoxSuggestion province;
+    private CustomResource.CustomTextfield stgl;
     private CustomResource.CustomTextfield t_hp;
     private javax.swing.JTextArea textAddress;
     private CustomResource.CustomTextfield textDateRegister;

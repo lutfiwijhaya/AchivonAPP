@@ -116,10 +116,30 @@ public class Employe_list extends javax.swing.JFrame {
         }
     
     }
-    
-    
+    }
+        
+      if (CustomResource.EmployeeSession.getsesiform().equals("2")){
+            
+    DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select * from employee");
+            while (rs.next()) {
+                String[] data = {
+                    rs.getString("id"),
+                    rs.getString("karyawan_id"),
+                    rs.getString("name"),
+                    rs.getString("job_position")};
+                dataModel2.insertRow(0, data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
     
     }
+        
+        
     }
     
     private void MyWindow1(){
@@ -228,9 +248,22 @@ if (CustomResource.EmployeeSession.getsesiform().equals("1")){
                  DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
     
     
-CustomResource.EmployeeSession.setEmployeeID(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
-    System.out.println(CustomResource.EmployeeSession.getEmployeeID());
+CustomResource.CandidateSession.setCandidateID(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
+    
 Main.main.getMain().showForm(new EmployeeConfirmation());
+  this.dispose();
+
+
+}
+if (CustomResource.EmployeeSession.getsesiform().equals("2")){
+    
+                 DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
+    
+    
+CustomResource.EmployeeSession.setKTPAllocation(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
+    System.out.println(CustomResource.EmployeeSession.getKTPAllocation());
+   
+Main.main.getMain().showForm(new AllocationAnnouncement());
   this.dispose();
 
 

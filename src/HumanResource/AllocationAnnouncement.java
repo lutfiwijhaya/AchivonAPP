@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,18 +45,22 @@ import javax.swing.table.DefaultTableModel;
 public class AllocationAnnouncement extends MasterForm {
     DefaultTableModel myModel3;
     Connection koneksi;
+      Statement stm;
+    ResultSet rs;
     public AllocationAnnouncement() {
         initComponents();
         openDB();
-        
+       
         MyWindow();
+        
 //        myModel3 = new DefaultTableModel();
 //        String [] header = {"Name", "Discipline", "Position", "Description Alocation", "Initial Join Date", "Alocation Date"};
 //        
         ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
 //        jTable1.setModel(myModel3);
-        tampil();
+         
+       addtext();
     }
     
     private void openDB() {
@@ -66,17 +71,33 @@ public class AllocationAnnouncement extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
+   
     
-    private void tampil() {
+    
+    
+      private void addtext() {
+
         try {
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee");
-            while (myRess.next()) {
-                textSearch.addItem(myRess.getString("name"));
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("SELECT * FROM employee WHERE id =" +CustomResource.EmployeeSession.getKTPAllocation()+ "");
+
+            while (rs.next()) {
+                
+                textName.setText(rs.getString("name"));
+                textPosition.setText(rs.getString("job_position"));
+                textDiscipline.setText(rs.getString("job_position"));
+                textJoinDate.setText(rs.getString("birthday"));
             }
-        } catch (SQLException ex) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        textSearch.setEnabled(true);
+
     }
+    
+    
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,7 +108,6 @@ public class AllocationAnnouncement extends MasterForm {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        textSearch = new CustomResource.ComboBoxSuggestion();
         textName = new CustomResource.CustomTextfield();
         textDiscipline = new CustomResource.CustomTextfield();
         textPosition = new CustomResource.CustomTextfield();
@@ -96,6 +116,7 @@ public class AllocationAnnouncement extends MasterForm {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         t_tgl = new CustomResource.CustomTextfield();
+        jButton1 = new javax.swing.JButton();
 
         dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
         dateChooser1.setDateFormat("dd-MMM-yyyy");
@@ -139,13 +160,6 @@ public class AllocationAnnouncement extends MasterForm {
         jLabel3.setText("Allocation Announcement");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 320, 40));
 
-        textSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textSearchActionPerformed(evt);
-            }
-        });
-        add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 270, -1));
-
         textName.setLabelText("Nama / Name");
         add(textName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 280, -1));
 
@@ -185,20 +199,15 @@ public class AllocationAnnouncement extends MasterForm {
 
         t_tgl.setLabelText("Tanggal Alokasi / Allocation Date");
         add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 170, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
-        try {
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee WHERE name ='" + textSearch.getSelectedItem().toString() + "'");
-            while (myRess.next()) {
-                textName.setText(myRess.getString("name"));
-                textPosition.setText(myRess.getString("job_position"));
-                textDiscipline.setText(myRess.getString("job_position"));
-                textJoinDate.setText(myRess.getString("birthday"));
+        jButton1.setText("Ambil/Take Data Emoloyee");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
-        } catch (SQLException ex) {
-        }
-    }//GEN-LAST:event_textSearchActionPerformed
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 180, 40));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
@@ -282,8 +291,14 @@ public class AllocationAnnouncement extends MasterForm {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+CustomResource.EmployeeSession.setsesiform("2");
+        new Employe_list().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.datechooser.DateChooser dateChooser1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -297,40 +312,39 @@ public class AllocationAnnouncement extends MasterForm {
     private CustomResource.CustomTextfield textJoinDate;
     private CustomResource.CustomTextfield textName;
     private CustomResource.CustomTextfield textPosition;
-    private CustomResource.ComboBoxSuggestion textSearch;
     // End of variables declaration//GEN-END:variables
     
-    private void myShow() {
-        String mySearch = textSearch.getSelectedItem().toString();
-        int row = jTable1.getRowCount();
-        for(int i = 0; i < row; i++){
-            myModel3.removeRow(0);
-        }
-        if (mySearch != null) {
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee WHERE name LIKE '%"+mySearch+"%'");
-            while (myRess.next()) {
-                String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
-                myModel3.addRow(myData);
-            }
-            } catch (SQLException ex) {
-//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee");
-                while (myRess.next()) {
-                    
-                    String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
-                    myModel3.addRow(myData);
-                
-                }
-            } catch (SQLException ex) {
-//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-//                System.out.println("javaapplication1.CandidateList.myShow()");
-            }
-        }
-    }
+//    private void myShow() {
+//        String mySearch = textSearch.getSelectedItem().toString();
+//        int row = jTable1.getRowCount();
+//        for(int i = 0; i < row; i++){
+//            myModel3.removeRow(0);
+//        }
+//        if (mySearch != null) {
+//            try {
+//                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee WHERE name LIKE '%"+mySearch+"%'");
+//            while (myRess.next()) {
+//                String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
+//                myModel3.addRow(myData);
+//            }
+//            } catch (SQLException ex) {
+////                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }else{
+//            try {
+//                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee");
+//                while (myRess.next()) {
+//                    
+//                    String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
+//                    myModel3.addRow(myData);
+//                
+//                }
+//            } catch (SQLException ex) {
+////                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+////                System.out.println("javaapplication1.CandidateList.myShow()");
+//            }
+//        }
+//    }
     
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

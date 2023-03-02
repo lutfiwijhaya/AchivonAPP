@@ -3,10 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hi/OneDrive/Documents/GitHub/AchivonAPP/src/CustomResource/koneksi.java</file>
-            <file>file:/C:/Users/hi/OneDrive/Documents/GitHub/AchivonAPP/src/HumanResource/EmployeeClearance.java</file>
-            <file>file:/C:/Users/hi/OneDrive/Documents/GitHub/AchivonAPP/src/Main/main.java</file>
-            <file>file:/C:/Users/hi/OneDrive/Documents/GitHub/AchivonAPP/src/HumanResource/EmployeeEvaluation.java</file>
+            <file>file:/D:/AchivonAPP/src/CustomResource/eye_hide.png</file>
+            <file>file:/D:/AchivonAPP/src/Main/LoginFrame.java</file>
+            <file>file:/D:/AchivonAPP/src/HumanResource/Employe_list.java</file>
+            <file>file:/D:/AchivonAPP/src/CustomResource/EmployeeSession.java</file>
+            <file>file:/D:/AchivonAPP/src/HumanResource/CandidateApplication.java</file>
+            <file>file:/D:/AchivonAPP/src/CustomResource/koneksi.java</file>
+            <file>file:/D:/AchivonAPP/src/HumanResource/EmployeeEvaluation.java</file>
+            <file>file:/D:/AchivonAPP/src/CustomResource/frezeecolumn.java</file>
+            <file>file:/D:/AchivonAPP/src/Main/main.java</file>
+            <file>file:/D:/AchivonAPP/src/HumanResource/AllocationAnnouncement.java</file>
+            <file>file:/D:/AchivonAPP/src/ProcurementSystem/BizPointment.java</file>
+            <file>file:/D:/AchivonAPP/src/HumanResource/EmployeeConfirmation.java</file>
+            <file>file:/D:/AchivonAPP/src/CustomResource/celleditor.java</file>
+            <file>file:/D:/AchivonAPP/src/HumanResource/AddJobVacancy.java</file>
+            <file>file:/D:/AchivonAPP/src/CustomResource/Welcome.java</file>
         </group>
     </open-files>
 </project-private>
