@@ -13,6 +13,7 @@ public class EmployeeSession {
     private static String KTPClearance;
     private static String KTPHandover;
     private static String sesi_form;
+    private static String biz_id;
     
     // sesi form : 1. 
     
@@ -78,4 +79,14 @@ public class EmployeeSession {
     public static void setKTPHandover(String KTPHandover){
         EmployeeSession.KTPHandover = KTPHandover;
     }
+    
+     public static String getbiz_id(){
+        return biz_id;
+    }
+    
+    public static void setbiz_id(String biz_id){
+        EmployeeSession.biz_id = biz_id;
+    }
+    
+    
 }

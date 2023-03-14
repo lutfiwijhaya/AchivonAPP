@@ -7,6 +7,7 @@ package HumanResource;
 import CustomResource.CandidateSession;
 import CustomResource.MySession;
 import CustomResource.koneksi;
+import ProcurementSystem.po;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -138,6 +139,53 @@ public class Employe_list extends javax.swing.JFrame {
         }
     
     }
+      
+       if (CustomResource.EmployeeSession.getsesiform().equals("3")){
+            DefaultTableModel myModel;
+    String[] header1 = {"id", "Partner_ID", "Name", "City"};
+               myModel = new DefaultTableModel(header1, 1);
+               jTable1.setModel(myModel);
+               
+        myModel.addRow(new Object[]{});
+    //mendapatkan model kolom pada JTable
+        TableColumnModel columnModel = jTable1.getColumnModel();
+//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
+        TableColumn column = columnModel.getColumn(0);
+        TableColumn column1 = columnModel.getColumn(1);
+//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
+        column.setMinWidth(0);
+        column.setMaxWidth(0);
+        column.setWidth(0);
+        column.setPreferredWidth(0);
+        column1.setMinWidth(80);
+        column1.setMaxWidth(80);
+        column1.setWidth(80);
+        column1.setPreferredWidth(80);
+//mengakses nilai pada kolom yang disembunyikan
+        int rowIndex = 0; //indeks baris
+        Object value = jTable1.getValueAt(rowIndex, 0);
+         int rowCount = myModel.getRowCount();
+
+        for (int i = rowCount - 1; i >= 0; i--) {
+            myModel.removeRow(i);
+        }
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select * from biz_partner");
+            while (rs.next()) {
+                String[] data = {
+                    rs.getString("biz_id"),
+                    rs.getString("partner_id"),
+                    rs.getString("name"),
+                    rs.getString("city")};
+                myModel.insertRow(0, data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
+    
+    }
         
         
     }
@@ -243,7 +291,9 @@ public class Employe_list extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-if (CustomResource.EmployeeSession.getsesiform().equals("1")){
+//candidate
+        
+        if (CustomResource.EmployeeSession.getsesiform().equals("1")){
     
                  DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
     
@@ -252,9 +302,9 @@ CustomResource.CandidateSession.setCandidateID(dataModel2.getValueAt(jTable1.get
     
 Main.main.getMain().showForm(new EmployeeConfirmation());
   this.dispose();
-
-
 }
+        
+        
 if (CustomResource.EmployeeSession.getsesiform().equals("2")){
     
                  DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
@@ -265,9 +315,21 @@ CustomResource.EmployeeSession.setKTPAllocation(dataModel2.getValueAt(jTable1.ge
    
 Main.main.getMain().showForm(new AllocationAnnouncement());
   this.dispose();
-
-
 }
+
+if (CustomResource.EmployeeSession.getsesiform().equals("3")){
+    
+                 DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
+    
+    
+CustomResource.EmployeeSession.setbiz_id(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
+    System.out.println(CustomResource.EmployeeSession.getbiz_id());
+   
+Main.main.getMain().showForm(new po());
+  this.dispose();
+}
+
+
 
 
 
@@ -460,8 +522,8 @@ this.dispose();        // TODO add your handling code here:
         }
          }else{
          
-         
-         
+       //sesi 2 employee  
+          if (CustomResource.EmployeeSession.getsesiform().equals("2")){
           DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();
         String mySearch = textSearch.getText();
         int row = jTable1.getRowCount();
@@ -588,8 +650,55 @@ this.dispose();        // TODO add your handling code here:
         
         }
         
-         }
+         }}
         
+        // sesi 3 bizpartner
+        
+         if (CustomResource.EmployeeSession.getsesiform().equals("3")){
+             
+                DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();
+        String mySearch = textSearch.getText();
+        int row = jTable1.getRowCount();
+        for (int i = 0; i < row; i++) {
+            myModel.removeRow(0);
+        }
+        if (mySearch != null) {
+
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE name LIKE '%" + mySearch + "%'");
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString("biz_id"),
+                    rs.getString("partner_id"),
+                    rs.getString("name"),
+                    rs.getString("city")};
+                    myModel.insertRow(0, data);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            }
+        } else {
+
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("select*from biz_partner");
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString("biz_id"),
+                    rs.getString("partner_id"),
+                    rs.getString("name"),
+                    rs.getString("city")};
+                    myModel.insertRow(0, data);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            }
+        }  
+             
+         }
         
        
     }//GEN-LAST:event_textSearchKeyReleased

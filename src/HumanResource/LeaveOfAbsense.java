@@ -703,7 +703,7 @@ public class LeaveOfAbsense extends MasterForm {
             for (int i = 0; i <= jtabelrows - 1; i++) {
                 if (jTable4.getValueAt(i, 0) == null || jTable4.getValueAt(i, 0).toString().isEmpty()) {
                     // Skip this row if the first column is null or empty
-                    continue;
+                    continue;     
                 } else {
                     String dtabel_jobdes = jTable4.getValueAt(i, 0).toString();
                     String dtabel_nametaking = jTable4.getValueAt(i, 1) != null ? jTable4.getValueAt(i, 1).toString() : "";
@@ -751,6 +751,7 @@ public class LeaveOfAbsense extends MasterForm {
             labelNameTeamPred.setVisible(true);
             fresh();
         } catch (SQLException e) {
+            System.out.println(e);
             JOptionPane.showMessageDialog(null, "Gagal mengajukan untuk meninggalkan absen \nFailed requesting to leave of absence" );
         } finally {
             

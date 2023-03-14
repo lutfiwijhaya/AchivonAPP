@@ -38,6 +38,9 @@ import HumanResource.RequestEmployeeAllocation;
 import HumanResource.ResignationList;
 import HumanResource.SummaryStatusCandidatEmployee;
 import ProcurementSystem.BizPointment;
+import ProcurementSystem.Warehouse;
+import ProcurementSystem.po;
+import ProcurementSystem.po_list;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -241,8 +244,15 @@ public class main extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
         WarehouseSystem = new javax.swing.JMenu();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
         AcountingSystem = new javax.swing.JMenu();
         myProfile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -357,15 +367,10 @@ public class main extends javax.swing.JFrame {
             .addComponent(jSeparator29, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -710,6 +715,23 @@ public class main extends javax.swing.JFrame {
         ProcurementSystem.add(jSeparator16);
 
         jMenu1.setText("PO System");
+
+        jMenuItem22.setText("Create PO");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem22);
+
+        jMenuItem23.setText("PO List");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem23);
+
         ProcurementSystem.add(jMenu1);
         ProcurementSystem.add(jSeparator15);
 
@@ -717,6 +739,32 @@ public class main extends javax.swing.JFrame {
 
         WarehouseSystem.setText("Warehouse System  |");
         WarehouseSystem.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+
+        jMenuItem21.setText("Add Item");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        WarehouseSystem.add(jMenuItem21);
+
+        jMenuItem17.setText("Warehouse");
+        WarehouseSystem.add(jMenuItem17);
+
+        jMenuItem18.setText("Office");
+        WarehouseSystem.add(jMenuItem18);
+
+        jMenuItem19.setText("On Site");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        WarehouseSystem.add(jMenuItem19);
+
+        jMenuItem20.setText("In Employee");
+        WarehouseSystem.add(jMenuItem20);
+
         ToolBar.add(WarehouseSystem);
 
         AcountingSystem.setText("Accounting System  |");
@@ -987,6 +1035,22 @@ public class main extends javax.swing.JFrame {
         showForm(new BizPointment());
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+showForm(new Warehouse());        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+showForm(new po());          // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+   showForm(new po_list());      // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1075,7 +1139,14 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
