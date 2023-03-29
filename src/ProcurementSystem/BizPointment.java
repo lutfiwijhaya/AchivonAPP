@@ -4,16 +4,8 @@
  */
 package ProcurementSystem;
 
-import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
-
-import static com.microsoft.schemas.office.x2006.encryption.CTKeyEncryptor.Uri.Enum.table;
-import com.toedter.calendar.JDateChooser;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
@@ -21,46 +13,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JViewport;
-import javax.swing.RowSorter;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SortOrder;
-import javax.swing.UIManager;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableRowSorter;
-import java.awt.Component;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import javax.swing.JFrame;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
  * @author hi
  */
 public class BizPointment extends MasterForm {
-    
-   
-
 
     Connection koneksi;
     Statement stm;
@@ -78,17 +43,16 @@ public class BizPointment extends MasterForm {
         CountryBox();
 
         country.setSelectedItem("Indonesia");
-String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or HP", "Email", "Country", "Province", "city/district", "Address", "PostCode", "tax payer", "NPWP", "pph", "PIC Name", "PIC Mobile No", "PIC Email", "Price", "Cordination", "Delivery", "Quality", "Remark"};
+        String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or HP", "Email", "Country", "Province", "city/district", "Address", "PostCode", "tax payer", "NPWP", "pph", "PIC Name", "PIC Mobile No", "PIC Email", "Price", "Cordination", "Delivery", "Quality", "Remark"};
         String[] header1 = {"id", "Partner ID", "Name", "City"};
-               myModel = new DefaultTableModel(header, 1);
-               myModel1 = new DefaultTableModel(header1, 1);
+        myModel = new DefaultTableModel(header, 1);
+        myModel1 = new DefaultTableModel(header1, 1);
 //        String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or HP", "Email", "Country", "Province", "city/district", "Address", "PostCode", "tax payer", "NPWP", "pph", "PIC Name", "PIC Mobile No", "PIC Email", "Price", "Cordination", "Delivery", "Quality", "Remark"};
 //        String[] header1 = {"id", "Partner ID", "Name", "City"};
 //        myModel = new DefaultTableModel(header, 1);
         MyTable.setModel(myModel);
 //        myModel1 = new DefaultTableModel(header1, 1);
         MyTable2.setModel(myModel1);
-        
         MyTable.setDefaultEditor(Object.class, null);
         MyTable2.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
@@ -113,24 +77,16 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
         MyTable.getColumnModel().getColumn(19).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(20).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(21).setPreferredWidth(100);
-        
         MyTable2.getColumnModel().getColumn(3).setPreferredWidth(105);
         MyTable2.getColumnModel().getColumn(2).setPreferredWidth(105);
         table_id();
         table_id2();
         tampil();
-      
         scrol();
-       
-      
     }
-    
-  
- 
 
-
- void scrol(){
-         // Add an AdjustmentListener to the vertical scroll bar of the first scroll pane
+    void scrol() {
+        // Add an AdjustmentListener to the vertical scroll bar of the first scroll pane
         JScrollBar verticalScrollBar1 = jScrollPane2.getVerticalScrollBar();
         verticalScrollBar1.addAdjustmentListener(new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -139,8 +95,8 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                 verticalScrollBar2.setValue(e.getValue());
             }
         });
-        
-         // Add an AdjustmentListener to the vertical scroll bar of the first scroll pane
+
+        // Add an AdjustmentListener to the vertical scroll bar of the first scroll pane
         JScrollBar verticalScrollBar11 = jScrollPane4.getVerticalScrollBar();
         verticalScrollBar1.addAdjustmentListener(new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -149,27 +105,19 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                 verticalScrollBar2.setValue(e.getValue());
             }
         });
-        
-        
-        
-        
- }
-
+    }
 
     void tampil() {
         try {
             int rowCount = myModel.getRowCount();
-
             for (int i = rowCount - 1; i >= 0; i--) {
                 myModel.removeRow(i);
                 myModel1.removeRow(i);
             }
-             
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from biz_partner");
             while (rs.next()) {
                 String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                
                 String[] data = {
                     rs.getString("biz_id"),
                     rs.getString("partner_id"),
@@ -195,9 +143,8 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                     rs.getString("remark"),};
                 String[] data1 = {data[0], data[1], data[3], data[8]};
                 myModel.insertRow(0, data);
-                 myModel1.insertRow(0, data1);
+                myModel1.insertRow(0, data1);
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
@@ -231,18 +178,13 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
 //mengakses nilai pada kolom yang disembunyikan
         int rowIndex = 0; //indeks baris
         Object value = MyTable.getValueAt(rowIndex, 0);
-        
-            JTable table = new JTable(MyTable.getModel()) {
-    public boolean getScrollableTracksViewportWidth() {
-        return getPreferredSize().width < getParent().getWidth();
+        JTable table = new JTable(MyTable.getModel()) {
+            public boolean getScrollableTracksViewportWidth() {
+                return getPreferredSize().width < getParent().getWidth();
+            }
+        };
     }
-};
-            
-            
 
-
-    }
-    
     void table_id2() {
 //mendapatkan model kolom pada JTable
         TableColumnModel columnModel = MyTable2.getColumnModel();
@@ -256,16 +198,12 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
 //mengakses nilai pada kolom yang disembunyikan
         int rowIndex = 0; //indeks baris
         Object value = MyTable.getValueAt(rowIndex, 0);
-        
-            JTable table = new JTable(MyTable.getModel()) {
-    public boolean getScrollableTracksViewportWidth() {
-        return getPreferredSize().width < getParent().getWidth();
-    }
-};
-            
-            
 
-
+        JTable table = new JTable(MyTable.getModel()) {
+            public boolean getScrollableTracksViewportWidth() {
+                return getPreferredSize().width < getParent().getWidth();
+            }
+        };
     }
 
     private void openDB() {
@@ -296,7 +234,6 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
     }
 
     void set_kosong() {
-
 //        boxID1.addItem("ID #1");
 //        boxID2.addItem("ID #2");
         boxID1.setSelectedItem("ID #1");
@@ -324,9 +261,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
         comboBoxSuggestion9.setSelectedItem("Cordination");
         comboBoxSuggestion10.setSelectedItem("Delivery");
         comboBoxSuggestion11.setSelectedItem("Quality");
-
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1031,13 +966,11 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
         String a = ((String) MyTable.getValueAt(row, 0));
         id_biz = a;
         System.out.println(a);
-
         try {
             Statement stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from biz_partner where biz_id = " + a + "");
             while (rs.next()) {
-
-                 customTextfield6.setText(rs.getString("pic1"));
+                customTextfield6.setText(rs.getString("pic1"));
                 t_hp_pic.setText(rs.getString("pic2"));
                 customTextfield8.setText(rs.getString("pic3"));
                 customTextfield14.setText(rs.getString("remark"));
@@ -1050,42 +983,30 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                 textAddress.setText(rs.getString("address"));
                 textNPWP.setText(rs.getString("npwp_no"));
                 textDateRegister.setText(rs.getString("register_date"));
-
                 country.setSelectedItem(rs.getString("country"));
-
                 province.setSelectedItem(rs.getString("province"));
-
                 city.setSelectedItem(rs.getString("city"));
-
                 boxTax.setSelectedItem(rs.getString("tax_payer"));
-
                 boxPPH.setSelectedItem(rs.getString("pph"));
-
                 comboBoxSuggestion8.setSelectedItem(rs.getString("price"));
-
                 comboBoxSuggestion9.setSelectedItem(rs.getString("cordination"));
-
                 comboBoxSuggestion10.setSelectedItem(rs.getString("delivery"));
-
                 comboBoxSuggestion11.setSelectedItem(rs.getString("quality"));
-               
 //                boxID1.setSelectedItem("ID #1");
 //                boxID2.setSelectedItem("ID #2");
-                 idIntegrated.setText(rs.getString("partner_id"));
+                idIntegrated.setText(rs.getString("partner_id"));
                 textID3.setText("");
                 jButton2.setVisible(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         PreparedStatement stmt = null;
         try {
-            String fa = textAddress.getText()+" "+"RT/"+textRT.getText()+"RW/"+textRW.getText()+" "+city.getSelectedItem().toString()+" "+province.getSelectedItem().toString()+" "+"("+textPostcode.getText()+")";
+            String fa = textAddress.getText() + " " + "RT/" + textRT.getText() + "RW/" + textRW.getText() + " " + city.getSelectedItem().toString() + " " + province.getSelectedItem().toString() + " " + "(" + textPostcode.getText() + ")";
             String sql = "INSERT INTO biz_partner (partner_id, partner_id1, partner_id2, partner_id3, name, no_hp, email, country, province, city, rt, rw, postcode, address, register_date, tax_payer, npwp_no, pph,pic1,pic2,pic3,price,cordination,delivery,quality,remark,fulladd) VALUES (?,?,?,?,?,?,?,?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
             stmt = koneksi.prepareStatement(sql);
             // Mengisi nilai parameter
@@ -1248,7 +1169,6 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
 
     private void boxTax1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTax1ActionPerformed
         String a = boxTax1.getSelectedItem().toString();
-
         if (a.equals("ID Partener")) {
             b = "partner_id";
         } else if (a.equals("Nama")) {
@@ -1256,9 +1176,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
         } else if (a.equals("Kota")) {
             b = "city";
         }
-
         System.out.println(b);
-
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
         for (int i = 0; i < row; i++) {
@@ -1266,81 +1184,74 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
             myModel1.removeRow(0);
         }
         if (mySearch != null) {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%'");
                 while (rs.next()) {
-                     String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                
-                String[] data = {
-                    rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("register_date"),
-                    rs.getString("name"),
-                    rs.getString("no_hp"),
-                    rs.getString("email"),
-                    rs.getString("country"),
-                    rs.getString("province"),
-                    rs.getString("city"),
-                    add,
-                    rs.getString("postcode"),
-                    rs.getString("tax_payer"),
-                    rs.getString("npwp_no"),
-                    rs.getString("pph"),
-                    rs.getString("pic1"),
-                    rs.getString("pic2"),
-                    rs.getString("pic3"),
-                    rs.getString("price"),
-                    rs.getString("cordination"),
-                    rs.getString("delivery"),
-                    rs.getString("quality"),
-                    rs.getString("remark"),};
-                String[] data1 = {data[0], data[1], data[3], data[8]};
-                myModel.insertRow(0, data);
-                 myModel1.insertRow(0, data1);
-
+                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("country"),
+                        rs.getString("province"),
+                        rs.getString("city"),
+                        add,
+                        rs.getString("postcode"),
+                        rs.getString("tax_payer"),
+                        rs.getString("npwp_no"),
+                        rs.getString("pph"),
+                        rs.getString("pic1"),
+                        rs.getString("pic2"),
+                        rs.getString("pic3"),
+                        rs.getString("price"),
+                        rs.getString("cordination"),
+                        rs.getString("delivery"),
+                        rs.getString("quality"),
+                        rs.getString("remark"),};
+                    String[] data1 = {data[0], data[1], data[3], data[8]};
+                    myModel.insertRow(0, data);
+                    myModel1.insertRow(0, data1);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         } else {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("select*from biz_partner");
                 while (rs.next()) {
                     String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                
-                String[] data = {
-                    rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("register_date"),
-                    rs.getString("name"),
-                    rs.getString("no_hp"),
-                    rs.getString("email"),
-                    rs.getString("country"),
-                    rs.getString("province"),
-                    rs.getString("city"),
-                    add,
-                    rs.getString("postcode"),
-                    rs.getString("tax_payer"),
-                    rs.getString("npwp_no"),
-                    rs.getString("pph"),
-                    rs.getString("pic1"),
-                    rs.getString("pic2"),
-                    rs.getString("pic3"),
-                    rs.getString("price"),
-                    rs.getString("cordination"),
-                    rs.getString("delivery"),
-                    rs.getString("quality"),
-                    rs.getString("remark"),};
-                String[] data1 = {data[0], data[1], data[3], data[8]};
-                myModel.insertRow(0, data);
-                 myModel1.insertRow(0, data1);
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("country"),
+                        rs.getString("province"),
+                        rs.getString("city"),
+                        add,
+                        rs.getString("postcode"),
+                        rs.getString("tax_payer"),
+                        rs.getString("npwp_no"),
+                        rs.getString("pph"),
+                        rs.getString("pic1"),
+                        rs.getString("pic2"),
+                        rs.getString("pic3"),
+                        rs.getString("price"),
+                        rs.getString("cordination"),
+                        rs.getString("delivery"),
+                        rs.getString("quality"),
+                        rs.getString("remark"),};
+                    String[] data1 = {data[0], data[1], data[3], data[8]};
+                    myModel.insertRow(0, data);
+                    myModel1.insertRow(0, data1);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
@@ -1349,7 +1260,6 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
 
     private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
         String a = boxTax1.getSelectedItem().toString();
-
         if (a.equals("ID Partener")) {
             b = "partner_id";
         } else if (a.equals("Nama")) {
@@ -1357,9 +1267,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
         } else if (a.equals("Kota")) {
             b = "city";
         }
-
         System.out.println(b);
-
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
         for (int i = 0; i < row; i++) {
@@ -1367,87 +1275,79 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
             myModel1.removeRow(0);
         }
         if (mySearch != null) {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%'");
                 while (rs.next()) {
-                   String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                
-                String[] data = {
-                    rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("register_date"),
-                    rs.getString("name"),
-                    rs.getString("no_hp"),
-                    rs.getString("email"),
-                    rs.getString("country"),
-                    rs.getString("province"),
-                    rs.getString("city"),
-                    add,
-                    rs.getString("postcode"),
-                    rs.getString("tax_payer"),
-                    rs.getString("npwp_no"),
-                    rs.getString("pph"),
-                    rs.getString("pic1"),
-                    rs.getString("pic2"),
-                    rs.getString("pic3"),
-                    rs.getString("price"),
-                    rs.getString("cordination"),
-                    rs.getString("delivery"),
-                    rs.getString("quality"),
-                    rs.getString("remark"),};
-                String[] data1 = {data[0], data[1], data[3], data[8]};
-                myModel.insertRow(0, data);
-                 myModel1.insertRow(0, data1);
-
+                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("country"),
+                        rs.getString("province"),
+                        rs.getString("city"),
+                        add,
+                        rs.getString("postcode"),
+                        rs.getString("tax_payer"),
+                        rs.getString("npwp_no"),
+                        rs.getString("pph"),
+                        rs.getString("pic1"),
+                        rs.getString("pic2"),
+                        rs.getString("pic3"),
+                        rs.getString("price"),
+                        rs.getString("cordination"),
+                        rs.getString("delivery"),
+                        rs.getString("quality"),
+                        rs.getString("remark"),};
+                    String[] data1 = {data[0], data[1], data[3], data[8]};
+                    myModel.insertRow(0, data);
+                    myModel1.insertRow(0, data1);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         } else {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("select*from biz_partner");
                 while (rs.next()) {
                     String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                
-                String[] data = {
-                    rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("register_date"),
-                    rs.getString("name"),
-                    rs.getString("no_hp"),
-                    rs.getString("email"),
-                    rs.getString("country"),
-                    rs.getString("province"),
-                    rs.getString("city"),
-                    add,
-                    rs.getString("postcode"),
-                    rs.getString("tax_payer"),
-                    rs.getString("npwp_no"),
-                    rs.getString("pph"),
-                    rs.getString("pic1"),
-                    rs.getString("pic2"),
-                    rs.getString("pic3"),
-                    rs.getString("price"),
-                    rs.getString("cordination"),
-                    rs.getString("delivery"),
-                    rs.getString("quality"),
-                    rs.getString("remark"),};
-                String[] data1 = {data[0], data[1], data[3], data[8]};
-                myModel.insertRow(0, data);
-                 myModel1.insertRow(0, data1);
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("country"),
+                        rs.getString("province"),
+                        rs.getString("city"),
+                        add,
+                        rs.getString("postcode"),
+                        rs.getString("tax_payer"),
+                        rs.getString("npwp_no"),
+                        rs.getString("pph"),
+                        rs.getString("pic1"),
+                        rs.getString("pic2"),
+                        rs.getString("pic3"),
+                        rs.getString("price"),
+                        rs.getString("cordination"),
+                        rs.getString("delivery"),
+                        rs.getString("quality"),
+                        rs.getString("remark"),};
+                    String[] data1 = {data[0], data[1], data[3], data[8]};
+                    myModel.insertRow(0, data);
+                    myModel1.insertRow(0, data1);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         }
-
-        // TODO add your handling code here:
+// TODO add your handling code here:
     }//GEN-LAST:event_textSearchKeyTyped
 
     private void textSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyReleased
@@ -1475,34 +1375,34 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%'");
                 while (rs.next()) {
-                   String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                
-                String[] data = {
-                    rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("register_date"),
-                    rs.getString("name"),
-                    rs.getString("no_hp"),
-                    rs.getString("email"),
-                    rs.getString("country"),
-                    rs.getString("province"),
-                    rs.getString("city"),
-                    add,
-                    rs.getString("postcode"),
-                    rs.getString("tax_payer"),
-                    rs.getString("npwp_no"),
-                    rs.getString("pph"),
-                    rs.getString("pic1"),
-                    rs.getString("pic2"),
-                    rs.getString("pic3"),
-                    rs.getString("price"),
-                    rs.getString("cordination"),
-                    rs.getString("delivery"),
-                    rs.getString("quality"),
-                    rs.getString("remark"),};
-                String[] data1 = {data[0], data[1], data[3], data[8]};
-                myModel.insertRow(0, data);
-                 myModel1.insertRow(0, data1);
+                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("country"),
+                        rs.getString("province"),
+                        rs.getString("city"),
+                        add,
+                        rs.getString("postcode"),
+                        rs.getString("tax_payer"),
+                        rs.getString("npwp_no"),
+                        rs.getString("pph"),
+                        rs.getString("pic1"),
+                        rs.getString("pic2"),
+                        rs.getString("pic3"),
+                        rs.getString("price"),
+                        rs.getString("cordination"),
+                        rs.getString("delivery"),
+                        rs.getString("quality"),
+                        rs.getString("remark"),};
+                    String[] data1 = {data[0], data[1], data[3], data[8]};
+                    myModel.insertRow(0, data);
+                    myModel1.insertRow(0, data1);
 
                 }
 
@@ -1515,34 +1415,34 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("select*from biz_partner");
                 while (rs.next()) {
-                   String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                
-                String[] data = {
-                    rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("register_date"),
-                    rs.getString("name"),
-                    rs.getString("no_hp"),
-                    rs.getString("email"),
-                    rs.getString("country"),
-                    rs.getString("province"),
-                    rs.getString("city"),
-                    add,
-                    rs.getString("postcode"),
-                    rs.getString("tax_payer"),
-                    rs.getString("npwp_no"),
-                    rs.getString("pph"),
-                    rs.getString("pic1"),
-                    rs.getString("pic2"),
-                    rs.getString("pic3"),
-                    rs.getString("price"),
-                    rs.getString("cordination"),
-                    rs.getString("delivery"),
-                    rs.getString("quality"),
-                    rs.getString("remark"),};
-                String[] data1 = {data[0], data[1], data[3], data[8]};
-                myModel.insertRow(0, data);
-                 myModel1.insertRow(0, data1);
+                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("country"),
+                        rs.getString("province"),
+                        rs.getString("city"),
+                        add,
+                        rs.getString("postcode"),
+                        rs.getString("tax_payer"),
+                        rs.getString("npwp_no"),
+                        rs.getString("pph"),
+                        rs.getString("pic1"),
+                        rs.getString("pic2"),
+                        rs.getString("pic3"),
+                        rs.getString("price"),
+                        rs.getString("cordination"),
+                        rs.getString("delivery"),
+                        rs.getString("quality"),
+                        rs.getString("remark"),};
+                    String[] data1 = {data[0], data[1], data[3], data[8]};
+                    myModel.insertRow(0, data);
+                    myModel1.insertRow(0, data1);
                 }
 
             } catch (Exception e) {
@@ -1604,15 +1504,12 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                         + "pic3='" + customTextfield8.getText() + "',price='" + comboBoxSuggestion8.getSelectedItem().toString() + "',"
                         + "cordination='" + comboBoxSuggestion9.getSelectedItem().toString() + "',delivery='" + comboBoxSuggestion10.getSelectedItem().toString() + "',"
                         + "quality='" + comboBoxSuggestion11.getSelectedItem().toString() + "',remark='" + customTextfield14.getText() + "' where biz_id='" + id_biz + "'";
-
                 stm.executeUpdate(sql);
                 set_kosong();
                 jButton2.setVisible(true);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
         // TODO add your handling code here:
@@ -1627,9 +1524,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
     }//GEN-LAST:event_idIntegratedActionPerformed
 
     private void boxTaxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_boxTaxPopupMenuWillBecomeVisible
-
-        boxTax.removeItem("Tax Payer");
-
+boxTax.removeItem("Tax Payer");
 // TODO add your handling code here:
     }//GEN-LAST:event_boxTaxPopupMenuWillBecomeVisible
 
@@ -1666,8 +1561,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
     }//GEN-LAST:event_boxID2PopupMenuWillBecomeVisible
 
     private void boxID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxID2ActionPerformed
-
-        id_employee();
+id_employee();
 //       try {
 //            String id = Integer.toString(id3);
 //            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + province.getSelectedItem().toString() + "'");
@@ -1684,16 +1578,15 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
         int row = MyTable.getSelectedRow();
-       MyTable2.setRowSelectionInterval(row, row);
+        MyTable2.setRowSelectionInterval(row, row);
         String a = ((String) MyTable.getValueAt(row, 0));
         id_biz = a;
         System.out.println(a);
-
         try {
             Statement stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from biz_partner where biz_id = " + a + "");
             while (rs.next()) {
-             customTextfield6.setText(rs.getString("pic1"));
+                customTextfield6.setText(rs.getString("pic1"));
                 t_hp_pic.setText(rs.getString("pic2"));
                 customTextfield8.setText(rs.getString("pic3"));
                 customTextfield14.setText(rs.getString("remark"));
@@ -1706,28 +1599,18 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                 textAddress.setText(rs.getString("address"));
                 textNPWP.setText(rs.getString("npwp_no"));
                 textDateRegister.setText(rs.getString("register_date"));
-
                 country.setSelectedItem(rs.getString("country"));
-
                 province.setSelectedItem(rs.getString("province"));
-
                 city.setSelectedItem(rs.getString("city"));
-
                 boxTax.setSelectedItem(rs.getString("tax_payer"));
-
                 boxPPH.setSelectedItem(rs.getString("pph"));
-
                 comboBoxSuggestion8.setSelectedItem(rs.getString("price"));
-
                 comboBoxSuggestion9.setSelectedItem(rs.getString("cordination"));
-
                 comboBoxSuggestion10.setSelectedItem(rs.getString("delivery"));
-
                 comboBoxSuggestion11.setSelectedItem(rs.getString("quality"));
-               
 //                boxID1.setSelectedItem("ID #1");
 //                boxID2.setSelectedItem("ID #2");
-                 idIntegrated.setText(rs.getString("partner_id"));
+                idIntegrated.setText(rs.getString("partner_id"));
                 textID3.setText("");
                 jButton2.setVisible(false);
             }
@@ -1737,7 +1620,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
     }//GEN-LAST:event_MyTableMouseClicked
 
     private void t_hp_picKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hp_picKeyTyped
-  char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
@@ -1758,7 +1641,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
             sb.setLength(11);
             t_hp_pic.setText("" + sb);
         } else if (t_hp_pic.getText().length() == 17) {
-           t_hp_pic.setText(t_hp_pic.getText());
+            t_hp_pic.setText(t_hp_pic.getText());
             evt.consume();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_t_hp_picKeyTyped
@@ -1788,7 +1671,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
     }//GEN-LAST:event_etglKeyTyped
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-  String a = boxTax1.getSelectedItem().toString();
+        String a = boxTax1.getSelectedItem().toString();
 
         if (a.equals("ID Partener")) {
             b = "partner_id";
@@ -1810,36 +1693,36 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
 
             try {
                 stm = koneksi.createStatement();
-                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%' AND register_date BETWEEN '"+stgl.getText()+"' AND '"+etgl.getText()+"' ");
+                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%' AND register_date BETWEEN '" + stgl.getText() + "' AND '" + etgl.getText() + "' ");
                 while (rs.next()) {
-                     String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                
-                String[] data = {
-                    rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("register_date"),
-                    rs.getString("name"),
-                    rs.getString("no_hp"),
-                    rs.getString("email"),
-                    rs.getString("country"),
-                    rs.getString("province"),
-                    rs.getString("city"),
-                    add,
-                    rs.getString("postcode"),
-                    rs.getString("tax_payer"),
-                    rs.getString("npwp_no"),
-                    rs.getString("pph"),
-                    rs.getString("pic1"),
-                    rs.getString("pic2"),
-                    rs.getString("pic3"),
-                    rs.getString("price"),
-                    rs.getString("cordination"),
-                    rs.getString("delivery"),
-                    rs.getString("quality"),
-                    rs.getString("remark"),};
-                String[] data1 = {data[0], data[1], data[3], data[8]};
-                myModel.insertRow(0, data);
-                 myModel1.insertRow(0, data1);
+                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+
+                    String[] data = {
+                        rs.getString("biz_id"),
+                        rs.getString("partner_id"),
+                        rs.getString("register_date"),
+                        rs.getString("name"),
+                        rs.getString("no_hp"),
+                        rs.getString("email"),
+                        rs.getString("country"),
+                        rs.getString("province"),
+                        rs.getString("city"),
+                        add,
+                        rs.getString("postcode"),
+                        rs.getString("tax_payer"),
+                        rs.getString("npwp_no"),
+                        rs.getString("pph"),
+                        rs.getString("pic1"),
+                        rs.getString("pic2"),
+                        rs.getString("pic3"),
+                        rs.getString("price"),
+                        rs.getString("cordination"),
+                        rs.getString("delivery"),
+                        rs.getString("quality"),
+                        rs.getString("remark"),};
+                    String[] data1 = {data[0], data[1], data[3], data[8]};
+                    myModel.insertRow(0, data);
+                    myModel1.insertRow(0, data1);
 
                 }
 
@@ -1869,13 +1752,13 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
-        } 
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void MyTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTable2MouseClicked
-  int row = MyTable2.getSelectedRow();
-       MyTable.setRowSelectionInterval(row, row);   
-  String a = ((String) MyTable2.getValueAt(row, 0));
+        int row = MyTable2.getSelectedRow();
+        MyTable.setRowSelectionInterval(row, row);
+        String a = ((String) MyTable2.getValueAt(row, 0));
         id_biz = a;
         System.out.println(a);
 
@@ -1883,7 +1766,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
             Statement stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from biz_partner where biz_id = " + a + "");
             while (rs.next()) {
-             customTextfield6.setText(rs.getString("pic1"));
+                customTextfield6.setText(rs.getString("pic1"));
                 t_hp_pic.setText(rs.getString("pic2"));
                 customTextfield8.setText(rs.getString("pic3"));
                 customTextfield14.setText(rs.getString("remark"));
@@ -1896,34 +1779,24 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
                 textAddress.setText(rs.getString("address"));
                 textNPWP.setText(rs.getString("npwp_no"));
                 textDateRegister.setText(rs.getString("register_date"));
-
                 country.setSelectedItem(rs.getString("country"));
-
                 province.setSelectedItem(rs.getString("province"));
-
                 city.setSelectedItem(rs.getString("city"));
-
                 boxTax.setSelectedItem(rs.getString("tax_payer"));
-
                 boxPPH.setSelectedItem(rs.getString("pph"));
-
                 comboBoxSuggestion8.setSelectedItem(rs.getString("price"));
-
                 comboBoxSuggestion9.setSelectedItem(rs.getString("cordination"));
-
                 comboBoxSuggestion10.setSelectedItem(rs.getString("delivery"));
-
                 comboBoxSuggestion11.setSelectedItem(rs.getString("quality"));
-               
 //                boxID1.setSelectedItem("ID #1");
 //                boxID2.setSelectedItem("ID #2");
-                 idIntegrated.setText(rs.getString("partner_id"));
+                idIntegrated.setText(rs.getString("partner_id"));
                 textID3.setText("");
                 jButton2.setVisible(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }           
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_MyTable2MouseClicked
@@ -1996,7 +1869,6 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
     @Override
     public void formrefresh() {
     }
-
     private void myShow() {
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
@@ -2014,6 +1886,7 @@ String[] header = {"id", "Partner ID", "Register Reason Date", "Name", "Telp or 
         }
     }
 
+    
     private void CountryBox() {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");

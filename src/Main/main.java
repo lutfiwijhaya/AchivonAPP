@@ -37,10 +37,12 @@ import HumanResource.RequestAllocationList;
 import HumanResource.RequestEmployeeAllocation;
 import HumanResource.ResignationList;
 import HumanResource.SummaryStatusCandidatEmployee;
+import ProcurementSystem.AddMaterialList;
 import ProcurementSystem.BizPointment;
 import ProcurementSystem.Warehouse;
 import ProcurementSystem.po;
 import ProcurementSystem.po_list;
+import ProcurementSystem.po_request;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -247,12 +249,12 @@ public class main extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
-        WarehouseSystem = new javax.swing.JMenu();
-        jMenuItem21 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
+        WarehouseSystem = new javax.swing.JMenu();
+        jMenuItem17 = new javax.swing.JMenuItem();
         AcountingSystem = new javax.swing.JMenu();
         myProfile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -369,8 +371,13 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -394,7 +401,7 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonLogin1)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -735,35 +742,46 @@ public class main extends javax.swing.JFrame {
         ProcurementSystem.add(jMenu1);
         ProcurementSystem.add(jSeparator15);
 
+        jMenu2.setText("Request For Material");
+
+        jMenuItem18.setText("Internal Use");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem18);
+
+        jMenuItem19.setText("External Use");
+        jMenu2.add(jMenuItem19);
+
+        jMenuItem20.setText("Add Material List");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem20);
+
+        ProcurementSystem.add(jMenu2);
+
         ToolBar.add(ProcurementSystem);
 
         WarehouseSystem.setText("Warehouse System  |");
         WarehouseSystem.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-
-        jMenuItem21.setText("Add Item");
-        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+        WarehouseSystem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem21ActionPerformed(evt);
+                WarehouseSystemActionPerformed(evt);
             }
         });
-        WarehouseSystem.add(jMenuItem21);
 
         jMenuItem17.setText("Warehouse");
-        WarehouseSystem.add(jMenuItem17);
-
-        jMenuItem18.setText("Office");
-        WarehouseSystem.add(jMenuItem18);
-
-        jMenuItem19.setText("On Site");
-        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem19ActionPerformed(evt);
+                jMenuItem17ActionPerformed(evt);
             }
         });
-        WarehouseSystem.add(jMenuItem19);
-
-        jMenuItem20.setText("In Employee");
-        WarehouseSystem.add(jMenuItem20);
+        WarehouseSystem.add(jMenuItem17);
 
         ToolBar.add(WarehouseSystem);
 
@@ -1035,14 +1053,6 @@ public class main extends javax.swing.JFrame {
         showForm(new BizPointment());
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
-    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem19ActionPerformed
-
-    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
-showForm(new Warehouse());        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem21ActionPerformed
-
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
 showForm(new po());          // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem22ActionPerformed
@@ -1050,6 +1060,22 @@ showForm(new po());          // TODO add your handling code here:
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
    showForm(new po_list());      // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void WarehouseSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WarehouseSystemActionPerformed
+showForm(new Warehouse());        // TODO add your handling code here:
+    }//GEN-LAST:event_WarehouseSystemActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+showForm(new Warehouse());         // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+showForm(new AddMaterialList());          // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+    showForm(new po_request());    // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1131,6 +1157,7 @@ showForm(new po());          // TODO add your handling code here:
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
@@ -1144,7 +1171,6 @@ showForm(new po());          // TODO add your handling code here:
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
-    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;

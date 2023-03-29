@@ -404,6 +404,14 @@ b_save.setVisible(false);
                 jButton4.setVisible(true);
                 id_employee();
                 t_stok.setEnabled(true);
+                                   t_name.setEnabled(true);
+t_date.setEnabled(true);
+t_remark.setEnabled(true);
+t_size.setEnabled(true);
+t_spec.setEnabled(true);
+b_category_1.setEnabled(true);
+b_category_2.setEnabled(true);
+b_qty.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -437,6 +445,8 @@ t_stok.setEnabled(true);
     }//GEN-LAST:event_t_remarkMouseWheelMoved
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       
+        
         try {
             stm = koneksi.createStatement();
             String sql = "insert into assets (id,category1,category2,nama_barang,spek_barang,size_barang,stok,qty,tgl_input,remark) values('" +t_id.getText()+ "'"
@@ -462,11 +472,15 @@ t_stok.setEnabled(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-  t_stok.setEnabled(false);
+t_stok.setEnabled(true);
+t_name.setEnabled(false);
+t_date.setEnabled(false);
+t_remark.setEnabled(false);
+t_size.setEnabled(false);
+t_spec.setEnabled(false);
+b_category_1.setEnabled(false);
+b_category_2.setEnabled(false);
+b_qty.setEnabled(false);
         int row = jTable1.getSelectedRow();
         String a = ((String) jTable1.getValueAt(row, 0));
       
@@ -484,6 +498,49 @@ t_stok.setEnabled(true);
        t_spec.setText(rs.getString("spek_barang"));
        t_stok.setText(rs.getString("stok"));
        t_id.setText(rs.getString("id"));
+       t_date.setText(rs.getString("tgl_input"));
+       b_qty.setSelectedItem(rs.getString("qty"));
+                
+                b_save.setVisible(true);
+                jButton4.setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
+
+        
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+  t_stok.setEnabled(false);
+   t_name.setEnabled(true);
+t_date.setEnabled(true);
+t_remark.setEnabled(true);
+t_size.setEnabled(true);
+t_spec.setEnabled(true);
+b_category_1.setEnabled(true);
+b_category_2.setEnabled(true);
+b_qty.setEnabled(true);
+        int row = jTable1.getSelectedRow();
+        String a = ((String) jTable1.getValueAt(row, 0));
+      
+        System.out.println(a);
+
+        try {
+            Statement stm = koneksi.createStatement();
+            rs = stm.executeQuery("select*from assets where id = " + a + "");
+            while (rs.next()) {
+                 b_category_1.setSelectedItem(rs.getString("category1"));
+       b_category_2.setSelectedItem(rs.getString("category2"));
+       t_name.setText(rs.getString("nama_barang"));
+       t_remark.setText(rs.getString("remark"));
+       t_size.setText(rs.getString("size_barang"));
+       t_spec.setText(rs.getString("spek_barang"));
+       t_stok.setText(rs.getString("stok"));
+       t_id.setText(rs.getString("id"));
+       t_date.setText(rs.getString("tgl_input"));
        b_qty.setSelectedItem(rs.getString("qty"));
                 
                 b_save.setVisible(true);
@@ -505,7 +562,15 @@ t_stok.setEnabled(true);
     }//GEN-LAST:event_t_stokKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-   t_stok.setEnabled(false);
+ t_name.setEnabled(true);
+t_date.setEnabled(true);
+t_remark.setEnabled(true);
+t_size.setEnabled(true);
+t_spec.setEnabled(true);
+b_category_1.setEnabled(true);
+b_category_2.setEnabled(true);
+b_qty.setEnabled(true);
+        t_stok.setEnabled(false);
         int row = jTable1.getSelectedRow();
         String a = ((String) jTable1.getValueAt(row, 0));
       
@@ -523,6 +588,7 @@ t_stok.setEnabled(true);
        t_spec.setText(rs.getString("spek_barang"));
        t_stok.setText(rs.getString("stok"));
        t_id.setText(rs.getString("id"));
+      t_date.setText(rs.getString("tgl_input"));
        b_qty.setSelectedItem(rs.getString("qty"));
                 
                 b_save.setVisible(true);
@@ -534,7 +600,41 @@ t_stok.setEnabled(true);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void b_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_saveActionPerformed
-        // TODO add your handling code here:
+int respon = JOptionPane.showConfirmDialog(null, "save change data?", "Option", JOptionPane.YES_NO_OPTION);
+        if (respon == 0) {
+            
+     
+            try {
+            stm = koneksi.createStatement();
+            String sql9 = "update assets set category1='" + b_category_1.getSelectedItem().toString() + "', category2='" + b_category_2.getSelectedItem().toString() + "',"
+                    + "nama_barang='" +t_name.getText() + "',spek_barang='" + t_spec.getText() + "', stok='" + t_stok.getText() + "',"
+                    + "size_barang='" + t_size.getText() + "',qty='" + b_qty.getSelectedItem().toString() + "',"
+                    + "tgl_input='" + t_date.getText() + "',remark='" + t_remark.getText() + "' where id='" + t_id.getText() + "'";
+            
+            stm.executeUpdate(sql9);
+            
+             JOptionPane.showMessageDialog(null, "Saved Successfully");
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Warehouse.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        kosong();
+b_save.setVisible(false);
+                jButton4.setVisible(true);
+                id_employee();
+                t_stok.setEnabled(true);
+                       t_name.setEnabled(true);
+t_date.setEnabled(true);
+t_remark.setEnabled(true);
+t_size.setEnabled(true);
+t_spec.setEnabled(true);
+b_category_1.setEnabled(true);
+b_category_2.setEnabled(true);
+b_qty.setEnabled(true);
+                tampil();
+                
+        }
     }//GEN-LAST:event_b_saveActionPerformed
 
 
