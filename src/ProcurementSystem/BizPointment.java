@@ -262,6 +262,7 @@ public class BizPointment extends MasterForm {
         comboBoxSuggestion10.setSelectedItem("Delivery");
         comboBoxSuggestion11.setSelectedItem("Quality");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1524,7 +1525,7 @@ public class BizPointment extends MasterForm {
     }//GEN-LAST:event_idIntegratedActionPerformed
 
     private void boxTaxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_boxTaxPopupMenuWillBecomeVisible
-boxTax.removeItem("Tax Payer");
+        boxTax.removeItem("Tax Payer");
 // TODO add your handling code here:
     }//GEN-LAST:event_boxTaxPopupMenuWillBecomeVisible
 
@@ -1561,7 +1562,7 @@ boxTax.removeItem("Tax Payer");
     }//GEN-LAST:event_boxID2PopupMenuWillBecomeVisible
 
     private void boxID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxID2ActionPerformed
-id_employee();
+        id_employee();
 //       try {
 //            String id = Integer.toString(id3);
 //            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + province.getSelectedItem().toString() + "'");
@@ -1869,6 +1870,7 @@ id_employee();
     @Override
     public void formrefresh() {
     }
+
     private void myShow() {
         String mySearch = textSearch.getText();
         int row = MyTable.getRowCount();
@@ -1886,7 +1888,6 @@ id_employee();
         }
     }
 
-    
     private void CountryBox() {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ProcurementSystem;
+
 import CustomResource.koneksi;
 import Main.MasterForm;
 import java.sql.Connection;
@@ -19,29 +20,28 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class po_request extends MasterForm {
-  Statement stm;
+
+    Statement stm;
     ResultSet rs;
     Connection koneksi;
     String item;
     String discipline;
     String spec;
-    
-    
+
     /**
      * Creates new form po_request
      */
     public po_request() {
         initComponents();
-       openDB();
-       tampil_material();
-       tampil_comboboxspek();
-       tampil_combospek();
-       tampil_idsite();
-        
+        openDB();
+        tampil_material();
+        tampil_comboboxspek();
+        tampil_combospek();
+        tampil_idsite();
+
     }
-    
-    
- private void openDB() {
+
+    private void openDB() {
         try {
             koneksi kon = new koneksi();
             koneksi = kon.getConnection();
@@ -49,88 +49,73 @@ public class po_request extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
- 
- 
- void tampil_material(){
-      try {
+
+    void tampil_material() {
+        try {
             cb_material.removeAllItems();
             ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material");
             while (myRess.next()) {
-               cb_material.addItem(myRess.getString("id_material_code")+"-"+myRess.getString("name_material"));
+                cb_material.addItem(myRess.getString("id_material_code") + "-" + myRess.getString("name_material"));
             }
         } catch (SQLException ex) {
         }
-     
-     
- }
- 
-  void tampil_idsite(){
-      try {
+    }
+
+    void tampil_idsite() {
+        try {
             cb_no_site.removeAllItems();
             ResultSet myRess = koneksi.createStatement().executeQuery("select*from no_site");
             while (myRess.next()) {
-               cb_no_site.addItem(myRess.getString("id_site"));
+                cb_no_site.addItem(myRess.getString("id_site"));
             }
         } catch (SQLException ex) {
         }
-     
-     
- }
- 
- void combobox_material(){
-        
-           item = cb_material.getSelectedItem().toString();
-    String[] parts = item.split("-");
-    String id = parts[0];
-    item = id;
-
     }
- 
- void getidspek(){
-        
-           discipline = cb_discipline.getSelectedItem().toString();
-    String[] parts = discipline .split("-");
-    String id = parts[0];
-    discipline = id;
-    
-    spec = item+discipline;
 
+    void combobox_material() {
+
+        item = cb_material.getSelectedItem().toString();
+        String[] parts = item.split("-");
+        String id = parts[0];
+        item = id;
     }
-    
-  void tampil_comboboxspek(){
-     try {
+
+    void getidspek() {
+        discipline = cb_discipline.getSelectedItem().toString();
+        String[] parts = discipline.split("-");
+        String id = parts[0];
+        discipline = id;
+        spec = item + discipline;
+    }
+
+    void tampil_comboboxspek() {
+        try {
             cb_discipline.removeAllItems();
-            ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_discipline where id_material_code = '"+item+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_discipline where id_material_code = '" + item + "'");
             while (myRess.next()) {
-               cb_discipline.addItem(myRess.getString("id_discipline_code")+"-"+myRess.getString("name_discipline"));
+                cb_discipline.addItem(myRess.getString("id_discipline_code") + "-" + myRess.getString("name_discipline"));
             }
         } catch (SQLException ex) {
         }
-    
+
     }
-  
-  void tampil_combospek(){
-     try {
+
+    void tampil_combospek() {
+        try {
             cb_spek.removeAllItems();
-            ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_spek where id_discipline_code = '"+spec+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_spek where id_discipline_code = '" + spec + "'");
             while (myRess.next()) {
-               cb_spek.addItem(myRess.getString("name_spek"));
+                cb_spek.addItem(myRess.getString("name_spek"));
             }
         } catch (SQLException ex) {
         }
-    
     }
-  
-  void getIdRequest(){
-      String purchase = cb_purchase.getSelectedItem().toString().substring(0, 1);
-      t_id_po.setText(cb_no_site.getSelectedItem().toString()+"-"+item+"-"+discipline+"-"+purchase);
-      
-  }
-    
-    
-    
-    
-    
+
+    void getIdRequest() {
+        String purchase = cb_purchase.getSelectedItem().toString().substring(0, 1);
+        t_id_po.setText(cb_no_site.getSelectedItem().toString() + "-" + item + "-" + discipline + "-" + purchase);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -382,11 +367,11 @@ public class po_request extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void t_stokKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stokKeyReleased
-       
+
     }//GEN-LAST:event_t_stokKeyReleased
 
     private void t_stokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stokKeyTyped
-            
+
     }//GEN-LAST:event_t_stokKeyTyped
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -402,20 +387,20 @@ public class po_request extends MasterForm {
         list.add(t_stok.getText());
         list.add(box_qty4.getSelectedItem().toString());
         list.add(t_remark.getText());
-        dataModel.insertRow(0, list.toArray());  
+        dataModel.insertRow(0, list.toArray());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cb_disciplinePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_disciplinePopupMenuWillBecomeVisible
-      
+
     }//GEN-LAST:event_cb_disciplinePopupMenuWillBecomeVisible
 
     private void cb_disciplineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_disciplineActionPerformed
-if (cb_discipline.getSelectedItem() == null){
-      } else {
-    getidspek();
-     tampil_combospek();
-     getIdRequest();
-      }  
+        if (cb_discipline.getSelectedItem() == null) {
+        } else {
+            getidspek();
+            tampil_combospek();
+            getIdRequest();
+        }
     }//GEN-LAST:event_cb_disciplineActionPerformed
 
     private void t_remarkMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_remarkMouseWheelMoved
@@ -423,18 +408,19 @@ if (cb_discipline.getSelectedItem() == null){
     }//GEN-LAST:event_t_remarkMouseWheelMoved
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void cb_materialPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_materialPopupMenuWillBecomeVisible
-        
+
     }//GEN-LAST:event_cb_materialPopupMenuWillBecomeVisible
 
     private void cb_materialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_materialActionPerformed
- if (cb_material.getSelectedItem() == null){
-      } else {combobox_material();
-     tampil_comboboxspek();
-      }
+        if (cb_material.getSelectedItem() == null) {
+        } else {
+            combobox_material();
+            tampil_comboboxspek();
+        }
     }//GEN-LAST:event_cb_materialActionPerformed
 
     private void box_qty4PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_box_qty4PopupMenuWillBecomeVisible
@@ -450,7 +436,7 @@ if (cb_discipline.getSelectedItem() == null){
     }//GEN-LAST:event_cb_spekPopupMenuWillBecomeVisible
 
     private void cb_spekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_spekActionPerformed
-       // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_cb_spekActionPerformed
 
     private void cb_purchasePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_purchasePopupMenuWillBecomeVisible
@@ -494,7 +480,7 @@ if (cb_discipline.getSelectedItem() == null){
                 }
             }
         }
-JOptionPane.showMessageDialog(null, "Request Sent Successfully");        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Request Sent Successfully");        // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void cb_no_sitePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_no_sitePopupMenuWillBecomeVisible
@@ -502,9 +488,10 @@ JOptionPane.showMessageDialog(null, "Request Sent Successfully");        // TODO
     }//GEN-LAST:event_cb_no_sitePopupMenuWillBecomeVisible
 
     private void cb_no_siteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_no_siteActionPerformed
- if (cb_no_site.getSelectedItem() == null){
-      } else {getIdRequest();
-      }       // TODO add your handling code here:
+        if (cb_no_site.getSelectedItem() == null) {
+        } else {
+            getIdRequest();
+        }       // TODO add your handling code here:
     }//GEN-LAST:event_cb_no_siteActionPerformed
 
 

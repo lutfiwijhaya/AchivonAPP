@@ -23,12 +23,14 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class po extends MasterForm {
- Statement stm;
+
+    Statement stm;
     ResultSet rs;
     Connection koneksi;
     int id_po;
     int a = 1;
-    int b= 1;
+    int b = 1;
+
     /**
      * Creates new form po
      */
@@ -37,15 +39,10 @@ public class po extends MasterForm {
         openDB();
         addtext();
         id_employee();
-        t_disc.setText("0"); 
-        
+        t_disc.setText("0");
+
     }
-    
-   
-    
-    
-    
-    
+
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -54,8 +51,7 @@ public class po extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
-    
-    
+
     private void id_employee() {
         String sql = "select max(id_po) from po";
         try {
@@ -64,29 +60,29 @@ public class po extends MasterForm {
             while (rs.next()) {
                 int a = rs.getInt(1);
                 id_po = a + 1;
-               
+
             }
         } catch (Exception e) {
             System.out.println("" + e.getMessage());
         }
         String id = Integer.toString(id_po);
         t_id_po.setText(id);
-        
+
     }
-    
-     private void addtext() {
+
+    private void addtext() {
 
         try {
             stm = koneksi.createStatement();
-            rs = stm.executeQuery("select * from biz_partner where biz_id = "+ CustomResource.EmployeeSession.getbiz_id()+"");
+            rs = stm.executeQuery("select * from biz_partner where biz_id = " + CustomResource.EmployeeSession.getbiz_id() + "");
 
             while (rs.next()) {
-                String a =  rs.getString("address") + " " +"RT"+"/"+ rs.getString("rt")+"RW"+"/"+ rs.getString("rw")+" "+rs.getString("city")+" "+rs.getString("province")+" "+rs.getString("postcode") ;
+                String a = rs.getString("address") + " " + "RT" + "/" + rs.getString("rt") + "RW" + "/" + rs.getString("rw") + " " + rs.getString("city") + " " + rs.getString("province") + " " + rs.getString("postcode");
                 t_name.setText(rs.getString("name"));
                 t_hp.setText(rs.getString("no_hp"));
                 t_emial.setText(rs.getString("email"));
                 t_addres.setText(a);
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -386,7 +382,7 @@ public class po extends MasterForm {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
         List list = new ArrayList<>();
         jTable1.setAutoCreateColumnsFromModel(true);
         list.add(id_po);
@@ -402,61 +398,54 @@ DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
 //         for (int i = rowCount1 - 1; i >= 0; i--) {
 //               dataModel.removeRow(i);
 //            }
-        dataModel.insertRow(0, list.toArray());   
-        
+        dataModel.insertRow(0, list.toArray());
 
-
-int rowCount = dataModel.getRowCount();
+        int rowCount = dataModel.getRowCount();
 
 // Variabel untuk menyimpan jumlah
-long total = 0L;
+        long total = 0L;
 
 // Looping untuk menghitung jumlah pada kolom tertentu
-for (int i = 0; i < rowCount; i++) {
-    total += Long.parseLong(dataModel.getValueAt(i, 7).toString()); // Mengambil data dari kolom ke-2 dan menjumlahkannya
-}
+        for (int i = 0; i < rowCount; i++) {
+            total += Long.parseLong(dataModel.getValueAt(i, 7).toString()); // Mengambil data dari kolom ke-2 dan menjumlahkannya
+        }
 
 // Menampilkan hasil jumlah
-t_amount.setText(String.valueOf(total));
- 
-long disc = Long.valueOf(t_disc.getText());
-long total1 = total - (total * disc / 100);
-t_total_1.setText(String.valueOf(total1));
-long ppn = total1 * 11 / 100 ;
-long total2 = total1 + (total1 * 11 / 100);
-t_ppn.setText(String.valueOf(ppn));
-t_total_2.setText(String.valueOf(total2));
+        t_amount.setText(String.valueOf(total));
 
-
-
-
+        long disc = Long.valueOf(t_disc.getText());
+        long total1 = total - (total * disc / 100);
+        t_total_1.setText(String.valueOf(total1));
+        long ppn = total1 * 11 / 100;
+        long total2 = total1 + (total1 * 11 / 100);
+        t_ppn.setText(String.valueOf(ppn));
+        t_total_2.setText(String.valueOf(total2));
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
- try {
-     String a = "0";
-                stm = koneksi.createStatement();
-                String sql = "insert into po (id_po,biz_id,amount,diskon,total1,ppn,total2,tgl_po,delivery_date,description_po,status_po) values('" + t_id_po.getText() + "'"
-                        + ",'" + CustomResource.EmployeeSession.getbiz_id() + "'"
-                        + ",'" + t_amount.getText() + "'"
-                        + ",'" + t_disc.getText() + "'"
-                        + ",'" + t_total_1.getText() + "'"
-                        + ",'" + t_ppn.getText() + "'"
-                        + ",'" + t_total_2.getText() + "'"
-                        + ",'" + t_tgl_po.getText() + "'"
-                        + ",'" + t_tgl_delivery.getText() + "'"
-                        + ",'" + t_po_desc.getText() + "'"
-                        + ",'" +a+ "')";
+        try {
+            String a = "0";
+            stm = koneksi.createStatement();
+            String sql = "insert into po (id_po,biz_id,amount,diskon,total1,ppn,total2,tgl_po,delivery_date,description_po,status_po) values('" + t_id_po.getText() + "'"
+                    + ",'" + CustomResource.EmployeeSession.getbiz_id() + "'"
+                    + ",'" + t_amount.getText() + "'"
+                    + ",'" + t_disc.getText() + "'"
+                    + ",'" + t_total_1.getText() + "'"
+                    + ",'" + t_ppn.getText() + "'"
+                    + ",'" + t_total_2.getText() + "'"
+                    + ",'" + t_tgl_po.getText() + "'"
+                    + ",'" + t_tgl_delivery.getText() + "'"
+                    + ",'" + t_po_desc.getText() + "'"
+                    + ",'" + a + "')";
 
-                stm.executeUpdate(sql);
+            stm.executeUpdate(sql);
 
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-            }
- 
- 
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+        }
+
         DefaultTableModel ImportDataExel = (DefaultTableModel) jTable1.getModel();
         int jtabelrows = jTable1.getRowCount();
 
@@ -491,11 +480,9 @@ t_total_2.setText(String.valueOf(total2));
                 }
             }
         }
- 
- 
- 
-  JOptionPane.showMessageDialog(null, "Data Saved Successfully");
- Main.main.getMain().showForm(new po());
+
+        JOptionPane.showMessageDialog(null, "Data Saved Successfully");
+        Main.main.getMain().showForm(new po());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -509,16 +496,16 @@ t_total_2.setText(String.valueOf(total2));
     }//GEN-LAST:event_box_qtyActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-CustomResource.EmployeeSession.setsesiform("3");
+        CustomResource.EmployeeSession.setsesiform("3");
         new Employe_list().setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void t_remarkMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_remarkMouseWheelMoved
-       
+
     }//GEN-LAST:event_t_remarkMouseWheelMoved
 
     private void t_stokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stokKeyTyped
- char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }        // TODO add your handling code here:
@@ -526,32 +513,29 @@ CustomResource.EmployeeSession.setsesiform("3");
 
     private void t_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_priceKeyReleased
 
-       if(t_stok.getText().equals("")){
-       
+        if (t_stok.getText().equals("")) {
+
         } else {
-       a = Integer.valueOf(t_stok.getText());
-      b = Integer.valueOf(t_price.getText());
-     int c = a * b;
-     String d = String.valueOf(c);
-     t_total.setText(d);
-      }
-     
-
-
+            a = Integer.valueOf(t_stok.getText());
+            b = Integer.valueOf(t_price.getText());
+            int c = a * b;
+            String d = String.valueOf(c);
+            t_total.setText(d);
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_t_priceKeyReleased
 
     private void t_stokKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stokKeyReleased
-      if(t_price.getText().equals("")){
-       
+        if (t_price.getText().equals("")) {
+
         } else {
-       a = Integer.valueOf(t_stok.getText());
-      b = Integer.valueOf(t_price.getText());
-     int c = a * b;
-     String d = String.valueOf(c);
-     t_total.setText(d);
-      } // TODO add your handling code here:
+            a = Integer.valueOf(t_stok.getText());
+            b = Integer.valueOf(t_price.getText());
+            int c = a * b;
+            String d = String.valueOf(c);
+            t_total.setText(d);
+        } // TODO add your handling code here:
     }//GEN-LAST:event_t_stokKeyReleased
 
     private void t_discActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_discActionPerformed
@@ -559,43 +543,40 @@ CustomResource.EmployeeSession.setsesiform("3");
     }//GEN-LAST:event_t_discActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-  int[] selectedRows = jTable1.getSelectedRows();
+        int[] selectedRows = jTable1.getSelectedRows();
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        }    
-        
-        
+        }
+
         DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
         int rowCount = dataModel.getRowCount();
 
 // Variabel untuk menyimpan jumlah
-long total = 0L;
+        long total = 0L;
 
 // Looping untuk menghitung jumlah pada kolom tertentu
-for (int i = 0; i < rowCount; i++) {
-    total += Long.parseLong(dataModel.getValueAt(i, 7).toString()); // Mengambil data dari kolom ke-2 dan menjumlahkannya
-}
+        for (int i = 0; i < rowCount; i++) {
+            total += Long.parseLong(dataModel.getValueAt(i, 7).toString()); // Mengambil data dari kolom ke-2 dan menjumlahkannya
+        }
 
 // Menampilkan hasil jumlah
-t_amount.setText(String.valueOf(total));
- 
-long disc = Long.valueOf(t_disc.getText());
-long total1 = total - (total * disc / 100);
-t_total_1.setText(String.valueOf(total1));
-long ppn = total1 * 11 / 100 ;
-long total2 = total1 + (total1 * 11 / 100);
-t_ppn.setText(String.valueOf(ppn));
-t_total_2.setText(String.valueOf(total2));
+        t_amount.setText(String.valueOf(total));
 
-
+        long disc = Long.valueOf(t_disc.getText());
+        long total1 = total - (total * disc / 100);
+        t_total_1.setText(String.valueOf(total1));
+        long ppn = total1 * 11 / 100;
+        long total2 = total1 + (total1 * 11 / 100);
+        t_ppn.setText(String.valueOf(ppn));
+        t_total_2.setText(String.valueOf(total2));
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void t_amountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_amountKeyReleased
-    // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_t_amountKeyReleased
 
     private void t_discKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_discKeyTyped
@@ -603,14 +584,14 @@ t_total_2.setText(String.valueOf(total2));
     }//GEN-LAST:event_t_discKeyTyped
 
     private void t_discKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_discKeyReleased
-long total = Long.valueOf(t_amount.getText());
-long disc = Long.valueOf(t_disc.getText());
-long total1 = total - (total * disc / 100L);
-t_total_1.setText(String.valueOf(total1));
-long ppn = total1 * 11L / 100L;
-long total2 = total1 + (total1 * 11L / 100L);
-t_ppn.setText(String.valueOf(ppn));
-t_total_2.setText(String.valueOf(total2));        // TODO add your handling code here:
+        long total = Long.valueOf(t_amount.getText());
+        long disc = Long.valueOf(t_disc.getText());
+        long total1 = total - (total * disc / 100L);
+        t_total_1.setText(String.valueOf(total1));
+        long ppn = total1 * 11L / 100L;
+        long total2 = total1 + (total1 * 11L / 100L);
+        t_ppn.setText(String.valueOf(ppn));
+        t_total_2.setText(String.valueOf(total2));        // TODO add your handling code here:
     }//GEN-LAST:event_t_discKeyReleased
 
     private void t_totalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_totalKeyReleased
@@ -628,7 +609,7 @@ t_total_2.setText(String.valueOf(total2));        // TODO add your handling code
     }//GEN-LAST:event_t_totalKeyReleased
 
     private void t_priceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_priceKeyTyped
- char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }            // TODO add your handling code here:

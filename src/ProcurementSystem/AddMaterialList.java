@@ -4,7 +4,6 @@
  */
 package ProcurementSystem;
 
-import HumanResource.*;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
@@ -25,10 +24,9 @@ import javax.swing.table.TableColumnModel;
  * @author hi
  */
 public class AddMaterialList extends MasterForm {
-    
+
     Statement stm;
     ResultSet rs;
-
     Connection koneksi;
     String id;
     String item = "a";
@@ -64,8 +62,7 @@ public class AddMaterialList extends MasterForm {
 //mengakses nilai pada kolom yang disembunyikan
         int rowIndex = 0; //indeks baris
         Object value = jTable2.getValueAt(rowIndex, 0);
-        
-        
+
         //mendapatkan model kolom pada JTable
         TableColumnModel columnModel1 = jTable1.getColumnModel();
 //mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
@@ -78,8 +75,8 @@ public class AddMaterialList extends MasterForm {
 //mengakses nilai pada kolom yang disembunyikan
         int rowIndex1 = 0; //indeks baris
         Object value1 = jTable1.getValueAt(rowIndex1, 0);
-        
-          //mendapatkan model kolom pada JTable
+
+        //mendapatkan model kolom pada JTable
         TableColumnModel columnModel2 = jTable3.getColumnModel();
 //mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
         TableColumn column2 = columnModel2.getColumn(0);
@@ -117,28 +114,25 @@ public class AddMaterialList extends MasterForm {
         }
 
     }
-    void combobox_material(){
-        
-           item = cb_material.getSelectedItem().toString();
-    String[] parts = item.split("-");
-    String id = parts[0];
-    item = id;
+
+    void combobox_material() {
+
+        item = cb_material.getSelectedItem().toString();
+        String[] parts = item.split("-");
+        String id = parts[0];
+        item = id;
 
     }
-    
-    
-      void combobox_spek(){
-        
-           spec = cb_spek.getSelectedItem().toString();
-    String[] parts = spec.split("-");
-    String id = parts[0];
-    String id1 = parts[1];
-    spec = id+id1;
-    spec1 = id;
+
+    void combobox_spek() {
+        spec = cb_spek.getSelectedItem().toString();
+        String[] parts = spec.split("-");
+        String id = parts[0];
+        String id1 = parts[1];
+        spec = id + id1;
+        spec1 = id;
 
     }
-    
-    
 
     void tampil() {
 
@@ -158,37 +152,32 @@ public class AddMaterialList extends MasterForm {
             JOptionPane.showMessageDialog(null, e + "data gagal ta mpil");
         }
 
-         try {
+        try {
             cb_material.removeAllItems();
             ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material");
             while (myRess.next()) {
-               cb_material.addItem(myRess.getString("id_material_code")+"-"+myRess.getString("name_material"));
+                cb_material.addItem(myRess.getString("id_material_code") + "-" + myRess.getString("name_material"));
             }
         } catch (SQLException ex) {
         }
-       
-
-        
 
     }
-    
-    
-    void tampil_cb_matrial(){
+
+    void tampil_cb_matrial() {
         DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
         int rowCount1 = model1.getRowCount();
 
         for (int i = rowCount1 - 1; i >= 0; i--) {
             model1.removeRow(i);
         }
-        
-     DefaultTableModel dataModel3 = (DefaultTableModel) jTable1.getModel();
-       try {
+
+        DefaultTableModel dataModel3 = (DefaultTableModel) jTable1.getModel();
+        try {
             stm = koneksi.createStatement();
-            rs = stm.executeQuery("SELECT * FROM po_material_discipline where id_material_code = '"+item+"'");
+            rs = stm.executeQuery("SELECT * FROM po_material_discipline where id_material_code = '" + item + "'");
             while (rs.next()) {
                 String[] data = {
                     rs.getString("id_material_discipline"),
-                    
                     rs.getString("id_discipline_code"),
                     rs.getString("name_discipline")};
                 dataModel3.insertRow(0, data);
@@ -197,26 +186,23 @@ public class AddMaterialList extends MasterForm {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
-    
-    
-    
+
     }
-    
-    void tampil_table_spek(){
+
+    void tampil_table_spek() {
         DefaultTableModel model1 = (DefaultTableModel) jTable3.getModel();
         int rowCount1 = model1.getRowCount();
 
         for (int i = rowCount1 - 1; i >= 0; i--) {
             model1.removeRow(i);
         }
-        
-     DefaultTableModel dataModel3 = (DefaultTableModel) jTable3.getModel();
-       try {
+
+        DefaultTableModel dataModel3 = (DefaultTableModel) jTable3.getModel();
+        try {
             stm = koneksi.createStatement();
-            rs = stm.executeQuery("SELECT * FROM po_material_spek where id_discipline_code = '"+spec+"'");
+            rs = stm.executeQuery("SELECT * FROM po_material_spek where id_discipline_code = '" + spec + "'");
             while (rs.next()) {
                 String[] data = {
-                   
                     rs.getString("id_material_spek"),
                     rs.getString("name_spek")};
                 dataModel3.insertRow(0, data);
@@ -225,27 +211,20 @@ public class AddMaterialList extends MasterForm {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
-    
-    
-    
+
     }
-    
-    void tampil_comboboxspek(){
-     try {
+
+    void tampil_comboboxspek() {
+        try {
             cb_spek.removeAllItems();
-            ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_discipline where id_material_code = '"+item+"'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_discipline where id_material_code = '" + item + "'");
             while (myRess.next()) {
-               cb_spek.addItem(myRess.getString("id_material_code")+"-"+myRess.getString("id_discipline_code")+"-"+myRess.getString("name_discipline"));
+                cb_spek.addItem(myRess.getString("id_material_code") + "-" + myRess.getString("id_discipline_code") + "-" + myRess.getString("name_discipline"));
             }
         } catch (SQLException ex) {
         }
-    
+
     }
-    
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -555,13 +534,10 @@ public class AddMaterialList extends MasterForm {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       
-           
-
         try {
             String full = item + t_discipline_code.getText();
             Statement stm = koneksi.createStatement();
-            String sql = "Insert po_material_discipline (id_material_code,id_discipline_code,name_discipline,full_discipline_code) value ('"+item+"','"+t_discipline_code.getText()+"','"+ t_name_dicipline.getText()+"','"+full+"') ";
+            String sql = "Insert po_material_discipline (id_material_code,id_discipline_code,name_discipline,full_discipline_code) value ('" + item + "','" + t_discipline_code.getText() + "','" + t_name_dicipline.getText() + "','" + full + "') ";
 
             stm.executeUpdate(sql);
 
@@ -570,7 +546,7 @@ public class AddMaterialList extends MasterForm {
         }
         t_discipline_code.setText("");
         t_name_dicipline.setText("");
-        
+
         tampil_cb_matrial();
         tampil_comboboxspek();
 // TODO add your handling code here:
@@ -586,8 +562,8 @@ public class AddMaterialList extends MasterForm {
             try {
                 stm = koneksi.createStatement();
                 String c = (String) model.getValueAt(selectedRows[i], 1);
-                String c1 = item+c;
-            
+                String c1 = item + c;
+
                 String sql = "DELETE FROM po_material_discipline where full_discipline_code = '" + c1 + "'";
                 String sql1 = "DELETE FROM po_material_spek where id_discipline_code = '" + c1 + "'";
                 model.removeRow(selectedRows[i]);
@@ -601,7 +577,7 @@ public class AddMaterialList extends MasterForm {
         }
 
         hapus_row();
-        tampil();     
+        tampil();
         tampil_cb_matrial();
         tampil_comboboxspek();
         tampil_table_spek();
@@ -615,13 +591,13 @@ public class AddMaterialList extends MasterForm {
             stm.executeUpdate(sql);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"ID '"+t_material_code.getText()+"' Sudah Ada !!");
+            JOptionPane.showMessageDialog(null, "ID '" + t_material_code.getText() + "' Sudah Ada !!");
         }
-       
-t_material_code.setText("");
-t_material_name.setText("");
-        
-hapus_row();
+
+        t_material_code.setText("");
+        t_material_name.setText("");
+
+        hapus_row();
         tampil();
         tampil_comboboxspek();
 
@@ -653,7 +629,7 @@ hapus_row();
                 String sql = "DELETE FROM po_material where id_material_code = '" + c + "'";
                 String sql1 = "DELETE FROM po_material_discipline where id_material_code = '" + c + "'";
                 String sql2 = "DELETE FROM po_material_spek where id_material_code = '" + c + "'";
-                
+
                 model.removeRow(selectedRows[i]);
                 stm.executeUpdate(sql);
                 stm.executeUpdate(sql1);
@@ -670,7 +646,6 @@ hapus_row();
         tampil_cb_matrial();
         tampil_comboboxspek();
         tampil_table_spek();
-        
 
 //        int jtabelrows = jTable2.getRowCount();
 //
@@ -743,32 +718,31 @@ hapus_row();
         for (int i = 0; i < row; i++) {
             myModel.removeRow(0);
         }
-       
+
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("SELECT * FROM po_material WHERE id_material_code LIKE '%" + mySearch + "%'");
+            while (rs.next()) {
+                String[] data = {
+                    rs.getString("id_material"),
+                    rs.getString("id_material_code"),
+                    rs.getString("name_material")};
+                myModel.insertRow(0, data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
+        if (jTable2.getRowCount() == 0) {
 
             try {
                 stm = koneksi.createStatement();
-                rs = stm.executeQuery("SELECT * FROM po_material WHERE id_material_code LIKE '%" + mySearch + "%'");
-                while (rs.next()) {
-                    String[] data = {
-                        rs.getString("id_material"),
-                    rs.getString("id_material_code"),
-                    rs.getString("name_material")};
-                    myModel.insertRow(0, data);
-                }
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-            }
-         if (jTable2.getRowCount() == 0) {
-
-            try {
-               stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM po_material WHERE name_material LIKE '%" + mySearch + "%'");
                 while (rs.next()) {
                     String[] data = {
-                      rs.getString("id_material"),
-                    rs.getString("id_material_code"),
-                    rs.getString("name_material")};
+                        rs.getString("id_material"),
+                        rs.getString("id_material_code"),
+                        rs.getString("name_material")};
                     myModel.insertRow(0, data);
                 }
 
@@ -779,7 +753,7 @@ hapus_row();
     }//GEN-LAST:event_customTextfield4KeyReleased
 
     private void customTextfield2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield2KeyTyped
-DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
+        DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
         String mySearch = customTextfield2.getText();
         int row = jTable1.getRowCount();
         for (int i = 0; i < row; i++) {
@@ -793,8 +767,8 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id"),
-                    rs.getString("name_job"),
-                    rs.getString("name_dicipline")};
+                        rs.getString("name_job"),
+                        rs.getString("name_dicipline")};
                     myModel.insertRow(0, data);
                 }
 
@@ -808,9 +782,9 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
                 rs = stm.executeQuery("SELECT * FROM job_facancy INNER JOIN job_facancy_discipline on job_facancy.id_job = job_facancy_discipline.id_job");
                 while (rs.next()) {
                     String[] data = {
-                         rs.getString("id"),
-                    rs.getString("name_job"),
-                    rs.getString("name_dicipline")};
+                        rs.getString("id"),
+                        rs.getString("name_job"),
+                        rs.getString("name_dicipline")};
                     myModel.insertRow(0, data);
                 }
 
@@ -821,7 +795,7 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
     }//GEN-LAST:event_customTextfield2KeyTyped
 
     private void customTextfield2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield2KeyReleased
-DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
+        DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
         String mySearch = customTextfield2.getText();
         int row = jTable1.getRowCount();
         for (int i = 0; i < row; i++) {
@@ -835,8 +809,8 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id"),
-                    rs.getString("name_job"),
-                    rs.getString("name_dicipline")};
+                        rs.getString("name_job"),
+                        rs.getString("name_dicipline")};
                     myModel.insertRow(0, data);
                 }
 
@@ -850,9 +824,9 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
                 rs = stm.executeQuery("SELECT * FROM job_facancy INNER JOIN job_facancy_discipline on job_facancy.id_job = job_facancy_discipline.id_job");
                 while (rs.next()) {
                     String[] data = {
-                         rs.getString("id"),
-                    rs.getString("name_job"),
-                    rs.getString("name_dicipline")};
+                        rs.getString("id"),
+                        rs.getString("name_job"),
+                        rs.getString("name_dicipline")};
                     myModel.insertRow(0, data);
                 }
 
@@ -863,23 +837,21 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
     }//GEN-LAST:event_customTextfield2KeyReleased
 
     private void cb_spekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_spekActionPerformed
- if (cb_spek.getSelectedItem() == null){
-          
-      } else {
-     combobox_spek();
-     tampil_table_spek();
-     
-      }
- 
+        if (cb_spek.getSelectedItem() == null) {
 
+        } else {
+            combobox_spek();
+            tampil_table_spek();
+
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_cb_spekActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-try {
+        try {
             Statement stm = koneksi.createStatement();
-            String sql = "Insert po_material_spek(id_material_code,id_discipline_code,name_spek) value ('"+spec1+"','"+spec+"','"+t_spek.getText()+"') ";
+            String sql = "Insert po_material_spek(id_material_code,id_discipline_code,name_spek) value ('" + spec1 + "','" + spec + "','" + t_spek.getText() + "') ";
 
             stm.executeUpdate(sql);
 
@@ -887,13 +859,11 @@ try {
             e.printStackTrace();
         }
         t_spek.setText("");
-        
+
         tampil_table_spek();
-         
-        
 
 // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void customTextfield7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield7KeyReleased
@@ -905,21 +875,20 @@ try {
     }//GEN-LAST:event_customTextfield7KeyTyped
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
- int[] selectedRows = jTable3.getSelectedRows();
+        int[] selectedRows = jTable3.getSelectedRows();
 
-        DefaultTableModel model = (DefaultTableModel) jTable3 .getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
 
             try {
                 stm = koneksi.createStatement();
                 String c = (String) model.getValueAt(selectedRows[i], 0);
-             
-            
-                String sql = "DELETE FROM po_material_spek where id_material_spek = '" +c+ "'";
-             
+
+                String sql = "DELETE FROM po_material_spek where id_material_spek = '" + c + "'";
+
                 model.removeRow(selectedRows[i]);
                 stm.executeUpdate(sql);
-              
+
                 stm.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
@@ -928,7 +897,7 @@ try {
         }
 
         hapus_row();
-        tampil();     
+        tampil();
         tampil_cb_matrial();
         tampil_comboboxspek();
         tampil_table_spek();        // TODO add your handling code here:
@@ -939,36 +908,37 @@ try {
     }//GEN-LAST:event_customTextfield4ActionPerformed
 
     private void cb_materialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_materialActionPerformed
-      if (cb_material.getSelectedItem() == null){
-          
-      } else {combobox_material();
-      
-      tampil_cb_matrial();
-     tampil_comboboxspek();
-      }
-  
+        if (cb_material.getSelectedItem() == null) {
+
+        } else {
+            combobox_material();
+
+            tampil_cb_matrial();
+            tampil_comboboxspek();
+        }
+
     }//GEN-LAST:event_cb_materialActionPerformed
 
     private void t_material_codeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_material_codeKeyTyped
-if (t_material_code.getText().length() > 1) {
+        if (t_material_code.getText().length() > 1) {
             evt.consume();
-        }   
+        }
     }//GEN-LAST:event_t_material_codeKeyTyped
 
     private void t_material_codeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_material_codeKeyReleased
-t_material_code.setText(t_material_code.getText().toUpperCase());         // TODO add your handling code here:
+        t_material_code.setText(t_material_code.getText().toUpperCase());         // TODO add your handling code here:
 
 
     }//GEN-LAST:event_t_material_codeKeyReleased
 
     private void t_discipline_codeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_discipline_codeKeyTyped
-if (t_discipline_code.getText().length() > 1) {
+        if (t_discipline_code.getText().length() > 1) {
             evt.consume();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_t_discipline_codeKeyTyped
 
     private void t_discipline_codeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_discipline_codeKeyReleased
-     t_discipline_code.setText(t_discipline_code.getText().toUpperCase());    // TODO add your handling code here:
+        t_discipline_code.setText(t_discipline_code.getText().toUpperCase());    // TODO add your handling code here:
     }//GEN-LAST:event_t_discipline_codeKeyReleased
 
 

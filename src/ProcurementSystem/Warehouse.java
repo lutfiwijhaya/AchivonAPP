@@ -20,7 +20,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USER
  */
-public class Warehouse extends MasterForm{
+public class Warehouse extends MasterForm {
+
     Statement stm;
     ResultSet rs;
     Connection koneksi;
@@ -37,7 +38,7 @@ public class Warehouse extends MasterForm{
         b_save.setVisible(false);
     }
 
-      private void openDB() {
+    private void openDB() {
         try {
             koneksi kon = new koneksi();
             koneksi = kon.getConnection();
@@ -45,8 +46,8 @@ public class Warehouse extends MasterForm{
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
-      
-       private void id_employee() {
+
+    private void id_employee() {
         String sql = "select max(id) from assets";
         try {
             stm = koneksi.createStatement();
@@ -54,17 +55,17 @@ public class Warehouse extends MasterForm{
             while (rs.next()) {
                 int a = rs.getInt(1);
                 id = a + 1;
-               
+
             }
         } catch (Exception e) {
             System.out.println("" + e.getMessage());
         }
         String id1 = Integer.toString(id);
         t_id.setText(id1);
-        
+
     }
-       
-       void tampil(){
+
+    void tampil() {
         DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
         int rowCount = dataModel2.getRowCount();
 
@@ -93,23 +94,20 @@ public class Warehouse extends MasterForm{
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
-       
-       
-       }
-       
-       void kosong(){
-       b_category_1.setSelectedItem("Category Item 1");
-       b_category_2.setSelectedItem("Category Item 2");
-       t_name.setText("");
-       t_remark.setText("");
-       t_size.setText("");
-       t_spec.setText("");
-       t_stok.setText("");
-       b_qty.setSelectedItem("QTY");
-       }
-       
-       
-       
+
+    }
+
+    void kosong() {
+        b_category_1.setSelectedItem("Category Item 1");
+        b_category_2.setSelectedItem("Category Item 2");
+        t_name.setText("");
+        t_remark.setText("");
+        t_size.setText("");
+        t_spec.setText("");
+        t_stok.setText("");
+        b_qty.setSelectedItem("QTY");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -371,15 +369,14 @@ public class Warehouse extends MasterForm{
 
     private void b_category_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_category_2ActionPerformed
 
-  
         //       try {
-            //            String id = Integer.toString(id3);
-            //            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + province.getSelectedItem().toString() + "'");
-            //            while (myRess.next()) {
-                //                idIntegrated.setText("" + boxID1.getSelectedItem() + "-" + boxID2.getSelectedItem() + "-" + id + "");
-                //            }
-            //        } catch (SQLException ex) {
-            //        }        // TODO add your handling code here:
+        //            String id = Integer.toString(id3);
+        //            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + province.getSelectedItem().toString() + "'");
+        //            while (myRess.next()) {
+        //                idIntegrated.setText("" + boxID1.getSelectedItem() + "-" + boxID2.getSelectedItem() + "-" + id + "");
+        //            }
+        //        } catch (SQLException ex) {
+        //        }        // TODO add your handling code here:
     }//GEN-LAST:event_b_category_2ActionPerformed
 
     private void b_category_1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_b_category_1PopupMenuWillBecomeVisible
@@ -399,23 +396,23 @@ public class Warehouse extends MasterForm{
     }//GEN-LAST:event_b_qtyActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-kosong();
-b_save.setVisible(false);
-                jButton4.setVisible(true);
-                id_employee();
-                t_stok.setEnabled(true);
-                                   t_name.setEnabled(true);
-t_date.setEnabled(true);
-t_remark.setEnabled(true);
-t_size.setEnabled(true);
-t_spec.setEnabled(true);
-b_category_1.setEnabled(true);
-b_category_2.setEnabled(true);
-b_qty.setEnabled(true);
+        kosong();
+        b_save.setVisible(false);
+        jButton4.setVisible(true);
+        id_employee();
+        t_stok.setEnabled(true);
+        t_name.setEnabled(true);
+        t_date.setEnabled(true);
+        t_remark.setEnabled(true);
+        t_size.setEnabled(true);
+        t_spec.setEnabled(true);
+        b_category_1.setEnabled(true);
+        b_category_2.setEnabled(true);
+        b_qty.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-   int[] selectedRows = jTable1.getSelectedRows();
+        int[] selectedRows = jTable1.getSelectedRows();
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
@@ -424,20 +421,20 @@ b_qty.setEnabled(true);
                 stm = koneksi.createStatement();
 
                 String sql = "DELETE FROM assets where id = '" + c + "'";
-               
+
                 model.removeRow(selectedRows[i]);
                 stm.executeUpdate(sql);
-                
+
                 stm.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
             }
 
-        }     
+        }
         kosong();
-tampil();
-id_employee();
-t_stok.setEnabled(true);
+        tampil();
+        id_employee();
+        t_stok.setEnabled(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void t_remarkMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_remarkMouseWheelMoved
@@ -445,11 +442,10 @@ t_stok.setEnabled(true);
     }//GEN-LAST:event_t_remarkMouseWheelMoved
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       
-        
+
         try {
             stm = koneksi.createStatement();
-            String sql = "insert into assets (id,category1,category2,nama_barang,spek_barang,size_barang,stok,qty,tgl_input,remark) values('" +t_id.getText()+ "'"
+            String sql = "insert into assets (id,category1,category2,nama_barang,spek_barang,size_barang,stok,qty,tgl_input,remark) values('" + t_id.getText() + "'"
                     + ",'" + b_category_1.getSelectedItem().toString() + "'"
                     + ",'" + b_category_2.getSelectedItem().toString() + "'"
                     + ",'" + t_name.getText() + "'"
@@ -458,9 +454,9 @@ t_stok.setEnabled(true);
                     + ",'" + t_stok.getText() + "'"
                     + ",'" + b_qty.getSelectedItem().toString() + "'"
                     + ",'" + t_date.getText() + "'"
-                    + ",'" +t_remark.getText()+ "')";
-            
-            stm.executeUpdate(sql);        
+                    + ",'" + t_remark.getText() + "')";
+
+            stm.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Item Saved Successfully");
         } catch (SQLException ex) {
             Logger.getLogger(Warehouse.class.getName()).log(Level.SEVERE, null, ex);
@@ -472,77 +468,75 @@ t_stok.setEnabled(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-t_stok.setEnabled(true);
-t_name.setEnabled(false);
-t_date.setEnabled(false);
-t_remark.setEnabled(false);
-t_size.setEnabled(false);
-t_spec.setEnabled(false);
-b_category_1.setEnabled(false);
-b_category_2.setEnabled(false);
-b_qty.setEnabled(false);
+        t_stok.setEnabled(true);
+        t_name.setEnabled(false);
+        t_date.setEnabled(false);
+        t_remark.setEnabled(false);
+        t_size.setEnabled(false);
+        t_spec.setEnabled(false);
+        b_category_1.setEnabled(false);
+        b_category_2.setEnabled(false);
+        b_qty.setEnabled(false);
         int row = jTable1.getSelectedRow();
         String a = ((String) jTable1.getValueAt(row, 0));
-      
+
         System.out.println(a);
 
         try {
             Statement stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from assets where id = " + a + "");
             while (rs.next()) {
-                 b_category_1.setSelectedItem(rs.getString("category1"));
-       b_category_2.setSelectedItem(rs.getString("category2"));
-       t_name.setText(rs.getString("nama_barang"));
-       t_remark.setText(rs.getString("remark"));
-       t_size.setText(rs.getString("size_barang"));
-       t_spec.setText(rs.getString("spek_barang"));
-       t_stok.setText(rs.getString("stok"));
-       t_id.setText(rs.getString("id"));
-       t_date.setText(rs.getString("tgl_input"));
-       b_qty.setSelectedItem(rs.getString("qty"));
-                
+                b_category_1.setSelectedItem(rs.getString("category1"));
+                b_category_2.setSelectedItem(rs.getString("category2"));
+                t_name.setText(rs.getString("nama_barang"));
+                t_remark.setText(rs.getString("remark"));
+                t_size.setText(rs.getString("size_barang"));
+                t_spec.setText(rs.getString("spek_barang"));
+                t_stok.setText(rs.getString("stok"));
+                t_id.setText(rs.getString("id"));
+                t_date.setText(rs.getString("tgl_input"));
+                b_qty.setSelectedItem(rs.getString("qty"));
+
                 b_save.setVisible(true);
                 jButton4.setVisible(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }  
-
-        
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-  t_stok.setEnabled(false);
-   t_name.setEnabled(true);
-t_date.setEnabled(true);
-t_remark.setEnabled(true);
-t_size.setEnabled(true);
-t_spec.setEnabled(true);
-b_category_1.setEnabled(true);
-b_category_2.setEnabled(true);
-b_qty.setEnabled(true);
+        t_stok.setEnabled(false);
+        t_name.setEnabled(true);
+        t_date.setEnabled(true);
+        t_remark.setEnabled(true);
+        t_size.setEnabled(true);
+        t_spec.setEnabled(true);
+        b_category_1.setEnabled(true);
+        b_category_2.setEnabled(true);
+        b_qty.setEnabled(true);
         int row = jTable1.getSelectedRow();
         String a = ((String) jTable1.getValueAt(row, 0));
-      
+
         System.out.println(a);
 
         try {
             Statement stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from assets where id = " + a + "");
             while (rs.next()) {
-                 b_category_1.setSelectedItem(rs.getString("category1"));
-       b_category_2.setSelectedItem(rs.getString("category2"));
-       t_name.setText(rs.getString("nama_barang"));
-       t_remark.setText(rs.getString("remark"));
-       t_size.setText(rs.getString("size_barang"));
-       t_spec.setText(rs.getString("spek_barang"));
-       t_stok.setText(rs.getString("stok"));
-       t_id.setText(rs.getString("id"));
-       t_date.setText(rs.getString("tgl_input"));
-       b_qty.setSelectedItem(rs.getString("qty"));
-                
+                b_category_1.setSelectedItem(rs.getString("category1"));
+                b_category_2.setSelectedItem(rs.getString("category2"));
+                t_name.setText(rs.getString("nama_barang"));
+                t_remark.setText(rs.getString("remark"));
+                t_size.setText(rs.getString("size_barang"));
+                t_spec.setText(rs.getString("spek_barang"));
+                t_stok.setText(rs.getString("stok"));
+                t_id.setText(rs.getString("id"));
+                t_date.setText(rs.getString("tgl_input"));
+                b_qty.setSelectedItem(rs.getString("qty"));
+
                 b_save.setVisible(true);
                 jButton4.setVisible(false);
             }
@@ -552,7 +546,7 @@ b_qty.setEnabled(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void t_stokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stokKeyTyped
-  char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
         }
@@ -562,78 +556,77 @@ b_qty.setEnabled(true);
     }//GEN-LAST:event_t_stokKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
- t_name.setEnabled(true);
-t_date.setEnabled(true);
-t_remark.setEnabled(true);
-t_size.setEnabled(true);
-t_spec.setEnabled(true);
-b_category_1.setEnabled(true);
-b_category_2.setEnabled(true);
-b_qty.setEnabled(true);
+        t_name.setEnabled(true);
+        t_date.setEnabled(true);
+        t_remark.setEnabled(true);
+        t_size.setEnabled(true);
+        t_spec.setEnabled(true);
+        b_category_1.setEnabled(true);
+        b_category_2.setEnabled(true);
+        b_qty.setEnabled(true);
         t_stok.setEnabled(false);
         int row = jTable1.getSelectedRow();
         String a = ((String) jTable1.getValueAt(row, 0));
-      
+
         System.out.println(a);
 
         try {
             Statement stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from assets where id = " + a + "");
             while (rs.next()) {
-                 b_category_1.setSelectedItem(rs.getString("category1"));
-       b_category_2.setSelectedItem(rs.getString("category2"));
-       t_name.setText(rs.getString("nama_barang"));
-       t_remark.setText(rs.getString("remark"));
-       t_size.setText(rs.getString("size_barang"));
-       t_spec.setText(rs.getString("spek_barang"));
-       t_stok.setText(rs.getString("stok"));
-       t_id.setText(rs.getString("id"));
-      t_date.setText(rs.getString("tgl_input"));
-       b_qty.setSelectedItem(rs.getString("qty"));
-                
+                b_category_1.setSelectedItem(rs.getString("category1"));
+                b_category_2.setSelectedItem(rs.getString("category2"));
+                t_name.setText(rs.getString("nama_barang"));
+                t_remark.setText(rs.getString("remark"));
+                t_size.setText(rs.getString("size_barang"));
+                t_spec.setText(rs.getString("spek_barang"));
+                t_stok.setText(rs.getString("stok"));
+                t_id.setText(rs.getString("id"));
+                t_date.setText(rs.getString("tgl_input"));
+                b_qty.setSelectedItem(rs.getString("qty"));
+
                 b_save.setVisible(true);
                 jButton4.setVisible(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }   
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void b_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_saveActionPerformed
-int respon = JOptionPane.showConfirmDialog(null, "save change data?", "Option", JOptionPane.YES_NO_OPTION);
+        int respon = JOptionPane.showConfirmDialog(null, "save change data?", "Option", JOptionPane.YES_NO_OPTION);
         if (respon == 0) {
-            
-     
+
             try {
-            stm = koneksi.createStatement();
-            String sql9 = "update assets set category1='" + b_category_1.getSelectedItem().toString() + "', category2='" + b_category_2.getSelectedItem().toString() + "',"
-                    + "nama_barang='" +t_name.getText() + "',spek_barang='" + t_spec.getText() + "', stok='" + t_stok.getText() + "',"
-                    + "size_barang='" + t_size.getText() + "',qty='" + b_qty.getSelectedItem().toString() + "',"
-                    + "tgl_input='" + t_date.getText() + "',remark='" + t_remark.getText() + "' where id='" + t_id.getText() + "'";
-            
-            stm.executeUpdate(sql9);
-            
-             JOptionPane.showMessageDialog(null, "Saved Successfully");
-            // TODO add your handling code here:
-        } catch (SQLException ex) {
-            Logger.getLogger(Warehouse.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        kosong();
-b_save.setVisible(false);
-                jButton4.setVisible(true);
-                id_employee();
-                t_stok.setEnabled(true);
-                       t_name.setEnabled(true);
-t_date.setEnabled(true);
-t_remark.setEnabled(true);
-t_size.setEnabled(true);
-t_spec.setEnabled(true);
-b_category_1.setEnabled(true);
-b_category_2.setEnabled(true);
-b_qty.setEnabled(true);
-                tampil();
-                
+                stm = koneksi.createStatement();
+                String sql9 = "update assets set category1='" + b_category_1.getSelectedItem().toString() + "', category2='" + b_category_2.getSelectedItem().toString() + "',"
+                        + "nama_barang='" + t_name.getText() + "',spek_barang='" + t_spec.getText() + "', stok='" + t_stok.getText() + "',"
+                        + "size_barang='" + t_size.getText() + "',qty='" + b_qty.getSelectedItem().toString() + "',"
+                        + "tgl_input='" + t_date.getText() + "',remark='" + t_remark.getText() + "' where id='" + t_id.getText() + "'";
+
+                stm.executeUpdate(sql9);
+
+                JOptionPane.showMessageDialog(null, "Saved Successfully");
+                // TODO add your handling code here:
+            } catch (SQLException ex) {
+                Logger.getLogger(Warehouse.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            kosong();
+            b_save.setVisible(false);
+            jButton4.setVisible(true);
+            id_employee();
+            t_stok.setEnabled(true);
+            t_name.setEnabled(true);
+            t_date.setEnabled(true);
+            t_remark.setEnabled(true);
+            t_size.setEnabled(true);
+            t_spec.setEnabled(true);
+            b_category_1.setEnabled(true);
+            b_category_2.setEnabled(true);
+            b_qty.setEnabled(true);
+            tampil();
+
         }
     }//GEN-LAST:event_b_saveActionPerformed
 
