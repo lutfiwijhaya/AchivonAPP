@@ -37,6 +37,8 @@ import HumanResource.RequestAllocationList;
 import HumanResource.RequestEmployeeAllocation;
 import HumanResource.ResignationList;
 import HumanResource.SummaryStatusCandidatEmployee;
+import MonthlyProgress.AddProgress;
+import MonthlyProgress.MonthlyProgress;
 import ProcurementSystem.AddMaterialList;
 import ProcurementSystem.BizPointment;
 import ProcurementSystem.Warehouse;
@@ -256,6 +258,9 @@ public class main extends javax.swing.JFrame {
         WarehouseSystem = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         AcountingSystem = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
         myProfile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator17 = new javax.swing.JPopupMenu.Separator();
@@ -794,6 +799,27 @@ public class main extends javax.swing.JFrame {
         AcountingSystem.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         ToolBar.add(AcountingSystem);
 
+        jMenu3.setText("Monthly Progress |");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMenuItem24.setText("Add Plan");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem24);
+
+        jMenuItem25.setText("Add Progress");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem25);
+
+        ToolBar.add(jMenu3);
+
         myProfile.setText("Profile");
         myProfile.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         myProfile.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1086,6 +1112,14 @@ public class main extends javax.swing.JFrame {
         showForm(new po_list_request_material());    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+showForm(new MonthlyProgress());        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+ showForm(new AddProgress());          // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1167,6 +1201,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
@@ -1183,6 +1218,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
