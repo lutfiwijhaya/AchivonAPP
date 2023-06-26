@@ -362,281 +362,281 @@ Main.main.getMain().showForm(new po_rfq());
     }//GEN-LAST:event_textSearchKeyTyped
 
     private void textSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyReleased
-        //candidate
-        if ("2".equals(MySession.get_Role())){
-            role = "1";
-        }else if ("3".equals(MySession.get_Role())){
-            role = "2";
-        }
-        if (CustomResource.EmployeeSession.getsesiform().equals("1")){
-            DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();
-            String mySearch = textSearch.getText();
-            int row = jTable1.getRowCount();
-            for (int i = 0; i < row; i++) {
-                myModel.removeRow(0);
-            }
-            if (mySearch != null) {
-                try {
-                    stm = koneksi.createStatement();
-                    rs = stm.executeQuery("SELECT * FROM cd_employee WHERE approval = "+role+" AND Nama LIKE '%" + mySearch + "%'");
-                    while (rs.next()) {
-                        String[] data = {
-                           rs.getString("id_employee"),
-                        rs.getString("KTP"),
-                        rs.getString("Nama"),
-                        rs.getString("Applying_A")};
-                        myModel.insertRow(0, data);
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                }
-            } else {
-                try {
-                    stm = koneksi.createStatement();
-                    rs = stm.executeQuery("select*from cd_employee where approval = "+role+"");
-                    while (rs.next()) {
-                        String[] data = {
-                           rs.getString("id_employee"),
-                        rs.getString("KTP"),
-                        rs.getString("Nama"),
-                        rs.getString("Applying_A")};
-                        myModel.insertRow(0, data);
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                }
-            }  
-            int row1 = jTable1.getRowCount();
-            if (row1 == 0){
-                if (mySearch != null) {
-                    try {
-                        stm = koneksi.createStatement();
-                        rs = stm.executeQuery("SELECT * FROM cd_employee WHERE approval = "+role+" AND KTP LIKE '%" + mySearch + "%'");
-                        while (rs.next()) {
-                            String[] data = {
-                              rs.getString("id_employee"),
-                            rs.getString("KTP"),
-                            rs.getString("Nama"),
-                            rs.getString("Applying_A")};
-                            myModel.insertRow(0, data);
-                        }
-
-
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                    }
-                } else {
-                    try {
-                        stm = koneksi.createStatement();
-                        rs = stm.executeQuery("select*from cd_employee where approval = "+role+"");
-                        while (rs.next()) {
-                            String[] data = {
-                               rs.getString("id_employee"),
-                            rs.getString("KTP"),
-                            rs.getString("Nama"),
-                            rs.getString("Applying_A")};
-                            myModel.insertRow(0, data);
-                        }
-
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                    }
-                }  
-            }
-            int row2 = jTable1.getRowCount();
-            if (row2 == 0){
-                if (mySearch != null) {
-                    try {
-                        stm = koneksi.createStatement();
-                        rs = stm.executeQuery("SELECT * FROM cd_employee WHERE approval = "+role+" AND Applying_A LIKE '%" + mySearch + "%'");
-                        while (rs.next()) {
-                            String[] data = {
-                              rs.getString("id_employee"),
-                            rs.getString("KTP"),
-                            rs.getString("Nama"),
-                            rs.getString("Applying_A")};;
-                            myModel.insertRow(0, data);
-                        }
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                    }
-                } else {
-                    try {
-                        stm = koneksi.createStatement();
-                        rs = stm.executeQuery("select*from cd_employee where approval = "+role+"");
-                        while (rs.next()) {
-                            String[] data = {
-                                rs.getString("id_employee"),
-                            rs.getString("KTP"),
-                            rs.getString("Nama"),
-                            rs.getString("Applying_A")};
-                            myModel.insertRow(0, data);
-                        }
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                    }
-                }
-            }
-        }else{
-            //sesi 2 employee  
-            if (CustomResource.EmployeeSession.getsesiform().equals("2")){
-                DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();
-                String mySearch = textSearch.getText();
-                int row = jTable1.getRowCount();
-                for (int i = 0; i < row; i++) {
-                    myModel.removeRow(0);
-                }
-                if (mySearch != null) {
-                    try {
-                        stm = koneksi.createStatement();
-                        rs = stm.executeQuery("SELECT * FROM employee WHERE name LIKE '%" + mySearch + "%'");
-                        while (rs.next()) {
-                            String[] data = {
-                               rs.getString("id"),
-                            rs.getString("karyawan_id"),
-                            rs.getString("name"),
-                            rs.getString("job_position")};
-                            myModel.insertRow(0, data);
-                        }
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                    }
-                } else {
-                    try {
-                        stm = koneksi.createStatement();
-                        rs = stm.executeQuery("select*from employee");
-                        while (rs.next()) {
-                            String[] data = {
-                                rs.getString("id"),
-                            rs.getString("karyawan_id"),
-                            rs.getString("name"),
-                            rs.getString("job_position")};
-                            myModel.insertRow(0, data);
-                        }
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                    }
-                }  
-                int row1 = jTable1.getRowCount();
-                if (row1 == 0){
-                    if (mySearch != null) {
-                        try {
-                            stm = koneksi.createStatement();
-                            rs = stm.executeQuery("SELECT * FROM employee WHERE karyawan_id LIKE '%" + mySearch + "%'");
-                            while (rs.next()) {
-                                String[] data = {
-                                   rs.getString("id"),
-                                rs.getString("karyawan_id"),
-                                rs.getString("name"),
-                                rs.getString("job_position")};
-                                myModel.insertRow(0, data);
-                            }
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                        }
-                    } else {
-                        try {
-                            stm = koneksi.createStatement();
-                            rs = stm.executeQuery("select*from employee");
-                            while (rs.next()) {
-                                String[] data = {
-                                    rs.getString("id"),
-                                rs.getString("karyawan_id"),
-                                rs.getString("name"),
-                                rs.getString("job_position")};
-                                myModel.insertRow(0, data);
-                            }
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                        }
-                    }
-                }
-                int row2 = jTable1.getRowCount();
-                if (row2 == 0){
-                    if (mySearch != null) {
-                        try {
-                            stm = koneksi.createStatement();
-                            rs = stm.executeQuery("SELECT * FROM employee WHERE job_position LIKE '%" + mySearch + "%'");
-                            while (rs.next()) {
-                                String[] data = {
-                                   rs.getString("id"),
-                                rs.getString("karyawan_id"),
-                                rs.getString("name"),
-                                rs.getString("job_position")};
-                                myModel.insertRow(0, data);
-                            }
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                        }
-                    } else {
-                        try {
-                            stm = koneksi.createStatement();
-                            rs = stm.executeQuery("select*from employee");
-                            while (rs.next()) {
-                                String[] data = {
-                                    rs.getString("id"),
-                                rs.getString("karyawan_id"),
-                                rs.getString("name"),
-                                rs.getString("job_position")};
-                                myModel.insertRow(0, data);
-                            }
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                        }
-                    }
-                }
-            }
-        }
-        if (mySearch != null) {
-           
-            
-            try {
-                stm = koneksi.createStatement();
-                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE partner_id LIKE '%" + mySearch + "%'");
-                while (rs.next()) {
-                    String[] data = {
-                        rs.getString("biz_id"),
-                    rs.getString("partner_id"),
-                    rs.getString("name"),
-                    rs.getString("city")};
-                    myModel.insertRow(0, data);
-                }
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-            }
-            if (mySearch != null) {
-                try {
-                    stm = koneksi.createStatement();
-                    rs = stm.executeQuery("SELECT * FROM biz_partner WHERE name LIKE '%" + mySearch + "%'");
-                    while (rs.next()) {
-                        String[] data = {
-                            rs.getString("biz_id"),
-                        rs.getString("partner_id"),
-                        rs.getString("name"),
-                        rs.getString("city")};
-                        myModel.insertRow(0, data);
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                }
-            } else {
-                try {
-                    stm = koneksi.createStatement();
-                    rs = stm.executeQuery("select*from biz_partner");
-                    while (rs.next()) {
-                        String[] data = {
-                            rs.getString("biz_id"),
-                        rs.getString("partner_id"),
-                        rs.getString("name"),
-                        rs.getString("city")};
-                        myModel.insertRow(0, data);
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                }
-            }     
-        }
+//        //candidate
+//        if ("2".equals(MySession.get_Role())){
+//            role = "1";
+//        }else if ("3".equals(MySession.get_Role())){
+//            role = "2";
+//        }
+//        if (CustomResource.EmployeeSession.getsesiform().equals("1")){
+//            DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();
+//            String mySearch = textSearch.getText();
+//            int row = jTable1.getRowCount();
+//            for (int i = 0; i < row; i++) {
+//                myModel.removeRow(0);
+//            }
+//            if (mySearch != null) {
+//                try {
+//                    stm = koneksi.createStatement();
+//                    rs = stm.executeQuery("SELECT * FROM cd_employee WHERE approval = "+role+" AND Nama LIKE '%" + mySearch + "%'");
+//                    while (rs.next()) {
+//                        String[] data = {
+//                           rs.getString("id_employee"),
+//                        rs.getString("KTP"),
+//                        rs.getString("Nama"),
+//                        rs.getString("Applying_A")};
+//                        myModel.insertRow(0, data);
+//                    }
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                }
+//            } else {
+//                try {
+//                    stm = koneksi.createStatement();
+//                    rs = stm.executeQuery("select*from cd_employee where approval = "+role+"");
+//                    while (rs.next()) {
+//                        String[] data = {
+//                           rs.getString("id_employee"),
+//                        rs.getString("KTP"),
+//                        rs.getString("Nama"),
+//                        rs.getString("Applying_A")};
+//                        myModel.insertRow(0, data);
+//                    }
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                }
+//            }  
+//            int row1 = jTable1.getRowCount();
+//            if (row1 == 0){
+//                if (mySearch != null) {
+//                    try {
+//                        stm = koneksi.createStatement();
+//                        rs = stm.executeQuery("SELECT * FROM cd_employee WHERE approval = "+role+" AND KTP LIKE '%" + mySearch + "%'");
+//                        while (rs.next()) {
+//                            String[] data = {
+//                              rs.getString("id_employee"),
+//                            rs.getString("KTP"),
+//                            rs.getString("Nama"),
+//                            rs.getString("Applying_A")};
+//                            myModel.insertRow(0, data);
+//                        }
+//
+//
+//                    } catch (Exception e) {
+//                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                    }
+//                } else {
+//                    try {
+//                        stm = koneksi.createStatement();
+//                        rs = stm.executeQuery("select*from cd_employee where approval = "+role+"");
+//                        while (rs.next()) {
+//                            String[] data = {
+//                               rs.getString("id_employee"),
+//                            rs.getString("KTP"),
+//                            rs.getString("Nama"),
+//                            rs.getString("Applying_A")};
+//                            myModel.insertRow(0, data);
+//                        }
+//
+//                    } catch (Exception e) {
+//                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                    }
+//                }  
+//            }
+//            int row2 = jTable1.getRowCount();
+//            if (row2 == 0){
+//                if (mySearch != null) {
+//                    try {
+//                        stm = koneksi.createStatement();
+//                        rs = stm.executeQuery("SELECT * FROM cd_employee WHERE approval = "+role+" AND Applying_A LIKE '%" + mySearch + "%'");
+//                        while (rs.next()) {
+//                            String[] data = {
+//                              rs.getString("id_employee"),
+//                            rs.getString("KTP"),
+//                            rs.getString("Nama"),
+//                            rs.getString("Applying_A")};;
+//                            myModel.insertRow(0, data);
+//                        }
+//                    } catch (Exception e) {
+//                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                    }
+//                } else {
+//                    try {
+//                        stm = koneksi.createStatement();
+//                        rs = stm.executeQuery("select*from cd_employee where approval = "+role+"");
+//                        while (rs.next()) {
+//                            String[] data = {
+//                                rs.getString("id_employee"),
+//                            rs.getString("KTP"),
+//                            rs.getString("Nama"),
+//                            rs.getString("Applying_A")};
+//                            myModel.insertRow(0, data);
+//                        }
+//                    } catch (Exception e) {
+//                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                    }
+//                }
+//            }
+//        }else{
+//            //sesi 2 employee  
+//            if (CustomResource.EmployeeSession.getsesiform().equals("2")){
+//                DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();
+//                String mySearch = textSearch.getText();
+//                int row = jTable1.getRowCount();
+//                for (int i = 0; i < row; i++) {
+//                    myModel.removeRow(0);
+//                }
+//                if (mySearch != null) {
+//                    try {
+//                        stm = koneksi.createStatement();
+//                        rs = stm.executeQuery("SELECT * FROM employee WHERE name LIKE '%" + mySearch + "%'");
+//                        while (rs.next()) {
+//                            String[] data = {
+//                               rs.getString("id"),
+//                            rs.getString("karyawan_id"),
+//                            rs.getString("name"),
+//                            rs.getString("job_position")};
+//                            myModel.insertRow(0, data);
+//                        }
+//                    } catch (Exception e) {
+//                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                    }
+//                } else {
+//                    try {
+//                        stm = koneksi.createStatement();
+//                        rs = stm.executeQuery("select*from employee");
+//                        while (rs.next()) {
+//                            String[] data = {
+//                                rs.getString("id"),
+//                            rs.getString("karyawan_id"),
+//                            rs.getString("name"),
+//                            rs.getString("job_position")};
+//                            myModel.insertRow(0, data);
+//                        }
+//                    } catch (Exception e) {
+//                        JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                    }
+//                }  
+//                int row1 = jTable1.getRowCount();
+//                if (row1 == 0){
+//                    if (mySearch != null) {
+//                        try {
+//                            stm = koneksi.createStatement();
+//                            rs = stm.executeQuery("SELECT * FROM employee WHERE karyawan_id LIKE '%" + mySearch + "%'");
+//                            while (rs.next()) {
+//                                String[] data = {
+//                                   rs.getString("id"),
+//                                rs.getString("karyawan_id"),
+//                                rs.getString("name"),
+//                                rs.getString("job_position")};
+//                                myModel.insertRow(0, data);
+//                            }
+//                        } catch (Exception e) {
+//                            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                        }
+//                    } else {
+//                        try {
+//                            stm = koneksi.createStatement();
+//                            rs = stm.executeQuery("select*from employee");
+//                            while (rs.next()) {
+//                                String[] data = {
+//                                    rs.getString("id"),
+//                                rs.getString("karyawan_id"),
+//                                rs.getString("name"),
+//                                rs.getString("job_position")};
+//                                myModel.insertRow(0, data);
+//                            }
+//                        } catch (Exception e) {
+//                            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                        }
+//                    }
+//                }
+//                int row2 = jTable1.getRowCount();
+//                if (row2 == 0){
+//                    if (mySearch != null) {
+//                        try {
+//                            stm = koneksi.createStatement();
+//                            rs = stm.executeQuery("SELECT * FROM employee WHERE job_position LIKE '%" + mySearch + "%'");
+//                            while (rs.next()) {
+//                                String[] data = {
+//                                   rs.getString("id"),
+//                                rs.getString("karyawan_id"),
+//                                rs.getString("name"),
+//                                rs.getString("job_position")};
+//                                myModel.insertRow(0, data);
+//                            }
+//                        } catch (Exception e) {
+//                            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                        }
+//                    } else {
+//                        try {
+//                            stm = koneksi.createStatement();
+//                            rs = stm.executeQuery("select*from employee");
+//                            while (rs.next()) {
+//                                String[] data = {
+//                                    rs.getString("id"),
+//                                rs.getString("karyawan_id"),
+//                                rs.getString("name"),
+//                                rs.getString("job_position")};
+//                                myModel.insertRow(0, data);
+//                            }
+//                        } catch (Exception e) {
+//                            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        if (mySearch != null) {
+//           
+//            
+//            try {
+//                stm = koneksi.createStatement();
+//                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE partner_id LIKE '%" + mySearch + "%'");
+//                while (rs.next()) {
+//                    String[] data = {
+//                        rs.getString("biz_id"),
+//                    rs.getString("partner_id"),
+//                    rs.getString("name"),
+//                    rs.getString("city")};
+//                    myModel.insertRow(0, data);
+//                }
+//
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//            }
+//            if (mySearch != null) {
+//                try {
+//                    stm = koneksi.createStatement();
+//                    rs = stm.executeQuery("SELECT * FROM biz_partner WHERE name LIKE '%" + mySearch + "%'");
+//                    while (rs.next()) {
+//                        String[] data = {
+//                            rs.getString("biz_id"),
+//                        rs.getString("partner_id"),
+//                        rs.getString("name"),
+//                        rs.getString("city")};
+//                        myModel.insertRow(0, data);
+//                    }
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                }
+//            } else {
+//                try {
+//                    stm = koneksi.createStatement();
+//                    rs = stm.executeQuery("select*from biz_partner");
+//                    while (rs.next()) {
+//                        String[] data = {
+//                            rs.getString("biz_id"),
+//                        rs.getString("partner_id"),
+//                        rs.getString("name"),
+//                        rs.getString("city")};
+//                        myModel.insertRow(0, data);
+//                    }
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                }
+//            }     
+//        }
     }//GEN-LAST:event_textSearchKeyReleased
 
     private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
