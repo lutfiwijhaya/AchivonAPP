@@ -54,7 +54,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane3" alignment="0" pref="899" max="32767" attributes="0"/>
+          <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -73,116 +73,123 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="420" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" pref="420" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="380" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="comboBoxSuggestion8" min="-2" pref="122" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="comboBoxSuggestion9" min="-2" pref="119" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                              <Component id="comboBoxSuggestion10" min="-2" pref="107" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="comboBoxSuggestion11" min="-2" pref="105" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="customTextfield14" min="-2" pref="835" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="250" pref="250" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="idIntegrated" min="-2" pref="119" max="-2" attributes="0"/>
-                          <Component id="boxID1" min="-2" max="-2" attributes="0"/>
-                          <Component id="boxID2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textName" min="-2" pref="420" max="-2" attributes="0"/>
-                          <Component id="t_hp" min="-2" pref="420" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="customTextfield6" min="-2" pref="420" max="-2" attributes="0"/>
-                          <Component id="t_hp_pic" min="-2" pref="420" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textDateRegister" min="-2" pref="119" max="-2" attributes="0"/>
-                          <Component id="boxTax" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="250" pref="250" max="-2" attributes="0"/>
-                      <Component id="textID3" min="-2" pref="119" max="-2" attributes="0"/>
-                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
-                      <Component id="textMail" min="-2" pref="420" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="customTextfield8" min="-2" pref="420" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="textNPWP" min="-2" pref="119" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="country" min="-2" pref="172" max="-2" attributes="0"/>
-                          <Component id="province" min="-2" pref="172" max="-2" attributes="0"/>
-                          <Component id="city" min="-2" pref="172" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="258" pref="258" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="textRT" min="-2" pref="66" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textRW" min="-2" pref="68" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="textPostcode" min="-2" pref="123" max="-2" attributes="0"/>
+                              <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" pref="420" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" pref="420" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="362" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="250" pref="250" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="idIntegrated" min="-2" pref="119" max="-2" attributes="0"/>
+                                  <Component id="boxID1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="boxID2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textName" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="t_hp" min="-2" pref="420" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="customTextfield6" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="t_hp_pic" min="-2" pref="420" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textDateRegister" min="-2" pref="119" max="-2" attributes="0"/>
+                                  <Component id="boxTax" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="250" pref="250" max="-2" attributes="0"/>
+                              <Component id="textID3" min="-2" pref="119" max="-2" attributes="0"/>
+                              <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                              <Component id="textMail" min="-2" pref="420" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="customTextfield8" min="-2" pref="420" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="textNPWP" min="-2" pref="119" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="country" min="-2" pref="172" max="-2" attributes="0"/>
+                                  <Component id="province" min="-2" pref="172" max="-2" attributes="0"/>
+                                  <Component id="city" min="-2" pref="172" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="258" pref="258" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="textRT" min="-2" pref="66" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="textRW" min="-2" pref="68" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="textPostcode" min="-2" pref="123" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="362" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="68" pref="68" max="-2" attributes="0"/>
+                              <Component id="boxPPH" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" pref="850" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
+                              <Component id="jLabel5" min="-2" pref="850" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
+                              <Component id="boxTax1" min="-2" pref="133" max="-2" attributes="0"/>
+                              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
+                              <Component id="textSearch" min="-2" pref="195" max="-2" attributes="0"/>
+                              <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
+                              <Component id="stgl" min="-2" pref="127" max="-2" attributes="0"/>
+                              <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
+                              <Component id="etgl" min="-2" pref="116" max="-2" attributes="0"/>
+                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                              <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
+                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="102" max="-2" attributes="0"/>
+                              <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                              <Component id="jButton2" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                              <Component id="jButton3" min="-2" pref="92" max="-2" attributes="0"/>
+                              <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                              <Component id="jButton6" min="-2" pref="97" max="-2" attributes="0"/>
+                              <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
+                              <Component id="jButton4" min="-2" pref="97" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="68" pref="68" max="-2" attributes="0"/>
-                      <Component id="boxPPH" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="850" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Component id="comboBoxSuggestion8" min="-2" pref="122" max="-2" attributes="0"/>
-                      <EmptySpace min="138" pref="138" max="-2" attributes="0"/>
-                      <Component id="comboBoxSuggestion9" min="-2" pref="119" max="-2" attributes="0"/>
-                      <EmptySpace min="121" pref="121" max="-2" attributes="0"/>
-                      <Component id="comboBoxSuggestion10" min="-2" pref="107" max="-2" attributes="0"/>
-                      <EmptySpace min="123" pref="123" max="-2" attributes="0"/>
-                      <Component id="comboBoxSuggestion11" min="-2" pref="105" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Component id="customTextfield14" min="-2" pref="850" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" pref="850" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Component id="boxTax1" min="-2" pref="133" max="-2" attributes="0"/>
-                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                      <Component id="textSearch" min="-2" pref="195" max="-2" attributes="0"/>
-                      <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                      <Component id="stgl" min="-2" pref="127" max="-2" attributes="0"/>
-                      <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
-                      <Component id="etgl" min="-2" pref="116" max="-2" attributes="0"/>
-                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="380" pref="380" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="102" max="-2" attributes="0"/>
-                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="106" max="-2" attributes="0"/>
-                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="92" max="-2" attributes="0"/>
-                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                      <Component id="jButton6" min="-2" pref="97" max="-2" attributes="0"/>
-                      <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="97" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -258,11 +265,11 @@
                       <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" pref="18" max="-2" attributes="0"/>
                       <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="comboBoxSuggestion8" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxSuggestion9" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxSuggestion10" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboBoxSuggestion11" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="comboBoxSuggestion11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxSuggestion10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxSuggestion9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxSuggestion8" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Component id="customTextfield14" min="-2" max="-2" attributes="0"/>
@@ -373,6 +380,9 @@
               <Properties>
                 <Property name="labelText" type="java.lang.String" value="Name"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textNameActionPerformed"/>
+              </Events>
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_hp">
               <Properties>
@@ -523,22 +533,23 @@
             <Component class="CustomResource.ComboBoxSuggestion" name="boxPPH">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="15">
+                  <StringArray count="16">
                     <StringItem index="0" value="PPh23 (%)"/>
                     <StringItem index="1" value="0.44%"/>
                     <StringItem index="2" value="1.20%"/>
                     <StringItem index="3" value="1.80%"/>
                     <StringItem index="4" value="1.00%"/>
-                    <StringItem index="5" value="2.65%"/>
-                    <StringItem index="6" value="3.00%"/>
-                    <StringItem index="7" value="4.00%"/>
-                    <StringItem index="8" value="5.00%"/>
-                    <StringItem index="9" value="6.00%"/>
-                    <StringItem index="10" value="10.00%"/>
-                    <StringItem index="11" value="15.00%"/>
-                    <StringItem index="12" value="20.00%"/>
-                    <StringItem index="13" value="25.00%"/>
-                    <StringItem index="14" value="30.00%"/>
+                    <StringItem index="5" value="2.00%"/>
+                    <StringItem index="6" value="2.65%"/>
+                    <StringItem index="7" value="3.00%"/>
+                    <StringItem index="8" value="4.00%"/>
+                    <StringItem index="9" value="5.00%"/>
+                    <StringItem index="10" value="6.00%"/>
+                    <StringItem index="11" value="10.00%"/>
+                    <StringItem index="12" value="15.00%"/>
+                    <StringItem index="13" value="20.00%"/>
+                    <StringItem index="14" value="25.00%"/>
+                    <StringItem index="15" value="30.00%"/>
                   </StringArray>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

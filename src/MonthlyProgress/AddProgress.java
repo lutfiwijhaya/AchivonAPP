@@ -466,24 +466,27 @@ public class AddProgress extends MasterForm {
                     }
 
                     for (int m = 2; m < dataModelw.getColumnCount(); m++) {
+                           if (hex % 8 == 5) {
+                              
+                                hex = hex + 2;
+                               
+                            }
                         XSSFRow excelrow = sheetCopy.getRow(hex);
                         hex = hex + 1;
                         for (int j = 0; j < dataModelw.getRowCount(); j++) {
+                          
                             XSSFCell excelcell = excelrow.getCell(j + 3);
                              excelcell.setCellValue(dataModelw.getValueAt(j, m).toString());
-                            if (hex % 6 == 5) {
+                            if (hex % 8 == 3 || hex % 8 == 7) {
                                 excelcell.setCellValue(dataModelw.getValueAt(j, m).toString() + "%");
-//                                
-
                             }
-                            if (hex % 6 == 3) {
+                            if (hex % 8 == 1) {
                                 excelcell.setCellValue(dataModelw.getValueAt(j, m).toString() + "%");
-                                
                             } 
-                               
-                            
                         }
+                        
                     }
+                   
 
                     int rowCount3 = dataModelw.getRowCount();
 
@@ -523,7 +526,7 @@ public class AddProgress extends MasterForm {
                 jLabel5.setText(w_p);
 
                 int row = 9;
-                int row1 = 9 + 5;
+                int row1 = 9 + 7;
 
 //                 Menyalin data dari table ke dalam sheet
                 XSSFRow excelrow1 = sheetCopy.getRow(2);
@@ -568,10 +571,12 @@ public class AddProgress extends MasterForm {
                         e.printStackTrace();
                     }
                 }
+                
+                
                 for (int i = 0; i < dataModelp.getRowCount(); i++) {
 
                     XSSFRow excelrow = sheetCopy.getRow(row1);
-                    row1 = row1 + 6;
+                    row1 = row1 + 8;
 
                     for (int j = 4; j < dataModelp.getColumnCount(); j++) {
                         XSSFCell excelcell = excelrow.getCell(2);
@@ -584,15 +589,15 @@ public class AddProgress extends MasterForm {
 
                     XSSFRow excelrow = sheetCopy.getRow(row);
 
-                    row = row + 6;
+                    row = row + 8;
 
                     int cell = 0;
                     for (int j = 1; j < dataModelp.getColumnCount() - 1; j++) {
                         XSSFCell excelcell = excelrow.getCell(cell);
                         cell = cell + 1;
 
-                        if (cell == 3) {
-                            excelrow = sheetCopy.getRow(row - 5);
+                        if (cell == 3) { 
+                            excelrow = sheetCopy.getRow(row - 7);
                             excelcell = excelrow.getCell(cell - 1);
                             excelcell.setCellValue(dataModelp.getValueAt(i, j).toString() + "%");
 
@@ -603,7 +608,7 @@ public class AddProgress extends MasterForm {
                     }
                 }
 
-                for (int i = hex; i < 100; i++) {
+                for (int i = hex; i < 130; i++) {
                     XSSFRow excelrow = sheetCopy.createRow(i);
 
                 }

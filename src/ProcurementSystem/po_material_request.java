@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USER
  */
-public class po_request extends MasterForm {
+public class po_material_request extends MasterForm {
 
     Statement stm;
     ResultSet rs;
@@ -27,17 +27,22 @@ public class po_request extends MasterForm {
     String item;
     String discipline;
     String spec;
+    String id_spec;
+    String name_material;
+    String name_discipline;
+    String name_spek;
 
     /**
      * Creates new form po_request
      */
-    public po_request() {
+    public po_material_request() {
         initComponents();
         openDB();
+   
         tampil_material();
         tampil_comboboxspek();
         tampil_combospek();
-        tampil_idsite();
+        tampil_table();
 
     }
 
@@ -61,31 +66,35 @@ public class po_request extends MasterForm {
         }
     }
 
-    void tampil_idsite() {
-        try {
-            cb_no_site.removeAllItems();
-            ResultSet myRess = koneksi.createStatement().executeQuery("select*from no_site");
-            while (myRess.next()) {
-                cb_no_site.addItem(myRess.getString("id_site"));
-            }
-        } catch (SQLException ex) {
-        }
-    }
+   
 
     void combobox_material() {
 
         item = cb_material.getSelectedItem().toString();
         String[] parts = item.split("-");
         String id = parts[0];
+        String name = parts[1];
         item = id;
+        name_material = name;
     }
 
     void getidspek() {
         discipline = cb_discipline.getSelectedItem().toString();
         String[] parts = discipline.split("-");
         String id = parts[0];
+        String name = parts[1];
         discipline = id;
+        name_discipline = name;
         spec = item + discipline;
+    }
+
+    void getidspek2() {
+        id_spec = cb_spek.getSelectedItem().toString();
+        String[] parts = id_spec.split("-");
+        String id = parts[0];
+        String name = parts[1];
+        id_spec = id;
+        name_spek = name;
     }
 
     void tampil_comboboxspek() {
@@ -105,15 +114,80 @@ public class po_request extends MasterForm {
             cb_spek.removeAllItems();
             ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_spek where id_discipline_code = '" + spec + "'");
             while (myRess.next()) {
-                cb_spek.addItem(myRess.getString("name_spek"));
+                cb_spek.addItem(myRess.getString("id_material_spek") + "-" + myRess.getString("name_spek"));
             }
         } catch (SQLException ex) {
         }
     }
 
     void getIdRequest() {
-        String purchase = cb_purchase.getSelectedItem().toString().substring(0, 1);
-        t_id_po.setText(cb_no_site.getSelectedItem().toString() + "-" + item + "-" + discipline + "-" + purchase);
+
+        t_id_po.setText(item + "-" + discipline + "-" + id_spec);
+    }
+
+    void submit() {
+        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable1.getModel();
+
+        String dtabel_id_po = t_id_po.getText();
+        String dtabel_material = name_material;
+        String dtabel_discipline = name_discipline;
+        String dtabel_spec = name_spek;
+        String dtabel_tanggal = t_tgl_po.getText();
+        String dtabel_stok = t_stok.getText();
+        String dtabel_qty = box_qty4.getSelectedItem().toString();
+        String dtabel_remark = t_remark.getText();
+        
+        try {
+            stm = koneksi.createStatement();
+            String sql = "insert into po_material_request (id_material_code,material,discipline,spec,tanggal_request,stok,qty,remark) values('" + dtabel_id_po + "'"
+                    + ",'" + dtabel_material + "'"
+                    + ",'" + dtabel_discipline + "'"
+                    + ",'" + dtabel_spec + "'"
+                    + ",'" + dtabel_tanggal + "'"
+                    + ",'" + dtabel_stok + "'"
+                    + ",'" + dtabel_qty + "'"
+                    + ",'" + dtabel_remark + "')";
+            stm.executeUpdate(sql);
+            stm.close();
+            JOptionPane.showMessageDialog(null, "Request Sent Successfully");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+        }
+
+        tampil_table();
+ 
+
+    }
+
+    void tampil_table() {
+
+        DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
+        int rowCount1 = dataModel2.getRowCount();
+         for (int i = rowCount1 - 1; i >= 0; i--) {
+            dataModel2.removeRow(i);
+        }
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select*from po_material_request");
+            while (rs.next()) {
+             
+
+                String[] data = {
+                    "MR-"+rs.getString("id_material_request"),
+                    rs.getString("id_material_code"),
+                    rs.getString("material"),
+                    rs.getString("discipline"),
+                    rs.getString("spec"),
+                    rs.getString("tanggal_request"),
+                    rs.getString("stok"),
+                    rs.getString("qty"),
+                    rs.getString("remark")};
+                dataModel2.insertRow(0, data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal ta mpil");
+        }
     }
 
     /**
@@ -132,20 +206,20 @@ public class po_request extends MasterForm {
         t_stok = new CustomResource.CustomTextfield();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
         cb_discipline = new CustomResource.ComboBoxSuggestion();
         jScrollPane25 = new javax.swing.JScrollPane();
         t_remark = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         t_tgl_po = new CustomResource.CustomTextfield();
-        jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         cb_material = new CustomResource.ComboBoxSuggestion();
         box_qty4 = new CustomResource.ComboBoxSuggestion();
         cb_spek = new CustomResource.ComboBoxSuggestion();
-        cb_purchase = new CustomResource.ComboBoxSuggestion();
-        cb_no_site = new CustomResource.ComboBoxSuggestion();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(t_tgl_po);
@@ -154,10 +228,10 @@ public class po_request extends MasterForm {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         t_id_po.setEnabled(false);
-        t_id_po.setLabelText("ID PO");
+        t_id_po.setLabelText("Material ID");
         jPanel1.add(t_id_po, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 150, -1));
 
-        t_stok.setLabelText("Stok");
+        t_stok.setLabelText("Stock Needs");
         t_stok.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 t_stokKeyReleased(evt);
@@ -173,7 +247,7 @@ public class po_request extends MasterForm {
 
             },
             new String [] {
-                "ID Material", "Material", "Discipline", "Spec", "Purchase/Rental", "Date Request", "Stok", "Qty", "Remark"
+                "ID Material Request", "ID Material", "Material", "Discipline", "Spec", "Date Request", "Stok", "Qty", "Remark"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -184,17 +258,14 @@ public class po_request extends MasterForm {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTable1.setDoubleBuffered(true);
+        jTable1.setFillsViewportHeight(true);
+        jTable1.setFocusCycleRoot(true);
+        jTable1.setShowHorizontalLines(true);
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 550, 140));
-
-        jButton4.setText("Add");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 140, 30));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 550, 140));
 
         cb_discipline.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "QTY", "Pcs", "Ctn", "Ball", "Roll" }));
         cb_discipline.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -227,27 +298,16 @@ public class po_request extends MasterForm {
 
         jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 210, -1));
 
-        jLabel1.setText("Remark");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
-
         jLabel3.setBackground(new java.awt.Color(0, 51, 51));
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("REQUEST MATERIAL");
+        jLabel3.setText("LIST REQUEST MATERIAL");
         jLabel3.setOpaque(true);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 530, 20));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 550, 20));
 
         t_tgl_po.setLabelText("Date Request");
         jPanel1.add(t_tgl_po, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 230, -1));
-
-        jButton6.setText("DELETE");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 140, 30));
 
         jButton7.setText("SUBMIT");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +315,7 @@ public class po_request extends MasterForm {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 140, 30));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 140, 30));
 
         cb_material.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "QTY", "Pcs", "Ctn", "Ball", "Roll" }));
         cb_material.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -274,7 +334,7 @@ public class po_request extends MasterForm {
                 cb_materialActionPerformed(evt);
             }
         });
-        jPanel1.add(cb_material, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 190, -1));
+        jPanel1.add(cb_material, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 190, -1));
 
         box_qty4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "QTY", "Pcs", "Ctn", "Ball", "Roll" }));
         box_qty4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -312,45 +372,27 @@ public class po_request extends MasterForm {
                 cb_spekActionPerformed(evt);
             }
         });
-        jPanel1.add(cb_spek, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 190, -1));
+        jPanel1.add(cb_spek, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 190, -1));
 
-        cb_purchase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Purchase", "Rental" }));
-        cb_purchase.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        cb_purchase.setName(""); // NOI18N
-        cb_purchase.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                cb_purchasePopupMenuWillBecomeVisible(evt);
-            }
-        });
-        cb_purchase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_purchaseActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cb_purchase, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 190, -1));
+        jLabel4.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("REQUEST MATERIAL");
+        jLabel4.setOpaque(true);
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 530, 20));
 
-        cb_no_site.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Site" }));
-        cb_no_site.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        cb_no_site.setName(""); // NOI18N
-        cb_no_site.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                cb_no_sitePopupMenuWillBecomeVisible(evt);
-            }
-        });
-        cb_no_site.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_no_siteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cb_no_site, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 190, -1));
+        jLabel2.setText("Choose Spec");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+
+        jLabel5.setText("Remark");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
+
+        jLabel6.setText("Choose Material");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+
+        jLabel7.setText("Choose Discipline");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -374,22 +416,6 @@ public class po_request extends MasterForm {
 
     }//GEN-LAST:event_t_stokKeyTyped
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
-        List list = new ArrayList<>();
-        jTable1.setAutoCreateColumnsFromModel(true);
-        list.add(t_id_po.getText());
-        list.add(cb_material.getSelectedItem().toString());
-        list.add(cb_discipline.getSelectedItem().toString());
-        list.add(cb_spek.getSelectedItem().toString());
-        list.add(cb_purchase.getSelectedItem().toString());
-        list.add(t_tgl_po.getText());
-        list.add(t_stok.getText());
-        list.add(box_qty4.getSelectedItem().toString());
-        list.add(t_remark.getText());
-        dataModel.insertRow(0, list.toArray());
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void cb_disciplinePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_disciplinePopupMenuWillBecomeVisible
 
     }//GEN-LAST:event_cb_disciplinePopupMenuWillBecomeVisible
@@ -399,17 +425,13 @@ public class po_request extends MasterForm {
         } else {
             getidspek();
             tampil_combospek();
-            getIdRequest();
+
         }
     }//GEN-LAST:event_cb_disciplineActionPerformed
 
     private void t_remarkMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_remarkMouseWheelMoved
 
     }//GEN-LAST:event_t_remarkMouseWheelMoved
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void cb_materialPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_materialPopupMenuWillBecomeVisible
 
@@ -436,78 +458,33 @@ public class po_request extends MasterForm {
     }//GEN-LAST:event_cb_spekPopupMenuWillBecomeVisible
 
     private void cb_spekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_spekActionPerformed
+        if (cb_spek.getSelectedItem() == null) {
+        } else {
+            getidspek2();
+            getIdRequest();
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_spekActionPerformed
 
-    private void cb_purchasePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_purchasePopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_purchasePopupMenuWillBecomeVisible
-
-    private void cb_purchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_purchaseActionPerformed
-        getIdRequest();        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_purchaseActionPerformed
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        DefaultTableModel ImportDataExel = (DefaultTableModel) jTable1.getModel();
-        int jtabelrows = jTable1.getRowCount();
-        for (int i = 0; i <= jtabelrows - 1; i++) {
-            if (jTable1.getValueAt(i, 0) == null) {
-            } else {
-                String dtabel_id_po = jTable1.getValueAt(i, 0).toString();
-                String dtabel_material = jTable1.getValueAt(i, 1).toString();
-                String dtabel_discipline = jTable1.getValueAt(i, 2).toString();
-                String dtabel_spec = jTable1.getValueAt(i, 3).toString();
-                String dtabel_purchase = jTable1.getValueAt(i, 4).toString();
-                String dtabel_tanggal = jTable1.getValueAt(i, 5).toString();
-                String dtabel_stok = jTable1.getValueAt(i, 6).toString();
-                String dtabel_qty = jTable1.getValueAt(i, 7).toString();
-                String dtabel_remark = jTable1.getValueAt(i, 8).toString();
-                try {
-                    stm = koneksi.createStatement();
-                    String sql = "insert into po_material_request (id_material_code,material,discipline,spec,purchase,tanggal_request,stok,qty,remark) values('" + dtabel_id_po + "'"
-                            + ",'" + dtabel_material + "'"
-                            + ",'" + dtabel_discipline + "'"
-                            + ",'" + dtabel_spec + "'"
-                            + ",'" + dtabel_purchase + "'"
-                            + ",'" + dtabel_tanggal + "'"
-                            + ",'" + dtabel_stok + "'"
-                            + ",'" + dtabel_qty + "'"
-                            + ",'" + dtabel_remark + "')";
-                    stm.executeUpdate(sql);
-                    stm.close();
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-        }
-        JOptionPane.showMessageDialog(null, "Request Sent Successfully");        // TODO add your handling code here:
+        submit();             // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void cb_no_sitePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_no_sitePopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_no_sitePopupMenuWillBecomeVisible
-
-    private void cb_no_siteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_no_siteActionPerformed
-        if (cb_no_site.getSelectedItem() == null) {
-        } else {
-            getIdRequest();
-        }       // TODO add your handling code here:
-    }//GEN-LAST:event_cb_no_siteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.ComboBoxSuggestion box_qty4;
     private CustomResource.ComboBoxSuggestion cb_discipline;
     private CustomResource.ComboBoxSuggestion cb_material;
-    private CustomResource.ComboBoxSuggestion cb_no_site;
-    private CustomResource.ComboBoxSuggestion cb_purchase;
     private CustomResource.ComboBoxSuggestion cb_spek;
     private com.raven.datechooser.DateChooser dateChooser1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

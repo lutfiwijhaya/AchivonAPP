@@ -386,6 +386,11 @@ public class BizPointment extends MasterForm {
         textID3.setLabelText("ID #3");
 
         textName.setLabelText("Name");
+        textName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNameActionPerformed(evt);
+            }
+        });
 
         t_hp.setLabelText("Telp or HP");
         t_hp.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -491,7 +496,7 @@ public class BizPointment extends MasterForm {
             }
         });
 
-        boxPPH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PPh23 (%)", "0.44%", "1.20%", "1.80%", "1.00%", "2.65%", "3.00%", "4.00%", "5.00%", "6.00%", "10.00%", "15.00%", "20.00%", "25.00%", "30.00%" }));
+        boxPPH.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PPh23 (%)", "0.44%", "1.20%", "1.80%", "1.00%", "2.00%", "2.65%", "3.00%", "4.00%", "5.00%", "6.00%", "10.00%", "15.00%", "20.00%", "25.00%", "30.00%" }));
         boxPPH.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         boxPPH.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
@@ -767,97 +772,101 @@ public class BizPointment extends MasterForm {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(380, 380, 380)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idIntegrated, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxID2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(t_hp, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(customTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(t_hp_pic, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textDateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(textID3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(customTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(textNPWP, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(country, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(province, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(258, 258, 258)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(textRT, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textRW, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(textPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addComponent(boxPPH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)
+                        .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(131, 131, 131)
+                        .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(132, 132, 132)
+                        .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138)
-                .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121)
-                .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
-                .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(customTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(boxTax1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(stgl, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(etgl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jButton5))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idIntegrated, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxID2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t_hp, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(customTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t_hp_pic, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textDateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(textID3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(textMail, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(customTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(textNPWP, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(country, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(province, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(258, 258, 258)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(textRT, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textRW, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(textPostcode, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(68, 68, 68)
+                        .addComponent(boxPPH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(boxTax1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(stgl, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(etgl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -917,11 +926,11 @@ public class BizPointment extends MasterForm {
                 .addGap(5, 5, 5)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboBoxSuggestion10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxSuggestion11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxSuggestion9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxSuggestion8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(customTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
@@ -958,7 +967,7 @@ public class BizPointment extends MasterForm {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1008,7 +1017,7 @@ public class BizPointment extends MasterForm {
         PreparedStatement stmt = null;
         try {
             String fa = textAddress.getText() + " " + "RT/" + textRT.getText() + "RW/" + textRW.getText() + " " + city.getSelectedItem().toString() + " " + province.getSelectedItem().toString() + " " + "(" + textPostcode.getText() + ")";
-            String sql = "INSERT INTO biz_partner (partner_id, partner_id1, partner_id2, partner_id3, name, no_hp, email, country, province, city, rt, rw, postcode, address, register_date, tax_payer, npwp_no, pph,pic1,pic2,pic3,price,cordination,delivery,quality,remark,fulladd) VALUES (?,?,?,?,?,?,?,?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+            String sql = "INSERT INTO biz_partner (partner_id, partner_id1, partner_id2, partner_id3, name, no_hp, email, country, province, city, rt, rw, postcode, address, register_date, tax_payer, npwp_no, pph,pic1,pic2,pic3,price,cordination,delivery,quality,remark,fulladd) VALUES (?,?,?,?,?,?,?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
             stmt = koneksi.prepareStatement(sql);
             // Mengisi nilai parameter
             stmt.setString(1, boxID1.getSelectedItem().toString() + "-" + boxID2.getSelectedItem().toString() + "-" + textID3.getText());
@@ -1170,7 +1179,7 @@ public class BizPointment extends MasterForm {
 
     private void boxTax1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTax1ActionPerformed
         String a = boxTax1.getSelectedItem().toString();
-        if (a.equals("ID Partener")) {
+        if (a.equals("ID")) {
             b = "partner_id";
         } else if (a.equals("Nama")) {
             b = "name";
@@ -1260,94 +1269,94 @@ public class BizPointment extends MasterForm {
     }//GEN-LAST:event_boxTax1ActionPerformed
 
     private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
-        String a = boxTax1.getSelectedItem().toString();
-        if (a.equals("ID Partener")) {
-            b = "partner_id";
-        } else if (a.equals("Nama")) {
-            b = "name";
-        } else if (a.equals("Kota")) {
-            b = "city";
-        }
-        System.out.println(b);
-        String mySearch = textSearch.getText();
-        int row = MyTable.getRowCount();
-        for (int i = 0; i < row; i++) {
-            myModel.removeRow(0);
-            myModel1.removeRow(0);
-        }
-        if (mySearch != null) {
-            try {
-                stm = koneksi.createStatement();
-                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%'");
-                while (rs.next()) {
-                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                    String[] data = {
-                        rs.getString("biz_id"),
-                        rs.getString("partner_id"),
-                        rs.getString("register_date"),
-                        rs.getString("name"),
-                        rs.getString("no_hp"),
-                        rs.getString("email"),
-                        rs.getString("country"),
-                        rs.getString("province"),
-                        rs.getString("city"),
-                        add,
-                        rs.getString("postcode"),
-                        rs.getString("tax_payer"),
-                        rs.getString("npwp_no"),
-                        rs.getString("pph"),
-                        rs.getString("pic1"),
-                        rs.getString("pic2"),
-                        rs.getString("pic3"),
-                        rs.getString("price"),
-                        rs.getString("cordination"),
-                        rs.getString("delivery"),
-                        rs.getString("quality"),
-                        rs.getString("remark"),};
-                    String[] data1 = {data[0], data[1], data[3], data[8]};
-                    myModel.insertRow(0, data);
-                    myModel1.insertRow(0, data1);
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-            }
-        } else {
-            try {
-                stm = koneksi.createStatement();
-                rs = stm.executeQuery("select*from biz_partner");
-                while (rs.next()) {
-                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
-                    String[] data = {
-                        rs.getString("biz_id"),
-                        rs.getString("partner_id"),
-                        rs.getString("register_date"),
-                        rs.getString("name"),
-                        rs.getString("no_hp"),
-                        rs.getString("email"),
-                        rs.getString("country"),
-                        rs.getString("province"),
-                        rs.getString("city"),
-                        add,
-                        rs.getString("postcode"),
-                        rs.getString("tax_payer"),
-                        rs.getString("npwp_no"),
-                        rs.getString("pph"),
-                        rs.getString("pic1"),
-                        rs.getString("pic2"),
-                        rs.getString("pic3"),
-                        rs.getString("price"),
-                        rs.getString("cordination"),
-                        rs.getString("delivery"),
-                        rs.getString("quality"),
-                        rs.getString("remark"),};
-                    String[] data1 = {data[0], data[1], data[3], data[8]};
-                    myModel.insertRow(0, data);
-                    myModel1.insertRow(0, data1);
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-            }
-        }
+//        String a = boxTax1.getSelectedItem().toString();
+//        if (a.equals("ID Partener")) {
+//            b = "partner_id";
+//        } else if (a.equals("Nama")) {
+//            b = "name";
+//        } else if (a.equals("Kota")) {
+//            b = "city";
+//        }
+//        System.out.println(b);
+//        String mySearch = textSearch.getText();
+//        int row = MyTable.getRowCount();
+//        for (int i = 0; i < row; i++) {
+//            myModel.removeRow(0);
+//            myModel1.removeRow(0);
+//        }
+//        if (mySearch != null) {
+//            try {
+//                stm = koneksi.createStatement();
+//                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE " + b + " LIKE '%" + mySearch + "%'");
+//                while (rs.next()) {
+//                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+//                    String[] data = {
+//                        rs.getString("biz_id"),
+//                        rs.getString("partner_id"),
+//                        rs.getString("register_date"),
+//                        rs.getString("name"),
+//                        rs.getString("no_hp"),
+//                        rs.getString("email"),
+//                        rs.getString("country"),
+//                        rs.getString("province"),
+//                        rs.getString("city"),
+//                        add,
+//                        rs.getString("postcode"),
+//                        rs.getString("tax_payer"),
+//                        rs.getString("npwp_no"),
+//                        rs.getString("pph"),
+//                        rs.getString("pic1"),
+//                        rs.getString("pic2"),
+//                        rs.getString("pic3"),
+//                        rs.getString("price"),
+//                        rs.getString("cordination"),
+//                        rs.getString("delivery"),
+//                        rs.getString("quality"),
+//                        rs.getString("remark"),};
+//                    String[] data1 = {data[0], data[1], data[3], data[8]};
+//                    myModel.insertRow(0, data);
+//                    myModel1.insertRow(0, data1);
+//                }
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//            }
+//        } else {
+//            try {
+//                stm = koneksi.createStatement();
+//                rs = stm.executeQuery("select*from biz_partner");
+//                while (rs.next()) {
+//                    String add = rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw");
+//                    String[] data = {
+//                        rs.getString("biz_id"),
+//                        rs.getString("partner_id"),
+//                        rs.getString("register_date"),
+//                        rs.getString("name"),
+//                        rs.getString("no_hp"),
+//                        rs.getString("email"),
+//                        rs.getString("country"),
+//                        rs.getString("province"),
+//                        rs.getString("city"),
+//                        add,
+//                        rs.getString("postcode"),
+//                        rs.getString("tax_payer"),
+//                        rs.getString("npwp_no"),
+//                        rs.getString("pph"),
+//                        rs.getString("pic1"),
+//                        rs.getString("pic2"),
+//                        rs.getString("pic3"),
+//                        rs.getString("price"),
+//                        rs.getString("cordination"),
+//                        rs.getString("delivery"),
+//                        rs.getString("quality"),
+//                        rs.getString("remark"),};
+//                    String[] data1 = {data[0], data[1], data[3], data[8]};
+//                    myModel.insertRow(0, data);
+//                    myModel1.insertRow(0, data1);
+//                }
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//            }
+//        }
 // TODO add your handling code here:
     }//GEN-LAST:event_textSearchKeyTyped
 
@@ -1809,6 +1818,10 @@ public class BizPointment extends MasterForm {
     private void MyTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTable2MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_MyTable2MousePressed
+
+    private void textNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

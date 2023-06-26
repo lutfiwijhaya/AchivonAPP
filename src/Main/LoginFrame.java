@@ -98,6 +98,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 200, 130));
 
+        textKaryawanid.setText(" -      ");
         try {
             textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("U-#-######")));
         } catch (java.text.ParseException ex) {

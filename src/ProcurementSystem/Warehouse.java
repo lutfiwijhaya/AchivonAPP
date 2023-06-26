@@ -5,6 +5,7 @@
 package ProcurementSystem;
 
 import CustomResource.koneksi;
+import HumanResource.Employe_list;
 import Main.MasterForm;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -33,9 +34,10 @@ public class Warehouse extends MasterForm {
     public Warehouse() {
         initComponents();
         openDB();
-        id_employee();
+      
         tampil();
-        b_save.setVisible(false);
+        tampil_in_out();
+       
     }
 
     private void openDB() {
@@ -61,7 +63,7 @@ public class Warehouse extends MasterForm {
             System.out.println("" + e.getMessage());
         }
         String id1 = Integer.toString(id);
-        t_id.setText(id1);
+    
 
     }
 
@@ -74,18 +76,43 @@ public class Warehouse extends MasterForm {
         }
         try {
             stm = koneksi.createStatement();
-            rs = stm.executeQuery("select * from assets");
+            rs = stm.executeQuery("SELECT * FROM po_material INNER JOIN po_material_discipline on po_material.id_material_code = po_material_discipline.id_material_code INNER JOIN po_material_spek on po_material_discipline.full_discipline_code = po_material_spek.id_discipline_code;");
+            while (rs.next()) {
+                String a = rs.getString("id_material_code")+"-"+rs.getString("id_discipline_code")+"-"+rs.getString("id_material_spek");
+                String[] data = {
+                    a,
+                    rs.getString("name_material"),
+                    rs.getString("name_discipline"),
+                    rs.getString("name_spek"),
+                    rs.getString("stok"),
+                    "-"
+                };
+                dataModel2.insertRow(0, data);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
+
+    }
+    
+    void tampil_in_out() {
+        DefaultTableModel dataModel2 = (DefaultTableModel) jTable2.getModel();
+        int rowCount = dataModel2.getRowCount();
+
+        for (int i = rowCount - 1; i >= 0; i--) {
+            dataModel2.removeRow(i);
+        }
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("SELECT * FROM wr_in_out");
             while (rs.next()) {
                 String[] data = {
-                    rs.getString("id"),
-                    rs.getString("category1"),
-                    rs.getString("category2"),
-                    rs.getString("nama_barang"),
-                    rs.getString("spek_barang"),
-                    rs.getString("size_barang"),
-                    rs.getString("stok"),
-                    rs.getString("qty"),
-                    rs.getString("tgl_input"),
+                    rs.getString("id_material"),
+                    rs.getString("name_material"),
+                    rs.getString("date"),
+                    rs.getString("in_out"),
+                    rs.getString("amount"),
                     rs.getString("remark")
                 };
                 dataModel2.insertRow(0, data);
@@ -97,16 +124,7 @@ public class Warehouse extends MasterForm {
 
     }
 
-    void kosong() {
-        b_category_1.setSelectedItem("Category Item 1");
-        b_category_2.setSelectedItem("Category Item 2");
-        t_name.setText("");
-        t_remark.setText("");
-        t_size.setText("");
-        t_spec.setText("");
-        t_stok.setText("");
-        b_qty.setSelectedItem("QTY");
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,47 +141,31 @@ public class Warehouse extends MasterForm {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        b_category_2 = new CustomResource.ComboBoxSuggestion();
-        t_id = new CustomResource.CustomTextfield();
-        t_stok = new CustomResource.CustomTextfield();
         textName1 = new CustomResource.CustomTextfield();
-        t_spec = new CustomResource.CustomTextfield();
-        t_date = new CustomResource.CustomTextfield();
-        b_category_1 = new CustomResource.ComboBoxSuggestion();
-        b_qty = new CustomResource.ComboBoxSuggestion();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jScrollPane25 = new javax.swing.JScrollPane();
-        t_remark = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        t_size = new CustomResource.CustomTextfield();
-        t_name = new CustomResource.CustomTextfield();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        b_save = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
 
         dateChooser2.setDateFormat("yyyy-MM-dd");
-        dateChooser2.setTextRefernce(t_date);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID Item", "Category 1", "Category 2", "Name Item", "Spec", "Size", "Date Entry", "Stok", "Qty", "Remark"
+                "ID Item", "Material", "Discipline", "Spec", "Stok", "Remark"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -177,7 +179,7 @@ public class Warehouse extends MasterForm {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 780, 280));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 780, 280));
 
         jLabel2.setBackground(new java.awt.Color(0, 51, 51));
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -185,145 +187,18 @@ public class Warehouse extends MasterForm {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("WareHouse System");
         jLabel2.setOpaque(true);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 480, 24));
-
-        b_category_2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Category Items 2", "Common", "Civil/Architecture/Building", "Steel Plate/Structural Steel", "Piping", "Electrical", "Instrument", "Insulation", "Painting", "FireFighting", "HVAC" }));
-        b_category_2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        b_category_2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                b_category_2PopupMenuWillBecomeVisible(evt);
-            }
-        });
-        b_category_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_category_2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(b_category_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 240, -1));
-
-        t_id.setEnabled(false);
-        t_id.setLabelText("ID #3");
-        jPanel1.add(t_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 150, -1));
-
-        t_stok.setLabelText("Stok");
-        t_stok.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                t_stokKeyTyped(evt);
-            }
-        });
-        jPanel1.add(t_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 130, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 480, 24));
 
         textName1.setLabelText("Search");
-        jPanel1.add(textName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 257, -1));
-
-        t_spec.setLabelText("Spec");
-        jPanel1.add(t_spec, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 257, -1));
-
-        t_date.setLabelText("Date of Entry");
-        jPanel1.add(t_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, 257, -1));
-
-        b_category_1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Category Item 1", "Material", "Design/Engineered Item", "Equipment", "Transportation", "Tools & Device", "Consumables for Construction", "Office Electronic", "Office Stationary", "Consumables for office", "Safety Item", "Quality Items", "Subcontractor", "Consulting", "Other Items" }));
-        b_category_1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        b_category_1.setName(""); // NOI18N
-        b_category_1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                b_category_1PopupMenuWillBecomeVisible(evt);
-            }
-        });
-        b_category_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_category_1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(b_category_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 240, -1));
-
-        b_qty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "QTY", "Pcs", "Ctn", "Ball", "Roll" }));
-        b_qty.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        b_qty.setName(""); // NOI18N
-        b_qty.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                b_qtyPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        b_qty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_qtyActionPerformed(evt);
-            }
-        });
-        jPanel1.add(b_qty, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 100, -1));
+        jPanel1.add(textName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 257, -1));
 
         jLabel7.setBackground(new java.awt.Color(0, 51, 51));
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Item List In warehouse");
+        jLabel7.setText("In/Out Material History");
         jLabel7.setOpaque(true);
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 780, 20));
-
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 380, 80, 30));
-
-        jButton3.setText("Delete");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 800, -1, -1));
-
-        t_remark.setColumns(20);
-        t_remark.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        t_remark.setRows(5);
-        t_remark.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                t_remarkMouseWheelMoved(evt);
-            }
-        });
-        jScrollPane25.setViewportView(t_remark);
-
-        jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 210, -1));
-
-        jLabel1.setText("Remark");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, -1, -1));
-
-        jLabel6.setBackground(new java.awt.Color(0, 51, 51));
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Add New Item");
-        jLabel6.setOpaque(true);
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 780, 20));
-
-        t_size.setLabelText("Size");
-        jPanel1.add(t_size, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 257, -1));
-
-        t_name.setLabelText("Name of Item");
-        jPanel1.add(t_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 240, -1));
-
-        jButton4.setText("Add");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 80, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 780, 20));
 
         jButton5.setText("Update Stok");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -331,23 +206,38 @@ public class Warehouse extends MasterForm {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 800, -1, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
 
-        jButton7.setText("Edit");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Material ID", "Material Name", "Date", "In / Out", "Amount", "Remark"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 800, 80, -1));
+        jScrollPane3.setViewportView(jTable2);
 
-        b_save.setText("Save");
-        b_save.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_saveActionPerformed(evt);
-            }
-        });
-        jPanel1.add(b_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 80, 30));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 780, 270));
+
+        jLabel8.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Item List In warehouse");
+        jLabel8.setOpaque(true);
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 780, 20));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -363,301 +253,29 @@ public class Warehouse extends MasterForm {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void b_category_2PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_b_category_2PopupMenuWillBecomeVisible
-        b_category_2.removeItem("ID #2");      // TODO add your handling code here:
-    }//GEN-LAST:event_b_category_2PopupMenuWillBecomeVisible
-
-    private void b_category_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_category_2ActionPerformed
-
-        //       try {
-        //            String id = Integer.toString(id3);
-        //            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + province.getSelectedItem().toString() + "'");
-        //            while (myRess.next()) {
-        //                idIntegrated.setText("" + boxID1.getSelectedItem() + "-" + boxID2.getSelectedItem() + "-" + id + "");
-        //            }
-        //        } catch (SQLException ex) {
-        //        }        // TODO add your handling code here:
-    }//GEN-LAST:event_b_category_2ActionPerformed
-
-    private void b_category_1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_b_category_1PopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_category_1PopupMenuWillBecomeVisible
-
-    private void b_category_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_category_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_category_1ActionPerformed
-
-    private void b_qtyPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_b_qtyPopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_qtyPopupMenuWillBecomeVisible
-
-    private void b_qtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_qtyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_qtyActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        kosong();
-        b_save.setVisible(false);
-        jButton4.setVisible(true);
-        id_employee();
-        t_stok.setEnabled(true);
-        t_name.setEnabled(true);
-        t_date.setEnabled(true);
-        t_remark.setEnabled(true);
-        t_size.setEnabled(true);
-        t_spec.setEnabled(true);
-        b_category_1.setEnabled(true);
-        b_category_2.setEnabled(true);
-        b_qty.setEnabled(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int[] selectedRows = jTable1.getSelectedRows();
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        for (int i = selectedRows.length - 1; i >= 0; i--) {
-            String c = (String) model.getValueAt(selectedRows[i], 0);
-            try {
-                stm = koneksi.createStatement();
-
-                String sql = "DELETE FROM assets where id = '" + c + "'";
-
-                model.removeRow(selectedRows[i]);
-                stm.executeUpdate(sql);
-
-                stm.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-            }
-
-        }
-        kosong();
-        tampil();
-        id_employee();
-        t_stok.setEnabled(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void t_remarkMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_remarkMouseWheelMoved
-
-    }//GEN-LAST:event_t_remarkMouseWheelMoved
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        try {
-            stm = koneksi.createStatement();
-            String sql = "insert into assets (id,category1,category2,nama_barang,spek_barang,size_barang,stok,qty,tgl_input,remark) values('" + t_id.getText() + "'"
-                    + ",'" + b_category_1.getSelectedItem().toString() + "'"
-                    + ",'" + b_category_2.getSelectedItem().toString() + "'"
-                    + ",'" + t_name.getText() + "'"
-                    + ",'" + t_spec.getText() + "'"
-                    + ",'" + t_size.getText() + "'"
-                    + ",'" + t_stok.getText() + "'"
-                    + ",'" + b_qty.getSelectedItem().toString() + "'"
-                    + ",'" + t_date.getText() + "'"
-                    + ",'" + t_remark.getText() + "')";
-
-            stm.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Item Saved Successfully");
-        } catch (SQLException ex) {
-            Logger.getLogger(Warehouse.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        id_employee();
-        tampil();
-        kosong();
-        jButton4.setEnabled(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        t_stok.setEnabled(true);
-        t_name.setEnabled(false);
-        t_date.setEnabled(false);
-        t_remark.setEnabled(false);
-        t_size.setEnabled(false);
-        t_spec.setEnabled(false);
-        b_category_1.setEnabled(false);
-        b_category_2.setEnabled(false);
-        b_qty.setEnabled(false);
-        int row = jTable1.getSelectedRow();
-        String a = ((String) jTable1.getValueAt(row, 0));
-
-        System.out.println(a);
-
-        try {
-            Statement stm = koneksi.createStatement();
-            rs = stm.executeQuery("select*from assets where id = " + a + "");
-            while (rs.next()) {
-                b_category_1.setSelectedItem(rs.getString("category1"));
-                b_category_2.setSelectedItem(rs.getString("category2"));
-                t_name.setText(rs.getString("nama_barang"));
-                t_remark.setText(rs.getString("remark"));
-                t_size.setText(rs.getString("size_barang"));
-                t_spec.setText(rs.getString("spek_barang"));
-                t_stok.setText(rs.getString("stok"));
-                t_id.setText(rs.getString("id"));
-                t_date.setText(rs.getString("tgl_input"));
-                b_qty.setSelectedItem(rs.getString("qty"));
-
-                b_save.setVisible(true);
-                jButton4.setVisible(false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+new in_out_material().setVisible(true);       
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        t_stok.setEnabled(false);
-        t_name.setEnabled(true);
-        t_date.setEnabled(true);
-        t_remark.setEnabled(true);
-        t_size.setEnabled(true);
-        t_spec.setEnabled(true);
-        b_category_1.setEnabled(true);
-        b_category_2.setEnabled(true);
-        b_qty.setEnabled(true);
-        int row = jTable1.getSelectedRow();
-        String a = ((String) jTable1.getValueAt(row, 0));
-
-        System.out.println(a);
-
-        try {
-            Statement stm = koneksi.createStatement();
-            rs = stm.executeQuery("select*from assets where id = " + a + "");
-            while (rs.next()) {
-                b_category_1.setSelectedItem(rs.getString("category1"));
-                b_category_2.setSelectedItem(rs.getString("category2"));
-                t_name.setText(rs.getString("nama_barang"));
-                t_remark.setText(rs.getString("remark"));
-                t_size.setText(rs.getString("size_barang"));
-                t_spec.setText(rs.getString("spek_barang"));
-                t_stok.setText(rs.getString("stok"));
-                t_id.setText(rs.getString("id"));
-                t_date.setText(rs.getString("tgl_input"));
-                b_qty.setSelectedItem(rs.getString("qty"));
-
-                b_save.setVisible(true);
-                jButton4.setVisible(false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void t_stokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stokKeyTyped
-        char c = evt.getKeyChar();
-        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-            evt.consume();
-        }
-        if (t_stok.getText().length() > 3) {
-            evt.consume();
-        }           // TODO add your handling code here:
-    }//GEN-LAST:event_t_stokKeyTyped
-
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        t_name.setEnabled(true);
-        t_date.setEnabled(true);
-        t_remark.setEnabled(true);
-        t_size.setEnabled(true);
-        t_spec.setEnabled(true);
-        b_category_1.setEnabled(true);
-        b_category_2.setEnabled(true);
-        b_qty.setEnabled(true);
-        t_stok.setEnabled(false);
-        int row = jTable1.getSelectedRow();
-        String a = ((String) jTable1.getValueAt(row, 0));
-
-        System.out.println(a);
-
-        try {
-            Statement stm = koneksi.createStatement();
-            rs = stm.executeQuery("select*from assets where id = " + a + "");
-            while (rs.next()) {
-                b_category_1.setSelectedItem(rs.getString("category1"));
-                b_category_2.setSelectedItem(rs.getString("category2"));
-                t_name.setText(rs.getString("nama_barang"));
-                t_remark.setText(rs.getString("remark"));
-                t_size.setText(rs.getString("size_barang"));
-                t_spec.setText(rs.getString("spek_barang"));
-                t_stok.setText(rs.getString("stok"));
-                t_id.setText(rs.getString("id"));
-                t_date.setText(rs.getString("tgl_input"));
-                b_qty.setSelectedItem(rs.getString("qty"));
-
-                b_save.setVisible(true);
-                jButton4.setVisible(false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void b_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_saveActionPerformed
-        int respon = JOptionPane.showConfirmDialog(null, "save change data?", "Option", JOptionPane.YES_NO_OPTION);
-        if (respon == 0) {
-
-            try {
-                stm = koneksi.createStatement();
-                String sql9 = "update assets set category1='" + b_category_1.getSelectedItem().toString() + "', category2='" + b_category_2.getSelectedItem().toString() + "',"
-                        + "nama_barang='" + t_name.getText() + "',spek_barang='" + t_spec.getText() + "', stok='" + t_stok.getText() + "',"
-                        + "size_barang='" + t_size.getText() + "',qty='" + b_qty.getSelectedItem().toString() + "',"
-                        + "tgl_input='" + t_date.getText() + "',remark='" + t_remark.getText() + "' where id='" + t_id.getText() + "'";
-
-                stm.executeUpdate(sql9);
-
-                JOptionPane.showMessageDialog(null, "Saved Successfully");
-                // TODO add your handling code here:
-            } catch (SQLException ex) {
-                Logger.getLogger(Warehouse.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            kosong();
-            b_save.setVisible(false);
-            jButton4.setVisible(true);
-            id_employee();
-            t_stok.setEnabled(true);
-            t_name.setEnabled(true);
-            t_date.setEnabled(true);
-            t_remark.setEnabled(true);
-            t_size.setEnabled(true);
-            t_spec.setEnabled(true);
-            b_category_1.setEnabled(true);
-            b_category_2.setEnabled(true);
-            b_qty.setEnabled(true);
-            tampil();
-
-        }
-    }//GEN-LAST:event_b_saveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CustomResource.ComboBoxSuggestion b_category_1;
-    private CustomResource.ComboBoxSuggestion b_category_2;
-    private CustomResource.ComboBoxSuggestion b_qty;
-    private javax.swing.JButton b_save;
     private com.raven.datechooser.DateChooser dateChooser2;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private CustomResource.CustomTextfield t_date;
-    private CustomResource.CustomTextfield t_id;
-    private CustomResource.CustomTextfield t_name;
-    private javax.swing.JTextArea t_remark;
-    private CustomResource.CustomTextfield t_size;
-    private CustomResource.CustomTextfield t_spec;
-    private CustomResource.CustomTextfield t_stok;
+    private javax.swing.JTable jTable2;
     private CustomResource.CustomTextfield textName1;
     // End of variables declaration//GEN-END:variables
 

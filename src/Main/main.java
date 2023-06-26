@@ -8,6 +8,13 @@ import java.sql.DriverManager;
 import CustomResource.MySession;
 import CustomResource.UndoRedo;
 import CustomResource.koneksi;
+import DocumentControl.dc_form_letter;
+import DocumentControl.dc_form_transmittal;
+import DocumentControl.dc_incoming;
+import DocumentControl.dc_incoming_transmittal;
+import DocumentControl.dc_list_transmittal;
+import DocumentControl.dc_outgoing;
+import DocumentControl.dc_outgoing_transmittal;
 import TestResource.inputexel;
 import TestResource.tambah;
 import Employee.EmployeeProfilePanel;
@@ -19,7 +26,6 @@ import HumanResource.AplicationRehabilitation;
 import HumanResource.ApplicationResignation;
 import HumanResource.CandidateList;
 import HumanResource.CandidateApplication;
-
 import HumanResource.CandidateApplicationedit;
 import HumanResource.Checklist;
 import HumanResource.ClearanceList;
@@ -28,7 +34,6 @@ import HumanResource.ConfirmationHandoverandTakeoverList;
 import HumanResource.DisciplnaryResolution;
 import HumanResource.EmployeeClearanceStatus;
 import HumanResource.EmployeeEvaluation;
-
 import HumanResource.LeaveOfAbsenceList;
 import HumanResource.LeaveOfAbsense;
 import HumanResource.NotificationToNewEmployee;
@@ -43,10 +48,16 @@ import ProcurementSystem.AddMaterialList;
 import ProcurementSystem.BizPointment;
 import ProcurementSystem.Warehouse;
 import ProcurementSystem.po;
+import ProcurementSystem.po_form_po;
+import ProcurementSystem.po_form_sq;
 import ProcurementSystem.po_list;
-import ProcurementSystem.po_request;
+import ProcurementSystem.po_list_mr;
+import ProcurementSystem.po_list_po;
+import ProcurementSystem.po_material_request;
 import ProcurementSystem.po_list_request_material;
-
+import ProcurementSystem.po_list_rfq;
+import ProcurementSystem.po_list_sq;
+import ProcurementSystem.po_rfq;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -247,13 +258,16 @@ public class main extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem26 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
-        jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem27 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
-        jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         WarehouseSystem = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -261,6 +275,16 @@ public class main extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
+        AcountingSystem1 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem28 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem32 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem33 = new javax.swing.JMenuItem();
+        jMenuItem34 = new javax.swing.JMenuItem();
+        jMenuItem35 = new javax.swing.JMenuItem();
         myProfile = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator17 = new javax.swing.JPopupMenu.Separator();
@@ -366,7 +390,7 @@ public class main extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,8 +402,11 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -714,7 +741,7 @@ public class main extends javax.swing.JFrame {
         ProcurementSystem.setText("Procurement System |");
         ProcurementSystem.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
 
-        jMenuItem16.setText("Biz Pointment");
+        jMenuItem16.setText("Biz Partner");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
@@ -723,9 +750,25 @@ public class main extends javax.swing.JFrame {
         ProcurementSystem.add(jMenuItem16);
         ProcurementSystem.add(jSeparator16);
 
-        jMenu1.setText("PO System");
+        jMenu1.setText("Procurement System");
 
-        jMenuItem22.setText("Create PO");
+        jMenuItem19.setText("List Items Request");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem19);
+
+        jMenuItem26.setText("Form RFQ");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem26);
+
+        jMenuItem22.setText("List RFQ");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem22ActionPerformed(evt);
@@ -733,15 +776,7 @@ public class main extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem22);
 
-        jMenuItem23.setText("PO List");
-        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem23ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem23);
-
-        jMenuItem21.setText("List Material Request");
+        jMenuItem21.setText("Form Sales Quatation (SQ)");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem21ActionPerformed(evt);
@@ -749,21 +784,42 @@ public class main extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem21);
 
+        jMenuItem23.setText("List Sales Quatation (SQ)");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem23);
+
+        jMenuItem27.setText("Form PO");
+        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem27ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem27);
+
+        jMenuItem29.setText("List PO");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem29);
+
         ProcurementSystem.add(jMenu1);
         ProcurementSystem.add(jSeparator15);
 
         jMenu2.setText("Request For Material");
 
-        jMenuItem18.setText("Internal Use");
+        jMenuItem18.setText("Form Material Request");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem18ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem18);
-
-        jMenuItem19.setText("External Use");
-        jMenu2.add(jMenuItem19);
 
         jMenuItem20.setText("Add Material List");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
@@ -819,6 +875,75 @@ public class main extends javax.swing.JFrame {
         jMenu3.add(jMenuItem25);
 
         ToolBar.add(jMenu3);
+
+        AcountingSystem1.setText("Document Control  |");
+        AcountingSystem1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+
+        jMenu4.setText("Corresponden Tracking");
+
+        jMenuItem28.setText("Outgoing");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem28);
+
+        jMenuItem30.setText("Outgoing Transmittal");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem30);
+
+        jMenuItem31.setText("Incoming");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem31);
+
+        jMenuItem32.setText("Incoming Transmittal");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem32);
+
+        AcountingSystem1.add(jMenu4);
+
+        jMenu5.setText("Transmittal");
+
+        jMenuItem33.setText("Form Transmittal");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem33);
+
+        jMenuItem34.setText("List Transmittal");
+        jMenuItem34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem34ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem34);
+
+        AcountingSystem1.add(jMenu5);
+
+        jMenuItem35.setText("Form Letter");
+        jMenuItem35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem35ActionPerformed(evt);
+            }
+        });
+        AcountingSystem1.add(jMenuItem35);
+
+        ToolBar.add(AcountingSystem1);
 
         myProfile.setText("Profile");
         myProfile.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -1084,14 +1209,6 @@ public class main extends javax.swing.JFrame {
         showForm(new BizPointment());
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
-    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        showForm(new po());          // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem22ActionPerformed
-
-    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        showForm(new po_list());      // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem23ActionPerformed
-
     private void WarehouseSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WarehouseSystemActionPerformed
         showForm(new Warehouse());        // TODO add your handling code here:
     }//GEN-LAST:event_WarehouseSystemActionPerformed
@@ -1105,12 +1222,8 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        showForm(new po_request());    // TODO add your handling code here:
+        showForm(new po_material_request());    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem18ActionPerformed
-
-    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
-        showForm(new po_list_request_material());    // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
 showForm(new MonthlyProgress());        // TODO add your handling code here:
@@ -1119,6 +1232,62 @@ showForm(new MonthlyProgress());        // TODO add your handling code here:
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
  showForm(new AddProgress());          // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+    showForm(new po_rfq());      // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+      showForm(new po_list_rfq());  // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+     showForm(new po_form_sq());    // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+      showForm(new po_list_sq());  // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+     showForm(new po_form_po());   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+     showForm(new po_list_po());   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+      showForm(new po_list_mr());    // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+     showForm(new dc_outgoing());   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
+
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+     showForm(new dc_outgoing_transmittal());    // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+       showForm(new dc_incoming());  // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+       showForm(new dc_incoming_transmittal());  // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+      showForm(new dc_form_transmittal());  // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
+
+    private void jMenuItem34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem34ActionPerformed
+      showForm(new dc_list_transmittal());  // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem34ActionPerformed
+
+    private void jMenuItem35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem35ActionPerformed
+       showForm(new dc_form_letter());  // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem35ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1165,6 +1334,7 @@ showForm(new MonthlyProgress());        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JMenu AcountingSystem;
+    public static javax.swing.JMenu AcountingSystem1;
     private javax.swing.JMenuItem AddJobVacancy;
     private javax.swing.JMenuItem AllocationAnouncement;
     private javax.swing.JMenu AplicationLeaveOfAbsence;
@@ -1202,6 +1372,8 @@ showForm(new MonthlyProgress());        // TODO add your handling code here:
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
@@ -1220,7 +1392,17 @@ showForm(new MonthlyProgress());        // TODO add your handling code here:
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
+    private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
+    private javax.swing.JMenuItem jMenuItem31;
+    private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
+    private javax.swing.JMenuItem jMenuItem34;
+    private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
