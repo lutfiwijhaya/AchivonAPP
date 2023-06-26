@@ -44,9 +44,7 @@ public class po_list extends MasterForm {
         initComponents();
         openDB();
         tampil();
-        ckbox();
-        
-      
+     
     }
     
     void ckbox(){

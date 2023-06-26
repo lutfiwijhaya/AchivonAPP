@@ -14,6 +14,7 @@ public class CandidateSession {
     private static String CandidateNama;
     private static String CandidateEmail;
     private static String CandidateNoHP;
+    private static String idpo;
 //    private static String CandidateID;
     
     public static String getCandidateID(){
@@ -43,5 +44,13 @@ public class CandidateSession {
     
     public static void setCandidateNoHP(String CandidateNoHP){
         CandidateSession.CandidateNoHP = CandidateNoHP;
+    }
+    
+    public static String getidpo(){
+        return idpo;
+    }
+    
+    public static void setidpo(String idpo){
+        CandidateSession.idpo = idpo;
     }
 }

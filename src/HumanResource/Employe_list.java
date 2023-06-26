@@ -8,6 +8,7 @@ import CustomResource.CandidateSession;
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import ProcurementSystem.po;
+import ProcurementSystem.po_rfq;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -224,8 +225,8 @@ public class Employe_list extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 130));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Daftar Karyawan / Employee List");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 40));
+        jLabel1.setText("Bizz Partner List");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 240, 40));
 
         jButton1.setText("Tambah/Add Data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -244,6 +245,11 @@ public class Employe_list extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         textSearch.setLabelText("Cari / Search");
+        textSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchActionPerformed(evt);
+            }
+        });
         textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 textSearchKeyReleased(evt);
@@ -285,13 +291,23 @@ public class Employe_list extends javax.swing.JFrame {
             this.dispose();
         }
 
-        if (CustomResource.EmployeeSession.getsesiform().equals("3")){
-            DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
-            CustomResource.EmployeeSession.setbiz_id(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
-            System.out.println(CustomResource.EmployeeSession.getbiz_id());
-            Main.main.getMain().showForm(new po());
-            this.dispose();
-        }
+if (CustomResource.EmployeeSession.getsesiform().equals("3")){
+    
+                 DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
+    
+    
+CustomResource.EmployeeSession.setbiz_id(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
+    System.out.println(CustomResource.EmployeeSession.getbiz_id());
+   
+Main.main.getMain().showForm(new po_rfq());
+  this.dispose();
+}
+
+
+
+
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -571,13 +587,23 @@ public class Employe_list extends javax.swing.JFrame {
                 }
             }
         }
-        // sesi 3 bizpartner    
-        if (CustomResource.EmployeeSession.getsesiform().equals("3")){
-            DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();
-            String mySearch = textSearch.getText();
-            int row = jTable1.getRowCount();
-            for (int i = 0; i < row; i++) {
-                myModel.removeRow(0);
+        if (mySearch != null) {
+           
+            
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("SELECT * FROM biz_partner WHERE partner_id LIKE '%" + mySearch + "%'");
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString("biz_id"),
+                    rs.getString("partner_id"),
+                    rs.getString("name"),
+                    rs.getString("city")};
+                    myModel.insertRow(0, data);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
             if (mySearch != null) {
                 try {
@@ -612,6 +638,10 @@ public class Employe_list extends javax.swing.JFrame {
             }     
         }
     }//GEN-LAST:event_textSearchKeyReleased
+
+    private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchActionPerformed
 
     /**
      * @param args the command line arguments
