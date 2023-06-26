@@ -106,7 +106,7 @@ public class Checklist extends MasterForm {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         MyTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -120,6 +120,22 @@ public class Checklist extends MasterForm {
 
         MyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -152,9 +168,25 @@ public class Checklist extends MasterForm {
         jScrollPane1.setViewportView(MyTable);
         if (MyTable.getColumnModel().getColumnCount() > 0) {
             MyTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-            MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-            MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            MyTable.getColumnModel().getColumn(1).setPreferredWidth(170);
+            MyTable.getColumnModel().getColumn(2).setPreferredWidth(200);
             MyTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(7).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(8).setPreferredWidth(120);
+            MyTable.getColumnModel().getColumn(9).setPreferredWidth(150);
+            MyTable.getColumnModel().getColumn(10).setPreferredWidth(170);
+            MyTable.getColumnModel().getColumn(11).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(12).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(13).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(14).setPreferredWidth(150);
+            MyTable.getColumnModel().getColumn(15).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(16).setPreferredWidth(100);
+            MyTable.getColumnModel().getColumn(17).setPreferredWidth(120);
+            MyTable.getColumnModel().getColumn(18).setPreferredWidth(150);
+            MyTable.getColumnModel().getColumn(19).setPreferredWidth(170);
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 850, 180));
@@ -210,7 +242,6 @@ public class Checklist extends MasterForm {
     private void MyTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_MyTableMousePressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;

@@ -4,9 +4,7 @@
  */
 package HumanResource;
 
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,8 +24,6 @@ import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
-
-
 
 /**
  *
@@ -99,6 +95,7 @@ public class ClearanceList extends MasterForm {
         MyTable.getColumnModel().getColumn(7).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(8).setPreferredWidth(170);
         
+        
 //        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
         
 //        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
@@ -117,7 +114,7 @@ public class ClearanceList extends MasterForm {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         MyTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -207,7 +204,6 @@ public class ClearanceList extends MasterForm {
     private void MyTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_MyTableMousePressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;

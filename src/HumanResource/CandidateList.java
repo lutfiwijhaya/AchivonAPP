@@ -28,6 +28,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -36,6 +38,7 @@ import javax.swing.table.TableColumnModel;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import raven.scroll.win11.ScrollBarWin11UI;
 
 /**
  *
@@ -56,6 +59,7 @@ public class CandidateList extends MasterForm {
     public CandidateList() {
         
         initComponents();
+        
         openDB();
         settable();
         id();
@@ -218,6 +222,7 @@ public class CandidateList extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -227,9 +232,9 @@ public class CandidateList extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane2 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         MyTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();

@@ -198,7 +198,7 @@ public class AddJobVacancy extends MasterForm {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 370, 110));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 260, 370, 110));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton2.setText("Hapus / Delete");
@@ -207,15 +207,15 @@ public class AddJobVacancy extends MasterForm {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 570, 110, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 380, 110, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
         jLabel3.setText("Add Job Vacancy");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, 40));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, 40));
 
         customTextfield1.setLabelText("Disiplin/Dicipline");
-        jPanel1.add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 240, -1));
+        jPanel1.add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 250, -1));
 
         customTextfield2.setLabelText("Cari / Search");
         customTextfield2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -226,11 +226,12 @@ public class AddJobVacancy extends MasterForm {
                 customTextfield2KeyTyped(evt);
             }
         });
-        jPanel1.add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 240, -1));
+        jPanel1.add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 370, -1));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null},
                 {null, null}
             },
             new String [] {
@@ -251,11 +252,11 @@ public class AddJobVacancy extends MasterForm {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(0);
         }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 240, 110));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 350, 110));
 
         jLabel86.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel86.setText("Posisi/Position");
-        jPanel1.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 100, 30));
+        jPanel1.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 100, 30));
 
         t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Test", " " }));
         t_lamaran.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -264,18 +265,18 @@ public class AddJobVacancy extends MasterForm {
                 t_lamaranActionPerformed(evt);
             }
         });
-        jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 190, 30));
+        jPanel1.add(t_lamaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 120, 280, 30));
 
         jLabel87.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel87.setText("Tambah Disiplin/Add Dicipilne");
-        jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 170, 30));
+        jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 170, 30));
 
         jLabel88.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel88.setText("Tambah Posisi Lowongan kerja/Add Job Vacancy");
-        jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 290, 30));
+        jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 290, 30));
 
         customTextfield3.setLabelText("Tambah Posisi/Add Position");
-        jPanel1.add(customTextfield3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 240, -1));
+        jPanel1.add(customTextfield3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 240, -1));
 
         customTextfield4.setLabelText("Cari / Search");
         customTextfield4.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -286,7 +287,7 @@ public class AddJobVacancy extends MasterForm {
                 customTextfield4KeyTyped(evt);
             }
         });
-        jPanel1.add(customTextfield4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 240, -1));
+        jPanel1.add(customTextfield4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 350, -1));
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton3.setText("Tambah/Add");
@@ -295,7 +296,7 @@ public class AddJobVacancy extends MasterForm {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 110, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 110, 30));
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jButton4.setText("Hapus / Delete");
@@ -304,7 +305,7 @@ public class AddJobVacancy extends MasterForm {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 110, 30));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 110, 30));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -314,7 +315,7 @@ public class AddJobVacancy extends MasterForm {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 110, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 160, 110, 30));
 
         jScrollPane3.setViewportView(jPanel1);
 
@@ -322,7 +323,7 @@ public class AddJobVacancy extends MasterForm {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,12 +361,9 @@ public class AddJobVacancy extends MasterForm {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
         int[] selectedRows = jTable1.getSelectedRows();
-
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
-
             try {
                 stm = koneksi.createStatement();
                 String c = (String) model.getValueAt(selectedRows[i], 0);
@@ -377,9 +375,7 @@ public class AddJobVacancy extends MasterForm {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
             }
-
         }
-
         hapus_row();
         tampil();       
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -392,43 +388,31 @@ public class AddJobVacancy extends MasterForm {
         try {
             Statement stm = koneksi.createStatement();
             String sql = "Insert Into job_facancy(name_job) value ('" + customTextfield3.getText() + "') ";
-
             stm.executeUpdate(sql);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-       
-customTextfield3.setText("");
-        
-hapus_row();
+        customTextfield3.setText("");
+        hapus_row();
         tampil();
-
-// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 //        try {
-//                    stm = koneksi.createStatement();
-//
-//                    String sql = "DELETE FROM job_facancy";
-//
-//                    stm.executeUpdate(sql);
-//                    stm.close();
-//                } catch (SQLException e) {
-//                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-//                }
-//        
+//            stm = koneksi.createStatement();
+//            String sql = "DELETE FROM job_facancy";
+//            stm.executeUpdate(sql);
+//            stm.close();
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+//        }
         TableColumnModel columnModel = jTable2.getColumnModel();
-
         int[] selectedRows = jTable2.getSelectedRows();
-
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             String c = (String) model.getValueAt(selectedRows[i], 0);
             try {
                 stm = koneksi.createStatement();
-
                 String sql = "DELETE FROM job_facancy where id_job = '" + c + "'";
                 String sql1 = "DELETE FROM job_facancy_discipline where id_job = '" + c + "'";
                 model.removeRow(selectedRows[i]);
@@ -438,9 +422,7 @@ hapus_row();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
             }
-
         }
-
         hapus_row();
         tampil();
 
@@ -463,12 +445,11 @@ hapus_row();
 //                }
 //            }
 //        }
-// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void customTextfield4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield4KeyTyped
 
-        DefaultTableModel myModel = (DefaultTableModel) jTable2.getModel();;
+        DefaultTableModel myModel = (DefaultTableModel) jTable2.getModel();
         String mySearch = customTextfield4.getText();
         int row = jTable2.getRowCount();
         for (int i = 0; i < row; i++) {

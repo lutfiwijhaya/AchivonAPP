@@ -41,6 +41,7 @@ import MonthlyProgress.AddProgress;
 import MonthlyProgress.MonthlyProgress;
 import ProcurementSystem.AddMaterialList;
 import ProcurementSystem.BizPointment;
+import ProcurementSystem.RequestedList;
 import ProcurementSystem.Warehouse;
 import ProcurementSystem.po;
 import ProcurementSystem.po_list;
@@ -63,6 +64,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import raven.scroll.win11.ScrollBarWin11UI;
+//import javax.swing.UIDefaults;
 
 public class main extends javax.swing.JFrame {
 
@@ -116,6 +121,8 @@ public class main extends javax.swing.JFrame {
         initComponents();
         openDB();
         bg();
+        NotificationtoNewEmployee.setVisible(false);
+        jSeparator4.setVisible(false);
 
         ImageIcon logo = new ImageIcon("C:\\Program Files (x86)\\AchivonAPP\\Logo.png");
         this.setIconImage(logo.getImage());
@@ -156,9 +163,7 @@ public class main extends javax.swing.JFrame {
         label.setIcon(new ImageIcon(imageResize));
         label.setBounds(0, 0, screen.width, screen.height);
         jPanel2.add(label);
-
     }
-
     inputexel inputxl = new inputexel();
     tambah tambah = new tambah();
 
@@ -243,6 +248,7 @@ public class main extends javax.swing.JFrame {
         EmployeeEvaluation = new javax.swing.JMenuItem();
         jSeparator24 = new javax.swing.JPopupMenu.Separator();
         AddJobVacancy = new javax.swing.JMenuItem();
+        jSeparator30 = new javax.swing.JPopupMenu.Separator();
         ProcurementSystem = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
@@ -257,6 +263,9 @@ public class main extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
         WarehouseSystem = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jSeparator31 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem26 = new javax.swing.JMenuItem();
+        jSeparator32 = new javax.swing.JPopupMenu.Separator();
         AcountingSystem = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem24 = new javax.swing.JMenuItem();
@@ -378,8 +387,11 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -409,9 +421,9 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(12, 12, 12)
                 .addComponent(customTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(buttonLogin2)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         ToolBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -708,6 +720,7 @@ public class main extends javax.swing.JFrame {
             }
         });
         HumanResourceSystem.add(AddJobVacancy);
+        HumanResourceSystem.add(jSeparator30);
 
         ToolBar.add(HumanResourceSystem);
 
@@ -792,6 +805,16 @@ public class main extends javax.swing.JFrame {
             }
         });
         WarehouseSystem.add(jMenuItem17);
+        WarehouseSystem.add(jSeparator31);
+
+        jMenuItem26.setText("Requested Material");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        WarehouseSystem.add(jMenuItem26);
+        WarehouseSystem.add(jSeparator32);
 
         ToolBar.add(WarehouseSystem);
 
@@ -1113,12 +1136,16 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-showForm(new MonthlyProgress());        // TODO add your handling code here:
+        showForm(new MonthlyProgress());        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
- showForm(new AddProgress());          // TODO add your handling code here:
+        showForm(new AddProgress());          // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        showForm(new RequestedList());
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1153,10 +1180,12 @@ showForm(new MonthlyProgress());        // TODO add your handling code here:
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        UIDefaults myUI = UIManager.getDefaults();
+        myUI.put("ScroolBarUI", ScrollBarWin11UI.class.getCanonicalName());
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 main = new main();
                 main.setVisible(true);
             }
@@ -1220,6 +1249,7 @@ showForm(new MonthlyProgress());        // TODO add your handling code here:
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -1250,6 +1280,9 @@ showForm(new MonthlyProgress());        // TODO add your handling code here:
     private javax.swing.JPopupMenu.Separator jSeparator28;
     private javax.swing.JSeparator jSeparator29;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator30;
+    private javax.swing.JPopupMenu.Separator jSeparator31;
+    private javax.swing.JPopupMenu.Separator jSeparator32;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;

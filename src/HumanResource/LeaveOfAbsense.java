@@ -78,7 +78,7 @@ public class LeaveOfAbsense extends MasterForm {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -88,18 +88,18 @@ public class LeaveOfAbsense extends MasterForm {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
+        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
         textReason = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
+        jScrollPane7 = new raven.scroll.win11.ScrollPaneWin11();
         textEvidance = new javax.swing.JTextArea();
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
         jTable4 = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();

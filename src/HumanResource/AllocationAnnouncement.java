@@ -8,6 +8,7 @@ import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -45,24 +46,16 @@ import javax.swing.table.DefaultTableModel;
 public class AllocationAnnouncement extends MasterForm {
     DefaultTableModel myModel3;
     Connection koneksi;
-      Statement stm;
+    Statement stm;
     ResultSet rs;
     public AllocationAnnouncement() {
         initComponents();
         openDB();
-       
         MyWindow();
-        
-//        myModel3 = new DefaultTableModel();
-//        String [] header = {"Name", "Discipline", "Position", "Description Alocation", "Initial Join Date", "Alocation Date"};
-//        
         ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
-//        jTable1.setModel(myModel3);
-         
-       addtext();
+        addtext();
     }
-    
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -71,12 +64,7 @@ public class AllocationAnnouncement extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
-   
-    
-    
-    
-      private void addtext() {
-
+    private void addtext() {
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("SELECT * FROM employee WHERE id =" +CustomResource.EmployeeSession.getKTPAllocation()+ "");
@@ -91,19 +79,13 @@ public class AllocationAnnouncement extends MasterForm {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-    
-    
-    
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -235,65 +217,68 @@ public class AllocationAnnouncement extends MasterForm {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         DefaultTableModel tabelfamily = (DefaultTableModel) jTable1.getModel();
         int htabelfamily = jTable1.getRowCount();
-        String to = "ririnwahyuni998@gmail.com";
-        String from = "erlanggamurti@gmail.com";
-        String emailPassword = "ymcnciygeelburto";
-        String subject = "AllocationAnnouncement";
+        String subject = "Allocation Announcement";
         
-        
-        Properties proper = new Properties();
-        proper.put("mail.smtp.auth","true");
-        proper.put("mail.smtp.starttls.enable","true");
-        proper.put("mail.smtp.ssl.protocols","TLSv1.2");
-        proper.put("mail.smtp.host","smtp.gmail.com");
-        proper.put("mail.smtp.port","587");
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.ssl.enable", "true");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
         for (int i = 0; i <= htabelfamily - 1; i++) {
             if (jTable1.getValueAt(i, 0) == null) {
             }else{
                 String dtabel_desc = jTable1.getValueAt(i, 3).toString();
-                Session mailSession = Session.getDefaultInstance(proper, new Authenticator() {
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(from, emailPassword);
-                }});
+                // Informasi akun Gmail
+                final String username = "yourmurti@gmail.com";
+                final String password = "ordaawiiidswfwww";
+
+                // Membuat sesi dengan autentikasi
+                Session session = Session.getInstance(props,
+                    new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(username, password);
+                        }
+                    }
+                );
                 try {
-                    String testemail = dtabel_desc;
-                    MimeMessage myMessage = new MimeMessage(mailSession);
-                    myMessage.setFrom(new InternetAddress(from));
-                    myMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                    myMessage.setSubject(subject);
-                    myMessage.setContent(testemail,"text/plain");
+                    // Membuat pesan email
+                    Message message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(username));
+                    message.setRecipients(Message.RecipientType.TO,
+                            InternetAddress.parse("gganggawma@gmail.com"));
+                    message.setSubject(subject);
+
+                    // Membuat konten email
                     MimeBodyPart messageBodyPart = new MimeBodyPart();
+                    messageBodyPart.setText("Hello, this is the content of the email!");
 
+                    // Membuat attachment
+                    MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+                    String filePath = "src/Doc/Allocation Announcement.docx";
+                    attachmentBodyPart.attachFile(filePath);
                     Multipart multipart = new MimeMultipart();
-
-                    String file = "src/Doc/HAII TESTING.docx";
-                    String fileName = "Doc.docx";
-                    DataSource source = new FileDataSource(file);
-                    messageBodyPart.setDataHandler(new DataHandler(source));
-                    messageBodyPart.setFileName(fileName);
-                    messageBodyPart.setText(dtabel_desc);
-       
-
                     multipart.addBodyPart(messageBodyPart);
-
-                    myMessage.setContent(multipart);
-
-                    System.out.println("Sending");
-
-                    Transport.send(myMessage);
-
-                    System.out.println("Done");
+                    multipart.addBodyPart(attachmentBodyPart);
+                    message.setContent(multipart);
+                    Transport.send(message);
+                    JOptionPane.showMessageDialog(this, "successfully sent message\nBerhasil Mengirim Pesan");
+//                    System.out.println("Email berhasil dikirim.");
                 } catch (MessagingException e) {
-                    JOptionPane.showMessageDialog(null, e);
+                    JOptionPane.showMessageDialog(this, "Failed to send message\nGagal mengirim Pesan");
+//                    e.printStackTrace();
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, "Sorry, Something went wrong\nMaaf, terjadi kesalahan");
+//                    e.printStackTrace();
                 }
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-CustomResource.EmployeeSession.setsesiform("2");
-        new Employe_list().setVisible(true);        // TODO add your handling code here:
+        CustomResource.EmployeeSession.setsesiform("2");
+        new Employe_list().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -313,38 +298,6 @@ CustomResource.EmployeeSession.setsesiform("2");
     private CustomResource.CustomTextfield textName;
     private CustomResource.CustomTextfield textPosition;
     // End of variables declaration//GEN-END:variables
-    
-//    private void myShow() {
-//        String mySearch = textSearch.getSelectedItem().toString();
-//        int row = jTable1.getRowCount();
-//        for(int i = 0; i < row; i++){
-//            myModel3.removeRow(0);
-//        }
-//        if (mySearch != null) {
-//            try {
-//                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee WHERE name LIKE '%"+mySearch+"%'");
-//            while (myRess.next()) {
-//                String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
-//                myModel3.addRow(myData);
-//            }
-//            } catch (SQLException ex) {
-////                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }else{
-//            try {
-//                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee");
-//                while (myRess.next()) {
-//                    
-//                    String myData [] = {myRess.getString(4),myRess.getString(13),myRess.getString(13)};
-//                    myModel3.addRow(myData);
-//                
-//                }
-//            } catch (SQLException ex) {
-////                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-////                System.out.println("javaapplication1.CandidateList.myShow()");
-//            }
-//        }
-//    }
     
     private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

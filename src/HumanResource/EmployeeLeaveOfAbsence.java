@@ -337,7 +337,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -372,9 +372,9 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         idHRRevd = new javax.swing.JLabel();
         idHRMGR = new javax.swing.JLabel();
         idPresiden = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
+        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
         textReason = new javax.swing.JTextArea();
-        jScrollPane7 = new javax.swing.JScrollPane();
+        jScrollPane7 = new raven.scroll.win11.ScrollPaneWin11();
         textEvidance = new javax.swing.JTextArea();
         jLabel21 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -390,7 +390,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         jLabel53 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
         jTable4 = new javax.swing.JTable();
         labelName = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();

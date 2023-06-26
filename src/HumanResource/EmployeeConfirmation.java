@@ -4,7 +4,6 @@
  */
 package HumanResource;
 
-import CustomResource.CandidateSession;
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
@@ -41,8 +40,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.view.JasperViewer;
-
-
 
 /**
  *
@@ -85,7 +82,9 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel37.setText(MySession.get_JobPosition());
         jToggleButton2.setVisible(false);
     }
-
+    
+    
+    
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -94,7 +93,6 @@ public class EmployeeConfirmation extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,7 +102,7 @@ public class EmployeeConfirmation extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane3 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         l_date = new javax.swing.JLabel();
@@ -333,7 +331,7 @@ public class EmployeeConfirmation extends MasterForm {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 1070, 130, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 1070, 130, 30));
 
         jButton2.setBackground(new java.awt.Color(51, 51, 255));
         jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -354,7 +352,7 @@ public class EmployeeConfirmation extends MasterForm {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, 130, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 640, 130, 30));
 
         jButton4.setBackground(new java.awt.Color(51, 51, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -409,19 +407,7 @@ public class EmployeeConfirmation extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        Connection myConn;
-//        try{
-//            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-//            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_karyawanID()+"' WHERE KTP = '"+l_ktp.getText()+"'");
-////            while (myRess.next()) {
-////                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
-////            }
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, e);
-////                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
-//            
-//        }
-        
+      
 // try {
 //                   
 //                    Class.forName("com.mysql.jdbc.Driver");
@@ -440,130 +426,154 @@ public class EmployeeConfirmation extends MasterForm {
 //                    e.printStackTrace();
 //                }   
 //
+//        String to = "yourmurti@gmail.com";
+//        String from = "lutfiwijhaya@achivon.co.id";
+//        String emailPassword = "Achivon123";
+////        String emailPassword = "scqrsacneyuellbe";
+//        String subject = "EmployeeNotification";
+//        String testemail = "test doang \n baris baru";
+//        
+//        Properties proper = new Properties();
+//        proper.put("mail.smtp.auth","true");
+//        proper.put("mail.smtp.starttls.enable","true");
+//        proper.put("mail.smtp.ssl.protocols","TLSv1.2");
+//        proper.put("mail.smtp.host","mail.achivon.co.id");
+//        proper.put("mail.smtp.port","465");
+//        proper.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//        Session mailSession = Session.getDefaultInstance(proper, new Authenticator() {
+//            @Override
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(from, emailPassword);
+//            }
+//        });
+//        try {
+//            MimeMessage myMessage = new MimeMessage(mailSession);
+//            myMessage.setFrom(new InternetAddress(from));
+//            myMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+//            myMessage.setSubject(subject);
+//            myMessage.setContent(testemail,"text/plain");
+//            MimeBodyPart messageBodyPart = new MimeBodyPart();
+//            Multipart multipart = new MimeMultipart();
+//            String file = "src/Doc/test.pdf";
+//            String fileName = "resume.pdf";
+//            DataSource source = new FileDataSource(file);
+//            messageBodyPart.setDataHandler(new DataHandler(source));
+//            messageBodyPart.setFileName(source.getName());
+//            multipart.addBodyPart(messageBodyPart);
+//            myMessage.setContent(multipart);
+//            System.out.println("Sending");
+//            Transport.send(myMessage);
+//            System.out.println("Done");
+//        } catch (MessagingException e) {
+//            System.out.println(e);
+//            JOptionPane.showMessageDialog(null, e);
+//        }
 
-
-
-        String to = l_email.getText();
-        String from = "lutfiwijhaya@achivon.co.id";
-        String emailPassword = "Achivon123";
-//        String emailPassword = "scqrsacneyuellbe";
-        String subject = "EmployeeNotification";
-        String testemail = "test doang \n baris baru";
-        
-        Properties proper = new Properties();
-        proper.put("mail.smtp.auth","true");
-        proper.put("mail.smtp.starttls.enable","true");
-        proper.put("mail.smtp.ssl.protocols","TLSv1.2");
-        proper.put("mail.smtp.host","mail.achivon.co.id");
-        proper.put("mail.smtp.port","465");
-            proper.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-        
-
-        
-        Session mailSession = Session.getDefaultInstance(proper, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(from, emailPassword);
-            }
+        Connection myConn;
+        try{
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            myConn.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_karyawanID()+"' WHERE KTP = '"+l_ktp.getText()+"'");
             
-        });
-        try {
-            MimeMessage myMessage = new MimeMessage(mailSession);
-            myMessage.setFrom(new InternetAddress(from));
-            myMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            myMessage.setSubject(subject);
-            myMessage.setContent(testemail,"text/plain");
-            MimeBodyPart messageBodyPart = new MimeBodyPart();
-            Multipart multipart = new MimeMultipart();
-            String file = "src/Doc/test.pdf";
-            String fileName = "resume.pdf";
-            DataSource source = new FileDataSource(file);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(source.getName());
-            multipart.addBodyPart(messageBodyPart);
-            myMessage.setContent(multipart);
-            System.out.println("Sending");
-            Transport.send(myMessage);
-            System.out.println("Done");
-        } catch (MessagingException e) {
-            JOptionPane.showMessageDialog(null, e);
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.ssl.enable", "true");
+            props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+
+            // Informasi akun Gmail
+            final String username = "yourmurti@gmail.com";
+            final String password = "ordaawiiidswfwww";
+
+            // Membuat sesi dengan autentikasi
+            Session session = Session.getInstance(props,
+                    new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(username, password);
+                        }
+                    });
+
+            try {
+                // Membuat pesan email
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress("yourmurti@gmail.com"));
+                message.setRecipients(Message.RecipientType.TO,
+                        InternetAddress.parse("gganggawma@gmail.com"));
+                message.setSubject("Subject of the Email");
+                message.setText("Hello, this is the content of the email!");
+
+                // Mengirim pesan email
+                Transport.send(message);
+                JOptionPane.showMessageDialog(this, "success \nberhasil");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+        }catch(Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Failed to send  \nLamaran gagal Diteruskan");
         }
-        
+    
         set_kosong();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
         try{
            koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_nama()+"' WHERE KTP = '"+l_ktp.getText()+"'");
 //            while (myRess.next()) {
-                JOptionPane.showMessageDialog(null, "berhasil tanda tangan \n Succesed signature");
+            JOptionPane.showMessageDialog(null, "berhasil tanda tangan \n Succesed signature");
 //            }
         }catch(Exception e){
 //            JOptionPane.showMessageDialog(null, e);
-                JOptionPane.showMessageDialog(null, "gagal di tanda tangan \n Failed Signature");
-            
+            JOptionPane.showMessageDialog(null, "gagal di tanda tangan \n Failed Signature");
         }
-        
         set_kosong();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-CustomResource.EmployeeSession.setsesiform("1");
+        CustomResource.EmployeeSession.setsesiform("1");
         new Employe_list().setVisible(true);
-
-
-        
-        
- 
-// TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         try {
             Statement stm = koneksi.createStatement();
-
             rs = stm.executeQuery("select*from cd_employee where KTP = " + l_ktp.getText() + "");
             while (rs.next()) {
                 da = rs.getString("id_employee");
-
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         try {
-
-            //                    Class.forName("com.mysql.jdbc.Driver");
-            //String filePath = "src/Doc/test.pdf";
-            Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-            //                    File O = new File("C:\\Program Files (x86)\\AchivonAPP\\cdemployee.jasper");
-            //                    jasperdesign = JRXmlLoader.load(O);
+//            Class.forName("com.mysql.jdbc.Driver");
+//            String filePath = "src/Doc/test.pdf";
+            Connection kon = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
+//            File O = new File("C:\\Program Files (x86)\\AchivonAPP\\cdemployee.jasper");
+//            jasperdesign = JRXmlLoader.load(O);
             param.clear();
-            //                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
+//            jasperreport = JasperCompileManager.compileReport(jasperdesign);
             param.put("id",da);
             param.put("tgl",l_tgl.getText());
-
-            //                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-            //                    JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
-            //                    JasperViewer.viewReport(jasperprint, false);
+//            jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
+//            JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
+//            JasperViewer.viewReport(jasperprint, false);
             String reportPath = "C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\notification_cd.jasper";
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, param, kon);
             JasperViewer viewer = new JasperViewer(jasperPrint, false);
             viewer.setVisible(true);
-
         } catch (Exception e) {
             e.printStackTrace();
-        }         // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-set_kosong();        // TODO add your handling code here:
+        set_kosong();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-set_kosong();        // TODO add your handling code here:
+        set_kosong();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -667,7 +677,6 @@ set_kosong();        // TODO add your handling code here:
         }else{
             jButton4.setVisible(false);
             jButton3.setVisible(false);
-            
             try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee WHERE approval = '2'");
@@ -682,25 +691,21 @@ set_kosong();        // TODO add your handling code here:
     }
     
     void set_kosong(){
-    l_name1.setText("");
-                l_name.setText("");
-                l_date.setText("");
-                l_ktp.setText("");
-                l_hp.setText("");
-                l_hadd.setText("");
-                l_cadd.setText("");
-                l_email.setText("");
-    
+        l_name1.setText("");
+        l_name.setText("");
+        l_date.setText("");
+        l_ktp.setText("");
+        l_hp.setText("");
+        l_hadd.setText("");
+        l_cadd.setText("");
+        l_email.setText("");
     }
     
     private void addtext() {
-
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee inner join cd_adress on cd_employee.id_employee = cd_adress.id_employee where cd_employee.id_employee = "+ CustomResource.CandidateSession.getCandidateID()+"");
-
             while (rs.next()) {
-                
                 l_name1.setText(rs.getString("Nama"));
                 l_name.setText(rs.getString("approved_by"));
                 l_date.setText(rs.getString("cd_date_apply"));
@@ -713,7 +718,6 @@ set_kosong();        // TODO add your handling code here:
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     
     @Override

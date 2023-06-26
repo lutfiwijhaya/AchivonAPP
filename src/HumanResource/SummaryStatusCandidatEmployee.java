@@ -11,9 +11,12 @@ import java.sql.Connection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.Period;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,15 +28,14 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     ResultSet rs;
     Connection koneksi;
     int id;
-
-    /**
-     * Creates new form SummaryStatusCandidatEmployee
-     */
+    
     public SummaryStatusCandidatEmployee() {
         initComponents();
         MyWindow();
         openDB();
         setcombo();
+        jLabel2.setVisible(false);
+        jLabel47.setVisible(false);
         jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
         
         ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
@@ -66,14 +68,12 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee");
             while (rs.next()) {
-                jComboBox1.addItem(rs.getString(3).trim());
-
+                comboCDEmployeeID.addItem(rs.getString("Nama")+"|"+rs.getString("KTP"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,59 +83,107 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        CandidateName = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        CandidateAge = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        CandidateKTP = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        CandidateEducation = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        CandidatePhoneNumber = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        CandidateSallary = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        CandidateDiscipline = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        CandidatePosition = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        CandidateMarital = new javax.swing.JLabel();
+        CandidateGrade = new javax.swing.JLabel();
+        CandidateEmail = new javax.swing.JLabel();
+        CandidateCareer = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        CandidateGender = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
+        CandidateBirthday = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane2 = new raven.scroll.win11.ScrollPaneWin11();
         jTable2 = new javax.swing.JTable();
         jLabel35 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane3 = new raven.scroll.win11.ScrollPaneWin11();
         jTable3 = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPane4 = new raven.scroll.win11.ScrollPaneWin11();
         jTable4 = new javax.swing.JTable();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
+        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
         jTable5 = new javax.swing.JTable();
         jLabel39 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jComboBox1 = new CustomResource.ComboBoxSuggestion();
+        comboCDEmployeeID = new CustomResource.ComboBoxSuggestion();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jScrollPane7 = new raven.scroll.win11.ScrollPaneWin11();
+        jTable6 = new javax.swing.JTable();
+        jLabel42 = new javax.swing.JLabel();
+        jScrollPane8 = new raven.scroll.win11.ScrollPaneWin11();
+        jTable7 = new javax.swing.JTable();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        TypeHired = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        PositionID = new javax.swing.JLabel();
+        CompanyJoin = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        ContractFinished = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        ProbationPeriod = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        WorkLocation = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        SallaryType = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        HiredContract = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        Basic = new javax.swing.JLabel();
+        OTAllowance = new javax.swing.JLabel();
+        SiteAllowance = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        Meal = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        Transportation = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        RoleAllowance = new javax.swing.JLabel();
+        Accomodation = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        SundayHoliday = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        HourlyRate = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jScrollPane9 = new raven.scroll.win11.ScrollPaneWin11();
+        jTable8 = new javax.swing.JTable();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -145,7 +193,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("SUMMARY STATUS CANDIDATES EMPLOYEE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("A. CANDIDATE INFORMATION");
@@ -155,85 +203,85 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jLabel4.setText("Birthday");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel5.setText("...");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+        CandidateName.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateName.setText("...");
+        jPanel1.add(CandidateName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel6.setText("Candidate Name");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel7.setText("...");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, -1, -1));
+        CandidateAge.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateAge.setText("...");
+        jPanel1.add(CandidateAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel8.setText("KTP No.");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel9.setText("...");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
+        CandidateKTP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateKTP.setText("...");
+        jPanel1.add(CandidateKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel10.setText("Last Education");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel11.setText("...");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, -1, -1));
+        CandidateEducation.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateEducation.setText("...");
+        jPanel1.add(CandidateEducation, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel12.setText("Mobile No.");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel13.setText("...");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, -1, -1));
+        CandidatePhoneNumber.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidatePhoneNumber.setText("...");
+        jPanel1.add(CandidatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel14.setText("Expected Salary");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel15.setText("...");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, -1, -1));
+        CandidateSallary.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateSallary.setText("...");
+        jPanel1.add(CandidateSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel16.setText("Dicipline");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel17.setText("...");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, -1, -1));
+        CandidateDiscipline.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateDiscipline.setText("...");
+        jPanel1.add(CandidateDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel18.setText("Position");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel19.setText("...");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 170, -1, -1));
+        CandidatePosition.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidatePosition.setText("...");
+        jPanel1.add(CandidatePosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 170, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel20.setText("Mariage Status");
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel21.setText("...");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 210, -1, -1));
+        CandidateMarital.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateMarital.setText("...");
+        jPanel1.add(CandidateMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 210, -1, -1));
 
-        jLabel22.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel22.setText("...");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 240, -1, -1));
+        CandidateGrade.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateGrade.setText("...");
+        jPanel1.add(CandidateGrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 240, -1, -1));
 
-        jLabel23.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel23.setText("...");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 270, -1, -1));
+        CandidateEmail.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateEmail.setText("...");
+        jPanel1.add(CandidateEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 270, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel24.setText("...");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, -1, -1));
+        CandidateCareer.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateCareer.setText("...");
+        jPanel1.add(CandidateCareer, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel25.setText("Career");
@@ -247,33 +295,25 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jLabel27.setText("Class Grade");
         jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 240, -1, -1));
 
-        jLabel28.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel28.setText("...");
-        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 140, -1, -1));
+        CandidateGender.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateGender.setText("...");
+        jPanel1.add(CandidateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, -1, -1));
 
         jLabel29.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel29.setText("Age :");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, -1, -1));
+        jLabel29.setText("Gender :");
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel30.setText("years");
-        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, -1, -1));
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, -1, -1));
 
-        jLabel31.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel31.setText("month");
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, -1, -1));
-
-        jLabel32.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel32.setText("...");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, -1, -1));
-
-        jLabel33.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel33.setText("...");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
+        CandidateBirthday.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CandidateBirthday.setText("...");
+        jPanel1.add(CandidateBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
 
         jLabel34.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel34.setText("C. CHECK LIST - DOCUMENT SUBMISSION");
-        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 540, -1, -1));
+        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 520, -1, -1));
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -289,18 +329,15 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Accompany");
-        }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 350, 127));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 350, 110));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Resume", null},
                 {"KTP", null},
-                {"Photo (5EA, 3.5 x 4.5cm)", ""},
+                {"Photo (5EA, 3.5 x 4.5cm)", null},
                 {"SKCK", null},
                 {"Academic Certificate", null},
                 {"Career Certificate (Proof Stamp)", null},
@@ -309,10 +346,18 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             new String [] {
                 "Before Hiring Announcement", "Receiving Status"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, 359, 168));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 359, 150));
 
         jLabel35.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel35.setText("B. STATUS - FAMILY AND ADDRESS");
@@ -321,29 +366,34 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Grand Parent", null, null},
-                {"Parent", null, null},
-                {"Wife", null, null},
-                {"Son", null, null},
-                {"Daughter", null, null}
+                {"Grand Parent", null,  new Boolean(true)},
+                {"Parent", null,  new Boolean(true)},
+                {"Wife", null,  new Boolean(true)},
+                {"Son", null,  new Boolean(true)},
+                {"Daughter", null,  new Boolean(true)}
             },
             new String [] {
                 "Description", "Number", "Accompany"
             }
-        ));
-        jScrollPane3.setViewportView(jTable3);
-        if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(2).setHeaderValue("Accompany");
-        }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 350, 127));
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable3);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 350, 110));
 
         jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Medical Check Up Result", null},
                 {"Bank Account Information", null},
-                {"Family Relation Certificate", ""},
+                {"Family Relation Certificate", null},
                 {"TAX  ID Card (NPWP)", null},
                 {"BPJS Ketenagakerjaan", null},
                 {"BPJS Kesehatan", null},
@@ -352,10 +402,18 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             new String [] {
                 "After Hiring Announcement", "Receiving Status"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(jTable4);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, 359, 168));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 540, 359, 150));
 
         jLabel37.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel37.setText("Address");
@@ -379,11 +437,11 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         ));
         jScrollPane5.setViewportView(jTable5);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 780, 735, 209));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 730, 735, 90));
 
         jLabel39.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel39.setText("D. SUMMARY OF AUTHORIZED  SKILL CERTIFICATES ");
-        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 760, -1, -1));
+        jLabel39.setText("E. Initial Hired Status");
+        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 830, -1, -1));
 
         jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 1150, 360, 30));
@@ -398,7 +456,230 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             }
         });
         jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 73, -1, 30));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 220, -1));
+        jPanel1.add(comboCDEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 220, -1));
+
+        jLabel32.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel32.setText("Age      :");
+        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, -1, -1));
+
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
+
+        jLabel41.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel41.setText("F. Reward Status");
+        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1130, -1, -1));
+
+        jTable6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Reward Name", "Date", "Result"
+            }
+        ));
+        jScrollPane7.setViewportView(jTable6);
+
+        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1150, 735, 90));
+
+        jLabel42.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel42.setText("G. DISCIPLINARY STATUS");
+        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1260, -1, -1));
+
+        jTable7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Description", "Date", "Period (Start to Finish)", "Result"
+            }
+        ));
+        jScrollPane8.setViewportView(jTable7);
+
+        jPanel1.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1280, 735, 90));
+
+        jLabel43.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel43.setText("D. SUMMARY OF AUTHORIZED  SKILL CERTIFICATES ");
+        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel5.setText("Type of Hired");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 860, -1, -1));
+
+        TypeHired.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        TypeHired.setText("...");
+        jPanel1.add(TypeHired, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 860, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel7.setText("Company Join Date");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 980, -1, -1));
+
+        PositionID.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        PositionID.setText("...");
+        jPanel1.add(PositionID, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 950, -1, -1));
+
+        CompanyJoin.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        CompanyJoin.setText("...");
+        jPanel1.add(CompanyJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 980, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel9.setText("Contract Finish Date");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 1010, -1, -1));
+
+        ContractFinished.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        ContractFinished.setText("...");
+        jPanel1.add(ContractFinished, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1010, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel11.setText("Probation Period");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 1040, -1, -1));
+
+        ProbationPeriod.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        ProbationPeriod.setText("...");
+        jPanel1.add(ProbationPeriod, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1040, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel13.setText("Work Location");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 1070, -1, -1));
+
+        WorkLocation.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        WorkLocation.setText("...");
+        jPanel1.add(WorkLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1070, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel15.setText("Position ID No.");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 950, -1, -1));
+
+        SallaryType.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        SallaryType.setText("...");
+        jPanel1.add(SallaryType, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 890, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel17.setText("Sallary Type");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 890, -1, -1));
+
+        HiredContract.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        HiredContract.setText("...");
+        jPanel1.add(HiredContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 920, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel19.setText("Hired Contract No.");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 920, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel21.setText("Sallary");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 830, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel22.setText("O/T Allowance");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 890, -1, -1));
+
+        Basic.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        Basic.setText("...");
+        jPanel1.add(Basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 860, -1, -1));
+
+        OTAllowance.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        OTAllowance.setText("...");
+        jPanel1.add(OTAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 890, -1, -1));
+
+        SiteAllowance.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        SiteAllowance.setText("...");
+        jPanel1.add(SiteAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 920, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel23.setText("Site Allowance");
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 920, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel24.setText("Meal");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 950, -1, -1));
+
+        Meal.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        Meal.setText("...");
+        jPanel1.add(Meal, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 950, -1, -1));
+
+        jLabel28.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel28.setText("Transportation");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 980, -1, -1));
+
+        Transportation.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        Transportation.setText("...");
+        jPanel1.add(Transportation, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 980, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel31.setText("Role Allowance");
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1010, -1, -1));
+
+        RoleAllowance.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        RoleAllowance.setText("...");
+        jPanel1.add(RoleAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1010, -1, -1));
+
+        Accomodation.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        Accomodation.setText("...");
+        jPanel1.add(Accomodation, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1040, -1, -1));
+
+        jLabel33.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel33.setText("Accommodation");
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1040, -1, -1));
+
+        jLabel44.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel44.setText("Sunday/Holiday");
+        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1070, -1, -1));
+
+        SundayHoliday.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        SundayHoliday.setText("...");
+        jPanel1.add(SundayHoliday, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1070, -1, -1));
+
+        jLabel45.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel45.setText("Basic");
+        jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 860, -1, -1));
+
+        jLabel46.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel46.setText("Hourly Rate ");
+        jPanel1.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1100, -1, -1));
+
+        HourlyRate.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        HourlyRate.setText("...");
+        jPanel1.add(HourlyRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1100, -1, -1));
+
+        jLabel47.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel47.setText("and retirement (excluding reward and disciplinary action)");
+        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 1640, -1, -1));
+
+        jTable8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Subject", "Start", "Finish", "Position", "Work Location or Project "
+            }
+        ));
+        jScrollPane9.setViewportView(jTable8);
+
+        jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1450, 735, 180));
+
+        jLabel48.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel48.setText("H. CHRONOLOGY STATUS AS EMPLOYEE");
+        jPanel1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1390, -1, -1));
+
+        jLabel49.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel49.setText("Please record all of status each Subject such as hiring, promotion, change of job location, job relocation/movement, ");
+        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1410, -1, -1));
+
+        jLabel50.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel50.setText("and retirement (excluding reward and disciplinary action)");
+        jPanel1.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1430, -1, -1));
 
         jScrollPane6.setViewportView(jPanel1);
 
@@ -410,17 +691,124 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1660, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-      // TODO add your handling code here:
+        String KTPNumber, IdCDEmployee;
+        String[] parts = comboCDEmployeeID.getSelectedItem().toString().split("\\|"); // Escape the "|" character using "\\|"
+        if (parts.length > 1) {
+            String NumberParts = parts[1];
+            KTPNumber = NumberParts;
+//            System.out.println("Angka setelah tanda '|' adalah: " + NumberParts);
+        } else {
+            KTPNumber = "";
+            JOptionPane.showMessageDialog(this, "Maaf, ID Tidak ditemukan\nSorry, ID not Found");
+//            System.out.println("Tidak ditemukan angka setelah tanda '|'");
+        }
+        
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("select * from cd_employee where KTP = "+KTPNumber+"");
+            while (rs.next()) {
+                jLabel2.setText(rs.getString("id_employee"));
+                CandidateName.setText(rs.getString("Nama"));
+                CandidateGender.setText(rs.getString("sex"));
+                CandidateBirthday.setText(rs.getString("birthday"));
+                CandidateKTP.setText(rs.getString("KTP"));
+//                CandidateEducation.setText(rs.getString(""));
+                CandidatePhoneNumber.setText(rs.getString("No_HP"));
+                CandidateSallary.setText(rs.getString("D_Salary"));
+//                CandidateAgeMonth.setText(rs.getString(""));
+                CandidateDiscipline.setText(rs.getString("discipline"));
+//                CandidatePosition.setText(rs.getString(""));
+                CandidateMarital.setText(rs.getString("marital"));
+//                CandidateGrade.setText(rs.getString(""));
+                CandidateEmail.setText(rs.getString("email"));
+//                CandidateCareer.setText(rs.getString(""));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        String dateString = CandidateBirthday.getText();
+        LocalDate birthDate = LocalDate.parse(dateString);
+        LocalDate currentDate = LocalDate.now();
+
+        Period period = Period.between(birthDate, currentDate);
+        int age = period.getYears();
+        CandidateAge.setText(Integer.toString(age));
+        
+//        table certificate
+        DefaultTableModel myModel = (DefaultTableModel) jTable5.getModel();
+        try {
+            stm = koneksi.createStatement();
+            ResultSet rs1 = stm.executeQuery("SELECT * FROM cd_certificates WHERE id_employee = "+jLabel2.getText()+"");
+            while (rs1.next()) {
+                String[] data = {
+                    rs1.getString(4),
+                    rs1.getString(6),
+                    rs1.getString(7),
+                    rs1.getString(3)
+                };
+                myModel.insertRow(0, data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
+        
+        DefaultTableModel myModel7 = (DefaultTableModel) jTable7.getModel();
+        try {
+            stm = koneksi.createStatement();
+            ResultSet rs2 = stm.executeQuery("SELECT * FROM cd_summary_career WHERE id_employee = "+jLabel2.getText()+"");
+            while (rs2.next()) {
+                String[] data = {
+                    rs2.getString(4),
+                    rs2.getString(5),
+                    rs2.getString(5)+" - "+rs2.getString(6),
+                    rs2.getString(7)
+                };
+                myModel7.insertRow(0, data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CustomResource.ComboBoxSuggestion jComboBox1;
+    private javax.swing.JLabel Accomodation;
+    private javax.swing.JLabel Basic;
+    private javax.swing.JLabel CandidateAge;
+    private javax.swing.JLabel CandidateBirthday;
+    private javax.swing.JLabel CandidateCareer;
+    private javax.swing.JLabel CandidateDiscipline;
+    private javax.swing.JLabel CandidateEducation;
+    private javax.swing.JLabel CandidateEmail;
+    private javax.swing.JLabel CandidateGender;
+    private javax.swing.JLabel CandidateGrade;
+    private javax.swing.JLabel CandidateKTP;
+    private javax.swing.JLabel CandidateMarital;
+    private javax.swing.JLabel CandidateName;
+    private javax.swing.JLabel CandidatePhoneNumber;
+    private javax.swing.JLabel CandidatePosition;
+    private javax.swing.JLabel CandidateSallary;
+    private javax.swing.JLabel CompanyJoin;
+    private javax.swing.JLabel ContractFinished;
+    private javax.swing.JLabel HiredContract;
+    private javax.swing.JLabel HourlyRate;
+    private javax.swing.JLabel Meal;
+    private javax.swing.JLabel OTAllowance;
+    private javax.swing.JLabel PositionID;
+    private javax.swing.JLabel ProbationPeriod;
+    private javax.swing.JLabel RoleAllowance;
+    private javax.swing.JLabel SallaryType;
+    private javax.swing.JLabel SiteAllowance;
+    private javax.swing.JLabel SundayHoliday;
+    private javax.swing.JLabel Transportation;
+    private javax.swing.JLabel TypeHired;
+    private javax.swing.JLabel WorkLocation;
+    private CustomResource.ComboBoxSuggestion comboCDEmployeeID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -432,6 +820,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -455,7 +844,17 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -467,11 +866,17 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
+    private javax.swing.JTable jTable8;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
     private void MyWindow() {

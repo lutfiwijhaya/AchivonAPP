@@ -53,7 +53,8 @@ public class EmployeeClearance extends MasterForm{
         initComponents();
         MyWindow();
         openDB();
-        fresh();
+        labelID.setVisible(false);
+        
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
@@ -444,7 +445,7 @@ public class EmployeeClearance extends MasterForm{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -456,7 +457,7 @@ public class EmployeeClearance extends MasterForm{
         jLabel21 = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
+        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
         jTable5 = new javax.swing.JTable();
         jLabel40 = new javax.swing.JLabel();
         signTeamPred = new javax.swing.JLabel();
@@ -1104,9 +1105,5 @@ public class EmployeeClearance extends MasterForm{
 
     @Override
     public void formrefresh() {
-    }
-    
-    private void fresh(){
-        
     }
 }

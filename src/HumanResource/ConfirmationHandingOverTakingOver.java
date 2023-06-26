@@ -69,7 +69,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
     private void initComponents() {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -83,7 +83,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         labelDiscipline = new javax.swing.JLabel();
         labelNameSign = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
         jTable4 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();

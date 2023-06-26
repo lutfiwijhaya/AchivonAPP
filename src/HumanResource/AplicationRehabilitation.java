@@ -72,7 +72,7 @@ public class AplicationRehabilitation extends MasterForm {
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
         dateChooser3 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -84,10 +84,10 @@ public class AplicationRehabilitation extends MasterForm {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
+        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
         stateRehab = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
         docRehab = new javax.swing.JTextArea();
         jLabel20 = new javax.swing.JLabel();
         SendButton = new javax.swing.JButton();

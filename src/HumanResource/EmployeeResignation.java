@@ -328,7 +328,7 @@ public class EmployeeResignation extends MasterForm {
     private void initComponents() {
 
         date = new com.raven.datechooser.DateChooser();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -341,7 +341,7 @@ public class EmployeeResignation extends MasterForm {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         textDesc = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();

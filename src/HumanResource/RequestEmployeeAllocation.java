@@ -65,7 +65,7 @@ public class RequestEmployeeAllocation extends MasterForm {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -78,15 +78,15 @@ public class RequestEmployeeAllocation extends MasterForm {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane2 = new raven.scroll.win11.ScrollPaneWin11();
         statementEmployee = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane3 = new raven.scroll.win11.ScrollPaneWin11();
         statementManager = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPane4 = new raven.scroll.win11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
