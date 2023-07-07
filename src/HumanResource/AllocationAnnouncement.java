@@ -180,6 +180,11 @@ public class AllocationAnnouncement extends MasterForm {
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 240, 130, 40));
 
         t_tgl.setLabelText("Tanggal Alokasi / Allocation Date");
+        t_tgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_tglActionPerformed(evt);
+            }
+        });
         add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 170, -1));
 
         jButton1.setText("Ambil/Take Data Emoloyee");
@@ -280,6 +285,10 @@ public class AllocationAnnouncement extends MasterForm {
         CustomResource.EmployeeSession.setsesiform("2");
         new Employe_list().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void t_tglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_tglActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.datechooser.DateChooser dateChooser1;

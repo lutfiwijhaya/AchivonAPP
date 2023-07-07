@@ -27,6 +27,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.sql.Statement;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.table.JTableHeader;
 /**
  *
  * @author hi
@@ -43,7 +46,7 @@ public class EmployeeEvaluation extends MasterForm {
         idHRMGR.setVisible(false);
         idPresiden.setVisible(false);
         
-        DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel dm = (DefaultTableModel) jTable2.getModel();
         dm.setDataVector(new Object[][]{
                     {"1. Coordination","","","","","","","",""},
                     {"2. Communication","","","","","","","",""},
@@ -57,29 +60,29 @@ public class EmployeeEvaluation extends MasterForm {
                     {"10. Personality","","","","","","","",""}},
                     new Object[]
                     {"Factor", "S", "A", "B", "C", "D", "Basis for judgment"});
-//        jTable5 = new JTable(dm) {
-//            @Override
-//            protected JTableHeader createDefaultTableHeader() {
-//                return new GroupableTableHeader(columnModel);
-//            }
-//        };
-        TableColumnModel cm = jTable1.getColumnModel();
+        JTable Table2 = new JTable(dm) {
+            @Override
+            protected JTableHeader createDefaultTableHeader() {
+                return new GroupableTableHeader(columnModel);
+            }
+        };
+        TableColumnModel cm = Table2.getColumnModel();
         ColumnGroup g_name = new ColumnGroup("Evaluation");
         g_name.add(cm.getColumn(1));
         g_name.add(cm.getColumn(2));
         g_name.add(cm.getColumn(3));
         g_name.add(cm.getColumn(4));
         g_name.add(cm.getColumn(5));
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(20);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(20);
-        jTable1.getColumnModel().getColumn(4).setPreferredWidth(20);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(20);
-        jTable1.getColumnModel().getColumn(6).setPreferredWidth(250);
+        Table2.getColumnModel().getColumn(0).setPreferredWidth(100);
+        Table2.getColumnModel().getColumn(1).setPreferredWidth(20);
+        Table2.getColumnModel().getColumn(2).setPreferredWidth(20);
+        Table2.getColumnModel().getColumn(3).setPreferredWidth(20);
+        Table2.getColumnModel().getColumn(4).setPreferredWidth(20);
+        Table2.getColumnModel().getColumn(5).setPreferredWidth(20);
+        Table2.getColumnModel().getColumn(6).setPreferredWidth(250);
         GroupableTableHeader header = new GroupableTableHeader(cm);
         header.addColumnGroup(g_name);
-        jTable1.setTableHeader(header);
+        Table2.setTableHeader(header);
     }
 
     private void openDB() {
@@ -129,9 +132,9 @@ public class EmployeeEvaluation extends MasterForm {
         labelNamePresident = new javax.swing.JLabel();
         idPresiden = new javax.swing.JLabel();
         labelID = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         saveButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -272,21 +275,6 @@ public class EmployeeEvaluation extends MasterForm {
         labelID.setText("asd");
         jPanel1.add(labelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 660, 660, 250));
-
         saveButton.setBackground(new java.awt.Color(51, 51, 255));
         saveButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         saveButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -298,6 +286,21 @@ public class EmployeeEvaluation extends MasterForm {
         });
         jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 1120, 170, 40));
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 660, 660, 250));
+
         jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -308,9 +311,7 @@ public class EmployeeEvaluation extends MasterForm {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -448,9 +449,9 @@ public class EmployeeEvaluation extends MasterForm {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelID;
     private javax.swing.JLabel labelNameHRMGR;

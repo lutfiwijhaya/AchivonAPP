@@ -709,6 +709,11 @@ public class CandidateApplicationPersonal extends MasterForm{
 
         radioGrupGender.add(t_pria);
         t_pria.setText("Male");
+        t_pria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_priaActionPerformed(evt);
+            }
+        });
         jPanel1.add(t_pria, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, -1, -1));
 
         radioGrupGender.add(t_wanita);
@@ -969,7 +974,6 @@ char c = evt.getKeyChar();
             Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
         } 
       
-
         Main.main.getMain().showForm(new CandidateApplicationAcademic());
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1112,6 +1116,10 @@ char c = evt.getKeyChar();
            t_bpjsKetenagakerjaan.requestFocus();
         }
     }//GEN-LAST:event_t_bpjsKesehatanKeyPressed
+
+    private void t_priaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_priaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_priaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

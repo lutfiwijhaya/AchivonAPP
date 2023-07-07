@@ -24,6 +24,7 @@ import java.sql.Statement;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author USER
@@ -95,7 +96,7 @@ public class DisciplnaryResolution extends MasterForm {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("DISCIPLINARY REVOLUTION");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, -1, -1));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,7 +111,7 @@ public class DisciplnaryResolution extends MasterForm {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 670, 90));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 670, 90));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("DD-MMM-YYYY");
@@ -124,61 +125,61 @@ public class DisciplnaryResolution extends MasterForm {
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PT. ACHIVON PRESTASI ABADI");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 260, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 530, 260, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel5.setText("Chairman");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 580, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel6.setText("Name");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 810, 150, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 810, 150, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel8.setText("Signature");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 580, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText("Commissioner");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 790, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 790, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel10.setText("Commissioner");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 600, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 600, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel11.setText("Commissioner");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 660, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 660, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel12.setText("Commissioner");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 720, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 720, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Name");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 600, 170, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 600, 170, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel14.setText("Name");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 620, 160, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 620, 160, -1));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel15.setText("Name");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 680, 160, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 680, 160, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel16.setText("Name");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 740, 150, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 740, 150, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel17.setText("Signature");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 570, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 570, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("THE HUMAN RESOURCES COMMITTEE");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 270, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 270, -1));
 
         labelNamePresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNamePresident.setText("Name");
@@ -213,9 +214,7 @@ public class DisciplnaryResolution extends MasterForm {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -277,7 +276,6 @@ private void MyWindow(){
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
     }
-
     @Override
     public void formrefresh() {
     }

@@ -19,18 +19,18 @@ import javax.swing.table.TableColumnModel;
  * @author Nobuo Tamemasa
  */
 @SuppressWarnings("serial")
-public class GroupableTableHeader extends JTableHeader {
+public final class GroupableTableHeader extends JTableHeader {
 
     @SuppressWarnings("unused")
     private static final String uiClassID = "GroupableTableHeaderUI";
 
-    protected List<ColumnGroup> columnGroups = new ArrayList<ColumnGroup>();
+    protected List<ColumnGroup> columnGroups = new ArrayList<>();
 
     public GroupableTableHeader(TableColumnModel model) {
         super(model);
         setUI(new GroupableTableHeaderUI());
         setReorderingAllowed(false);
-        // setDefaultRenderer(new MultiLineHeaderRenderer());
+//         setDefaultRenderer(new MultiLineHeaderRenderer());
     }
 
     @Override

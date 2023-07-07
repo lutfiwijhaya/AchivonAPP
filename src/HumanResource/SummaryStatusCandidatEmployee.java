@@ -6,17 +6,33 @@ package HumanResource;
 
 import CustomResource.koneksi;
 import Main.MasterForm;
+import com.raven.datechooser.SelectedDate;
+import com.toedter.calendar.JCalendar;
 
 import java.sql.Connection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Date;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import jnafilechooser.api.JnaFileChooser;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -33,6 +49,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         initComponents();
         MyWindow();
         openDB();
+        setTable();
         setcombo();
         jLabel2.setVisible(false);
         jLabel47.setVisible(false);
@@ -53,6 +70,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
     }
+    
 
     private void openDB() {
         try {
@@ -83,38 +101,12 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
+        groupSallary = new javax.swing.ButtonGroup();
         jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        CandidateName = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        CandidateAge = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        CandidateKTP = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        CandidateEducation = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        CandidatePhoneNumber = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        CandidateSallary = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        CandidateDiscipline = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        CandidatePosition = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        CandidateMarital = new javax.swing.JLabel();
-        CandidateGrade = new javax.swing.JLabel();
-        CandidateEmail = new javax.swing.JLabel();
-        CandidateCareer = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        CandidateGender = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        CandidateBirthday = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
@@ -130,11 +122,9 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
         jTable5 = new javax.swing.JTable();
         jLabel39 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         comboCDEmployeeID = new CustomResource.ComboBoxSuggestion();
-        jLabel32 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jScrollPane7 = new raven.scroll.win11.ScrollPaneWin11();
@@ -143,47 +133,55 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jScrollPane8 = new raven.scroll.win11.ScrollPaneWin11();
         jTable7 = new javax.swing.JTable();
         jLabel43 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        TypeHired = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        PositionID = new javax.swing.JLabel();
-        CompanyJoin = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        ContractFinished = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        ProbationPeriod = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        WorkLocation = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        SallaryType = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        HiredContract = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        Basic = new javax.swing.JLabel();
-        OTAllowance = new javax.swing.JLabel();
-        SiteAllowance = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        Meal = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        Transportation = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        RoleAllowance = new javax.swing.JLabel();
-        Accomodation = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        SundayHoliday = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        HourlyRate = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jScrollPane9 = new raven.scroll.win11.ScrollPaneWin11();
         jTable8 = new javax.swing.JTable();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        CandidateSallary = new CustomResource.CustomTextfield();
+        CandidateName = new CustomResource.CustomTextfield();
+        CandidateBirthday = new CustomResource.CustomTextfield();
+        CandidateKTP = new CustomResource.CustomTextfield();
+        CandidateEducation = new CustomResource.CustomTextfield();
+        CandidatePhoneNumber = new CustomResource.CustomTextfield();
+        CandidateEmail = new CustomResource.CustomTextfield();
+        CandidateCareer = new CustomResource.CustomTextfield();
+        CandidateGrade = new CustomResource.CustomTextfield();
+        CandidatePosition = new CustomResource.CustomTextfield();
+        CandidateMarital = new CustomResource.CustomTextfield();
+        CandidateDiscipline = new CustomResource.CustomTextfield();
+        CandidateGender = new CustomResource.CustomTextfield();
+        CandidateAge1 = new CustomResource.CustomTextfield();
+        CandidateReligion = new CustomResource.CustomTextfield();
+        TypeHired = new CustomResource.CustomTextfield();
+        HiredContract = new CustomResource.CustomTextfield();
+        PositionID = new CustomResource.CustomTextfield();
+        CompanyJoin = new CustomResource.CustomTextfield();
+        ContractFinished = new CustomResource.CustomTextfield();
+        ProbationPeriod = new CustomResource.CustomTextfield();
+        WorkLocation = new CustomResource.CustomTextfield();
+        Basic = new CustomResource.CustomTextfield();
+        SiteAllowance = new CustomResource.CustomTextfield();
+        Meal = new CustomResource.CustomTextfield();
+        OTAllowance = new CustomResource.CustomTextfield();
+        Transportation = new CustomResource.CustomTextfield();
+        RoleAllowance = new CustomResource.CustomTextfield();
+        Accomodation = new CustomResource.CustomTextfield();
+        SundayHoliday = new CustomResource.CustomTextfield();
+        HourlyRate = new CustomResource.CustomTextfield();
+        jLabel4 = new javax.swing.JLabel();
+        all = new CustomResource.RadioButtonCustom();
+        hour = new CustomResource.RadioButtonCustom();
+
+        dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser1.setDateFormat("dd-MMMM-yyyy");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -199,121 +197,9 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jLabel3.setText("A. CANDIDATE INFORMATION");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel4.setText("Birthday");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, -1));
-
-        CandidateName.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateName.setText("...");
-        jPanel1.add(CandidateName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel6.setText("Candidate Name");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
-
-        CandidateAge.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateAge.setText("...");
-        jPanel1.add(CandidateAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel8.setText("KTP No.");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
-
-        CandidateKTP.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateKTP.setText("...");
-        jPanel1.add(CandidateKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel10.setText("Last Education");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
-
-        CandidateEducation.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateEducation.setText("...");
-        jPanel1.add(CandidateEducation, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel12.setText("Mobile No.");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
-
-        CandidatePhoneNumber.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidatePhoneNumber.setText("...");
-        jPanel1.add(CandidatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, -1, -1));
-
-        jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel14.setText("Expected Salary");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
-
-        CandidateSallary.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateSallary.setText("...");
-        jPanel1.add(CandidateSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
-
-        jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel16.setText("Dicipline");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, -1, -1));
-
-        CandidateDiscipline.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateDiscipline.setText("...");
-        jPanel1.add(CandidateDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, -1, -1));
-
-        jLabel18.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel18.setText("Position");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, -1, -1));
-
-        CandidatePosition.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidatePosition.setText("...");
-        jPanel1.add(CandidatePosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 170, -1, -1));
-
-        jLabel20.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel20.setText("Mariage Status");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, -1, -1));
-
-        CandidateMarital.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateMarital.setText("...");
-        jPanel1.add(CandidateMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 210, -1, -1));
-
-        CandidateGrade.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateGrade.setText("...");
-        jPanel1.add(CandidateGrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 240, -1, -1));
-
-        CandidateEmail.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateEmail.setText("...");
-        jPanel1.add(CandidateEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 270, -1, -1));
-
-        CandidateCareer.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateCareer.setText("...");
-        jPanel1.add(CandidateCareer, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, -1, -1));
-
-        jLabel25.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel25.setText("Career");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 300, -1, -1));
-
-        jLabel26.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel26.setText("E-mail");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, -1, -1));
-
-        jLabel27.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel27.setText("Class Grade");
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 240, -1, -1));
-
-        CandidateGender.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateGender.setText("...");
-        jPanel1.add(CandidateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, -1, -1));
-
-        jLabel29.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel29.setText("Gender :");
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, -1, -1));
-
-        jLabel30.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel30.setText("years");
-        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, -1, -1));
-
-        CandidateBirthday.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CandidateBirthday.setText("...");
-        jPanel1.add(CandidateBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
-
         jLabel34.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel34.setText("C. CHECK LIST - DOCUMENT SUBMISSION");
-        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 520, -1, -1));
+        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 680, -1, -1));
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -330,18 +216,18 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 350, 110));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 550, 350, 110));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Resume", null},
-                {"KTP", null},
-                {"Photo (5EA, 3.5 x 4.5cm)", null},
-                {"SKCK", null},
-                {"Academic Certificate", null},
-                {"Career Certificate (Proof Stamp)", null},
-                {"Self Introduction", null}
+                {"Resume",  new Boolean(false)},
+                {"KTP",  new Boolean(false)},
+                {"Photo (5EA, 3.5 x 4.5cm)",  new Boolean(false)},
+                {"SKCK",  new Boolean(false)},
+                {"Academic Certificate",  new Boolean(false)},
+                {"Career Certificate (Proof Stamp)",  new Boolean(false)},
+                {"Self Introduction",  new Boolean(false)}
             },
             new String [] {
                 "Before Hiring Announcement", "Receiving Status"
@@ -357,20 +243,20 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 359, 150));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 700, 359, 150));
 
         jLabel35.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel35.setText("B. STATUS - FAMILY AND ADDRESS");
-        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, -1, -1));
+        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, -1, -1));
 
         jTable3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Grand Parent", null,  new Boolean(true)},
-                {"Parent", null,  new Boolean(true)},
-                {"Wife", null,  new Boolean(true)},
-                {"Son", null,  new Boolean(true)},
-                {"Daughter", null,  new Boolean(true)}
+                {"Grand Parent", null,  new Boolean(false)},
+                {"Parent", null,  new Boolean(false)},
+                {"Wife", null,  new Boolean(false)},
+                {"Son", null,  new Boolean(false)},
+                {"Daughter", null,  new Boolean(false)}
             },
             new String [] {
                 "Description", "Number", "Accompany"
@@ -386,18 +272,18 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         });
         jScrollPane3.setViewportView(jTable3);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 350, 110));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 550, 350, 110));
 
         jTable4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Medical Check Up Result", null},
-                {"Bank Account Information", null},
-                {"Family Relation Certificate", null},
-                {"TAX  ID Card (NPWP)", null},
-                {"BPJS Ketenagakerjaan", null},
-                {"BPJS Kesehatan", null},
-                {"Family Contact Point & No", null}
+                {"Medical Check Up Result",  new Boolean(false)},
+                {"Bank Account Information",  new Boolean(false)},
+                {"Family Relation Certificate",  new Boolean(false)},
+                {"TAX  ID Card (NPWP)",  new Boolean(false)},
+                {"BPJS Ketenagakerjaan",  new Boolean(false)},
+                {"BPJS Kesehatan",  new Boolean(false)},
+                {"Family Contact Point & No",  new Boolean(false)}
             },
             new String [] {
                 "After Hiring Announcement", "Receiving Status"
@@ -413,38 +299,40 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         });
         jScrollPane4.setViewportView(jTable4);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 540, 359, 150));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 700, 359, 150));
 
         jLabel37.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel37.setText("Address");
-        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 370, -1, -1));
+        jPanel1.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, -1, -1));
 
         jLabel38.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel38.setText("Family Status");
-        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, -1, -1));
+        jPanel1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 530, -1, -1));
 
         jTable5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
                 "Name Certificate", "Certificate Authority", "Certificate No.", "Certificate Date"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(jTable5);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 730, 735, 90));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 890, 735, 90));
 
         jLabel39.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel39.setText("E. Initial Hired Status");
-        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 830, -1, -1));
-
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(791, 1150, 360, 30));
+        jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1010, -1, -1));
 
         jLabel40.setText("Input Candidate Employee");
         jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, -1, 30));
@@ -458,228 +346,399 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 73, -1, 30));
         jPanel1.add(comboCDEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 220, -1));
 
-        jLabel32.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel32.setText("Age      :");
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, -1, -1));
-
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
         jLabel41.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel41.setText("F. Reward Status");
-        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1130, -1, -1));
+        jPanel1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1520, -1, -1));
 
         jTable6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
                 "Reward Name", "Date", "Result"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane7.setViewportView(jTable6);
 
-        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1150, 735, 90));
+        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1540, 735, 90));
 
         jLabel42.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel42.setText("G. DISCIPLINARY STATUS");
-        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1260, -1, -1));
+        jPanel1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1660, -1, -1));
 
         jTable7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
                 "Description", "Date", "Period (Start to Finish)", "Result"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane8.setViewportView(jTable7);
 
-        jPanel1.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1280, 735, 90));
+        jPanel1.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1680, 735, 90));
 
         jLabel43.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel43.setText("D. SUMMARY OF AUTHORIZED  SKILL CERTIFICATES ");
-        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel5.setText("Type of Hired");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 860, -1, -1));
-
-        TypeHired.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        TypeHired.setText("...");
-        jPanel1.add(TypeHired, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 860, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel7.setText("Company Join Date");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 980, -1, -1));
-
-        PositionID.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        PositionID.setText("...");
-        jPanel1.add(PositionID, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 950, -1, -1));
-
-        CompanyJoin.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        CompanyJoin.setText("...");
-        jPanel1.add(CompanyJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 980, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel9.setText("Contract Finish Date");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 1010, -1, -1));
-
-        ContractFinished.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        ContractFinished.setText("...");
-        jPanel1.add(ContractFinished, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1010, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel11.setText("Probation Period");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 1040, -1, -1));
-
-        ProbationPeriod.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        ProbationPeriod.setText("...");
-        jPanel1.add(ProbationPeriod, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1040, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel13.setText("Work Location");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 1070, -1, -1));
-
-        WorkLocation.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        WorkLocation.setText("...");
-        jPanel1.add(WorkLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1070, -1, -1));
-
-        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel15.setText("Position ID No.");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 950, -1, -1));
-
-        SallaryType.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        SallaryType.setText("...");
-        jPanel1.add(SallaryType, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 890, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel17.setText("Sallary Type");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 890, -1, -1));
-
-        HiredContract.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        HiredContract.setText("...");
-        jPanel1.add(HiredContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 920, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel19.setText("Hired Contract No.");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 920, -1, -1));
+        jPanel1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 870, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel21.setText("Sallary");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 830, -1, -1));
-
-        jLabel22.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel22.setText("O/T Allowance");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 890, -1, -1));
-
-        Basic.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        Basic.setText("...");
-        jPanel1.add(Basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 860, -1, -1));
-
-        OTAllowance.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        OTAllowance.setText("...");
-        jPanel1.add(OTAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 890, -1, -1));
-
-        SiteAllowance.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        SiteAllowance.setText("...");
-        jPanel1.add(SiteAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 920, -1, -1));
-
-        jLabel23.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel23.setText("Site Allowance");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 920, -1, -1));
-
-        jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel24.setText("Meal");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 950, -1, -1));
-
-        Meal.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        Meal.setText("...");
-        jPanel1.add(Meal, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 950, -1, -1));
-
-        jLabel28.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel28.setText("Transportation");
-        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 980, -1, -1));
-
-        Transportation.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        Transportation.setText("...");
-        jPanel1.add(Transportation, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 980, -1, -1));
-
-        jLabel31.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel31.setText("Role Allowance");
-        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1010, -1, -1));
-
-        RoleAllowance.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        RoleAllowance.setText("...");
-        jPanel1.add(RoleAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1010, -1, -1));
-
-        Accomodation.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        Accomodation.setText("...");
-        jPanel1.add(Accomodation, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1040, -1, -1));
-
-        jLabel33.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel33.setText("Accommodation");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1040, -1, -1));
-
-        jLabel44.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel44.setText("Sunday/Holiday");
-        jPanel1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1070, -1, -1));
-
-        SundayHoliday.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        SundayHoliday.setText("...");
-        jPanel1.add(SundayHoliday, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1070, -1, -1));
-
-        jLabel45.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel45.setText("Basic");
-        jPanel1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 860, -1, -1));
-
-        jLabel46.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel46.setText("Hourly Rate ");
-        jPanel1.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1100, -1, -1));
-
-        HourlyRate.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        HourlyRate.setText("...");
-        jPanel1.add(HourlyRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 1100, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 1020, -1, -1));
 
         jLabel47.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel47.setText("and retirement (excluding reward and disciplinary action)");
-        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 1640, -1, -1));
+        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 2120, -1, -1));
 
         jTable8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable8.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
                 "Subject", "Start", "Finish", "Position", "Work Location or Project "
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane9.setViewportView(jTable8);
 
-        jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1450, 735, 180));
+        jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1850, 735, 180));
 
         jLabel48.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel48.setText("H. CHRONOLOGY STATUS AS EMPLOYEE");
-        jPanel1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1390, -1, -1));
+        jPanel1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1790, -1, -1));
 
         jLabel49.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel49.setText("Please record all of status each Subject such as hiring, promotion, change of job location, job relocation/movement, ");
-        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1410, -1, -1));
+        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1810, -1, -1));
 
         jLabel50.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel50.setText("and retirement (excluding reward and disciplinary action)");
-        jPanel1.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1430, -1, -1));
+        jPanel1.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1830, -1, -1));
+
+        jButton1.setText("Save as");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 2050, 90, 30));
+
+        jButton2.setText("add Row");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 1820, -1, -1));
+
+        jButton3.setText("add Row");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 1510, -1, -1));
+
+        jButton4.setText("add Row");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 860, -1, -1));
+
+        jButton5.setText("add Row");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 1650, -1, -1));
+
+        CandidateSallary.setDragEnabled(true);
+        CandidateSallary.setInheritsPopupMenu(true);
+        CandidateSallary.setLabelText("Expected Sallary");
+        jPanel1.add(CandidateSallary, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 150, 280, -1));
+
+        CandidateName.setLabelText("Candidate Name");
+        jPanel1.add(CandidateName, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 190, -1));
+
+        CandidateBirthday.setLabelText("Birthday");
+        CandidateBirthday.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CandidateBirthdayActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CandidateBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 190, -1));
+
+        CandidateKTP.setLabelText("KTP No.");
+        jPanel1.add(CandidateKTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 280, -1));
+
+        CandidateEducation.setInheritsPopupMenu(true);
+        CandidateEducation.setLabelText("Last Education");
+        jPanel1.add(CandidateEducation, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 280, -1));
+
+        CandidatePhoneNumber.setDragEnabled(true);
+        CandidatePhoneNumber.setInheritsPopupMenu(true);
+        CandidatePhoneNumber.setLabelText("Mobile No.");
+        CandidatePhoneNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CandidatePhoneNumberActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CandidatePhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 280, -1));
+
+        CandidateEmail.setDragEnabled(true);
+        CandidateEmail.setInheritsPopupMenu(true);
+        CandidateEmail.setLabelText("e-mail");
+        jPanel1.add(CandidateEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, 280, -1));
+
+        CandidateCareer.setDragEnabled(true);
+        CandidateCareer.setInheritsPopupMenu(true);
+        CandidateCareer.setLabelText("Career");
+        jPanel1.add(CandidateCareer, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 450, 280, -1));
+
+        CandidateGrade.setDragEnabled(true);
+        CandidateGrade.setInheritsPopupMenu(true);
+        CandidateGrade.setLabelText("Class Grade");
+        jPanel1.add(CandidateGrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 350, 280, -1));
+
+        CandidatePosition.setDragEnabled(true);
+        CandidatePosition.setInheritsPopupMenu(true);
+        CandidatePosition.setLabelText("Position");
+        jPanel1.add(CandidatePosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 280, -1));
+
+        CandidateMarital.setDragEnabled(true);
+        CandidateMarital.setInheritsPopupMenu(true);
+        CandidateMarital.setLabelText("Mariage Status");
+        jPanel1.add(CandidateMarital, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, 280, -1));
+
+        CandidateDiscipline.setDragEnabled(true);
+        CandidateDiscipline.setInheritsPopupMenu(true);
+        CandidateDiscipline.setLabelText("Discipline");
+        jPanel1.add(CandidateDiscipline, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 200, 280, -1));
+
+        CandidateGender.setLabelText("Gender");
+        CandidateGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CandidateGenderActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CandidateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 80, -1));
+
+        CandidateAge1.setLabelText("Age (years)");
+        CandidateAge1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CandidateAge1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CandidateAge1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 80, -1));
+
+        CandidateReligion.setDragEnabled(true);
+        CandidateReligion.setInheritsPopupMenu(true);
+        CandidateReligion.setLabelText("Religion");
+        jPanel1.add(CandidateReligion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 280, -1));
+
+        TypeHired.setText("Permanent");
+        TypeHired.setDragEnabled(true);
+        TypeHired.setInheritsPopupMenu(true);
+        TypeHired.setLabelText("Type of Hired");
+        jPanel1.add(TypeHired, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1040, 280, -1));
+
+        HiredContract.setDragEnabled(true);
+        HiredContract.setInheritsPopupMenu(true);
+        HiredContract.setLabelText("Hired Contract No.");
+        HiredContract.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HiredContractActionPerformed(evt);
+            }
+        });
+        jPanel1.add(HiredContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1140, 280, -1));
+
+        PositionID.setDragEnabled(true);
+        PositionID.setInheritsPopupMenu(true);
+        PositionID.setLabelText("Position ID No.");
+        PositionID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PositionIDActionPerformed(evt);
+            }
+        });
+        jPanel1.add(PositionID, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1190, 280, -1));
+
+        CompanyJoin.setDragEnabled(true);
+        CompanyJoin.setInheritsPopupMenu(true);
+        CompanyJoin.setLabelText("Company Join Date");
+        CompanyJoin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompanyJoinActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CompanyJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1240, 280, -1));
+
+        ContractFinished.setDragEnabled(true);
+        ContractFinished.setInheritsPopupMenu(true);
+        ContractFinished.setLabelText("Contract Finish Date");
+        ContractFinished.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContractFinishedActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ContractFinished, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1290, 280, -1));
+
+        ProbationPeriod.setDragEnabled(true);
+        ProbationPeriod.setInheritsPopupMenu(true);
+        ProbationPeriod.setLabelText("Probation Period");
+        ProbationPeriod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProbationPeriodActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ProbationPeriod, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1340, 280, -1));
+
+        WorkLocation.setDragEnabled(true);
+        WorkLocation.setInheritsPopupMenu(true);
+        WorkLocation.setLabelText("Work Location");
+        WorkLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WorkLocationActionPerformed(evt);
+            }
+        });
+        jPanel1.add(WorkLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1390, 280, -1));
+
+        Basic.setDragEnabled(true);
+        Basic.setInheritsPopupMenu(true);
+        Basic.setLabelText("Basic");
+        Basic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BasicActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1040, 280, -1));
+
+        SiteAllowance.setDragEnabled(true);
+        SiteAllowance.setInheritsPopupMenu(true);
+        SiteAllowance.setLabelText("Site Allowance");
+        SiteAllowance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SiteAllowanceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SiteAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1140, 280, -1));
+
+        Meal.setDragEnabled(true);
+        Meal.setInheritsPopupMenu(true);
+        Meal.setLabelText("Meal");
+        Meal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MealActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Meal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1190, 280, -1));
+
+        OTAllowance.setDragEnabled(true);
+        OTAllowance.setInheritsPopupMenu(true);
+        OTAllowance.setLabelText("O/T Allowance");
+        OTAllowance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OTAllowanceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(OTAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1090, 280, -1));
+
+        Transportation.setDragEnabled(true);
+        Transportation.setInheritsPopupMenu(true);
+        Transportation.setLabelText("Transportation");
+        Transportation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TransportationActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Transportation, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1240, 280, -1));
+
+        RoleAllowance.setDragEnabled(true);
+        RoleAllowance.setInheritsPopupMenu(true);
+        RoleAllowance.setLabelText("Role Allowance");
+        RoleAllowance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RoleAllowanceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(RoleAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1290, 280, -1));
+
+        Accomodation.setDragEnabled(true);
+        Accomodation.setInheritsPopupMenu(true);
+        Accomodation.setLabelText("Accomodation");
+        Accomodation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccomodationActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Accomodation, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1340, 280, -1));
+
+        SundayHoliday.setDragEnabled(true);
+        SundayHoliday.setInheritsPopupMenu(true);
+        SundayHoliday.setLabelText("Sunday/Holiday");
+        SundayHoliday.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SundayHolidayActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SundayHoliday, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1390, 280, -1));
+
+        HourlyRate.setDragEnabled(true);
+        HourlyRate.setInheritsPopupMenu(true);
+        HourlyRate.setLabelText("Hourly Rate ");
+        HourlyRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HourlyRateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(HourlyRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 1440, 280, -1));
+
+        jLabel4.setText("Sallary Type");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 1110, -1, -1));
+
+        groupSallary.add(all);
+        all.setText("All-in");
+        all.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allActionPerformed(evt);
+            }
+        });
+        jPanel1.add(all, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 1110, -1, -1));
+
+        groupSallary.add(hour);
+        hour.setText("Hourly");
+        jPanel1.add(hour, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 1110, -1, -1));
 
         jScrollPane6.setViewportView(jPanel1);
 
@@ -691,9 +750,53 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1660, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2142, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable7.getModel();
+        int numRow = model.getRowCount();
+        if (numRow < 6) {
+            model.addRow(new Object[]{"", "", "", ""});
+        }else{
+            JOptionPane.showMessageDialog(this, "Maximal 6 Row");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
+        int numRow = model.getRowCount();
+        if (numRow < 10) {
+            model.addRow(new Object[]{"", "", "", ""});
+        }else{
+            JOptionPane.showMessageDialog(this, "Maximal 10 Row");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable6.getModel();
+        int numRow = model.getRowCount();
+        if (numRow < 5) {
+            model.addRow(new Object[]{"", "", ""});
+        }else{
+            JOptionPane.showMessageDialog(this, "Maximal 5 Row");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable8.getModel();
+        int numRow = model.getRowCount();
+        if (numRow < 10) {
+            model.addRow(new Object[]{"", "", "", ""});
+        }else{
+            JOptionPane.showMessageDialog(this, "Maximal 10 Row");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        tracer();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         String KTPNumber, IdCDEmployee;
@@ -701,144 +804,209 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         if (parts.length > 1) {
             String NumberParts = parts[1];
             KTPNumber = NumberParts;
-//            System.out.println("Angka setelah tanda '|' adalah: " + NumberParts);
+            //            System.out.println("Angka setelah tanda '|' adalah: " + NumberParts);
         } else {
             KTPNumber = "";
             JOptionPane.showMessageDialog(this, "Maaf, ID Tidak ditemukan\nSorry, ID not Found");
-//            System.out.println("Tidak ditemukan angka setelah tanda '|'");
+            //            System.out.println("Tidak ditemukan angka setelah tanda '|'");
         }
-        
+
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee where KTP = "+KTPNumber+"");
             while (rs.next()) {
                 jLabel2.setText(rs.getString("id_employee"));
-                CandidateName.setText(rs.getString("Nama"));
+                CandidateSallary.setText(rs.getString("Nama"));
                 CandidateGender.setText(rs.getString("sex"));
                 CandidateBirthday.setText(rs.getString("birthday"));
                 CandidateKTP.setText(rs.getString("KTP"));
-//                CandidateEducation.setText(rs.getString(""));
+                //                CandidateEducation.setText(rs.getString(""));
                 CandidatePhoneNumber.setText(rs.getString("No_HP"));
                 CandidateSallary.setText(rs.getString("D_Salary"));
-//                CandidateAgeMonth.setText(rs.getString(""));
+                //                CandidateAgeMonth.setText(rs.getString(""));
                 CandidateDiscipline.setText(rs.getString("discipline"));
-//                CandidatePosition.setText(rs.getString(""));
-                CandidateMarital.setText(rs.getString("marital"));
-//                CandidateGrade.setText(rs.getString(""));
+                //                CandidatePosition.setText(rs.getString(""));
+                CandidatePosition.setText(rs.getString("marital"));
+                //                CandidateGrade.setText(rs.getString(""));
                 CandidateEmail.setText(rs.getString("email"));
-//                CandidateCareer.setText(rs.getString(""));
+                //                CandidateCareer.setText(rs.getString(""));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         String dateString = CandidateBirthday.getText();
         LocalDate birthDate = LocalDate.parse(dateString);
         LocalDate currentDate = LocalDate.now();
 
         Period period = Period.between(birthDate, currentDate);
         int age = period.getYears();
-        CandidateAge.setText(Integer.toString(age));
-        
-//        table certificate
-        DefaultTableModel myModel = (DefaultTableModel) jTable5.getModel();
-        try {
-            stm = koneksi.createStatement();
-            ResultSet rs1 = stm.executeQuery("SELECT * FROM cd_certificates WHERE id_employee = "+jLabel2.getText()+"");
-            while (rs1.next()) {
-                String[] data = {
-                    rs1.getString(4),
-                    rs1.getString(6),
-                    rs1.getString(7),
-                    rs1.getString(3)
-                };
-                myModel.insertRow(0, data);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-        }
-        
-        DefaultTableModel myModel7 = (DefaultTableModel) jTable7.getModel();
-        try {
-            stm = koneksi.createStatement();
-            ResultSet rs2 = stm.executeQuery("SELECT * FROM cd_summary_career WHERE id_employee = "+jLabel2.getText()+"");
-            while (rs2.next()) {
-                String[] data = {
-                    rs2.getString(4),
-                    rs2.getString(5),
-                    rs2.getString(5)+" - "+rs2.getString(6),
-                    rs2.getString(7)
-                };
-                myModel7.insertRow(0, data);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-        }
+        CandidateGender.setText(Integer.toString(age));
+
+        //        table certificate
+        //        DefaultTableModel myModel = (DefaultTableModel) jTable5.getModel();
+        //        try {
+            //            stm = koneksi.createStatement();
+            //            ResultSet rs1 = stm.executeQuery("SELECT * FROM cd_certificates WHERE id_employee = "+jLabel2.getText()+"");
+            //            while (rs1.next()) {
+                //                String[] data = {
+                    //                    rs1.getString(4),
+                    //                    rs1.getString(6),
+                    //                    rs1.getString(7),
+                    //                    rs1.getString(3)
+                    //                };
+                //                myModel.insertRow(0, data);
+                //            }
+            //        } catch (Exception e) {
+            //            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            //        }
+
+        //        DefaultTableModel myModel7 = (DefaultTableModel) jTable7.getModel();
+        //        try {
+            //            stm = koneksi.createStatement();
+            //            ResultSet rs2 = stm.executeQuery("SELECT * FROM cd_summary_career WHERE id_employee = "+jLabel2.getText()+"");
+            //            while (rs2.next()) {
+                //                String[] data = {
+                    //                    rs2.getString(4),
+                    //                    rs2.getString(5),
+                    //                    rs2.getString(5)+" - "+rs2.getString(6),
+                    //                    rs2.getString(7)
+                    //                };
+                //                myModel7.insertRow(0, data);
+                //            }
+            //        } catch (Exception e) {
+            //            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            //        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    private void CandidateGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CandidateGenderActionPerformed
+
+    private void CandidateBirthdayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateBirthdayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CandidateBirthdayActionPerformed
+
+    private void CandidateAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateAge1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CandidateAge1ActionPerformed
+
+    private void CandidatePhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidatePhoneNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CandidatePhoneNumberActionPerformed
+
+    private void HiredContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HiredContractActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HiredContractActionPerformed
+
+    private void PositionIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PositionIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PositionIDActionPerformed
+
+    private void CompanyJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompanyJoinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CompanyJoinActionPerformed
+
+    private void ContractFinishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContractFinishedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContractFinishedActionPerformed
+
+    private void ProbationPeriodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProbationPeriodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProbationPeriodActionPerformed
+
+    private void WorkLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WorkLocationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WorkLocationActionPerformed
+
+    private void BasicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BasicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BasicActionPerformed
+
+    private void SiteAllowanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiteAllowanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SiteAllowanceActionPerformed
+
+    private void MealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MealActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MealActionPerformed
+
+    private void OTAllowanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OTAllowanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OTAllowanceActionPerformed
+
+    private void TransportationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransportationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TransportationActionPerformed
+
+    private void RoleAllowanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RoleAllowanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RoleAllowanceActionPerformed
+
+    private void AccomodationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccomodationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AccomodationActionPerformed
+
+    private void SundayHolidayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SundayHolidayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SundayHolidayActionPerformed
+
+    private void HourlyRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HourlyRateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HourlyRateActionPerformed
+
+    private void allActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Accomodation;
-    private javax.swing.JLabel Basic;
-    private javax.swing.JLabel CandidateAge;
-    private javax.swing.JLabel CandidateBirthday;
-    private javax.swing.JLabel CandidateCareer;
-    private javax.swing.JLabel CandidateDiscipline;
-    private javax.swing.JLabel CandidateEducation;
-    private javax.swing.JLabel CandidateEmail;
-    private javax.swing.JLabel CandidateGender;
-    private javax.swing.JLabel CandidateGrade;
-    private javax.swing.JLabel CandidateKTP;
-    private javax.swing.JLabel CandidateMarital;
-    private javax.swing.JLabel CandidateName;
-    private javax.swing.JLabel CandidatePhoneNumber;
-    private javax.swing.JLabel CandidatePosition;
-    private javax.swing.JLabel CandidateSallary;
-    private javax.swing.JLabel CompanyJoin;
-    private javax.swing.JLabel ContractFinished;
-    private javax.swing.JLabel HiredContract;
-    private javax.swing.JLabel HourlyRate;
-    private javax.swing.JLabel Meal;
-    private javax.swing.JLabel OTAllowance;
-    private javax.swing.JLabel PositionID;
-    private javax.swing.JLabel ProbationPeriod;
-    private javax.swing.JLabel RoleAllowance;
-    private javax.swing.JLabel SallaryType;
-    private javax.swing.JLabel SiteAllowance;
-    private javax.swing.JLabel SundayHoliday;
-    private javax.swing.JLabel Transportation;
-    private javax.swing.JLabel TypeHired;
-    private javax.swing.JLabel WorkLocation;
+    private CustomResource.CustomTextfield Accomodation;
+    private CustomResource.CustomTextfield Basic;
+    private CustomResource.CustomTextfield CandidateAge1;
+    private CustomResource.CustomTextfield CandidateBirthday;
+    private CustomResource.CustomTextfield CandidateCareer;
+    private CustomResource.CustomTextfield CandidateDiscipline;
+    private CustomResource.CustomTextfield CandidateEducation;
+    private CustomResource.CustomTextfield CandidateEmail;
+    private CustomResource.CustomTextfield CandidateGender;
+    private CustomResource.CustomTextfield CandidateGrade;
+    private CustomResource.CustomTextfield CandidateKTP;
+    private CustomResource.CustomTextfield CandidateMarital;
+    private CustomResource.CustomTextfield CandidateName;
+    private CustomResource.CustomTextfield CandidatePhoneNumber;
+    private CustomResource.CustomTextfield CandidatePosition;
+    private CustomResource.CustomTextfield CandidateReligion;
+    private CustomResource.CustomTextfield CandidateSallary;
+    private CustomResource.CustomTextfield CompanyJoin;
+    private CustomResource.CustomTextfield ContractFinished;
+    private CustomResource.CustomTextfield HiredContract;
+    private CustomResource.CustomTextfield HourlyRate;
+    private CustomResource.CustomTextfield Meal;
+    private CustomResource.CustomTextfield OTAllowance;
+    private CustomResource.CustomTextfield PositionID;
+    private CustomResource.CustomTextfield ProbationPeriod;
+    private CustomResource.CustomTextfield RoleAllowance;
+    private CustomResource.CustomTextfield SiteAllowance;
+    private CustomResource.CustomTextfield SundayHoliday;
+    private CustomResource.CustomTextfield Transportation;
+    private CustomResource.CustomTextfield TypeHired;
+    private CustomResource.CustomTextfield WorkLocation;
+    private CustomResource.RadioButtonCustom all;
     private CustomResource.ComboBoxSuggestion comboCDEmployeeID;
+    private com.raven.datechooser.DateChooser dateChooser1;
+    private javax.swing.ButtonGroup groupSallary;
+    private CustomResource.RadioButtonCustom hour;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
@@ -847,18 +1015,10 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -888,7 +1048,320 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
     }
+    
+    private void tracer(){
+        all.setActionCommand("All-in");
+        hour.setActionCommand("Hourly");
+//        String templateFilePath = "C://Users//hi//OneDrive//Documents//Summary Status.xlsx";
+        String templateFilePath = "src/Doc/Summary Status.xlsx";
 
+        String name = CandidateName.getText();
+        String birthday = CandidateBirthday.getText();
+        String ktp = CandidateKTP.getText();
+        String education = CandidateEducation.getText();
+        String phone = CandidatePhoneNumber.getText();
+        String sallary = CandidateSallary.getText();
+        String gender = CandidateGender.getText();
+        String age = CandidateGender.getText();
+        String discipline = CandidateDiscipline.getText();
+        String position = CandidatePosition.getText();
+        String mariage = CandidateMarital.getText();
+        String grade = CandidateGrade.getText();
+        String email = CandidateEmail.getText();
+        String career = CandidateCareer.getText();
+//        String  = .getText();
+
+        try {
+            FileInputStream templateFile = new FileInputStream(templateFilePath);
+            Workbook workbook = new XSSFWorkbook(templateFile);
+            
+            Sheet sheet = workbook.getSheet("Sheet1");
+            
+            Cell cellC5 = sheet.getRow(4).getCell(2);
+            Cell cellC6 = sheet.getRow(5).getCell(2);
+            Cell cellC7 = sheet.getRow(6).getCell(2);
+            Cell cellC8 = sheet.getRow(7).getCell(3);
+            Cell cellC9 = sheet.getRow(8).getCell(3);
+            Cell cellC10 = sheet.getRow(9).getCell(2);
+            Cell cellC11 = sheet.getRow(10).getCell(3);
+            
+            Cell cellG5 = sheet.getRow(4).getCell(6);
+            Cell cellG6 = sheet.getRow(5).getCell(6);
+            Cell cellG7 = sheet.getRow(6).getCell(6);
+            Cell cellG8 = sheet.getRow(7).getCell(6);
+            Cell cellG9 = sheet.getRow(8).getCell(6);
+            Cell cellG10 = sheet.getRow(9).getCell(6);
+            
+            cellC5.setCellValue(name + " | Gender :" + gender);
+            cellC6.setCellValue(birthday);
+            cellC7.setCellValue(ktp);
+            cellC8.setCellValue(education);
+            cellC9.setCellValue(education);
+            cellC10.setCellValue(phone);
+            cellC11.setCellValue(sallary);
+            
+            cellG5.setCellValue(discipline);
+            cellG6.setCellValue(position);
+            cellG7.setCellValue(mariage);
+            cellG8.setCellValue(grade);
+            cellG9.setCellValue(email);
+            cellG10.setCellValue(career);
+            
+            sheet.getRow(51).getCell(3).setCellValue(TypeHired.getText());
+            sheet.getRow(52).getCell(3).setCellValue(groupSallary.getSelection().getActionCommand());
+            sheet.getRow(53).getCell(3).setCellValue(HiredContract.getText());
+            sheet.getRow(54).getCell(3).setCellValue(PositionID.getText());
+            sheet.getRow(55).getCell(3).setCellValue(CompanyJoin.getText());
+            sheet.getRow(56).getCell(3).setCellValue(ContractFinished.getText());
+            sheet.getRow(57).getCell(3).setCellValue(ProbationPeriod.getText());
+            sheet.getRow(58).getCell(3).setCellValue(WorkLocation.getText());
+            
+            sheet.getRow(52).getCell(7).setCellValue(Basic.getText());
+            sheet.getRow(53).getCell(7).setCellValue(OTAllowance.getText());
+            sheet.getRow(54).getCell(7).setCellValue(SiteAllowance.getText());
+            sheet.getRow(55).getCell(7).setCellValue(Meal.getText());
+            sheet.getRow(56).getCell(7).setCellValue(Transportation.getText());
+            sheet.getRow(57).getCell(7).setCellValue(RoleAllowance.getText());
+            sheet.getRow(58).getCell(7).setCellValue(Accomodation.getText());
+            sheet.getRow(59).getCell(7).setCellValue(SundayHoliday.getText());
+            sheet.getRow(60).getCell(7).setCellValue(HourlyRate.getText());
+            
+            DefaultTableModel model3 = (DefaultTableModel) jTable3.getModel();
+            int rowCount3 = model3.getRowCount();
+            for (int i = 0; i < rowCount3; i++) {
+                boolean isChecked3 = (boolean) model3.getValueAt(i, 2);
+                if (isChecked3 == true) {
+                    String description2 = (String) model3.getValueAt(i, 1);
+                    sheet.getRow(15+i).getCell(2).setCellValue(description2);
+                    sheet.getRow(15+i).getCell(3).setCellValue("Yes");
+                }else{
+                    String description2 = (String) model3.getValueAt(i, 1);
+                    sheet.getRow(15+i).getCell(2).setCellValue(description2);
+                    sheet.getRow(15+i).getCell(3).setCellValue("No");
+                }
+            }
+            
+            DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
+            int rowCount1 = model1.getRowCount();
+            for (int i = 0; i < rowCount1; i++) {
+                String description = (String) model1.getValueAt(i, 1);
+                String description2 = (String) model1.getValueAt(i, 2);
+                sheet.getRow(15+i).getCell(6).setCellValue(description);
+                sheet.getRow(15+i).getCell(7).setCellValue(description2);
+            }
+            
+            DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
+            int rowCount2 = model2.getRowCount();
+            for (int i = 0; i < rowCount2; i++) {
+                boolean isChecked2 = (boolean) model2.getValueAt(i, 1);
+                if (isChecked2 == true) {
+                    sheet.getRow(24+i).getCell(3).setCellValue("✓");
+                }else{
+                    sheet.getRow(24+i).getCell(3).setCellValue("");
+                }
+            }
+            
+            DefaultTableModel model4 = (DefaultTableModel) jTable4.getModel();
+            int rowCount4 = model4.getRowCount();
+            for (int i = 0; i < rowCount4; i++) {
+                boolean isChecked4 = (boolean) model4.getValueAt(i, 1);
+                if (isChecked4 == true) {
+                    sheet.getRow(24+i).getCell(7).setCellValue("✓");
+                }else{
+                    sheet.getRow(24+i).getCell(7).setCellValue("");
+                }
+            }
+            
+            DefaultTableModel model5 = (DefaultTableModel) jTable5.getModel();
+            int rowCount5 = model5.getRowCount();
+            for (int i = 0; i < rowCount5; i++) {
+                String description = (String) model5.getValueAt(i, 0);
+                String description1 = (String) model5.getValueAt(i, 1);
+                String description2 = (String) model5.getValueAt(i, 2);
+                String description3 = (String) model5.getValueAt(i, 3);
+                sheet.getRow(34+i).getCell(1).setCellValue(description);
+                sheet.getRow(34+i).getCell(3).setCellValue(description1);
+                sheet.getRow(34+i).getCell(5).setCellValue(description2);
+                sheet.getRow(34+i).getCell(7).setCellValue(description3);
+            }
+            
+            DefaultTableModel model6 = (DefaultTableModel) jTable6.getModel();
+            int rowCount6 = model6.getRowCount();
+            for (int i = 0; i < rowCount6; i++) {
+                String description = (String) model6.getValueAt(i, 0);
+                String description1 = (String) model6.getValueAt(i, 1);
+                String description2 = (String) model6.getValueAt(i, 2);
+                sheet.getRow(64+i).getCell(1).setCellValue(description);
+                sheet.getRow(64+i).getCell(3).setCellValue(description1);
+                sheet.getRow(64+i).getCell(5).setCellValue(description2);
+            }
+            
+            DefaultTableModel model7 = (DefaultTableModel) jTable7.getModel();
+            int rowCount7 = model7.getRowCount();
+            for (int i = 0; i < rowCount7; i++) {
+                String description = (String) model7.getValueAt(i, 0);
+                String description1 = (String) model7.getValueAt(i, 1);
+                String description2 = (String) model7.getValueAt(i, 2);
+                String description3 = (String) model7.getValueAt(i, 3);
+                sheet.getRow(72+i).getCell(1).setCellValue(description);
+                sheet.getRow(72+i).getCell(3).setCellValue(description1);
+                sheet.getRow(72+i).getCell(5).setCellValue(description2);
+                sheet.getRow(72+i).getCell(6).setCellValue(description3);
+            }
+            
+            DefaultTableModel model8 = (DefaultTableModel) jTable8.getModel();
+            int rowCount8 = model8.getRowCount();
+            for (int i = 0; i < rowCount8; i++) {
+                String description = (String) model8.getValueAt(i, 0);
+                String description1 = (String) model8.getValueAt(i, 1);
+                String description2 = (String) model8.getValueAt(i, 2);
+                String description3 = (String) model8.getValueAt(i, 3);
+                String description4 = (String) model8.getValueAt(i, 4);
+                sheet.getRow(84+i).getCell(1).setCellValue(description);
+                sheet.getRow(84+i).getCell(3).setCellValue(description1);
+                sheet.getRow(84+i).getCell(5).setCellValue(description2);
+                sheet.getRow(84+i).getCell(6).setCellValue(description3);
+                sheet.getRow(84+i).getCell(7).setCellValue(description4);
+            }
+            
+            templateFile.close();
+
+            JnaFileChooser fileChooser = new JnaFileChooser();
+            fileChooser.setTitle("Simpan File Output");
+            fileChooser.addFilter("Excel Files", "xlsx");
+            boolean userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection) {
+                File outputFile = fileChooser.getSelectedFile();
+                String outputFilePath = outputFile.getAbsolutePath();
+                if (!outputFilePath.toLowerCase().endsWith(".xlsx")) {
+                    outputFilePath += ".xlsx";
+                    outputFile = new File(outputFilePath);
+                }
+                int count = 1;
+                while (outputFile.exists()) {
+                    String newFileName = outputFile.getName().replaceFirst("[.][^.]+$", "") + "(" + count + ")"
+                            + outputFile.getName().substring(outputFile.getName().lastIndexOf("."));
+                    String parentDirectory = outputFile.getParent();
+                    outputFilePath = parentDirectory + File.separator + newFileName;
+                    outputFile = new File(outputFilePath);
+                    count++;
+                }
+
+                FileOutputStream outputFileStream = new FileOutputStream(outputFile);
+                workbook.write(outputFileStream);
+                workbook.close();
+                outputFileStream.close();
+
+                System.out.println("Data berhasil dimasukkan ke dalam template Excel.");
+                System.out.println("File output: " + outputFilePath);
+            } else {
+                System.out.println("Batal menyimpan file output.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void setTable(){
+        jTable6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int column = jTable6.getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() / jTable6.getRowHeight();
+                if (column == 1) {
+                    com.raven.datechooser.DateChooser calendar = new com.raven.datechooser.DateChooser();
+                    int result = JOptionPane.showOptionDialog(
+                        null,
+                        calendar,
+                        "Pilih Tanggal",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        null
+                    );
+                    if (result == JOptionPane.OK_OPTION) {
+                        SelectedDate date = calendar.getSelectedDate();
+                        jTable6.setValueAt(date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear(), row, column);
+                    }
+                }
+            }
+        });
+        jTable5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int column = jTable5.getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() / jTable5.getRowHeight();
+                if (column == 3) {
+                    com.raven.datechooser.DateChooser calendar = new com.raven.datechooser.DateChooser();
+                    int result = JOptionPane.showOptionDialog(
+                        null,
+                        calendar,
+                        "Pilih Tanggal",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        null
+                    );
+                    if (result == JOptionPane.OK_OPTION) {
+                        SelectedDate date = calendar.getSelectedDate();
+                        jTable5.setValueAt(date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear(), row, column);
+                    }
+                }
+            }
+        });
+        jTable7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int column = jTable7.getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() / jTable7.getRowHeight();
+                if (column == 1) {
+                    com.raven.datechooser.DateChooser calendar = new com.raven.datechooser.DateChooser();
+                    int result = JOptionPane.showOptionDialog(
+                        null,
+                        calendar,
+                        "Pilih Tanggal",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        null
+                    );
+                    if (result == JOptionPane.OK_OPTION) {
+                        SelectedDate date = calendar.getSelectedDate();
+                        jTable7.setValueAt(date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear(), row, column);
+                    }
+                }
+            }
+        });
+        jTable8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int column = jTable8.getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() / jTable8.getRowHeight();
+                if (column == 1) {
+                    com.raven.datechooser.DateChooser calendar = new com.raven.datechooser.DateChooser();
+                    int result = JOptionPane.showOptionDialog(
+                        null,
+                        calendar,
+                        "Pilih Tanggal",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        null
+                    );
+                    if (result == JOptionPane.OK_OPTION) {
+                        SelectedDate date = calendar.getSelectedDate();
+                        jTable8.setValueAt(date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear(), row, column);
+                    }
+                }
+            }
+        });
+    }
+    
     @Override
     public void formrefresh() {
     }

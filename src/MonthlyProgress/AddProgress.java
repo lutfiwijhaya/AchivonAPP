@@ -639,7 +639,7 @@ public class AddProgress extends MasterForm {
                 }
             }
         }
-    }
+    }   
 
     void tampil_tablework_period() {
         int row = jTable3.getSelectedRow();
