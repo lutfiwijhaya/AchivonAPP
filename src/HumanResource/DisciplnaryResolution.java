@@ -53,6 +53,7 @@ public class DisciplnaryResolution extends MasterForm {
             signPresident.setVisible(false);
             labelNamePresident.setVisible(false);
         }
+         jLabel4.setVisible(false);
     }
     private void openDB() {
         try {
