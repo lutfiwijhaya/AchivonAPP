@@ -26,7 +26,7 @@ public final class DateChooser extends javax.swing.JPanel {
 
     private JTextField textRefernce;
     private final String MONTH_ENGLISH[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-    private String dateFormat = "dd-MM-yyyy";
+    private String dateFormat = "dd-MMM-yyyy";
     private int MONTH = 1;
     private int YEAR = 2021;
     private int DAY = 1;

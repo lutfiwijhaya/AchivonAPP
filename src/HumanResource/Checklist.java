@@ -19,12 +19,20 @@ import CustomResource.CandidateSession;
 import CustomResource.EmployeeSession;
 import CustomResource.koneksi;
 import Main.MasterForm;
+import com.toedter.calendar.JCalendar;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import jnafilechooser.api.JnaFileChooser;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -32,6 +40,11 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 /**
@@ -60,38 +73,6 @@ public class Checklist extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
 
     }
-//    void  settable (){
-//        String [] header = {"id","Karyawan Id / Employee Id", "Nama / Name", "join date", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"};
-//        myModel = new DefaultTableModel(header,0);
-//        MyTable.setModel(myModel);
-////        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
-//        MyTable.setDefaultEditor(Object.class, null);
-//        MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-//        MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-//        MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-//        MyTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(5).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(6).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(7).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(8).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(9).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(10).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(11).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(12).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(13).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(14).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(15).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(16).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(17).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(18).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(19).setPreferredWidth(50);
-//        MyTable.getColumnModel().getColumn(20).setPreferredWidth(50);
-        
-//        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
-        
-//        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
-//    }
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -112,6 +93,7 @@ public class Checklist extends MasterForm {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         textSearch = new CustomResource.CustomTextfield();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 585));
 
@@ -120,37 +102,25 @@ public class Checklist extends MasterForm {
 
         MyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "id", "Karyawan Id / Employee Id", "Nama / Name", "join date", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"
+                "id", "Karyawan Id / Employee Id", "Nama / Name", "KTP", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         MyTable.setAutoResizeMode(0);
@@ -210,6 +180,14 @@ public class Checklist extends MasterForm {
         });
         jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 460, -1));
 
+        jButton1.setText("Save as excel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 510, -1, -1));
+
         jScrollPane2.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -243,8 +221,13 @@ public class Checklist extends MasterForm {
         // TODO add your handling code here:
     }//GEN-LAST:event_MyTableMousePressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        tracer();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -255,21 +238,99 @@ public class Checklist extends MasterForm {
     // End of variables declaration//GEN-END:variables
 
     private void myShow() {
-//        Connection myConn;
-//        String mySearch = textSearch.getText();
-//        int row = MyTable.getRowCount();
-//        for(int i = 0; i < row; i++){
-////            myModel.removeRow(0);
-//        }
-//        try {
-//            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-//            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
-//            while (myRess.next()) {
-//                String myData [] = {myRess.getString(2),myRess.getString(3), myRess.getString(6)};
-//                myModel.addRow(myData);
-//            }
-//        } catch (SQLException ex) {
-//        }
+        Connection myConn;
+        String mySearch = textSearch.getText();
+        int row = MyTable.getRowCount();
+        for(int i = 0; i < row; i++){
+//            myModel.removeRow(0);
+        }
+        DefaultTableModel model = (DefaultTableModel) MyTable.getModel();
+        try {
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
+            int i = 1;
+            while (myRess.next()) {
+                String myData [] = {myRess.getString(1), myRess.getString(2),myRess.getString(4), myRess.getString(3)};
+                model.addRow(myData);
+            }
+        } catch (SQLException ex) {
+        }
+    }
+    
+    private void tracer(){
+        JCalendar date = new JCalendar();
+        Date currentDate = date.getDate();
+        DateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+        
+        String templateFilePath = "src/Doc/Check Employee Document.xlsx";
+        
+        try {
+            FileInputStream templateFile = new FileInputStream(templateFilePath);
+            Workbook workbook = new XSSFWorkbook(templateFile);
+            
+            Sheet sheet = workbook.getSheet("Sheet1");
+            
+            DefaultTableModel model = (DefaultTableModel) MyTable.getModel();
+            int rowCount = model.getRowCount();
+            int colCount = model.getColumnCount();
+            int mynum = 1;
+            
+            sheet.getRow(1).getCell(0).setCellValue("Tanggal Updated : " + sdf.format(currentDate));
+            
+            for (int i = 0; i < rowCount; i++) {
+                String description = (String) model.getValueAt(i, 1);
+                String description1 = (String) model.getValueAt(i, 2);
+                String description2 = (String) model.getValueAt(i, 3);
+                    
+                sheet.getRow(5+i).getCell(0).setCellValue(mynum);
+                sheet.getRow(5+i).getCell(1).setCellValue(description);
+                sheet.getRow(5+i).getCell(2).setCellValue(description1);
+                sheet.getRow(5+i).getCell(3).setCellValue(description2);
+                for (int col = 4;  col < colCount; col++) {
+                    Object value = model.getValueAt(i, col);
+                    if (value != null && value instanceof Boolean == true) {
+                        sheet.getRow(5+i).getCell(col).setCellValue("✓");
+                    }else{
+                        sheet.getRow(5+i).getCell(col).setCellValue("-");
+                    }
+                }
+                mynum++;
+            }
+            
+            templateFile.close();
+
+            JnaFileChooser fileChooser = new JnaFileChooser();
+            fileChooser.setTitle("Simpan File Output");
+            fileChooser.addFilter("Excel Files", "xlsx");
+            boolean userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection) {
+                File outputFile = fileChooser.getSelectedFile();
+                String outputFilePath = outputFile.getAbsolutePath();
+                if (!outputFilePath.toLowerCase().endsWith(".xlsx")) {
+                    outputFilePath += ".xlsx";
+                    outputFile = new File(outputFilePath);
+                }
+                int count = 1;
+                while (outputFile.exists()) {
+                    String newFileName = outputFile.getName().replaceFirst("[.][^.]+$", "") + "(" + count + ")"
+                            + outputFile.getName().substring(outputFile.getName().lastIndexOf("."));
+                    String parentDirectory = outputFile.getParent();
+                    outputFilePath = parentDirectory + File.separator + newFileName;
+                    outputFile = new File(outputFilePath);
+                    count++;
+                }
+                FileOutputStream outputFileStream = new FileOutputStream(outputFile);
+                workbook.write(outputFileStream);
+                workbook.close();
+                outputFileStream.close();
+            } else {
+                
+            }
+        } catch (IOException e) {
+//            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Sorry, Something went Wrong");
+        }
     }
     
     private void MyWindow(){

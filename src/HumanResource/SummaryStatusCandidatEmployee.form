@@ -7,7 +7,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="33" type="rgb"/>
         </Property>
-        <Property name="dateFormat" type="java.lang.String" value="dd-MMMM-yyyy"/>
       </Properties>
     </Component>
     <Component class="javax.swing.ButtonGroup" name="groupSallary">
@@ -593,7 +592,7 @@
                       <Table columnCount="4" rowCount="1">
                         <Column editable="true" title="Description" type="java.lang.Object"/>
                         <Column editable="false" title="Date" type="java.lang.Object"/>
-                        <Column editable="true" title="Period (Start to Finish)" type="java.lang.Object"/>
+                        <Column editable="false" title="Period (Start to Finish)" type="java.lang.Object"/>
                         <Column editable="true" title="Result" type="java.lang.Object"/>
                       </Table>
                     </Property>
@@ -689,7 +688,7 @@
                       <Table columnCount="5" rowCount="1">
                         <Column editable="true" title="Subject" type="java.lang.Object"/>
                         <Column editable="false" title="Start" type="java.lang.Object"/>
-                        <Column editable="true" title="Finish" type="java.lang.Object"/>
+                        <Column editable="false" title="Finish" type="java.lang.Object"/>
                         <Column editable="true" title="Position" type="java.lang.Object"/>
                         <Column editable="true" title="Work Location or Project " type="java.lang.Object"/>
                       </Table>

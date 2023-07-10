@@ -19,9 +19,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -181,7 +186,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         hour = new CustomResource.RadioButtonCustom();
 
         dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
-        dateChooser1.setDateFormat("dd-MMMM-yyyy");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -388,7 +392,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, true, true
+                true, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -421,7 +425,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true
+                true, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1283,7 +1287,20 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                     );
                     if (result == JOptionPane.OK_OPTION) {
                         SelectedDate date = calendar.getSelectedDate();
-                        jTable6.setValueAt(date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear(), row, column);
+                        String myOldDate = date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear();
+                        
+                        DateFormat oldFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        DateFormat newFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        
+                        Date oldFormated = null;
+                        try {
+                            oldFormated = oldFormat.parse(myOldDate);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(SummaryStatusCandidatEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        String newFormated = newFormat.format(oldFormated);
+                        
+                        jTable6.setValueAt(newFormated, row, column);
                     }
                 }
             }
@@ -1295,6 +1312,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                 int row = e.getY() / jTable5.getRowHeight();
                 if (column == 3) {
                     com.raven.datechooser.DateChooser calendar = new com.raven.datechooser.DateChooser();
+//                    calendar.
                     int result = JOptionPane.showOptionDialog(
                         null,
                         calendar,
@@ -1307,7 +1325,20 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                     );
                     if (result == JOptionPane.OK_OPTION) {
                         SelectedDate date = calendar.getSelectedDate();
-                        jTable5.setValueAt(date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear(), row, column);
+                        String myOldDate = date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear();
+                        
+                        DateFormat oldFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        DateFormat newFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        
+                        Date oldFormated = null;
+                        try {
+                            oldFormated = oldFormat.parse(myOldDate);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(SummaryStatusCandidatEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        String newFormated = newFormat.format(oldFormated);
+                        
+                        jTable5.setValueAt(newFormated, row, column);
                     }
                 }
             }
@@ -1331,7 +1362,20 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                     );
                     if (result == JOptionPane.OK_OPTION) {
                         SelectedDate date = calendar.getSelectedDate();
-                        jTable7.setValueAt(date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear(), row, column);
+                        String myOldDate = date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear();
+                        
+                        DateFormat oldFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        DateFormat newFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        
+                        Date oldFormated = null;
+                        try {
+                            oldFormated = oldFormat.parse(myOldDate);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(SummaryStatusCandidatEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        String newFormated = newFormat.format(oldFormated);
+                        
+                        jTable7.setValueAt(newFormated, row, column);
                     }
                 }
             }
@@ -1355,7 +1399,49 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                     );
                     if (result == JOptionPane.OK_OPTION) {
                         SelectedDate date = calendar.getSelectedDate();
-                        jTable8.setValueAt(date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear(), row, column);
+                        String myOldDate = date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear();
+                        
+                        DateFormat oldFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        DateFormat newFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        
+                        Date oldFormated = null;
+                        try {
+                            oldFormated = oldFormat.parse(myOldDate);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(SummaryStatusCandidatEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        String newFormated = newFormat.format(oldFormated);
+                        
+                        jTable8.setValueAt(newFormated, row, column);
+                    }
+                }else if(column == 2){
+                    com.raven.datechooser.DateChooser calendar = new com.raven.datechooser.DateChooser();
+                    int result = JOptionPane.showOptionDialog(
+                        null,
+                        calendar,
+                        "Pilih Tanggal",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        null
+                    );
+                    if (result == JOptionPane.OK_OPTION) {
+                        SelectedDate date = calendar.getSelectedDate();
+                        String myOldDate = date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear();
+                        
+                        DateFormat oldFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        DateFormat newFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        
+                        Date oldFormated = null;
+                        try {
+                            oldFormated = oldFormat.parse(myOldDate);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(SummaryStatusCandidatEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        String newFormated = newFormat.format(oldFormated);
+                        
+                        jTable8.setValueAt(newFormated, row, column);
                     }
                 }
             }
