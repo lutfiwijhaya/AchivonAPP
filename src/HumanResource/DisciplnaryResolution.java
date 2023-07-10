@@ -12,6 +12,9 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -24,7 +27,11 @@ import java.sql.Statement;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import jnafilechooser.api.JnaFileChooser;
 import net.sf.jasperreports.view.JasperViewer;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  *
  * @author USER
@@ -38,9 +45,9 @@ public class DisciplnaryResolution extends MasterForm {
         MyWindow();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         
-        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
-        .setHorizontalAlignment(JLabel.CENTER);
-        jLabel7.setVisible(false);
+//        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
+//        .setHorizontalAlignment(JLabel.CENTER);
+//        jLabel7.setVisible(false);
          if (!"1".equals(MySession.get_Role())) {
             jLabel19.setVisible(false);
             signPresident.setVisible(false);
@@ -64,31 +71,39 @@ public class DisciplnaryResolution extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
         jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane3 = new raven.scroll.win11.ScrollPaneWin11();
-        jTable2 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         labelNamePresident = new javax.swing.JLabel();
         signPresident = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        positionEmployee = new CustomResource.CustomTextfield();
+        jLabel20 = new javax.swing.JLabel();
+        commissionerName4 = new CustomResource.CustomTextfield();
+        disciplineEmployee = new CustomResource.CustomTextfield();
+        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        areaReason = new javax.swing.JTextArea();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
+        areaResult = new javax.swing.JTextArea();
+        t_tgl = new CustomResource.CustomTextfield();
+        nameEmployee = new CustomResource.CustomTextfield();
+        chairmanName = new CustomResource.CustomTextfield();
+        commissionerName1 = new CustomResource.CustomTextfield();
+        commissionerName2 = new CustomResource.CustomTextfield();
+        commissionerName3 = new CustomResource.CustomTextfield();
+        saveExcel = new javax.swing.JButton();
+
+        dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser1.setTextRefernce(t_tgl);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,88 +113,28 @@ public class DisciplnaryResolution extends MasterForm {
         jLabel1.setText("DISCIPLINARY REVOLUTION");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, -1, -1));
 
-        jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Disciplinary Employee ", null, null, null},
-                {"Resolution Result ", null, null, null},
-                {"Reasons of Disciplinary ", null, null, null}
-            },
-            new String [] {
-                "Disciplinary Employee ", "Name", "Discipline", "Position"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable2);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 670, 90));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel2.setText("DD-MMM-YYYY");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 460, -1, -1));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 1010, 280, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 1050, 280, 30));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PT. ACHIVON PRESTASI ABADI");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 530, 260, -1));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel5.setText("Chairman");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel6.setText("Name");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 810, 150, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 680, 260, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel8.setText("Signature");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel9.setText("Commissioner");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 790, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel10.setText("Commissioner");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 600, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel11.setText("Commissioner");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 660, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel12.setText("Commissioner");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 720, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Name");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 600, 170, -1));
-
-        jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel14.setText("Name");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 620, 160, -1));
-
-        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel15.setText("Name");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 680, 160, -1));
-
-        jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel16.setText("Name");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 740, 150, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 730, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel17.setText("Signature");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 570, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 720, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("THE HUMAN RESOURCES COMMITTEE");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 270, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 660, 270, -1));
 
         labelNamePresident.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNamePresident.setText("Name");
@@ -203,6 +158,80 @@ public class DisciplnaryResolution extends MasterForm {
 
         jLabel7.setText("jLabel4");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
+
+        positionEmployee.setLabelText("Position");
+        positionEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                positionEmployeeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(positionEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 280, -1));
+
+        jLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel20.setText("Reasons of Disciplinary ");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, -1, -1));
+
+        commissionerName4.setLabelText("Commissioner Name");
+        jPanel1.add(commissionerName4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 930, 210, -1));
+
+        disciplineEmployee.setLabelText("Discipline");
+        jPanel1.add(disciplineEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 280, -1));
+
+        areaReason.setColumns(20);
+        areaReason.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        areaReason.setRows(5);
+        jScrollPane5.setViewportView(areaReason);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 280, 110));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel21.setText("Disciplinary Employee");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel22.setText("Resolution Result ");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
+
+        areaResult.setColumns(20);
+        areaResult.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        areaResult.setRows(5);
+        jScrollPane6.setViewportView(areaResult);
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 280, 110));
+
+        t_tgl.setLabelText("Date");
+        t_tgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_tglActionPerformed(evt);
+            }
+        });
+        jPanel1.add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 600, 180, -1));
+
+        nameEmployee.setLabelText("Name");
+        jPanel1.add(nameEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 280, -1));
+
+        chairmanName.setLabelText("Chairman Name");
+        jPanel1.add(chairmanName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 750, 210, -1));
+
+        commissionerName1.setLabelText("Commissioner Name");
+        jPanel1.add(commissionerName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 750, 210, -1));
+
+        commissionerName2.setLabelText("Commissioner Name");
+        jPanel1.add(commissionerName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 810, 210, -1));
+
+        commissionerName3.setLabelText("Commissioner Name");
+        jPanel1.add(commissionerName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 870, 210, -1));
+
+        saveExcel.setBackground(new java.awt.Color(51, 51, 255));
+        saveExcel.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        saveExcel.setForeground(new java.awt.Color(255, 255, 255));
+        saveExcel.setText("Save as Excel");
+        saveExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveExcelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(saveExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 1010, 110, 30));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -239,33 +268,50 @@ public class DisciplnaryResolution extends MasterForm {
         }
     }//GEN-LAST:event_signPresidentMouseClicked
 
+    private void positionEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionEmployeeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_positionEmployeeActionPerformed
+
+    private void t_tglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_tglActionPerformed
+
+    private void saveExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveExcelActionPerformed
+        tracer();
+    }//GEN-LAST:event_saveExcelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaReason;
+    private javax.swing.JTextArea areaResult;
+    private CustomResource.CustomTextfield chairmanName;
+    private CustomResource.CustomTextfield commissionerName1;
+    private CustomResource.CustomTextfield commissionerName2;
+    private CustomResource.CustomTextfield commissionerName3;
+    private CustomResource.CustomTextfield commissionerName4;
+    private com.raven.datechooser.DateChooser dateChooser1;
+    private CustomResource.CustomTextfield disciplineEmployee;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel labelNamePresident;
+    private CustomResource.CustomTextfield nameEmployee;
+    private CustomResource.CustomTextfield positionEmployee;
+    private javax.swing.JButton saveExcel;
     private javax.swing.JLabel signPresident;
+    private CustomResource.CustomTextfield t_tgl;
     // End of variables declaration//GEN-END:variables
 private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -276,6 +322,79 @@ private void MyWindow(){
 //        int y = (screen.height/2) - (this.getSize().height/2);
 //        this.setPreferredSize(x,y);
     }
+
+    private void tracer(){
+//        String templateFilePath = "C://Users//hi//OneDrive//Documents//Summary Status.xlsx";
+        String templateFilePath = "src/Doc/Disciplinary Resolution.xlsx";
+
+        String name = nameEmployee.getText();
+        String discipline = disciplineEmployee.getText();
+        String position = positionEmployee.getText();
+        String date = t_tgl.getText();
+        String nameChairman = chairmanName.getText();
+        String nameCommissioner1 = commissionerName1.getText();
+        String nameCommissioner2 = commissionerName2.getText();
+        String nameCommissioner3 = commissionerName3.getText();
+        String nameCommissioner4 = commissionerName4.getText();
+
+        try {
+            FileInputStream templateFile = new FileInputStream(templateFilePath);
+            Workbook workbook = new XSSFWorkbook(templateFile);
+            
+            Sheet sheet = workbook.getSheet("Sheet1");
+            
+            sheet.getRow(10).getCell(2).setCellValue(name);
+            sheet.getRow(10).getCell(5).setCellValue(discipline);
+            sheet.getRow(10).getCell(8).setCellValue(position);
+            sheet.getRow(11).getCell(2).setCellValue(areaResult.getText());
+            sheet.getRow(13).getCell(2).setCellValue(areaReason.getText());
+            sheet.getRow(16).getCell(0).setCellValue(date);
+            
+            sheet.getRow(22).getCell(0).setCellValue(nameChairman);
+            sheet.getRow(22).getCell(5).setCellValue(nameCommissioner1);
+            sheet.getRow(26).getCell(5).setCellValue(nameCommissioner2);
+            sheet.getRow(30).getCell(5).setCellValue(nameCommissioner3);
+            sheet.getRow(34).getCell(5).setCellValue(nameCommissioner4);
+            
+            templateFile.close();
+
+            JnaFileChooser fileChooser = new JnaFileChooser();
+            fileChooser.setTitle("Simpan File Output");
+            fileChooser.addFilter("Excel Files", "xlsx");
+            boolean userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection) {
+                File outputFile = fileChooser.getSelectedFile();
+                String outputFilePath = outputFile.getAbsolutePath();
+                if (!outputFilePath.toLowerCase().endsWith(".xlsx")) {
+                    outputFilePath += ".xlsx";
+                    outputFile = new File(outputFilePath);
+                }
+                int count = 1;
+                while (outputFile.exists()) {
+                    String newFileName = outputFile.getName().replaceFirst("[.][^.]+$", "") + "(" + count + ")"
+                            + outputFile.getName().substring(outputFile.getName().lastIndexOf("."));
+                    String parentDirectory = outputFile.getParent();
+                    outputFilePath = parentDirectory + File.separator + newFileName;
+                    outputFile = new File(outputFilePath);
+                    count++;
+                }
+
+                FileOutputStream outputFileStream = new FileOutputStream(outputFile);
+                workbook.write(outputFileStream);
+                workbook.close();
+                outputFileStream.close();
+
+                System.out.println("Data berhasil dimasukkan ke dalam template Excel.");
+                System.out.println("File output: " + outputFilePath);
+            } else {
+                System.out.println("Batal menyimpan file output.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void formrefresh() {
     }
