@@ -24,7 +24,7 @@ import javax.swing.table.TableColumnModel;
  *
  * @author USER
  */
-public class Employe_list extends javax.swing.JFrame {
+public class HumanResourceEmployeeList extends javax.swing.JFrame {
     Statement stm;
     ResultSet rs;
     Connection koneksi;
@@ -32,7 +32,7 @@ public class Employe_list extends javax.swing.JFrame {
     /**
      * Creates new form Employe_list
      */
-    public Employe_list() {
+    public HumanResourceEmployeeList() {
         initComponents();
         MyWindow1();
         openDB();
@@ -262,29 +262,23 @@ public class Employe_list extends javax.swing.JFrame {
         if (CustomResource.EmployeeSession.getsesiform().equals("1")){
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();        
             CustomResource.CandidateSession.setCandidateID(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
-    
             Main.main.getMain().showForm(new EmployeeConfirmation());
             this.dispose();
         }     
         if (CustomResource.EmployeeSession.getsesiform().equals("2")){
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
             CustomResource.EmployeeSession.setKTPAllocation(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
-            System.out.println(CustomResource.EmployeeSession.getKTPAllocation());
-            Main.main.getMain().showForm(new AllocationAnnouncement());
+//            Main.main.getMain().showForm(new AllocationAnnouncement());
+            AllocationAnnouncement.addtext();
             this.dispose();
         }
 
-if (CustomResource.EmployeeSession.getsesiform().equals("3")){
-    
-                 DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
-    
-    
-CustomResource.EmployeeSession.setbiz_id(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
-    System.out.println(CustomResource.EmployeeSession.getbiz_id());
-   
-Main.main.getMain().showForm(new po_rfq());
-  this.dispose();
-}
+        if (CustomResource.EmployeeSession.getsesiform().equals("3")){
+            DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
+            CustomResource.EmployeeSession.setbiz_id(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            Main.main.getMain().showForm(new po_rfq());
+            this.dispose();
+        }
 
 
 
@@ -643,20 +637,23 @@ Main.main.getMain().showForm(new po_rfq());
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Employe_list.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HumanResourceEmployeeList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Employe_list.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HumanResourceEmployeeList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Employe_list.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HumanResourceEmployeeList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Employe_list.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HumanResourceEmployeeList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Employe_list().setVisible(true);
+                new HumanResourceEmployeeList().setVisible(true);
             }
         });
     }
