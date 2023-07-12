@@ -4,17 +4,14 @@
  */
 package HumanResource;
 
-import CustomResource.CandidateSession;
 import CustomResource.MySession;
 import CustomResource.koneksi;
-import ProcurementSystem.po;
 import ProcurementSystem.po_rfq;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -43,12 +40,9 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
     private void table(){
         DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
         dataModel2.addRow(new Object[]{});
-        //mendapatkan model kolom pada JTable
         TableColumnModel columnModel = jTable1.getColumnModel();
-        //mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
         TableColumn column = columnModel.getColumn(0);
         TableColumn column1 = columnModel.getColumn(1);
-        //menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
         column.setMinWidth(0);
         column.setMaxWidth(0);
         column.setWidth(0);
@@ -57,8 +51,7 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
         column1.setMaxWidth(80);
         column1.setWidth(80);
         column1.setPreferredWidth(80);
-        //mengakses nilai pada kolom yang disembunyikan
-        int rowIndex = 0; //indeks baris
+        int rowIndex = 0;
         Object value = jTable1.getValueAt(rowIndex, 0);
         int rowCount = dataModel2.getRowCount();
 
@@ -131,12 +124,9 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
             myModel = new DefaultTableModel(header1, 1);
             jTable1.setModel(myModel);      
             myModel.addRow(new Object[]{});
-            //mendapatkan model kolom pada JTable
             TableColumnModel columnModel = jTable1.getColumnModel();
-            //mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
             TableColumn column = columnModel.getColumn(0);
             TableColumn column1 = columnModel.getColumn(1);
-            //menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
             column.setMinWidth(0);
             column.setMaxWidth(0);
             column.setWidth(0);
@@ -145,7 +135,6 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
             column1.setMaxWidth(80);
             column1.setWidth(80);
             column1.setPreferredWidth(80);
-            //mengakses nilai pada kolom yang disembunyikan
             int rowIndex = 0; //indeks baris
             Object value = jTable1.getValueAt(rowIndex, 0);
             int rowCount = myModel.getRowCount();
@@ -268,13 +257,6 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
             CustomResource.EmployeeSession.setKTPAllocation(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
             AllocationAnnouncement.addtext();
-            this.dispose();
-        }
-
-        if (CustomResource.EmployeeSession.getsesiform().equals("3")){
-            DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();       
-            CustomResource.EmployeeSession.setbiz_id(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
-            Main.main.getMain().showForm(new po_rfq());
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

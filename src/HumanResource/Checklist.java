@@ -12,11 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import CustomResource.actiontable;
-import CustomResource.callrender;
-import CustomResource.celleditor;
-import CustomResource.CandidateSession;
-import CustomResource.EmployeeSession;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import com.toedter.calendar.JCalendar;
@@ -33,15 +28,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import jnafilechooser.api.JnaFileChooser;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -65,10 +54,8 @@ public class Checklist extends MasterForm {
     public Checklist() {
         initComponents();
         openDB();
-//        settable();
         myShow();
         MyWindow();
-//        CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
 
@@ -205,12 +192,7 @@ public class Checklist extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyTableMouseClicked
-//        try{
-//            EmployeeSession.setKTPRehab(myModel.getValueAt(MyTable.getSelectedRow(), 2).toString());
-//            Main.main.getMain().showForm(new EmployeeRehabilitation());    
-//        }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, e);
-//        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_MyTableMouseClicked
 
     private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
@@ -328,7 +310,6 @@ public class Checklist extends MasterForm {
                 
             }
         } catch (IOException e) {
-//            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Sorry, Something went Wrong");
         }
     }

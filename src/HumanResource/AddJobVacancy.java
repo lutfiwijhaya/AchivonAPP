@@ -27,7 +27,6 @@ public class AddJobVacancy extends MasterForm {
 
     Statement stm;
     ResultSet rs;
-
     Connection koneksi;
     String id;
 
@@ -47,30 +46,30 @@ public class AddJobVacancy extends MasterForm {
     }
 
     void table_id() {
-//mendapatkan model kolom pada JTable
+        //mendapatkan model kolom pada JTable
         TableColumnModel columnModel = jTable2.getColumnModel();
-//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
+        //mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
         TableColumn column = columnModel.getColumn(0);
-//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
+        //menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
         column.setMinWidth(0);
         column.setMaxWidth(0);
         column.setWidth(0);
         column.setPreferredWidth(0);
-//mengakses nilai pada kolom yang disembunyikan
+        //mengakses nilai pada kolom yang disembunyikan
         int rowIndex = 0; //indeks baris
         Object value = jTable2.getValueAt(rowIndex, 0);
         
         
         //mendapatkan model kolom pada JTable
         TableColumnModel columnModel1 = jTable1.getColumnModel();
-//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
+        //mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
         TableColumn column1 = columnModel1.getColumn(0);
-//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
+        //menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
         column1.setMinWidth(0);
         column1.setMaxWidth(0);
         column1.setWidth(0);
         column1.setPreferredWidth(0);
-//mengakses nilai pada kolom yang disembunyikan
+        //mengakses nilai pada kolom yang disembunyikan
         int rowIndex1 = 0; //indeks baris
         Object value1 = jTable1.getValueAt(rowIndex1, 0);
     }
@@ -100,8 +99,7 @@ public class AddJobVacancy extends MasterForm {
 
     }
 
-    void tampil() {
-
+    private void tampil() {
         DefaultTableModel dataModel2 = (DefaultTableModel) jTable2.getModel();
         try {
             stm = koneksi.createStatement();
@@ -141,7 +139,6 @@ public class AddJobVacancy extends MasterForm {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
-
     }
 
     /**
@@ -335,11 +332,9 @@ public class AddJobVacancy extends MasterForm {
 
         try {
             Statement stm = koneksi.createStatement();
-
             rs = stm.executeQuery("select*from job_facancy where name_job = '" + t_lamaran.getSelectedItem() + "'");
             while (rs.next()) {
                 id = rs.getString("id_job");
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -354,10 +349,10 @@ public class AddJobVacancy extends MasterForm {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         customTextfield1.setText("");
         hapus_row();
         tampil();
-// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -398,14 +393,6 @@ public class AddJobVacancy extends MasterForm {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-//        try {
-//            stm = koneksi.createStatement();
-//            String sql = "DELETE FROM job_facancy";
-//            stm.executeUpdate(sql);
-//            stm.close();
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-//        }
         TableColumnModel columnModel = jTable2.getColumnModel();
         int[] selectedRows = jTable2.getSelectedRows();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
@@ -425,30 +412,9 @@ public class AddJobVacancy extends MasterForm {
         }
         hapus_row();
         tampil();
-
-//        int jtabelrows = jTable2.getRowCount();
-//
-//        for (int i = 0; i <= jtabelrows - 1; i++) {
-//            if (jTable2.getValueAt(i, 0) == null) {
-//            } else {
-//                String dtabel_nama = jTable2.getValueAt(i, 0).toString();
-//                
-//                try {
-//                    stm = koneksi.createStatement();
-//
-//                    String sql = "insert into job_facancy (name_job) value('" + dtabel_nama + "')";
-//
-//                    stm.executeUpdate(sql);
-//                    stm.close();
-//                } catch (SQLException e) {
-//                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-//                }
-//            }
-//        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void customTextfield4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield4KeyTyped
-
         DefaultTableModel myModel = (DefaultTableModel) jTable2.getModel();
         String mySearch = customTextfield4.getText();
         int row = jTable2.getRowCount();
@@ -456,7 +422,6 @@ public class AddJobVacancy extends MasterForm {
             myModel.removeRow(0);
         }
         if (mySearch != null) {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM job_facancy WHERE name_job LIKE '%" + mySearch + "%'");
@@ -466,27 +431,24 @@ public class AddJobVacancy extends MasterForm {
                         rs.getString("name_job")};
                     myModel.insertRow(0, data);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         } else {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("select*from job_facancy");
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id_job"),
-                        rs.getString("name_job")};
+                        rs.getString("name_job")
+                    };
                     myModel.insertRow(0, data);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         }
-        // TODO add your handling code here:
     }//GEN-LAST:event_customTextfield4KeyTyped
 
     private void customTextfield4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield4KeyReleased
@@ -497,36 +459,34 @@ public class AddJobVacancy extends MasterForm {
             myModel.removeRow(0);
         }
         if (mySearch != null) {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM job_facancy WHERE name_job LIKE '%" + mySearch + "%'");
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id_job"),
-                        rs.getString("name_job")};
+                        rs.getString("name_job")
+                    };
                     myModel.insertRow(0, data);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         } else {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("select*from job_facancy");
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id_job"),
-                        rs.getString("name_job")};
+                        rs.getString("name_job")
+                    };
                     myModel.insertRow(0, data);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
-        }  // TODO add your handling code here:
+        }
     }//GEN-LAST:event_customTextfield4KeyReleased
 
     private void customTextfield2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield2KeyTyped
@@ -537,38 +497,36 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
             myModel.removeRow(0);
         }
         if (mySearch != null) {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM job_facancy INNER JOIN job_facancy_discipline on job_facancy.id_job = job_facancy_discipline.id_job WHERE name_dicipline LIKE '%" + mySearch + "%'");
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id"),
-                    rs.getString("name_job"),
-                    rs.getString("name_dicipline")};
+                        rs.getString("name_job"),
+                        rs.getString("name_dicipline")
+                };
                     myModel.insertRow(0, data);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         } else {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM job_facancy INNER JOIN job_facancy_discipline on job_facancy.id_job = job_facancy_discipline.id_job");
                 while (rs.next()) {
                     String[] data = {
-                         rs.getString("id"),
-                    rs.getString("name_job"),
-                    rs.getString("name_dicipline")};
+                        rs.getString("id"),
+                        rs.getString("name_job"),
+                        rs.getString("name_dicipline")
+                    };
                     myModel.insertRow(0, data);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_customTextfield2KeyTyped
 
     private void customTextfield2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextfield2KeyReleased
@@ -579,31 +537,30 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
             myModel.removeRow(0);
         }
         if (mySearch != null) {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM job_facancy INNER JOIN job_facancy_discipline on job_facancy.id_job = job_facancy_discipline.id_job WHERE name_dicipline LIKE '%" + mySearch + "%'");
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id"),
-                    rs.getString("name_job"),
-                    rs.getString("name_dicipline")};
+                        rs.getString("name_job"),
+                        rs.getString("name_dicipline")
+                    };
                     myModel.insertRow(0, data);
                 }
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         } else {
-
             try {
                 stm = koneksi.createStatement();
                 rs = stm.executeQuery("SELECT * FROM job_facancy INNER JOIN job_facancy_discipline on job_facancy.id_job = job_facancy_discipline.id_job");
                 while (rs.next()) {
                     String[] data = {
-                         rs.getString("id"),
-                    rs.getString("name_job"),
-                    rs.getString("name_dicipline")};
+                        rs.getString("id"),
+                        rs.getString("name_job"),
+                        rs.getString("name_dicipline")
+                    };
                     myModel.insertRow(0, data);
                 }
 
@@ -641,11 +598,6 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(screen);
-//        MainPanel.setPreferredSize(screen);
-//        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setLocation(x,y);
     }
 
     @Override

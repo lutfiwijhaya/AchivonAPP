@@ -16,28 +16,21 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import CustomResource.koneksi;
-import Main.MainPanel;
 import Main.MasterForm;
 import Main.NewJPanel;
-import Main.main;
-import com.mysql.cj.jdbc.Blob;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,14 +39,11 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
-
 import javax.swing.table.DefaultTableModel;
-import jxl.write.DateTime;
 
 public class CandidateApplicationedit extends MasterForm {
 
@@ -74,7 +64,6 @@ public class CandidateApplicationedit extends MasterForm {
     String stt;
     byte[] img;
     String g_tgl_personal;
-//    String id_p;
 
     public CandidateApplicationedit() {
         initComponents();
@@ -85,7 +74,6 @@ public class CandidateApplicationedit extends MasterForm {
         currentBox();
         codeCountryBox();
         id_employee();
-//        jToggleButton1.setEnabled(false);
         get_tanggal();
         jScrollPane18.getVerticalScrollBar().setUnitIncrement(16);
         homeCountry.setSelectedItem("Indonesia");
@@ -116,17 +104,12 @@ public class CandidateApplicationedit extends MasterForm {
 
     private DefaultTableModel getSubTableDataAcademic() {
         DefaultTableModel data = new DefaultTableModel();
-//        DefaultTableModel data1 = new DefaultTableModel();
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province", 100), new CustomResource.Header("Kota / City")});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
-//        data1.addRow(new Object[]{"Ban", "Kota "});
-//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
 
@@ -135,9 +118,6 @@ public class CandidateApplicationedit extends MasterForm {
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("YA / YES", 100), new CustomResource.Header("TIDAK / NO")});
         data.addRow(new Object[]{"YA / YES", ""});
-//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
 
@@ -146,10 +126,6 @@ public class CandidateApplicationedit extends MasterForm {
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province", 100), new CustomResource.Header("Kota / City")});
         data.addRow(new Object[]{"Jawa Timur", "Sragen"});
-//        data.addRow(new Object[]{"jawa Timur", "ngawi"});
-//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
 
@@ -158,13 +134,10 @@ public class CandidateApplicationedit extends MasterForm {
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("Dari Tanggal / Start Date", 100), new CustomResource.Header("Sampai Tanggal / End Date")});
         data.addRow(new Object[]{"1-jan-1999", "1-jan-2000"});
-//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
 
-    void tablec() {
+    private void tablec() {
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
         model2.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
         model2.addRow(new Object[]{"22-OKT-2022", "Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
@@ -198,16 +171,6 @@ public class CandidateApplicationedit extends MasterForm {
                 .setHorizontalAlignment(JLabel.CENTER);
 
     }
-
-//    private DefaultTableModel getSubTableData1() {
-//        DefaultTableModel data = new DefaultTableModel();
-//        data.setColumnCount(3);
-//        data.addRow(new Object[]{new CustomResource.Header("No", 10), new CustomResource.Header("Type"), new CustomResource.Header("Qty")});
-//        data.addRow(new Object[]{1, "Unit", "50"});
-//        data.addRow(new Object[]{1, "Case", "70"});
-//        data.addRow(new Object[]{1, "Box", "3"});
-//        return data;
-//    }
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -308,7 +271,7 @@ public class CandidateApplicationedit extends MasterForm {
         }
     }
 
-    void c_job() {
+    private void c_job() {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM job_facancy");
             while (myRess.next()) {
@@ -365,7 +328,7 @@ public class CandidateApplicationedit extends MasterForm {
         }
     }
 
-    void hapusdb() {
+    private void hapusdb() {
         try {
             stm = koneksi.createStatement();
             String sql1 = "DELETE FROM cd_motivation WHERE id_employee = " + da + "";
@@ -386,13 +349,13 @@ public class CandidateApplicationedit extends MasterForm {
 
     }
 
-    void get_tanggal() {
+    private void get_tanggal() {
         Date ys = new Date();
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyy");
         tanggal = s.format(ys);
     }
 
-    public void currentBox() {
+    private void currentBox() {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
@@ -403,7 +366,7 @@ public class CandidateApplicationedit extends MasterForm {
         curentCountry.setEnabled(true);
     }
 
-    public void codeCountryBox() {
+    private void codeCountryBox() {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM countries");
             while (myRess.next()) {
@@ -414,7 +377,7 @@ public class CandidateApplicationedit extends MasterForm {
         curentCountry.setEnabled(true);
     }
 
-    void tampildata() {
+    private void tampildata() {
         try {
             Statement stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from cd_employee where id_employee = " + da + "");
@@ -431,8 +394,6 @@ public class CandidateApplicationedit extends MasterForm {
                 t_ktp.setText(rs.getString("KTP"));
                 t_tlhir.setText(rs.getString("b_place"));
                 String b_d = (rs.getString("birthday"));
-//                SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-//                Date det = fm.parse(b_d);
                 t_tgl_personal.setText("birthday");
                 t_hp.setText(rs.getString("No_HP"));
                 t_email.setText(rs.getString("email"));
@@ -495,7 +456,7 @@ public class CandidateApplicationedit extends MasterForm {
 
     }
 
-    void tampil_academic() {
+    private void tampil_academic() {
         DefaultTableModel dataModel = (DefaultTableModel) jTable2.getModel();
         try {
             stm = koneksi.createStatement();
@@ -553,7 +514,7 @@ public class CandidateApplicationedit extends MasterForm {
         }
     }
 
-    void tampil_foto() {
+    private void tampil_foto() {
         try {
             CandidateApplicationedit.func f = new CandidateApplicationedit.func();
             rsf = f.find(t_ktp.getText());
@@ -1463,7 +1424,7 @@ public class CandidateApplicationedit extends MasterForm {
         DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        };  // TODO add your handling code here:
+        };
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1472,7 +1433,7 @@ public class CandidateApplicationedit extends MasterForm {
         DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        };        // TODO add your handling code here:
+        };
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1497,12 +1458,9 @@ public class CandidateApplicationedit extends MasterForm {
 
         t_nama3.setText("");
         t_posisi.setText("");
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-//        String tanggal_family = String.valueOf(fm.format(t_tgl_family.getDate()));
         r_y.setActionCommand("Yes");
         r_n.setActionCommand("No");
         DefaultTableModel dataModel = (DefaultTableModel) jTable3.getModel();
@@ -1517,8 +1475,6 @@ public class CandidateApplicationedit extends MasterForm {
 
         t_nama1.setText("");
         t_hp1.setText("(0)");
-
-// TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1527,13 +1483,10 @@ public class CandidateApplicationedit extends MasterForm {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        };         // TODO add your handling code here:
+        };
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
-//        String tanggal_certificate = String.valueOf(fm.format(t_tgl_certificate.getDate()));
-
         DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
         List list = new ArrayList<>();
         jTable4.setAutoCreateColumnsFromModel(true);
@@ -1547,7 +1500,6 @@ public class CandidateApplicationedit extends MasterForm {
         t_nama2.setText("");
         t_author.setText("");
         t_sertifikat.setText("");
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void t_hp1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hp1KeyTyped
@@ -1574,7 +1526,7 @@ public class CandidateApplicationedit extends MasterForm {
         } else if (t_hp1.getText().length() == 17) {
             t_hp1.setText(t_hp1.getText());
             evt.consume();
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_hp1KeyTyped
 
     private void t_hp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hp1ActionPerformed
@@ -1587,7 +1539,7 @@ public class CandidateApplicationedit extends MasterForm {
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
         for (int i = selectedRows.length - 1; i >= 0; i--) {
             model.removeRow(selectedRows[i]);
-        };      // TODO add your handling code here:
+        };
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1608,14 +1560,9 @@ public class CandidateApplicationedit extends MasterForm {
         dataModel.insertRow(0, list.toArray());
         t_sekolah.setText("");
         t_jurusan.setText("");
-
-        // TODO add your handling code here:
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-//    if (t_tgl_personal.getDate()!= null){SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-//        g_tgl_personal = String.valueOf(fm.format(t_tgl_personal.getDate()));}
         t_pria.setActionCommand("Male");
         t_wanita.setActionCommand("Female");
         t_lajang.setActionCommand("Single");
@@ -1776,7 +1723,6 @@ public class CandidateApplicationedit extends MasterForm {
                 Main.main.getMain().setVisible(true);
             }
             Main.main.getMain().showForm(new NewJPanel());
-
         }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
@@ -1800,8 +1746,7 @@ public class CandidateApplicationedit extends MasterForm {
             } else {
                 JOptionPane.showMessageDialog(null, "Maximum Size (200kb)");
             }
-
-        }       // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void t_lamaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lamaranActionPerformed
@@ -1812,28 +1757,17 @@ public class CandidateApplicationedit extends MasterForm {
         try {
             String id_p;
             Statement stm = koneksi.createStatement();
-
-           ResultSet lamar = stm.executeQuery("select*from job_facancy where name_job = '" + t_lamaran.getSelectedItem() + "'");
+            ResultSet lamar = stm.executeQuery("select*from job_facancy where name_job = '" + t_lamaran.getSelectedItem() + "'");
             while (lamar.next()) {
                 id_p = lamar.getString("id_job");
                 ResultSet lamar1 = koneksi.createStatement().executeQuery("SELECT * FROM job_facancy_discipline where id_job = '" + id_p + "'");
                 while (lamar1.next()) {
                     t_lamaran1.addItem(lamar1.getString("name_dicipline"));
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-//        try {
-//            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM job_facancy_discipline where id_job = '"+id_p+"'");
-//            while (myRess.next()) {
-//                t_lamaran1.addItem(myRess.getString("name_dicipline"));
-//            }
-//        } catch (SQLException ex) {
-//        }     
-// TODO add your handling code here:
     }//GEN-LAST:event_t_lamaranActionPerformed
 
     private void t_npwpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_npwpActionPerformed
@@ -1855,19 +1789,16 @@ public class CandidateApplicationedit extends MasterForm {
     private void homeStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeStateActionPerformed
         try {
             homeCity.removeAllItems();
-
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cities WHERE state_name ='" + homeState.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 homeCity.addItem(myRess.getString("name"));
             }
-
         } catch (SQLException ex) {
         }
     }//GEN-LAST:event_homeStateActionPerformed
 
     private void homeCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeCountryActionPerformed
         try {
-
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM states WHERE country_name ='" + homeCountry.getSelectedItem().toString() + "'");
             while (myRess.next()) {
                 homeState.addItem(myRess.getString("name"));
@@ -1895,10 +1826,6 @@ public class CandidateApplicationedit extends MasterForm {
             while (myRess.next()) {
                 ccity.addItem(myRess.getString("name"));
             }
-            //            myRess.last();
-            //            int jumlahdata = myRess.getRow();
-            //            myRess.first();
-
         } catch (SQLException ex) {
         }
     }//GEN-LAST:event_cprovActionPerformed
@@ -1983,9 +1910,7 @@ public class CandidateApplicationedit extends MasterForm {
             rsf = f.find(da);
             if (rsf.next()) {
                 byte[] img = rsf.getBytes("foto");
-
                 ImageIcon imageicon = new ImageIcon(img);
-
                 Image imageResize = imageicon.getImage().getScaledInstance(labelfoto.getWidth(), labelfoto.getHeight(), Image.SCALE_SMOOTH);
                 labelfoto.setIcon(new ImageIcon(imageResize));
             }
@@ -2009,7 +1934,7 @@ public class CandidateApplicationedit extends MasterForm {
         }
         if (t_ktp.getText().length() > 15) {
             evt.consume();
-        }      // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_ktpKeyTyped
 
     private void t_gajiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_gajiKeyTyped
@@ -2032,7 +1957,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void t_halamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_halamatMouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2043,7 +1968,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void t_calamatMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_calamatMouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2054,7 +1979,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void jTable2MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable2MouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2065,7 +1990,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void jPanel1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jPanel1MouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2076,7 +2001,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void jTable3MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable3MouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2087,7 +2012,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void jTable4MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable4MouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2098,7 +2023,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void jTable5MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTable5MouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2109,7 +2034,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void t_motifMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_motifMouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2120,7 +2045,7 @@ public class CandidateApplicationedit extends MasterForm {
     private void t_latarMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_latarMouseWheelMoved
         JScrollBar verticalScrollBar = jScrollPane18.getVerticalScrollBar();
         int notches = evt.getWheelRotation();
-        int increment = 5; // set increment to 3 units
+        int increment = 5;
         if (notches < 0) {
             verticalScrollBar.setValue(verticalScrollBar.getValue() - (increment * verticalScrollBar.getBlockIncrement()));
         } else {
@@ -2261,18 +2186,10 @@ public class CandidateApplicationedit extends MasterForm {
     private com.toedter.calendar.JYearChooser tahun_awal;
     // End of variables declaration//GEN-END:variables
 
-    private void dispose() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     private void MyWindow() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(new Dimension(screen.width, screen.height - 100));
-
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     @Override

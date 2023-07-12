@@ -4,8 +4,6 @@
  */
 package HumanResource;
 
-import CustomResource.ColumnGroup;
-import CustomResource.GroupableTableHeader;
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
@@ -18,23 +16,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import java.sql.Statement;
-import javax.swing.JTable;
-import javax.swing.SwingUtilities;
-import javax.swing.table.JTableHeader;
 import jnafilechooser.api.JnaFileChooser;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -813,16 +803,6 @@ public class EmployeeEvaluation extends MasterForm {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Gagal Menyimpan data \n Failed saving data");
         } finally {
-            //            try {
-                //                if (myStmt != null) {
-                    //                    myStmt.close();
-                    //                }
-                //                if (koneksi != null) {
-                    //                    koneksi.close();
-                    //                }
-                //            } catch (SQLException ex) {
-                //                ex.printStackTrace();
-                //            }
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
@@ -1004,15 +984,9 @@ public class EmployeeEvaluation extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(screen);
-//        MainPanel.setPreferredSize(screen);
-//        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setLocation(x,y);
     }
     
     private void tracer(){
-//        String templateFilePath = "C://Users//hi//OneDrive//Documents//Summary Status.xlsx";
         String templateFilePath = "src/Doc/Employee Evaluation.xlsx";
 
         coordinationS.setActionCommand("S");

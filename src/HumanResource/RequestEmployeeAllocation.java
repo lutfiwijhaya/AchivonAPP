@@ -4,16 +4,13 @@
  */
 package HumanResource;
 
-
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.DriverManager;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -27,10 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -47,9 +42,6 @@ public class RequestEmployeeAllocation extends MasterForm {
         MyWindow();
         fresh();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        
-        
-        
     }
     private void openDB() {
         try {
@@ -446,10 +438,8 @@ public class RequestEmployeeAllocation extends MasterForm {
     private void signPresidentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signPresidentMouseClicked
         if ("1".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -468,10 +458,8 @@ public class RequestEmployeeAllocation extends MasterForm {
     private void signHRMGRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signHRMGRMouseClicked
         if ("2".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -492,10 +480,8 @@ public class RequestEmployeeAllocation extends MasterForm {
     private void signHRRevdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signHRRevdMouseClicked
         if ("2".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -516,10 +502,8 @@ public class RequestEmployeeAllocation extends MasterForm {
     private void signTeamMGRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamMGRMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -540,10 +524,8 @@ public class RequestEmployeeAllocation extends MasterForm {
     private void signTeamRevdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamRevdMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -564,10 +546,8 @@ public class RequestEmployeeAllocation extends MasterForm {
     private void signTeamRecdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamRecdMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -588,10 +568,8 @@ public class RequestEmployeeAllocation extends MasterForm {
     private void signTeamPredMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamPredMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -633,7 +611,6 @@ public class RequestEmployeeAllocation extends MasterForm {
             int jtabelrows = jTable1.getRowCount();
             for (int i = 0; i <= jtabelrows - 1; i++) {
                 if (jTable1.getValueAt(i, 0) == null || jTable1.getValueAt(i, 0).toString().isEmpty()) {
-                    // Skip this row if the first column is null or empty
                     continue;
                 } else {
                     String dtabel_des = jTable1.getValueAt(i, 0).toString();
@@ -682,13 +659,6 @@ public class RequestEmployeeAllocation extends MasterForm {
             JOptionPane.showMessageDialog(null, "Data gagal dikirim \nData failed to send");
             e.printStackTrace();
         } finally {
-//            try {
-//                if (koneksi != null) {
-//                    koneksi.close();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
         }
     }//GEN-LAST:event_sendButtonActionPerformed
 
@@ -767,10 +737,6 @@ public class RequestEmployeeAllocation extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
     
     private void fresh(){
@@ -795,7 +761,6 @@ public class RequestEmployeeAllocation extends MasterForm {
                 statementEmployee.setText(rs.getString(12));
                 statementManager.setText(rs.getString(13));
                 t_tgl1.setText(rs.getString(14));
-//                labelDateSign.setText(rs.getString(10));
                 sendButton.setVisible(false);
                 idTeamPred.setText(rs.getString(3));
                 idTeamRecd.setText(rs.getString(4));
@@ -821,13 +786,13 @@ public class RequestEmployeeAllocation extends MasterForm {
                 if (idTeamPred != null) {
                     signTeamPred.setText(null);
                     try {
-                            Statement stmt11 = koneksi.createStatement();
-                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+labelName.getText()+"'");
-                            if (rs11.next()) {
-                                labelNameTeamPred.setText(rs11.getString(4));
-                            }
-                        } catch (Exception e) {
+                        Statement stmt11 = koneksi.createStatement();
+                        ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+labelName.getText()+"'");
+                        if (rs11.next()) {
+                            labelNameTeamPred.setText(rs11.getString(4));
                         }
+                    } catch (Exception e) {
+                    }
                     try {
                         Statement stmt1 = koneksi.createStatement();
                         ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+labelName.getText()+"'");
@@ -854,13 +819,13 @@ public class RequestEmployeeAllocation extends MasterForm {
                 if (idTeamRecd != null) {
                     signTeamRecd.setText(null);
                     try {
-                            Statement stmt21 = koneksi.createStatement();
-                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+jLabel28.getText()+"'");
-                            if (rs21.next()) {
-                                labelNameTeamRecd.setText(rs21.getString(4));
-                            }
-                        } catch (Exception e) {
+                        Statement stmt21 = koneksi.createStatement();
+                        ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+jLabel28.getText()+"'");
+                        if (rs21.next()) {
+                            labelNameTeamRecd.setText(rs21.getString(4));
                         }
+                    } catch (Exception e) {
+                    }
                     try {
                         Statement stmt2 = koneksi.createStatement();
                         ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+jLabel28.getText()+"'");
@@ -887,13 +852,13 @@ public class RequestEmployeeAllocation extends MasterForm {
                 if (idTeamRevd != null) {
                     signTeamRevd.setText(null);
                     try {
-                            Statement stmt31 = koneksi.createStatement();
-                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+jLabel29.getText()+"'");
-                            if (rs31.next()) {
-                                labelNameTeamRevd.setText(rs31.getString(4));
-                            }
-                        } catch (Exception e) {
+                        Statement stmt31 = koneksi.createStatement();
+                        ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+jLabel29.getText()+"'");
+                        if (rs31.next()) {
+                            labelNameTeamRevd.setText(rs31.getString(4));
                         }
+                    } catch (Exception e) {
+                    }
                     try {
                         Statement stmt3 = koneksi.createStatement();
                         ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+jLabel29.getText()+"'");
@@ -919,14 +884,14 @@ public class RequestEmployeeAllocation extends MasterForm {
                 }
                 if (idTeamMGR != null) {
                     signTeamMGR.setText(null);
-                        try {
-                            Statement stmt41 = koneksi.createStatement();
-                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
-                            if (rs41.next()) {
-                                labelNameTeamMGR.setText(rs41.getString(4));
-                            }
-                        } catch (Exception e) {
+                    try {
+                        Statement stmt41 = koneksi.createStatement();
+                        ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
+                        if (rs41.next()) {
+                            labelNameTeamMGR.setText(rs41.getString(4));
                         }
+                    } catch (Exception e) {
+                    }
                     try {
                         Statement stmt4 = koneksi.createStatement();
                         ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
@@ -953,13 +918,13 @@ public class RequestEmployeeAllocation extends MasterForm {
                 if (idHRRevd != null) {
                     signHRRevd.setText(null);
                     try {
-                            Statement stmt51 = koneksi.createStatement();
-                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
-                            if (rs51.next()) {
-                                labelNameHRRevd.setText(rs51.getString(4));
-                            }
-                        } catch (Exception e) {
+                        Statement stmt51 = koneksi.createStatement();
+                        ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
+                        if (rs51.next()) {
+                            labelNameHRRevd.setText(rs51.getString(4));
                         }
+                    } catch (Exception e) {
+                    }
                     try {
                         Statement stmt5 = koneksi.createStatement();
                         ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
@@ -986,13 +951,13 @@ public class RequestEmployeeAllocation extends MasterForm {
                 if (idHRMGR != null) {
                     signHRMGR.setText(null);
                     try {
-                            Statement stmt61 = koneksi.createStatement();
-                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
-                            if (rs61.next()) {
-                                labelNameHRMGR.setText(rs61.getString(4));
-                            }
-                        } catch (Exception e) {
+                        Statement stmt61 = koneksi.createStatement();
+                        ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
+                        if (rs61.next()) {
+                            labelNameHRMGR.setText(rs61.getString(4));
                         }
+                    } catch (Exception e) {
+                    }
                     try {
                         Statement stmt6 = koneksi.createStatement();
                         ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
@@ -1019,13 +984,13 @@ public class RequestEmployeeAllocation extends MasterForm {
                 if (idPresident != null) {
                     signPresident.setText(null);
                     try {
-                            Statement stmt71 = koneksi.createStatement();
-                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresident.getText()+"'");
-                            if (rs71.next()) {
-                                labelNamePresident.setText(rs71.getString(4));
-                            }
-                        } catch (Exception e) {
+                        Statement stmt71 = koneksi.createStatement();
+                        ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresident.getText()+"'");
+                        if (rs71.next()) {
+                            labelNamePresident.setText(rs71.getString(4));
                         }
+                    } catch (Exception e) {
+                    }
                     try {
                         Statement stmt7 = koneksi.createStatement();
                         ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresident.getText()+"'");
@@ -1050,38 +1015,36 @@ public class RequestEmployeeAllocation extends MasterForm {
                     }
                 }
             }else{
-                    labelNamePresident.setVisible(false);
-                    signPresident.setVisible(false);
-                    jLabel27.setVisible(false);
+                labelNamePresident.setVisible(false);
+                signPresident.setVisible(false);
+                jLabel27.setVisible(false);
 
-                    jLabel29.setVisible(false);
-                    signHRRevd.setVisible(false);
-                    labelNameHRRevd.setVisible(false);
+                jLabel29.setVisible(false);
+                signHRRevd.setVisible(false);
+                labelNameHRRevd.setVisible(false);
 
-                    jLabel28.setVisible(false);
-                    signHRMGR.setVisible(false);
-                    labelNameHRMGR.setVisible(false);
-                    jLabel30.setVisible(false);
+                jLabel28.setVisible(false);
+                signHRMGR.setVisible(false);
+                labelNameHRMGR.setVisible(false);
+                jLabel30.setVisible(false);
 
-                    jLabel37.setVisible(false);
-                    jLabel33.setVisible(false);
-                    signTeamMGR.setVisible(false);
-                    labelNameTeamMGR.setVisible(false);
+                jLabel37.setVisible(false);
+                jLabel33.setVisible(false);
+                signTeamMGR.setVisible(false);
+                labelNameTeamMGR.setVisible(false);
 
-                    jLabel35.setVisible(false);
-                    signTeamRevd.setVisible(false);
-                    labelNameTeamRevd.setVisible(false);
+                jLabel35.setVisible(false);
+                signTeamRevd.setVisible(false);
+                labelNameTeamRevd.setVisible(false);
 
-                    jLabel39.setVisible(false);
-                    signTeamRecd.setVisible(false);
-                    labelNameTeamRecd.setVisible(false);
+                jLabel39.setVisible(false);
+                signTeamRecd.setVisible(false);
+                labelNameTeamRecd.setVisible(false);
 
-                    jLabel42.setVisible(false);
-                    signTeamPred.setVisible(false);
-                    labelNameTeamPred.setVisible(false);
-                    
-//                    sendButton.setVisible(false);
-                }
+                jLabel42.setVisible(false);
+                signTeamPred.setVisible(false);
+                labelNameTeamPred.setVisible(false);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

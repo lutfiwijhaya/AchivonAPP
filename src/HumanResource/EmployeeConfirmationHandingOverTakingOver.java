@@ -21,7 +21,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -966,11 +965,6 @@ public class EmployeeConfirmationHandingOverTakingOver extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(screen);
-//        MainPanel.setPreferredSize(screen);
-//        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setLocation(x,y);
     }
 
     @Override

@@ -2,7 +2,6 @@
 package HumanResource;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,10 +11,8 @@ import CustomResource.actiontable;
 import CustomResource.callrender;
 import CustomResource.celleditor;
 import CustomResource.CandidateSession;
-import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
-
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -28,8 +25,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -38,7 +33,6 @@ import javax.swing.table.TableColumnModel;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
-import scroolbarWin11.ScrollBarWin11UI;
 
 /**
  *
@@ -65,9 +59,6 @@ public class CandidateList extends MasterForm {
         id();
         myShow();
         MyWindow();
-        remove();
-
-//        CandidateSession.setCandidateID("");
         ((DefaultTableCellRenderer) MyTable.getTableHeader().getDefaultRenderer())
                 .setHorizontalAlignment(JLabel.CENTER);
     }
@@ -76,55 +67,40 @@ public class CandidateList extends MasterForm {
         if(c_app.getSelectedItem().toString().equals("Belum Approve/Not Approved")){
             
              myModel.addRow(new Object[]{});
-           //mendapatkan model kolom pada JTable
         TableColumnModel columnModel = MyTable.getColumnModel();
-//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
         TableColumn column = columnModel.getColumn(0);
-//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
         column.setMinWidth(0);
         column.setMaxWidth(0);
         column.setWidth(0);
         column.setPreferredWidth(0);
-//mengakses nilai pada kolom yang disembunyikan
-        int rowIndex = 0; //indeks baris
+        int rowIndex = 0;
         Object value = MyTable.getValueAt(rowIndex, 0); 
         
-         //mendapatkan model kolom pada JTable
         TableColumnModel columnModel1 = MyTable.getColumnModel();
-//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
         TableColumn column1 = columnModel1.getColumn(10);
         TableColumn column2 = columnModel1.getColumn(9);
-//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
         column1.setMinWidth(column2.getMinWidth());
         column1.setMaxWidth(column2.getMaxWidth());
         column1.setWidth(column2.getWidth());
         column1.setPreferredWidth(245);
-//mengakses nilai pada kolom yang disembunyikan
-        int rowIndex1 = 0; //indeks baris
+        int rowIndex1 = 0;
         Object value1 = MyTable.getValueAt(rowIndex1, 0); 
         
         } else if(c_app.getSelectedItem().toString().equals("Sudah Approve/Approved")){
             myModel.addRow(new Object[]{});
              
-           //mendapatkan model kolom pada JTable
-        TableColumnModel columnModel = MyTable.getColumnModel();
-//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
-        TableColumn column = columnModel.getColumn(10);
-//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
-        column.setMinWidth(0);
-        column.setMaxWidth(0);
-        column.setWidth(0);
-        column.setPreferredWidth(0);
-//mengakses nilai pada kolom yang disembunyikan
-        int rowIndex = 0; //indeks baris
-        Object value = MyTable.getValueAt(rowIndex, 0); 
-        
+            TableColumnModel columnModel = MyTable.getColumnModel();
+            TableColumn column = columnModel.getColumn(10);
+            column.setMinWidth(0);
+            column.setMaxWidth(0);
+            column.setWidth(0);
+            column.setPreferredWidth(0);
+            int rowIndex = 0;
+            Object value = MyTable.getValueAt(rowIndex, 0); 
         }
-     
-    
     }
 
-    void settable() {
+    private void settable() {
         String[] header = {"id", "KTP", "Nama / Name", "Tempat, Tanggal Lahir / Place, Birthday", "Jenis Kelamin / Gender", "Status Pernikahan / Marital Status", "Email", "No. Hp", "Posisi yang dilamar / Job Applying", "gaji / Sallary", "Action"};
         myModel = new DefaultTableModel(header, 1);
         MyTable.setModel(myModel);
@@ -160,15 +136,9 @@ public class CandidateList extends MasterForm {
                 try {
                     CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
                     koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '1' WHERE id_employee = '" + CandidateSession.getCandidateID() + "'");
-//            while (myRess.next()) {
-//                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
-//            }
                     myShow();
-
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e);
-//                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
-
+                    JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
                 }
             }
 
@@ -179,17 +149,11 @@ public class CandidateList extends MasterForm {
                     try {
                         CandidateSession.setCandidateID(myModel.getValueAt(MyTable.getSelectedRow(), 0).toString());
                         koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '10' WHERE id_employee = '" + CandidateSession.getCandidateID() + "'");
-    //            while (myRess.next()) {
-    //                JOptionPane.showMessageDialog(null, "Lamaran Berhasil diteruskan");
-    //            }
                         myShow();
                     } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e);
-    //                JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
+                        JOptionPane.showMessageDialog(null, "Lamaran gagal Diteruskan");
                     }
-
-            } 
-              
+                }  
             }
         };
         MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
@@ -205,14 +169,7 @@ public class CandidateList extends MasterForm {
         MyTable.getColumnModel().getColumn(8).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(9).setPreferredWidth(100);
         MyTable.getColumnModel().getColumn(10).setPreferredWidth(245);
-//        
-//        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
-//        
         MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));
-    }
-
-    void remove() {
-
     }
     private void openDB() {
         try {
@@ -419,7 +376,7 @@ public class CandidateList extends MasterForm {
             }
         }
         myShow();
-        }          // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -431,7 +388,7 @@ public class CandidateList extends MasterForm {
                 Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        myShow();     // TODO add your handling code here:
+        myShow();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
@@ -439,7 +396,7 @@ public class CandidateList extends MasterForm {
     }//GEN-LAST:event_textSearchActionPerformed
 
     private void c_appActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_appActionPerformed
-myShow();        // TODO add your handling code here:
+        myShow();
     }//GEN-LAST:event_c_appActionPerformed
 
 
@@ -467,122 +424,83 @@ myShow();        // TODO add your handling code here:
           myModel.removeRow(0);  
         }
         if(c_app.getSelectedItem().toString().equals("Belum Approve/Not Approved")){
-        
-        jPanel2.setVisible(true);
-        if (mySearch != null) {
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%" + mySearch + "%'");
-                while (myRess.next()) {
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
-                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-
-                    myModel.addRow(myData);
-                }
-            } catch (SQLException ex) {
-            }
-        } else {
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
-//                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
-//                int numColumns = rsmd.getColumnCount();
-//                for (int i = 1; i <= numColumns; i++) {
-//                    myModel.addColumn(rsmd.getColumnName(i));
-//                }
-
-                while (myRess.next()) {
-//                    Object[] mrow = new Object[numColumns];
-//                    for (int i = 1; i <= numColumns; i++) {
-//                        mrow[i - 1] = myRess.getObject(i);
-//                    }
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
-                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-                    myModel.addRow(myData);
-                }
-
-            } catch (SQLException ex) {
-            }
-        }}else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
-          
-        jPanel2.setVisible(false);
+            jPanel2.setVisible(true);
             if (mySearch != null) {
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '1' AND Nama LIKE '%" + mySearch + "%'");
-                while (myRess.next()) {
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
-                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                try {
+                    ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%" + mySearch + "%'");
+                    while (myRess.next()) {
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
 
-                    myModel.addRow(myData);
+                        myModel.addRow(myData);
+                    }
+                } catch (SQLException ex) {
                 }
-            } catch (SQLException ex) {
-            }
-        } else {
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '1'");
-//                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
-//                int numColumns = rsmd.getColumnCount();
-//                for (int i = 1; i <= numColumns; i++) {
-//                    myModel.addColumn(rsmd.getColumnName(i));
-//                }
-
-                while (myRess.next()) {
-//                    Object[] mrow = new Object[numColumns];
-//                    for (int i = 1; i <= numColumns; i++) {
-//                        mrow[i - 1] = myRess.getObject(i);
-//                    }
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
-                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-                    myModel.addRow(myData);
+            } else {
+                try {
+                    ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
+                    while (myRess.next()) {
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        myModel.addRow(myData);
+                    }
+                } catch (SQLException ex) {
                 }
-
-            } catch (SQLException ex) {
             }
-        }
-        
         }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
-           
-        jPanel2.setVisible(false);
+            jPanel2.setVisible(false);
             if (mySearch != null) {
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '2' AND Nama LIKE '%" + mySearch + "%'");
-                while (myRess.next()) {
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
-                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-
-                    myModel.addRow(myData);
+                try {
+                    ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '1' AND Nama LIKE '%" + mySearch + "%'");
+                    while (myRess.next()) {
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        myModel.addRow(myData);
+                    }
+                } catch (SQLException ex) {
                 }
-            } catch (SQLException ex) {
-            }
-        } else {
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '2'");
-//                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
-//                int numColumns = rsmd.getColumnCount();
-//                for (int i = 1; i <= numColumns; i++) {
-//                    myModel.addColumn(rsmd.getColumnName(i));
-//                }
-
-                while (myRess.next()) {
-//                    Object[] mrow = new Object[numColumns];
-//                    for (int i = 1; i <= numColumns; i++) {
-//                        mrow[i - 1] = myRess.getObject(i);
-//                    }
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
-                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-                    myModel.addRow(myData);
+            } else {
+                try {
+                    ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '1'");
+                    while (myRess.next()) {
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        myModel.addRow(myData);
+                    }
+                } catch (SQLException ex) {
                 }
-
-            } catch (SQLException ex) {
             }
-        }
-        
         }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
-        
+            jPanel2.setVisible(false);
+            if (mySearch != null) {
+                try {
+                    ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '2' AND Nama LIKE '%" + mySearch + "%'");
+                    while (myRess.next()) {
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+
+                        myModel.addRow(myData);
+                    }
+                } catch (SQLException ex) {
+                }
+            } else {
+                try {
+                    ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '2'");
+                    while (myRess.next()) {
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        myModel.addRow(myData);
+                    }
+                } catch (SQLException ex) {
+                }
+            }
+        }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
         jPanel2.setVisible(false);
             if (mySearch != null) {
             try {
@@ -591,35 +509,22 @@ myShow();        // TODO add your handling code here:
                     String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
                         myRess.getString(6), myRess.getString(9), myRess.getString(4),
                         myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-
                     myModel.addRow(myData);
                 }
             } catch (SQLException ex) {
             }
-        } else {
-            try {
-                ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '3'");
-//                ResultSetMetaData rsmd = (ResultSetMetaData) myRess.getMetaData();
-//                int numColumns = rsmd.getColumnCount();
-//                for (int i = 1; i <= numColumns; i++) {
-//                    myModel.addColumn(rsmd.getColumnName(i));
-//                }
-
-                while (myRess.next()) {
-//                    Object[] mrow = new Object[numColumns];
-//                    for (int i = 1; i <= numColumns; i++) {
-//                        mrow[i - 1] = myRess.getObject(i);
-//                    }
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
-                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
-                    myModel.addRow(myData);
+            } else {
+                try {
+                    ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '3'");
+                    while (myRess.next()) {
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
+                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        myModel.addRow(myData);
+                    }
+                } catch (SQLException ex) {
                 }
-
-            } catch (SQLException ex) {
             }
-        }
-        
         }
     }
 

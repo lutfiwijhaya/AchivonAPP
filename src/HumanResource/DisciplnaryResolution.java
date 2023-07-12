@@ -16,11 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import javax.swing.JLabel;
-import javax.swing.table.DefaultTableCellRenderer;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +24,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import jnafilechooser.api.JnaFileChooser;
-import net.sf.jasperreports.view.JasperViewer;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -45,9 +40,6 @@ public class DisciplnaryResolution extends MasterForm {
         MyWindow();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         
-//        ((DefaultTableCellRenderer)jTable2.getTableHeader().getDefaultRenderer())
-//        .setHorizontalAlignment(JLabel.CENTER);
-//        jLabel7.setVisible(false);
          if (!"1".equals(MySession.get_Role())) {
             jLabel19.setVisible(false);
             signPresident.setVisible(false);
@@ -318,10 +310,6 @@ private void MyWindow(){
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     private void tracer(){

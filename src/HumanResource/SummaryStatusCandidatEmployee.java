@@ -7,8 +7,6 @@ package HumanResource;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import com.raven.datechooser.SelectedDate;
-import com.toedter.calendar.JCalendar;
-
 import java.sql.Connection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -27,10 +25,8 @@ import java.time.Period;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import jnafilechooser.api.JnaFileChooser;
@@ -48,7 +44,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     java.sql.Statement stm;
     ResultSet rs;
     Connection koneksi;
-    int id;
     
     public SummaryStatusCandidatEmployee() {
         initComponents();
@@ -808,11 +803,9 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         if (parts.length > 1) {
             String NumberParts = parts[1];
             KTPNumber = NumberParts;
-            //            System.out.println("Angka setelah tanda '|' adalah: " + NumberParts);
         } else {
             KTPNumber = "";
             JOptionPane.showMessageDialog(this, "Maaf, ID Tidak ditemukan\nSorry, ID not Found");
-            //            System.out.println("Tidak ditemukan angka setelah tanda '|'");
         }
 
         try {
@@ -824,16 +817,11 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                 CandidateGender.setText(rs.getString("sex"));
                 CandidateBirthday.setText(rs.getString("birthday"));
                 CandidateKTP.setText(rs.getString("KTP"));
-                //                CandidateEducation.setText(rs.getString(""));
                 CandidatePhoneNumber.setText(rs.getString("No_HP"));
                 CandidateSallary.setText(rs.getString("D_Salary"));
-                //                CandidateAgeMonth.setText(rs.getString(""));
                 CandidateDiscipline.setText(rs.getString("discipline"));
-                //                CandidatePosition.setText(rs.getString(""));
                 CandidatePosition.setText(rs.getString("marital"));
-                //                CandidateGrade.setText(rs.getString(""));
                 CandidateEmail.setText(rs.getString("email"));
-                //                CandidateCareer.setText(rs.getString(""));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -846,41 +834,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         Period period = Period.between(birthDate, currentDate);
         int age = period.getYears();
         CandidateGender.setText(Integer.toString(age));
-
-        //        table certificate
-        //        DefaultTableModel myModel = (DefaultTableModel) jTable5.getModel();
-        //        try {
-            //            stm = koneksi.createStatement();
-            //            ResultSet rs1 = stm.executeQuery("SELECT * FROM cd_certificates WHERE id_employee = "+jLabel2.getText()+"");
-            //            while (rs1.next()) {
-                //                String[] data = {
-                    //                    rs1.getString(4),
-                    //                    rs1.getString(6),
-                    //                    rs1.getString(7),
-                    //                    rs1.getString(3)
-                    //                };
-                //                myModel.insertRow(0, data);
-                //            }
-            //        } catch (Exception e) {
-            //            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-            //        }
-
-        //        DefaultTableModel myModel7 = (DefaultTableModel) jTable7.getModel();
-        //        try {
-            //            stm = koneksi.createStatement();
-            //            ResultSet rs2 = stm.executeQuery("SELECT * FROM cd_summary_career WHERE id_employee = "+jLabel2.getText()+"");
-            //            while (rs2.next()) {
-                //                String[] data = {
-                    //                    rs2.getString(4),
-                    //                    rs2.getString(5),
-                    //                    rs2.getString(5)+" - "+rs2.getString(6),
-                    //                    rs2.getString(7)
-                    //                };
-                //                myModel7.insertRow(0, data);
-                //            }
-            //        } catch (Exception e) {
-            //            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-            //        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void CandidateGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateGenderActionPerformed
@@ -1047,16 +1000,11 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(new Dimension(screen.width, screen.height - 100));
-
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
     
     private void tracer(){
         all.setActionCommand("All-in");
         hour.setActionCommand("Hourly");
-//        String templateFilePath = "C://Users//hi//OneDrive//Documents//Summary Status.xlsx";
         String templateFilePath = "src/Doc/Summary Status.xlsx";
 
         String name = CandidateName.getText();

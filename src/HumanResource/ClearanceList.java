@@ -54,36 +54,6 @@ public class ClearanceList extends MasterForm {
         String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal pengunduran diri / Resignation Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
-//        actiontable event = new actiontable() {
-//            @Override
-//            public void lihat(int row) {
-//                try {
-//                    String tnama = (String) MyTable.getValueAt(row, 1);
-//                    String email = (String) MyTable.getValueAt(row, 5);
-//                    id = (String) MyTable.getValueAt(row, 0);
-//                    Class.forName("com.mysql.jdbc.Driver");
-//
-//                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-//                    jasperdesign = JRXmlLoader.load(O);
-//                    param.clear();
-//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
-//                    param.put("id",id);
-//                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-//                    JasperViewer.viewReport(jasperprint, false);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            @Override
-//            public void tambah(int row) {
-//                System.out.println("tambah");
-//            }
-//            @Override
-//            public void hapus(int row) {
-//                System.out.println("hapus");
-//            }
-//        };
-//        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
         MyTable.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
         MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -94,11 +64,6 @@ public class ClearanceList extends MasterForm {
         MyTable.getColumnModel().getColumn(6).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(7).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(8).setPreferredWidth(170);
-        
-        
-//        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
-        
-//        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
     }
     private void openDB() {
         try {

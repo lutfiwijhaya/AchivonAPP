@@ -18,24 +18,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.Authenticator;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.PasswordAuthentication;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.Transport;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperFillManager;
-
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -72,7 +63,7 @@ public class EmployeeConfirmation extends MasterForm {
         jToggleButton2.setVisible(false);
     }
     
-    void get_tanggal() {
+    private void get_tanggal() {
         Date ys = new Date();
         SimpleDateFormat s = new SimpleDateFormat("dd-MMM-yyy");
         tanggal = s.format(ys);
@@ -482,11 +473,8 @@ public class EmployeeConfirmation extends MasterForm {
             props.put("mail.smtp.host", "smtp.gmail.com");
             props.put("mail.smtp.port", "587");
 
-            // Informasi akun Gmail
             final String username = "yourmurti@gmail.com";
             final String password = "ordaawiiidswfwww";
-
-            // Membuat sesi dengan autentikasi
             Session session = Session.getInstance(props,
                     new javax.mail.Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
@@ -495,22 +483,18 @@ public class EmployeeConfirmation extends MasterForm {
                     });
 
             try {
-                // Membuat pesan email
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress("yourmurti@gmail.com"));
                 message.setRecipients(Message.RecipientType.TO,
                         InternetAddress.parse("gganggawma@gmail.com"));
                 message.setSubject("Subject of the Email");
                 message.setText("Hello, this is the content of the email!");
-
-                // Mengirim pesan email
                 Transport.send(message);
                 JOptionPane.showMessageDialog(this, "success \nberhasil");
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
         }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, e);
             JOptionPane.showMessageDialog(null, "Failed to send  \nLamaran gagal Diteruskan");
         }
     
@@ -519,12 +503,9 @@ public class EmployeeConfirmation extends MasterForm {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try{
-           koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_nama()+"' WHERE KTP = '"+l_ktp.getText()+"'");
-//            while (myRess.next()) {
+            koneksi.createStatement().executeUpdate("UPDATE cd_employee SET `approval` = '2', `approved_by` = '"+MySession.get_nama()+"' WHERE KTP = '"+l_ktp.getText()+"'");
             JOptionPane.showMessageDialog(null, "berhasil tanda tangan \n Succesed signature");
-//            }
         }catch(Exception e){
-//            JOptionPane.showMessageDialog(null, e);
             JOptionPane.showMessageDialog(null, "gagal di tanda tangan \n Failed Signature");
         }
         set_kosong();
@@ -547,18 +528,10 @@ public class EmployeeConfirmation extends MasterForm {
             e.printStackTrace();
         }
         try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            String filePath = "src/Doc/test.pdf";
             Connection kon = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-//            File O = new File("C:\\Program Files (x86)\\AchivonAPP\\cdemployee.jasper");
-//            jasperdesign = JRXmlLoader.load(O);
             param.clear();
-//            jasperreport = JasperCompileManager.compileReport(jasperdesign);
             param.put("id",da);
             param.put("tgl",l_tgl.getText());
-//            jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-//            JasperExportManager.exportReportToPdfFile(jasperprint, filePath);
-//            JasperViewer.viewReport(jasperprint, false);
             String reportPath = "C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\notification_cd.jasper";
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, param, kon);
             JasperViewer viewer = new JasperViewer(jasperPrint, false);
@@ -638,10 +611,6 @@ public class EmployeeConfirmation extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(new Dimension(screen.width, screen.height - 100));
-
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
     private void getMyRole(){
         if("2".equals(MySession.get_Role())){
@@ -668,7 +637,6 @@ public class EmployeeConfirmation extends MasterForm {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
                 while (rs.next()) {
-//                    jComboBox1.addItem(rs.getString(2).trim());
                     addtext();
                 }
             } catch (Exception e) {
@@ -681,7 +649,6 @@ public class EmployeeConfirmation extends MasterForm {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select * from cd_employee WHERE approval = '2'");
                 while (rs.next()) {
-//                    jComboBox1.addItem(rs.getString(2).trim());
                     addtext();
                 }
             } catch (Exception e) {
@@ -690,7 +657,7 @@ public class EmployeeConfirmation extends MasterForm {
         }
     }
     
-    void set_kosong(){
+    private void set_kosong(){
         l_name1.setText("");
         l_name.setText("");
         l_date.setText("");

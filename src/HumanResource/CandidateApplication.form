@@ -10,7 +10,6 @@
     </Component>
     <Component class="com.raven.datechooser.DateChooser" name="dateChooser1">
       <Properties>
-        <Property name="dateFormat" type="java.lang.String" value="dd-MMM-yyyy"/>
         <Property name="textRefernce" type="javax.swing.JTextField" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="t_tgl_personal"/>
         </Property>
@@ -18,7 +17,6 @@
     </Component>
     <Component class="com.raven.datechooser.DateChooser" name="dateChooser2">
       <Properties>
-        <Property name="dateFormat" type="java.lang.String" value="dd-MMM-yyyy"/>
         <Property name="textRefernce" type="javax.swing.JTextField" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="t_tgl_family"/>
         </Property>
@@ -26,7 +24,6 @@
     </Component>
     <Component class="com.raven.datechooser.DateChooser" name="dateChooser3">
       <Properties>
-        <Property name="dateFormat" type="java.lang.String" value="dd-MMM-yyyy"/>
         <Property name="textRefernce" type="javax.swing.JTextField" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="t_tgl_certificate"/>
         </Property>
