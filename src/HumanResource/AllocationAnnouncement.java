@@ -302,8 +302,8 @@ public class AllocationAnnouncement extends MasterForm {
                     // Membuat pesan email
                     for ( i = 0; i <= htabelfamily - 1; i++) {
                         try {
-                            String templateFilePath = "src/Doc/Allocation Announcement.xlsx";
-                            String outputFilePath = "src/Doc/Allocation Announcement1.xlsx";
+                            String templateFilePath = "src/Doc/Allocation Announcement1.xlsx";
+                            String outputFilePath = "src/Doc/Allocation Announcement.xlsx";
                             
                             File outputFile = new File(outputFilePath);
                             if (outputFile.exists()) {
@@ -333,7 +333,7 @@ public class AllocationAnnouncement extends MasterForm {
                             e.printStackTrace();
                         }
                         
-                        String filePath = "src/Doc/Allocation Announcement1.xlsx";
+                        String filePath = "src/Doc/Allocation Announcement.xlsx";
                     
 //                        XWPFDocument document = new XWPFDocument();
 //                        Workbook workbook = new XSSFWorkbook(filePath);
