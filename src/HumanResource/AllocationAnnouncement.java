@@ -41,9 +41,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import jnafilechooser.api.JnaFileChooser;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 
 /**
@@ -298,6 +303,14 @@ public class AllocationAnnouncement extends MasterForm {
                     for ( i = 0; i <= htabelfamily - 1; i++) {
                         try {
                             String templateFilePath = "src/Doc/Allocation Announcement.xlsx";
+                            String outputFilePath = "src/Doc/Allocation Announcement1.xlsx";
+                            
+                            File outputFile = new File(outputFilePath);
+                            if (outputFile.exists()) {
+                                outputFile.delete();
+                                System.out.println("terhapus");
+                            }
+                            
                             FileInputStream templateFile = new FileInputStream(templateFilePath);
                             Workbook workbook = new XSSFWorkbook(templateFile);
 
@@ -312,44 +325,58 @@ public class AllocationAnnouncement extends MasterForm {
 
                             templateFile.close();
                             
-                            String outputFilePath = "src/Doc/Allocation Announcement.docx";
-                            FileOutputStream outputStream = new FileOutputStream(outputFilePath);
+                            FileOutputStream outputStream = new FileOutputStream(outputFile);
                             workbook.write(outputStream);
                             workbook.close();
                             outputStream.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        
+                        String filePath = "src/Doc/Allocation Announcement1.xlsx";
+                    
+//                        XWPFDocument document = new XWPFDocument();
+//                        Workbook workbook = new XSSFWorkbook(filePath);
+//                        Sheet sheet = workbook.getSheetAt(0);
+//                        XWPFParagraph paragraph = document.createParagraph();
+//                        for (Row row : sheet) {
+//                            for (Cell cell : row) {
+//                                // Get cell value and append it to the Word document
+//                                String cellValue = cell.toString();
+//                                XWPFRun run = paragraph.createRun();
+//                                run.setText(cellValue);
+//                                run.addBreak();
+//                            }
+//                        }
+//                        String outputFilePath = "src/Doc/Allocation Announcement1.docx";
+//                        File outputFile = new File(outputFilePath);
+//                        if (outputFile.exists()) {
+//                            outputFile.delete();
+//                            System.out.println("terhapus");
+//                        }
+//                        FileOutputStream outputStream = new FileOutputStream(outputFile);
+//                        document.write(outputStream);
+//                        document.close();
+//                        outputStream.close();
+//                        workbook.close();
+
                         Message message = new MimeMessage(session);
                         message.setFrom(new InternetAddress(username));
                         message.setRecipients(Message.RecipientType.TO,
                                 InternetAddress.parse((String) tabelfamily.getValueAt(i, 6)));
                         message.setSubject(subject);
 
-                        // Membuat konten email
                         MimeBodyPart messageBodyPart = new MimeBodyPart();
                         messageBodyPart.setText((String) tabelfamily.getValueAt(i, 3));
 
-                        // Membuat attachment
                         MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-                        String filePath = "src/Doc/Allocation Announcement.docx";
+                        
                         attachmentBodyPart.attachFile(filePath);
                         Multipart multipart = new MimeMultipart();
                         multipart.addBodyPart(messageBodyPart);
                         multipart.addBodyPart(attachmentBodyPart);
                         message.setContent(multipart);
                         Transport.send(message);
-                        String outputFilePath = "src/Doc/Allocation Announcement.docx";
-                        File file = new File(outputFilePath);
-                        if (file.exists()) {
-                            if (file.delete()) {
-                                System.out.println("File berhasil dihapus.");
-                            } else {
-                                System.out.println("Gagal menghapus file.");
-                            }
-                        } else {
-                            System.out.println("File tidak ditemukan.");
-                        }
                     }
                     JOptionPane.showMessageDialog(this, "successfully sent message\nBerhasil Mengirim Pesan");
                 } catch (MessagingException e) {
