@@ -197,7 +197,7 @@ public class Employe_list extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();

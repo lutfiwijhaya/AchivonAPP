@@ -73,7 +73,7 @@ public class DisciplnaryResolution extends MasterForm {
     private void initComponents() {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -89,11 +89,11 @@ public class DisciplnaryResolution extends MasterForm {
         jLabel20 = new javax.swing.JLabel();
         commissionerName4 = new CustomResource.CustomTextfield();
         disciplineEmployee = new CustomResource.CustomTextfield();
-        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         areaReason = new javax.swing.JTextArea();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane6 = new scroolbarWin11.ScrollPaneWin11();
         areaResult = new javax.swing.JTextArea();
         t_tgl = new CustomResource.CustomTextfield();
         nameEmployee = new CustomResource.CustomTextfield();

@@ -550,10 +550,10 @@ public class CandidateApplication extends MasterForm {
         jSeparator35 = new javax.swing.JSeparator();
         jLabel93 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jScrollPane25 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane25 = new scroolbarWin11.ScrollPaneWin11();
         t_halamat = new javax.swing.JTextArea();
         jLabel97 = new javax.swing.JLabel();
-        jScrollPane26 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane26 = new scroolbarWin11.ScrollPaneWin11();
         t_calamat = new javax.swing.JTextArea();
         jLabel101 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();

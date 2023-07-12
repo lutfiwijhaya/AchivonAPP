@@ -13,18 +13,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -40,15 +33,9 @@ import javax.swing.JOptionPane;
 //import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import jnafilechooser.api.JnaFileChooser;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 
 /**
@@ -56,13 +43,10 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
  * @author hi
  */
 public class AllocationAnnouncement extends MasterForm {
-    DefaultTableModel myModel3;
     public static Connection koneksi;
     public static Statement stm;
     public static ResultSet rs;
     String mail;
-    List list = new ArrayList<>();
-    private String [][] dataArray;
     public AllocationAnnouncement() {
         initComponents();
         openDB();
@@ -71,9 +55,6 @@ public class AllocationAnnouncement extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
         addtext();
     }
-//    public static void refresh(){
-//        addtext
-//    }
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -103,7 +84,7 @@ public class AllocationAnnouncement extends MasterForm {
     private void initComponents() {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -227,11 +208,6 @@ public class AllocationAnnouncement extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-//        SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
-//        String tanggal = String.valueOf(fm.format(t_tgl.getDate()));
-
-//        String tanggal1 = t_tgl.getText();
-//           addtext();
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("SELECT * FROM employee WHERE id =" +CustomResource.EmployeeSession.getKTPAllocation()+ "");
@@ -252,16 +228,6 @@ public class AllocationAnnouncement extends MasterForm {
         rowData[5] = t_tgl.getText();
         rowData[6] = mail;
         dataModel.addRow(rowData);
-        
-//        jTable1.setAutoCreateColumnsFromModel(true);
-//        list.add(textName.getText());
-//        list.add(textDiscipline.getText());
-//        list.add(textPosition.getText());
-//        list.add(textDescription.getText());
-//        list.add(textJoinDate.getText());
-//        list.add(tanggal1);
-//        dataModel.addRow(list.toArray());
-        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -286,11 +252,9 @@ public class AllocationAnnouncement extends MasterForm {
             if (jTable1.getValueAt(i, 0) == null) {
             }else{
                 String dtabel_desc = jTable1.getValueAt(i, 3).toString();
-                // Informasi akun Gmail
                 final String username = "yourmurti@gmail.com";
                 final String password = "ordaawiiidswfwww";
 
-                // Membuat sesi dengan autentikasi
                 Session session = Session.getInstance(props,
                     new javax.mail.Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
@@ -299,7 +263,6 @@ public class AllocationAnnouncement extends MasterForm {
                     }
                 );
                 try {
-                    // Membuat pesan email
                     for ( i = 0; i <= htabelfamily - 1; i++) {
                         try {
                             String templateFilePath = "src/Doc/Allocation Announcement1.xlsx";
@@ -334,32 +297,7 @@ public class AllocationAnnouncement extends MasterForm {
                         }
                         
                         String filePath = "src/Doc/Allocation Announcement.xlsx";
-                    
-//                        XWPFDocument document = new XWPFDocument();
-//                        Workbook workbook = new XSSFWorkbook(filePath);
-//                        Sheet sheet = workbook.getSheetAt(0);
-//                        XWPFParagraph paragraph = document.createParagraph();
-//                        for (Row row : sheet) {
-//                            for (Cell cell : row) {
-//                                // Get cell value and append it to the Word document
-//                                String cellValue = cell.toString();
-//                                XWPFRun run = paragraph.createRun();
-//                                run.setText(cellValue);
-//                                run.addBreak();
-//                            }
-//                        }
-//                        String outputFilePath = "src/Doc/Allocation Announcement1.docx";
-//                        File outputFile = new File(outputFilePath);
-//                        if (outputFile.exists()) {
-//                            outputFile.delete();
-//                            System.out.println("terhapus");
-//                        }
-//                        FileOutputStream outputStream = new FileOutputStream(outputFile);
-//                        document.write(outputStream);
-//                        document.close();
-//                        outputStream.close();
-//                        workbook.close();
-
+                        
                         Message message = new MimeMessage(session);
                         message.setFrom(new InternetAddress(username));
                         message.setRecipients(Message.RecipientType.TO,

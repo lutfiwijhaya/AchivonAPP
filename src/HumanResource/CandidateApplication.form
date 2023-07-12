@@ -454,7 +454,7 @@
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane25">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new raven.scroll.win11.ScrollPaneWin11()"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new scroolbarWin11.ScrollPaneWin11()"/>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
               <Constraints>
@@ -494,7 +494,7 @@
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane26">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new raven.scroll.win11.ScrollPaneWin11()"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new scroolbarWin11.ScrollPaneWin11()"/>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
               <Constraints>

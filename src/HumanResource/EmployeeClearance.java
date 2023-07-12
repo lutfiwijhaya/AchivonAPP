@@ -445,7 +445,7 @@ public class EmployeeClearance extends MasterForm{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -457,7 +457,7 @@ public class EmployeeClearance extends MasterForm{
         jLabel21 = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
-        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         jTable5 = new javax.swing.JTable();
         jLabel40 = new javax.swing.JLabel();
         signTeamPred = new javax.swing.JLabel();
