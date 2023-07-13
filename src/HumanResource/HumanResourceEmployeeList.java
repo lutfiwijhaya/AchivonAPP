@@ -6,7 +6,6 @@ package HumanResource;
 
 import CustomResource.MySession;
 import CustomResource.koneksi;
-import ProcurementSystem.po_rfq;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;

@@ -50,7 +50,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         MyWindow();
         openDB();
         setTable();
-        setcombo();
+//        setcombo();s
         jLabel2.setVisible(false);
         jLabel47.setVisible(false);
         jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
@@ -71,7 +71,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     
-
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -81,17 +80,17 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         }
     }
 
-    private void setcombo() {
-        try {
-            stm = koneksi.createStatement();
-            rs = stm.executeQuery("select * from cd_employee");
-            while (rs.next()) {
-                comboCDEmployeeID.addItem(rs.getString("Nama")+"|"+rs.getString("KTP"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private void setcombo() {
+//        try {
+//            stm = koneksi.createStatement();
+//            rs = stm.executeQuery("select * from cd_employee");
+//            while (rs.next()) {
+//                comboCDEmployeeID.addItem(rs.getString("Nama")+"|"+rs.getString("KTP"));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,9 +121,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         jTable5 = new javax.swing.JTable();
         jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        comboCDEmployeeID = new CustomResource.ComboBoxSuggestion();
         jLabel2 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jScrollPane7 = new scroolbarWin11.ScrollPaneWin11();
@@ -333,17 +330,15 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jLabel39.setText("E. Initial Hired Status");
         jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1010, -1, -1));
 
-        jLabel40.setText("Input Candidate Employee");
-        jPanel1.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, -1, 30));
-
-        jToggleButton1.setText("Add/tambah");
+        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jToggleButton1.setForeground(new java.awt.Color(51, 51, 255));
+        jToggleButton1.setText("Select Employee / Pilih Karyawan");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 73, -1, 30));
-        jPanel1.add(comboCDEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 220, -1));
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, 30));
 
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
@@ -799,41 +794,41 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         String KTPNumber, IdCDEmployee;
-        String[] parts = comboCDEmployeeID.getSelectedItem().toString().split("\\|"); // Escape the "|" character using "\\|"
-        if (parts.length > 1) {
-            String NumberParts = parts[1];
-            KTPNumber = NumberParts;
-        } else {
-            KTPNumber = "";
-            JOptionPane.showMessageDialog(this, "Maaf, ID Tidak ditemukan\nSorry, ID not Found");
-        }
-
-        try {
-            stm = koneksi.createStatement();
-            rs = stm.executeQuery("select * from cd_employee where KTP = "+KTPNumber+"");
-            while (rs.next()) {
-                jLabel2.setText(rs.getString("id_employee"));
-                CandidateSallary.setText(rs.getString("Nama"));
-                CandidateGender.setText(rs.getString("sex"));
-                CandidateBirthday.setText(rs.getString("birthday"));
-                CandidateKTP.setText(rs.getString("KTP"));
-                CandidatePhoneNumber.setText(rs.getString("No_HP"));
-                CandidateSallary.setText(rs.getString("D_Salary"));
-                CandidateDiscipline.setText(rs.getString("discipline"));
-                CandidatePosition.setText(rs.getString("marital"));
-                CandidateEmail.setText(rs.getString("email"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String dateString = CandidateBirthday.getText();
-        LocalDate birthDate = LocalDate.parse(dateString);
-        LocalDate currentDate = LocalDate.now();
-
-        Period period = Period.between(birthDate, currentDate);
-        int age = period.getYears();
-        CandidateGender.setText(Integer.toString(age));
+//        String[] parts = comboCDEmployeeID.getSelectedItem().toString().split("\\|"); // Escape the "|" character using "\\|"
+//        if (parts.length > 1) {
+//            String NumberParts = parts[1];
+//            KTPNumber = NumberParts;
+//        } else {
+//            KTPNumber = "";
+//            JOptionPane.showMessageDialog(this, "Maaf, ID Tidak ditemukan\nSorry, ID not Found");
+//        }
+//
+//        try {
+//            stm = koneksi.createStatement();
+//            rs = stm.executeQuery("select * from cd_employee where KTP = "+KTPNumber+"");
+//            while (rs.next()) {
+//                jLabel2.setText(rs.getString("id_employee"));
+//                CandidateSallary.setText(rs.getString("Nama"));
+//                CandidateGender.setText(rs.getString("sex"));
+//                CandidateBirthday.setText(rs.getString("birthday"));
+//                CandidateKTP.setText(rs.getString("KTP"));
+//                CandidatePhoneNumber.setText(rs.getString("No_HP"));
+//                CandidateSallary.setText(rs.getString("D_Salary"));
+//                CandidateDiscipline.setText(rs.getString("discipline"));
+//                CandidatePosition.setText(rs.getString("marital"));
+//                CandidateEmail.setText(rs.getString("email"));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        String dateString = CandidateBirthday.getText();
+//        LocalDate birthDate = LocalDate.parse(dateString);
+//        LocalDate currentDate = LocalDate.now();
+//
+//        Period period = Period.between(birthDate, currentDate);
+//        int age = period.getYears();
+//        CandidateGender.setText(Integer.toString(age));
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void CandidateGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateGenderActionPerformed
@@ -949,7 +944,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private CustomResource.CustomTextfield TypeHired;
     private CustomResource.CustomTextfield WorkLocation;
     private CustomResource.RadioButtonCustom all;
-    private CustomResource.ComboBoxSuggestion comboCDEmployeeID;
     private com.raven.datechooser.DateChooser dateChooser1;
     private javax.swing.ButtonGroup groupSallary;
     private CustomResource.RadioButtonCustom hour;
@@ -968,7 +962,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
