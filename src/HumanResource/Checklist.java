@@ -13,6 +13,11 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import CustomResource.koneksi;
+import static HumanResource.AllocationAnnouncement.textDescription;
+import static HumanResource.AllocationAnnouncement.textDiscipline;
+import static HumanResource.AllocationAnnouncement.textJoinDate;
+import static HumanResource.AllocationAnnouncement.textName;
+import static HumanResource.AllocationAnnouncement.textPosition;
 import Main.MasterForm;
 import com.toedter.calendar.JCalendar;
 import java.awt.Dimension;
@@ -68,6 +73,19 @@ public class Checklist extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
+    
+    private void track(){
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("SELECT * FROM employee WHERE id =" +CustomResource.EmployeeSession.getKTPAllocation()+ "");
+            while (rs.next()) {
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
