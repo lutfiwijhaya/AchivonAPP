@@ -6,7 +6,6 @@ package HumanResource;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -56,41 +55,10 @@ public class RequestAllocationList extends MasterForm {
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
     }
-    void  settable (){
+    private void  settable (){
         String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal  / Resignation Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
-//        actiontable event = new actiontable() {
-//            @Override
-//            public void lihat(int row) {
-//                try {
-//                    String tnama = (String) MyTable.getValueAt(row, 1);
-//                    String email = (String) MyTable.getValueAt(row, 5);
-//                    id = (String) MyTable.getValueAt(row, 0);
-//                    Class.forName("com.mysql.jdbc.Driver");
-//
-//                    Connection kon =DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-//                    File O = new File("C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\cdemployee.jrxml");
-//                    jasperdesign = JRXmlLoader.load(O);
-//                    param.clear();
-//                    jasperreport = JasperCompileManager.compileReport(jasperdesign);
-//                    param.put("id",id);
-//                    jasperprint = JasperFillManager.fillReport(jasperreport, param, kon);
-//                    JasperViewer.viewReport(jasperprint, false);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            @Override
-//            public void tambah(int row) {
-//                System.out.println("tambah");
-//            }
-//            @Override
-//            public void hapus(int row) {
-//                System.out.println("hapus");
-//            }
-//        };
-//        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
         MyTable.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
         MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -101,10 +69,7 @@ public class RequestAllocationList extends MasterForm {
         MyTable.getColumnModel().getColumn(6).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(7).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(8).setPreferredWidth(170);
-        
-//        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
-        
-//        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
+           
     }
     
     private void openDB() {
@@ -125,7 +90,7 @@ public class RequestAllocationList extends MasterForm {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         MyTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();

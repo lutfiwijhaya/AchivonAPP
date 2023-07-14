@@ -15,29 +15,22 @@ import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
  * @author USER
  */
 public class AplicationRehabilitation extends MasterForm {
-    Statement stm;
-    ResultSet rs;
-    ResultSet rsf;
     Connection koneksi;
     public AplicationRehabilitation() {
         initComponents();
@@ -50,7 +43,6 @@ public class AplicationRehabilitation extends MasterForm {
         dateNow.setVisible(false);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         
-          
     }
     private void openDB() {
         try {
@@ -72,7 +64,7 @@ public class AplicationRehabilitation extends MasterForm {
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
         dateChooser3 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -84,10 +76,10 @@ public class AplicationRehabilitation extends MasterForm {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         stateRehab = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
-        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane6 = new scroolbarWin11.ScrollPaneWin11();
         docRehab = new javax.swing.JTextArea();
         jLabel20 = new javax.swing.JLabel();
         SendButton = new javax.swing.JButton();
@@ -464,7 +456,6 @@ public class AplicationRehabilitation extends MasterForm {
             try {
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -483,10 +474,8 @@ public class AplicationRehabilitation extends MasterForm {
     private void signHRMGRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signHRMGRMouseClicked
         if ("2".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -507,10 +496,8 @@ public class AplicationRehabilitation extends MasterForm {
     private void signHRRevdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signHRRevdMouseClicked
         if ("2".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -531,10 +518,8 @@ public class AplicationRehabilitation extends MasterForm {
     private void signTeamMGRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamMGRMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -555,7 +540,6 @@ public class AplicationRehabilitation extends MasterForm {
     private void signTeamRevdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamRevdMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
                 if (rs.next()) {
@@ -578,10 +562,8 @@ public class AplicationRehabilitation extends MasterForm {
     private void signTeamRecdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamRecdMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
@@ -602,7 +584,6 @@ public class AplicationRehabilitation extends MasterForm {
     private void signTeamPredMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTeamPredMouseClicked
         if ("3".equals(MySession.get_Role())) {
             try {
-                
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
                 if (rs.next()) {
@@ -627,13 +608,10 @@ public class AplicationRehabilitation extends MasterForm {
     }//GEN-LAST:event_dateLeaveActionPerformed
 
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
-       
         PreparedStatement stmt = null;
-        
         try {
             String sql = "INSERT INTO employee_rehabilitation (karyawan_id, team_pred, team_recd, team_revd, team_mgr, hr_revd, hr_mgr, president, date_join , date_leave, date_rehab, statement_rehab, document_rehab, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmt = koneksi.prepareStatement(sql);
-            // Mengisi nilai parameter
             stmt.setString(1, MySession.get_karyawanID());
             stmt.setString(2, "0");
             stmt.setString(3, "0");
@@ -648,7 +626,6 @@ public class AplicationRehabilitation extends MasterForm {
             stmt.setString(12, stateRehab.getText());
             stmt.setString(13, docRehab.getText());
             stmt.setString(14, dateNow.getText());
-            // Mengeksekusi perintah SQL
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Berhasil mengajukan Rehabilitasi \nSucceed requesting rehabilitation" );
             
@@ -686,25 +663,10 @@ public class AplicationRehabilitation extends MasterForm {
             signTeamPred.setVisible(true);
             labelNameTeamPred.setVisible(true);
             fresh();
-//            Menampilkan jumlah baris yang terpengaruh
-//            int rowsAffected = stmt.executeUpdate();
-//            System.out.println("Jumlah baris yang terpengaruh: " + rowsAffected);
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Gagal mengajukan Rehabilitasi \nFailed requesting rehabilitation" );
         } finally {
-            // Menutup objek PreparedStatement dan Connection
-//            try {
-//                if (stmt != null) {
-//                    stmt.close();
-//                }
-//                
-//                if (koneksi != null) {
-//                    koneksi.close();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
         }
     }//GEN-LAST:event_SendButtonActionPerformed
 
@@ -784,10 +746,6 @@ public class AplicationRehabilitation extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     @Override
@@ -814,141 +772,135 @@ public class AplicationRehabilitation extends MasterForm {
         idPresiden.setVisible(false);
         
         try {
-                Statement stmt = koneksi.createStatement();
-                ResultSet rs = stmt.executeQuery("select * from employee_rehabilitation where karyawan_id = '"+MySession.get_karyawanID()+"'");
-                if (rs.next()) {
-                    dateJoin.setText(rs.getString(10));
-                    dateLeave.setText(rs.getString(11));
-                    dateRehab.setText(rs.getString(12));
-                    stateRehab.setText(rs.getString(13));
-                    docRehab.setText(rs.getString(14));
+            Statement stmt = koneksi.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from employee_rehabilitation where karyawan_id = '"+MySession.get_karyawanID()+"'");
+            if (rs.next()) {
+                dateJoin.setText(rs.getString(10));
+                dateLeave.setText(rs.getString(11));
+                dateRehab.setText(rs.getString(12));
+                stateRehab.setText(rs.getString(13));
+                docRehab.setText(rs.getString(14));
                     
-                    SendButton.setVisible(false);
-                    idTeamPred.setText(rs.getString(3));
-                    idTeamRecd.setText(rs.getString(4));
-                    idTeamRevd.setText(rs.getString(5));
-                    idTeamMGR.setText(rs.getString(6));
-                    idHRRevd.setText(rs.getString(7));
-                    idHRMGR.setText(rs.getString(8));
-                    idPresiden.setText(rs.getString(9));
+                SendButton.setVisible(false);
+                idTeamPred.setText(rs.getString(3));
+                idTeamRecd.setText(rs.getString(4));
+                idTeamRevd.setText(rs.getString(5));
+                idTeamMGR.setText(rs.getString(6));
+                idHRRevd.setText(rs.getString(7));
+                idHRMGR.setText(rs.getString(8));
+                idPresiden.setText(rs.getString(9));
                     
-                    if (idTeamPred != null) {
-                        signTeamPred.setText(null);
-                        try {
-                            Statement stmt11 = koneksi.createStatement();
-                            ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+idTeamPred.getText()+"'");
-                            if (rs11.next()) {
-                                labelNameTeamPred.setText(rs11.getString(4));
-                            }
-                        } catch (Exception e) {
+                if (idTeamPred != null) {
+                    signTeamPred.setText(null);
+                    try {
+                        Statement stmt11 = koneksi.createStatement();
+                        ResultSet rs11 = stmt11.executeQuery("select * from employee where karyawan_id = '"+idTeamPred.getText()+"'");
+                        if (rs11.next()) {
+                            labelNameTeamPred.setText(rs11.getString(4));
                         }
-                        try {
-                            Statement stmt1 = koneksi.createStatement();
-                            ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+idTeamPred.getText()+"'");
-                            if (rs1.next()) {
-                                byte[] imageData = rs1.getBytes("scan");
-                                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-                                BufferedImage bImage = ImageIO.read(bis);
-                                ImageIcon Myicon = new ImageIcon(bImage);
-                                signTeamPred.addComponentListener(new ComponentAdapter() {
-                                @Override
-                                public void componentResized(ComponentEvent e) {
-                                    int width = signTeamPred.getWidth();
-                                    int height = signTeamPred.getHeight();
-                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-                                    signTeamPred.setIcon(new ImageIcon(imageResize));
-                                }
-                            });
-                            }else{
-
-                            }
-                        } catch (Exception e) {
-                        }
+                    } catch (Exception e) {
                     }
-                    if (idTeamRecd != null) {
-                        signTeamRecd.setText(null);
-                        try {
-                            Statement stmt21 = koneksi.createStatement();
-                            ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+idTeamRecd.getText()+"'");
-                            if (rs21.next()) {
-                                labelNameTeamRecd.setText(rs21.getString(4));
-                            }
-                        } catch (Exception e) {
+                    try {
+                        Statement stmt1 = koneksi.createStatement();
+                        ResultSet rs1 = stmt1.executeQuery("select * from signature where karyawan_id = '"+idTeamPred.getText()+"'");
+                        if (rs1.next()) {
+                            byte[] imageData = rs1.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signTeamPred.addComponentListener(new ComponentAdapter() {
+                            @Override
+                            public void componentResized(ComponentEvent e) {
+                                int width = signTeamPred.getWidth();
+                                int height = signTeamPred.getHeight();
+                                Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                signTeamPred.setIcon(new ImageIcon(imageResize));
+                            }});
+                        }else{
                         }
-                        try {
-                            Statement stmt2 = koneksi.createStatement();
-                            ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+idTeamRecd.getText()+"'");
-                            if (rs2.next()) {
-                                byte[] imageData = rs2.getBytes("scan");
-                                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-                                BufferedImage bImage = ImageIO.read(bis);
-                                ImageIcon Myicon = new ImageIcon(bImage);signTeamRecd.addComponentListener(new ComponentAdapter() {
-                                @Override
-                                public void componentResized(ComponentEvent e) {
-                                    int width = signTeamRecd.getWidth();
-                                    int height = signTeamRecd.getHeight();
-                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-                                    signTeamRecd.setIcon(new ImageIcon(imageResize));
-                                }
-                            });
-                            }else{
-
-                            }
-                        } catch (Exception e) {
-                        }
+                    } catch (Exception e) {
                     }
-                    if (idTeamRevd != null) {
-                        signTeamRevd.setText(null);
-                        try {
-                            Statement stmt31 = koneksi.createStatement();
-                            ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+idTeamRevd.getText()+"'");
-                            if (rs31.next()) {
-                                labelNameTeamRevd.setText(rs31.getString(4));
-                            }
-                        } catch (Exception e) {
+                }
+                if (idTeamRecd != null) {
+                    signTeamRecd.setText(null);
+                    try {
+                        Statement stmt21 = koneksi.createStatement();
+                        ResultSet rs21 = stmt21.executeQuery("select * from employee where karyawan_id = '"+idTeamRecd.getText()+"'");
+                        if (rs21.next()) {
+                            labelNameTeamRecd.setText(rs21.getString(4));
                         }
-                        try {
-                            Statement stmt3 = koneksi.createStatement();
-                            ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+idTeamRevd.getText()+"'");
-                            if (rs3.next()) {
-                                byte[] imageData = rs3.getBytes("scan");
-                                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-                                BufferedImage bImage = ImageIO.read(bis);
-                                ImageIcon Myicon = new ImageIcon(bImage);
-                                signTeamRevd.addComponentListener(new ComponentAdapter() {
-                                @Override
-                                public void componentResized(ComponentEvent e) {
-                                    int width = signTeamRevd.getWidth();
-                                    int height = signTeamRevd.getHeight();
-                                    Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-                                    signTeamRevd.setIcon(new ImageIcon(imageResize));
-                                }
-                            });
-                            }else{
-
-                            }
-                        } catch (Exception e) {
-                        }
+                    } catch (Exception e) {
                     }
-                    if (idTeamMGR != null) {
-                        signTeamMGR.setText(null);
-                        try {
-                            Statement stmt41 = koneksi.createStatement();
-                            ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
-                            if (rs41.next()) {
-                                labelNameTeamMGR.setText(rs41.getString(4));
-                            }
-                        } catch (Exception e) {
+                    try {
+                        Statement stmt2 = koneksi.createStatement();
+                        ResultSet rs2 = stmt2.executeQuery("select * from signature where karyawan_id = '"+idTeamRecd.getText()+"'");
+                        if (rs2.next()) {
+                            byte[] imageData = rs2.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);signTeamRecd.addComponentListener(new ComponentAdapter() {
+                            @Override
+                            public void componentResized(ComponentEvent e) {
+                                int width = signTeamRecd.getWidth();
+                                int height = signTeamRecd.getHeight();
+                                Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                signTeamRecd.setIcon(new ImageIcon(imageResize));
+                            }});
+                        }else{
                         }
-                        try {
-                            Statement stmt4 = koneksi.createStatement();
-                            ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
-                            if (rs4.next()) {
-                                byte[] imageData = rs4.getBytes("scan");
-                                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-                                BufferedImage bImage = ImageIO.read(bis);
-                                ImageIcon Myicon = new ImageIcon(bImage);
-                                signTeamMGR.addComponentListener(new ComponentAdapter() {
+                    } catch (Exception e) {
+                    }
+                }
+                if (idTeamRevd != null) {
+                    signTeamRevd.setText(null);
+                    try {
+                        Statement stmt31 = koneksi.createStatement();
+                        ResultSet rs31 = stmt31.executeQuery("select * from employee where karyawan_id = '"+idTeamRevd.getText()+"'");
+                        if (rs31.next()) {
+                            labelNameTeamRevd.setText(rs31.getString(4));
+                        }
+                    } catch (Exception e) {
+                    }
+                    try {
+                        Statement stmt3 = koneksi.createStatement();
+                        ResultSet rs3 = stmt3.executeQuery("select * from signature where karyawan_id = '"+idTeamRevd.getText()+"'");
+                        if (rs3.next()) {
+                            byte[] imageData = rs3.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signTeamRevd.addComponentListener(new ComponentAdapter() {
+                            @Override
+                            public void componentResized(ComponentEvent e) {
+                                int width = signTeamRevd.getWidth();
+                                int height = signTeamRevd.getHeight();
+                                Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                signTeamRevd.setIcon(new ImageIcon(imageResize));
+                            }});
+                        }else{
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                if (idTeamMGR != null) {
+                    signTeamMGR.setText(null);
+                    try {
+                        Statement stmt41 = koneksi.createStatement();
+                        ResultSet rs41 = stmt41.executeQuery("select * from employee where karyawan_id = '"+idTeamMGR.getText()+"'");
+                        if (rs41.next()) {
+                            labelNameTeamMGR.setText(rs41.getString(4));
+                        }
+                    } catch (Exception e) {
+                    }
+                    try {
+                        Statement stmt4 = koneksi.createStatement();
+                        ResultSet rs4 = stmt4.executeQuery("select * from signature where karyawan_id = '"+idTeamMGR.getText()+"'");
+                        if (rs4.next()) {
+                            byte[] imageData = rs4.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signTeamMGR.addComponentListener(new ComponentAdapter() {
                                 @Override
                                 public void componentResized(ComponentEvent e) {
                                     int width = signTeamMGR.getWidth();
@@ -957,31 +909,30 @@ public class AplicationRehabilitation extends MasterForm {
                                     signTeamMGR.setIcon(new ImageIcon(imageResize));
                                 }
                             });
-                            }else{
-
-                            }
-                        } catch (Exception e) {
+                        }else{
                         }
+                    } catch (Exception e) {
                     }
-                    if (idHRRevd != null) {
-                        signHRRevd.setText(null);
-                        try {
-                            Statement stmt51 = koneksi.createStatement();
-                            ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
-                            if (rs51.next()) {
-                                labelNameHRRevd.setText(rs51.getString(4));
-                            }
-                        } catch (Exception e) {
+                }
+                if (idHRRevd != null) {
+                    signHRRevd.setText(null);
+                    try {
+                        Statement stmt51 = koneksi.createStatement();
+                        ResultSet rs51 = stmt51.executeQuery("select * from employee where karyawan_id = '"+idHRRevd.getText()+"'");
+                        if (rs51.next()) {
+                            labelNameHRRevd.setText(rs51.getString(4));
                         }
-                        try {
-                            Statement stmt5 = koneksi.createStatement();
-                            ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
-                            if (rs5.next()) {
-                                byte[] imageData = rs5.getBytes("scan");
-                                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-                                BufferedImage bImage = ImageIO.read(bis);
-                                ImageIcon Myicon = new ImageIcon(bImage);
-                                signHRRevd.addComponentListener(new ComponentAdapter() {
+                    } catch (Exception e) {
+                    }
+                    try {
+                        Statement stmt5 = koneksi.createStatement();
+                        ResultSet rs5 = stmt5.executeQuery("select * from signature where karyawan_id = '"+idHRRevd.getText()+"'");
+                        if (rs5.next()) {
+                            byte[] imageData = rs5.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signHRRevd.addComponentListener(new ComponentAdapter() {
                                 @Override
                                 public void componentResized(ComponentEvent e) {
                                     int width = signHRRevd.getWidth();
@@ -990,31 +941,30 @@ public class AplicationRehabilitation extends MasterForm {
                                     signHRRevd.setIcon(new ImageIcon(imageResize));
                                 }
                             });
-                            }else{
-
-                            }
-                        } catch (Exception e) {
+                        }else{
                         }
+                    } catch (Exception e) {
                     }
-                    if (idHRMGR != null) {
-                        signHRMGR.setText(null);
-                        try {
-                            Statement stmt61 = koneksi.createStatement();
-                            ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
-                            if (rs61.next()) {
-                                labelNameHRMGR.setText(rs61.getString(4));
-                            }
-                        } catch (Exception e) {
+                }
+                if (idHRMGR != null) {
+                    signHRMGR.setText(null);
+                    try {
+                        Statement stmt61 = koneksi.createStatement();
+                        ResultSet rs61 = stmt61.executeQuery("select * from employee where karyawan_id = '"+idHRMGR.getText()+"'");
+                        if (rs61.next()) {
+                            labelNameHRMGR.setText(rs61.getString(4));
                         }
-                        try {
-                            Statement stmt6 = koneksi.createStatement();
-                            ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
-                            if (rs6.next()) {
-                                byte[] imageData = rs6.getBytes("scan");
-                                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-                                BufferedImage bImage = ImageIO.read(bis);
-                                ImageIcon Myicon = new ImageIcon(bImage);
-                                signHRMGR.addComponentListener(new ComponentAdapter() {
+                    } catch (Exception e) {
+                    }
+                    try {
+                        Statement stmt6 = koneksi.createStatement();
+                        ResultSet rs6 = stmt6.executeQuery("select * from signature where karyawan_id = '"+idHRMGR.getText()+"'");
+                        if (rs6.next()) {
+                            byte[] imageData = rs6.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signHRMGR.addComponentListener(new ComponentAdapter() {
                                 @Override
                                 public void componentResized(ComponentEvent e) {
                                     int width = signHRMGR.getWidth();
@@ -1023,83 +973,80 @@ public class AplicationRehabilitation extends MasterForm {
                                     signHRMGR.setIcon(new ImageIcon(imageResize));
                                 }
                             });
-                            }else{
-
-                            }
-                        } catch (Exception e) {
+                        }else{
                         }
+                    } catch (Exception e) {
                     }
-                    if (idPresiden != null) {
-                        signPresident.setText(null);
-                        try {
-                            Statement stmt71 = koneksi.createStatement();
-                            ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresiden.getText()+"'");
-                            if (rs71.next()) {
-                                labelNamePresident.setText(rs71.getString(4));
-                            }
-                        } catch (Exception e) {
-                        }
-                        try {
-                            Statement stmt7 = koneksi.createStatement();
-                            ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresiden.getText()+"'");
-                            if (rs7.next()) {
-                                byte[] imageData = rs7.getBytes("scan");
-                                ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
-                                BufferedImage bImage = ImageIO.read(bis);
-                                ImageIcon Myicon = new ImageIcon(bImage);
-                                signPresident.addComponentListener(new ComponentAdapter() {
-                                    @Override
-                                    public void componentResized(ComponentEvent e) {
-                                        int width = signPresident.getWidth();
-                                        int height = signPresident.getHeight();
-                                        Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-                                        signPresident.setIcon(new ImageIcon(imageResize));
-                                    }   
-                                });
-                            }else{
-
-                            }
-                        } catch (Exception e) {
-                        }
                     }
-                }else{
-                    labelNamePresident.setVisible(false);
-                    signPresident.setVisible(false);
-                    jLabel23.setVisible(false);
-
-                    jLabel22.setVisible(false);
-                    signHRRevd.setVisible(false);
-                    labelNameHRRevd.setVisible(false);
-
-                    jLabel27.setVisible(false);
-                    signHRMGR.setVisible(false);
-                    labelNameHRMGR.setVisible(false);
-                    jLabel26.setVisible(false);
-
-                    labelNamePresident.setVisible(false);
-                    signPresident.setVisible(false);
-                    jLabel19.setVisible(false);
-
-                    jLabel25.setVisible(false);
-                    jLabel30.setVisible(false);
-                    signTeamMGR.setVisible(false);
-                    labelNameTeamMGR.setVisible(false);
-
-                    jLabel35.setVisible(false);
-                    signTeamRevd.setVisible(false);
-                    labelNameTeamRevd.setVisible(false);
-
-                    jLabel37.setVisible(false);
-                    signTeamRecd.setVisible(false);
-                    labelNameTeamRecd.setVisible(false);
-
-                    jLabel40.setVisible(false);
-                    signTeamPred.setVisible(false);
-                    labelNameTeamPred.setVisible(false);
-                    
+                if (idPresiden != null) {
+                    signPresident.setText(null);
+                    try {
+                    Statement stmt71 = koneksi.createStatement();
+                    ResultSet rs71 = stmt71.executeQuery("select * from employee where karyawan_id = '"+idPresiden.getText()+"'");
+                        if (rs71.next()) {
+                            labelNamePresident.setText(rs71.getString(4));
+                        }
+                    } catch (Exception e) {
+                    }
+                    try {
+                        Statement stmt7 = koneksi.createStatement();
+                        ResultSet rs7 = stmt7.executeQuery("select * from signature where karyawan_id = '"+idPresiden.getText()+"'");
+                        if (rs7.next()) {
+                            byte[] imageData = rs7.getBytes("scan");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(imageData);
+                            BufferedImage bImage = ImageIO.read(bis);
+                            ImageIcon Myicon = new ImageIcon(bImage);
+                            signPresident.addComponentListener(new ComponentAdapter() {
+                                @Override
+                                public void componentResized(ComponentEvent e) {
+                                int width = signPresident.getWidth();
+                                int height = signPresident.getHeight();
+                                Image imageResize = Myicon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                                signPresident.setIcon(new ImageIcon(imageResize));
+                                }   
+                            });
+                        }else{
+                        }
+                    } catch (Exception e) {
+                    }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            }else{
+                labelNamePresident.setVisible(false);
+                signPresident.setVisible(false);
+                jLabel23.setVisible(false);
+
+                jLabel22.setVisible(false);
+                signHRRevd.setVisible(false);
+                labelNameHRRevd.setVisible(false);
+
+                jLabel27.setVisible(false);
+                signHRMGR.setVisible(false);
+                labelNameHRMGR.setVisible(false);
+                jLabel26.setVisible(false);
+
+                labelNamePresident.setVisible(false);
+                signPresident.setVisible(false);
+                jLabel19.setVisible(false);
+
+                jLabel25.setVisible(false);
+                jLabel30.setVisible(false);
+                signTeamMGR.setVisible(false);
+                labelNameTeamMGR.setVisible(false);
+
+                jLabel35.setVisible(false);
+                signTeamRevd.setVisible(false);
+                labelNameTeamRevd.setVisible(false);
+
+                jLabel37.setVisible(false);
+                signTeamRecd.setVisible(false);
+                labelNameTeamRecd.setVisible(false);
+
+                jLabel40.setVisible(false);
+                signTeamPred.setVisible(false);
+                labelNameTeamPred.setVisible(false);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

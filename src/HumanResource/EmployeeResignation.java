@@ -17,7 +17,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -328,7 +327,7 @@ public class EmployeeResignation extends MasterForm {
     private void initComponents() {
 
         date = new com.raven.datechooser.DateChooser();
-        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane6 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -341,7 +340,7 @@ public class EmployeeResignation extends MasterForm {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         textDesc = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -920,16 +919,6 @@ public class EmployeeResignation extends MasterForm {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Gagal menyimpan Data \nFailed saving data");
         } finally {
-//            try {
-//                if (myStmt != null) {
-//                    myStmt.close();
-//                }
-//                if (koneksi != null) {
-//                    koneksi.close();
-//                }
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
         }      
     }//GEN-LAST:event_SaveButtonActionPerformed
 
@@ -1004,9 +993,6 @@ public class EmployeeResignation extends MasterForm {
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
         
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
     
     private void index(){

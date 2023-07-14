@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
@@ -337,7 +336,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -372,9 +371,9 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         idHRRevd = new javax.swing.JLabel();
         idHRMGR = new javax.swing.JLabel();
         idPresiden = new javax.swing.JLabel();
-        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         textReason = new javax.swing.JTextArea();
-        jScrollPane7 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane7 = new scroolbarWin11.ScrollPaneWin11();
         textEvidance = new javax.swing.JTextArea();
         jLabel21 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -390,7 +389,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         jLabel53 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane6 = new scroolbarWin11.ScrollPaneWin11();
         jTable4 = new javax.swing.JTable();
         labelName = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
@@ -963,16 +962,6 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Gagal Menyimpan data \n Failed saving data");
         } finally {
-//            try {
-//                if (myStmt != null) {
-//                    myStmt.close();
-//                }
-//                if (koneksi != null) {
-//                    koneksi.close();
-//                }
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1053,10 +1042,6 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     @Override

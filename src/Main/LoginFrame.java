@@ -49,14 +49,14 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        textRepeatPassword = new CustomResource.PasswordField();
-        textPassword = new CustomResource.PasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        textRepeatPassword = new CustomResource.PasswordField();
+        textPassword = new CustomResource.PasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -98,7 +98,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Logo.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 200, 130));
 
-        textKaryawanid.setText(" -      ");
         try {
             textKaryawanid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("U-#-######")));
         } catch (java.text.ParseException ex) {
@@ -139,35 +138,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/password.png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, 50));
-
-        textRepeatPassword.setLabelText("Konfirmasi Password / Confirm Password");
-        textRepeatPassword.setShowAndHide(true);
-        textRepeatPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                textRepeatPasswordKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textRepeatPasswordKeyTyped(evt);
-            }
-        });
-        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 260, -1));
-
-        textPassword.setLabelText("Kata Sandi / Password");
-        textPassword.setShowAndHide(true);
-        textPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textPasswordActionPerformed(evt);
-            }
-        });
-        textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                textPasswordKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textPasswordKeyTyped(evt);
-            }
-        });
-        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 260, -1));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -245,6 +215,14 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, 60, 30));
+
+        textRepeatPassword.setLabelText("re-type password / ketik ulang password");
+        textRepeatPassword.setShowAndHide(true);
+        jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 260, 40));
+
+        textPassword.setLabelText("Password");
+        textPassword.setShowAndHide(true);
+        jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

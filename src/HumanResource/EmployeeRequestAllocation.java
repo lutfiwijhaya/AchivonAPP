@@ -16,11 +16,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
@@ -333,7 +331,7 @@ public class EmployeeRequestAllocation extends MasterForm {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -385,13 +383,13 @@ public class EmployeeRequestAllocation extends MasterForm {
         jLabel1 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane2 = new scroolbarWin11.ScrollPaneWin11();
         statement_employee = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane3 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane3 = new scroolbarWin11.ScrollPaneWin11();
         statement_manager = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
-        jScrollPane4 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane4 = new scroolbarWin11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -928,16 +926,6 @@ public class EmployeeRequestAllocation extends MasterForm {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Gagal menyimpan Data \nFailed saving data");
         } finally {
-//            try {
-//                if (myStmt != null) {
-//                    myStmt.close();
-//                }
-//                if (koneksi != null) {
-//                    koneksi.close();
-//                }
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
         }      
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1016,10 +1004,6 @@ public class EmployeeRequestAllocation extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     @Override

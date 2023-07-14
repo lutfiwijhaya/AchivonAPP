@@ -139,8 +139,8 @@ public class PasswordField extends JPasswordField {
             }
 
         };
-        eye = new ImageIcon(getClass().getResource("/CustomResource/eye.png")).getImage();
-        eye_hide = new ImageIcon(getClass().getResource("/CustomResource/eye_hide.png")).getImage();
+        eye = new ImageIcon(getClass().getResource("/Pictures/eye.png")).getImage();
+        eye_hide = new ImageIcon(getClass().getResource("/Pictures/eye_hide.png")).getImage();
         animator = new Animator(300, target);
         animator.setResolution(0);
         animator.setAcceleration(0.5f);
@@ -175,12 +175,10 @@ public class PasswordField extends JPasswordField {
         g2.fillRect(2, height - 1, width - 4, 1);
         createHintText(g2);
         createLineStyle(g2);
-       
-            if (showAndHide){
+        if (showAndHide){
             createShowHide(g2);
             
-            }   
-       
+        }
         g2.dispose();
     }
 

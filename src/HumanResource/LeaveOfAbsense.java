@@ -4,7 +4,6 @@
  */
 package HumanResource;
 
-
 import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
@@ -13,13 +12,11 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,10 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
 import javax.swing.JOptionPane;
-
-
 import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -78,7 +72,7 @@ public class LeaveOfAbsense extends MasterForm {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -88,18 +82,18 @@ public class LeaveOfAbsense extends MasterForm {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         textReason = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jScrollPane7 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane7 = new scroolbarWin11.ScrollPaneWin11();
         textEvidance = new javax.swing.JTextArea();
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane6 = new scroolbarWin11.ScrollPaneWin11();
         jTable4 = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -681,7 +675,6 @@ public class LeaveOfAbsense extends MasterForm {
         try {
             String sql = "INSERT INTO employee_absence (karyawan_id, team_pred, team_recd, team_revd, team_mgr, hr_revd, hr_mgr, president, date, date_from, date_to, reason, evidence, mobile_no, relative) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmt = koneksi.prepareStatement(sql);
-            // Mengisi nilai parameter
             stmt.setString(1, MySession.get_karyawanID());
             stmt.setString(2, "0");
             stmt.setString(3, "0");
@@ -697,12 +690,10 @@ public class LeaveOfAbsense extends MasterForm {
             stmt.setString(13, textEvidance.getText());
             stmt.setString(14, textMobile.getText());
             stmt.setString(15, textRelative.getText());
-            // Mengeksekusi perintah SQL
             stmt.executeUpdate();
             int jtabelrows = jTable4.getRowCount();
             for (int i = 0; i <= jtabelrows - 1; i++) {
                 if (jTable4.getValueAt(i, 0) == null || jTable4.getValueAt(i, 0).toString().isEmpty()) {
-                    // Skip this row if the first column is null or empty
                     continue;     
                 } else {
                     String dtabel_jobdes = jTable4.getValueAt(i, 0).toString();
@@ -717,9 +708,6 @@ public class LeaveOfAbsense extends MasterForm {
                 }
             }
             JOptionPane.showMessageDialog(null, "Berhasil mengajukan untuk meninggalkan absen \nSucceed requesting to leave of absence" );
-            // Menampilkan jumlah baris yang terpengaruh
-//            int rowsAffected = stmt.executeUpdate();
-//            System.out.println("Jumlah baris yang terpengaruh: " + rowsAffected);
             labelNamePresident.setVisible(true);
             signPresident.setVisible(true);
             jLabel43.setVisible(true);
@@ -754,19 +742,6 @@ public class LeaveOfAbsense extends MasterForm {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "Gagal mengajukan untuk meninggalkan absen \nFailed requesting to leave of absence" );
         } finally {
-            
-            // Menutup objek PreparedStatement dan Connection
-//            try {
-//                if (stmt != null) {
-//                    stmt.close();
-//                }
-//                
-//                if (koneksi != null) {
-//                    koneksi.close();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
         }
     }//GEN-LAST:event_SendButtonActionPerformed
 
@@ -846,16 +821,11 @@ public class LeaveOfAbsense extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
     private void fresh(){
         labelDiscipline.setText(MySession.get_JobPosition());
         labelName.setText(MySession.get_nama());
         labelPosition.setText(MySession.get_JobPosition());
-//        labelKTP.setText(MySession.get_ktp());
         labelHP.setText(MySession.get_mobileNumber());
         
         
@@ -873,8 +843,6 @@ public class LeaveOfAbsense extends MasterForm {
             ResultSet rs = stmt.executeQuery("select * from employee_absence where karyawan_id = '"+MySession.get_karyawanID()+"'");
             if (rs.next()) {
                 SendButton.setVisible(false);
-//                labelNameSign.setText(rs.getString(14));
-//                labelDateSign.setText(rs.getString(10));
                 
                 dateFrom.setText(rs.getString(11));
                 dateTo.setText(rs.getString(12));

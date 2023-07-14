@@ -8,20 +8,14 @@ import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -37,17 +31,19 @@ import javax.swing.JOptionPane;
 //import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
  * @author hi
  */
 public class AllocationAnnouncement extends MasterForm {
-    DefaultTableModel myModel3;
-    Connection koneksi;
-    Statement stm;
-    ResultSet rs;
+    public static Connection koneksi;
+    public static Statement stm;
+    public static ResultSet rs;
+    String mail;
     public AllocationAnnouncement() {
         initComponents();
         openDB();
@@ -64,17 +60,17 @@ public class AllocationAnnouncement extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
-    private void addtext() {
+    public static void addtext() {
+        
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("SELECT * FROM employee WHERE id =" +CustomResource.EmployeeSession.getKTPAllocation()+ "");
-
             while (rs.next()) {
-                
                 textName.setText(rs.getString("name"));
                 textPosition.setText(rs.getString("job_position"));
                 textDiscipline.setText(rs.getString("job_position"));
                 textJoinDate.setText(rs.getString("birthday"));
+                textDescription.setText("");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,7 +81,7 @@ public class AllocationAnnouncement extends MasterForm {
     private void initComponents() {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -101,7 +97,6 @@ public class AllocationAnnouncement extends MasterForm {
         jButton1 = new javax.swing.JButton();
 
         dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
-        dateChooser1.setDateFormat("dd-MMM-yyyy");
         dateChooser1.setTextRefernce(t_tgl);
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -114,10 +109,23 @@ public class AllocationAnnouncement extends MasterForm {
 
             },
             new String [] {
-                "Name", "Dicipline", "Position", "Description Allocation", "Initial Join Date", "Alocation Date"
+                "Name", "Dicipline", "Position", "Description Allocation", "Initial Join Date", "Alocation Date", "email"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(6).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(0);
+        }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 311, 804, 120));
 
@@ -180,6 +188,11 @@ public class AllocationAnnouncement extends MasterForm {
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 240, 130, 40));
 
         t_tgl.setLabelText("Tanggal Alokasi / Allocation Date");
+        t_tgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_tglActionPerformed(evt);
+            }
+        });
         add(t_tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, 170, -1));
 
         jButton1.setText("Ambil/Take Data Emoloyee");
@@ -192,20 +205,26 @@ public class AllocationAnnouncement extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        SimpleDateFormat fm = new SimpleDateFormat("dd-MMM-yyyy");
-//        String tanggal = String.valueOf(fm.format(t_tgl.getDate()));
-        String tanggal1 = t_tgl.getText();
-           
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("SELECT * FROM employee WHERE id =" +CustomResource.EmployeeSession.getKTPAllocation()+ "");
+            while (rs.next()) {
+                mail = rs.getString("email");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
-        List list = new ArrayList<>();
-        jTable1.setAutoCreateColumnsFromModel(true);
-        list.add(textName.getText());
-        list.add(textDiscipline.getText());
-        list.add(textPosition.getText());
-        list.add(textDescription.getText());
-        list.add(textJoinDate.getText());
-        list.add(tanggal1);
-        dataModel.addRow(list.toArray());
+        
+        String[] rowData = new String[7];
+        rowData[0] = textName.getText();
+        rowData[1] = textDiscipline.getText();
+        rowData[2] = textPosition.getText();
+        rowData[3] = textDescription.getText();
+        rowData[4] = textJoinDate.getText();
+        rowData[5] = t_tgl.getText();
+        rowData[6] = mail;
+        dataModel.addRow(rowData);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -230,11 +249,9 @@ public class AllocationAnnouncement extends MasterForm {
             if (jTable1.getValueAt(i, 0) == null) {
             }else{
                 String dtabel_desc = jTable1.getValueAt(i, 3).toString();
-                // Informasi akun Gmail
                 final String username = "yourmurti@gmail.com";
                 final String password = "ordaawiiidswfwww";
 
-                // Membuat sesi dengan autentikasi
                 Session session = Session.getInstance(props,
                     new javax.mail.Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
@@ -243,34 +260,64 @@ public class AllocationAnnouncement extends MasterForm {
                     }
                 );
                 try {
-                    // Membuat pesan email
-                    Message message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress(username));
-                    message.setRecipients(Message.RecipientType.TO,
-                            InternetAddress.parse("gganggawma@gmail.com"));
-                    message.setSubject(subject);
+                    for ( i = 0; i <= htabelfamily - 1; i++) {
+                        try {
+                            String templateFilePath = "src/Doc/Allocation Announcement1.xlsx";
+                            String outputFilePath = "src/Doc/Allocation Announcement.xlsx";
+                            
+                            File outputFile = new File(outputFilePath);
+                            if (outputFile.exists()) {
+                                outputFile.delete();
+                                System.out.println("terhapus");
+                            }
+                            
+                            FileInputStream templateFile = new FileInputStream(templateFilePath);
+                            Workbook workbook = new XSSFWorkbook(templateFile);
 
-                    // Membuat konten email
-                    MimeBodyPart messageBodyPart = new MimeBodyPart();
-                    messageBodyPart.setText("Hello, this is the content of the email!");
+                            Sheet sheet = workbook.getSheet("Sheet1");
 
-                    // Membuat attachment
-                    MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-                    String filePath = "src/Doc/Allocation Announcement.docx";
-                    attachmentBodyPart.attachFile(filePath);
-                    Multipart multipart = new MimeMultipart();
-                    multipart.addBodyPart(messageBodyPart);
-                    multipart.addBodyPart(attachmentBodyPart);
-                    message.setContent(multipart);
-                    Transport.send(message);
+                            sheet.getRow(9).getCell(0).setCellValue((String) tabelfamily.getValueAt(i, 0));
+                            sheet.getRow(9).getCell(2).setCellValue((String) tabelfamily.getValueAt(i, 1));
+                            sheet.getRow(9).getCell(3).setCellValue((String) tabelfamily.getValueAt(i, 2));
+                            sheet.getRow(9).getCell(4).setCellValue((String) tabelfamily.getValueAt(i, 3));
+                            sheet.getRow(9).getCell(6).setCellValue((String) tabelfamily.getValueAt(i, 4));
+                            sheet.getRow(9).getCell(8).setCellValue((String) tabelfamily.getValueAt(i, 5));
+
+                            templateFile.close();
+                            
+                            FileOutputStream outputStream = new FileOutputStream(outputFile);
+                            workbook.write(outputStream);
+                            workbook.close();
+                            outputStream.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        
+                        String filePath = "src/Doc/Allocation Announcement.xlsx";
+                        
+                        Message message = new MimeMessage(session);
+                        message.setFrom(new InternetAddress(username));
+                        message.setRecipients(Message.RecipientType.TO,
+                                InternetAddress.parse((String) tabelfamily.getValueAt(i, 6)));
+                        message.setSubject(subject);
+
+                        MimeBodyPart messageBodyPart = new MimeBodyPart();
+                        messageBodyPart.setText((String) tabelfamily.getValueAt(i, 3));
+
+                        MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+                        
+                        attachmentBodyPart.attachFile(filePath);
+                        Multipart multipart = new MimeMultipart();
+                        multipart.addBodyPart(messageBodyPart);
+                        multipart.addBodyPart(attachmentBodyPart);
+                        message.setContent(multipart);
+                        Transport.send(message);
+                    }
                     JOptionPane.showMessageDialog(this, "successfully sent message\nBerhasil Mengirim Pesan");
-//                    System.out.println("Email berhasil dikirim.");
                 } catch (MessagingException e) {
                     JOptionPane.showMessageDialog(this, "Failed to send message\nGagal mengirim Pesan");
-//                    e.printStackTrace();
                 } catch (IOException e) {
                     JOptionPane.showMessageDialog(this, "Sorry, Something went wrong\nMaaf, terjadi kesalahan");
-//                    e.printStackTrace();
                 }
             }
         }
@@ -278,8 +325,12 @@ public class AllocationAnnouncement extends MasterForm {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CustomResource.EmployeeSession.setsesiform("2");
-        new Employe_list().setVisible(true);
+        new HumanResourceEmployeeList().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void t_tglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_tglActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.datechooser.DateChooser dateChooser1;
@@ -291,12 +342,12 @@ public class AllocationAnnouncement extends MasterForm {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private CustomResource.CustomTextfield t_tgl;
-    private CustomResource.CustomTextfield textDescription;
-    private CustomResource.CustomTextfield textDiscipline;
-    private CustomResource.CustomTextfield textJoinDate;
-    private CustomResource.CustomTextfield textName;
-    private CustomResource.CustomTextfield textPosition;
+    public static CustomResource.CustomTextfield t_tgl;
+    public static CustomResource.CustomTextfield textDescription;
+    public static CustomResource.CustomTextfield textDiscipline;
+    public static CustomResource.CustomTextfield textJoinDate;
+    public static CustomResource.CustomTextfield textName;
+    public static CustomResource.CustomTextfield textPosition;
     // End of variables declaration//GEN-END:variables
     
     private void MyWindow(){

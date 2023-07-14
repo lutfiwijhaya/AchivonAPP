@@ -4,15 +4,12 @@
  */
 package HumanResource;
 
-import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-
 import CustomResource.EmployeeSession;
 import CustomResource.koneksi;
 import Main.MasterForm;
@@ -22,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -56,11 +52,10 @@ public class LeaveOfAbsenceList extends MasterForm {
         ((DefaultTableCellRenderer)MyTable.getTableHeader().getDefaultRenderer())
         .setHorizontalAlignment(JLabel.CENTER);
     }
-    void  settable (){
+    private void  settable (){
         String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal meninggalkan absem / Leave of Absence Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
-//        MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
         MyTable.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
         MyTable.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -71,10 +66,6 @@ public class LeaveOfAbsenceList extends MasterForm {
         MyTable.getColumnModel().getColumn(6).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(7).setPreferredWidth(170);
         MyTable.getColumnModel().getColumn(8).setPreferredWidth(170);
-        
-//        MyTable.getColumnModel().removeColumn(MyTable.getColumnModel().getColumn(10));
-        
-//        MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));     
     }
 
     private void openDB() {
@@ -86,16 +77,16 @@ public class LeaveOfAbsenceList extends MasterForm {
         }
     }
     
-void remove (){ 
-    
-}
+    private void remove (){ 
+
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane2 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         MyTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();

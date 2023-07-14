@@ -16,7 +16,6 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +23,6 @@ import java.text.SimpleDateFormat;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import Main.NewJPanel;
-import static com.lowagie.text.pdf.BidiOrder.R;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -37,7 +35,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -46,24 +43,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import javax.swing.table.DefaultTableModel;
-import jxl.biff.drawing.CheckBox;
 
 public class CandidateApplication extends MasterForm {
 
     Statement stm;
     ResultSet rs;
-    ResultSet rsf;
     Connection koneksi;
-    DefaultTableModel ImportDataExel;
     String crudimage = "";
     String da = null;
-    int id_employee;
     String tanggal;
     String sp = ", ";
     String full_curent;
     String full_home;
     int k = 0;
     String id_lamar;
+    int id_employee;
    
 
     /**
@@ -84,22 +78,16 @@ public class CandidateApplication extends MasterForm {
         homeCountry.setSelectedItem("Indonesia");
         curentCountry.setSelectedItem("Indonesia");
         c_job();
-
     }
 
     private DefaultTableModel getSubTableDataAcademic() {
         DefaultTableModel data = new DefaultTableModel();
-//        DefaultTableModel data1 = new DefaultTableModel();
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province", 100), new CustomResource.Header("Kota / City")});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
         data.addRow(new Object[]{"Banten", "Kota Serang"});
-//        data1.addRow(new Object[]{"Ban", "Kota "});
-//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
 
@@ -108,9 +96,6 @@ public class CandidateApplication extends MasterForm {
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("YA / YES", 100), new CustomResource.Header("TIDAK / NO")});
         data.addRow(new Object[]{"YA / YES", ""});
-//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
 
@@ -119,10 +104,6 @@ public class CandidateApplication extends MasterForm {
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("Provinsi / Province", 100), new CustomResource.Header("Kota / City")});
         data.addRow(new Object[]{"Jawa Timur", "Sragen"});
-//        data.addRow(new Object[]{"jawa Timur", "ngawi"});
-//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
 
@@ -131,13 +112,10 @@ public class CandidateApplication extends MasterForm {
         data.setColumnCount(2);
         data.addRow(new Object[]{new CustomResource.Header("Dari Tanggal / Start Date", 100), new CustomResource.Header("Sampai Tanggal / End Date")});
         data.addRow(new Object[]{"1-jan-1999", "1-jan-2000"});
-//        data.addRow(new Object[]{1, "Vital", "$ 70", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Fanta", "$ 20", getSubTableData1()});
-//        data.addRow(new Object[]{1, "Coca", getSubTableData1(), getSubTableData1()});
         return data;
     }
 
-    void tablec() {
+    private void tablec() {
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
         model2.addRow(new Object[]{"22-OKT-2022", "Universitas Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
         model2.addRow(new Object[]{"22-OKT-2022", "Serang Raya", getSubTableDataAcademic(), "Sistem Informasi"});
@@ -171,16 +149,6 @@ public class CandidateApplication extends MasterForm {
                 .setHorizontalAlignment(JLabel.CENTER);
 
     }
-
-//    private DefaultTableModel getSubTableData1() {
-//        DefaultTableModel data = new DefaultTableModel();
-//        data.setColumnCount(3);
-//        data.addRow(new Object[]{new CustomResource.Header("No", 10), new CustomResource.Header("Type"), new CustomResource.Header("Qty")});
-//        data.addRow(new Object[]{1, "Unit", "50"});
-//        data.addRow(new Object[]{1, "Case", "70"});
-//        data.addRow(new Object[]{1, "Box", "3"});
-//        return data;
-//    }
     private void openDB() {
         try {
             koneksi kon = new koneksi();
@@ -201,7 +169,7 @@ public class CandidateApplication extends MasterForm {
         homeCountry.setEnabled(true);
     }
 
-    void c_job(){
+    private void c_job(){
     try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM job_facancy");
             while (myRess.next()) {
@@ -250,8 +218,8 @@ public class CandidateApplication extends MasterForm {
                             + ",'" + dtabel_nama + "'"
                             + ",'" + dtabel_hub + "'"
                             + ",'" + dtabel_tgl + "'"
-                            + ",'" + dtabel_tinggal + "','" + dtabel_hp + "')";
-
+                            + ",'" + dtabel_tinggal + "','" + dtabel_hp + "')"
+                    ;
                     stm.executeUpdate(sql);
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
@@ -550,10 +518,10 @@ public class CandidateApplication extends MasterForm {
         jSeparator35 = new javax.swing.JSeparator();
         jLabel93 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jScrollPane25 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane25 = new scroolbarWin11.ScrollPaneWin11();
         t_halamat = new javax.swing.JTextArea();
         jLabel97 = new javax.swing.JLabel();
-        jScrollPane26 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane26 = new scroolbarWin11.ScrollPaneWin11();
         t_calamat = new javax.swing.JTextArea();
         jLabel101 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();
@@ -1501,29 +1469,25 @@ public class CandidateApplication extends MasterForm {
     }//GEN-LAST:event_t_npwpActionPerformed
 
     private void t_lamaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lamaranActionPerformed
-String l = "Pilih Disiplin/Chose Discipline";
+        String l = "Pilih Disiplin/Chose Discipline";
         t_lamaran1.removeAllItems();
-t_lamaran1.addItem(l);
-
-try {
+        t_lamaran1.addItem(l);
+        try {
             Statement stm = koneksi.createStatement();
-
             rs = stm.executeQuery("select*from job_facancy where name_job = '" + t_lamaran.getSelectedItem() + "'");
             while (rs.next()) {
                 id_lamar = rs.getString("id_job");
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM job_facancy_discipline where id_job = '"+id_lamar+"'");
             while (myRess.next()) {
                 t_lamaran1.addItem(myRess.getString("name_dicipline"));
             }
         } catch (SQLException ex) {
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_t_lamaranActionPerformed
 
     private void t_hpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_hpKeyReleased
@@ -1534,7 +1498,7 @@ try {
         char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
             evt.consume();
-        }  //        asd
+        }
     }//GEN-LAST:event_t_bpjsKesehatanKeyTyped
 
     private void t_ktpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_ktpKeyReleased
@@ -1562,180 +1526,181 @@ try {
                 JOptionPane.showMessageDialog(null, "Maximum Size (200kb)");
             }
 
-        }       // TODO add your handling code here:
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save teh data ?", "Option", JOptionPane.YES_NO_OPTION);
+        int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save teh data ?", "Option", JOptionPane.YES_NO_OPTION);
         if (respon == 0) {
-        t_pria.setActionCommand("Male");
-        t_wanita.setActionCommand("Female");
-        t_lajang.setActionCommand("Single");
-        t_menikah.setActionCommand("Married");
-       String t_dicipline = (String) t_lamaran1.getSelectedItem();
-       String t_job = (String) t_lamaran.getSelectedItem();
+            t_pria.setActionCommand("Male");
+            t_wanita.setActionCommand("Female");
+            t_lajang.setActionCommand("Single");
+            t_menikah.setActionCommand("Married");
+            String t_dicipline = (String) t_lamaran1.getSelectedItem();
+            String t_job = (String) t_lamaran.getSelectedItem();
 
-        if (t_gaji.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Estimasi Gaji Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_dicipline.equals("Pilih Disiplin/Chose Discipline")) {
-            JOptionPane.showMessageDialog(null, "Dicipline Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }else if (t_job.equals("Posisi Yang Dilamar /Job Applying")) {
-            JOptionPane.showMessageDialog(null, "Posisi Yang Di Lamar Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE); 
-        }else if (t_nama.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_ktp.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "KTP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_tlhir.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_hp.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Nomor HP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_email.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Email Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_hkec.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_ddesa.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Desa  Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_halamat.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Alamat Rumah Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_ckec.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_cdesa.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Desa Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_calamat.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Alamat Sekarang Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (radioGrupGender.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Jenis Kelamin Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (radioGrupStatus.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Status Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (t_tgl_personal.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (labelfoto.getIcon() == null) {
-            JOptionPane.showMessageDialog(null, "Foto Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else {
+            if (t_gaji.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Estimasi Gaji Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_dicipline.equals("Pilih Disiplin/Chose Discipline")) {
+                JOptionPane.showMessageDialog(null, "Dicipline Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            }else if (t_job.equals("Posisi Yang Dilamar /Job Applying")) {
+                JOptionPane.showMessageDialog(null, "Posisi Yang Di Lamar Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE); 
+            }else if (t_nama.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Nama Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_ktp.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "KTP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_tlhir.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Tempat Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_hp.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Nomor HP Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_email.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Email Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_hkec.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_ddesa.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Desa  Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_halamat.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Alamat Rumah Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_ckec.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Kecamatan Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_cdesa.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Desa Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_calamat.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Alamat Sekarang Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (radioGrupGender.getSelection() == null) {
+                JOptionPane.showMessageDialog(null, "Jenis Kelamin Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (radioGrupStatus.getSelection() == null) {
+                JOptionPane.showMessageDialog(null, "Status Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (t_tgl_personal.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Tanggal Lahir Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else if (labelfoto.getIcon() == null) {
+                JOptionPane.showMessageDialog(null, "Foto Tidak Boleh Kosong!!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else {
 
-            if (t_bpjsKesehatan.getText().equals("")) {
-                t_bpjsKesehatan.setText("0");
-            }
-            if (t_bpjsKetenagakerjaan.getText().equals("")) {
-                t_bpjsKetenagakerjaan.setText("0");
-            }
-
-            full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
-            full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + curentCountry.getSelectedItem();
-            try {
-                stm = koneksi.createStatement();
-                String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,bpjs_ket,Applying_A,D_Salary,discipline,cd_date_apply,approval) values('" + t_nama.getText() + "'"
-                        + ",'" + t_ktp.getText() + "'"
-                        + ",'" + t_email.getText() + "'"
-                        + ",'" + t_npwp.getText() + "'"
-                        + ",'" + radioGrupGender.getSelection().getActionCommand() + "'"
-                        + ",'" + t_tgl_personal.getText() + "'"
-                        + ",'" + t_tgl_personal.getText() + "'"
-                        + ",'" + radioGrupStatus.getSelection().getActionCommand() + "'"
-                        + ",'" + t_hp.getText() + "'"
-                        + ",'" + t_bpjsKesehatan.getText() + "'"
-                        + ",'" + t_bpjsKetenagakerjaan.getText() + "'"
-                        + ",'" + t_lamaran.getSelectedItem() + "'"
-                        + ",'" + t_gaji.getText() + "'"
-                        + ",'" + t_lamaran1.getSelectedItem() + "'"
-                        + ",'" + tanggal + "'"
-                        + ",'" + k + "')";
-
-                stm.executeUpdate(sql);
-
-                try {
-                    Statement stm = koneksi.createStatement();
-
-                    rs = stm.executeQuery("select*from cd_employee where KTP = " + t_ktp.getText() + "");
-                    while (rs.next()) {
-                        da = rs.getString("id_employee");
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (t_bpjsKesehatan.getText().equals("")) {
+                    t_bpjsKesehatan.setText("0");
+                }
+                if (t_bpjsKetenagakerjaan.getText().equals("")) {
+                    t_bpjsKetenagakerjaan.setText("0");
                 }
 
-                String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
-                        + ",'" + homeCountry.getSelectedItem() + "'"
-                        + ",'" + homeState.getSelectedItem() + "'"
-                        + ",'" + homeCity.getSelectedItem() + "'"
-                        + ",'" + t_hkec.getText() + "'"
-                        + ",'" + t_ddesa.getText() + "'"
-                        + ",'" + t_halamat.getText() + "'"
-                        + ",'" + curentCountry.getSelectedItem() + "'"
-                        + ",'" + cprov.getSelectedItem() + "'"
-                        + ",'" + ccity.getSelectedItem() + "'"
-                        + ",'" + t_ckec.getText() + "'"
-                        + ",'" + t_cdesa.getText() + "'"
-                        + ",'" + t_calamat.getText() + "'"
-                        + ",'" + full_home + "'"
-                        + ",'" + full_curent + "')";
+                full_home = t_halamat.getText() + sp + t_ddesa.getText() + sp + t_hkec.getText() + sp + homeCity.getSelectedItem() + sp + homeState.getSelectedItem() + sp + homeCountry.getSelectedItem();
+                full_curent = t_calamat.getText() + sp + t_cdesa.getText() + sp + t_ckec.getText() + sp + ccity.getSelectedItem() + sp + cprov.getSelectedItem() + sp + curentCountry.getSelectedItem();
+                try {
+                    stm = koneksi.createStatement();
+                    String sql = "insert into cd_employee (nama,KTP,email,NPWP,sex,b_place,birthday,marital,No_HP,BPJS,bpjs_ket,Applying_A,D_Salary,discipline,cd_date_apply,approval) values('" + t_nama.getText() + "'"
+                            + ",'" + t_ktp.getText() + "'"
+                            + ",'" + t_email.getText() + "'"
+                            + ",'" + t_npwp.getText() + "'"
+                            + ",'" + radioGrupGender.getSelection().getActionCommand() + "'"
+                            + ",'" + t_tgl_personal.getText() + "'"
+                            + ",'" + t_tgl_personal.getText() + "'"
+                            + ",'" + radioGrupStatus.getSelection().getActionCommand() + "'"
+                            + ",'" + t_hp.getText() + "'"
+                            + ",'" + t_bpjsKesehatan.getText() + "'"
+                            + ",'" + t_bpjsKetenagakerjaan.getText() + "'"
+                            + ",'" + t_lamaran.getSelectedItem() + "'"
+                            + ",'" + t_gaji.getText() + "'"
+                            + ",'" + t_lamaran1.getSelectedItem() + "'"
+                            + ",'" + tanggal + "'"
+                            + ",'" + k + "')";
 
-                stm.executeUpdate(sql0);
-
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-            }
-
-            DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
-            int jtabelrows = jTable2.getRowCount();
-
-            for (int i = 0; i <= jtabelrows - 1; i++) {
-                if (jTable2.getValueAt(i, 0) == null) {
-
-                } else {
-                    String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
-                    String dtabel_univ = jTable2.getValueAt(i, 1).toString();
-                    String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
-                    String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
+                    stm.executeUpdate(sql);
 
                     try {
-                        stm = koneksi.createStatement();
-                        String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
-                                + ",'" + dtabel_tgl + "'"
-                                + ",'" + dtabel_univ + "'"
-                                + ",'" + dtabel_lokasi + "'"
-                                + ",'" + dtabel_jurusan + "')";
+                        Statement stm = koneksi.createStatement();
 
-                        stm.executeUpdate(sql);
+                        rs = stm.executeQuery("select*from cd_employee where KTP = " + t_ktp.getText() + "");
+                        while (rs.next()) {
+                            da = rs.getString("id_employee");
 
-                    } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    String sql0 = "insert into cd_adress (id_employee,h_negara,h_prov,h_kab,h_kec,h_desa,h_alamat,c_negara,c_prov,c_kab,c_kec,c_desa,c_alamat,full_home,full_current) values('" + da + "'"
+                            + ",'" + homeCountry.getSelectedItem() + "'"
+                            + ",'" + homeState.getSelectedItem() + "'"
+                            + ",'" + homeCity.getSelectedItem() + "'"
+                            + ",'" + t_hkec.getText() + "'"
+                            + ",'" + t_ddesa.getText() + "'"
+                            + ",'" + t_halamat.getText() + "'"
+                            + ",'" + curentCountry.getSelectedItem() + "'"
+                            + ",'" + cprov.getSelectedItem() + "'"
+                            + ",'" + ccity.getSelectedItem() + "'"
+                            + ",'" + t_ckec.getText() + "'"
+                            + ",'" + t_cdesa.getText() + "'"
+                            + ",'" + t_calamat.getText() + "'"
+                            + ",'" + full_home + "'"
+                            + ",'" + full_curent + "')";
+
+                    stm.executeUpdate(sql0);
+
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }
+
+                DefaultTableModel ImportDataExel = (DefaultTableModel) jTable2.getModel();
+                int jtabelrows = jTable2.getRowCount();
+
+                for (int i = 0; i <= jtabelrows - 1; i++) {
+                    if (jTable2.getValueAt(i, 0) == null) {
+
+                    } else {
+                        String dtabel_tgl = jTable2.getValueAt(i, 0).toString();
+                        String dtabel_univ = jTable2.getValueAt(i, 1).toString();
+                        String dtabel_lokasi = jTable2.getValueAt(i, 2).toString();
+                        String dtabel_jurusan = jTable2.getValueAt(i, 3).toString();
+
+                        try {
+                            stm = koneksi.createStatement();
+                            String sql = "insert into cd_academic (id_employee,Graduation,School_Name,location,major) values('" + da + "'"
+                                    + ",'" + dtabel_tgl + "'"
+                                    + ",'" + dtabel_univ + "'"
+                                    + ",'" + dtabel_lokasi + "'"
+                                    + ",'" + dtabel_jurusan + "')";
+
+                            stm.executeUpdate(sql);
+
+                        } catch (SQLException e) {
+                            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                 }
-            }
-            simpan_family();
-            simpan_serifikat();
-            simpan_career();
-            simpan_motivation();
+                simpan_family();
+                simpan_serifikat();
+                simpan_career();
+                simpan_motivation();
 
-            File foto = new File(crudimage);
-            try {
-                InputStream fhoto = new FileInputStream(foto);
-                String inputfoto = "INSERT INTO cd_foto(foto,id_employee)  VALUE (?,?)";
-                PreparedStatement ifoto = this.koneksi.prepareStatement(inputfoto);
-                ifoto.setBlob(1, fhoto);
-                ifoto.setString(2, da);
-                int ph = ifoto.executeUpdate();
-                if (ph > 0) {
-                    JOptionPane.showMessageDialog(null, "foto masuk");
+                File foto = new File(crudimage);
+                try {
+                    InputStream fhoto = new FileInputStream(foto);
+                    String inputfoto = "INSERT INTO cd_foto(foto,id_employee)  VALUE (?,?)";
+                    PreparedStatement ifoto = this.koneksi.prepareStatement(inputfoto);
+                    ifoto.setBlob(1, fhoto);
+                    ifoto.setString(2, da);
+                    int ph = ifoto.executeUpdate();
+                    if (ph > 0) {
+                        JOptionPane.showMessageDialog(null, "foto masuk");
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CandidateApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-            } catch (SQLException ex) {
-                Logger.getLogger(CandidateApplicationPersonal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(CandidateApplication.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                JOptionPane.showMessageDialog(null, "Data Tersimpan");
 
-            JOptionPane.showMessageDialog(null, "Data Tersimpan");
-
-            if (MySession.get_ID() == null) {
-                Main.main.jPanel2.setVisible(true);
-                Main.main.bodyPanel.setVisible(false);
-                Main.main.getMain().setVisible(true);
+                if (MySession.get_ID() == null) {
+                    Main.main.jPanel2.setVisible(true);
+                    Main.main.bodyPanel.setVisible(false);
+                    Main.main.getMain().setVisible(true);
+                }
+                Main.main.getMain().showForm(new NewJPanel());
             }
-            Main.main.getMain().showForm(new NewJPanel());
-        }}
+        }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void t_lajangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_lajangActionPerformed
@@ -1820,7 +1785,6 @@ int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save 
         t_author.setText("");
         t_sertifikat.setText("");
         
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1833,7 +1797,6 @@ int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       
         r_y.setActionCommand("Yes");
         r_n.setActionCommand("No");
         DefaultTableModel dataModel = (DefaultTableModel) jTable3.getModel();
@@ -1846,11 +1809,8 @@ int respon = JOptionPane.showConfirmDialog(null, "Are you done and want to save 
         list.add(t_hp1.getText());
         dataModel.insertRow(0, list.toArray());    
         
-t_nama4.setText("");
-t_hp1.setText("(0)");
-
-
-// TODO add your handling code here:
+        t_nama4.setText("");
+        t_hp1.setText("(0)");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1873,10 +1833,8 @@ t_hp1.setText("(0)");
         list.add(hasil_tahun + " Tahun " + hasil_bulan + " Bulan");
         dataModel.insertRow(0, list.toArray());
         
-        
         t_nama3.setText("");
         t_posisi.setText("");
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -2178,10 +2136,6 @@ t_hp1.setText("(0)");
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(new Dimension(screen.width, screen.height - 100));
-
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     @Override

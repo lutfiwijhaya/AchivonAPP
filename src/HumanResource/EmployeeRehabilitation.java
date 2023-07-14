@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
@@ -322,7 +321,7 @@ public class EmployeeRehabilitation extends MasterForm {
         dateChooser1 = new com.raven.datechooser.DateChooser();
         dateChooser2 = new com.raven.datechooser.DateChooser();
         dateChooser3 = new com.raven.datechooser.DateChooser();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         labelDiscipline = new javax.swing.JLabel();
@@ -339,10 +338,10 @@ public class EmployeeRehabilitation extends MasterForm {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         stateRehab = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
-        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane6 = new scroolbarWin11.ScrollPaneWin11();
         documentRehab = new javax.swing.JTextArea();
         jLabel20 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -921,16 +920,6 @@ public class EmployeeRehabilitation extends MasterForm {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Gagal Menyimpan data \n Failed saving data");
         } finally {
-//            try {
-//                if (myStmt != null) {
-//                    myStmt.close();
-//                }
-//                if (koneksi != null) {
-//                    koneksi.close();
-//                }
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1006,10 +995,6 @@ public class EmployeeRehabilitation extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     @Override

@@ -17,14 +17,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import javax.swing.JLabel;
-import javax.swing.table.DefaultTableCellRenderer;
-//import javax.swing.JLabel;
-//import javax.swing.table.DefaultTableCellRenderer;
-//import javax.swing.table.DefaultTableModel;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,10 +27,7 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
 /**
@@ -45,7 +35,6 @@ import javax.swing.table.TableColumnModel;
  * @author hi
  */
 public class EmployeeClearanceStatus extends MasterForm{
-//    DefaultTableModel dm;
     Connection koneksi;
     Date date = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
@@ -57,8 +46,6 @@ public class EmployeeClearanceStatus extends MasterForm{
         
         jScrollPane5.setWheelScrollingEnabled(false);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-//        ((DefaultTableCellRenderer)jTable5.getTableHeader().getDefaultRenderer())
-//        .setHorizontalAlignment(JLabel.CENTER);
         
         DefaultTableModel dm = (DefaultTableModel) jTable5.getModel();
         
@@ -131,7 +118,6 @@ public class EmployeeClearanceStatus extends MasterForm{
         jLabel32.setVisible(false);
         
         jLabel4.setVisible(false);
-//        SaveButton.setVisible(false);
         sendButton.setVisible(true);
             try {
                 Statement stmt = koneksi.createStatement();
@@ -450,7 +436,7 @@ public class EmployeeClearanceStatus extends MasterForm{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -464,7 +450,7 @@ public class EmployeeClearanceStatus extends MasterForm{
         jLabel24 = new javax.swing.JLabel();
         sendButton = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
-        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         jTable5 = new javax.swing.JTable();
         jLabel40 = new javax.swing.JLabel();
         signTeamPred = new javax.swing.JLabel();
@@ -996,7 +982,6 @@ public class EmployeeClearanceStatus extends MasterForm{
             int jtabelrows = jTable5.getRowCount();
             for (int i = 0; i <= jtabelrows - 1; i++) {
                 if (jTable5.getValueAt(i, 0) == null || jTable5.getValueAt(i, 0).toString().isEmpty()) {
-                    // Skip this row if the first column is null or empty
                     continue;
                 } else {
                     String general_item = jTable5.getValueAt(i, 0).toString();
@@ -1059,13 +1044,6 @@ public class EmployeeClearanceStatus extends MasterForm{
             JOptionPane.showMessageDialog(null, "Data gagal dikirim \nData failed to send");
             e.printStackTrace();
         } finally {
-//            try {
-//                if (koneksi != null) {
-//                    koneksi.close();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
         }
     }//GEN-LAST:event_sendButtonActionPerformed
 
@@ -1140,10 +1118,6 @@ public class EmployeeClearanceStatus extends MasterForm{
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
-        
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
 
     @Override
