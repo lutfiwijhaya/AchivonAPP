@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package MonthlyProgress;
-
 import CustomResource.koneksi;
 import Main.MasterForm;
 import java.io.BufferedOutputStream;

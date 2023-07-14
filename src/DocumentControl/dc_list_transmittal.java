@@ -47,10 +47,13 @@ public class dc_list_transmittal extends MasterForm {
     public dc_list_transmittal() {
         initComponents();
         openDB();
+     
         table_id2();
         tampil_table();
 
     }
+    
+   
 
     private void openDB() {
         try {

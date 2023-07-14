@@ -7,11 +7,15 @@ package ProcurementSystem;
 import CustomResource.koneksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,21 +32,19 @@ public class in_out_material extends javax.swing.JFrame {
     String item_name_dis;
     String spec;
     String spec1;
-    
-    
+
     /**
      * Creates new form in_out_material
      */
     public in_out_material() {
         initComponents();
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         MyWindow1();
         openDB();
         tampil();
     }
-    
-    
-    
-     private void openDB() {
+
+    private void openDB() {
         try {
             koneksi kon = new koneksi();
             koneksi = kon.getConnection();
@@ -50,9 +52,8 @@ public class in_out_material extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
-     
-     
-     void tampil() {
+
+    void tampil() {
 
         try {
             cb_material.removeAllItems();
@@ -64,8 +65,8 @@ public class in_out_material extends javax.swing.JFrame {
         }
 
     }
-     
-      void combobox_material() {
+
+    void combobox_material() {
 
         item = cb_material.getSelectedItem().toString();
         String[] parts = item.split("-");
@@ -76,7 +77,7 @@ public class in_out_material extends javax.swing.JFrame {
 
     }
 
-      void tampil_comboboxdiscipline() {
+    void tampil_comboboxdiscipline() {
         try {
             cb_discipline.removeAllItems();
             ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_discipline where id_material_code = '" + item + "'");
@@ -87,17 +88,16 @@ public class in_out_material extends javax.swing.JFrame {
         }
 
     }
-      
-      private void MyWindow1(){
+
+    private void MyWindow1() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        
-        
-        int x = (screen.width/2) - (this.getSize().width/2);
-        int y = (screen.height/2) - (this.getSize().height/2);
-        this.setLocation(x,y);
+
+        int x = (screen.width / 2) - (this.getSize().width / 2);
+        int y = (screen.height / 2) - (this.getSize().height / 2);
+        this.setLocation(x, y);
     }
-    
-   void tampil_table_spek() {
+
+    void tampil_table_spek() {
         DefaultTableModel model1 = (DefaultTableModel) jTable3.getModel();
         int rowCount1 = model1.getRowCount();
 
@@ -122,7 +122,7 @@ public class in_out_material extends javax.swing.JFrame {
         }
 
     }
-   
+
     void combobox_spek() {
         spec = cb_discipline.getSelectedItem().toString();
         String[] parts = spec.split("-");
@@ -131,11 +131,10 @@ public class in_out_material extends javax.swing.JFrame {
         String id2 = parts[2];
         spec = id + id1;
         spec1 = id1;
-       item_name_dis = id2;
+        item_name_dis = id2;
 
     }
-      
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -352,17 +351,17 @@ public class in_out_material extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cb_materialPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_materialPopupMenuWillBecomeVisible
-               // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_cb_materialPopupMenuWillBecomeVisible
 
     private void cb_materialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_materialActionPerformed
-if (cb_material.getSelectedItem() == null) {
+        if (cb_material.getSelectedItem() == null) {
 
         } else {
             combobox_material();
 
             tampil_comboboxdiscipline();
-            
+
         }     // TODO add your handling code here:
     }//GEN-LAST:event_cb_materialActionPerformed
 
@@ -371,18 +370,18 @@ if (cb_material.getSelectedItem() == null) {
     }//GEN-LAST:event_cb_disciplinePopupMenuWillBecomeVisible
 
     private void cb_disciplineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_disciplineActionPerformed
-if (cb_discipline.getSelectedItem() == null) {
+        if (cb_discipline.getSelectedItem() == null) {
 
         } else {
-          combobox_spek();
-tampil_table_spek();
-            
-        } 
-       // TODO add your handling code here:
+            combobox_spek();
+            tampil_table_spek();
+
+        }
+// TODO add your handling code here:
     }//GEN-LAST:event_cb_disciplineActionPerformed
 
     private void cb_in_outPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_in_outPopupMenuWillBecomeVisible
-     cb_in_out.removeItem("Choose In/Out");   
+        cb_in_out.removeItem("Choose In/Out");
     }//GEN-LAST:event_cb_in_outPopupMenuWillBecomeVisible
 
     private void cb_in_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_in_outActionPerformed
@@ -402,16 +401,15 @@ tampil_table_spek();
     }//GEN-LAST:event_t_id_materialActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String id;
-String id1;
-DefaultTableModel model1 = (DefaultTableModel) jTable3.getModel();
-int row = jTable3.getSelectedRow();
-id = item +"-"+spec1+"-"+model1.getValueAt(row, 0);
-id1 = item_name +"-"+item_name_dis+"-"+model1.getValueAt(row, 1);
-t_material_name.setText(id1);
-t_id_material.setText(id);
-t_c_stok.setText((String) model1.getValueAt(row, 2));
-
+        String id;
+        String id1;
+        DefaultTableModel model1 = (DefaultTableModel) jTable3.getModel();
+        int row = jTable3.getSelectedRow();
+        id = item + "-" + spec1 + "-" + model1.getValueAt(row, 0);
+        id1 = item_name + "-" + item_name_dis + "-" + model1.getValueAt(row, 1);
+        t_material_name.setText(id1);
+        t_id_material.setText(id);
+        t_c_stok.setText((String) model1.getValueAt(row, 2));
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -425,7 +423,7 @@ t_c_stok.setText((String) model1.getValueAt(row, 2));
     }//GEN-LAST:event_t_amountActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-   DefaultTableModel model1 = (DefaultTableModel) jTable3.getModel();
+        DefaultTableModel model1 = (DefaultTableModel) jTable3.getModel();
         String[] parts = t_id_material.getText().split("-");
         String id2 = parts[2];
         int jumlah = 0;
@@ -433,7 +431,7 @@ t_c_stok.setText((String) model1.getValueAt(row, 2));
             stm = koneksi.createStatement();
             String sql = "insert into wr_in_out (id_spec,in_out,amount,date,remark,id_material,name_material) values('" + id2 + "'"
                     + ",'" + cb_in_out.getSelectedItem().toString() + "'"
-                    + ",'" +t_amount.getText() + "'"
+                    + ",'" + t_amount.getText() + "'"
                     + ",'" + t_date.getText() + "'"
                     + ",'" + t_remark.getText() + "'"
                     + ",'" + t_id_material.getText() + "'"
@@ -443,21 +441,21 @@ t_c_stok.setText((String) model1.getValueAt(row, 2));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
         }
-        
-        if (cb_in_out.getSelectedItem().equals("In")){
-        int a = Integer.parseInt(t_c_stok.getText());
-        int b = Integer.parseInt(t_amount.getText());
-        jumlah = a + b;
-        
-        } else if (cb_in_out.getSelectedItem().equals("Out")){
-        int a = Integer.parseInt(t_c_stok.getText());
-        int b = Integer.parseInt(t_amount.getText());
-        jumlah = a - b;
+
+        if (cb_in_out.getSelectedItem().equals("In")) {
+            int a = Integer.parseInt(t_c_stok.getText());
+            int b = Integer.parseInt(t_amount.getText());
+            jumlah = a + b;
+
+        } else if (cb_in_out.getSelectedItem().equals("Out")) {
+            int a = Integer.parseInt(t_c_stok.getText());
+            int b = Integer.parseInt(t_amount.getText());
+            jumlah = a - b;
         }
-         System.out.println(jumlah);
-         try {
+        System.out.println(jumlah);
+        try {
             stm = koneksi.createStatement();
-            String sql = "UPDATE po_material_spek SET stok = '"+jumlah+"' WHERE id_material_spek = '"+id2+"'";
+            String sql = "UPDATE po_material_spek SET stok = '" + jumlah + "' WHERE id_material_spek = '" + id2 + "'";
             stm.executeUpdate(sql);
             stm.close();
         } catch (SQLException e) {
@@ -465,13 +463,12 @@ t_c_stok.setText((String) model1.getValueAt(row, 2));
         }
 
         JOptionPane.showMessageDialog(null, "Submit Successfully");
-        
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-this.dispose();        // TODO add your handling code here:
+        this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

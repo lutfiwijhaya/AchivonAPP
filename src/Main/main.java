@@ -278,7 +278,6 @@ public class main extends javax.swing.JFrame {
         WarehouseSystem = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jSeparator31 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem26 = new javax.swing.JMenuItem();
         jSeparator32 = new javax.swing.JPopupMenu.Separator();
         AcountingSystem = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -411,11 +410,8 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -859,14 +855,6 @@ public class main extends javax.swing.JFrame {
         });
         WarehouseSystem.add(jMenuItem17);
         WarehouseSystem.add(jSeparator31);
-
-        jMenuItem26.setText("Requested Material");
-        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem26ActionPerformed(evt);
-            }
-        });
-        WarehouseSystem.add(jMenuItem26);
         WarehouseSystem.add(jSeparator32);
 
         ToolBar.add(WarehouseSystem);

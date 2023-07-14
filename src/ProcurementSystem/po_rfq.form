@@ -6,7 +6,7 @@
       <Properties>
         <Property name="dateFormat" type="java.lang.String" value="yyyy-MM-dd"/>
         <Property name="textRefernce" type="javax.swing.JTextField" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="t_tgl_rfq"/>
+          <ComponentRef name="t_estimate_deliv"/>
         </Property>
       </Properties>
     </Component>
@@ -15,6 +15,14 @@
         <Property name="dateFormat" type="java.lang.String" value="yyyy-MM-dd"/>
         <Property name="textRefernce" type="javax.swing.JTextField" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="t_tgl_rfq"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="com.raven.datechooser.DateChooser" name="dateChooser4">
+      <Properties>
+        <Property name="dateFormat" type="java.lang.String" value="yyyy-MM-dd"/>
+        <Property name="textRefernce" type="javax.swing.JTextField" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="t_close_date"/>
         </Property>
       </Properties>
     </Component>
@@ -64,8 +72,8 @@
           <SubComponents>
             <Component class="CustomResource.CustomTextfield" name="t_id_po">
               <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="labelText" type="java.lang.String" value="ID PO"/>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="labelText" type="java.lang.String" value="ID RFQ"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -159,7 +167,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="LIST MATERIAL REQUEST"/>
+                <Property name="text" type="java.lang.String" value="LIST ITEMS REQUEST"/>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Constraints>
@@ -204,7 +212,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_name">
               <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Supplier"/>
               </Properties>
               <Constraints>
@@ -215,7 +223,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_hp">
               <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Mobile No"/>
               </Properties>
               <Constraints>
@@ -226,7 +234,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_emial">
               <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="E-mail"/>
               </Properties>
               <Constraints>
@@ -237,6 +245,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_stock_needs">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Stocks Requirement"/>
               </Properties>
               <Events>
@@ -250,7 +259,7 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="t_addres">
               <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="labelText" type="java.lang.String" value="Address"/>
               </Properties>
               <Constraints>
@@ -402,12 +411,12 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="CustomResource.CustomTextfield" name="t_stock_needs1">
+            <Component class="CustomResource.CustomTextfield" name="t_payment">
               <Properties>
                 <Property name="labelText" type="java.lang.String" value="Payment Condition"/>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="t_stock_needs1KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="t_paymentKeyTyped"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -415,12 +424,12 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="CustomResource.CustomTextfield" name="t_stock_needs2">
+            <Component class="CustomResource.CustomTextfield" name="t_estimate_deliv">
               <Properties>
                 <Property name="labelText" type="java.lang.String" value="Estimate Date Delivery"/>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="t_stock_needs2KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="t_estimate_delivKeyTyped"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -428,7 +437,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="CustomResource.CustomTextfield" name="t_tgl_rfq1">
+            <Component class="CustomResource.CustomTextfield" name="t_close_date">
               <Properties>
                 <Property name="labelText" type="java.lang.String" value="RFQ Close Date"/>
               </Properties>

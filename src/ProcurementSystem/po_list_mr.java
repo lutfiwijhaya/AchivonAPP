@@ -129,6 +129,9 @@ public class po_list_mr extends MasterForm {
         t_mr_id = new CustomResource.CustomTextfield();
         t_material_id = new CustomResource.CustomTextfield();
         t_material_name = new CustomResource.CustomTextfield();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        t_remark = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         dateChooser2.setDateFormat("yyyy-MM-dd");
 
@@ -172,7 +175,6 @@ public class po_list_mr extends MasterForm {
         jLabel2.setOpaque(true);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 650, 20));
 
-        t_stock_needs.setEditable(false);
         t_stock_needs.setLabelText("Approved Quantity");
         t_stock_needs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -187,7 +189,7 @@ public class po_list_mr extends MasterForm {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 510, 102, -1));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 600, 102, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 51, 51));
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -195,7 +197,7 @@ public class po_list_mr extends MasterForm {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ITEMS SELECTED FOR RFQ");
         jLabel4.setOpaque(true);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 660, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 660, 20));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,7 +217,7 @@ public class po_list_mr extends MasterForm {
         });
         jScrollPane3.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 660, 140));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 660, 140));
 
         jButton8.setText("ADD");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +225,7 @@ public class po_list_mr extends MasterForm {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 102, -1));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 102, -1));
 
         t_mr_id.setEditable(false);
         t_mr_id.setLabelText("MR ID");
@@ -236,6 +238,21 @@ public class po_list_mr extends MasterForm {
         t_material_name.setEditable(false);
         t_material_name.setLabelText("Material Name");
         jPanel1.add(t_material_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 257, -1));
+
+        t_remark.setColumns(20);
+        t_remark.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        t_remark.setRows(5);
+        t_remark.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                t_remarkMouseWheelMoved(evt);
+            }
+        });
+        jScrollPane25.setViewportView(t_remark);
+
+        jPanel1.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 210, -1));
+
+        jLabel1.setText("Remark");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -334,6 +351,7 @@ tampil_table();
         t_material_name.setText((String) model1.getValueAt(row, 2));
         t_material_id.setText((String) model1.getValueAt(row, 1));
         t_stock_needs.setText((String) model1.getValueAt(row, 4));
+        t_stock_needs.setText((String) model1.getValueAt(row, 4));
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
@@ -348,23 +366,30 @@ tampil_table();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_t_stock_needsKeyTyped
 
+    private void t_remarkMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_t_remarkMouseWheelMoved
+
+    }//GEN-LAST:event_t_remarkMouseWheelMoved
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.datechooser.DateChooser dateChooser2;
     private com.raven.datechooser.DateChooser dateChooser3;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private CustomResource.CustomTextfield t_material_id;
     private CustomResource.CustomTextfield t_material_name;
     private CustomResource.CustomTextfield t_mr_id;
+    private javax.swing.JTextArea t_remark;
     private CustomResource.CustomTextfield t_stock_needs;
     // End of variables declaration//GEN-END:variables
 

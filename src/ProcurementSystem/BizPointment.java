@@ -222,6 +222,7 @@ public class BizPointment extends MasterForm {
             rs = stm.executeQuery(sql);
             while (rs.next()) {
                 int a = rs.getInt(1);
+                System.out.println(a);
                 id3 = a + 1;
                 System.out.println(id3);
             }

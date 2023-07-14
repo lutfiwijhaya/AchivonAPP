@@ -38,7 +38,7 @@ public class po_material_request extends MasterForm {
     public po_material_request() {
         initComponents();
         openDB();
-   
+
         tampil_material();
         tampil_comboboxspek();
         tampil_combospek();
@@ -66,8 +66,6 @@ public class po_material_request extends MasterForm {
         }
     }
 
-   
-
     void combobox_material() {
 
         item = cb_material.getSelectedItem().toString();
@@ -94,12 +92,19 @@ public class po_material_request extends MasterForm {
         String id = parts[0];
         String name = parts[1];
         id_spec = id;
-        name_spek = name;
+        StringBuilder remainingParts = new StringBuilder();
+        for (int i = 2; i < parts.length; i++) {
+            remainingParts.append("-" + parts[i]);
+        }
+
+        name_spek = name + remainingParts.toString();
+
     }
 
     void tampil_comboboxspek() {
         try {
             cb_discipline.removeAllItems();
+             cb_spek.removeAllItems(); 
             ResultSet myRess = koneksi.createStatement().executeQuery("select*from po_material_discipline where id_material_code = '" + item + "'");
             while (myRess.next()) {
                 cb_discipline.addItem(myRess.getString("id_discipline_code") + "-" + myRess.getString("name_discipline"));
@@ -136,7 +141,7 @@ public class po_material_request extends MasterForm {
         String dtabel_stok = t_stok.getText();
         String dtabel_qty = box_qty4.getSelectedItem().toString();
         String dtabel_remark = t_remark.getText();
-        
+
         try {
             stm = koneksi.createStatement();
             String sql = "insert into po_material_request (id_material_code,material,discipline,spec,tanggal_request,stok,qty,remark) values('" + dtabel_id_po + "'"
@@ -155,7 +160,6 @@ public class po_material_request extends MasterForm {
         }
 
         tampil_table();
- 
 
     }
 
@@ -163,17 +167,16 @@ public class po_material_request extends MasterForm {
 
         DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
         int rowCount1 = dataModel2.getRowCount();
-         for (int i = rowCount1 - 1; i >= 0; i--) {
+        for (int i = rowCount1 - 1; i >= 0; i--) {
             dataModel2.removeRow(i);
         }
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from po_material_request");
             while (rs.next()) {
-             
 
                 String[] data = {
-                    "MR-"+rs.getString("id_material_request"),
+                    "MR-" + rs.getString("id_material_request"),
                     rs.getString("id_material_code"),
                     rs.getString("material"),
                     rs.getString("discipline"),
@@ -336,7 +339,7 @@ public class po_material_request extends MasterForm {
         });
         jPanel1.add(cb_material, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 190, -1));
 
-        box_qty4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "QTY", "Pcs", "Ctn", "Ball", "Roll" }));
+        box_qty4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "QTY", "Pcs", "Sheet", "Ctn", "Ball", "Roll" }));
         box_qty4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         box_qty4.setName(""); // NOI18N
         box_qty4.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -388,7 +391,7 @@ public class po_material_request extends MasterForm {
         jLabel5.setText("Remark");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
-        jLabel6.setText("Choose Material");
+        jLabel6.setText("Choose Item");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
         jLabel7.setText("Choose Discipline");
@@ -462,13 +465,24 @@ public class po_material_request extends MasterForm {
         } else {
             getidspek2();
             getIdRequest();
+            
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_spekActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        submit();             // TODO add your handling code here:
+ if (cb_material.getSelectedItem()== null) {
+            JOptionPane.showMessageDialog(null, "Item Cannot Be Empty!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (cb_discipline.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Discipline Cannot Be Empty!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (cb_spek.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Spec Cannot Be Empty!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (t_stok.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Stok Needs Cannot Be Empty!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (box_qty4.getSelectedItem().toString().equals("QTY")) {
+            JOptionPane.showMessageDialog(null, "Choose QTY First !!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else {        submit();   }          // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
 

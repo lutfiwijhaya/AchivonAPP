@@ -5,8 +5,10 @@
 package ProcurementSystem;
 
 import CustomResource.koneksi;
+import DocumentControl.dc_form_transmittal_view;
 import HumanResource.Employe_list;
 import Main.MasterForm;
+import static Main.main.bodyPanel;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,7 +18,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -38,7 +43,7 @@ public class po_list_rfq extends MasterForm {
     public po_list_rfq() {
         initComponents();
         openDB();
-
+        table_id2();
         tampil_table();
 
     }
@@ -67,17 +72,21 @@ public class po_list_rfq extends MasterForm {
             while (rs.next()) {
 
                 String[] data = {
+                     rs.getString("id"),
                     "RFQ-" + rs.getString("id"),
                     rs.getString("name"),
                     rs.getString("no_hp"),
                     rs.getString("email"),
                     rs.getString("address") + " RT/RW " + rs.getString("rt") + "/" + rs.getString("rw") + ", " + rs.getString("city") + ", " + rs.getString("province") + " (" + rs.getString("postcode") + ")",
-                    rs.getString("rfq_date")};
+                    rs.getString("rfq_date"),
+                    rs.getString("payment"),
+                    rs.getString("deliv_date"),
+                    rs.getString("close_date")};
                 dataModel2.addRow(data);
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e + "data gagal ta mpil");
+            JOptionPane.showMessageDialog(null, e + "data gagal tampil");
         }
     }
 
@@ -92,7 +101,7 @@ public class po_list_rfq extends MasterForm {
         }
         int row = jTable1.getSelectedRow();
 
-        String mr_id3 = (String) dataModel.getValueAt(row, 0);
+        String mr_id3 = (String) dataModel.getValueAt(row, 1);
 
         String[] parts = mr_id3.split("-");
         String id = parts[1];
@@ -114,6 +123,36 @@ public class po_list_rfq extends MasterForm {
         }
     }
 
+     public void showForm(MasterForm form) {
+      
+        bodyPanel.removeAll();
+        bodyPanel.add(form);
+        bodyPanel.revalidate();
+        bodyPanel.repaint();
+        
+    }
+     
+       void table_id2() {
+//mendapatkan model kolom pada JTable
+        TableColumnModel columnModel = jTable1.getColumnModel();
+//mendapatkan TableColumn pada indeks kolom yang ingin disembunyikan
+        TableColumn column = columnModel.getColumn(0);
+//menyembunyikan kolom dengan mengatur lebar kolom menjadi 0
+        column.setMinWidth(0);
+        column.setMaxWidth(0);
+        column.setWidth(0);
+        column.setPreferredWidth(0);
+//mengakses nilai pada kolom yang disembunyikan
+        int rowIndex = 0; //indeks baris
+        Object value = jTable1.getValueAt(rowIndex, 0);
+
+        JTable table = new JTable(jTable1.getModel()) {
+            public boolean getScrollableTracksViewportWidth() {
+                return getPreferredSize().width < getParent().getWidth();
+            }
+        };
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,14 +185,15 @@ public class po_list_rfq extends MasterForm {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "RFQ ID", "Name Sipplier", "Supplier HP", "Sipplier Email", "Supplier Address", "RFQ Date"
+                "id", "RFQ ID", "Name Sipplier", "Supplier HP", "Sipplier Email", "Supplier Address", "RFQ Date", "Payment Condition", "Delivered Estimate Date", "RFQ Close Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -168,9 +208,9 @@ public class po_list_rfq extends MasterForm {
         });
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(300);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(300);
         }
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 660, 140));
@@ -191,7 +231,7 @@ public class po_list_rfq extends MasterForm {
         jLabel3.setOpaque(true);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 660, 20));
 
-        jButton7.setText("Save As Excel");
+        jButton7.setText("View");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -261,15 +301,30 @@ public class po_list_rfq extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
+        
+        
+        if (jTable1.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Please Mark RFQ First !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+        
+        DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        String mr_id3 = (String) dataModel.getValueAt(row, 0);
+        CustomResource.SessionAny.set_id_rfq(mr_id3);
+        
+        
+         showForm(new po_rfq_view());
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+      int respon = JOptionPane.showConfirmDialog(null, "Send To SQ Queque ?", "Option", JOptionPane.YES_NO_OPTION);
+        if (respon == 0) {
         DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
         
         int row = jTable1.getSelectedRow();
         
-        String mr_id3 = (String) dataModel.getValueAt(row, 0);
+        String mr_id3 = (String) dataModel.getValueAt(row, 1);
 
         String[] parts = mr_id3.split("-");
         String id = parts[1];
@@ -284,12 +339,11 @@ public class po_list_rfq extends MasterForm {
             JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
         }
         
-        tampil_table();
+        tampil_table();}
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         tampil_table2();
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -301,7 +355,7 @@ public class po_list_rfq extends MasterForm {
     }//GEN-LAST:event_t_searchKeyReleased
 
     private void t_searchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_searchKeyTyped
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_t_searchKeyTyped
 
 

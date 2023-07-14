@@ -34,8 +34,10 @@ public class po_form_sq extends MasterForm {
         initComponents();
         openDB();
         cb_rfq();
+        cb_material();
 
         t_disc.setText("0");
+        System.out.println("dari sq" + CustomResource.SessionAny.get_id_rfq_for_sq());
 
     }
 
@@ -50,10 +52,12 @@ public class po_form_sq extends MasterForm {
 
     void cb_rfq() {
         try {
-            cb_rfq.removeAllItems();
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_rfq INNER JOIN biz_partner on po_rfq.biz_id = biz_partner.biz_id where status = '1'");
+
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_rfq INNER JOIN biz_partner on po_rfq.biz_id = biz_partner.biz_id where id = '" + CustomResource.SessionAny.get_id_rfq_for_sq() + "'");
             while (myRess.next()) {
-                cb_rfq.addItem("RFQ-" + myRess.getString("id") + "-" + "(" + myRess.getString("name") + ")");
+                t_date_rfq.setText(myRess.getString("rfq_date"));
+                t_date_estimate.setText(myRess.getString("deliv_date"));
+                t_payment.setText(myRess.getString("payment"));
             }
         } catch (SQLException ex) {
         }
@@ -63,8 +67,6 @@ public class po_form_sq extends MasterForm {
     void cb_material() {
         try {
 
-            String[] parts = cb_rfq.getSelectedItem().toString().split("-");
-            String id = parts[1];
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable2.getModel();
             int rowCount1 = dataModel2.getRowCount();
 
@@ -74,8 +76,9 @@ public class po_form_sq extends MasterForm {
 
             cb_mr.removeAllItems();
 
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_rfq_items where rfq_id = '" + id + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_rfq_items where rfq_id = '" + CustomResource.SessionAny.get_id_rfq_for_sq() + "'");
             while (myRess.next()) {
+
                 cb_mr.addItem("MR-" + myRess.getString("mr_id") + "-" + "(" + myRess.getString("material_name") + ")");
                 String[] data = {
                     "RFQ-" + myRess.getString("rfq_id"),
@@ -136,6 +139,7 @@ public class po_form_sq extends MasterForm {
     private void initComponents() {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
+        dateChooser2 = new com.raven.datechooser.DateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         t_name_item = new CustomResource.CustomTextfield();
@@ -144,7 +148,6 @@ public class po_form_sq extends MasterForm {
         t_price = new CustomResource.CustomTextfield();
         t_total = new CustomResource.CustomTextfield();
         jLabel2 = new javax.swing.JLabel();
-        cb_rfq = new CustomResource.ComboBoxSuggestion();
         t_disc = new CustomResource.CustomTextfield();
         t_amount = new CustomResource.CustomTextfield();
         t_total_1 = new CustomResource.CustomTextfield();
@@ -156,10 +159,18 @@ public class po_form_sq extends MasterForm {
         jLabel5 = new javax.swing.JLabel();
         cb_mr = new CustomResource.ComboBoxSuggestion();
         jButton9 = new javax.swing.JButton();
+        cb_ppn = new CustomResource.ComboBoxSuggestion();
         t_date = new CustomResource.CustomTextfield();
+        t_date_rfq = new CustomResource.CustomTextfield();
+        t_payment = new CustomResource.CustomTextfield();
+        t_date_estimate = new CustomResource.CustomTextfield();
+        jButton1 = new javax.swing.JButton();
 
         dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(t_date);
+
+        dateChooser2.setDateFormat("yyyy-MM-dd");
+        dateChooser2.setTextRefernce(t_date_estimate);
 
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
@@ -168,7 +179,7 @@ public class po_form_sq extends MasterForm {
 
         t_name_item.setEditable(false);
         t_name_item.setLabelText("Name of Item");
-        jPanel1.add(t_name_item, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 257, -1));
+        jPanel1.add(t_name_item, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 257, -1));
 
         t_stok.setEditable(false);
         t_stok.setLabelText("Stok");
@@ -180,11 +191,11 @@ public class po_form_sq extends MasterForm {
                 t_stokKeyTyped(evt);
             }
         });
-        jPanel1.add(t_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 140, -1));
+        jPanel1.add(t_stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 70, -1));
 
-        t_total_2.setEnabled(false);
+        t_total_2.setEditable(false);
         t_total_2.setLabelText("Total");
-        jPanel1.add(t_total_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 690, 160, -1));
+        jPanel1.add(t_total_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 800, 160, -1));
 
         t_price.setLabelText("Price");
         t_price.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -195,43 +206,24 @@ public class po_form_sq extends MasterForm {
                 t_priceKeyTyped(evt);
             }
         });
-        jPanel1.add(t_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 257, -1));
+        jPanel1.add(t_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 150, -1));
 
-        t_total.setEnabled(false);
+        t_total.setEditable(false);
         t_total.setLabelText("Total");
         t_total.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 t_totalKeyReleased(evt);
             }
         });
-        jPanel1.add(t_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 257, -1));
+        jPanel1.add(t_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 400, 150, -1));
 
         jLabel2.setBackground(new java.awt.Color(0, 51, 51));
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Form Sales Quatation");
+        jLabel2.setText("Form Supplier Quatation");
         jLabel2.setOpaque(true);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 650, 20));
-
-        cb_rfq.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "QTY", "Pcs", "Ctn", "Ball", "Roll" }));
-        cb_rfq.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        cb_rfq.setName(""); // NOI18N
-        cb_rfq.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                cb_rfqPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        cb_rfq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_rfqActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cb_rfq, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 400, -1));
 
         t_disc.setLabelText("Disc %");
         t_disc.addActionListener(new java.awt.event.ActionListener() {
@@ -247,24 +239,24 @@ public class po_form_sq extends MasterForm {
                 t_discKeyTyped(evt);
             }
         });
-        jPanel1.add(t_disc, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 160, -1));
+        jPanel1.add(t_disc, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 650, 160, -1));
 
-        t_amount.setEnabled(false);
+        t_amount.setEditable(false);
         t_amount.setLabelText("Amount");
         t_amount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 t_amountKeyReleased(evt);
             }
         });
-        jPanel1.add(t_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 540, 160, -1));
+        jPanel1.add(t_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 650, 160, -1));
 
-        t_total_1.setEnabled(false);
+        t_total_1.setEditable(false);
         t_total_1.setLabelText("Total");
-        jPanel1.add(t_total_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 590, 160, -1));
+        jPanel1.add(t_total_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 700, 160, -1));
 
-        t_ppn.setEnabled(false);
+        t_ppn.setEditable(false);
         t_ppn.setLabelText("PPN 11%");
-        jPanel1.add(t_ppn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 640, 160, -1));
+        jPanel1.add(t_ppn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 750, 160, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -289,10 +281,10 @@ public class po_form_sq extends MasterForm {
         });
         jScrollPane3.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 660, 140));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, 660, 140));
 
-        jLabel4.setText("Choose RFQ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+        jLabel4.setText("PPN : ");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 760, -1, -1));
 
         jButton8.setText("SUBMIT");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -300,10 +292,10 @@ public class po_form_sq extends MasterForm {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 750, 140, 30));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 860, 140, 30));
 
-        jLabel5.setText("Choose Material");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
+        jLabel5.setText("Choose Item");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
 
         cb_mr.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cb_mr.setName(""); // NOI18N
@@ -321,7 +313,7 @@ public class po_form_sq extends MasterForm {
                 cb_mrActionPerformed(evt);
             }
         });
-        jPanel1.add(cb_mr, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 400, -1));
+        jPanel1.add(cb_mr, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 400, -1));
 
         jButton9.setText("Add");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -329,9 +321,28 @@ public class po_form_sq extends MasterForm {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 140, 30));
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 140, 30));
 
-        t_date.setLabelText("Date");
+        cb_ppn.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
+        cb_ppn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        cb_ppn.setName(""); // NOI18N
+        cb_ppn.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                cb_ppnPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        cb_ppn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_ppnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cb_ppn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 760, 90, -1));
+
+        t_date.setLabelText("Date Quatation");
         t_date.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 t_dateKeyReleased(evt);
@@ -341,6 +352,53 @@ public class po_form_sq extends MasterForm {
             }
         });
         jPanel1.add(t_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 257, -1));
+
+        t_date_rfq.setEditable(false);
+        t_date_rfq.setLabelText("Date RFQ");
+        t_date_rfq.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t_date_rfqKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_date_rfqKeyTyped(evt);
+            }
+        });
+        jPanel1.add(t_date_rfq, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 257, -1));
+
+        t_payment.setLabelText("Payment Condition");
+        t_payment.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t_paymentKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_paymentKeyTyped(evt);
+            }
+        });
+        jPanel1.add(t_payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, 257, -1));
+
+        t_date_estimate.setLabelText("Estimate Delivery");
+        t_date_estimate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_date_estimateActionPerformed(evt);
+            }
+        });
+        t_date_estimate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t_date_estimateKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_date_estimateKeyTyped(evt);
+            }
+        });
+        jPanel1.add(t_date_estimate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 257, -1));
+
+        jButton1.setText("Choose RFQ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 103, -1, 30));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -355,23 +413,6 @@ public class po_form_sq extends MasterForm {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cb_rfqPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_rfqPopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_rfqPopupMenuWillBecomeVisible
-
-    private void cb_rfqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_rfqActionPerformed
-        if (cb_rfq.getSelectedItem() == null) {
-
-        } else {
-            cb_material();
-            t_name_item.setText("");
-            t_price.setText("0");
-            t_total.setText("0");
-            t_stok.setText("");
-
-        }       // TODO add your handling code here:
-    }//GEN-LAST:event_cb_rfqActionPerformed
 
     private void t_stokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stokKeyTyped
         char c = evt.getKeyChar();
@@ -424,8 +465,15 @@ public class po_form_sq extends MasterForm {
         long disc = Long.valueOf(t_disc.getText());
         long total1 = total - (total * disc / 100L);
         t_total_1.setText(String.valueOf(total1));
-        long ppn = total1 * 11L / 100L;
-        long total2 = total1 + (total1 * 11L / 100L);
+        long ppn;
+        long total2;
+        if (cb_ppn.getSelectedItem().toString().equals("Yes")) {
+            ppn = total1 * 11 / 100;
+            total2 = total1 + (total1 * 11 / 100);
+        } else {
+            ppn = total1 * 0 / 100;
+            total2 = total1 + (total1 * 0 / 100);
+        }
         t_ppn.setText(String.valueOf(ppn));
         t_total_2.setText(String.valueOf(total2));        // TODO add your handling code here:
     }//GEN-LAST:event_t_discKeyReleased
@@ -452,70 +500,67 @@ public class po_form_sq extends MasterForm {
     }//GEN-LAST:event_t_priceKeyTyped
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        int respon = JOptionPane.showConfirmDialog(null, "Finish ?", "Option", JOptionPane.YES_NO_OPTION);
+        if (respon == 0) {
 
-        String[] parts1 = cb_rfq.getSelectedItem().toString().split("-");
-        String id1 = parts1[1];
+            if (t_total_2.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Total Cannot be Empty !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                try {
+                    stm = koneksi.createStatement();
+                    String sql = "insert into po_sq (rfq_id,amount,disc,total1,ppn,total2,date) values('" + CustomResource.SessionAny.get_id_rfq_for_sq() + "'"
+                            + ",'" + t_amount.getText() + "'"
+                            + ",'" + t_disc.getText() + "'"
+                            + ",'" + t_total_1.getText() + "'"
+                            + ",'" + t_ppn.getText() + "'"
+                            + ",'" + t_total_2.getText() + "'"
+                            + ",'" + t_date.getText() + "')";
+                    stm.executeUpdate(sql);
+                    stm.close();
+                    JOptionPane.showMessageDialog(null, "Data Saved");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }
 
-        try {
-            stm = koneksi.createStatement();
-            String sql = "insert into po_sq (rfq_id,amount,disc,total1,ppn,total2,date) values('" + id1 + "'"
-                    + ",'" + t_amount.getText() + "'"
-                    + ",'" + t_disc.getText() + "'"
-                    + ",'" + t_total_1.getText() + "'"
-                    + ",'" + t_ppn.getText() + "'"
-                    + ",'" + t_total_2.getText() + "'"
-                    + ",'" + t_date.getText() + "')";
-            stm.executeUpdate(sql);
-            stm.close();
-            JOptionPane.showMessageDialog(null, "Data Saved");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-        }
+                int jtabelrows = jTable2.getRowCount();
 
-        int jtabelrows = jTable2.getRowCount();
+                for (int i = 0; i <= jtabelrows - 1; i++) {
+                    DefaultTableModel model1 = (DefaultTableModel) jTable2.getModel();
 
-        for (int i = 0; i <= jtabelrows - 1; i++) {
-            DefaultTableModel model1 = (DefaultTableModel) jTable2.getModel();
+                    String mr_id = (String) model1.getValueAt(i, 1);
+                    String rfq_id = (String) model1.getValueAt(i, 0);
+                    String price = (String) model1.getValueAt(i, 4);
+                    String total = (String) model1.getValueAt(i, 5);
 
-            String mr_id = (String) model1.getValueAt(i, 1);
-            String rfq_id = (String) model1.getValueAt(i, 0);
-            String price = (String) model1.getValueAt(i, 4);
-            String total = (String) model1.getValueAt(i, 5);
+                    String[] parts = mr_id.split("-");
+                    String id = parts[1];
+                    String[] parts2 = rfq_id.split("-");
+                    String id2 = parts2[1];
 
-            String[] parts = mr_id.split("-");
-            String id = parts[1];
-            String[] parts2 = rfq_id.split("-");
-            String id2 = parts2[1];
+                    try {
+                        stm = koneksi.createStatement();
+                        String sql = "UPDATE po_rfq_items SET price = '" + price + "',total = '" + total + "' WHERE rfq_id = '" + id2 + "' and mr_id = '" + id + "'";
+                        stm.executeUpdate(sql);
+                        stm.close();
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                    }
 
-            try {
-                stm = koneksi.createStatement();
-                String sql = "UPDATE po_rfq_items SET price = '" + price + "',total = '" + total + "' WHERE rfq_id = '" + id2 + "' and mr_id = '" + id + "'";
-                stm.executeUpdate(sql);
-                stm.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }
+                ;
+
+                try {
+                    stm = koneksi.createStatement();
+                    String sql = "UPDATE po_rfq SET status = '2' WHERE id = '" + CustomResource.SessionAny.get_id_rfq_for_sq() + "'";
+                    stm.executeUpdate(sql);
+                    stm.close();
+                    JOptionPane.showMessageDialog(null, "Data Saved");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+                }
+//        cb_rfq();
             }
-
         }
-        
-        
-        
-        String mr_id3 = cb_rfq.getSelectedItem().toString();
-
-        String[] parts = mr_id3.split("-");
-        String id = parts[1];
-
-        try {
-            stm = koneksi.createStatement();
-            String sql = "UPDATE po_rfq SET status = '2' WHERE id = '" + id + "'";
-            stm.executeUpdate(sql);
-            stm.close();
-            JOptionPane.showMessageDialog(null, "Data Saved");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-        }
-        cb_rfq();
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -543,47 +588,81 @@ public class po_form_sq extends MasterForm {
     }//GEN-LAST:event_cb_mrActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        DefaultTableModel dataModel2 = (DefaultTableModel) jTable2.getModel();
-        String[] parts = cb_mr.getSelectedItem().toString().split("-");
-        String id = parts[0] + "-" + parts[1];
-        int rowCount1 = dataModel2.getRowCount();
-        for (int i = rowCount1 - 1; i >= 0; i--) {
+        if (t_name_item.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please Add Item First !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
 
-            if (dataModel2.getValueAt(i, 1).equals(id)) {
-                dataModel2.setValueAt(t_price.getText(), i, 4);
-                dataModel2.setValueAt(t_total.getText(), i, 5);
+            DefaultTableModel dataModel2 = (DefaultTableModel) jTable2.getModel();
+            String[] parts = cb_mr.getSelectedItem().toString().split("-");
+            String id = parts[0] + "-" + parts[1];
+            int rowCount1 = dataModel2.getRowCount();
+            for (int i = rowCount1 - 1; i >= 0; i--) {
+
+                if (dataModel2.getValueAt(i, 1).equals(id)) {
+                    dataModel2.setValueAt(t_price.getText(), i, 4);
+                    dataModel2.setValueAt(t_total.getText(), i, 5);
+
+                }
 
             }
 
-        }
-
-        int rowCount = dataModel2.getRowCount();
+            int rowCount = dataModel2.getRowCount();
 
 // Variabel untuk menyimpan jumlah
-        long total = 0L;
+            long total = 0L;
 
 // Looping untuk menghitung jumlah pada kolom tertentu
-        for (int i = 0; i < rowCount; i++) {
-            total += Long.parseLong(dataModel2.getValueAt(i, 5).toString()); // Mengambil data dari kolom ke-2 dan menjumlahkannya
-        }
+            for (int i = 0; i < rowCount; i++) {
+                total += Long.parseLong(dataModel2.getValueAt(i, 5).toString()); // Mengambil data dari kolom ke-2 dan menjumlahkannya
+            }
 
 // Menampilkan hasil jumlah
-        t_amount.setText(String.valueOf(total));
+            t_amount.setText(String.valueOf(total));
 
-        long disc = Long.valueOf(t_disc.getText());
-        long total1 = total - (total * disc / 100);
-        t_total_1.setText(String.valueOf(total1));
-        long ppn = total1 * 11 / 100;
-        long total2 = total1 + (total1 * 11 / 100);
-        t_ppn.setText(String.valueOf(ppn));
-        t_total_2.setText(String.valueOf(total2));
+            long disc = Long.valueOf(t_disc.getText());
+            long total1 = total - (total * disc / 100);
+            t_total_1.setText(String.valueOf(total1));
+            long ppn;
+            long total2;
+            if (cb_ppn.getSelectedItem().toString().equals("Yes")) {
+                ppn = total1 * 11 / 100;
+                total2 = total1 + (total1 * 11 / 100);
+            } else {
+                ppn = total1 * 0 / 100;
+                total2 = total1 + (total1 * 0 / 100);
+            }
+            t_ppn.setText(String.valueOf(ppn));
+            t_total_2.setText(String.valueOf(total2));
 
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         add_from_table();        // TODO add your handling code here:
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void cb_ppnPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_ppnPopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_ppnPopupMenuWillBecomeVisible
+
+    private void cb_ppnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_ppnActionPerformed
+        long total = Long.valueOf(t_amount.getText());
+        long disc = Long.valueOf(t_disc.getText());
+        long total1 = total - (total * disc / 100L);
+        t_total_1.setText(String.valueOf(total1));
+        long ppn;
+        long total2;
+        if (cb_ppn.getSelectedItem().toString().equals("Yes")) {
+            ppn = total1 * 11 / 100;
+            total2 = total1 + (total1 * 11 / 100);
+        } else {
+            ppn = total1 * 0 / 100;
+            total2 = total1 + (total1 * 0 / 100);
+        }
+        t_ppn.setText(String.valueOf(ppn));
+        t_total_2.setText(String.valueOf(total2));        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_ppnActionPerformed
 
     private void t_dateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_dateKeyReleased
         // TODO add your handling code here:
@@ -593,11 +672,45 @@ public class po_form_sq extends MasterForm {
         // TODO add your handling code here:
     }//GEN-LAST:event_t_dateKeyTyped
 
+    private void t_date_rfqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_date_rfqKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_date_rfqKeyReleased
+
+    private void t_date_rfqKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_date_rfqKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_date_rfqKeyTyped
+
+    private void t_paymentKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_paymentKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_paymentKeyReleased
+
+    private void t_paymentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_paymentKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_paymentKeyTyped
+
+    private void t_date_estimateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_date_estimateKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_date_estimateKeyReleased
+
+    private void t_date_estimateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_date_estimateKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_date_estimateKeyTyped
+
+    private void t_date_estimateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_date_estimateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_date_estimateActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new Rfq_list().setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.ComboBoxSuggestion cb_mr;
-    private CustomResource.ComboBoxSuggestion cb_rfq;
+    private CustomResource.ComboBoxSuggestion cb_ppn;
     private com.raven.datechooser.DateChooser dateChooser1;
+    private com.raven.datechooser.DateChooser dateChooser2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel2;
@@ -609,8 +722,11 @@ public class po_form_sq extends MasterForm {
     private javax.swing.JTable jTable2;
     private CustomResource.CustomTextfield t_amount;
     private CustomResource.CustomTextfield t_date;
+    private CustomResource.CustomTextfield t_date_estimate;
+    private CustomResource.CustomTextfield t_date_rfq;
     private CustomResource.CustomTextfield t_disc;
     private CustomResource.CustomTextfield t_name_item;
+    private CustomResource.CustomTextfield t_payment;
     private CustomResource.CustomTextfield t_ppn;
     private CustomResource.CustomTextfield t_price;
     private CustomResource.CustomTextfield t_stok;

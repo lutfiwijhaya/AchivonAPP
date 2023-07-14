@@ -16,9 +16,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -38,6 +40,16 @@ public class Employe_list extends javax.swing.JFrame {
         openDB();
         table();
         tampil();
+    }
+    
+    
+     private void searchTable(String searchValue) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jTable1.setRowSorter(sorter);
+
+        RowFilter<DefaultTableModel, Object> rowFilter = RowFilter.regexFilter("(?i)" + searchValue);
+        sorter.setRowFilter(rowFilter);
     }
 
     private void table(){
@@ -202,7 +214,7 @@ public class Employe_list extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        textSearch = new CustomResource.CustomTextfield();
+        t_search = new CustomResource.CustomTextfield();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -244,21 +256,21 @@ public class Employe_list extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
-        textSearch.setLabelText("Cari / Search");
-        textSearch.addActionListener(new java.awt.event.ActionListener() {
+        t_search.setLabelText("Cari / Search");
+        t_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textSearchActionPerformed(evt);
+                t_searchActionPerformed(evt);
             }
         });
-        textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+        t_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                textSearchKeyReleased(evt);
+                t_searchKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                textSearchKeyTyped(evt);
+                t_searchKeyTyped(evt);
             }
         });
-        jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, -1));
+        jPanel1.add(t_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,7 +326,7 @@ Main.main.getMain().showForm(new po_rfq());
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void textSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyTyped
+    private void t_searchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_searchKeyTyped
 
 //        DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
 //        String mySearch = textSearch.getText();
@@ -359,9 +371,14 @@ Main.main.getMain().showForm(new po_rfq());
 //        }  
 //        int row1 = jTable1.getRowCount();
 //        System.out.println(row1);
-    }//GEN-LAST:event_textSearchKeyTyped
+    }//GEN-LAST:event_t_searchKeyTyped
 
-    private void textSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyReleased
+    private void t_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_searchKeyReleased
+ String searchValue = t_search.getText();
+        searchTable(searchValue);
+
+
+
 //        //candidate
 //        if ("2".equals(MySession.get_Role())){
 //            role = "1";
@@ -637,11 +654,11 @@ Main.main.getMain().showForm(new po_rfq());
 //                }
 //            }     
 //        }
-    }//GEN-LAST:event_textSearchKeyReleased
+    }//GEN-LAST:event_t_searchKeyReleased
 
-    private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
+    private void t_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_searchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textSearchActionPerformed
+    }//GEN-LAST:event_t_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -685,6 +702,6 @@ Main.main.getMain().showForm(new po_rfq());
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private CustomResource.CustomTextfield textSearch;
+    private CustomResource.CustomTextfield t_search;
     // End of variables declaration//GEN-END:variables
 }

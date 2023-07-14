@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ProcurementSystem;
-
 import CustomResource.koneksi;
 import HumanResource.Employe_list;
 import Main.MasterForm;
@@ -12,7 +11,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -99,7 +97,6 @@ public class po_rfq extends MasterForm {
         for (int i = rowCount1 - 1; i >= 0; i--) {
             dataModel2.removeRow(i);
         }
-
         try {
             stm = koneksi.createStatement();
             rs = stm.executeQuery("select*from po_material_request where status = '1'");
@@ -117,7 +114,7 @@ public class po_rfq extends MasterForm {
                     rs.getString("remark")};
                 dataModel2.insertRow(0, data);
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "data gagal ta mpil");
         }
@@ -134,6 +131,7 @@ public class po_rfq extends MasterForm {
 
         dateChooser2 = new com.raven.datechooser.DateChooser();
         dateChooser3 = new com.raven.datechooser.DateChooser();
+        dateChooser4 = new com.raven.datechooser.DateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         t_id_po = new CustomResource.CustomTextfield();
@@ -156,23 +154,26 @@ public class po_rfq extends MasterForm {
         t_mr_id = new CustomResource.CustomTextfield();
         t_material_id = new CustomResource.CustomTextfield();
         t_material_name = new CustomResource.CustomTextfield();
-        t_stock_needs1 = new CustomResource.CustomTextfield();
-        t_stock_needs2 = new CustomResource.CustomTextfield();
-        t_tgl_rfq1 = new CustomResource.CustomTextfield();
+        t_payment = new CustomResource.CustomTextfield();
+        t_estimate_deliv = new CustomResource.CustomTextfield();
+        t_close_date = new CustomResource.CustomTextfield();
 
         dateChooser2.setDateFormat("yyyy-MM-dd");
-        dateChooser2.setTextRefernce(t_tgl_rfq);
+        dateChooser2.setTextRefernce(t_estimate_deliv);
 
         dateChooser3.setDateFormat("yyyy-MM-dd");
         dateChooser3.setTextRefernce(t_tgl_rfq);
+
+        dateChooser4.setDateFormat("yyyy-MM-dd");
+        dateChooser4.setTextRefernce(t_close_date);
 
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        t_id_po.setEnabled(false);
-        t_id_po.setLabelText("ID PO");
+        t_id_po.setEditable(false);
+        t_id_po.setLabelText("ID RFQ");
         jPanel1.add(t_id_po, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 150, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -204,7 +205,7 @@ public class po_rfq extends MasterForm {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LIST MATERIAL REQUEST");
+        jLabel2.setText("LIST ITEMS REQUEST");
         jLabel2.setOpaque(true);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 650, 20));
 
@@ -224,18 +225,19 @@ public class po_rfq extends MasterForm {
         jLabel3.setOpaque(true);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 650, 20));
 
-        t_name.setEnabled(false);
+        t_name.setEditable(false);
         t_name.setLabelText("Supplier");
         jPanel1.add(t_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 257, -1));
 
-        t_hp.setEnabled(false);
+        t_hp.setEditable(false);
         t_hp.setLabelText("Mobile No");
         jPanel1.add(t_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 257, -1));
 
-        t_emial.setEnabled(false);
+        t_emial.setEditable(false);
         t_emial.setLabelText("E-mail");
         jPanel1.add(t_emial, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 257, -1));
 
+        t_stock_needs.setEditable(false);
         t_stock_needs.setLabelText("Stocks Requirement");
         t_stock_needs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -244,7 +246,7 @@ public class po_rfq extends MasterForm {
         });
         jPanel1.add(t_stock_needs, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 610, 257, -1));
 
-        t_addres.setEnabled(false);
+        t_addres.setEditable(false);
         t_addres.setLabelText("Address");
         jPanel1.add(t_addres, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 257, -1));
 
@@ -307,24 +309,24 @@ public class po_rfq extends MasterForm {
         t_material_name.setLabelText("Material Name");
         jPanel1.add(t_material_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, 257, -1));
 
-        t_stock_needs1.setLabelText("Payment Condition");
-        t_stock_needs1.addKeyListener(new java.awt.event.KeyAdapter() {
+        t_payment.setLabelText("Payment Condition");
+        t_payment.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                t_stock_needs1KeyTyped(evt);
+                t_paymentKeyTyped(evt);
             }
         });
-        jPanel1.add(t_stock_needs1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 257, -1));
+        jPanel1.add(t_payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 257, -1));
 
-        t_stock_needs2.setLabelText("Estimate Date Delivery");
-        t_stock_needs2.addKeyListener(new java.awt.event.KeyAdapter() {
+        t_estimate_deliv.setLabelText("Estimate Date Delivery");
+        t_estimate_deliv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                t_stock_needs2KeyTyped(evt);
+                t_estimate_delivKeyTyped(evt);
             }
         });
-        jPanel1.add(t_stock_needs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 257, -1));
+        jPanel1.add(t_estimate_deliv, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 257, -1));
 
-        t_tgl_rfq1.setLabelText("RFQ Close Date");
-        jPanel1.add(t_tgl_rfq1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 257, -1));
+        t_close_date.setLabelText("RFQ Close Date");
+        jPanel1.add(t_close_date, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 257, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -349,7 +351,10 @@ public class po_rfq extends MasterForm {
 
             try {
                 stm = koneksi.createStatement();
-                String sql = "insert into po_rfq (biz_id,rfq_date) values('" + CustomResource.EmployeeSession.getbiz_id() + "'"
+                String sql = "insert into po_rfq (biz_id,payment,deliv_date,close_date,rfq_date) values('" + CustomResource.EmployeeSession.getbiz_id() + "'"
+                         + ",'" + t_payment.getText() + "'"
+                         + ",'" + t_estimate_deliv.getText() + "'"
+                         + ",'" + t_close_date.getText() + "'"
                         + ",'" + t_tgl_rfq.getText() + "')";
                 stm.executeUpdate(sql);
                 stm.close();
@@ -393,12 +398,14 @@ public class po_rfq extends MasterForm {
                 model1.removeRow(i);
             }
 
-        } // TODO add your handling code here:
+        } 
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         CustomResource.EmployeeSession.setsesiform("3");
-        new Employe_list().setVisible(true);         // TODO add your handling code here:
+        new Employe_list().setVisible(true);         
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -457,18 +464,19 @@ public class po_rfq extends MasterForm {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_t_stock_needsKeyTyped
 
-    private void t_stock_needs1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stock_needs1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_stock_needs1KeyTyped
+    private void t_paymentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_paymentKeyTyped
+// TODO add your handling code here:
+    }//GEN-LAST:event_t_paymentKeyTyped
 
-    private void t_stock_needs2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_stock_needs2KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_stock_needs2KeyTyped
+    private void t_estimate_delivKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_estimate_delivKeyTyped
+// TODO add your handling code here:
+    }//GEN-LAST:event_t_estimate_delivKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.datechooser.DateChooser dateChooser2;
     private com.raven.datechooser.DateChooser dateChooser3;
+    private com.raven.datechooser.DateChooser dateChooser4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -482,18 +490,18 @@ public class po_rfq extends MasterForm {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private CustomResource.CustomTextfield t_addres;
+    private CustomResource.CustomTextfield t_close_date;
     private CustomResource.CustomTextfield t_emial;
+    private CustomResource.CustomTextfield t_estimate_deliv;
     private CustomResource.CustomTextfield t_hp;
     private CustomResource.CustomTextfield t_id_po;
     private CustomResource.CustomTextfield t_material_id;
     private CustomResource.CustomTextfield t_material_name;
     private CustomResource.CustomTextfield t_mr_id;
     private CustomResource.CustomTextfield t_name;
+    private CustomResource.CustomTextfield t_payment;
     private CustomResource.CustomTextfield t_stock_needs;
-    private CustomResource.CustomTextfield t_stock_needs1;
-    private CustomResource.CustomTextfield t_stock_needs2;
     private CustomResource.CustomTextfield t_tgl_rfq;
-    private CustomResource.CustomTextfield t_tgl_rfq1;
     // End of variables declaration//GEN-END:variables
 
     @Override

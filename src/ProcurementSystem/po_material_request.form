@@ -289,12 +289,13 @@
             <Component class="CustomResource.ComboBoxSuggestion" name="box_qty4">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
+                  <StringArray count="6">
                     <StringItem index="0" value="QTY"/>
                     <StringItem index="1" value="Pcs"/>
-                    <StringItem index="2" value="Ctn"/>
-                    <StringItem index="3" value="Ball"/>
-                    <StringItem index="4" value="Roll"/>
+                    <StringItem index="2" value="Sheet"/>
+                    <StringItem index="3" value="Ctn"/>
+                    <StringItem index="4" value="Ball"/>
+                    <StringItem index="5" value="Roll"/>
                   </StringArray>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -381,7 +382,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Choose Material"/>
+                <Property name="text" type="java.lang.String" value="Choose Item"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
