@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -974,6 +975,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         String grade = CandidateGrade.getText();
         String email = CandidateEmail.getText();
         String career = CandidateCareer.getText();
+        ButtonModel typeSallary = groupSallary.getSelection();
 //        String  = .getText();
 
         try {
@@ -1013,7 +1015,13 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             cellG10.setCellValue(career);
             
             sheet.getRow(51).getCell(3).setCellValue(TypeHired.getText());
-            sheet.getRow(52).getCell(3).setCellValue(groupSallary.getSelection().getActionCommand());
+            if (typeSallary != null) {
+                sheet.getRow(52).getCell(3).setCellValue(groupSallary.getSelection().getActionCommand());
+            }else{
+                sheet.getRow(52).getCell(3).setCellValue("");
+//                JOptionPane.showMessageDialog(null, "Salary type must be selected\ntipe gaji harus dipilih");
+//                return;
+            }
             sheet.getRow(53).getCell(3).setCellValue(HiredContract.getText());
             sheet.getRow(54).getCell(3).setCellValue(PositionID.getText());
             sheet.getRow(55).getCell(3).setCellValue(CompanyJoin.getText());
