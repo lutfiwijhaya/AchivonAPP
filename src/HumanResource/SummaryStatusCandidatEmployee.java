@@ -1389,14 +1389,11 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                 }
                 rs1 = stm.executeQuery("select * from cd_certificates WHERE id_employee = "+CustomResource.EmployeeSession.getKTPSummary()+"");
                 while (rs1.next()) {
-                    
                     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
                     SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
-
                     String inputDate = rs1.getString(3);
                     Date date = inputFormat.parse(inputDate);
                     String formattedDate = outputFormat.format(date);
-                    
                     String myData[] = { rs1.getString(4),
                                         rs1.getString(6),
                                         rs1.getString(7),
@@ -1416,8 +1413,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                         }
                     });
                     sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(3, SortOrder.DESCENDING)));
-                    
-                    
                 }
                 DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
                     rs2 = stm.executeQuery("select * from cd_adress WHERE id_employee = "+CustomResource.EmployeeSession.getKTPSummary()+"");
