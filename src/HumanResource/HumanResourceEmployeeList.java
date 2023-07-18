@@ -60,46 +60,64 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
     }
     
     private void tampil(){
-        if("2".equals(MySession.get_Role())){
-            if (CustomResource.EmployeeSession.getsesiform().equals("1")){
-                jLabel1.setText("Daftar Kandidat/Candidate List");
-                DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
-                try {
-                    stm = koneksi.createStatement();
-                    rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
-                    while (rs.next()) {
-                        String[] data = {
-                            rs.getString("id_employee"),
-                            rs.getString("KTP"),
-                            rs.getString("Nama"),
-                            rs.getString("Applying_A")};
-                        dataModel2.insertRow(0, data);
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                }
-            }
-        } else if("1".equals(MySession.get_Role())){
-            if (CustomResource.EmployeeSession.getsesiform().equals("1")){
-                jLabel1.setText("Daftar Kandidat/Candidate List");
-                DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
-                try {
-                    stm = koneksi.createStatement();
-                    rs = stm.executeQuery("select * from cd_employee WHERE approval = '2'");
-                    while (rs.next()) {
-                        String[] data = {
-                            rs.getString("id_employee"),
-                            rs.getString("KTP"),
-                            rs.getString("Nama"),
-                            rs.getString("Applying_A")};
-                        dataModel2.insertRow(0, data);
-                    }
-
-                } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                }
-            }
-        }
+//        if("2".equals(MySession.get_Role())){
+//            if (CustomResource.EmployeeSession.getsesiform().equals("1")){
+//                jLabel1.setText("Daftar Kandidat/Candidate List");
+//                DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
+//                try {
+//                    stm = koneksi.createStatement();
+//                    rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
+//                    while (rs.next()) {
+//                        String[] data = {
+//                            rs.getString("id_employee"),
+//                            rs.getString("KTP"),
+//                            rs.getString("Nama"),
+//                            rs.getString("Applying_A")};
+//                        dataModel2.insertRow(0, data);
+//                    }
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                }
+//            }
+//            if (CustomResource.EmployeeSession.getsesiform().equals("Summary")){
+//                jLabel1.setText("Daftar Kandidat/Candidate List");
+//                DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
+//                try {
+//                    stm = koneksi.createStatement();
+//                    rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
+//                    while (rs.next()) {
+//                        String[] data = {
+//                            rs.getString("id_employee"),
+//                            rs.getString("KTP"),
+//                            rs.getString("Nama"),
+//                            rs.getString("Applying_A")};
+//                        dataModel2.insertRow(0, data);
+//                    }
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                }
+//            }
+//        } else if("1".equals(MySession.get_Role())){
+//            if (CustomResource.EmployeeSession.getsesiform().equals("1")){
+//                jLabel1.setText("Daftar Kandidat/Candidate List");
+//                DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
+//                try {
+//                    stm = koneksi.createStatement();
+//                    rs = stm.executeQuery("select * from cd_employee WHERE approval = '2'");
+//                    while (rs.next()) {
+//                        String[] data = {
+//                            rs.getString("id_employee"),
+//                            rs.getString("KTP"),
+//                            rs.getString("Nama"),
+//                            rs.getString("Applying_A")};
+//                        dataModel2.insertRow(0, data);
+//                    }
+//
+//                } catch (Exception e) {
+//                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+//                }
+//            }
+//        }
         if (CustomResource.EmployeeSession.getsesiform().equals("2")){  
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
             try {
@@ -111,6 +129,23 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
                         rs.getString("karyawan_id"),
                         rs.getString("name"),
                         rs.getString("job_position")};
+                    dataModel2.insertRow(0, data);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+            }
+        }
+        if (CustomResource.EmployeeSession.getsesiform().equals("Summary")){  
+            DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString("id_employee"),
+                        rs.getString("KTP"),
+                        rs.getString("Nama"),
+                        rs.getString("Applying_A")};
                     dataModel2.insertRow(0, data);
                 }
             } catch (Exception e) {
@@ -250,6 +285,12 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();        
             CustomResource.CandidateSession.setCandidateID(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
             Main.main.getMain().showForm(new EmployeeConfirmation());
+            this.dispose();
+        }     
+        if (CustomResource.EmployeeSession.getsesiform().equals("Summary")){
+            DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();        
+            CustomResource.EmployeeSession.setKTPSummary(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            Main.main.getMain().showForm(new SummaryStatusCandidatEmployee());
             this.dispose();
         }     
         if (CustomResource.EmployeeSession.getsesiform().equals("2")){

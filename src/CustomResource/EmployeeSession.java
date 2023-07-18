@@ -10,6 +10,7 @@ public class EmployeeSession {
     private static String KTPRehab;
     private static String KTPAbsence;
     private static String KTPAllocation;
+    private static String KTPSummary;
     private static String KTPClearance;
     private static String KTPHandover;
     private static String sesi_form;
@@ -54,6 +55,15 @@ public class EmployeeSession {
     
     public static void setKTPAbsence(String KTPAbsence){
         EmployeeSession.KTPAbsence = KTPAbsence;
+    }
+    
+    
+    public static String getKTPSummary(){
+        return KTPSummary;
+    }
+    
+    public static void setKTPSummary(String KTPSummary){
+        EmployeeSession.KTPSummary = KTPSummary;
     }
     
     public static String getKTPAllocation(){

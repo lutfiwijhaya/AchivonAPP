@@ -959,12 +959,12 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="CustomResource.CustomTextfield" name="CandidateAge1">
+            <Component class="CustomResource.CustomTextfield" name="CandidateAge">
               <Properties>
                 <Property name="labelText" type="java.lang.String" value="Age (years)"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CandidateAge1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CandidateAgeActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1271,6 +1271,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Select Employee / Pilih Karyawan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSelectActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="770" y="100" width="-1" height="30"/>

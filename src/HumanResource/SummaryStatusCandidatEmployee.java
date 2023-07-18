@@ -20,14 +20,18 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import jnafilechooser.api.JnaFileChooser;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -41,7 +45,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class SummaryStatusCandidatEmployee extends MasterForm {
 
     java.sql.Statement stm;
-    ResultSet rs;
+    ResultSet rs,rs1,rs2,rs3;
     Connection koneksi;
     
     public SummaryStatusCandidatEmployee() {
@@ -49,7 +53,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         MyWindow();
         openDB();
         setTable();
-//        setcombo();s
+        getData();
         jLabel2.setVisible(false);
         jLabel47.setVisible(false);
         jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
@@ -78,20 +82,8 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
-
-//    private void setcombo() {
-//        try {
-//            stm = koneksi.createStatement();
-//            rs = stm.executeQuery("select * from cd_employee");
-//            while (rs.next()) {
-//                comboCDEmployeeID.addItem(rs.getString("Nama")+"|"+rs.getString("KTP"));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
     /**
-     * seriously dont change anythings here oa
+     * seriously don't change anythings here
      * if you want to Modify this code please do this first
      * 1, sleep
      * 2, eat
@@ -159,7 +151,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         CandidateMarital = new CustomResource.CustomTextfield();
         CandidateDiscipline = new CustomResource.CustomTextfield();
         CandidateGender = new CustomResource.CustomTextfield();
-        CandidateAge1 = new CustomResource.CustomTextfield();
+        CandidateAge = new CustomResource.CustomTextfield();
         CandidateReligion = new CustomResource.CustomTextfield();
         TypeHired = new CustomResource.CustomTextfield();
         HiredContract = new CustomResource.CustomTextfield();
@@ -544,13 +536,13 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         });
         jPanel1.add(CandidateGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 80, -1));
 
-        CandidateAge1.setLabelText("Age (years)");
-        CandidateAge1.addActionListener(new java.awt.event.ActionListener() {
+        CandidateAge.setLabelText("Age (years)");
+        CandidateAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CandidateAge1ActionPerformed(evt);
+                CandidateAgeActionPerformed(evt);
             }
         });
-        jPanel1.add(CandidateAge1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 80, -1));
+        jPanel1.add(CandidateAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 80, -1));
 
         CandidateReligion.setDragEnabled(true);
         CandidateReligion.setInheritsPopupMenu(true);
@@ -732,6 +724,11 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         buttonSelect.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         buttonSelect.setForeground(new java.awt.Color(51, 51, 255));
         buttonSelect.setText("Select Employee / Pilih Karyawan");
+        buttonSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSelectActionPerformed(evt);
+            }
+        });
         jPanel1.add(buttonSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, 30));
 
         jScrollPane6.setViewportView(jPanel1);
@@ -800,9 +797,9 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         // TODO add your handling code here:
     }//GEN-LAST:event_CandidateBirthdayActionPerformed
 
-    private void CandidateAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateAge1ActionPerformed
+    private void CandidateAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateAgeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CandidateAge1ActionPerformed
+    }//GEN-LAST:event_CandidateAgeActionPerformed
 
     private void CandidatePhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidatePhoneNumberActionPerformed
         // TODO add your handling code here:
@@ -872,10 +869,15 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         // TODO add your handling code here:
     }//GEN-LAST:event_allActionPerformed
 
+    private void buttonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelectActionPerformed
+        CustomResource.EmployeeSession.setsesiform("Summary");
+        new HumanResourceEmployeeList().setVisible(true);
+    }//GEN-LAST:event_buttonSelectActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.CustomTextfield Accomodation;
     private CustomResource.CustomTextfield Basic;
-    private CustomResource.CustomTextfield CandidateAge1;
+    private CustomResource.CustomTextfield CandidateAge;
     private CustomResource.CustomTextfield CandidateBirthday;
     private CustomResource.CustomTextfield CandidateCareer;
     private CustomResource.CustomTextfield CandidateDiscipline;
@@ -1355,6 +1357,91 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                 }
             }
         });
+    }
+    
+    private void getData() {
+        if("".equals(CustomResource.EmployeeSession.getKTPSummary())){
+            
+        }else{
+            try {
+                stm = koneksi.createStatement();
+                rs = stm.executeQuery("select * from cd_employee WHERE id_employee = "+CustomResource.EmployeeSession.getKTPSummary()+"");
+                while (rs.next()) {
+                    CandidateName.setText(rs.getString("Nama"));
+                    CandidateKTP.setText(rs.getString("KTP"));
+                    CandidateGender.setText(rs.getString("sex"));
+    //                CandidateAge.setText(rs.getString(""));
+    //                CandidateEducation.setText(rs.getString(""));
+                    CandidatePhoneNumber.setText(rs.getString("No_HP"));
+    //                CandidateReligion.setText(rs.getString(""));
+                    CandidateSallary.setText(rs.getString("D_Salary"));
+                    CandidateDiscipline.setText(rs.getString("discipline"));
+                    CandidatePosition.setText(rs.getString("Applying_A"));
+                    CandidateMarital.setText(rs.getString("marital"));
+    //                CandidateGrade.setText(rs.getString(""));
+                    CandidateEmail.setText(rs.getString("email"));
+    //                CandidateCareer.setText(rs.getString(""));
+                }
+                DefaultTableModel model5 = (DefaultTableModel) jTable5.getModel();
+                int row = model5.getRowCount();
+                for (int i = 0; i < row; i++) {
+                    model5.removeRow(0);
+                }
+                rs1 = stm.executeQuery("select * from cd_certificates WHERE id_employee = "+CustomResource.EmployeeSession.getKTPSummary()+"");
+                while (rs1.next()) {
+                    
+                    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+
+                    String inputDate = rs1.getString(3);
+                    Date date = inputFormat.parse(inputDate);
+                    String formattedDate = outputFormat.format(date);
+                    
+                    String myData[] = { rs1.getString(4),
+                                        rs1.getString(6),
+                                        rs1.getString(7),
+                                        formattedDate,};
+                    model5.addRow(myData);
+                    
+                    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model5);
+                    jTable5.setRowSorter(sorter);
+                    sorter.setComparator(3, (date1, date2) -> {
+                        try {
+                            Date parsedDate1 = outputFormat.parse(date1.toString());
+                            Date parsedDate2 = outputFormat.parse(date2.toString());
+                            return parsedDate1.compareTo(parsedDate2);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                            return 0;
+                        }
+                    });
+                    sorter.setSortKeys(Collections.singletonList(new RowSorter.SortKey(3, SortOrder.DESCENDING)));
+                    
+                    
+                }
+                DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
+                    rs2 = stm.executeQuery("select * from cd_adress WHERE id_employee = "+CustomResource.EmployeeSession.getKTPSummary()+"");
+                    while (rs2.next()) {
+                        String myData1[] = {rs2.getString(3),
+                                            rs2.getString(4),
+                                            rs2.getString(5),
+                                            rs2.getString(6),
+                                            rs2.getString(7)};
+                        String myData2[] = {rs2.getString(9),
+                                            rs2.getString(10),
+                                            rs2.getString(11),
+                                            rs2.getString(12),
+                                            rs2.getString(13)};
+                        for (int row1 = 0; row1 < myData1.length; row1++) {
+                            model1.setValueAt(myData1[row1], row1, 1);
+                            model1.setValueAt(myData2[row1], row1, 2);
+                        }
+                    }
+                CustomResource.EmployeeSession.setKTPSummary("");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     @Override
