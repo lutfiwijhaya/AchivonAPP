@@ -445,8 +445,7 @@ public class CandidateList extends MasterForm {
                     }
                 } catch (SQLException ex) {
                 } catch (ParseException ex) {
-                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
-                
+//                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 try {
@@ -464,7 +463,7 @@ public class CandidateList extends MasterForm {
                     }
                 } catch (SQLException ex) {
                 } catch (ParseException ex) {
-                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
@@ -485,7 +484,7 @@ public class CandidateList extends MasterForm {
                     }
                 } catch (SQLException ex) {
                 } catch (ParseException ex) {
-                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 try {
@@ -503,7 +502,7 @@ public class CandidateList extends MasterForm {
                     }
                 } catch (SQLException ex) {
                 } catch (ParseException ex) {
-                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
@@ -525,7 +524,7 @@ public class CandidateList extends MasterForm {
                     }
                 } catch (SQLException ex) {
                 } catch (ParseException ex) {
-                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 try {
@@ -543,7 +542,7 @@ public class CandidateList extends MasterForm {
                     }
                 } catch (SQLException ex) {
                 } catch (ParseException ex) {
-                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
@@ -564,7 +563,7 @@ public class CandidateList extends MasterForm {
                 }
             } catch (SQLException ex) {
             } catch (ParseException ex) {
-                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
             } else {
                 try {
@@ -582,7 +581,7 @@ public class CandidateList extends MasterForm {
                     }
                 } catch (SQLException ex) {
                 } catch (ParseException ex) {
-                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
             }
         }
