@@ -1394,6 +1394,7 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                     String inputDate = rs1.getString(3);
                     Date date = inputFormat.parse(inputDate);
                     String formattedDate = outputFormat.format(date);
+                    
                     String myData[] = { rs1.getString(4),
                                         rs1.getString(6),
                                         rs1.getString(7),

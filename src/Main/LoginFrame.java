@@ -218,10 +218,20 @@ public class LoginFrame extends javax.swing.JFrame {
 
         textRepeatPassword.setLabelText("re-type password / ketik ulang password");
         textRepeatPassword.setShowAndHide(true);
+        textRepeatPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textRepeatPasswordKeyPressed(evt);
+            }
+        });
         jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 260, 40));
 
         textPassword.setLabelText("Password");
         textPassword.setShowAndHide(true);
+        textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textPasswordKeyPressed(evt);
+            }
+        });
         jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

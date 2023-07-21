@@ -19,6 +19,9 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -159,15 +162,15 @@ public class CandidateList extends MasterForm {
         MyTable.getColumnModel().getColumn(10).setCellRenderer(new callrender());
         MyTable.setDefaultEditor(Object.class, null);
         MyTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-        MyTable.getColumnModel().getColumn(1).setPreferredWidth(130);
-        MyTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(3).setPreferredWidth(150);
-        MyTable.getColumnModel().getColumn(4).setPreferredWidth(70);
-        MyTable.getColumnModel().getColumn(5).setPreferredWidth(60);
-        MyTable.getColumnModel().getColumn(6).setPreferredWidth(170);
+        MyTable.getColumnModel().getColumn(1).setPreferredWidth(140);
+        MyTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+        MyTable.getColumnModel().getColumn(3).setPreferredWidth(250);//birthday
+        MyTable.getColumnModel().getColumn(4).setPreferredWidth(180);
+        MyTable.getColumnModel().getColumn(5).setPreferredWidth(240);
+        MyTable.getColumnModel().getColumn(6).setPreferredWidth(200);
         MyTable.getColumnModel().getColumn(7).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(8).setPreferredWidth(100);
-        MyTable.getColumnModel().getColumn(9).setPreferredWidth(100);
+        MyTable.getColumnModel().getColumn(8).setPreferredWidth(240);
+        MyTable.getColumnModel().getColumn(9).setPreferredWidth(150);
         MyTable.getColumnModel().getColumn(10).setPreferredWidth(245);
         MyTable.getColumnModel().getColumn(10).setCellEditor(new celleditor(event));
     }
@@ -429,24 +432,39 @@ public class CandidateList extends MasterForm {
                 try {
                     ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0' AND Nama LIKE '%" + mySearch + "%'");
                     while (myRess.next()) {
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        String inputDate = myRess.getString(8);
+                        Date date = inputFormat.parse(inputDate);
+                        String formattedDate = outputFormat.format(date);
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
                             myRess.getString(6), myRess.getString(9), myRess.getString(4),
                             myRess.getString(10), myRess.getString(12), myRess.getString(13)};
 
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
+                } catch (ParseException ex) {
+                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+                
                 }
             } else {
                 try {
                     ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '0'");
                     while (myRess.next()) {
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        String inputDate = myRess.getString(8);
+                        Date date = inputFormat.parse(inputDate);
+                        String formattedDate = outputFormat.format(date);
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
                             myRess.getString(6), myRess.getString(9), myRess.getString(4),
                             myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
+                } catch (ParseException ex) {
+                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
@@ -455,23 +473,37 @@ public class CandidateList extends MasterForm {
                 try {
                     ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '1' AND Nama LIKE '%" + mySearch + "%'");
                     while (myRess.next()) {
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        String inputDate = myRess.getString(8);
+                        Date date = inputFormat.parse(inputDate);
+                        String formattedDate = outputFormat.format(date);
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
                             myRess.getString(6), myRess.getString(9), myRess.getString(4),
                             myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
+                } catch (ParseException ex) {
+                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 try {
                     ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '1'");
                     while (myRess.next()) {
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        String inputDate = myRess.getString(8);
+                        Date date = inputFormat.parse(inputDate);
+                        String formattedDate = outputFormat.format(date);
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
                             myRess.getString(6), myRess.getString(9), myRess.getString(4),
                             myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
+                } catch (ParseException ex) {
+                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
@@ -480,24 +512,38 @@ public class CandidateList extends MasterForm {
                 try {
                     ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '2' AND Nama LIKE '%" + mySearch + "%'");
                     while (myRess.next()) {
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        String inputDate = myRess.getString(8);
+                        Date date = inputFormat.parse(inputDate);
+                        String formattedDate = outputFormat.format(date);
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
                             myRess.getString(6), myRess.getString(9), myRess.getString(4),
                             myRess.getString(10), myRess.getString(12), myRess.getString(13)};
 
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
+                } catch (ParseException ex) {
+                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 try {
                     ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '2'");
                     while (myRess.next()) {
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        String inputDate = myRess.getString(8);
+                        Date date = inputFormat.parse(inputDate);
+                        String formattedDate = outputFormat.format(date);
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
                             myRess.getString(6), myRess.getString(9), myRess.getString(4),
                             myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
+                } catch (ParseException ex) {
+                    Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }else if ((c_app.getSelectedItem().toString().equals("Sudah Approve/Approved"))){
@@ -506,24 +552,38 @@ public class CandidateList extends MasterForm {
             try {
                 ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '3' AND Nama LIKE '%" + mySearch + "%'");
                 while (myRess.next()) {
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                    String inputDate = myRess.getString(8);
+                    Date date = inputFormat.parse(inputDate);
+                    String formattedDate = outputFormat.format(date);
+                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
                         myRess.getString(6), myRess.getString(9), myRess.getString(4),
                         myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                     myModel.addRow(myData);
                 }
             } catch (SQLException ex) {
+            } catch (ParseException ex) {
+                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
             }
             } else {
                 try {
                     ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM cd_employee WHERE approval = '3'");
                     while (myRess.next()) {
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + myRess.getString(8),
+                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        String inputDate = myRess.getString(8);
+                        Date date = inputFormat.parse(inputDate);
+                        String formattedDate = outputFormat.format(date);
+                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
                             myRess.getString(6), myRess.getString(9), myRess.getString(4),
                             myRess.getString(10), myRess.getString(12), myRess.getString(13)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
-                }
+                } catch (ParseException ex) {
+                Logger.getLogger(CandidateList.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
         }
     }
