@@ -40,6 +40,8 @@ public class AddJobVacancy extends MasterForm {
         table_id();
         hapus_row();
         tampil();
+        
+        jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
         ((DefaultTableCellRenderer) jTable1.getTableHeader().getDefaultRenderer())
                 .setHorizontalAlignment(JLabel.CENTER);
 
@@ -150,26 +152,38 @@ public class AddJobVacancy extends MasterForm {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
+        dateChooser1 = new com.raven.datechooser.DateChooser();
+        jScrollPane3 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         customTextfield1 = new CustomResource.CustomTextfield();
         customTextfield2 = new CustomResource.CustomTextfield();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane2 = new scroolbarWin11.ScrollPaneWin11();
         jTable2 = new javax.swing.JTable();
         jLabel86 = new javax.swing.JLabel();
         t_lamaran = new CustomResource.ComboBoxSuggestion();
         jLabel87 = new javax.swing.JLabel();
         jLabel88 = new javax.swing.JLabel();
-        customTextfield3 = new CustomResource.CustomTextfield();
+        textPosition = new CustomResource.CustomTextfield();
         customTextfield4 = new CustomResource.CustomTextfield();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        jLabel89 = new javax.swing.JLabel();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
+        areaRequirement = new javax.swing.JTextArea();
+        jLabel90 = new javax.swing.JLabel();
+        jScrollPane6 = new scroolbarWin11.ScrollPaneWin11();
+        areaJobDesc = new javax.swing.JTextArea();
+        textLocation = new CustomResource.CustomTextfield();
+        textExperience = new CustomResource.CustomTextfield();
+
+        dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
+        dateChooser1.setTextRefernce(textExperience);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -195,16 +209,17 @@ public class AddJobVacancy extends MasterForm {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 260, 370, 110));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, 370, 110));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(51, 51, 255));
         jButton2.setText("Hapus / Delete");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 380, 110, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 660, 110, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
@@ -212,7 +227,7 @@ public class AddJobVacancy extends MasterForm {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, 40));
 
         customTextfield1.setLabelText("Disiplin/Dicipline");
-        jPanel1.add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 250, -1));
+        jPanel1.add(customTextfield1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 370, -1));
 
         customTextfield2.setLabelText("Cari / Search");
         customTextfield2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -223,7 +238,7 @@ public class AddJobVacancy extends MasterForm {
                 customTextfield2KeyTyped(evt);
             }
         });
-        jPanel1.add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 370, -1));
+        jPanel1.add(customTextfield2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 490, 370, -1));
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -249,11 +264,11 @@ public class AddJobVacancy extends MasterForm {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(0);
         }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 350, 110));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 350, 110));
 
         jLabel86.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel86.setText("Posisi/Position");
-        jPanel1.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 100, 30));
+        jLabel86.setText("Requirement / Persyaratan");
+        jPanel1.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 150, 30));
 
         t_lamaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Test", " " }));
         t_lamaran.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -272,8 +287,13 @@ public class AddJobVacancy extends MasterForm {
         jLabel88.setText("Tambah Posisi Lowongan kerja/Add Job Vacancy");
         jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 290, 30));
 
-        customTextfield3.setLabelText("Tambah Posisi/Add Position");
-        jPanel1.add(customTextfield3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 240, -1));
+        textPosition.setLabelText("Tambah Posisi/Add Position");
+        textPosition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPositionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(textPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 350, -1));
 
         customTextfield4.setLabelText("Cari / Search");
         customTextfield4.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -284,35 +304,71 @@ public class AddJobVacancy extends MasterForm {
                 customTextfield4KeyTyped(evt);
             }
         });
-        jPanel1.add(customTextfield4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 350, -1));
+        jPanel1.add(customTextfield4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 350, -1));
 
+        jButton3.setBackground(new java.awt.Color(51, 51, 255));
         jButton3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Tambah/Add");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 110, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 235, 100, 30));
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(51, 51, 255));
         jButton4.setText("Hapus / Delete");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, 110, 30));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 490, 110, 30));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(51, 51, 255));
         jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tambah/Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 160, 110, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 450, 110, 30));
+
+        jLabel89.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel89.setText("Posisi/Position");
+        jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 100, 30));
+
+        areaRequirement.setColumns(20);
+        areaRequirement.setRows(5);
+        jScrollPane5.setViewportView(areaRequirement);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 370, -1));
+
+        jLabel90.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel90.setText("Job Description / Deskripsi Pekerjaan");
+        jPanel1.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, 220, 30));
+
+        areaJobDesc.setColumns(20);
+        areaJobDesc.setRows(5);
+        jScrollPane6.setViewportView(areaJobDesc);
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 350, 370, -1));
+
+        textLocation.setLabelText("Job Location / Lokasi Pekerjaan");
+        jPanel1.add(textLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 350, -1));
+
+        textExperience.setLabelText("Experience (yyyy) / Pengalaman (yyyy) ");
+        textExperience.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textExperienceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(textExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 240, -1));
 
         jScrollPane3.setViewportView(jPanel1);
 
@@ -342,7 +398,7 @@ public class AddJobVacancy extends MasterForm {
 
         try {
             Statement stm = koneksi.createStatement();
-            String sql = "Insert Into job_facancy_discipline(id_job,name_dicipline) value ('" + id + "','" + customTextfield1.getText() + "') ";
+            String sql = "Insert Into job_facancy_discipline(id_job,name_dicipline,requirement,job_description) value ('" + id + "','" + customTextfield1.getText() + "','" + areaRequirement.getText() + "','" + areaJobDesc.getText() + "') ";
 
             stm.executeUpdate(sql);
 
@@ -382,12 +438,12 @@ public class AddJobVacancy extends MasterForm {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             Statement stm = koneksi.createStatement();
-            String sql = "Insert Into job_facancy(name_job) value ('" + customTextfield3.getText() + "') ";
+            String sql = "Insert Into job_facancy(name_job,job_location,experience) value ('" + textPosition.getText() + "','" + textLocation.getText() + "','" + textExperience.getText() + "') ";
             stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        customTextfield3.setText("");
+        textPosition.setText("");
         hapus_row();
         tampil();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -570,12 +626,22 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
         }          // TODO add your handling code here:
     }//GEN-LAST:event_customTextfield2KeyReleased
 
+    private void textPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPositionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textPositionActionPerformed
+
+    private void textExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textExperienceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textExperienceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaJobDesc;
+    private javax.swing.JTextArea areaRequirement;
     private CustomResource.CustomTextfield customTextfield1;
     private CustomResource.CustomTextfield customTextfield2;
-    private CustomResource.CustomTextfield customTextfield3;
     private CustomResource.CustomTextfield customTextfield4;
+    private com.raven.datechooser.DateChooser dateChooser1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -584,14 +650,21 @@ DefaultTableModel myModel = (DefaultTableModel) jTable1.getModel();;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
+    private javax.swing.JLabel jLabel90;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private CustomResource.ComboBoxSuggestion t_lamaran;
+    private CustomResource.CustomTextfield textExperience;
+    private CustomResource.CustomTextfield textLocation;
+    private CustomResource.CustomTextfield textPosition;
     // End of variables declaration//GEN-END:variables
 
     private void MyWindow() {

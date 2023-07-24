@@ -99,7 +99,7 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
             try {
                 stm = koneksi.createStatement();
-                rs = stm.executeQuery("select * from employee");
+                rs = stm.executeQuery("select * from employee WHERE status_employee = 1 ORDER BY karyawan_id DESC");
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id"),
