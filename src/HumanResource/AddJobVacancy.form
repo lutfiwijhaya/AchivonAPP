@@ -7,9 +7,6 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="33" type="rgb"/>
         </Property>
-        <Property name="textRefernce" type="javax.swing.JTextField" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="textExperience"/>
-        </Property>
       </Properties>
     </Component>
   </NonVisualComponents>
@@ -456,7 +453,8 @@
             </Component>
             <Component class="CustomResource.CustomTextfield" name="textExperience">
               <Properties>
-                <Property name="labelText" type="java.lang.String" value="Experience (yyyy) / Pengalaman (yyyy) "/>
+                <Property name="text" type="java.lang.String" value=""/>
+                <Property name="labelText" type="java.lang.String" value="Experience (1 Years) / Pengalaman (1 Tahun) "/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textExperienceActionPerformed"/>

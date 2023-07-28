@@ -183,7 +183,6 @@ public class AddJobVacancy extends MasterForm {
         textExperience = new CustomResource.CustomTextfield();
 
         dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
-        dateChooser1.setTextRefernce(textExperience);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -362,7 +361,8 @@ public class AddJobVacancy extends MasterForm {
         textLocation.setLabelText("Job Location / Lokasi Pekerjaan");
         jPanel1.add(textLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 350, -1));
 
-        textExperience.setLabelText("Experience (yyyy) / Pengalaman (yyyy) ");
+        textExperience.setText("");
+        textExperience.setLabelText("Experience (1 Years) / Pengalaman (1 Tahun) ");
         textExperience.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textExperienceActionPerformed(evt);

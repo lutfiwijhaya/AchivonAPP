@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import CustomResource.MySession;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,6 +26,7 @@ import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -99,6 +101,7 @@ public class Checklist extends MasterForm {
         jLabel4 = new javax.swing.JLabel();
         textSearch = new CustomResource.CustomTextfield();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 585));
 
@@ -107,7 +110,7 @@ public class Checklist extends MasterForm {
 
         MyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null,  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true), null}
             },
             new String [] {
                 "id", "Karyawan Id / Employee Id", "Nama / Name", "KTP", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"
@@ -145,6 +148,7 @@ public class Checklist extends MasterForm {
             MyTable.getColumnModel().getColumn(0).setPreferredWidth(50);
             MyTable.getColumnModel().getColumn(1).setPreferredWidth(170);
             MyTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            MyTable.getColumnModel().getColumn(3).setMinWidth(130);
             MyTable.getColumnModel().getColumn(3).setPreferredWidth(100);
             MyTable.getColumnModel().getColumn(4).setPreferredWidth(100);
             MyTable.getColumnModel().getColumn(5).setPreferredWidth(100);
@@ -185,13 +189,25 @@ public class Checklist extends MasterForm {
         });
         jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 460, -1));
 
+        jButton1.setForeground(new java.awt.Color(51, 51, 255));
         jButton1.setText("Save as excel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 510, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 510, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(51, 51, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 510, -1, -1));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -225,9 +241,14 @@ public class Checklist extends MasterForm {
         tracer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        saving();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -240,20 +261,114 @@ public class Checklist extends MasterForm {
     private void myShow() {
         Connection myConn;
         String mySearch = textSearch.getText();
-        int row = MyTable.getRowCount();
-        for(int i = 0; i < row; i++){
-//            myModel.removeRow(0);
-        }
         DefaultTableModel model = (DefaultTableModel) MyTable.getModel();
-        try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
-            int i = 1;
-            while (myRess.next()) {
-                String myData [] = {myRess.getString(1), myRess.getString(2),myRess.getString(4), myRess.getString(3)};
-                model.addRow(myData);
+//        int rowCount = model.getRowCount();
+//        for(int i = 0; i < rowCount; i++){
+//            model.removeRow(i);
+//        }
+        if (mySearch != null){
+            int row = MyTable.getRowCount();
+            for(int i = 0; i < row; i++){
+                model.removeRow(0);
             }
-        } catch (SQLException ex) {
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE status_employee = 1 AND name LIKE '%" + mySearch + "%'");
+                int i = 1;
+                while (myRess.next()) {
+                    String myData [] = {myRess.getString(1), myRess.getString(2),myRess.getString(4), myRess.getString(3)};
+                    model.addRow(myData);
+                }
+            } catch (SQLException ex) {
+            }
+        }else{
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                ResultSet myRess1 = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE status_employee = 1 ORDER BY karyawan_id ASC");
+                int i = 1;
+                while (myRess1.next()) {
+                    String myData [] = {myRess1.getString(1), myRess1.getString(2),myRess1.getString(4), myRess1.getString(3)};
+                    model.addRow(myData);
+                }
+            } catch (SQLException ex) {
+            }
+        }
+    }
+    
+    private void saving(){
+        PreparedStatement pstmt = null;
+        PreparedStatement pstmt1 = null;
+        try{
+            DefaultTableModel model = (DefaultTableModel) MyTable.getModel();
+            int rowCount = model.getRowCount();
+            int colCount = model.getColumnCount();
+            String[] columns = {
+                "aplication_form=? ",
+                "summary=? ",
+                "resume=? ",
+                "self=? ",
+                "academic_certificate=? ",
+                "career_certificate=? ",
+                "personal_id_card=? ",
+                "photo=? ",
+                "skck=? ",
+                "bank=? ",
+                "report_mcu=? ",
+                "family_cerificate=? ",
+                "npwp=? ",
+                "bpjs_kesehatan=? ",
+                "bpjs_tenaga_kerja=? ",
+                "family_contact_point=? "
+            };
+            int count = 0;
+            for(int row = 0; row < rowCount; row++){
+                System.out.println(model.getValueAt(row, 1) + "\t");
+                for(int col = 4; col < colCount; col++){
+                    String sql = "UPDATE checklist SET "
+                        + columns[count]
+                        + "WHERE karyawan_id=?";
+//                    pstmt = koneksi.prepareStatement(sql);
+//                    String sql = "UPDATE checklist SET"
+//                            + "aplication_form=?, "
+//                            + "summary=?, "
+//                            + "resume=?, "
+//                            + "self=?, "
+//                            + "academic_certificate=?, "
+//                            + "career_certificate=?, "
+//                            + "personal_id_card=?, "
+//                            + "photo=?, "
+//                            + "skck=?, "
+//                            + "bank=?, "
+//                            + "report_mcu=?, "
+//                            + "family_cerificate=?, "
+//                            + "npwp=?, "
+//                            + "bpjs_kesehatan=?, "
+//                            + "bpjs_tenaga_kerja=?, "
+//                            + "family_contact_point=? "
+//                            + "WHERE karyawan_id=?";
+
+                    Object isChecked3 = (Boolean)model.getValueAt(row, col);
+                    if (isChecked3 != null) {
+//                        pstmt.setString(1, "1");
+                        System.out.println(columns[count] + ", 1" + "\t");
+                    }else{
+//                        pstmt.setString(1, "0");
+                        System.out.println(columns[count] + ", 0" + "\t");
+                    }
+                    
+//                    pstmt.setString(2, model.getValueAt(row, 1).toString());
+//                    pstmt.executeUpdate();
+                    
+                    count++;
+                    if (count == 16) {
+                        count = 0; 
+                    }
+                }
+            }
+        }catch (Error e) {
+            JOptionPane.showMessageDialog(null, "Data gagal disimpan \nFailed to save data");
+            e.printStackTrace();
+        } finally {
         }
     }
     
