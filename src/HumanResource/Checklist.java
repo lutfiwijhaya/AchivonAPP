@@ -14,11 +14,6 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import CustomResource.koneksi;
-import static HumanResource.AllocationAnnouncement.textDescription;
-import static HumanResource.AllocationAnnouncement.textDiscipline;
-import static HumanResource.AllocationAnnouncement.textJoinDate;
-import static HumanResource.AllocationAnnouncement.textName;
-import static HumanResource.AllocationAnnouncement.textPosition;
 import Main.MasterForm;
 import com.toedter.calendar.JCalendar;
 import java.awt.Dimension;
@@ -30,6 +25,8 @@ import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -262,10 +259,6 @@ public class Checklist extends MasterForm {
         Connection myConn;
         String mySearch = textSearch.getText();
         DefaultTableModel model = (DefaultTableModel) MyTable.getModel();
-//        int rowCount = model.getRowCount();
-//        for(int i = 0; i < rowCount; i++){
-//            model.removeRow(i);
-//        }
         if (mySearch != null){
             int row = MyTable.getRowCount();
             for(int i = 0; i < row; i++){
@@ -273,35 +266,247 @@ public class Checklist extends MasterForm {
             }
             try {
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE status_employee = 1 AND name LIKE '%" + mySearch + "%'");
-                int i = 1;
+                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee e1 INNER JOIN checklist c1 ON e1.karyawan_id = c1.karyawan_id WHERE status_employee = 1 AND name LIKE '%" + mySearch + "%'");
+                int mRow = 0;
+                
                 while (myRess.next()) {
-                    String myData [] = {myRess.getString(1), myRess.getString(2),myRess.getString(4), myRess.getString(3)};
+                    String myData [] = {
+                        myRess.getString(1), 
+                        myRess.getString(2),
+                        myRess.getString(4), 
+                        myRess.getString(3),
+                    };
+                    
                     model.addRow(myData);
+                    
+                    if ("1".equals(myRess.getString("aplication_form"))) {
+                        model.setValueAt(true, mRow, 4);
+                    }else{
+                        model.setValueAt(false, mRow, 4);
+                    }
+                    
+                    if ("1".equals(myRess.getString("summary"))) {
+                        model.setValueAt(true, mRow, 5);
+                    }else{
+                        model.setValueAt(false, mRow, 5);
+                    }
+                    
+                    if ("1".equals(myRess.getString("resume"))) {
+                        model.setValueAt(true, mRow, 6);
+                    }else{
+                        model.setValueAt(false, mRow, 6);
+                    }
+                    
+                    if ("1".equals(myRess.getString("self"))) {
+                        model.setValueAt(true, mRow, 7);
+                    }else{
+                        model.setValueAt(false, mRow, 7);
+                    }
+                    
+                    if ("1".equals(myRess.getString("academic_certificate"))) {
+                        model.setValueAt(true, mRow, 8);
+                    }else{
+                        model.setValueAt(false, mRow, 8);
+                    }
+                    
+                    if ("1".equals(myRess.getString("career_certificate"))) {
+                        model.setValueAt(true, mRow, 9);
+                    }else{
+                        model.setValueAt(false, mRow, 9);
+                    }
+                    
+                    if ("1".equals(myRess.getString("personal_id_card"))) {
+                        model.setValueAt(true, mRow, 10);
+                    }else{
+                        model.setValueAt(false, mRow, 10);
+                    }
+                    
+                    if ("1".equals(myRess.getString("photo"))) {
+                        model.setValueAt(true, mRow, 11);
+                    }else{
+                        model.setValueAt(false, mRow, 11);
+                    }
+                    
+                    if ("1".equals(myRess.getString("skck"))) {
+                        model.setValueAt(true, mRow, 12);
+                    }else{
+                        model.setValueAt(false, mRow, 12);
+                    }
+                    
+                    if ("1".equals(myRess.getString("bank"))) {
+                        model.setValueAt(true, mRow, 13);
+                    }else{
+                        model.setValueAt(false, mRow, 13);
+                    }
+                    
+                    if ("1".equals(myRess.getString("report_mcu"))) {
+                        model.setValueAt(true, mRow, 14);
+                    }else{
+                        model.setValueAt(false, mRow, 14);
+                    }
+                    
+                    if ("1".equals(myRess.getString("family_certificate"))) {
+                        model.setValueAt(true, mRow, 15);
+                    }else{
+                        model.setValueAt(false, mRow, 15);
+                    }
+                    
+                    if ("1".equals(myRess.getString(35))) {
+                        model.setValueAt(true, mRow, 16);
+                    }else{
+                        model.setValueAt(false, mRow, 16);
+                    }
+                    
+                    if ("1".equals(myRess.getString("bpjs_kesehatan"))) {
+                        model.setValueAt(true, mRow, 17);
+                    }else{
+                        model.setValueAt(false, mRow, 17);
+                    }
+                    
+                    if ("1".equals(myRess.getString(37))) {
+                        model.setValueAt(true, mRow, 18);
+                    }else{
+                        model.setValueAt(false, mRow, 18);
+                    }
+                    
+                    if ("1".equals(myRess.getString("family_contact_point"))) {
+                        model.setValueAt(true, mRow, 19);
+                    }else{
+                        model.setValueAt(false, mRow, 19);
+                    }
+                    
+                    mRow++;
                 }
             } catch (SQLException ex) {
+                System.out.println(ex);
             }
         }else{
             try {
                 myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-                ResultSet myRess1 = myConn.createStatement().executeQuery("SELECT * FROM employee WHERE status_employee = 1 ORDER BY karyawan_id ASC");
-                int i = 1;
+                ResultSet myRess1 = myConn.createStatement().executeQuery("SELECT * FROM employee e1 INNER JOIN checklist c1 ON e1.karyawan_id = c1.karyawan_id WHERE status_employee = 1");
+                int mRow = 0;
                 while (myRess1.next()) {
-                    String myData [] = {myRess1.getString(1), myRess1.getString(2),myRess1.getString(4), myRess1.getString(3)};
+                    String myData [] = {
+                        myRess1.getString(1), 
+                        myRess1.getString(2), 
+                        myRess1.getString(4), 
+                        myRess1.getString(3)
+                    };  
+                    
                     model.addRow(myData);
+                    
+                    if ("1".equals(myRess1.getString("aplication_form"))) {
+                        model.setValueAt(true, mRow, 4);
+                    }else{
+                        model.setValueAt(false, mRow, 4);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("summary"))) {
+                        model.setValueAt(true, mRow, 5);
+                    }else{
+                        model.setValueAt(false, mRow, 5);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("resume"))) {
+                        model.setValueAt(true, mRow, 6);
+                    }else{
+                        model.setValueAt(false, mRow, 6);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("self"))) {
+                        model.setValueAt(true, mRow, 7);
+                    }else{
+                        model.setValueAt(false, mRow, 7);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("academic_certificate"))) {
+                        model.setValueAt(true, mRow, 8);
+                    }else{
+                        model.setValueAt(false, mRow, 8);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("career_certificate"))) {
+                        model.setValueAt(true, mRow, 9);
+                    }else{
+                        model.setValueAt(false, mRow, 9);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("personal_id_card"))) {
+                        model.setValueAt(true, mRow, 10);
+                    }else{
+                        model.setValueAt(false, mRow, 10);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("photo"))) {
+                        model.setValueAt(true, mRow, 11);
+                    }else{
+                        model.setValueAt(false, mRow, 11);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("skck"))) {
+                        model.setValueAt(true, mRow, 12);
+                    }else{
+                        model.setValueAt(false, mRow, 12);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("bank"))) {
+                        model.setValueAt(true, mRow, 13);
+                    }else{
+                        model.setValueAt(false, mRow, 13);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("report_mcu"))) {
+                        model.setValueAt(true, mRow, 14);
+                    }else{
+                        model.setValueAt(false, mRow, 14);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("family_certificate"))) {
+                        model.setValueAt(true, mRow, 15);
+                    }else{
+                        model.setValueAt(false, mRow, 15);
+                    }
+                    
+                    if ("1".equals(myRess1.getString(35))) {
+                        model.setValueAt(true, mRow, 16);
+                    }else{
+                        model.setValueAt(false, mRow, 16);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("bpjs_kesehatan"))) {
+                        model.setValueAt(true, mRow, 17);
+                    }else{
+                        model.setValueAt(false, mRow, 17);
+                    }
+                    
+                    if ("1".equals(myRess1.getString(37))) {
+                        model.setValueAt(true, mRow, 18);
+                    }else{
+                        model.setValueAt(false, mRow, 18);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("family_contact_point"))) {
+                        model.setValueAt(true, mRow, 19);
+                    }else{
+                        model.setValueAt(false, mRow, 19);
+                    }
+                    
+                    mRow++;
                 }
             } catch (SQLException ex) {
+                System.out.println(ex);
             }
         }
     }
     
     private void saving(){
+        
         PreparedStatement pstmt = null;
-        PreparedStatement pstmt1 = null;
-        try{
+        try {
             DefaultTableModel model = (DefaultTableModel) MyTable.getModel();
             int rowCount = model.getRowCount();
             int colCount = model.getColumnCount();
+
             String[] columns = {
                 "aplication_form=? ",
                 "summary=? ",
@@ -314,61 +519,49 @@ public class Checklist extends MasterForm {
                 "skck=? ",
                 "bank=? ",
                 "report_mcu=? ",
-                "family_cerificate=? ",
+                "family_certificate=? ",
                 "npwp=? ",
                 "bpjs_kesehatan=? ",
                 "bpjs_tenaga_kerja=? ",
                 "family_contact_point=? "
             };
-            int count = 0;
-            for(int row = 0; row < rowCount; row++){
-                System.out.println(model.getValueAt(row, 1) + "\t");
-                for(int col = 4; col < colCount; col++){
-                    String sql = "UPDATE checklist SET "
-                        + columns[count]
-                        + "WHERE karyawan_id=?";
-//                    pstmt = koneksi.prepareStatement(sql);
-//                    String sql = "UPDATE checklist SET"
-//                            + "aplication_form=?, "
-//                            + "summary=?, "
-//                            + "resume=?, "
-//                            + "self=?, "
-//                            + "academic_certificate=?, "
-//                            + "career_certificate=?, "
-//                            + "personal_id_card=?, "
-//                            + "photo=?, "
-//                            + "skck=?, "
-//                            + "bank=?, "
-//                            + "report_mcu=?, "
-//                            + "family_cerificate=?, "
-//                            + "npwp=?, "
-//                            + "bpjs_kesehatan=?, "
-//                            + "bpjs_tenaga_kerja=?, "
-//                            + "family_contact_point=? "
-//                            + "WHERE karyawan_id=?";
-
-                    Object isChecked3 = (Boolean)model.getValueAt(row, col);
-                    if (isChecked3 != null) {
-//                        pstmt.setString(1, "1");
-                        System.out.println(columns[count] + ", 1" + "\t");
-                    }else{
-//                        pstmt.setString(1, "0");
-                        System.out.println(columns[count] + ", 0" + "\t");
-                    }
-                    
-//                    pstmt.setString(2, model.getValueAt(row, 1).toString());
-//                    pstmt.executeUpdate();
-                    
-                    count++;
-                    if (count == 16) {
-                        count = 0; 
-                    }
+            String updateSql = "UPDATE checklist SET ";
+            for (int col = 0; col < columns.length; col++) {
+                updateSql += columns[col];
+                if (col < columns.length - 1) {
+                    updateSql += ",";
                 }
             }
-        }catch (Error e) {
-            JOptionPane.showMessageDialog(null, "Data gagal disimpan \nFailed to save data");
-            e.printStackTrace();
+            updateSql += " WHERE karyawan_id=?";
+
+            pstmt = koneksi.prepareStatement(updateSql);
+
+            int paramIndex = 1; // Indeks parameter dimulai dari 1
+            for (int row = 0; row < rowCount; row++) {
+                String karyawanId = (String) model.getValueAt(row, 1); // Ambil nilai "karyawan_id" sebagai String
+
+                for (int col = 4; col < colCount; col++) {
+                    Boolean isChecked = (Boolean) model.getValueAt(row, col);
+                    int value = isChecked ? 1 : 0;
+                    pstmt.setInt(paramIndex, value); // Menggunakan paramIndex sebagai indeks parameter
+                    paramIndex++;
+                }
+                pstmt.setString(paramIndex, karyawanId); // Set nilai "karyawan_id" untuk bagian WHERE
+                pstmt.executeUpdate();
+
+                paramIndex = 1; // Reset kembali paramIndex setelah satu baris selesai diupdate
+            }
+
+            // Opsional: Anda bisa menambahkan pesan untuk menandakan penyimpanan data berhasil jika diperlukan.
+            JOptionPane.showMessageDialog(this, "Success Saving Data\nData Berhasil Disimpan");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Sorry, Failed Saving Data\nMaaf, Data Gagal Disimpan");
+            Logger.getLogger(Checklist.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
+            // Tutup PreparedStatement dan sumber daya lain jika diperlukan.
+//            if (pstmt != null) {
+//                pstmt.close();
+//            }
         }
     }
     
@@ -402,8 +595,8 @@ public class Checklist extends MasterForm {
                 sheet.getRow(5+i).getCell(2).setCellValue(description1);
                 sheet.getRow(5+i).getCell(3).setCellValue(description2);
                 for (int col = 4;  col < colCount; col++) {
-                    Object value = model.getValueAt(i, col);
-                    if (value != null && value instanceof Boolean == true) {
+                    Boolean value = (Boolean)model.getValueAt(i, col);
+                    if (value == true) {
                         sheet.getRow(5+i).getCell(col).setCellValue("✓");
                     }else{
                         sheet.getRow(5+i).getCell(col).setCellValue("-");
