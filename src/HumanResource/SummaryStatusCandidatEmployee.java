@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
@@ -1287,6 +1288,89 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
                         String newFormated = newFormat.format(oldFormated);
                         
                         jTable7.setValueAt(newFormated, row, column);
+                    }
+                }
+                if (column == 2) {
+                    com.raven.datechooser.DateChooser calendar = new com.raven.datechooser.DateChooser();
+                    int result = JOptionPane.showOptionDialog(
+                        null,
+                        calendar,
+                        "Pilih Tanggal Mulai / Select Start Date",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        null,
+                        null
+                    );
+                    if (result == JOptionPane.OK_OPTION) {
+                        SelectedDate date = calendar.getSelectedDate();
+                        String myOldDate = date.getDay() +"-"+ date.getMonth() +"-"+ date.getYear();
+                        
+                        DateFormat oldFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        DateFormat newFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                        
+                        Date oldFormated = null;
+                        try {
+                            oldFormated = oldFormat.parse(myOldDate);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(SummaryStatusCandidatEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        String newFormated = newFormat.format(oldFormated);
+                        
+                        
+                        com.raven.datechooser.DateChooser calendar1 = new com.raven.datechooser.DateChooser();
+                        int result1 = JOptionPane.showOptionDialog(
+                            null,
+                            calendar1,
+                            "Pilih Tanggal Selesai / Select Finish Date",
+                            JOptionPane.OK_CANCEL_OPTION,
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            null,
+                            null
+                        );
+                        if (result1 == JOptionPane.OK_OPTION) {
+                            SelectedDate date1 = calendar1.getSelectedDate();
+                            String myOldDate1 = date1.getDay() +"-"+ date1.getMonth() +"-"+ date1.getYear();
+
+                            DateFormat oldFormat1 = new SimpleDateFormat("dd-MM-yyyy");
+                            DateFormat newFormat1 = new SimpleDateFormat("dd-MMM-yyyy");
+
+                            Date oldFormated1 = null;
+                            try {
+                                oldFormated1 = oldFormat1.parse(myOldDate1);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(SummaryStatusCandidatEmployee.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            String newFormated1 = newFormat1.format(oldFormated1);
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+                            try {
+                                Date startDate = sdf.parse(newFormated);
+                                Date finishDate = sdf.parse(newFormated1);
+                                
+                                Calendar cal1 = Calendar.getInstance();
+                                Calendar cal2 = Calendar.getInstance();
+                                cal1.setTime(startDate);
+                                cal2.setTime(finishDate);
+
+                                int years = cal2.get(Calendar.YEAR) - cal1.get(Calendar.YEAR);
+                                int months = cal2.get(Calendar.MONTH) - cal1.get(Calendar.MONTH);
+
+                                if (months < 0) {
+                                    years--;
+                                    months += 12;
+                                }
+
+                                String resultField = years +" Tahun "+ months +" Bulan";
+                                
+                                jTable7.setValueAt("(" + newFormated + ")" + " - " + "(" + newFormated1 + ")", row, column);
+                                jTable7.setValueAt(resultField, row, 3);
+                            } catch (ParseException ex) {
+                                System.out.println("Invalid date format");
+                            }
+                            
+                        }
                     }
                 }
             }
