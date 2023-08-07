@@ -871,7 +871,7 @@ public class LeaveOfAbsense extends MasterForm {
             ImageIcon iconTeamPred = (ImageIcon) signTeamPred.getIcon();
             
             if (iconPresident == null) {
-                sheet.getRow(3).getCell(12).setCellValue("");
+                sheet.getRow(3).getCell(13).setCellValue("");
             }else{
                 Image image = iconPresident.getImage();
                 BufferedImage bufferedImage = new BufferedImage(

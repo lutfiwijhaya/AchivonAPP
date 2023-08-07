@@ -8,12 +8,17 @@ import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,6 +29,14 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import jnafilechooser.api.JnaFileChooser;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Picture;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ApplicationResignation extends MasterForm {
     Statement stm;
@@ -121,6 +134,7 @@ public class ApplicationResignation extends MasterForm {
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         textDate = new CustomResource.CustomTextfield();
+        sendButton1 = new javax.swing.JButton();
 
         date.setForeground(new java.awt.Color(51, 51, 255));
         date.setTextRefernce(textDate);
@@ -223,7 +237,7 @@ public class ApplicationResignation extends MasterForm {
                 SendButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(SendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 950, 170, 40));
+        jPanel1.add(SendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 970, 170, 40));
 
         jLabel23.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel23.setText("SIGNATURE");
@@ -399,7 +413,12 @@ public class ApplicationResignation extends MasterForm {
         SaveButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         SaveButton.setForeground(new java.awt.Color(255, 255, 255));
         SaveButton.setText("Simpan / Save");
-        jPanel1.add(SaveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 950, 170, 40));
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SaveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 970, 170, 40));
 
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
@@ -425,6 +444,16 @@ public class ApplicationResignation extends MasterForm {
         textDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textDate.setLabelText("Tanggal Pengunduran diri / Date to resign : ");
         jPanel1.add(textDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 620, 230, -1));
+
+        sendButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sendButton1.setForeground(new java.awt.Color(51, 51, 255));
+        sendButton1.setText("Save as Excel");
+        sendButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sendButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 920, 170, 40));
 
         jScrollPane6.setViewportView(jPanel1);
 
@@ -649,6 +678,14 @@ public class ApplicationResignation extends MasterForm {
     
     }//GEN-LAST:event_SendButtonActionPerformed
 
+    private void sendButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButton1ActionPerformed
+        tracer();
+    }//GEN-LAST:event_sendButton1ActionPerformed
+
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SaveButton;
@@ -705,6 +742,7 @@ public class ApplicationResignation extends MasterForm {
     private javax.swing.JLabel labelNameTeamRecd;
     private javax.swing.JLabel labelNameTeamRevd;
     private javax.swing.JLabel labelPosition;
+    private javax.swing.JButton sendButton1;
     private javax.swing.JLabel signHRMGR;
     private javax.swing.JLabel signHRRevd;
     private javax.swing.JLabel signPresident;
@@ -719,6 +757,260 @@ public class ApplicationResignation extends MasterForm {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height-45);
         this.setPreferredSize(new Dimension(screen.width, screen.height-100));
+    }
+    
+    private void tracer(){
+        String templateFilePath = "src/Doc/Employment Resignation.xlsx";
+        
+        try {
+            FileInputStream templateFile = new FileInputStream(templateFilePath);
+            Workbook workbook = new XSSFWorkbook(templateFile);
+            
+            Sheet sheet = workbook.getSheet("Sheet1");
+            
+            ImageIcon iconPresident = (ImageIcon) signPresident.getIcon();
+            ImageIcon iconHRMGR = (ImageIcon) signHRMGR.getIcon();
+            ImageIcon iconHRRevd = (ImageIcon) signHRRevd.getIcon();
+            ImageIcon iconTeamMGR = (ImageIcon) signTeamMGR.getIcon();
+            ImageIcon iconTeamRevd = (ImageIcon) signTeamRevd.getIcon();
+            ImageIcon iconTeamRecd = (ImageIcon) signTeamRecd.getIcon();
+            ImageIcon iconTeamPred = (ImageIcon) signTeamPred.getIcon();
+            
+            if (iconPresident == null) {
+                sheet.getRow(3).getCell(13).setCellValue("");
+            }else{
+                Image image = iconPresident.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(13);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(13).setCellValue(labelNamePresident.getText().trim().toString());
+            }
+            if (iconHRMGR == null) {
+                sheet.getRow(3).getCell(10).setCellValue("");
+            }else{
+                Image image = iconHRMGR.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(10);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(10).setCellValue(labelNameHRMGR.getText().trim());
+            }
+            
+            if (iconHRRevd == null) {
+                sheet.getRow(3).getCell(8).setCellValue("");
+            }else{
+                Image image = iconHRRevd.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(8);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(8).setCellValue(labelNameHRRevd.getText().trim());
+            }
+            
+            if (iconTeamMGR == null) {
+                sheet.getRow(3).getCell(5).setCellValue("");
+            }else{
+                Image image = iconTeamMGR.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(5);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(5).setCellValue(labelNameTeamMGR.getText().trim());
+            }
+            
+            if (iconTeamRevd == null) {
+                sheet.getRow(3).getCell(3).setCellValue("");
+            }else{
+                Image image = iconTeamRevd.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(3);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(3).setCellValue(labelNameTeamRevd.getText().trim());
+            }
+            
+            if (iconTeamRecd == null) {
+                sheet.getRow(3).getCell(2).setCellValue("");
+            }else{
+                Image image = iconTeamRevd.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(2);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(2).setCellValue(labelNameTeamRecd.getText().trim());
+            }
+            
+            if (iconTeamPred == null) {
+                sheet.getRow(3).getCell(1).setCellValue("");
+            }else{
+                Image image = iconTeamRevd.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(1);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(1).setCellValue(labelNameTeamPred.getText().trim());
+            }
+            
+            sheet.getRow(11).getCell(2).setCellValue(labelDiscipline.getText());
+            sheet.getRow(12).getCell(2).setCellValue(labelName.getText().trim());
+            sheet.getRow(13).getCell(2).setCellValue(labelPosition.getText());
+            sheet.getRow(14).getCell(2).setCellValue(labelKTP.getText());
+            
+            sheet.getRow(19).getCell(0).setCellValue(textDesc.getText());
+            sheet.getRow(28).getCell(0).setCellValue("Date to Resign : "+textDate.getText());
+            sheet.getRow(45).getCell(9).setCellValue("Submited on "+labelDateSign.getText());
+            sheet.getRow(50).getCell(9).setCellValue(labelNameSign.getText());
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate = sdf.format(new Date());
+            
+            sheet.getRow(33).getCell(10).setCellValue(formattedDate);
+            sheet.getRow(39).getCell(10).setCellValue(labelName.getText());
+            
+            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate2 = sdf2.format(new Date());
+            
+//            sheet.getRow(33).getCell(10).setCellValue(formattedDate2);
+//            sheet.getRow(39).getCell(10).setCellValue(labelName.getText());
+            
+            templateFile.close();
+
+            JnaFileChooser fileChooser = new JnaFileChooser();
+            fileChooser.setTitle("Simpan File Output");
+            fileChooser.addFilter("Excel Files", "xlsx");
+            boolean userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection) {
+                File outputFile = fileChooser.getSelectedFile();
+                String outputFilePath = outputFile.getAbsolutePath();
+                if (!outputFilePath.toLowerCase().endsWith(".xlsx")) {
+                    outputFilePath += ".xlsx";
+                    outputFile = new File(outputFilePath);
+                }
+                int count = 1;
+                while (outputFile.exists()) {
+                    String newFileName = outputFile.getName().replaceFirst("[.][^.]+$", "") + "(" + count + ")"
+                            + outputFile.getName().substring(outputFile.getName().lastIndexOf("."));
+                    String parentDirectory = outputFile.getParent();
+                    outputFilePath = parentDirectory + File.separator + newFileName;
+                    outputFile = new File(outputFilePath);
+                    count++;
+                }
+
+                FileOutputStream outputFileStream = new FileOutputStream(outputFile);
+                workbook.write(outputFileStream);
+                workbook.close();
+                outputFileStream.close();
+                JOptionPane.showMessageDialog(this, "Berhasil Menyimpan File\nSuccess Saving File");
+            } else {
+                JOptionPane.showMessageDialog(this, "Maaf Terjadi Kesalahan Gagal Menyimpan File\nSorry, an error occurred Failed to Saving File");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private byte[] bufferedImageToByteArray(BufferedImage image) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", baos);
+            return baos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     private void myRole(){

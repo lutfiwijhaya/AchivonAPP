@@ -860,7 +860,7 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
             try {
                 Statement stmt = koneksi.createStatement();
                 ResultSet rs = stmt.executeQuery("select * from signature where karyawan_id = '"+MySession.get_karyawanID()+"'");
-
+                
                 if (rs.next()) {
                     byte[] imageData = rs.getBytes("scan");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imageData);

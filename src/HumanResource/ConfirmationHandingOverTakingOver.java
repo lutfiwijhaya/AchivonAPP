@@ -8,12 +8,17 @@ import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -28,6 +33,14 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jnafilechooser.api.JnaFileChooser;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Picture;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  *
  * @author USER
@@ -124,6 +137,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         jLabel14 = new javax.swing.JLabel();
         SendButton = new javax.swing.JButton();
         textDate = new CustomResource.CustomTextfield();
+        sendButton1 = new javax.swing.JButton();
 
         dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
         dateChooser1.setTextRefernce(textDate);
@@ -408,10 +422,20 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
                 SendButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(SendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 880, 170, 50));
+        jPanel1.add(SendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 950, 170, 40));
 
         textDate.setLabelText("Expected Date - Resignation");
         jPanel1.add(textDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 420, 160, -1));
+
+        sendButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sendButton1.setForeground(new java.awt.Color(51, 51, 255));
+        sendButton1.setText("Save as Excel");
+        sendButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sendButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 900, 170, 40));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -423,7 +447,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -658,6 +682,10 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         }
     }//GEN-LAST:event_SendButtonActionPerformed
 
+    private void sendButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButton1ActionPerformed
+        tracer();
+    }//GEN-LAST:event_sendButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SendButton;
@@ -709,6 +737,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
     private javax.swing.JLabel labelNameTeamRecd;
     private javax.swing.JLabel labelNameTeamRevd;
     private javax.swing.JLabel labelPosition;
+    private javax.swing.JButton sendButton1;
     private javax.swing.JLabel signHRMGR;
     private javax.swing.JLabel signHRRevd;
     private javax.swing.JLabel signPresident;
@@ -723,6 +752,266 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(screen);
     }
+    
+    private void tracer(){
+        String templateFilePath = "src/Doc/Employment Handing Over and Taking Over.xlsx";
+        
+        try {
+            FileInputStream templateFile = new FileInputStream(templateFilePath);
+            Workbook workbook = new XSSFWorkbook(templateFile);
+            
+            Sheet sheet = workbook.getSheet("Sheet1");
+            
+            ImageIcon iconPresident = (ImageIcon) signPresident.getIcon();
+            ImageIcon iconHRMGR = (ImageIcon) signHRMGR.getIcon();
+            ImageIcon iconHRRevd = (ImageIcon) signHRRevd.getIcon();
+            ImageIcon iconTeamMGR = (ImageIcon) signTeamMGR.getIcon();
+            ImageIcon iconTeamRevd = (ImageIcon) signTeamRevd.getIcon();
+            ImageIcon iconTeamRecd = (ImageIcon) signTeamRecd.getIcon();
+            ImageIcon iconTeamPred = (ImageIcon) signTeamPred.getIcon();
+            
+            if (iconPresident == null) {
+                sheet.getRow(3).getCell(13).setCellValue("");
+            }else{
+                Image image = iconPresident.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(13);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(13).setCellValue(labelNamePresident.getText().trim().toString());
+            }
+            if (iconHRMGR == null) {
+                sheet.getRow(3).getCell(10).setCellValue("");
+            }else{
+                Image image = iconHRMGR.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(10);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(10).setCellValue(labelNameHRMGR.getText().trim());
+            }
+            
+            if (iconHRRevd == null) {
+                sheet.getRow(3).getCell(8).setCellValue("");
+            }else{
+                Image image = iconHRRevd.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(8);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(8).setCellValue(labelNameHRRevd.getText().trim());
+            }
+            
+            if (iconTeamMGR == null) {
+                sheet.getRow(3).getCell(5).setCellValue("");
+            }else{
+                Image image = iconTeamMGR.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(5);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(5).setCellValue(labelNameTeamMGR.getText().trim());
+            }
+            
+            if (iconTeamRevd == null) {
+                sheet.getRow(3).getCell(3).setCellValue("");
+            }else{
+                Image image = iconTeamRevd.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(3);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(3).setCellValue(labelNameTeamRevd.getText().trim());
+            }
+            
+            if (iconTeamRecd == null) {
+                sheet.getRow(3).getCell(2).setCellValue("");
+            }else{
+                Image image = iconTeamRevd.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(2);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(2).setCellValue(labelNameTeamRecd.getText().trim());
+            }
+            
+            if (iconTeamPred == null) {
+                sheet.getRow(3).getCell(1).setCellValue("");
+            }else{
+                Image image = iconTeamRevd.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(1);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(1).setCellValue(labelNameTeamPred.getText().trim());
+            }
+            
+            sheet.getRow(9).getCell(2).setCellValue(labelDiscipline.getText());
+            sheet.getRow(10).getCell(2).setCellValue(labelName.getText().trim());
+            sheet.getRow(11).getCell(2).setCellValue(labelPosition.getText());
+            sheet.getRow(12).getCell(2).setCellValue(labelKTP.getText());
+            
+            sheet.getRow(11).getCell(11).setCellValue(textDate.getText());
+            
+            DefaultTableModel model4 = (DefaultTableModel) jTable4.getModel();
+            int rowCount4 = model4.getRowCount();
+            for (int i = 0; i < rowCount4; i++) {
+                String description = (String) model4.getValueAt(i, 0);
+                String description1 = (String) model4.getValueAt(i, 1);
+                String description2 = (String) model4.getValueAt(i, 2);
+                String description3 = (String) model4.getValueAt(i, 3);
+                
+                sheet.getRow(17+i).getCell(0).setCellValue(description);
+                sheet.getRow(17+i).getCell(1).setCellValue(description1);
+                sheet.getRow(17+i).getCell(2).setCellValue(description2);
+                sheet.getRow(17+i).getCell(3).setCellValue(description3);
+            }
+            
+            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate2 = sdf2.format(new Date());
+            
+            sheet.getRow(30).getCell(9).setCellValue("Submitted on "+formattedDate2);
+            sheet.getRow(34).getCell(9).setCellValue(labelName.getText());
+            
+            templateFile.close();
+
+            JnaFileChooser fileChooser = new JnaFileChooser();
+            fileChooser.setTitle("Simpan File Output");
+            fileChooser.addFilter("Excel Files", "xlsx");
+            boolean userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection) {
+                File outputFile = fileChooser.getSelectedFile();
+                String outputFilePath = outputFile.getAbsolutePath();
+                if (!outputFilePath.toLowerCase().endsWith(".xlsx")) {
+                    outputFilePath += ".xlsx";
+                    outputFile = new File(outputFilePath);
+                }
+                int count = 1;
+                while (outputFile.exists()) {
+                    String newFileName = outputFile.getName().replaceFirst("[.][^.]+$", "") + "(" + count + ")"
+                            + outputFile.getName().substring(outputFile.getName().lastIndexOf("."));
+                    String parentDirectory = outputFile.getParent();
+                    outputFilePath = parentDirectory + File.separator + newFileName;
+                    outputFile = new File(outputFilePath);
+                    count++;
+                }
+
+                FileOutputStream outputFileStream = new FileOutputStream(outputFile);
+                workbook.write(outputFileStream);
+                workbook.close();
+                outputFileStream.close();
+                JOptionPane.showMessageDialog(this, "Berhasil Menyimpan File\nSuccess Saving File");
+            } else {
+                JOptionPane.showMessageDialog(this, "Maaf Terjadi Kesalahan Gagal Menyimpan File\nSorry, an error occurred Failed to Saving File");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private byte[] bufferedImageToByteArray(BufferedImage image) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", baos);
+            return baos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     @Override
     public void formrefresh() {
@@ -746,7 +1035,11 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         jLabel31.setVisible(false);
                     
         jLabel24.setVisible(false);
-        
+        DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
+        int mycount = dataModel.getRowCount();
+        for (int i = 0; i < mycount; i++) {
+            dataModel.removeRow(0);
+        }
         try {
             Statement stmt = koneksi.createStatement();
             ResultSet rs = stmt.executeQuery("select * from employee_handover where karyawan_id = '"+MySession.get_karyawanID()+"'");
@@ -760,7 +1053,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
                 jLabel29.setText(rs.getString(7));
                 jLabel31.setText(rs.getString(8));
                 jLabel24.setText(rs.getString(9));
-                DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
+                
                 Statement stmt0 = koneksi.createStatement();
                 ResultSet rs0 = stmt0.executeQuery("select * from employee_handover_table where karyawan_id = '"+MySession.get_karyawanID()+"' order by handover_table_id desc");
                     while (rs0.next()) {
