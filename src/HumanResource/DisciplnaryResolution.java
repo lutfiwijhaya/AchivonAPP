@@ -321,7 +321,6 @@ private void MyWindow(){
     }
 
     private void tracer(){
-//        String templateFilePath = "C://Users//hi//OneDrive//Documents//Summary Status.xlsx";
         String templateFilePath = "src/Doc/Disciplinary Resolution.xlsx";
 
         String name = nameEmployee.getText();

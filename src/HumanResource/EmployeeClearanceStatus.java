@@ -1370,12 +1370,6 @@ public class EmployeeClearanceStatus extends MasterForm{
                 sheet.getRow(17+i).getCell(15).setCellValue(description8);
             }
             
-            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MMM-yyyy");
-            String formattedDate2 = sdf2.format(new Date());
-            
-//            sheet.getRow(33).getCell(10).setCellValue(formattedDate2);
-//            sheet.getRow(39).getCell(10).setCellValue(labelName.getText());
-            
             templateFile.close();
 
             JnaFileChooser fileChooser = new JnaFileChooser();
