@@ -131,6 +131,7 @@ public class main extends javax.swing.JFrame {
         super("PT Achivon Prestasi Abadi's Operation System");
         initComponents();
         openDB();
+//        setUserRole();
         bg();
         NotificationtoNewEmployee.setVisible(false);
         jSeparator4.setVisible(false);
@@ -165,7 +166,7 @@ public class main extends javax.swing.JFrame {
         }
     }
 
-    void bg() {
+    private void bg() {
         String crudimage = "C:\\Program Files (x86)\\AchivonAPP\\rm347-porpla-01.jpg";
         ImageIcon imageicon = new ImageIcon(crudimage);
         JLabel label = new JLabel(imageicon);
@@ -177,6 +178,8 @@ public class main extends javax.swing.JFrame {
     }
     inputexel inputxl = new inputexel();
     tambah tambah = new tambah();
+    
+    
 
     /**
      *
@@ -210,7 +213,7 @@ public class main extends javax.swing.JFrame {
         undoBar = new javax.swing.JMenu();
         redoBar = new javax.swing.JMenu();
         HumanResourceSystem = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        CandidateList = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         employingConfirmation = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -223,36 +226,36 @@ public class main extends javax.swing.JFrame {
         AllocationAnouncement = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         RequestEmployeeAllocation = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        requestedEmployeeAllocationList = new javax.swing.JMenuItem();
         jSeparator26 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        requestAllocation = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         AplicationLeaveOfAbsence = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        employeeLeaveofAbsenceList = new javax.swing.JMenuItem();
         jSeparator25 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        requestLeaveofAbsence = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
         ApplicationRehabilitation = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        employeeRehabilitationList = new javax.swing.JMenuItem();
         jSeparator22 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        requestRehabilitation = new javax.swing.JMenuItem();
         jSeparator23 = new javax.swing.JPopupMenu.Separator();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         ApplicationResignation = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        employeeResignationList = new javax.swing.JMenuItem();
         jSeparator20 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        requestResignation = new javax.swing.JMenuItem();
         jSeparator21 = new javax.swing.JPopupMenu.Separator();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
         EmployeeClearanceStatus = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        clearanceEmployeeList = new javax.swing.JMenuItem();
         jSeparator27 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem14 = new javax.swing.JMenuItem();
+        clearanceStatus = new javax.swing.JMenuItem();
         jSeparator12 = new javax.swing.JPopupMenu.Separator();
         ConfirmationHandoverTakeover = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        employeeHandoverTakeover = new javax.swing.JMenuItem();
         jSeparator28 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        requestHandoverTakeover = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         DiciplinaryRevolution = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
@@ -504,13 +507,13 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem4.setText("Candidate List");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        CandidateList.setText("Candidate List");
+        CandidateList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                CandidateListActionPerformed(evt);
             }
         });
-        HumanResourceSystem.add(jMenuItem4);
+        HumanResourceSystem.add(CandidateList);
         HumanResourceSystem.add(jSeparator2);
 
         employingConfirmation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -566,22 +569,22 @@ public class main extends javax.swing.JFrame {
         RequestEmployeeAllocation.setText("Request - Employee Allocation ");
         RequestEmployeeAllocation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jMenuItem11.setText("Requested Employee Allocation List");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        requestedEmployeeAllocationList.setText("Requested Employee Allocation List");
+        requestedEmployeeAllocationList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                requestedEmployeeAllocationListActionPerformed(evt);
             }
         });
-        RequestEmployeeAllocation.add(jMenuItem11);
+        RequestEmployeeAllocation.add(requestedEmployeeAllocationList);
         RequestEmployeeAllocation.add(jSeparator26);
 
-        jMenuItem12.setText("Request Allocation");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        requestAllocation.setText("Request Allocation");
+        requestAllocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                requestAllocationActionPerformed(evt);
             }
         });
-        RequestEmployeeAllocation.add(jMenuItem12);
+        RequestEmployeeAllocation.add(requestAllocation);
 
         HumanResourceSystem.add(RequestEmployeeAllocation);
         HumanResourceSystem.add(jSeparator8);
@@ -589,22 +592,22 @@ public class main extends javax.swing.JFrame {
         AplicationLeaveOfAbsence.setText("Application - Leave of Absence");
         AplicationLeaveOfAbsence.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jMenuItem9.setText("Employee Leave of Absence List");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        employeeLeaveofAbsenceList.setText("Employee Leave of Absence List");
+        employeeLeaveofAbsenceList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                employeeLeaveofAbsenceListActionPerformed(evt);
             }
         });
-        AplicationLeaveOfAbsence.add(jMenuItem9);
+        AplicationLeaveOfAbsence.add(employeeLeaveofAbsenceList);
         AplicationLeaveOfAbsence.add(jSeparator25);
 
-        jMenuItem10.setText("Request Leave of Absence");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        requestLeaveofAbsence.setText("Request Leave of Absence");
+        requestLeaveofAbsence.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                requestLeaveofAbsenceActionPerformed(evt);
             }
         });
-        AplicationLeaveOfAbsence.add(jMenuItem10);
+        AplicationLeaveOfAbsence.add(requestLeaveofAbsence);
 
         HumanResourceSystem.add(AplicationLeaveOfAbsence);
         HumanResourceSystem.add(jSeparator9);
@@ -612,24 +615,24 @@ public class main extends javax.swing.JFrame {
         ApplicationRehabilitation.setText("Application - Rehabilitation");
         ApplicationRehabilitation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jMenuItem7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuItem7.setText("Employee Rehabilitation List");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        employeeRehabilitationList.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        employeeRehabilitationList.setText("Employee Rehabilitation List");
+        employeeRehabilitationList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                employeeRehabilitationListActionPerformed(evt);
             }
         });
-        ApplicationRehabilitation.add(jMenuItem7);
+        ApplicationRehabilitation.add(employeeRehabilitationList);
         ApplicationRehabilitation.add(jSeparator22);
 
-        jMenuItem8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuItem8.setText("Request Rehabilitation");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        requestRehabilitation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        requestRehabilitation.setText("Request Rehabilitation");
+        requestRehabilitation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                requestRehabilitationActionPerformed(evt);
             }
         });
-        ApplicationRehabilitation.add(jMenuItem8);
+        ApplicationRehabilitation.add(requestRehabilitation);
         ApplicationRehabilitation.add(jSeparator23);
 
         HumanResourceSystem.add(ApplicationRehabilitation);
@@ -643,24 +646,24 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuItem5.setText("Employee Resignation List");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        employeeResignationList.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        employeeResignationList.setText("Employee Resignation List");
+        employeeResignationList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                employeeResignationListActionPerformed(evt);
             }
         });
-        ApplicationResignation.add(jMenuItem5);
+        ApplicationResignation.add(employeeResignationList);
         ApplicationResignation.add(jSeparator20);
 
-        jMenuItem6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuItem6.setText("Request Resignation");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        requestResignation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        requestResignation.setText("Request Resignation");
+        requestResignation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                requestResignationActionPerformed(evt);
             }
         });
-        ApplicationResignation.add(jMenuItem6);
+        ApplicationResignation.add(requestResignation);
         ApplicationResignation.add(jSeparator21);
 
         HumanResourceSystem.add(ApplicationResignation);
@@ -669,22 +672,22 @@ public class main extends javax.swing.JFrame {
         EmployeeClearanceStatus.setText("Employee Clearance Status");
         EmployeeClearanceStatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jMenuItem13.setText("Clearance Employee List");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        clearanceEmployeeList.setText("Clearance Employee List");
+        clearanceEmployeeList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                clearanceEmployeeListActionPerformed(evt);
             }
         });
-        EmployeeClearanceStatus.add(jMenuItem13);
+        EmployeeClearanceStatus.add(clearanceEmployeeList);
         EmployeeClearanceStatus.add(jSeparator27);
 
-        jMenuItem14.setText("Clearance Status");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+        clearanceStatus.setText("Clearance Status");
+        clearanceStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
+                clearanceStatusActionPerformed(evt);
             }
         });
-        EmployeeClearanceStatus.add(jMenuItem14);
+        EmployeeClearanceStatus.add(clearanceStatus);
 
         HumanResourceSystem.add(EmployeeClearanceStatus);
         HumanResourceSystem.add(jSeparator12);
@@ -692,22 +695,22 @@ public class main extends javax.swing.JFrame {
         ConfirmationHandoverTakeover.setText("Confirmation - Handover & Takeover");
         ConfirmationHandoverTakeover.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jMenuItem3.setText("Employee Handover & Takeover List");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        employeeHandoverTakeover.setText("Employee Handover & Takeover List");
+        employeeHandoverTakeover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                employeeHandoverTakeoverActionPerformed(evt);
             }
         });
-        ConfirmationHandoverTakeover.add(jMenuItem3);
+        ConfirmationHandoverTakeover.add(employeeHandoverTakeover);
         ConfirmationHandoverTakeover.add(jSeparator28);
 
-        jMenuItem15.setText("Request Handover & Takeover");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+        requestHandoverTakeover.setText("Request Handover & Takeover");
+        requestHandoverTakeover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
+                requestHandoverTakeoverActionPerformed(evt);
             }
         });
-        ConfirmationHandoverTakeover.add(jMenuItem15);
+        ConfirmationHandoverTakeover.add(requestHandoverTakeover);
 
         HumanResourceSystem.add(ConfirmationHandoverTakeover);
         HumanResourceSystem.add(jSeparator13);
@@ -1109,53 +1112,53 @@ public class main extends javax.swing.JFrame {
 //        
     }//GEN-LAST:event_ApplicationResignationActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void employeeResignationListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeResignationListActionPerformed
         showForm(new ResignationList());
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_employeeResignationListActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void requestResignationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestResignationActionPerformed
         showForm(new ApplicationResignation());
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_requestResignationActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void employeeRehabilitationListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeRehabilitationListActionPerformed
         showForm(new RehabilitationList());
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_employeeRehabilitationListActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void requestRehabilitationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestRehabilitationActionPerformed
         showForm(new AplicationRehabilitation());
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_requestRehabilitationActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void employeeLeaveofAbsenceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeLeaveofAbsenceListActionPerformed
         showForm(new LeaveOfAbsenceList());
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_employeeLeaveofAbsenceListActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void requestLeaveofAbsenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestLeaveofAbsenceActionPerformed
         showForm(new LeaveOfAbsense());
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_requestLeaveofAbsenceActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void requestedEmployeeAllocationListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestedEmployeeAllocationListActionPerformed
         showForm(new RequestAllocationList());
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_requestedEmployeeAllocationListActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+    private void requestAllocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestAllocationActionPerformed
         showForm(new RequestEmployeeAllocation());
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    }//GEN-LAST:event_requestAllocationActionPerformed
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void clearanceEmployeeListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearanceEmployeeListActionPerformed
         showForm(new ClearanceList());
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
+    }//GEN-LAST:event_clearanceEmployeeListActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+    private void clearanceStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearanceStatusActionPerformed
         showForm(new EmployeeClearanceStatus());
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
+    }//GEN-LAST:event_clearanceStatusActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void employeeHandoverTakeoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeHandoverTakeoverActionPerformed
         showForm(new ConfirmationHandoverandTakeoverList());
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_employeeHandoverTakeoverActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+    private void requestHandoverTakeoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestHandoverTakeoverActionPerformed
         showForm(new ConfirmationHandingOverTakingOver());
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
+    }//GEN-LAST:event_requestHandoverTakeoverActionPerformed
 
     private void buttonLogin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogin2ActionPerformed
         try {
@@ -1209,9 +1212,9 @@ public class main extends javax.swing.JFrame {
         //        main.getMain().dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void CandidateListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateListActionPerformed
         showForm(new CandidateList());
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_CandidateListActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         showForm(new BizPointment());
@@ -1350,6 +1353,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenu AplicationLeaveOfAbsence;
     private javax.swing.JMenu ApplicationRehabilitation;
     private javax.swing.JMenu ApplicationResignation;
+    private javax.swing.JMenuItem CandidateList;
     private javax.swing.JMenuItem Checklist;
     private javax.swing.JMenu ConfirmationHandoverTakeover;
     private javax.swing.JMenuItem DiciplinaryRevolution;
@@ -1367,7 +1371,13 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonLogin1;
     private javax.swing.JButton buttonLogin2;
+    private javax.swing.JMenuItem clearanceEmployeeList;
+    private javax.swing.JMenuItem clearanceStatus;
     private CustomResource.CustomTextfield customTextfield1;
+    private javax.swing.JMenuItem employeeHandoverTakeover;
+    private javax.swing.JMenuItem employeeLeaveofAbsenceList;
+    private javax.swing.JMenuItem employeeRehabilitationList;
+    private javax.swing.JMenuItem employeeResignationList;
     private javax.swing.JMenuItem employingConfirmation;
     public static javax.swing.JMenu homeBar;
     private javax.swing.JLabel jLabel1;
@@ -1385,12 +1395,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
@@ -1406,19 +1410,12 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem35;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     public static javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
@@ -1453,6 +1450,12 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator9;
     public static javax.swing.JMenu myProfile;
     public static javax.swing.JMenu redoBar;
+    private javax.swing.JMenuItem requestAllocation;
+    private javax.swing.JMenuItem requestHandoverTakeover;
+    private javax.swing.JMenuItem requestLeaveofAbsence;
+    private javax.swing.JMenuItem requestRehabilitation;
+    private javax.swing.JMenuItem requestResignation;
+    private javax.swing.JMenuItem requestedEmployeeAllocationList;
     public static javax.swing.JMenu undoBar;
     // End of variables declaration//GEN-END:variables
     private void myLogout() {
@@ -1528,6 +1531,41 @@ public class main extends javax.swing.JFrame {
             ToolBar.add(Box.createHorizontalGlue());
             ToolBar.add(myProfile);
             myProfile.setText(MySession.get_nama());
+        }
+        
+        if ("3".equals(MySession.get_Role())) {
+            CandidateList.setVisible(false);
+            jSeparator2.setVisible(false);
+            employingConfirmation.setVisible(false);
+            jSeparator3.setVisible(false);
+            NotificationtoNewEmployee.setVisible(false);
+            jSeparator4.setVisible(false);
+            EmployeeStatus.setVisible(false);
+            jSeparator5.setVisible(false);
+            Checklist.setVisible(false);
+            jSeparator6.setVisible(false);
+            AllocationAnouncement.setVisible(false);
+            jSeparator7.setVisible(false);
+            requestedEmployeeAllocationList.setVisible(false);
+            employeeLeaveofAbsenceList.setVisible(false);
+            employeeRehabilitationList.setVisible(false);
+            employeeResignationList.setVisible(false);
+            clearanceEmployeeList.setVisible(false);
+            employeeHandoverTakeover.setVisible(false);
+            jSeparator13.setVisible(false);
+            DiciplinaryRevolution.setVisible(false);
+            jSeparator14.setVisible(false);
+            EmployeeEvaluation.setVisible(false);
+            jSeparator24.setVisible(false);
+            AddJobVacancy.setVisible(false);
+            jSeparator30.setVisible(false);
+            
+            jSeparator28.setVisible(false);
+            jSeparator27.setVisible(false);
+            jSeparator26.setVisible(false);
+            jSeparator25.setVisible(false);
+            jSeparator22.setVisible(false);
+            jSeparator20.setVisible(false);
         }
     }
 }
