@@ -196,8 +196,16 @@ public class ResignationList extends MasterForm {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_resignation inner join employee on employee_resignation.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(13),myRess.getString(14), myRess.getString(15), myRess.getString(16),myRess.getString(21), 
-                                    myRess.getString(22),myRess.getString(25) ,myRess.getString(18)};
+                String myData [] = {
+                    myRess.getString(13),
+                    myRess.getString(14), 
+                    myRess.getString(15), 
+                    myRess.getString(16),
+                    myRess.getString(21),
+                    myRess.getString(22),
+                    myRess.getString(26),
+                    myRess.getString(26),
+                    myRess.getString(12)};
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {

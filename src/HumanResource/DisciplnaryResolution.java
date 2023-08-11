@@ -405,11 +405,7 @@ private void MyWindow(){
                 workbook.write(outputFileStream);
                 workbook.close();
                 outputFileStream.close();
-
-                System.out.println("Data berhasil dimasukkan ke dalam template Excel.");
-                System.out.println("File output: " + outputFilePath);
             } else {
-                System.out.println("Batal menyimpan file output.");
             }
         } catch (IOException e) {
             e.printStackTrace();

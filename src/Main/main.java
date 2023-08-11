@@ -1459,23 +1459,24 @@ public class main extends javax.swing.JFrame {
     public static javax.swing.JMenu undoBar;
     // End of variables declaration//GEN-END:variables
     private void myLogout() {
-        CustomResource.MySession.set_ID(null);
-        CustomResource.MySession.set_karyawanID(null);
-        CustomResource.MySession.set_ktp(null);
-        CustomResource.MySession.set_nama(null);
-        CustomResource.MySession.set_birthPlace(null);
-        CustomResource.MySession.set_Birthday(null);
-        CustomResource.MySession.set_sex(null);
-        CustomResource.MySession.set_marital(null);
-        CustomResource.MySession.set_email(null);
-        CustomResource.MySession.set_mobileNumber(null);
-        CustomResource.MySession.set_BPJS(null);
-        CustomResource.MySession.set_NPWP(null);
-        CustomResource.MySession.set_JobPosition(null);
-        CustomResource.MySession.set_Sallary(null);
-        CustomResource.MySession.set_Role(null);
-        CustomResource.MySession.set_cd_ktp(null);
+        MySession.set_ID(null);
+        MySession.set_karyawanID(null);
+        MySession.set_ktp(null);
+        MySession.set_nama(null);
+        MySession.set_birthPlace(null);
+        MySession.set_Birthday(null);
+        MySession.set_sex(null);
+        MySession.set_marital(null);
+        MySession.set_email(null);
+        MySession.set_mobileNumber(null);
+        MySession.set_BPJS(null);
+        MySession.set_NPWP(null);
+        MySession.set_JobPosition(null);
+        MySession.set_Sallary(null);
+        MySession.set_Role(null);
+        MySession.set_cd_ktp(null);
         new LoginFrame().setVisible(true);
+        System.out.println("role "+ MySession.get_Role());
         main.jPanel2.setVisible(true);
         main.getMain().setVisible(false);
     }
@@ -1531,41 +1532,106 @@ public class main extends javax.swing.JFrame {
             ToolBar.add(Box.createHorizontalGlue());
             ToolBar.add(myProfile);
             myProfile.setText(MySession.get_nama());
-        }
-        
-        if ("3".equals(MySession.get_Role())) {
-            CandidateList.setVisible(false);
-            jSeparator2.setVisible(false);
-            employingConfirmation.setVisible(false);
-            jSeparator3.setVisible(false);
-            NotificationtoNewEmployee.setVisible(false);
-            jSeparator4.setVisible(false);
-            EmployeeStatus.setVisible(false);
-            jSeparator5.setVisible(false);
-            Checklist.setVisible(false);
-            jSeparator6.setVisible(false);
-            AllocationAnouncement.setVisible(false);
-            jSeparator7.setVisible(false);
-            requestedEmployeeAllocationList.setVisible(false);
-            employeeLeaveofAbsenceList.setVisible(false);
-            employeeRehabilitationList.setVisible(false);
-            employeeResignationList.setVisible(false);
-            clearanceEmployeeList.setVisible(false);
-            employeeHandoverTakeover.setVisible(false);
-            jSeparator13.setVisible(false);
-            DiciplinaryRevolution.setVisible(false);
-            jSeparator14.setVisible(false);
-            EmployeeEvaluation.setVisible(false);
-            jSeparator24.setVisible(false);
-            AddJobVacancy.setVisible(false);
-            jSeparator30.setVisible(false);
-            
-            jSeparator28.setVisible(false);
-            jSeparator27.setVisible(false);
-            jSeparator26.setVisible(false);
-            jSeparator25.setVisible(false);
-            jSeparator22.setVisible(false);
-            jSeparator20.setVisible(false);
+            if ("1".equals(MySession.get_Role())) {
+                CandidateList.setVisible(true);
+                jSeparator2.setVisible(true);
+                employingConfirmation.setVisible(true);
+                jSeparator3.setVisible(true);
+                NotificationtoNewEmployee.setVisible(true);
+                jSeparator4.setVisible(true);
+                EmployeeStatus.setVisible(true);
+                jSeparator5.setVisible(true);
+                Checklist.setVisible(true);
+                jSeparator6.setVisible(true);
+                AllocationAnouncement.setVisible(true);
+                jSeparator7.setVisible(true);
+                requestedEmployeeAllocationList.setVisible(true);
+                employeeLeaveofAbsenceList.setVisible(true);
+                employeeRehabilitationList.setVisible(true);
+                employeeResignationList.setVisible(true);
+                clearanceEmployeeList.setVisible(true);
+                employeeHandoverTakeover.setVisible(true);
+                jSeparator13.setVisible(true);
+                DiciplinaryRevolution.setVisible(true);
+                jSeparator14.setVisible(true);
+                EmployeeEvaluation.setVisible(true);
+                jSeparator24.setVisible(true);
+                AddJobVacancy.setVisible(true);
+                jSeparator30.setVisible(true);
+
+                jSeparator28.setVisible(true);
+                jSeparator27.setVisible(true);
+                jSeparator26.setVisible(true);
+                jSeparator25.setVisible(true);
+                jSeparator22.setVisible(true);
+                jSeparator20.setVisible(true);
+            }else if("2".equals(MySession.get_Role())){
+                CandidateList.setVisible(true);
+                jSeparator2.setVisible(true);
+                employingConfirmation.setVisible(true);
+                jSeparator3.setVisible(true);
+                NotificationtoNewEmployee.setVisible(true);
+                jSeparator4.setVisible(true);
+                EmployeeStatus.setVisible(true);
+                jSeparator5.setVisible(true);
+                Checklist.setVisible(true);
+                jSeparator6.setVisible(true);
+                AllocationAnouncement.setVisible(true);
+                jSeparator7.setVisible(true);
+                requestedEmployeeAllocationList.setVisible(true);
+                employeeLeaveofAbsenceList.setVisible(true);
+                employeeRehabilitationList.setVisible(true);
+                employeeResignationList.setVisible(true);
+                clearanceEmployeeList.setVisible(true);
+                employeeHandoverTakeover.setVisible(true);
+                jSeparator13.setVisible(true);
+                DiciplinaryRevolution.setVisible(true);
+                jSeparator14.setVisible(true);
+                EmployeeEvaluation.setVisible(true);
+                jSeparator24.setVisible(true);
+                AddJobVacancy.setVisible(true);
+                jSeparator30.setVisible(true);
+
+                jSeparator28.setVisible(true);
+                jSeparator27.setVisible(true);
+                jSeparator26.setVisible(true);
+                jSeparator25.setVisible(true);
+                jSeparator22.setVisible(true);
+                jSeparator20.setVisible(true);
+            }else if ("3".equals(MySession.get_Role())) {
+                CandidateList.setVisible(false);
+                jSeparator2.setVisible(false);
+                employingConfirmation.setVisible(false);
+                jSeparator3.setVisible(false);
+                NotificationtoNewEmployee.setVisible(false);
+                jSeparator4.setVisible(false);
+                EmployeeStatus.setVisible(false);
+                jSeparator5.setVisible(false);
+                Checklist.setVisible(false);
+                jSeparator6.setVisible(false);
+                AllocationAnouncement.setVisible(false);
+                jSeparator7.setVisible(false);
+                requestedEmployeeAllocationList.setVisible(false);
+                employeeLeaveofAbsenceList.setVisible(false);
+                employeeRehabilitationList.setVisible(false);
+                employeeResignationList.setVisible(false);
+                clearanceEmployeeList.setVisible(false);
+                employeeHandoverTakeover.setVisible(false);
+                jSeparator13.setVisible(false);
+                DiciplinaryRevolution.setVisible(false);
+                jSeparator14.setVisible(false);
+                EmployeeEvaluation.setVisible(false);
+                jSeparator24.setVisible(false);
+                AddJobVacancy.setVisible(false);
+                jSeparator30.setVisible(false);
+
+                jSeparator28.setVisible(false);
+                jSeparator27.setVisible(false);
+                jSeparator26.setVisible(false);
+                jSeparator25.setVisible(false);
+                jSeparator22.setVisible(false);
+                jSeparator20.setVisible(false);
+            }
         }
     }
 }

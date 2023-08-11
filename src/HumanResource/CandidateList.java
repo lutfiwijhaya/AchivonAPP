@@ -104,7 +104,17 @@ public class CandidateList extends MasterForm {
     }
 
     private void settable() {
-        String[] header = {"id", "KTP", "Nama / Name", "Tempat, Tanggal Lahir / Place, Birthday", "Jenis Kelamin / Gender", "Status Pernikahan / Marital Status", "Email", "No. Hp", "Posisi yang dilamar / Job Applying", "gaji / Sallary", "Action"};
+        String[] header = { "id", 
+                            "KTP", 
+                            "Nama / Name", 
+                            "Tempat, Tanggal Lahir / Place, Birthday", 
+                            "Jenis Kelamin / Gender", 
+                            "Status Pernikahan / Marital Status", 
+                            "Email", 
+                            "No. Hp", 
+                            "Posisi yang dilamar / Job Applying", 
+                            "gaji / Sallary", 
+                            "Action"};
         myModel = new DefaultTableModel(header, 1);
         MyTable.setModel(myModel);
         actiontable event = new actiontable() {
@@ -437,9 +447,17 @@ public class CandidateList extends MasterForm {
                         String inputDate = myRess.getString(8);
                         Date date = inputFormat.parse(inputDate);
                         String formattedDate = outputFormat.format(date);
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
-                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        String myData[] = {
+                            myRess.getString(1), 
+                            myRess.getString(3), 
+                            myRess.getString(2), 
+                            myRess.getString(7) + "," + formattedDate,
+                            myRess.getString(6), 
+                            myRess.getString(9), 
+                            myRess.getString(4),
+                            myRess.getString(10), 
+                            myRess.getString(13), 
+                            myRess.getString(14)};
 
                         myModel.addRow(myData);
                     }
@@ -456,9 +474,17 @@ public class CandidateList extends MasterForm {
                         String inputDate = myRess.getString(8);
                         Date date = inputFormat.parse(inputDate);
                         String formattedDate = outputFormat.format(date);
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
-                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        String myData[] = {
+                            myRess.getString(1), 
+                            myRess.getString(3), 
+                            myRess.getString(2), 
+                            myRess.getString(7) + "," + formattedDate,
+                            myRess.getString(6), 
+                            myRess.getString(9), 
+                            myRess.getString(4),
+                            myRess.getString(10), 
+                            myRess.getString(13), 
+                            myRess.getString(14)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
@@ -477,9 +503,17 @@ public class CandidateList extends MasterForm {
                         String inputDate = myRess.getString(8);
                         Date date = inputFormat.parse(inputDate);
                         String formattedDate = outputFormat.format(date);
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
-                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        String myData[] = {
+                            myRess.getString(1), 
+                            myRess.getString(3), 
+                            myRess.getString(2), 
+                            myRess.getString(7) + "," + formattedDate,
+                            myRess.getString(6), 
+                            myRess.getString(9), 
+                            myRess.getString(4),
+                            myRess.getString(10), 
+                            myRess.getString(13), 
+                            myRess.getString(14)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
@@ -495,9 +529,17 @@ public class CandidateList extends MasterForm {
                         String inputDate = myRess.getString(8);
                         Date date = inputFormat.parse(inputDate);
                         String formattedDate = outputFormat.format(date);
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
-                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        String myData[] = {
+                            myRess.getString(1), 
+                            myRess.getString(3), 
+                            myRess.getString(2), 
+                            myRess.getString(7) + "," + formattedDate,
+                            myRess.getString(6), 
+                            myRess.getString(9), 
+                            myRess.getString(4),
+                            myRess.getString(10), 
+                            myRess.getString(13), 
+                            myRess.getString(14)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
@@ -516,9 +558,17 @@ public class CandidateList extends MasterForm {
                         String inputDate = myRess.getString(8);
                         Date date = inputFormat.parse(inputDate);
                         String formattedDate = outputFormat.format(date);
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
-                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        String myData[] = {
+                            myRess.getString(1), 
+                            myRess.getString(3), 
+                            myRess.getString(2), 
+                            myRess.getString(7) + "," + formattedDate,
+                            myRess.getString(6), 
+                            myRess.getString(9), 
+                            myRess.getString(4),
+                            myRess.getString(10), 
+                            myRess.getString(13), 
+                            myRess.getString(14)};
 
                         myModel.addRow(myData);
                     }
@@ -535,9 +585,17 @@ public class CandidateList extends MasterForm {
                         String inputDate = myRess.getString(8);
                         Date date = inputFormat.parse(inputDate);
                         String formattedDate = outputFormat.format(date);
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
-                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        String myData[] = {
+                            myRess.getString(1), 
+                            myRess.getString(3), 
+                            myRess.getString(2), 
+                            myRess.getString(7) + "," + formattedDate,
+                            myRess.getString(6), 
+                            myRess.getString(9), 
+                            myRess.getString(4),
+                            myRess.getString(10), 
+                            myRess.getString(13), 
+                            myRess.getString(14)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {
@@ -556,9 +614,17 @@ public class CandidateList extends MasterForm {
                     String inputDate = myRess.getString(8);
                     Date date = inputFormat.parse(inputDate);
                     String formattedDate = outputFormat.format(date);
-                    String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
-                        myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                        myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                    String myData[] = {
+                        myRess.getString(1), 
+                        myRess.getString(3), 
+                        myRess.getString(2), 
+                        myRess.getString(7) + "," + formattedDate,
+                        myRess.getString(6), 
+                        myRess.getString(9), 
+                        myRess.getString(4),
+                        myRess.getString(10), 
+                        myRess.getString(13), 
+                        myRess.getString(14)};
                     myModel.addRow(myData);
                 }
             } catch (SQLException ex) {
@@ -574,9 +640,17 @@ public class CandidateList extends MasterForm {
                         String inputDate = myRess.getString(8);
                         Date date = inputFormat.parse(inputDate);
                         String formattedDate = outputFormat.format(date);
-                        String myData[] = {myRess.getString(1), myRess.getString(3), myRess.getString(2), myRess.getString(7) + "," + formattedDate,
-                            myRess.getString(6), myRess.getString(9), myRess.getString(4),
-                            myRess.getString(10), myRess.getString(12), myRess.getString(13)};
+                        String myData[] = {
+                            myRess.getString(1), 
+                            myRess.getString(3), 
+                            myRess.getString(2), 
+                            myRess.getString(7) + "," + formattedDate,
+                            myRess.getString(6), 
+                            myRess.getString(9), 
+                            myRess.getString(4),
+                            myRess.getString(10), 
+                            myRess.getString(13), 
+                            myRess.getString(14)};
                         myModel.addRow(myData);
                     }
                 } catch (SQLException ex) {

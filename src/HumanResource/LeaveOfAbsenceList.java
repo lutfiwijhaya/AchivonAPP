@@ -53,7 +53,16 @@ public class LeaveOfAbsenceList extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     private void  settable (){
-        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal meninggalkan absem / Leave of Absence Date"};
+        String [] header = {
+            "id",
+            "Karyawan Id / Employee Id", 
+            "KTP", 
+            "Nama / Name", 
+            "Email", 
+            "No. Hp", 
+            "Posisi / Job Position", 
+            "Disiplin / Discipline", 
+            "Tanggal meninggalkan absem / Leave of Absence Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
         MyTable.setDefaultEditor(Object.class, null);
@@ -198,8 +207,16 @@ public class LeaveOfAbsenceList extends MasterForm {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_absence inner join employee on employee_absence.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(17),myRess.getString(18), myRess.getString(19), myRess.getString(20),myRess.getString(25), 
-                                    myRess.getString(26),myRess.getString(29) ,myRess.getString(22)};
+                String myData [] = {
+                    myRess.getString(17),
+                    myRess.getString(18), 
+                    myRess.getString(19), 
+                    myRess.getString(20),
+                    myRess.getString(25),
+                    myRess.getString(26),
+                    myRess.getString(30),
+                    myRess.getString(30),
+                    myRess.getString(10)};
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {

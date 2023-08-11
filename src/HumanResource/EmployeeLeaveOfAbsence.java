@@ -70,9 +70,9 @@ public class EmployeeLeaveOfAbsence extends MasterForm {
             ResultSet rs = stmt.executeQuery("SELECT * FROM employee_absence inner join employee on employee_absence.karyawan_id = employee.karyawan_id where ktp = '"+EmployeeSession.getKTPAbsence()+"'");
             if (rs.next()) {
                 labelID.setText(rs.getString(2));
-                labelDiscipline.setText(rs.getString(29));
+                labelDiscipline.setText(rs.getString(30));
                 labelName.setText(rs.getString(20));
-                labelPosition.setText(rs.getString(29));
+                labelPosition.setText(rs.getString(30));
                 labelHP.setText(rs.getString(26));
                 dateFrom.setText(rs.getString(11));
                 dateTo.setText(rs.getString(12));

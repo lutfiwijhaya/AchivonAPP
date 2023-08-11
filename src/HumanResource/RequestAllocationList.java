@@ -56,7 +56,16 @@ public class RequestAllocationList extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     private void  settable (){
-        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal  / Resignation Date"};
+        String [] header = {
+            "id",
+            "Karyawan Id / Employee Id", 
+            "KTP", 
+            "Nama / Name", 
+            "Email", 
+            "No. Hp", 
+            "Posisi / Job Position", 
+            "Disiplin / Discipline", 
+            "Tanggal  / Resignation Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
         MyTable.setDefaultEditor(Object.class, null);
@@ -203,8 +212,16 @@ public class RequestAllocationList extends MasterForm {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_allocation inner join employee on employee_allocation.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(16),myRess.getString(17), myRess.getString(18), myRess.getString(19),myRess.getString(24), 
-                                    myRess.getString(25),myRess.getString(28) ,myRess.getString(15)};
+                String myData [] = {
+                    myRess.getString(16),
+                    myRess.getString(17), 
+                    myRess.getString(18), 
+                    myRess.getString(19),
+                    myRess.getString(24),
+                    myRess.getString(25),
+                    myRess.getString(29),
+                    myRess.getString(29),
+                    myRess.getString(15)};
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {

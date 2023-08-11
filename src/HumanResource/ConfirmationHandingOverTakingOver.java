@@ -1038,7 +1038,7 @@ public class ConfirmationHandingOverTakingOver extends MasterForm {
         DefaultTableModel dataModel = (DefaultTableModel) jTable4.getModel();
         int mycount = dataModel.getRowCount();
         for (int i = 0; i < mycount; i++) {
-            dataModel.removeRow(0);
+            dataModel.removeRow(1);
         }
         try {
             Statement stmt = koneksi.createStatement();

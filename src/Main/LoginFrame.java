@@ -418,6 +418,7 @@ public class LoginFrame extends javax.swing.JFrame {
                                 MySession.set_JobPosition(myRess.getString("job_position"));
                                 MySession.set_Sallary(myRess.getString("sallary"));
                                 MySession.set_Role(myRess.getString("role_id"));
+                                System.out.println("role login " + MySession.get_Role());
                                 JOptionPane.showMessageDialog(null, "Berhasil Login\nsuccessfull logged in \n\nSelamat Datang " +MySession.get_nama()+"\n"+"Welcome "+MySession.get_nama());
                                 main.getMain().setVisible(true);
                                 this.dispose();
