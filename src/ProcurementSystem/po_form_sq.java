@@ -508,13 +508,16 @@ public class po_form_sq extends MasterForm {
             } else {
                 try {
                     stm = koneksi.createStatement();
-                    String sql = "insert into po_sq (rfq_id,amount,disc,total1,ppn,total2,date) values('" + CustomResource.SessionAny.get_id_rfq_for_sq() + "'"
+                    String sql = "insert into po_sq (rfq_id,amount,disc,total1,ppn,total2,date,rfq_date,payment,delivery_date) values('" + CustomResource.SessionAny.get_id_rfq_for_sq() + "'"
                             + ",'" + t_amount.getText() + "'"
                             + ",'" + t_disc.getText() + "'"
                             + ",'" + t_total_1.getText() + "'"
                             + ",'" + t_ppn.getText() + "'"
                             + ",'" + t_total_2.getText() + "'"
-                            + ",'" + t_date.getText() + "')";
+                            + ",'" + t_date.getText() + "'"
+                            + ",'" + t_date_rfq.getText() + "'"
+                            + ",'" + t_payment.getText() + "'"
+                            + ",'" + t_date_estimate.getText() + "')";
                     stm.executeUpdate(sql);
                     stm.close();
                     JOptionPane.showMessageDialog(null, "Data Saved");
@@ -559,7 +562,7 @@ public class po_form_sq extends MasterForm {
                     JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
                 }
 //        cb_rfq();
-            }
+            } 
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed

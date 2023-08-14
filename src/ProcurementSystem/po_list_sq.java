@@ -7,6 +7,7 @@ package ProcurementSystem;
 import CustomResource.koneksi;
 import HumanResource.Employe_list;
 import Main.MasterForm;
+import static Main.main.bodyPanel;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,7 +19,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -138,6 +141,23 @@ public class po_list_sq extends MasterForm {
             JOptionPane.showMessageDialog(null, e + "data gagal ta mpil");
         }
     }
+     public void showForm(MasterForm form) {
+      
+        bodyPanel.removeAll();
+        bodyPanel.add(form);
+        bodyPanel.revalidate();
+        bodyPanel.repaint();
+        
+    }
+     
+       private void searchTable(String searchValue) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jTable1.setRowSorter(sorter);
+
+        RowFilter<DefaultTableModel, Object> rowFilter = RowFilter.regexFilter("(?i)" + searchValue);
+        sorter.setRowFilter(rowFilter);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -149,6 +169,7 @@ public class po_list_sq extends MasterForm {
     private void initComponents() {
 
         dateChooser2 = new com.raven.datechooser.DateChooser();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -207,7 +228,7 @@ public class po_list_sq extends MasterForm {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LIST MATERIAL");
+        jLabel2.setText("LIST ITEMS");
         jLabel2.setOpaque(true);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 660, 20));
 
@@ -215,11 +236,11 @@ public class po_list_sq extends MasterForm {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("LIST SALES QUATATION");
+        jLabel3.setText("LIST SUPPLIER QUATATION");
         jLabel3.setOpaque(true);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 660, 20));
 
-        jButton7.setText("Save As Excel");
+        jButton7.setText("View");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -264,6 +285,11 @@ public class po_list_sq extends MasterForm {
         jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, 102, -1));
 
         t_search.setLabelText("Search");
+        t_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_searchActionPerformed(evt);
+            }
+        });
         t_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 t_searchKeyReleased(evt);
@@ -289,7 +315,23 @@ public class po_list_sq extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
+     
+        
+        if (jTable1.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Please Mark SQ First !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+        
+        DefaultTableModel dataModel = (DefaultTableModel) jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        String mr_id3 = (String) dataModel.getValueAt(row, 0);
+       
+        String[] parts = mr_id3.split("-");
+            String id_sq = parts[1];
+        CustomResource.SessionAny.set_id_sq(id_sq);
+        
+        
+         showForm(new po_sq_view());
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -325,6 +367,8 @@ public class po_list_sq extends MasterForm {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void t_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_searchKeyReleased
+String searchValue = t_search.getText();
+        searchTable(searchValue);
 
     }//GEN-LAST:event_t_searchKeyReleased
 
@@ -332,8 +376,13 @@ public class po_list_sq extends MasterForm {
         // TODO add your handling code here:
     }//GEN-LAST:event_t_searchKeyTyped
 
+    private void t_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_searchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private com.raven.datechooser.DateChooser dateChooser2;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;

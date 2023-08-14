@@ -28,6 +28,7 @@ public class po_form_po extends MasterForm {
     int id_po;
     long a = 1;
     long b = 1;
+    String id;
 
     /**
      * Creates new form po
@@ -36,7 +37,10 @@ public class po_form_po extends MasterForm {
         initComponents();
       
         openDB();
-        cb_rfq();
+        
+        add();
+        cb_material();
+        id_employee();
 
        
 
@@ -50,27 +54,30 @@ public class po_form_po extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
-
-    void cb_rfq() {
+    
+    private void id_employee() {
+        String sql = "select max(id_po) from po";
         try {
-            cb_rfq.removeAllItems();
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_sq INNER JOIN po_rfq on po_sq.rfq_id = po_rfq.id INNER JOIN biz_partner on po_rfq.biz_id = biz_partner.biz_id where po_sq.status = '1'");
-            while (myRess.next()) {
-                cb_rfq.addItem("SQ-" + myRess.getString("po_sq.id") + "-" + "(" + myRess.getString("name") + ")");
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                int a = rs.getInt(1);
+                id_po = a + 1;
+
             }
-        } catch (SQLException ex) {
+        } catch (Exception e) {
+            System.out.println("" + e.getMessage());
         }
+        id = Integer.toString(id_po);
+        t_id_po.setText(id);
 
     }
 
+
+
     void add() {
-        String mr_id3 = cb_rfq.getSelectedItem().toString();
-
-        String[] parts = mr_id3.split("-");
-        String id = parts[1];
-
         try {
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_sq INNER JOIN po_rfq on po_sq.rfq_id = po_rfq.id INNER JOIN biz_partner on po_rfq.biz_id = biz_partner.biz_id where po_sq.id = '" + id + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_sq INNER JOIN po_rfq on po_sq.rfq_id = po_rfq.id INNER JOIN biz_partner on po_rfq.biz_id = biz_partner.biz_id where po_sq.id = '" + CustomResource.SessionAny.get_id_po() + "'");
             while (myRess.next()) {
                 double angka = Double.parseDouble(myRess.getString("amount"));
                 double angka1 = Double.parseDouble(myRess.getString("total1"));
@@ -102,8 +109,7 @@ public class po_form_po extends MasterForm {
     void cb_material() {
         try {
 
-            String[] parts = cb_rfq.getSelectedItem().toString().split("-");
-            String id = parts[1];
+          
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable2.getModel();
             int rowCount1 = dataModel2.getRowCount();
 
@@ -111,7 +117,7 @@ public class po_form_po extends MasterForm {
                 dataModel2.removeRow(i);
             }
 
-            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_sq INNER JOIN po_rfq on po_sq.rfq_id = po_rfq.id INNER JOIN po_rfq_items on po_rfq.id = po_rfq_items.rfq_id where po_sq.id = '" + id + "'");
+            ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM po_sq INNER JOIN po_rfq on po_sq.rfq_id = po_rfq.id INNER JOIN po_rfq_items on po_rfq.id = po_rfq_items.rfq_id where po_sq.id = '" + CustomResource.SessionAny.get_id_po() + "'");
             while (myRess.next()) {
 
                 String[] data = {
@@ -178,14 +184,12 @@ public class po_form_po extends MasterForm {
         t_cc = new CustomResource.CustomTextfield();
         t_total_2 = new CustomResource.CustomTextfield();
         jLabel2 = new javax.swing.JLabel();
-        cb_rfq = new CustomResource.ComboBoxSuggestion();
         t_disc = new CustomResource.CustomTextfield();
         t_amount = new CustomResource.CustomTextfield();
         t_total_1 = new CustomResource.CustomTextfield();
         t_ppn = new CustomResource.CustomTextfield();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         t_supplier = new CustomResource.CustomTextfield();
         t_address = new CustomResource.CustomTextfield();
@@ -194,6 +198,8 @@ public class po_form_po extends MasterForm {
         t_po_date = new CustomResource.CustomTextfield();
         t_deliv_date = new CustomResource.CustomTextfield();
         t_desc = new CustomResource.CustomTextfield();
+        jButton1 = new javax.swing.JButton();
+        t_id_po = new CustomResource.CustomTextfield();
 
         dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(t_po_date);
@@ -220,24 +226,6 @@ public class po_form_po extends MasterForm {
         jLabel2.setText("Form PO");
         jLabel2.setOpaque(true);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 650, 20));
-
-        cb_rfq.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        cb_rfq.setName(""); // NOI18N
-        cb_rfq.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                cb_rfqPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        cb_rfq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_rfqActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cb_rfq, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 400, -1));
 
         t_disc.setEditable(false);
         t_disc.setLabelText("Disc %");
@@ -298,9 +286,6 @@ public class po_form_po extends MasterForm {
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 660, 140));
 
-        jLabel4.setText("Choose SQ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
-
         jButton8.setText("SUBMIT");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,7 +296,7 @@ public class po_form_po extends MasterForm {
 
         t_supplier.setEditable(false);
         t_supplier.setLabelText("Supplier");
-        jPanel1.add(t_supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 257, -1));
+        jPanel1.add(t_supplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 257, -1));
 
         t_address.setEditable(false);
         t_address.setLabelText("Address");
@@ -334,6 +319,18 @@ public class po_form_po extends MasterForm {
         t_desc.setLabelText("Description");
         jPanel1.add(t_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 257, -1));
 
+        jButton1.setText("Choose SQ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, 30));
+
+        t_id_po.setEditable(false);
+        t_id_po.setLabelText("PO No.");
+        jPanel1.add(t_id_po, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 250, -1));
+
         jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -347,41 +344,6 @@ public class po_form_po extends MasterForm {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cb_rfqPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cb_rfqPopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_rfqPopupMenuWillBecomeVisible
-
-    private void cb_rfqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_rfqActionPerformed
-        if (cb_rfq.getSelectedItem() == null) {
-
-        } else {
-            add();
-            cb_material();
-
-            DefaultTableModel dataModel2 = (DefaultTableModel) jTable2.getModel();
-
-            int rowCount = dataModel2.getRowCount();
-            long total = 0L;
-
-// Looping untuk menghitung jumlah pada kolom tertentu
-            for (int i = 0; i < rowCount; i++) {
-                total += Long.parseLong(dataModel2.getValueAt(i, 5).toString()); // Mengambil data dari kolom ke-2 dan menjumlahkannya
-            }
-
-// Menampilkan hasil jumlah
-//            t_amount.setText(String.valueOf(total));
-//
-//            long disc = Long.valueOf(t_disc.getText());
-//            long total1 = total - (total * disc / 100);
-//            t_total_1.setText(String.valueOf(total1));
-//            long ppn = total1 * 11 / 100;
-//            long total2 = total1 + (total1 * 11 / 100);
-//            t_ppn.setText(String.valueOf(ppn));
-//            t_total_2.setText(String.valueOf(total2));
-
-        }       // TODO add your handling code here:
-    }//GEN-LAST:event_cb_rfqActionPerformed
 
     private void t_discActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_discActionPerformed
         // TODO add your handling code here:
@@ -408,12 +370,12 @@ public class po_form_po extends MasterForm {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
-        String[] parts1 = cb_rfq.getSelectedItem().toString().split("-");
-        String id1 = parts1[1];
+     
 
         try {
             stm = koneksi.createStatement();
-            String sql = "insert into po (sq_id,po_date,po_delivery_date,description,cc) values('" + id1 + "'"
+            String sql = "insert into po (id_po,id_sq,tgl_po,delivery_date,description_po,cc) values('" + t_id_po.getText() + "'"
+                    + ",'" + CustomResource.SessionAny.get_id_po() + "'"
                     + ",'" + t_po_date.getText() + "'"
                     + ",'" + t_deliv_date.getText() + "'"
                     + ",'" + t_desc.getText() + "'"
@@ -427,7 +389,7 @@ public class po_form_po extends MasterForm {
         
           try {
             stm = koneksi.createStatement();
-            String sql1 = "UPDATE po_sq SET status = '2' WHERE id = '" + id1 + "'";
+            String sql1 = "UPDATE po_sq SET status = '2' WHERE id = '" + CustomResource.SessionAny.get_id_po() + "'";
             stm.executeUpdate(sql1);
             stm.close();
             JOptionPane.showMessageDialog(null, "Data Saved");
@@ -435,21 +397,24 @@ public class po_form_po extends MasterForm {
             JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
         }
 
-       cb_rfq();
+      
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable2MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new choose_sq_list().setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private CustomResource.ComboBoxSuggestion cb_rfq;
     private com.raven.datechooser.DateChooser dateChooser1;
     private com.raven.datechooser.DateChooser dateChooser2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
@@ -461,6 +426,7 @@ public class po_form_po extends MasterForm {
     private CustomResource.CustomTextfield t_desc;
     private CustomResource.CustomTextfield t_disc;
     private CustomResource.CustomTextfield t_email;
+    private CustomResource.CustomTextfield t_id_po;
     private CustomResource.CustomTextfield t_mobile;
     private CustomResource.CustomTextfield t_po_date;
     private CustomResource.CustomTextfield t_ppn;

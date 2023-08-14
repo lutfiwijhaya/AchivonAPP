@@ -30,6 +30,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -135,7 +139,7 @@ public class po_rfq_view extends MasterForm {
         if (excelChooser == JFileChooser.APPROVE_OPTION) {
             try {
                 // Membuat objek File template dan output
-                File templateFile = new File("C:\\Users\\USER\\OneDrive\\Documents\\Form_RFQ.xlsx");
+                File templateFile = new File("C:\\Users\\USER\\OneDrive\\Documents\\Form_RFQ1.xlsx");
                 File selectedFile = excelFileChooser.getSelectedFile();
                 String outputFilePath = selectedFile.getParent() + "\\" + selectedFile.getName() + ".xlsx";
                 File outputFile = new File(outputFilePath);
@@ -199,93 +203,121 @@ public class po_rfq_view extends MasterForm {
                 if (excelrow15 == null) {
                     excelrow15 = sheetCopy.createRow(6); // Buat baris baru jika belum ada
                 }
-                XSSFCell excelcell15 = excelrow15.getCell(5);
+                XSSFCell excelcell15 = excelrow15.getCell(6);
                 if (excelcell15 == null) {
-                    excelcell15 = excelrow15.createCell(5); // Buat sel baru jika belum ada
+                    excelcell15 = excelrow15.createCell(6); // Buat sel baru jika belum ada
                 }
                 excelcell15.setCellValue(tgl);
-                
-               date = inputFormat.parse(t_close_date.getText());
+
+                date = inputFormat.parse(t_close_date.getText());
                 tgl = outputFormat.format(date);
 
-                XSSFRow excelrow16 = sheetCopy.getRow(32);
+                XSSFRow excelrow16 = sheetCopy.getRow(7);
                 if (excelrow16 == null) {
-                    excelrow16 = sheetCopy.createRow(32); // Buat baris baru jika belum ada
+                    excelrow16 = sheetCopy.createRow(7); // Buat baris baru jika belum ada
                 }
-                XSSFCell excelcell16 = excelrow16.getCell(2);
+                XSSFCell excelcell16 = excelrow16.getCell(6);
                 if (excelcell16 == null) {
-                    excelcell16 = excelrow16.createCell(2); // Buat sel baru jika belum ada
+                    excelcell16 = excelrow16.createCell(6); // Buat sel baru jika belum ada
                 }
-                excelcell16.setCellValue(date);
-                
-                 date = inputFormat.parse(t_estimate_deliv.getText());
+                excelcell16.setCellValue(tgl);
+
+                date = inputFormat.parse(t_estimate_deliv.getText());
                 tgl = outputFormat.format(date);
 
-                XSSFRow excelrow17 = sheetCopy.getRow(33);
+                XSSFRow excelrow17 = sheetCopy.getRow(8);
                 if (excelrow17 == null) {
-                    excelrow17 = sheetCopy.createRow(33); // Buat baris baru jika belum ada
+                    excelrow17 = sheetCopy.createRow(8); // Buat baris baru jika belum ada
                 }
-                XSSFCell excelcell17 = excelrow17.getCell(2);
+                XSSFCell excelcell17 = excelrow17.getCell(6);
                 if (excelcell17 == null) {
-                    excelcell17 = excelrow17.createCell(2); // Buat sel baru jika belum ada
+                    excelcell17 = excelrow17.createCell(6); // Buat sel baru jika belum ada
                 }
-                excelcell17.setCellValue(date);
+                excelcell17.setCellValue(tgl);
 
-                XSSFRow excelrow18 = sheetCopy.getRow(34);
+                XSSFRow excelrow18 = sheetCopy.getRow(9);
                 if (excelrow18 == null) {
-                    excelrow18 = sheetCopy.createRow(34); // Buat baris baru jika belum ada
+                    excelrow18 = sheetCopy.createRow(9); // Buat baris baru jika belum ada
                 }
-                XSSFCell excelcell18 = excelrow18.getCell(2);
+                XSSFCell excelcell18 = excelrow18.getCell(6);
                 if (excelcell18 == null) {
-                    excelcell18 = excelrow18.createCell(2); // Buat sel baru jika belum ada
+                    excelcell18 = excelrow18.createCell(6); // Buat sel baru jika belum ada
                 }
                 excelcell18.setCellValue(t_payment.getText());
+
+                CellStyle borderStyle = workbook.createCellStyle();
+                borderStyle.setBorderTop(BorderStyle.THIN);
+                borderStyle.setBorderBottom(BorderStyle.THIN);
+                borderStyle.setBorderLeft(BorderStyle.THIN);
+                borderStyle.setBorderRight(BorderStyle.THIN);
 
                 int row1 = 15;
                 for (int i = 0; i < dataModelp.getRowCount(); i++) {
 
                     XSSFRow excelrow = sheetCopy.getRow(row1);
+                    if (excelrow == null) {
+                        excelrow = sheetCopy.createRow(row1); // Buat baris baru jika belum ada
+                    }
+
+                  
+
                     row1 = row1 + 1;
                     int col = 0;
-                    for (int j = 2; j < dataModelp.getColumnCount(); j++) {
+                    for (int j = 1; j < dataModelp.getColumnCount(); j++) {
+
                         XSSFCell excelcell = excelrow.getCell(col);
                         if (excelcell == null) {
                             excelcell = excelrow.createCell(col);
                         }
+
+                        System.out.println(col);
                         col = col + 1;
 
                         String mr_id = (String) dataModelp.getValueAt(i, 2);
 
                         String[] parts = mr_id.split("-");
-                        
 
                         String id = parts[0];
                         String id1 = parts[1];
-                        String id2 = parts[2];
-                        
+                        String id2 = mr_id.substring(mr_id.indexOf("-") + 1).trim();
 
                         if (col == 1) {
                             excelcell.setCellValue(id);
+
                         } else if (col == 2) {
                             excelcell.setCellValue(id1);
+
                         } else if (col == 3) {
                             excelcell.setCellValue(id2);
+
                         } else if (col == 4) {
                             excelcell.setCellValue(dataModelp.getValueAt(i, 5).toString());
+
                         } else if (col == 5) {
                             excelcell.setCellValue(dataModelp.getValueAt(i, 4).toString());
-                        } else if (col == 6) {
+
+                            col = col + 2;
+                        } else if (col == 8) {
                             excelcell.setCellValue(dataModelp.getValueAt(i, 6).toString());
+
                         }
 
                     }
+                  for (int j = 0; j < 8; j++) {
+                        XSSFCell excelcell19 = excelrow.getCell(j);
+                         if (excelcell19 == null) {
+                            excelcell19 = excelrow.createCell(j);
+                        }
+                        excelcell19.setCellStyle(borderStyle);
+                    }
+//                
                 }
-                int hex = dataModelp.getRowCount(); 
-               
-                for (int i = hex + 15; i < 130; i++) {
-                    XSSFRow excelrow = sheetCopy.createRow(i);
+                int hex = dataModelp.getRowCount();
 
-                }
+//                for (int i = hex + 15; i < 130; i++) {
+//                    XSSFRow excelrow = sheetCopy.createRow(i);
+//
+//                }
                 // Menulis workbook ke dalam file output
                 excelfou = new FileOutputStream(outputFile);
                 excelbou = new BufferedOutputStream(excelfou);
@@ -313,14 +345,14 @@ public class po_rfq_view extends MasterForm {
             }
         }
     }
-    
-     public void showForm(MasterForm form) {
-      
+
+    public void showForm(MasterForm form) {
+
         bodyPanel.removeAll();
         bodyPanel.add(form);
         bodyPanel.revalidate();
         bodyPanel.repaint();
-        
+
     }
 
     /**
@@ -482,7 +514,7 @@ public class po_rfq_view extends MasterForm {
         jLabel1.setText("Address");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, -1, -1));
 
-        jButton9.setText("Send To SQ Queque");
+        jButton9.setText("Approve RFQ");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -513,7 +545,7 @@ public class po_rfq_view extends MasterForm {
     }//GEN-LAST:event_t_paymentKeyTyped
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-showForm(new po_list_rfq());
+        showForm(new po_list_rfq());
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -532,18 +564,18 @@ showForm(new po_list_rfq());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-int respon = JOptionPane.showConfirmDialog(null, "Send To SQ Queque ?", "Option", JOptionPane.YES_NO_OPTION);
+        int respon = JOptionPane.showConfirmDialog(null, "Send To SQ Queque ?", "Option", JOptionPane.YES_NO_OPTION);
         if (respon == 0) {
-        try {
-            stm = koneksi.createStatement();
-            String sql = "UPDATE po_rfq SET status = '1' WHERE id = '" + t_id_po.getText() + "'";
-            stm.executeUpdate(sql);
-            stm.close();
-            JOptionPane.showMessageDialog(null, "Data Saved");
-            showForm(new po_list_rfq());
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
-        }
+            try {
+                stm = koneksi.createStatement();
+                String sql = "UPDATE po_rfq SET status = '1' WHERE id = '" + t_id_po.getText() + "'";
+                stm.executeUpdate(sql);
+                stm.close();
+                JOptionPane.showMessageDialog(null, "Data Saved");
+                showForm(new po_list_rfq());
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "error" + e, "GAGAL", JOptionPane.WARNING_MESSAGE);
+            }
 
         }
         // TODO add your handling code here:

@@ -2,13 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package HumanResource;
+package CustomResource;
 
+import HumanResource.*;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import com.raven.datechooser.SelectedDate;
-import com.toedter.calendar.JCalendar;
-
 import java.sql.Connection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -27,10 +26,8 @@ import java.time.Period;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import jnafilechooser.api.JnaFileChooser;
@@ -48,16 +45,15 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     java.sql.Statement stm;
     ResultSet rs;
     Connection koneksi;
-    int id;
     
     public SummaryStatusCandidatEmployee() {
         initComponents();
         MyWindow();
         openDB();
         setTable();
+//        setcombo();s
         jLabel2.setVisible(false);
         jLabel47.setVisible(false);
-        buttonSelect.setVisible(false);
         jScrollPane6.getVerticalScrollBar().setUnitIncrement(16);
         
         ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
@@ -85,6 +81,17 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         }
     }
 
+//    private void setcombo() {
+//        try {
+//            stm = koneksi.createStatement();
+//            rs = stm.executeQuery("select * from cd_employee");
+//            while (rs.next()) {
+//                comboCDEmployeeID.addItem(rs.getString("Nama")+"|"+rs.getString("KTP"));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,36 +103,37 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
         groupSallary = new javax.swing.ButtonGroup();
-        jScrollPane6 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane6 = new scroolbarWin11.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane1 = new scroolbarWin11.ScrollPaneWin11();
         jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane2 = new scroolbarWin11.ScrollPaneWin11();
         jTable2 = new javax.swing.JTable();
         jLabel35 = new javax.swing.JLabel();
-        jScrollPane3 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane3 = new scroolbarWin11.ScrollPaneWin11();
         jTable3 = new javax.swing.JTable();
-        jScrollPane4 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane4 = new scroolbarWin11.ScrollPaneWin11();
         jTable4 = new javax.swing.JTable();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jScrollPane5 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane5 = new scroolbarWin11.ScrollPaneWin11();
         jTable5 = new javax.swing.JTable();
         jLabel39 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jScrollPane7 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane7 = new scroolbarWin11.ScrollPaneWin11();
         jTable6 = new javax.swing.JTable();
         jLabel42 = new javax.swing.JLabel();
-        jScrollPane8 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane8 = new scroolbarWin11.ScrollPaneWin11();
         jTable7 = new javax.swing.JTable();
         jLabel43 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
-        jScrollPane9 = new raven.scroll.win11.ScrollPaneWin11();
+        jScrollPane9 = new scroolbarWin11.ScrollPaneWin11();
         jTable8 = new javax.swing.JTable();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
@@ -169,7 +177,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jLabel4 = new javax.swing.JLabel();
         all = new CustomResource.RadioButtonCustom();
         hour = new CustomResource.RadioButtonCustom();
-        buttonSelect = new javax.swing.JButton();
 
         dateChooser1.setForeground(new java.awt.Color(51, 51, 255));
 
@@ -324,8 +331,18 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         jLabel39.setText("E. Initial Hired Status");
         jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 1010, -1, -1));
 
+        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jToggleButton1.setForeground(new java.awt.Color(51, 51, 255));
+        jToggleButton1.setText("Select Employee / Pilih Karyawan");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, 30));
+
         jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
         jLabel41.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel41.setText("F. Reward Status");
@@ -718,14 +735,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         hour.setText("Hourly");
         jPanel1.add(hour, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 1110, -1, -1));
 
-        buttonSelect.setText("Select Employee / Pilih Karyawan");
-        buttonSelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSelectActionPerformed(evt);
-            }
-        });
-        jPanel1.add(buttonSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, 30));
-
         jScrollPane6.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -783,6 +792,45 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         tracer();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        String KTPNumber, IdCDEmployee;
+//        String[] parts = comboCDEmployeeID.getSelectedItem().toString().split("\\|"); // Escape the "|" character using "\\|"
+//        if (parts.length > 1) {
+//            String NumberParts = parts[1];
+//            KTPNumber = NumberParts;
+//        } else {
+//            KTPNumber = "";
+//            JOptionPane.showMessageDialog(this, "Maaf, ID Tidak ditemukan\nSorry, ID not Found");
+//        }
+//
+//        try {
+//            stm = koneksi.createStatement();
+//            rs = stm.executeQuery("select * from cd_employee where KTP = "+KTPNumber+"");
+//            while (rs.next()) {
+//                jLabel2.setText(rs.getString("id_employee"));
+//                CandidateSallary.setText(rs.getString("Nama"));
+//                CandidateGender.setText(rs.getString("sex"));
+//                CandidateBirthday.setText(rs.getString("birthday"));
+//                CandidateKTP.setText(rs.getString("KTP"));
+//                CandidatePhoneNumber.setText(rs.getString("No_HP"));
+//                CandidateSallary.setText(rs.getString("D_Salary"));
+//                CandidateDiscipline.setText(rs.getString("discipline"));
+//                CandidatePosition.setText(rs.getString("marital"));
+//                CandidateEmail.setText(rs.getString("email"));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        String dateString = CandidateBirthday.getText();
+//        LocalDate birthDate = LocalDate.parse(dateString);
+//        LocalDate currentDate = LocalDate.now();
+//
+//        Period period = Period.between(birthDate, currentDate);
+//        int age = period.getYears();
+//        CandidateGender.setText(Integer.toString(age));
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void CandidateGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CandidateGenderActionPerformed
         // TODO add your handling code here:
@@ -864,48 +912,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
         // TODO add your handling code here:
     }//GEN-LAST:event_allActionPerformed
 
-    private void buttonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelectActionPerformed
-        String KTPNumber, IdCDEmployee;
-//        String[] parts = comboCDEmployeeID.getSelectedItem().toString().split("\\|"); // Escape the "|" character using "\\|"
-//        if (parts.length > 1) {
-//            String NumberParts = parts[1];
-//            KTPNumber = NumberParts;
-//        } else {
-//            KTPNumber = "";
-//            JOptionPane.showMessageDialog(this, "Maaf, ID Tidak ditemukan\nSorry, ID not Found");
-//        }
-//
-//        try {
-//            stm = koneksi.createStatement();
-//            rs = stm.executeQuery("select * from cd_employee where KTP = "+KTPNumber+"");
-//            while (rs.next()) {
-//                jLabel2.setText(rs.getString("id_employee"));
-//                CandidateSallary.setText(rs.getString("Nama"));
-//                CandidateGender.setText(rs.getString("sex"));
-//                CandidateBirthday.setText(rs.getString("birthday"));
-//                CandidateKTP.setText(rs.getString("KTP"));
-//                CandidatePhoneNumber.setText(rs.getString("No_HP"));
-//                CandidateSallary.setText(rs.getString("D_Salary"));
-//                CandidateDiscipline.setText(rs.getString("discipline"));
-//                CandidatePosition.setText(rs.getString("marital"));
-//                CandidateEmail.setText(rs.getString("email"));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        String dateString = CandidateBirthday.getText();
-//        LocalDate birthDate = LocalDate.parse(dateString);
-//        LocalDate currentDate = LocalDate.now();
-//
-//        Period period = Period.between(birthDate, currentDate);
-//        int age = period.getYears();
-//        CandidateGender.setText(Integer.toString(age));
-
-        CustomResource.EmployeeSession.setsesiform("2");
-        new HumanResourceEmployeeList().setVisible(true);
-    }//GEN-LAST:event_buttonSelectActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private CustomResource.CustomTextfield Accomodation;
     private CustomResource.CustomTextfield Basic;
@@ -939,7 +945,6 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private CustomResource.CustomTextfield TypeHired;
     private CustomResource.CustomTextfield WorkLocation;
     private CustomResource.RadioButtonCustom all;
-    private javax.swing.JButton buttonSelect;
     private com.raven.datechooser.DateChooser dateChooser1;
     private javax.swing.ButtonGroup groupSallary;
     private CustomResource.RadioButtonCustom hour;
@@ -983,21 +988,17 @@ public class SummaryStatusCandidatEmployee extends MasterForm {
     private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
     private javax.swing.JTable jTable8;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
     private void MyWindow() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screen.width, screen.height - 45);
         this.setPreferredSize(new Dimension(screen.width, screen.height - 100));
-
-//        int x = (screen.width/2) - (this.getSize().width/2);
-//        int y = (screen.height/2) - (this.getSize().height/2);
-//        this.setPreferredSize(x,y);
     }
     
     private void tracer(){
         all.setActionCommand("All-in");
         hour.setActionCommand("Hourly");
-//        String templateFilePath = "C://Users//hi//OneDrive//Documents//Summary Status.xlsx";
         String templateFilePath = "src/Doc/Summary Status.xlsx";
 
         String name = CandidateName.getText();

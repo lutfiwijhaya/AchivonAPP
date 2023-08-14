@@ -19,9 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -151,6 +153,15 @@ public class po_list_rfq extends MasterForm {
                 return getPreferredSize().width < getParent().getWidth();
             }
         };
+    }
+       
+         private void searchTable(String searchValue) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jTable1.setRowSorter(sorter);
+
+        RowFilter<DefaultTableModel, Object> rowFilter = RowFilter.regexFilter("(?i)" + searchValue);
+        sorter.setRowFilter(rowFilter);
     }
     
     /**
@@ -351,6 +362,10 @@ public class po_list_rfq extends MasterForm {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void t_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_searchKeyReleased
+ 
+        
+        String searchValue = t_search.getText();
+        searchTable(searchValue);
 
     }//GEN-LAST:event_t_searchKeyReleased
 

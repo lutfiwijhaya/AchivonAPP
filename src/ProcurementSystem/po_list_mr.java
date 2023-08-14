@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -189,7 +188,7 @@ public class po_list_mr extends MasterForm {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 600, 102, -1));
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, 102, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 51, 51));
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -197,7 +196,7 @@ public class po_list_mr extends MasterForm {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ITEMS SELECTED FOR RFQ");
         jLabel4.setOpaque(true);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 660, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 660, 20));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -217,7 +216,7 @@ public class po_list_mr extends MasterForm {
         });
         jScrollPane3.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 660, 140));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, 660, 140));
 
         jButton8.setText("ADD");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -241,6 +240,7 @@ public class po_list_mr extends MasterForm {
 
         t_remark.setColumns(20);
         t_remark.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        t_remark.setLineWrap(true);
         t_remark.setRows(5);
         t_remark.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
