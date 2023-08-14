@@ -60,13 +60,27 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
     }
     
     private void tampil(){
-        if("2".equals(MySession.get_Role())){
-            if (CustomResource.EmployeeSession.getsesiform().equals("1")){
-                jLabel1.setText("Daftar Kandidat/Candidate List");
-                DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
+        if (CustomResource.EmployeeSession.getsesiform().equals("EmployeeConfirmation")){  
+            DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
+            if (CustomResource.MySession.get_Role().equals("2")){  
                 try {
                     stm = koneksi.createStatement();
-                    rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
+                    rs = stm.executeQuery("select * from cd_employee where approval = 1");
+                    while (rs.next()) {
+                        String[] data = {
+                            rs.getString("id_employee"),
+                            rs.getString("KTP"),
+                            rs.getString("Nama"),
+                            rs.getString("Applying_A")};
+                        dataModel2.insertRow(0, data);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e + "data gagal tampil");
+                }
+            }else if (CustomResource.MySession.get_Role().equals("1")){
+                try {
+                    stm = koneksi.createStatement();
+                    rs = stm.executeQuery("select * from cd_employee where approval = 2");
                     while (rs.next()) {
                         String[] data = {
                             rs.getString("id_employee"),
@@ -79,32 +93,13 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, e + "data gagal tampil");
                 }
             }
-        } else if("1".equals(MySession.get_Role())){
-            if (CustomResource.EmployeeSession.getsesiform().equals("1")){
-                jLabel1.setText("Daftar Kandidat/Candidate List");
-                DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
-                try {
-                    stm = koneksi.createStatement();
-                    rs = stm.executeQuery("select * from cd_employee WHERE approval = '2'");
-                    while (rs.next()) {
-                        String[] data = {
-                            rs.getString("id_employee"),
-                            rs.getString("KTP"),
-                            rs.getString("Nama"),
-                            rs.getString("Applying_A")};
-                        dataModel2.insertRow(0, data);
-                    }
-
-                } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e + "data gagal tampil");
-                }
-            }
         }
+        
         if (CustomResource.EmployeeSession.getsesiform().equals("2")){  
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
             try {
                 stm = koneksi.createStatement();
-                rs = stm.executeQuery("select * from employee");
+                rs = stm.executeQuery("select * from employee WHERE status_employee = 1 ORDER BY karyawan_id DESC");
                 while (rs.next()) {
                     String[] data = {
                         rs.getString("id"),
@@ -117,40 +112,19 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
             }
         }
-        if (CustomResource.EmployeeSession.getsesiform().equals("3")){
-            DefaultTableModel myModel;
-            String[] header1 = {"id", "Partner_ID", "Name", "City"};
-            myModel = new DefaultTableModel(header1, 1);
-            jTable1.setModel(myModel);      
-            myModel.addRow(new Object[]{});
-            TableColumnModel columnModel = jTable1.getColumnModel();
-            TableColumn column = columnModel.getColumn(0);
-            TableColumn column1 = columnModel.getColumn(1);
-            column.setMinWidth(0);
-            column.setMaxWidth(0);
-            column.setWidth(0);
-            column.setPreferredWidth(0);
-            column1.setMinWidth(80);
-            column1.setMaxWidth(80);
-            column1.setWidth(80);
-            column1.setPreferredWidth(80);
-            int rowIndex = 0; //indeks baris
-            Object value = jTable1.getValueAt(rowIndex, 0);
-            int rowCount = myModel.getRowCount();
-
-            for (int i = rowCount - 1; i >= 0; i--) {
-                myModel.removeRow(i);
-            }
+        
+        if (CustomResource.EmployeeSession.getsesiform().equals("Summary")){  
+            DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();
             try {
                 stm = koneksi.createStatement();
-                rs = stm.executeQuery("select * from biz_partner");
+                rs = stm.executeQuery("select * from cd_employee WHERE approval = '1'");
                 while (rs.next()) {
                     String[] data = {
-                        rs.getString("biz_id"),
-                        rs.getString("partner_id"),
-                        rs.getString("name"),
-                        rs.getString("city")};
-                    myModel.insertRow(0, data);
+                        rs.getString("id_employee"),
+                        rs.getString("KTP"),
+                        rs.getString("Nama"),
+                        rs.getString("Applying_A")};
+                    dataModel2.insertRow(0, data);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e + "data gagal tampil");
@@ -208,27 +182,34 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, 150));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Bizz Partner List");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 240, 40));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Daftar karyawan / Employee List");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 450, 40));
 
+        jButton1.setBackground(new java.awt.Color(51, 51, 255));
+        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Tambah/Add Data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 240, -1, 30));
 
+        jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(51, 51, 255));
         jButton2.setText("Batal/Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -238,7 +219,7 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
         );
 
         pack();
@@ -246,10 +227,16 @@ public class HumanResourceEmployeeList extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //candidate
-        if (CustomResource.EmployeeSession.getsesiform().equals("1")){
+        if (CustomResource.EmployeeSession.getsesiform().equals("EmployeeConfirmation")){
             DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();        
             CustomResource.CandidateSession.setCandidateID(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
             Main.main.getMain().showForm(new EmployeeConfirmation());
+            this.dispose();
+        }     
+        if (CustomResource.EmployeeSession.getsesiform().equals("Summary")){
+            DefaultTableModel dataModel2 = (DefaultTableModel) jTable1.getModel();        
+            CustomResource.EmployeeSession.setKTPSummary(dataModel2.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            Main.main.getMain().showForm(new SummaryStatusCandidatEmployee());
             this.dispose();
         }     
         if (CustomResource.EmployeeSession.getsesiform().equals("2")){

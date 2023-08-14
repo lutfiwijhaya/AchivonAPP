@@ -8,10 +8,12 @@ import CustomResource.MySession;
 import CustomResource.koneksi;
 import Main.MasterForm;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,6 +26,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import jnafilechooser.api.JnaFileChooser;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -38,6 +44,7 @@ public class DisciplnaryResolution extends MasterForm {
     public DisciplnaryResolution() {
         initComponents();
         MyWindow();
+        openDB();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
         
          if (!"1".equals(MySession.get_Role())) {
@@ -45,7 +52,7 @@ public class DisciplnaryResolution extends MasterForm {
             signPresident.setVisible(false);
             labelNamePresident.setVisible(false);
         }
-         jLabel4.setVisible(false);
+         idPresident.setVisible(false);
     }
     private void openDB() {
         try {
@@ -76,7 +83,7 @@ public class DisciplnaryResolution extends MasterForm {
         labelNamePresident = new javax.swing.JLabel();
         signPresident = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        idPresident = new javax.swing.JLabel();
         positionEmployee = new CustomResource.CustomTextfield();
         jLabel20 = new javax.swing.JLabel();
         commissionerName4 = new CustomResource.CustomTextfield();
@@ -145,12 +152,12 @@ public class DisciplnaryResolution extends MasterForm {
         jPanel1.add(signPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 130, 120, 90));
 
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("President");
+        jLabel19.setText("Final Approval");
         jLabel19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 120, 20));
 
-        jLabel7.setText("jLabel4");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
+        idPresident.setText("jLabel4");
+        jPanel1.add(idPresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, -1, -1));
 
         positionEmployee.setLabelText("Position");
         positionEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -254,6 +261,7 @@ public class DisciplnaryResolution extends MasterForm {
                     Image imageResize = Myicon.getImage().getScaledInstance(135, 90, Image.SCALE_SMOOTH);
                     signPresident.setIcon(new ImageIcon(imageResize));
                     labelNamePresident.setText(MySession.get_nama());
+                    idPresident.setText(MySession.get_ID());
                 }
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
@@ -284,6 +292,7 @@ public class DisciplnaryResolution extends MasterForm {
     private CustomResource.CustomTextfield commissionerName4;
     private com.raven.datechooser.DateChooser dateChooser1;
     private CustomResource.CustomTextfield disciplineEmployee;
+    private javax.swing.JLabel idPresident;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -293,7 +302,6 @@ public class DisciplnaryResolution extends MasterForm {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -313,7 +321,6 @@ private void MyWindow(){
     }
 
     private void tracer(){
-//        String templateFilePath = "C://Users//hi//OneDrive//Documents//Summary Status.xlsx";
         String templateFilePath = "src/Doc/Disciplinary Resolution.xlsx";
 
         String name = nameEmployee.getText();
@@ -331,6 +338,31 @@ private void MyWindow(){
             Workbook workbook = new XSSFWorkbook(templateFile);
             
             Sheet sheet = workbook.getSheet("Sheet1");
+            
+            ImageIcon iconPresident = (ImageIcon) signPresident.getIcon();
+            if (iconPresident == null) {
+                sheet.getRow(3).getCell(13).setCellValue("");
+            }else{
+                Image image = iconPresident.getImage();
+                BufferedImage bufferedImage = new BufferedImage(
+                    image.getWidth(null),
+                    image.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB
+                );
+                Graphics2D g2d = bufferedImage.createGraphics();
+                g2d.drawImage(image, 0, 0, null);
+                g2d.dispose();
+
+                int pictureIdx = workbook.addPicture(bufferedImageToByteArray(bufferedImage), Workbook.PICTURE_TYPE_PNG);
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(13);
+                anchor.setRow1(3);
+                Picture picture = drawing.createPicture(anchor, pictureIdx);
+                picture.resize(1.0, 1.0);
+                sheet.getRow(6).getCell(13).setCellValue(labelNamePresident.getText().trim().toString());
+            }
             
             sheet.getRow(10).getCell(2).setCellValue(name);
             sheet.getRow(10).getCell(5).setCellValue(discipline);
@@ -373,14 +405,21 @@ private void MyWindow(){
                 workbook.write(outputFileStream);
                 workbook.close();
                 outputFileStream.close();
-
-                System.out.println("Data berhasil dimasukkan ke dalam template Excel.");
-                System.out.println("File output: " + outputFilePath);
             } else {
-                System.out.println("Batal menyimpan file output.");
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    
+    private byte[] bufferedImageToByteArray(BufferedImage image) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", baos);
+            return baos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

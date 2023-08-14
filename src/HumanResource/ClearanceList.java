@@ -51,7 +51,14 @@ public class ClearanceList extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     void  settable (){
-        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal pengunduran diri / Resignation Date"};
+        String [] header = {
+            "id",
+            "Karyawan Id / Employee Id", 
+            "KTP", "Nama / Name", 
+            "Email", "No. Hp", 
+            "Posisi / Job Position", 
+            "Disiplin / Discipline", 
+            "Tanggal pengunduran diri / Resignation Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
         MyTable.setDefaultEditor(Object.class, null);
@@ -190,8 +197,16 @@ public class ClearanceList extends MasterForm {
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_clearance inner join employee on employee_clearance.karyawan_id = employee.karyawan_id");
             while (myRess.next()) {
-                String myData [] = {myRess.getString(11),myRess.getString(12), myRess.getString(13), myRess.getString(14),myRess.getString(19), 
-                                    myRess.getString(20),myRess.getString(23) ,myRess.getString(16)};
+                String myData [] = {
+                    myRess.getString(11),
+                    myRess.getString(12), 
+                    myRess.getString(13), 
+                    myRess.getString(14),
+                    myRess.getString(19),
+                    myRess.getString(20),
+                    myRess.getString(24),
+                    myRess.getString(24),
+                    myRess.getString(16)};
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {

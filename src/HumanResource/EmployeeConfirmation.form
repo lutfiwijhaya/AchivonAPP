@@ -129,7 +129,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="460" y="320" width="440" height="13"/>
+                  <AbsoluteConstraints x="460" y="320" width="580" height="13"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -343,7 +343,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="460" y="290" width="440" height="13"/>
+                  <AbsoluteConstraints x="460" y="290" width="580" height="13"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -420,7 +420,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="460" y="410" width="230" height="13"/>
+                  <AbsoluteConstraints x="460" y="410" width="330" height="13"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -489,7 +489,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="460" y="230" width="250" height="13"/>
+                  <AbsoluteConstraints x="460" y="230" width="480" height="13"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -514,11 +514,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="of Section A on behalf of The Company with the approval of The Company&apos;s Human Resources Director."/>
+                <Property name="text" type="java.lang.String" value="The Company with the approval of The Company&apos;s Human Resources Director."/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="300" y="900" width="610" height="-1"/>
+                  <AbsoluteConstraints x="300" y="900" width="690" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -527,11 +527,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="I (Employee) has confirmed all matters in accordance with The Company&#x2019;s (means PT. ACHIVON PRESTASI ABADI&#x2019;s)"/>
+                <Property name="text" type="java.lang.String" value="I (Employee) has confirmed all matters in accordance with The Company&#x2019;s (means PT. ACHIVON PRESTASI ABADI&#x2019;s) human resources management"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="300" y="440" width="610" height="-1"/>
+                  <AbsoluteConstraints x="300" y="440" width="710" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -540,11 +540,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="human resources management standard regulations from the date of signing this agreement, and as a result, I assure "/>
+                <Property name="text" type="java.lang.String" value="standard regulations from the date of signing this agreement, and as a result, I assure that I will thoroughly perform and strictly comply with"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="300" y="460" width="610" height="-1"/>
+                  <AbsoluteConstraints x="300" y="460" width="710" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -553,11 +553,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="that I will thoroughly perform and strictly comply with the tasks given and duties. In addition, I confirm that I will work"/>
+                <Property name="text" type="java.lang.String" value="the tasks given and duties. In addition, I confirm that I will work very diligently without raising any objection in the overtime including working day"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="300" y="480" width="610" height="-1"/>
+                  <AbsoluteConstraints x="300" y="480" width="710" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -566,11 +566,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="very diligently without raising any objection in the overtime including working day and non-working day, special task"/>
+                <Property name="text" type="java.lang.String" value="and non-working day, special task"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="300" y="500" width="610" height="-1"/>
+                  <AbsoluteConstraints x="300" y="500" width="710" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -579,11 +579,10 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="and special work at the request of The Company, and I made signature above on this employee confirmation."/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="300" y="520" width="610" height="-1"/>
+                  <AbsoluteConstraints x="300" y="520" width="610" height="10"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -592,11 +591,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee"/>
+                <Property name="text" type="java.lang.String" value="I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee of Section A on behalf of"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="300" y="880" width="610" height="-1"/>
+                  <AbsoluteConstraints x="300" y="880" width="710" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -720,21 +719,11 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jToggleButton2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jToggleButton2"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
-              </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="550" y="1120" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="javax.swing.JButton" name="jButton5">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="33" red="33" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Ambil/Data Employee"/>
               </Properties>
               <Events>

@@ -4,6 +4,7 @@
  */
 package HumanResource;
 
+import CustomResource.MySession;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,9 +21,12 @@ import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -68,6 +72,19 @@ public class Checklist extends MasterForm {
             JOptionPane.showMessageDialog(null, "maaf, Tidak terhubung database");
         }
     }
+    
+    private void track(){
+        try {
+            stm = koneksi.createStatement();
+            rs = stm.executeQuery("SELECT * FROM employee WHERE id =" +CustomResource.EmployeeSession.getKTPAllocation()+ "");
+            while (rs.next()) {
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -81,6 +98,7 @@ public class Checklist extends MasterForm {
         jLabel4 = new javax.swing.JLabel();
         textSearch = new CustomResource.CustomTextfield();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 585));
 
@@ -89,7 +107,7 @@ public class Checklist extends MasterForm {
 
         MyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null,  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true),  new Boolean(true), null}
             },
             new String [] {
                 "id", "Karyawan Id / Employee Id", "Nama / Name", "KTP", "application form", "summary status", "Resume", "self introduction", "academic certificate", "Career and certificate", "personal identification card", "photo", "police statement", "Bank Account", "report medical check up", "family certificate", "tax identification", "BPJS Kesehatan", "BPJS Ketenagakerjaan", "family contact point"
@@ -127,6 +145,7 @@ public class Checklist extends MasterForm {
             MyTable.getColumnModel().getColumn(0).setPreferredWidth(50);
             MyTable.getColumnModel().getColumn(1).setPreferredWidth(170);
             MyTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            MyTable.getColumnModel().getColumn(3).setMinWidth(130);
             MyTable.getColumnModel().getColumn(3).setPreferredWidth(100);
             MyTable.getColumnModel().getColumn(4).setPreferredWidth(100);
             MyTable.getColumnModel().getColumn(5).setPreferredWidth(100);
@@ -167,13 +186,25 @@ public class Checklist extends MasterForm {
         });
         jPanel1.add(textSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 460, -1));
 
+        jButton1.setForeground(new java.awt.Color(51, 51, 255));
         jButton1.setText("Save as excel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 510, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 510, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(51, 51, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 510, -1, -1));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -207,9 +238,14 @@ public class Checklist extends MasterForm {
         tracer();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        saving();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MyTable;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -222,20 +258,310 @@ public class Checklist extends MasterForm {
     private void myShow() {
         Connection myConn;
         String mySearch = textSearch.getText();
-        int row = MyTable.getRowCount();
-        for(int i = 0; i < row; i++){
-//            myModel.removeRow(0);
-        }
         DefaultTableModel model = (DefaultTableModel) MyTable.getModel();
-        try {
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
-            ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee");
-            int i = 1;
-            while (myRess.next()) {
-                String myData [] = {myRess.getString(1), myRess.getString(2),myRess.getString(4), myRess.getString(3)};
-                model.addRow(myData);
+        if (mySearch != null){
+            int row = MyTable.getRowCount();
+            for(int i = 0; i < row; i++){
+                model.removeRow(0);
             }
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                ResultSet myRess = myConn.createStatement().executeQuery("SELECT * FROM employee e1 INNER JOIN checklist c1 ON e1.karyawan_id = c1.karyawan_id WHERE status_employee = 1 AND name LIKE '%" + mySearch + "%'");
+                int mRow = 0;
+                
+                while (myRess.next()) {
+                    String myData [] = {
+                        myRess.getString(1), 
+                        myRess.getString(2),
+                        myRess.getString(4), 
+                        myRess.getString(3),
+                    };
+                    
+                    model.addRow(myData);
+                    
+                    if ("1".equals(myRess.getString("aplication_form"))) {
+                        model.setValueAt(true, mRow, 4);
+                    }else{
+                        model.setValueAt(false, mRow, 4);
+                    }
+                    
+                    if ("1".equals(myRess.getString("summary"))) {
+                        model.setValueAt(true, mRow, 5);
+                    }else{
+                        model.setValueAt(false, mRow, 5);
+                    }
+                    
+                    if ("1".equals(myRess.getString("resume"))) {
+                        model.setValueAt(true, mRow, 6);
+                    }else{
+                        model.setValueAt(false, mRow, 6);
+                    }
+                    
+                    if ("1".equals(myRess.getString("self"))) {
+                        model.setValueAt(true, mRow, 7);
+                    }else{
+                        model.setValueAt(false, mRow, 7);
+                    }
+                    
+                    if ("1".equals(myRess.getString("academic_certificate"))) {
+                        model.setValueAt(true, mRow, 8);
+                    }else{
+                        model.setValueAt(false, mRow, 8);
+                    }
+                    
+                    if ("1".equals(myRess.getString("career_certificate"))) {
+                        model.setValueAt(true, mRow, 9);
+                    }else{
+                        model.setValueAt(false, mRow, 9);
+                    }
+                    
+                    if ("1".equals(myRess.getString("personal_id_card"))) {
+                        model.setValueAt(true, mRow, 10);
+                    }else{
+                        model.setValueAt(false, mRow, 10);
+                    }
+                    
+                    if ("1".equals(myRess.getString("photo"))) {
+                        model.setValueAt(true, mRow, 11);
+                    }else{
+                        model.setValueAt(false, mRow, 11);
+                    }
+                    
+                    if ("1".equals(myRess.getString("skck"))) {
+                        model.setValueAt(true, mRow, 12);
+                    }else{
+                        model.setValueAt(false, mRow, 12);
+                    }
+                    
+                    if ("1".equals(myRess.getString("bank"))) {
+                        model.setValueAt(true, mRow, 13);
+                    }else{
+                        model.setValueAt(false, mRow, 13);
+                    }
+                    
+                    if ("1".equals(myRess.getString("report_mcu"))) {
+                        model.setValueAt(true, mRow, 14);
+                    }else{
+                        model.setValueAt(false, mRow, 14);
+                    }
+                    
+                    if ("1".equals(myRess.getString("family_certificate"))) {
+                        model.setValueAt(true, mRow, 15);
+                    }else{
+                        model.setValueAt(false, mRow, 15);
+                    }
+                    
+                    if ("1".equals(myRess.getString(35))) {
+                        model.setValueAt(true, mRow, 16);
+                    }else{
+                        model.setValueAt(false, mRow, 16);
+                    }
+                    
+                    if ("1".equals(myRess.getString("bpjs_kesehatan"))) {
+                        model.setValueAt(true, mRow, 17);
+                    }else{
+                        model.setValueAt(false, mRow, 17);
+                    }
+                    
+                    if ("1".equals(myRess.getString(37))) {
+                        model.setValueAt(true, mRow, 18);
+                    }else{
+                        model.setValueAt(false, mRow, 18);
+                    }
+                    
+                    if ("1".equals(myRess.getString("family_contact_point"))) {
+                        model.setValueAt(true, mRow, 19);
+                    }else{
+                        model.setValueAt(false, mRow, 19);
+                    }
+                    
+                    mRow++;
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }else{
+            try {
+                myConn = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp", "root", "");
+                ResultSet myRess1 = myConn.createStatement().executeQuery("SELECT * FROM employee e1 INNER JOIN checklist c1 ON e1.karyawan_id = c1.karyawan_id WHERE status_employee = 1");
+                int mRow = 0;
+                while (myRess1.next()) {
+                    String myData [] = {
+                        myRess1.getString(1), 
+                        myRess1.getString(2), 
+                        myRess1.getString(4), 
+                        myRess1.getString(3)
+                    };  
+                    
+                    model.addRow(myData);
+                    
+                    if ("1".equals(myRess1.getString("aplication_form"))) {
+                        model.setValueAt(true, mRow, 4);
+                    }else{
+                        model.setValueAt(false, mRow, 4);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("summary"))) {
+                        model.setValueAt(true, mRow, 5);
+                    }else{
+                        model.setValueAt(false, mRow, 5);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("resume"))) {
+                        model.setValueAt(true, mRow, 6);
+                    }else{
+                        model.setValueAt(false, mRow, 6);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("self"))) {
+                        model.setValueAt(true, mRow, 7);
+                    }else{
+                        model.setValueAt(false, mRow, 7);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("academic_certificate"))) {
+                        model.setValueAt(true, mRow, 8);
+                    }else{
+                        model.setValueAt(false, mRow, 8);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("career_certificate"))) {
+                        model.setValueAt(true, mRow, 9);
+                    }else{
+                        model.setValueAt(false, mRow, 9);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("personal_id_card"))) {
+                        model.setValueAt(true, mRow, 10);
+                    }else{
+                        model.setValueAt(false, mRow, 10);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("photo"))) {
+                        model.setValueAt(true, mRow, 11);
+                    }else{
+                        model.setValueAt(false, mRow, 11);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("skck"))) {
+                        model.setValueAt(true, mRow, 12);
+                    }else{
+                        model.setValueAt(false, mRow, 12);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("bank"))) {
+                        model.setValueAt(true, mRow, 13);
+                    }else{
+                        model.setValueAt(false, mRow, 13);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("report_mcu"))) {
+                        model.setValueAt(true, mRow, 14);
+                    }else{
+                        model.setValueAt(false, mRow, 14);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("family_certificate"))) {
+                        model.setValueAt(true, mRow, 15);
+                    }else{
+                        model.setValueAt(false, mRow, 15);
+                    }
+                    
+                    if ("1".equals(myRess1.getString(35))) {
+                        model.setValueAt(true, mRow, 16);
+                    }else{
+                        model.setValueAt(false, mRow, 16);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("bpjs_kesehatan"))) {
+                        model.setValueAt(true, mRow, 17);
+                    }else{
+                        model.setValueAt(false, mRow, 17);
+                    }
+                    
+                    if ("1".equals(myRess1.getString(37))) {
+                        model.setValueAt(true, mRow, 18);
+                    }else{
+                        model.setValueAt(false, mRow, 18);
+                    }
+                    
+                    if ("1".equals(myRess1.getString("family_contact_point"))) {
+                        model.setValueAt(true, mRow, 19);
+                    }else{
+                        model.setValueAt(false, mRow, 19);
+                    }
+                    
+                    mRow++;
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
+    
+    private void saving(){
+        
+        PreparedStatement pstmt = null;
+        try {
+            DefaultTableModel model = (DefaultTableModel) MyTable.getModel();
+            int rowCount = model.getRowCount();
+            int colCount = model.getColumnCount();
+
+            String[] columns = {
+                "aplication_form=? ",
+                "summary=? ",
+                "resume=? ",
+                "self=? ",
+                "academic_certificate=? ",
+                "career_certificate=? ",
+                "personal_id_card=? ",
+                "photo=? ",
+                "skck=? ",
+                "bank=? ",
+                "report_mcu=? ",
+                "family_certificate=? ",
+                "npwp=? ",
+                "bpjs_kesehatan=? ",
+                "bpjs_tenaga_kerja=? ",
+                "family_contact_point=? "
+            };
+            String updateSql = "UPDATE checklist SET ";
+            for (int col = 0; col < columns.length; col++) {
+                updateSql += columns[col];
+                if (col < columns.length - 1) {
+                    updateSql += ",";
+                }
+            }
+            updateSql += " WHERE karyawan_id=?";
+
+            pstmt = koneksi.prepareStatement(updateSql);
+
+            int paramIndex = 1; // Indeks parameter dimulai dari 1
+            for (int row = 0; row < rowCount; row++) {
+                String karyawanId = (String) model.getValueAt(row, 1); // Ambil nilai "karyawan_id" sebagai String
+
+                for (int col = 4; col < colCount; col++) {
+                    Boolean isChecked = (Boolean) model.getValueAt(row, col);
+                    int value = isChecked ? 1 : 0;
+                    pstmt.setInt(paramIndex, value); // Menggunakan paramIndex sebagai indeks parameter
+                    paramIndex++;
+                }
+                pstmt.setString(paramIndex, karyawanId); // Set nilai "karyawan_id" untuk bagian WHERE
+                pstmt.executeUpdate();
+
+                paramIndex = 1; // Reset kembali paramIndex setelah satu baris selesai diupdate
+            }
+
+            // Opsional: Anda bisa menambahkan pesan untuk menandakan penyimpanan data berhasil jika diperlukan.
+            JOptionPane.showMessageDialog(this, "Success Saving Data\nData Berhasil Disimpan");
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Sorry, Failed Saving Data\nMaaf, Data Gagal Disimpan");
+            Logger.getLogger(Checklist.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Tutup PreparedStatement dan sumber daya lain jika diperlukan.
+//            if (pstmt != null) {
+//                pstmt.close();
+//            }
         }
     }
     
@@ -269,8 +595,8 @@ public class Checklist extends MasterForm {
                 sheet.getRow(5+i).getCell(2).setCellValue(description1);
                 sheet.getRow(5+i).getCell(3).setCellValue(description2);
                 for (int col = 4;  col < colCount; col++) {
-                    Object value = model.getValueAt(i, col);
-                    if (value != null && value instanceof Boolean == true) {
+                    Boolean value = (Boolean)model.getValueAt(i, col);
+                    if (value == true) {
                         sheet.getRow(5+i).getCell(col).setCellValue("✓");
                     }else{
                         sheet.getRow(5+i).getCell(col).setCellValue("-");

@@ -26,11 +26,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.Transport;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -60,7 +58,6 @@ public class EmployeeConfirmation extends MasterForm {
         jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
         getMyRole();
         addtext();
-        jToggleButton2.setVisible(false);
     }
     
     private void get_tanggal() {
@@ -71,10 +68,7 @@ public class EmployeeConfirmation extends MasterForm {
         l_emnama1.setText(MySession.get_nama());
         l_emnama.setText(MySession.get_nama());
         jLabel37.setText(MySession.get_JobPosition());
-        jToggleButton2.setVisible(false);
     }
-    
-    
     
     private void openDB() {
         try {
@@ -146,7 +140,6 @@ public class EmployeeConfirmation extends MasterForm {
         jLabel28 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         l_hp = new javax.swing.JLabel();
-        jToggleButton2 = new javax.swing.JToggleButton();
         jButton5 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -176,7 +169,7 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 790, -1, -1));
 
         l_cadd.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(l_cadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 440, 13));
+        jPanel1.add(l_cadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 580, 13));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel6.setText("A4. Current Address");
@@ -238,7 +231,7 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 1140, -1, -1));
 
         l_hadd.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(l_hadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 440, 13));
+        jPanel1.add(l_hadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 580, 13));
 
         l_name.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         l_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -261,7 +254,7 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
 
         l_email.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(l_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 230, 13));
+        jPanel1.add(l_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 330, 13));
 
         l_ktp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(l_ktp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 390, 13));
@@ -279,7 +272,7 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(l_emnama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 790, 270, 13));
 
         l_name1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jPanel1.add(l_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 250, 13));
+        jPanel1.add(l_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 480, 13));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 51, 255));
@@ -287,32 +280,31 @@ public class EmployeeConfirmation extends MasterForm {
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel15.setText("of Section A on behalf of The Company with the approval of The Company's Human Resources Director.");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 900, 610, -1));
+        jLabel15.setText("The Company with the approval of The Company's Human Resources Director.");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 900, 690, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel16.setText("I (Employee) has confirmed all matters in accordance with The Company’s (means PT. ACHIVON PRESTASI ABADI’s)");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 610, -1));
+        jLabel16.setText("I (Employee) has confirmed all matters in accordance with The Company’s (means PT. ACHIVON PRESTASI ABADI’s) human resources management");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 710, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel17.setText("human resources management standard regulations from the date of signing this agreement, and as a result, I assure ");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 610, -1));
+        jLabel17.setText("standard regulations from the date of signing this agreement, and as a result, I assure that I will thoroughly perform and strictly comply with");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 710, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel18.setText("that I will thoroughly perform and strictly comply with the tasks given and duties. In addition, I confirm that I will work");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 610, -1));
+        jLabel18.setText("the tasks given and duties. In addition, I confirm that I will work very diligently without raising any objection in the overtime including working day");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, 710, -1));
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel19.setText("very diligently without raising any objection in the overtime including working day and non-working day, special task");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 610, -1));
+        jLabel19.setText("and non-working day, special task");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 710, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel26.setText("and special work at the request of The Company, and I made signature above on this employee confirmation.");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 610, -1));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, 610, 10));
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jLabel27.setText("I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee");
-        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 880, 610, -1));
+        jLabel27.setText("I confirm that the above Employee has signed the confirmation of Section A, and approve the hiring of the Employee of Section A on behalf of");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 880, 710, -1));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 255));
@@ -367,14 +359,7 @@ public class EmployeeConfirmation extends MasterForm {
         l_hp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jPanel1.add(l_hp, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 230, 13));
 
-        jToggleButton2.setText("jToggleButton2");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 1120, -1, -1));
-
+        jButton5.setForeground(new java.awt.Color(51, 51, 255));
         jButton5.setText("Ambil/Data Employee");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,7 +383,6 @@ public class EmployeeConfirmation extends MasterForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
 // try {
 //                   
 //                    Class.forName("com.mysql.jdbc.Driver");
@@ -481,7 +465,6 @@ public class EmployeeConfirmation extends MasterForm {
                             return new PasswordAuthentication(username, password);
                         }
                     });
-
             try {
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress("yourmurti@gmail.com"));
@@ -497,7 +480,6 @@ public class EmployeeConfirmation extends MasterForm {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Failed to send  \nLamaran gagal Diteruskan");
         }
-    
         set_kosong();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -512,34 +494,9 @@ public class EmployeeConfirmation extends MasterForm {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CustomResource.EmployeeSession.setsesiform("1");
-        new Employe_list().setVisible(true);
+        CustomResource.EmployeeSession.setsesiform("EmployeeConfirmation");
+        new HumanResourceEmployeeList().setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        try {
-            Statement stm = koneksi.createStatement();
-            rs = stm.executeQuery("select*from cd_employee where KTP = " + l_ktp.getText() + "");
-            while (rs.next()) {
-                da = rs.getString("id_employee");
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            Connection kon = DriverManager.getConnection("jdbc:mysql://localhost/achivonapp","root","");
-            param.clear();
-            param.put("id",da);
-            param.put("tgl",l_tgl.getText());
-            String reportPath = "C:\\Users\\USER\\JaspersoftWorkspace\\MyReports\\notification_cd.jasper";
-            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, param, kon);
-            JasperViewer viewer = new JasperViewer(jasperPrint, false);
-            viewer.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         set_kosong();
@@ -594,7 +551,6 @@ public class EmployeeConfirmation extends MasterForm {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel l_cadd;
     private javax.swing.JLabel l_date;
     private javax.swing.JLabel l_email;
@@ -685,6 +641,7 @@ public class EmployeeConfirmation extends MasterForm {
         } catch (Exception e) {
             e.printStackTrace();
         }
+//        CustomResource.CandidateSession.setCandidateID("");
     }
     
     @Override

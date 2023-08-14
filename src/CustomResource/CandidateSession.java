@@ -24,6 +24,7 @@ public class CandidateSession {
     public static void setCandidateID(String CandidateID){
         CandidateSession.CandidateID = CandidateID;
     }
+    
     public static String getCandidateNama(){
         return CandidateNama;
     }

@@ -218,10 +218,20 @@ public class LoginFrame extends javax.swing.JFrame {
 
         textRepeatPassword.setLabelText("re-type password / ketik ulang password");
         textRepeatPassword.setShowAndHide(true);
+        textRepeatPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textRepeatPasswordKeyPressed(evt);
+            }
+        });
         jPanel1.add(textRepeatPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 260, 40));
 
         textPassword.setLabelText("Password");
         textPassword.setShowAndHide(true);
+        textPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textPasswordKeyPressed(evt);
+            }
+        });
         jPanel1.add(textPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -408,7 +418,8 @@ public class LoginFrame extends javax.swing.JFrame {
                                 MySession.set_JobPosition(myRess.getString("job_position"));
                                 MySession.set_Sallary(myRess.getString("sallary"));
                                 MySession.set_Role(myRess.getString("role_id"));
-                                JOptionPane.showMessageDialog(null, "Berhasil Login\nsuccessfull logged in \n\nSelamat Datang " +MySession.get_nama()+""+"Welcome "+MySession.get_nama());
+                                System.out.println("role login " + MySession.get_Role());
+                                JOptionPane.showMessageDialog(null, "Berhasil Login\nsuccessfull logged in \n\nSelamat Datang " +MySession.get_nama()+"\n"+"Welcome "+MySession.get_nama());
                                 main.getMain().setVisible(true);
                                 this.dispose();
                             }else{

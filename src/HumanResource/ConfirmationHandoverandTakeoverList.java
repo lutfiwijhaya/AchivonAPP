@@ -49,7 +49,16 @@ public class ConfirmationHandoverandTakeoverList extends MasterForm {
         .setHorizontalAlignment(JLabel.CENTER);
     }
     private void  settable (){
-        String [] header = {"id","Karyawan Id / Employee Id", "KTP", "Nama / Name", "Email", "No. Hp", "Posisi / Job Position", "Disiplin / Discipline", "Tanggal pengajuan / Request Date"};
+        String [] header = {
+            "id",
+            "Karyawan Id / Employee Id", 
+            "KTP", 
+            "Nama / Name", 
+            "Email", 
+            "No. Hp", 
+            "Posisi / Job Position", 
+            "Disiplin / Discipline", 
+            "Tanggal pengajuan / Request Date"};
         myModel = new DefaultTableModel(header,0);
         MyTable.setModel(myModel);
         MyTable.setDefaultEditor(Object.class, null);
@@ -188,9 +197,20 @@ public class ConfirmationHandoverandTakeoverList extends MasterForm {
         }
         try {
             ResultSet myRess = koneksi.createStatement().executeQuery("SELECT * FROM employee_handover inner join employee on employee_handover.karyawan_id = employee.karyawan_id");
+            int  i = 1;
             while (myRess.next()) {
-                String myData [] = {myRess.getString(12),myRess.getString(13), myRess.getString(14), myRess.getString(15),myRess.getString(16), 
-                                    myRess.getString(21),myRess.getString(24) ,myRess.getString(17)};
+                String myData [] = {
+                    String.valueOf(i),
+//                    myRess.getString(12),
+                    myRess.getString(13), 
+                    myRess.getString(14), 
+                    myRess.getString(15),
+                    myRess.getString(20),
+                    myRess.getString(21),
+                    myRess.getString(25),
+                    myRess.getString(25),
+                    myRess.getString(17)};
+                i++;
                 myModel.addRow(myData);
             }
         } catch (SQLException ex) {
